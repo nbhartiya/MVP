@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Survey question:
+  = @survey_answer.survey_question_id
+%p
+  %b Text:
+  = @survey_answer.text
+
+= link_to 'Edit', edit_survey_answer_path(@survey_answer)
+\|
+= link_to 'Back', survey_answers_path

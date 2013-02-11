@@ -1,0 +1,21 @@
+%h1 Listing survey_answers
+
+%table
+  %tr
+    %th Survey question
+    %th Text
+    %th
+    %th
+    %th
+
+  - @survey_answers.each do |survey_answer|
+    %tr
+      %td= survey_answer.survey_question_id
+      %td= survey_answer.text
+      %td= link_to 'Show', survey_answer
+      %td= link_to 'Edit', edit_survey_answer_path(survey_answer)
+      %td= link_to 'Destroy', survey_answer, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Survey answer', new_survey_answer_path

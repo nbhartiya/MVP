@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Type:
+  = @survey_question.type
+%p
+  %b Question:
+  = @survey_question.question
+
+= link_to 'Edit', edit_survey_question_path(@survey_question)
+\|
+= link_to 'Back', survey_questions_path

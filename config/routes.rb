@@ -1,4 +1,13 @@
 MVP::Application.routes.draw do
+  resources :user_answers
+
+
+  resources :survey_answers
+
+
+  resources :survey_questions
+
+
   get "home/index"
 
   get "home/about"
