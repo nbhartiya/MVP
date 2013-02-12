@@ -1,4 +1,7 @@
 MVP::Application.routes.draw do
+  resources :investments
+
+
   resources :projects
 
 

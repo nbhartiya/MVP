@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @investment.user_id
+%p
+  %b Project:
+  = @investment.project_id
+%p
+  %b Amount:
+  = @investment.amount
+
+= link_to 'Edit', edit_investment_path(@investment)
+\|
+= link_to 'Back', investments_path
