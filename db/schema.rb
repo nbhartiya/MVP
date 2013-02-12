@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130212000836) do
+ActiveRecord::Schema.define(:version => 20130212001550) do
 
   create_table "projects", :force => true do |t|
     t.integer  "user_id"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20130212000836) do
     t.integer  "min_investment"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.string   "business_plan"
   end
 
   create_table "survey_answers", :force => true do |t|
