@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  name: MyString
+  logo: MyString
+  location: MyText
+  description: MyText
+  target: 1
+  raised: 1
+  terms: MyText
+  min_investment: 1
+
+two:
+  user_id: 1
+  name: MyString
+  logo: MyString
+  location: MyText
+  description: MyText
+  target: 1
+  raised: 1
+  terms: MyText
+  min_investment: 1

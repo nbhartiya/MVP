@@ -11,7 +11,43 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130210231417) do
+ActiveRecord::Schema.define(:version => 20130212000836) do
+
+  create_table "projects", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "logo"
+    t.text     "location"
+    t.text     "description"
+    t.integer  "target"
+    t.integer  "raised"
+    t.text     "terms"
+    t.integer  "min_investment"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "survey_answers", :force => true do |t|
+    t.integer  "survey_question_id"
+    t.text     "text"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "survey_questions", :force => true do |t|
+    t.string   "type"
+    t.text     "question"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "user_answers", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "survey_question_id"
+    t.text     "text"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "first_name"

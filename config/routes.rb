@@ -1,4 +1,7 @@
 MVP::Application.routes.draw do
+  resources :projects
+
+
   resources :user_answers
 
 

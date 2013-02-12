@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @project.user_id
+%p
+  %b Name:
+  = @project.name
+%p
+  %b Logo:
+  = @project.logo
+%p
+  %b Location:
+  = @project.location
+%p
+  %b Description:
+  = @project.description
+%p
+  %b Target:
+  = @project.target
+%p
+  %b Raised:
+  = @project.raised
+%p
+  %b Terms:
+  = @project.terms
+%p
+  %b Min investment:
+  = @project.min_investment
+
+= link_to 'Edit', edit_project_path(@project)
+\|
+= link_to 'Back', projects_path
