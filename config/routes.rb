@@ -1,23 +1,13 @@
 MVP::Application.routes.draw do
+  
   resources :investments
-
-
   resources :projects
-
-
   resources :user_answers
-
-
   resources :survey_answers
-
-
   resources :survey_questions
 
-
   get "home/index"
-
   get "home/about"
-
   get "home/blog"
 
   devise_for :users

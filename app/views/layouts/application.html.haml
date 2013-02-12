@@ -7,5 +7,8 @@
     = csrf_meta_tags
   %body
     = yield
-%p.notice= notice
-%p.alert= alert
+
+- if alert or notice
+  .alert
+    %p.alert = alert
+    %p.notice = notice

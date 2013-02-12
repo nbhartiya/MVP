@@ -1,4 +1,18 @@
 %h1 Welcome to our homepage
-%p Hello World!
 
+.btn-group.pull-right
+  - if user_signed_in?
+    %button.btn.btn-large.btn-info
+      %i.icon-user.icon-white
+      = current_user.email
+    %button.btn.btn-large.btn-info
+      = link_to "Sign Out", destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?"
+  - else
+    %button.btn.btn-large.btn-primary
+      = link_to "Log In", new_user_session_path
+    %button.btn.btn-large.btn-primary
+      = link_to "Sign Up", new_user_registration_path
+    /
+      <haml:loud> button_to('Log In', new_user_session_path, :class =&gt; 'btn btn-large btn-primary') </haml:loud>
+      <haml:loud> button_to('Sign Up', new_user_registration_path, :class =&gt; 'btn btn-large btn-primary') </haml:loud>
 =render "shared/login"
