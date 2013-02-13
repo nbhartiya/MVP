@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(:version => 20130213001509) do
     t.string   "business_plan"
     t.string   "category"
     t.boolean  "approved"
-    t.decimal  "phone_number"
   end
 
   create_table "survey_answers", :force => true do |t|
