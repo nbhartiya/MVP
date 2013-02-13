@@ -1,5 +1,3 @@
-%h1 Welcome to our homepage
-
 .btn-group.pull-right
   - if user_signed_in?
     %button.btn.btn-large.btn-info
@@ -15,4 +13,12 @@
     /
       <haml:loud> button_to('Log In', new_user_session_path, :class =&gt; 'btn btn-large btn-primary') </haml:loud>
       <haml:loud> button_to('Sign Up', new_user_registration_path, :class =&gt; 'btn btn-large btn-primary') </haml:loud>
-=render "shared/login"
+
+%h1 home page here
+%p add all home page content here, changes needed:
+%p 1. log in and sign up buttons need to appear white even though they are links
+%p 2. everything shouldn't be right up against the edges, need a border of whitespace around page
+%p :-/ 
+
+-# Uncomment the below to have the log in credential form rendered into this page
+-# =render "shared/login"
