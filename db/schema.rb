@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(:version => 20130213001509) do
   end
 
   create_table "survey_questions", :force => true do |t|
-    t.string   "type"
+    t.string   "kind"
     t.text     "question"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

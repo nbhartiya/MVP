@@ -2,7 +2,7 @@
 
 %table
   %tr
-    %th Type
+    %th Kind
     %th Question
     %th
     %th
@@ -10,7 +10,7 @@
 
   - @survey_questions.each do |survey_question|
     %tr
-      %td= survey_question.type
+      %td= survey_question.kind
       %td= survey_question.question
       %td= link_to 'Show', survey_question
       %td= link_to 'Edit', edit_survey_question_path(survey_question)
