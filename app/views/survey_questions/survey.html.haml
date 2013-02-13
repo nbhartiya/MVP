@@ -1,0 +1,7 @@
+=form_for '/survey' do
+  -@questions.each do |q|
+    .question
+      %input{:type => 'checkbox', :name => "answers[#{q.id}]"}
+      =q.question
+  %button.secondary.button Send data
+

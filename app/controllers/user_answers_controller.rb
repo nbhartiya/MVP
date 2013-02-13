@@ -40,17 +40,11 @@ class UserAnswersController < ApplicationController
   # POST /user_answers
   # POST /user_answers.json
   def create
-    @user_answer = UserAnswer.new(params[:user_answer])
-
-    respond_to do |format|
-      if @user_answer.save
-        format.html { redirect_to @user_answer, notice: 'User answer was successfully created.' }
-        format.json { render json: @user_answer, status: :created, location: @user_answer }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @user_answer.errors, status: :unprocessable_entity }
-      end
+    @answers = params[:answers]
+    @answers.each do |key, value|
+      UserAnswer.create(:user_id => current_user.id, :survey_question_id => key.to_i, :text => value)
     end
+    redirect_to :root
   end
 
   # PUT /user_answers/1

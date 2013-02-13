@@ -10,6 +10,11 @@ class SurveyQuestionsController < ApplicationController
     end
   end
 
+  #def survey
+  #  binding.pry
+  #  @questions = SurveyQuestion.where(:kind => current_user.kind)     
+  #end
+
   # GET /survey_questions/1
   # GET /survey_questions/1.json
   def show
