@@ -6,13 +6,8 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    = render "layouts/header"
     .container.main
-      .row
-        .span8
-          = yield
-        .span4
-          Wahahahaha
+      = yield
 
 -# can add a closer alert x thingie later or tweak it later...
 -if alert
