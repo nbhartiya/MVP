@@ -1,6 +1,5 @@
 class SurveyQuestionsController < ApplicationController
   def survey
-    binding.pry
     @questions = SurveyQuestion.where(:kind => current_user.kind)     
   end
 
