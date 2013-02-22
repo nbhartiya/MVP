@@ -1,33 +1,26 @@
 class SurveyQuestionsController < ApplicationController
-  # GET /survey_questions
-  # GET /survey_questions.json
+  def survey
+    binding.pry
+    @questions = SurveyQuestion.where(:kind => current_user.kind)     
+  end
+
   def index
     @survey_questions = SurveyQuestion.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @survey_questions }
     end
   end
 
-  #def survey
-  #  binding.pry
-  #  @questions = SurveyQuestion.where(:kind => current_user.kind)     
-  #end
 
-  # GET /survey_questions/1
-  # GET /survey_questions/1.json
   def show
     @survey_question = SurveyQuestion.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @survey_question }
     end
   end
 
-  # GET /survey_questions/new
-  # GET /survey_questions/new.json
   def new
     @survey_question = SurveyQuestion.new
 
@@ -37,13 +30,10 @@ class SurveyQuestionsController < ApplicationController
     end
   end
 
-  # GET /survey_questions/1/edit
   def edit
     @survey_question = SurveyQuestion.find(params[:id])
   end
 
-  # POST /survey_questions
-  # POST /survey_questions.json
   def create
     @survey_question = SurveyQuestion.new(params[:survey_question])
 
@@ -58,8 +48,6 @@ class SurveyQuestionsController < ApplicationController
     end
   end
 
-  # PUT /survey_questions/1
-  # PUT /survey_questions/1.json
   def update
     @survey_question = SurveyQuestion.find(params[:id])
 
@@ -74,8 +62,6 @@ class SurveyQuestionsController < ApplicationController
     end
   end
 
-  # DELETE /survey_questions/1
-  # DELETE /survey_questions/1.json
   def destroy
     @survey_question = SurveyQuestion.find(params[:id])
     @survey_question.destroy
