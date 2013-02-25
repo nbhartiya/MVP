@@ -4,6 +4,9 @@ gem 'rails', '3.2.11'
 gem 'devise'
 gem 'haml-rails'
 gem 'pry'
+gem 'omniauth-facebook'
+gem 'omniauth-linkedin'
+gem 'nifty-generators'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -46,3 +49,5 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+gem "mocha", :group => :test

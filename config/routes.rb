@@ -1,5 +1,7 @@
 MVP::Application.routes.draw do
   
+  resources :authentications
+
   resources :investments
   resources :projects
   resources :user_answers
