@@ -17,4 +17,10 @@ class AuthenticationsController < ApplicationController
     @authentication.destroy
     redirect_to authentications_url, :notice => "Successfully destroyed authentication."
   end
+  
+  def linkedin
+    binding.pry
+    # YOU WERE HERE
+    raise omni = request.env["omniauth.auth"].to_yaml
+  end
 end

@@ -11,8 +11,10 @@ MVP::Application.routes.draw do
   get "home/index"
   get "home/about"
   get "home/blog"
-
-  devise_for :users
+  
+  # Q: not sure what registrations: "registrations" does...
+  devise_for :users, controllers: {omniauth_callbacks: "authentications", registrations: "registrations"}
+  
 
   resources :users
   

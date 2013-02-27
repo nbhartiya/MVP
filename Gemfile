@@ -1,12 +1,19 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
-gem 'devise'
 gem 'haml-rails'
 gem 'pry'
-gem 'omniauth-facebook'
-gem 'omniauth-linkedin'
 gem 'nifty-generators'
+gem 'figaro'
+
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'fb_graph'
+gem 'omniauth-linkedin'
+
+# not necessary yet...will change to this when everything working...
+# gem 'linkedin'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

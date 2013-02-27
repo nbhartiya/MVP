@@ -18,3 +18,7 @@
     %br/
   %div
     %button.btn{:name => "commit", :type => "submit"} Sign Up
+    %br/
+    = link_to "Log In With Facebook", user_omniauth_authorize_path(:facebook)
+    %br/
+    = link_to "Log In With LinkedIn", user_omniauth_authorize_path(:linkedin)
