@@ -11,6 +11,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'fb_graph'
 gem 'omniauth-linkedin'
+gem 'omniauth-twitter'
+gem 'twitter'
 
 # not necessary yet...will change to this when everything working...
 # gem 'linkedin'
