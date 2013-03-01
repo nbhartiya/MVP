@@ -1,7 +1,6 @@
 MVP::Application.routes.draw do
   
   resources :authentications
-  resources :users
 
   resources :investments
   resources :projects
@@ -15,6 +14,8 @@ MVP::Application.routes.draw do
   
   # didn't include registrations: "registrations", it seems to require a registrations controller...
   devise_for :users, controllers: {omniauth_callbacks: "authentications"}
+  
+  resources :users
   
   get "survey" => "survey_questions#survey"
   post "survey" => "user_answers#create"

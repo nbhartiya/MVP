@@ -1,4 +1,4 @@
-class AuthenticationsController < ApplicationController
+class AuthenticationsController < Devise::OmniauthCallbacksController
   def index
     @authentications = Authentication.all
   end
@@ -19,8 +19,14 @@ class AuthenticationsController < ApplicationController
   end
   
   def linkedin
-    binding.pry
-    # YOU WERE HERE
+    raise omni = request.env["omniauth.auth"].to_yaml
+  end
+  
+  def twitter
+    raise omni = request.env["omniauth.auth"].to_yaml
+  end
+  
+  def facebook
     raise omni = request.env["omniauth.auth"].to_yaml
   end
 end
