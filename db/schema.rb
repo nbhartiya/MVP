@@ -17,8 +17,10 @@ ActiveRecord::Schema.define(:version => 20130225224849) do
     t.integer  "user_id"
     t.string   "provider"
     t.string   "uid"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "token"
+    t.string   "token_secret"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "investments", :force => true do |t|
