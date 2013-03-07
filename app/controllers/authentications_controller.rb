@@ -21,12 +21,10 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
       user.apply_omniauth(omni)
 
       if user.save
-        # Why, even after I allow there to be now password if we're going through omniauth is user not saving!?
-        binding.pry
+        # Why, even after I allow there to be no password if we're going through omniauth is user not saving!?
         flash[:notice] = "Logged in."
         sign_in_and_redirect User.find(user.id)
       else
-        binding.pry
         session[:omniauth] = omni.except('extra')
         redirect_to new_user_registration_path
       end

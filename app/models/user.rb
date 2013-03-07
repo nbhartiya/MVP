@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   has_many :projects
   has_many :authentications
   
+  # Will need to require user type (entrepreneur or investor) later with something along the lines of "validates_presence_of :field"
+  
   # may need to change ot has_and_belongs_to_many later on when multiple entrepreneurs are going to be logged in owning one project, will require a third table
   
   # Include default devise modules. Others available are:
@@ -23,10 +25,9 @@ class User < ActiveRecord::Base
       self.first_name = omni['extra']['raw_info']['first_name']
       self.last_name = omni['extra']['raw_info']['last_name']
     end
-    # Q to ask michael, several tutorials i saw said to input token and token_secret into 'authentications'
-    # but i never created those columnsin my authentications table...are these rails defaults?
-    
-    # Ugh why isn't this authentication saving??
+    # Token_Secret doesn't seem to populate with the code below and is not on the omni hash...
+    # Need to look up how to get token secret to go into authentication...wondering, is it really necessary?
+    binding.pry
     authentications.build(:provider => omni['provider'],
                           :uid => omni['uid'],
                           :token => omni['credentials'].token,
@@ -34,7 +35,8 @@ class User < ActiveRecord::Base
   end
   
   def password_required?
-    (authentications.empty? || !password.blank?) && super
+    #Basically says, if there is something in authentication and the password is blank, don't require password
+    (authentications.empty? & password.blank?) && super
   end
   
   def update_with_password(params, *options)
