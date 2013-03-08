@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :authentications
   
   # Will need to require user type (entrepreneur or investor) later with something along the lines of "validates_presence_of :field"
+  validates_presence_of :kind
   
   # may need to change ot has_and_belongs_to_many later on when multiple entrepreneurs are going to be logged in owning one project, will require a third table
   
@@ -27,7 +28,6 @@ class User < ActiveRecord::Base
     end
     # Token_Secret doesn't seem to populate with the code below and is not on the omni hash...
     # Need to look up how to get token secret to go into authentication...wondering, is it really necessary?
-    binding.pry
     authentications.build(:provider => omni['provider'],
                           :uid => omni['uid'],
                           :token => omni['credentials'].token,

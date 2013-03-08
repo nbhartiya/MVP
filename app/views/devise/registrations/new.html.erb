@@ -6,11 +6,18 @@
   <div><%= f.label :email %><br />
   <%= f.email_field :email, :autofocus => true %></div>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+  <% if @user.password_required? %>
+    <div><%= f.label :password %><br />
+    <%= f.password_field :password %></div>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+    <div><%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %></div>
+  <% end %>
+  
+  <div>
+    <input type = "radio", checked = "", name = "user[kind]", value = "Investor"> Investor <br>
+    <input type = "radio", checked = "", name = "user[kind]", value = "Entrepreneur"> Entrepreneur <br>
+  </div>
 
   <div><%= f.submit "Sign up" %></div>
 <% end %>
