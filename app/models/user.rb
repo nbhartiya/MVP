@@ -29,14 +29,23 @@ class User < ActiveRecord::Base
     # Token_Secret doesn't seem to populate with the code below and is not on the omni hash...
     # Need to look up how to get token secret to go into authentication...wondering, is it really necessary?
     authentications.build(:provider => omni['provider'],
-                          :uid => omni['uid'],
-                          :token => omni['credentials'].token,
-                          :token_secret => omni['credentials'].secret)
+                          :uid => omni['uid'])
+  end
+  
+  def self.new_with_session(params, session)
+    if session["devise.user_attributes"]
+      new(session["devise.user_attributes"], without_protection: true) do |user|
+        user.attributes = params
+        user.valid?
+      end
+    else
+      super
+    end
   end
   
   def password_required?
-    #Basically says, if there is something in authentication and the password is blank, don't require password
-    (authentications.empty? & password.blank?) && super
+    (authentications.empty? || !password.blank?) && super
+    binding.pry
   end
   
   def update_with_password(params, *options)

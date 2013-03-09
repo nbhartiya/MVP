@@ -5,11 +5,9 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
     #raise omni
     authentication = Authentication.find_by_provider_and_uid(omni['provider'], omni['uid'])
     if authentication
-      binding.pry
       flash[:notice] = "Logged in Successfully"
       sign_in_and_redirect User.find(authentication.user_id)
     elsif current_user
-      binding.pry
       token = omni['credentials'].token
       token_secret = omni['credentials'].secret
       
@@ -19,13 +17,14 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
     else
       user = User.new
       user.apply_omniauth(omni)
+      binding.pry
 
-      if user.save
+      if user.persisted?
         # Why, even after I allow there to be no password if we're going through omniauth is user not saving!?
         flash[:notice] = "Logged in."
         sign_in_and_redirect User.find(user.id)
       else
-        session[:omniauth] = omni
+        session["devise.user_attributes"] = user.attributes
         redirect_to new_user_registration_path
       end
     end
