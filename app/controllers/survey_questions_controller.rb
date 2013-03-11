@@ -1,4 +1,7 @@
 class SurveyQuestionsController < ApplicationController
+  
+  before_filter :completed_user?
+  
   def survey
     @questions = SurveyQuestion.where(:kind => current_user.kind)     
   end
@@ -35,9 +38,9 @@ class SurveyQuestionsController < ApplicationController
 
   def create
     @survey_question = SurveyQuestion.new(params[:survey_question])
-
+    
     respond_to do |format|
-      if @survey_question.save
+      if @survey_question.save        
         format.html { redirect_to @survey_question, notice: 'Survey question was successfully created.' }
         format.json { render json: @survey_question, status: :created, location: @survey_question }
       else

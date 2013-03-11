@@ -1,0 +1,18 @@
+= form_for @user do |f|
+  .field
+    = f.label :first_name
+    = f.text_field :first_name
+  .field
+    = f.label :last_name
+    = f.text_field :last_name
+  .field
+    = f.label :email
+    = f.text_field :email   
+  .field
+    =f.label :kind do
+      %input#optionsRadios1{:checked => "", :name => "user[kind]", :type => "radio", :value => "Investor"}/
+      Investor
+      %input#optionsRadios2{:checked => "", :name => "user[kind]", :type => "radio", :value => "Entrepreneur"}/
+      Entrepreneur
+  .actions
+    = f.submit 'Save'

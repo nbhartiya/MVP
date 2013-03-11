@@ -1,6 +1,7 @@
 class InvestmentsController < ApplicationController
   # GET /investments
   # GET /investments.json
+  
   def index
     @investments = Investment.all
 

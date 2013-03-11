@@ -5,8 +5,7 @@ class User < ActiveRecord::Base
   has_many :projects
   has_many :authentications
   
-  # Will need to require user type (entrepreneur or investor) later with something along the lines of "validates_presence_of :field"
-  validates_presence_of :kind
+  # validates_presence_of :kind
   
   # may need to change ot has_and_belongs_to_many later on when multiple entrepreneurs are going to be logged in owning one project, will require a third table
   
@@ -26,8 +25,7 @@ class User < ActiveRecord::Base
       self.first_name = omni['extra']['raw_info']['first_name']
       self.last_name = omni['extra']['raw_info']['last_name']
     end
-    # Token_Secret doesn't seem to populate with the code below and is not on the omni hash...
-    # Need to look up how to get token secret to go into authentication...wondering, is it really necessary?
+    
     authentications.build(:provider => omni['provider'],
                           :uid => omni['uid'])
   end
@@ -36,6 +34,8 @@ class User < ActiveRecord::Base
     if session["devise.user_attributes"]
       new(session["devise.user_attributes"], without_protection: true) do |user|
         user.attributes = params
+        user.authentications.build(:provider => omni['provider'],
+                          :uid => omni['uid'])
         user.valid?
       end
     else
@@ -45,7 +45,6 @@ class User < ActiveRecord::Base
   
   def password_required?
     (authentications.empty? || !password.blank?) && super
-    binding.pry
   end
   
   def update_with_password(params, *options)
@@ -54,6 +53,11 @@ class User < ActiveRecord::Base
     else
       super
     end
+  end
+  
+  def complete!
+    self.completed = true
+    save!
   end
   
 end
