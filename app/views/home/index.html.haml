@@ -2,13 +2,27 @@
   .container
     = render "layouts/header"
 
-%h1 home page here
-.row
-  .span8
-    %p add all home page content here
-  .span4
-    -if user_signed_in? == false
-      = render "shared/signup"
+  %h1.hook invest in your community
+  .abovefold.clearfix
+    .accounts
+      %p.button.green sign up
+      %p.button log in
+
+  .container.belowfold
+    .sellingpoints
+      %h1 Discover 
+      %p lorem ipsum dolor sit amet 
+      %h1 Impact 
+      %p lorem ipsum dolor sit amet 
+      %h1 Diversify 
+      %p lorem ipsum dolor sit amet 
+      %h1 Share 
+      %p lorem ipsum dolor sit amet
+    .span4
+      -if user_signed_in? == false
+        = render "shared/signup"
+  .container.footer
+    = render "layouts/footer"
 
 
 -# Uncomment the below to have the log in credential form rendered into this page

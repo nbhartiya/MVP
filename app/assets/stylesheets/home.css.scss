@@ -2,6 +2,159 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.main {
-  padding-top:5px;
+body{
+	padding:0;
+    margin:0 auto;
+    border:0;
+    vertical-align:baseline;
+    color:#000000;
+    display:block;
+}
+
+.header {
+	background-color:rgba(0, 113, 188, .75);
+}
+
+.topnav {
+    padding-top: 40px;
+    padding-bottom: 3px;
+    padding-left:0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    float:left;
+    background-color:rgba(0, 113, 188, .75);
+    color: #ffffff;
+}
+
+.masthead .topnav a{
+	color:#ffffff;
+	text-decoration:none;
+	font-weight: bold;
+	padding: 70px 30px 3px 30px;
+	vertical-align:bottom;
+}
+
+.masthead h1 {
+	margin-top: 16px;
+	padding-right: 40px;
+	background: url("white logo.png") no-repeat 40% center;
+	background-color:rgba(0, 113, 188, .75);
+	width: 100px;
+	height: 61px;
+	float: left;
+	font-size: 20px;
+	font-weight: 200;
+	line-height: 1;
+}
+
+.masthead a {
+	padding-left:150px;
+	padding-bottom: 50px;
+}
+
+.masthead a:hover{
+	background-color: rgba(0, 113, 188, 0.1);
+}
+
+.hook {
+	color: #ffffff;
+	font-size: 4.5em;
+	line-height: 1.2em;
+	padding-top: 30px;
+	padding-right: 80px;
+	padding-bottom:89px;
+	text-align: right;
+	width: 450px;
+	float: left;
+	margin-right: 10px;
+	text-shadow: 10px 10px 20px #000;
+
+}
+
+.masthead .topnav a:hover{
+	background-color:rgba(255, 255, 255, 0.3);
+	color:rgb(255,255,255s);
+	font-weight: bold;
+}
+
+.topnav li {
+	float:left;
+	list-style-type:none;
+}
+
+.container.main {
+    background: url('hero1_resized.jpg') no-repeat center bottom;
+    background-color:rgba(0, 113, 188, .75);
+    height:500px;
+}
+
+.button {
+	background-color: rgba(0,113,188,0.1);
+    background-image: -webkit-gradient(linear, left top, left bottom, from rgba(0,113,188,0.5), to rgba(0,113,188,0.75));
+    background-image: -webkit-linear-gradient(top, rgba(0,113,188,0.5), rgba(0,113,188,0.75));
+    background-image:    -moz-linear-gradient(top, #0089e3, #0071bc);
+    background-image:      -o-linear-gradient(top, #0089e3, #0071bc);
+    background-image:         linear-gradient(to bottom, #0089e3, #0071bc);
+    border-color: white;
+    border-color: rgba(255, 255, 255, .5);
+    border-style: solid;
+    border-width: 1px;
+    -webkit-border-radius: 5px;
+            border-radius: 5px;
+    -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+ 	-webkit-box-shadow: 1px 1px 1px 0px rgba(255, 255, 255, .5) inset, -1px -1px 5px 0px rgba(0, 0, 0, .5) inset;
+            box-shadow: 1px 1px 1px 0px rgba(255, 255, 255, .5) inset, -1px -1px 5px 0px rgba(0, 0, 0, .5) inset;
+    color: white;
+    font-size: 30px;
+    line-height: 40px;
+    margin: 10px 0 0 0;
+    padding: 5px 2px 5px 2px;
+    text-decoration: none;
+  	position:relative;
+  	left: 100px;
+  	top: 110px;
+  	height: 45px;
+  	width: 310px;
+  	vertical-align: middle;
+  	display: inline-block;
+  	text-align:center;
+}
+
+.green {
+	background-color: rgba(140,198,63,0.1);
+    background-image: -webkit-gradient(linear, left top, left bottom, from rgba(140,198,63,0.5), to rgba(140,198,63,0.75));
+    background-image: -webkit-linear-gradient(top, rgba(140,198,63,0.5), rgba(140,198,63,0.75));
+    background-image:    -moz-linear-gradient(top, #0089e3, #0071bc);
+    background-image:      -o-linear-gradient(top, #0089e3, #0071bc);
+    background-image:         linear-gradient(to bottom, #0089e3, #0071bc);
+	
+}
+
+.belowfold{
+	display:block;
+	height: 300px;
+	background-color: rgb(230,230,230);
+    -webkit-column-count: 4;  -webkit-column-gap: 10px;
+       -moz-column-count: 4;     -moz-column-gap: 10px;
+            column-count: 4;          column-gap: 10px;
+}
+
+.sellingpoints h1 {
+	color: rgb(0, 113, 188);
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.ir {
+    text-indent: 10%;
+    white-space: nowrap;
+    overflow: hidden;
 }
