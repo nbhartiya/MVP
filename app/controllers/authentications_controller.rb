@@ -3,6 +3,7 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
   def provider
     omni = request.env["omniauth.auth"]
     #raise omni
+    binding.pry
     authentication = Authentication.find_by_provider_and_uid(omni['provider'], omni['uid'])
     
     if authentication
@@ -10,7 +11,7 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
       sign_in_and_redirect User.find(authentication.user_id)
     elsif current_user
       binding.pry
-      current_user.authentication.create!(:provider => omni['provider'], :uid => omni['uid'], :token => token, :token_secret => token_secret)
+      current_user.authentication.create!(:provider => omni['provider'], :uid => omni['uid'])
       flash[:notice] = "Authentication successful."
       sign_in_and_redirect current_user
     else

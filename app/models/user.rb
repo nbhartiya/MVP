@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
   has_many :projects
   has_many :authentications
   
+  # is validation even doable unless there's a mainstreet username?
+  # validates_uniqueness_of :email, :scope => [:first_name, :last_name]
+  
   # validates_presence_of :kind
   
   # may need to change ot has_and_belongs_to_many later on when multiple entrepreneurs are going to be logged in owning one project, will require a third table
@@ -21,9 +24,16 @@ class User < ActiveRecord::Base
   
   def apply_omniauth(omni)
     if omni['provider'] == 'facebook'
-      self.email = omni['extra']['raw_info']['email']
-      self.first_name = omni['extra']['raw_info']['first_name']
-      self.last_name = omni['extra']['raw_info']['last_name']
+      self.email = omni['info']['email']
+      self.first_name = omni['info']['first_name']
+      self.last_name = omni['info']['last_name']
+      #self.location = omni['info']['location']
+    end
+    if omni['provider'] == 'linkedin'
+      self.email = omni['info']['email']
+      self.first_name = omni['info']['first_name']
+      self.last_name = omni['info']['last_name']
+      #self.location = omni['info']['location']
     end
     
     authentications.build(:provider => omni['provider'],

@@ -11,9 +11,6 @@ body{
     display:block;
 }
 
-.header {
-	background-color:rgba(0, 113, 188, .75);
-}
 
 .topnav {
     padding-top: 40px;
@@ -130,6 +127,10 @@ body{
 	
 }
 
+.blue {
+	top: 110px;
+}
+
 .belowfold{
 	display:block;
 	height: 300px;
@@ -137,10 +138,43 @@ body{
     -webkit-column-count: 4;  -webkit-column-gap: 10px;
        -moz-column-count: 4;     -moz-column-gap: 10px;
             column-count: 4;          column-gap: 10px;
+    border: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .sellingpoints h1 {
 	color: rgb(0, 113, 188);
+}
+
+.footer {
+	background-color: rgb(230,230,230);
+	border: 0;
+	padding: 0;
+	margin: 0;
+}
+
+.footer li {
+	list-style-type:none;
+	float:left;
+}
+
+.bottomnav {
+    padding-top: 40px;
+    padding-bottom: 3px;
+    padding-left:0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    float:left;
+    background-color:rgb(230, 230, 230);
+    color: #000000;
+    margin: 0;
+}
+
+.mastfoot a {
+	padding-left:100px;
+	padding-bottom: 50px;
+	text-align: center;
 }
 
 .clearfix:before,
@@ -154,7 +188,7 @@ body{
 }
 
 .ir {
-    text-indent: 10%;
+    text-indent: 0%;
     white-space: nowrap;
     overflow: hidden;
 }
