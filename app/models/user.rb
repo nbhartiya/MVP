@@ -35,7 +35,11 @@ class User < ActiveRecord::Base
       self.last_name = omni['info']['last_name']
       #self.location = omni['info']['location']
     end
-    
+    if omni['provider'] == 'twitter'
+      # wahh twitter doesn't give you email address, so have to make sure my log in doesn't require that
+      fullname = omni['info']['name'].split(' ')
+      self.first_name, self.last_name = fullname[0], fullname[1]
+    end
     authentications.build(:provider => omni['provider'],
                           :uid => omni['uid'])
   end
@@ -44,8 +48,8 @@ class User < ActiveRecord::Base
     if session["devise.user_attributes"]
       new(session["devise.user_attributes"], without_protection: true) do |user|
         user.attributes = params
-        user.authentications.build(:provider => omni['provider'],
-                          :uid => omni['uid'])
+        user.authentications.build(:provider => session['omni']['provider'],
+                          :uid => session['omni']['uid'])
         user.valid?
       end
     else
