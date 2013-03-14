@@ -3,14 +3,12 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
   def provider
     omni = request.env["omniauth.auth"]
     #raise omni.to_yaml
-    binding.pry
     authentication = Authentication.find_by_provider_and_uid(omni['provider'], omni['uid'])
     
     if authentication
       flash[:notice] = "Logged in Successfully"
       sign_in_and_redirect User.find(authentication.user_id)
     elsif current_user
-      binding.pry
       current_user.authentications.create!(:provider => omni['provider'], :uid => omni['uid'])
       flash[:notice] = "Authentication successful."
       sign_in_and_redirect current_user
