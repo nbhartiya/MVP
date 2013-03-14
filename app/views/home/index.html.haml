@@ -5,24 +5,39 @@
   %h1.hook.clearfix invest in your community
   .abovefold.clearfix
     .accounts
-      %p.button.green sign up
-      %p.button.blue log in
+      %a.button.green.sign_up{:href =>"#"} start now
+      %a.button.blue{:href =>"#"} log in
 
   .container.belowfold
     .sellingpoints
       %h1 Discover 
-      %p lorem ipsum dolor sit amet 
+      %p lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
       %h1 Impact 
-      %p lorem ipsum dolor sit amet 
+      %p lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
       %h1 Diversify 
-      %p lorem ipsum dolor sit amet 
+      %p lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
       %h1 Share 
-      %p lorem ipsum dolor sit amet
+      %p lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
     .span4
       -if user_signed_in? == false
         = render "shared/signup"
   .container.footer
     = render "layouts/footer"
+
+
+  .dialog
+  %form.sign_up_form
+    .error_container
+    %label First name
+    %input{:name => "first_name", :type => "text"}/
+    %label Last name
+    %input{:name => "last_name", :type => "text"}/
+    %label Email
+    %input{:name => "email", :type => "email"}/
+    %label Password
+    %input{:name => "password", :type => "password"}/
+    %label Password confirmation
+    %input{:name => "password_confirmation", :type => "password"}/
 
 
 -# Uncomment the below to have the log in credential form rendered into this page

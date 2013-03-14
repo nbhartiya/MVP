@@ -131,16 +131,26 @@ body{
 	top: 110px;
 }
 
+.accounts a{
+	color:white;
+}
+
+.accounts a:visited{
+	color: #fff;
+}
+
 .belowfold{
 	display:block;
 	height: 300px;
 	background-color: rgb(230,230,230);
-    -webkit-column-count: 4;  -webkit-column-gap: 10px;
-       -moz-column-count: 4;     -moz-column-gap: 10px;
-            column-count: 4;          column-gap: 10px;
+    -webkit-column-count: 4;  -webkit-column-gap: 60px;
+       -moz-column-count: 4;     -moz-column-gap: 60px;
+            column-count: 4;          column-gap: 60px;
     border: 0;
     margin: 0;
     padding: 0;
+    text-align: center;
+    padding: 30px 50px;
 }
 
 .sellingpoints h1 {
@@ -166,14 +176,13 @@ body{
 }
 
 .bottomnav {
-    padding-top: 40px;
-    padding-bottom: 100px;
+    padding-top: 30px;
+    padding-bottom: 10px;
     padding-left:50px;
     padding-right:50px;
-    border-top: 1px solid #d6d5d4;
+    border-top: 1px solid rgb(180, 180, 180);
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    float:left;
+    font-size: 12px;
     background-color:rgb(230, 230, 230);
     color: #d6d5d4;
 }
@@ -195,7 +204,7 @@ body{
 
 .mastfoot {
 	margin: 0px auto;
-    width: 930px;
+    width: 856px;
 }
 
 li.blog a{
@@ -216,6 +225,37 @@ li.blog a{
 
 .socialmedia{
 	border:none;
+	padding-top:20px;
+	padding-right: 0px;
+	padding-left: 0px;
+	margin: 0 auto;
+	width: 273px;
+}
+
+.socialmedia a{
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+.socialmedia p{
+	color:rgb(180, 180, 180);
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 0;
+	line-height: 8px;
+	font-size: 12px;
+}
+
+.dialog {
+  display: none;
+}
+
+.sign_up_form label {
+  display: block;
+}
+
+.sign_up_form .error {
+  color: red;
 }
 
 .clearfix:before,
