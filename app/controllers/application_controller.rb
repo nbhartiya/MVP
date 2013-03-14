@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
     survey_path
   end
   
+  #not necessary now, but if we want logout to go somewhere in particular...
+  #def after_sign_out_path_for(resource)
+  #  home_index_path
+  #end
+  
   def completed_user?    
     redirect_to "/users/#{current_user.id}/edit" if !current_user.completed
   end
