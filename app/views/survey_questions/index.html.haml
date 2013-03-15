@@ -17,6 +17,8 @@
       %td= link_to 'Show', survey_question
       %td= link_to 'Edit', edit_survey_question_path(survey_question)
       %td= link_to 'Destroy', survey_question, method: :delete, data: { confirm: 'Are you sure?' }
+    -survey_question.survey_answers.each do |a|
+      %p= a.text
 
 %br
 
