@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :approved, :first_name, :last_name, :kind
+  attr_accessible :approved, :first_name, :last_name, :kind, :zipcode
   
   def apply_omniauth(omni)
     if omni['provider'] == 'facebook'
@@ -70,6 +70,7 @@ class User < ActiveRecord::Base
   end
   
   def complete!
+    binding.pry
     self.completed = true
     save!
   end
