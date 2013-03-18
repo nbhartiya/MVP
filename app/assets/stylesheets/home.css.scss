@@ -203,6 +203,22 @@ ul.nav.top{
 	font-weight: 900;
 }
 
+.or-line{
+	height: 1px;
+	background: gray;
+	width: 95%;
+	margin-right: auto;
+	border: 0;
+
+  -webkit-box-shadow: 0px 2px 4px 0px gray;
+          box-shadow: 0px 2px 4px 0px gray;
+
+}
+
+.login_form{
+	background-color: gray;
+}
+
 .clearfix {
   *zoom: 1;
   &:before,

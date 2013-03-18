@@ -29,19 +29,16 @@
           Find the best places to visit recommended by your friends.&nbsp
           %a.learn_more_link{"data-toggle"=>"tooltip", "data-placement"=>"right", :href=>"#", :title=>"See where friends have visited and their reviews"}> Learn More
         %p.strong.sign-up-text
-          Sign up with  
+          Sign up with
         %p
           -if user_signed_in? == false
             = render "shared/signup"
       .modal-footer
-        = link_to new_user_registration_path do 
-          %button.btn.btn-warning Sign Up
+        %button.btn.btn-warning Sign Up
   
     .container.footer
       .span12.footernav
         = render "layouts/footer"
-
-    .container
 
 :javascript
   $('.learn_more_link').tooltip('toggle');
