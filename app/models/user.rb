@@ -46,11 +46,11 @@ class User < ActiveRecord::Base
   
   def self.new_with_session(params, session)
     if session["devise.user_attributes"]
+      binding.pry
       new(session["devise.user_attributes"], without_protection: true) do |user|
         user.attributes = params
         user.authentications.build(:provider => session['omni']['provider'],
                           :uid => session['omni']['uid'])
-        user.valid?
       end
     else
       super
@@ -59,6 +59,10 @@ class User < ActiveRecord::Base
   
   def password_required?
     (authentications.empty? || !password.blank?) && super
+  end
+  
+  def email_required?
+    authentications.first.provider != "twitter" && super
   end
   
   def update_with_password(params, *options)

@@ -3,30 +3,29 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
   def provider
     omni = request.env["omniauth.auth"]
     #raise omni.to_yaml
+    #binding.pry
     authentication = Authentication.find_by_provider_and_uid(omni['provider'], omni['uid'])
     
     if authentication
-      binding.pry
+      #binding.pry
       flash[:notice] = "Logged in Successfully"
       sign_in_and_redirect User.find(authentication.user_id)
     elsif current_user
-      binding.pry
+      #binding.pry
       current_user.authentications.create!(:provider => omni['provider'], :uid => omni['uid'])
       flash[:notice] = "Authentication successful."
       sign_in_and_redirect current_user
     else
-      binding.pry
+      #binding.pry
       user = User.new
       user.apply_omniauth(omni)
       #user.save!
-      binding.pry
+      #binding.pry
       if user.save
-        flash[:notice] = "Logged in."
+        flash[:notice] = "Signed up!"
         # make this go to edit
         sign_in_and_redirect User.find(user.id)
       else
-        binding.pry
-        # make this simpler
         session["omni"] = omni.except("extra")
         session["devise.user_attributes"] = user.attributes
         redirect_to new_user_registration_path
