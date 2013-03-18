@@ -62,7 +62,7 @@ class User < ActiveRecord::Base
   end
   
   def email_required?
-    authentications.first.provider != "twitter" && super
+    (authentications.empty? || authentications.first.provider != "twitter") && super
   end
   
   def update_with_password(params, *options)
