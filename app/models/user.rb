@@ -1,3 +1,28 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :integer          not null, primary key
+#  first_name             :string(255)
+#  last_name              :string(255)
+#  kind                   :string(255)
+#  approved               :boolean
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  email                  :string(255)      default(""), not null
+#  encrypted_password     :string(255)      default(""), not null
+#  reset_password_token   :string(255)
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default(0)
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :string(255)
+#  last_sign_in_ip        :string(255)
+#  completed              :boolean          default(FALSE)
+#  zipcode                :string(255)
+#
+
 class User < ActiveRecord::Base
   
   has_many :user_answers
@@ -20,7 +45,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :approved, :first_name, :last_name, :kind
+  attr_accessible :approved, :first_name, :last_name, :kind, :zipcode
   
   def apply_omniauth(omni)
     if omni['provider'] == 'facebook'
@@ -46,11 +71,11 @@ class User < ActiveRecord::Base
   
   def self.new_with_session(params, session)
     if session["devise.user_attributes"]
+      binding.pry
       new(session["devise.user_attributes"], without_protection: true) do |user|
         user.attributes = params
         user.authentications.build(:provider => session['omni']['provider'],
                           :uid => session['omni']['uid'])
-        user.valid?
       end
     else
       super
@@ -59,6 +84,10 @@ class User < ActiveRecord::Base
   
   def password_required?
     (authentications.empty? || !password.blank?) && super
+  end
+  
+  def email_required?
+    (authentications.empty? || authentications.first.provider != "twitter") && super
   end
   
   def update_with_password(params, *options)
@@ -70,6 +99,7 @@ class User < ActiveRecord::Base
   end
   
   def complete!
+    binding.pry
     self.completed = true
     save!
   end

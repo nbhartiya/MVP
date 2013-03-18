@@ -1,6 +1,6 @@
 MVP::Application.routes.draw do
   
-  resources :authentications
+  #resources :authentications
 
   resources :investments
   resources :projects
@@ -14,6 +14,9 @@ MVP::Application.routes.draw do
   
   # didn't include registrations: "registrations", it seems to require a registrations controller...
   devise_for :users, controllers: {omniauth_callbacks: "authentications"}
+  
+  # I have no idea what changed that caused me to have to add this line...????
+  devise_for :users do get '/users/sign_out' => 'devise/sessions#destroy' end
   
   resources :users
   
