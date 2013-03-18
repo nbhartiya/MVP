@@ -1,43 +1,45 @@
-%body.clearfix
-  .container.header
+%body.container.backgroundimage
+  .abovefold.navbar
     = render "layouts/header"
 
-  %h1.hook.clearfix invest in your community
-  .abovefold.clearfix
-    .accounts
-      %a.button.green.sign_up{:href =>"#"} start now
-      %a.button.blue{:href =>"#"} log in
+    .hero-unit.clearfix
+      %h1 invest in your community
+      %a.btn.btn-warning.btn-large.sign_up{"data-toggle" => "modal", :href => "#sign_up", :role => "button"} start now
 
-  .container.belowfold
-    .sellingpoints
-      %h1 Discover 
-      %p lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
-      %h1 Impact 
-      %p lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
-      %h1 Diversify 
-      %p lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
-      %h1 Share 
-      %p lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
-    .span4
-      -if user_signed_in? == false
-        = render "shared/signup"
-  .container.footer
-    = render "layouts/footer"
+  .belowfold
+    .row.points
+      .span3 
+        %h1 Discover 
+        %p lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
+      .span3
+        %h1 Impact 
+        %p lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
+      .span3
+        %h1 Diversify 
+        %p lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
+      .span3
+        %h1 Share 
+        %p lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
 
+    #sign_up.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+      .modal-header
+        %h3#myModalLabel Sign Up for MainStreet
+      .modal-body
+        %p<
+          Find the best places to visit recommended by your friends.&nbsp
+          %a.learn_more_link{"data-toggle"=>"tooltip", "data-placement"=>"right", :href=>"#", :title=>"See where friends have visited and their reviews"}> Learn More
+        %p
+          -if user_signed_in? == false
+            = render "shared/signup"
+      .modal-footer
+        %button.btn.btn-warning Sign Up
+  
+    .container.footer
+      .span12.footernav
+        = render "layouts/footer"
 
-  .dialog
-  %form.sign_up_form
-    .error_container
-    %label First name
-    %input{:name => "first_name", :type => "text"}/
-    %label Last name
-    %input{:name => "last_name", :type => "text"}/
-    %label Email
-    %input{:name => "email", :type => "email"}/
-    %label Password
-    %input{:name => "password", :type => "password"}/
-    %label Password confirmation
-    %input{:name => "password_confirmation", :type => "password"}/
+:javascript
+  $('.learn_more_link').tooltip('toggle');
 
 
 -# Uncomment the below to have the log in credential form rendered into this page
