@@ -171,6 +171,14 @@ ul.nav.top{
 		p{
 			margin-bottom: 15px;
 		}
+			.learn_more_link{
+				color: $main_blue;
+			}
+			a:hover{
+				background-color: transparent;
+				color: black;
+				text-decoration: none;
+			}
 	}
 	input{
 		font-size: 16px;
@@ -178,6 +186,8 @@ ul.nav.top{
 	}
 	label{
 		line-height: 32px;
+		margin-left: 5px;
+		font-size: 13px;
 	}
 }
 
