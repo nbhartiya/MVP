@@ -2,11 +2,11 @@
   %div{:style => "margin:0;padding:0;display:inline"}
     %input{:name => "utf8", :type => "hidden", :value => "?"}/
   = link_to "Facebook", user_omniauth_authorize_path(:facebook),
-    :class => "sb facebook text"
+    :class => "sb facebook text black"
   = link_to "LinkedIn", user_omniauth_authorize_path(:linkedin),
-    :class => "sb linkedin text"
+    :class => "sb linkedin text black"
   = link_to "Twitter", user_omniauth_authorize_path(:twitter),
-    :class => "sb twitter text"
+    :class => "sb twitter text black"
   %div.login_form
     %input#user_email{:placeholder => "email", :autofocus => "autofocus", :name => "user[email]", :size => "30", :type => "email", :value => ""}/
   %div

@@ -173,11 +173,11 @@ ul.nav.top{
 		}
 			.learn_more_link{
 				color: $main_blue;
-			}
-			a:hover{
-				background-color: transparent;
-				color: black;
-				text-decoration: none;
+				a:hover{
+					background-color: transparent;
+					color: black;
+					text-decoration: none;
+				}
 			}
 	}
 	input{
@@ -191,14 +191,8 @@ ul.nav.top{
 	}
 }
 
-.social_link{
-	margin: 5px 0 0 50px;
-	width: 20%;
-	height: 30px;
-}
-
-.social_link:visited{
-	color:white;
+.sign-up-text{
+	margin-top: 15px;
 }
 
 .login_form{
