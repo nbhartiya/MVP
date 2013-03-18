@@ -12,4 +12,5 @@
  *= require twitter/bootstrap
  *= require twitter/bootstrap/_responsive
  *= require_tree .
+ *= require css-social-buttons2/social-buttons
  */

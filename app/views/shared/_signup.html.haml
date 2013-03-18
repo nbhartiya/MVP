@@ -1,7 +1,13 @@
 %form#new_user.new_user{"accept-charset" => "UTF-8", :action => "/users", :method => "post"}
   %div{:style => "margin:0;padding:0;display:inline"}
     %input{:name => "utf8", :type => "hidden", :value => "?"}/
-  %div
+  = link_to "Facebook", user_omniauth_authorize_path(:facebook),
+    :class => "sb facebook text"
+  = link_to "LinkedIn", user_omniauth_authorize_path(:linkedin),
+    :class => "sb linkedin text"
+  = link_to "Twitter", user_omniauth_authorize_path(:twitter),
+    :class => "sb twitter text"
+  %div.login_form
     %input#user_email{:placeholder => "email", :autofocus => "autofocus", :name => "user[email]", :size => "30", :type => "email", :value => ""}/
   %div
     %input#user_password{:placeholder => "password", :name => "user[password]", :size => "30", :type => "password"}/
@@ -18,9 +24,3 @@
     %br/
   %div
     %button.btn{:name => "commit", :type => "submit"} Sign Up
-    %br/
-    = link_to "Log In With Facebook", user_omniauth_authorize_path(:facebook)
-    %br/
-    = link_to "Log In With LinkedIn", user_omniauth_authorize_path(:linkedin)
-    %br/
-    = link_to "Log In With Twitter", user_omniauth_authorize_path(:twitter)
