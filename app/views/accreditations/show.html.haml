@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Individual income:
+  = @accreditation.individual_income
+%p
+  %b Joint income:
+  = @accreditation.joint_income
+%p
+  %b Net worth:
+  = @accreditation.net_worth
+%p
+  %b Experience:
+  = @accreditation.experience
+%p
+  %b Agree:
+  = @accreditation.agree
+
+= link_to 'Edit', edit_accreditation_path(@accreditation)
+\|
+= link_to 'Back', accreditations_path

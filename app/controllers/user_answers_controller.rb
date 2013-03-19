@@ -40,7 +40,8 @@ class UserAnswersController < ApplicationController
   # POST /user_answers
   # POST /user_answers.json
   def create
-    @answers = params[:answers]
+    binding.pry
+    @answers = params[:user_answers]
     @answers.each do |key, value|
       UserAnswer.create(:user_id => current_user.id, :survey_question_id => key.to_i, :text => value)
     end

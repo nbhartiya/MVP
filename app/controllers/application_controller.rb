@@ -12,7 +12,10 @@ class ApplicationController < ActionController::Base
   #  home_index_path
   #end
   
-  def completed_user?    
+  def completed_user?
+    if !current_user.kind.empty?
+      current_user.completed = 'true'
+    end
     redirect_to "/users/#{current_user.id}/edit" if !current_user.completed
   end
   

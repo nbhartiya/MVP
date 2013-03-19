@@ -99,7 +99,6 @@ class User < ActiveRecord::Base
   end
   
   def complete!
-    binding.pry
     self.completed = true
     save!
   end

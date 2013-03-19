@@ -1,5 +1,8 @@
 MVP::Application.routes.draw do
   
+  resources :accreditations
+
+
   #resources :authentications
 
   resources :investments

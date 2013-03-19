@@ -1,0 +1,27 @@
+%h1 Listing accreditations
+
+%table
+  %tr
+    %th Individual income
+    %th Joint income
+    %th Net worth
+    %th Experience
+    %th Agree
+    %th
+    %th
+    %th
+
+  - @accreditations.each do |accreditation|
+    %tr
+      %td= accreditation.individual_income
+      %td= accreditation.joint_income
+      %td= accreditation.net_worth
+      %td= accreditation.experience
+      %td= accreditation.agree
+      %td= link_to 'Show', accreditation
+      %td= link_to 'Edit', edit_accreditation_path(accreditation)
+      %td= link_to 'Destroy', accreditation, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Accreditation', new_accreditation_path
