@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
   has_many :investments
   has_many :projects
   has_many :authentications
+  has_one :accreditation
   
   # is validation even doable unless there's a mainstreet username?
   # validates_uniqueness_of :email, :scope => [:first_name, :last_name]
