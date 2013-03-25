@@ -4,7 +4,14 @@ class ApplicationController < ActionController::Base
   helper_method :completed_user?
   
   def after_sign_in_path_for(resource)
-    survey_path
+    #Need to fix this up so that it redirects to different paths based on Investor / Entrepreneur....
+    #before_filter :completed_user?
+    binding.pry
+    if current_user.kind == 'Investor'
+      new_accreditation_path
+    else
+      survey_path
+    end
   end
   
   #not necessary now, but if we want logout to go somewhere in particular...
