@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     #Need to fix this up so that it redirects to different paths based on Investor / Entrepreneur....
     #before_filter :completed_user?
-    binding.pry
+    #binding.pry
     if current_user.kind == 'Investor'
       new_accreditation_path
     else

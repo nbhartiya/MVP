@@ -31,6 +31,14 @@ class User < ActiveRecord::Base
   has_many :authentications
   has_one :accreditation
   
+  before_create :confirmation_email
+  
+  def confirmation_email
+    Notifier.signup_email(self).deliver
+  end
+  
+  #ADD after_create thingie here! and the method to send email
+  
   # is validation even doable unless there's a mainstreet username?
   # validates_uniqueness_of :email, :scope => [:first_name, :last_name]
   
@@ -72,7 +80,6 @@ class User < ActiveRecord::Base
   
   def self.new_with_session(params, session)
     if session["devise.user_attributes"]
-      binding.pry
       new(session["devise.user_attributes"], without_protection: true) do |user|
         user.attributes = params
         user.authentications.build(:provider => session['omni']['provider'],

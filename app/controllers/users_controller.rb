@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  
   def index 
   end
   
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
       if !@user.kind.empty?
         @user.complete!
         flash[:notice] = "User was successfully saved."
-        redirect_to survey_path
+        redirect_to new_user_registration_path
       else
         render action: "edit"
       end
