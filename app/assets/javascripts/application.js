@@ -15,5 +15,3 @@
 //= require_tree .
 //= require twitter/bootstrap
 
-$(document).ready ->
-
