@@ -47,7 +47,7 @@ class SignupsController < ApplicationController
 
     respond_to do |format|
       if @signup.save
-        format.html { redirect_to "/done", notice: 'Signup was successfully created.' }
+        format.html { redirect_to "/done", notice: 'All set!' }
         format.json { render json: @signup, status: :created, location: @signup }
       else
         format.html { render action: "new" }
