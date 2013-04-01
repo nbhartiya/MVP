@@ -201,7 +201,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   fb_graph
-  figaro
+  figaro (= 0.6.3)
   haml-rails
   jquery-rails
   mocha
