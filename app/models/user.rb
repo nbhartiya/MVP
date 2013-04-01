@@ -91,8 +91,8 @@ class User < ActiveRecord::Base
   end
   
   def password_required?
-    false
-    #(authentications.empty? || !password.blank?) && super
+    #false
+    (authentications.empty? || !password.blank?) && super
   end
   
   def email_required?
@@ -107,6 +107,7 @@ class User < ActiveRecord::Base
     end
   end
   
+  #not using at the moment
   def complete!
     self.completed = true
     save!
