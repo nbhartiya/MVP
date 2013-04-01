@@ -5,7 +5,7 @@ gem 'haml-rails'
 gem 'pry'
 gem 'pry-nav'
 gem 'nifty-generators'
-gem 'figaro'
+gem 'figaro', '0.6.3'
 
 gem 'devise'
 gem 'omniauth'
