@@ -1,0 +1,87 @@
+$trans_black: rgba(0,0,0,0.6);
+$trans: rgba(0,0,0,0);
+$main_coral: rgb(252, 73, 43);
+$dark_coral: rgb(214, 61, 45);
+ 
+.container{
+  margin: 0;
+	padding:0;
+	width: auto;
+}
+ 
+.launch{
+	padding-top:40px;
+	margin:0;
+	color: $main_coral;
+	background-color: white;
+	h1{
+		font-size: 90px;
+		font-weight: 900;
+		text-align: center;
+		padding-bottom: 0px;
+		font-family: 'Sacramento', cursive;
+	}
+	h2{
+		font-size: 40px;
+		line-height: 150%;
+ 
+	}
+	h4{
+		line-height: 150%;
+		font-size: 14px;
+ 
+	}
+	p{
+		font-size: 24px;
+	}
+	.hero{
+		background-repeat: no-repeat;
+		background-position: center;
+		background-image: url("TonyandJohnny.jpg");
+		.copy{
+			background-color: $trans;
+			background-image: -webkit-gradient(linear, left top, left bottom, from($trans_black), to($trans));
+			background-image: -webkit-linear-gradient(top, $trans_black, $trans);
+			background-image:    -moz-linear-gradient(top, $trans_black, $trans);
+			background-image:      -o-linear-gradient(top, $trans_black, $trans);
+			background-image:         linear-gradient(to bottom, $trans_black, $trans);
+			color: white;
+			text-align:center;
+			padding-top: 30px;
+			padding-bottom: 100px;
+		}
+	.btn-warning{
+		background-color: $dark_coral;
+		background-image: -webkit-gradient(linear, left top, left bottom, from($main_coral), to($dark_coral));
+		background-image: -webkit-linear-gradient(top, $main_coral, $dark_coral);
+		background-image:    -moz-linear-gradient(top, $main_coral, $dark_coral);
+		background-image:      -o-linear-gradient(top, $main_coral, $dark_coral);
+		background-image:         linear-gradient(to bottom, $main_coral, $dark_coral);
+		border: $main_coral;
+	}
+	a.sb{
+		border: $main_coral;
+		font-size: 14px;
+		}
+	}
+	a.sb.gradient{
+		background-color: $dark_coral !important;
+		background-image: -webkit-gradient(linear, left top, left bottom, from($main_coral), to($dark_coral)) !important;
+		background-image: -webkit-linear-gradient(top, $main_coral, $dark_coral) !important;
+		background-image:    -moz-linear-gradient(top, $main_coral, $dark_coral) !important;
+		background-image:      -o-linear-gradient(top, $main_coral, $dark_coral) !important;
+		background-image:         linear-gradient(to bottom, $main_coral, $dark_coral) !important;
+	}
+	a.sb.gradient.twitter{
+		background-image: url(white_twitter_bird.png) !important;
+	}
+	a.sb.gradient.facebook{
+		background-image: url(white_facebook.png) !important;
+	}
+	a.sb.gradient.email{
+		background-image: url(email.png) !important;
+	}
+	a:visited{
+		color:white;
+	}
+}
