@@ -1,4 +1,4 @@
-$trans_black: rgba(0,0,0,0.6);
+$trans_black: rgba(0,0,0,0.75);
 $trans: rgba(0,0,0,0);
 $main_coral: rgb(252, 73, 43);
 $dark_coral: rgb(214, 61, 45);
@@ -8,12 +8,13 @@ $dark_coral: rgb(214, 61, 45);
 	padding:0;
 	width: auto;
 }
- 
+  
 .launch{
 	padding-top:40px;
 	margin:0;
 	color: $main_coral;
 	background-color: white;
+	font-family: 'Noto Sans', sans-serif;
 	h1{
 		font-size: 90px;
 		font-weight: 900;
@@ -24,15 +25,18 @@ $dark_coral: rgb(214, 61, 45);
 	h2{
 		font-size: 40px;
 		line-height: 150%;
+		text-shadow: 1px 1px 5px #000;
  
 	}
 	h4{
 		line-height: 150%;
 		font-size: 14px;
+		text-shadow: 1px 1px 5px #000;
  
 	}
 	p{
 		font-size: 24px;
+		text-shadow: 1px 1px 5px #000;
 	}
 	.hero{
 		background-repeat: no-repeat;
@@ -48,7 +52,7 @@ $dark_coral: rgb(214, 61, 45);
 			color: white;
 			text-align:center;
 			padding-top: 30px;
-			padding-bottom: 100px;
+			padding-bottom: 40px;
 		}
 	.btn-warning{
 		background-color: $dark_coral;
@@ -57,7 +61,7 @@ $dark_coral: rgb(214, 61, 45);
 		background-image:    -moz-linear-gradient(top, $main_coral, $dark_coral);
 		background-image:      -o-linear-gradient(top, $main_coral, $dark_coral);
 		background-image:         linear-gradient(to bottom, $main_coral, $dark_coral);
-		border: $main_coral;
+		border: $main_coral;	
 	}
 	a.sb{
 		border: $main_coral;
@@ -84,10 +88,19 @@ $dark_coral: rgb(214, 61, 45);
 	a:visited{
 		color:white;
 	}
+	.signupcheckbox{
+   		width: 100px;
+   		margin-left: auto;
+    	margin-right: auto;
+    	text-shadow: 1px 1px 5px #000;
+	}
+	input, button{
+		font-family: 'Merriweather Sans', sans-serif !important;
+	}
+	button{
+		font-size: 24px !important;
+		width: 150px;
+		height: 50px;
+	}
 }
 
-.signupcheckbox{
-  width: 100px;
-  margin-left: auto;
-  margin-right: auto;
-}
