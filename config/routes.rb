@@ -15,6 +15,7 @@ MVP::Application.routes.draw do
   get "home/about"
   get "home/blog"
   get "/done" => "signups#done"
+  get "/wireframes" => redirect {"http://mainstproject.com/wireframes"}
   
   # didn't include registrations: "registrations", it seems to require a registrations controller...
   devise_for :users, controllers: {omniauth_callbacks: "authentications"}
