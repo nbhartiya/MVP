@@ -14,6 +14,7 @@ MVP::Application.routes.draw do
   get "home/index"
   get "home/about"
   get "home/blog"
+  get "/done" => "signups#done"
   
   # didn't include registrations: "registrations", it seems to require a registrations controller...
   devise_for :users, controllers: {omniauth_callbacks: "authentications"}
@@ -22,13 +23,14 @@ MVP::Application.routes.draw do
   devise_for :users do get '/users/sign_out' => 'devise/sessions#destroy' end
   
   resources :users
+  resources :signups
   
   get "survey" => "survey_questions#survey"
   get "incomplete_survey" => "survey_questions#survey"
   
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'home#index'
+  root :to => "signups#new"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

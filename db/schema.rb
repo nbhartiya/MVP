@@ -56,6 +56,13 @@ ActiveRecord::Schema.define(:version => 20130401161245) do
     t.boolean  "approved"
   end
 
+  create_table "signups", :force => true do |t|
+    t.string   "email"
+    t.boolean  "chef"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "survey_answers", :force => true do |t|
     t.integer  "survey_question_id"
     t.text     "text"
@@ -102,12 +109,5 @@ ActiveRecord::Schema.define(:version => 20130401161245) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  create_table "waitlists", :force => true do |t|
-    t.string   "email"
-    t.string   "kind"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
 end
