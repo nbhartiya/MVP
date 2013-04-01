@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   before_create :confirmation_email
   
   def confirmation_email
-    Notifier.signup_email(self).deliver
+    NotificationMailer.signup_email(self).deliver
   end
   
   #ADD after_create thingie here! and the method to send email
@@ -91,7 +91,8 @@ class User < ActiveRecord::Base
   end
   
   def password_required?
-    (authentications.empty? || !password.blank?) && super
+    false
+    #(authentications.empty? || !password.blank?) && super
   end
   
   def email_required?

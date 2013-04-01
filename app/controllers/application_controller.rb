@@ -4,14 +4,15 @@ class ApplicationController < ActionController::Base
   helper_method :completed_user?
   
   def after_sign_in_path_for(resource)
-    #Need to fix this up so that it redirects to different paths based on Investor / Entrepreneur....
     #before_filter :completed_user?
-    #binding.pry
-    if current_user.kind == 'Investor'
-      new_accreditation_path
-    else
-      survey_path
-    end
+    # Paths to come
+    #if current_user.kind == 'Foodie'
+    #  foodie_path
+    #else
+    #  chef_path
+    #end
+    root_path
+    #FIX SUCH THAT TWITTER CANT BE SAVED WITHOUT PROMPTING FOR EMAIL!!!
   end
   
   #not necessary now, but if we want logout to go somewhere in particular...
@@ -20,7 +21,7 @@ class ApplicationController < ActionController::Base
   #end
   
   def completed_user?
-    if !current_user.kind == nil
+    if !current_user.email == nil
       current_user.completed = 'true'
     end
     redirect_to "/users/#{current_user.id}/edit" if !current_user.completed
