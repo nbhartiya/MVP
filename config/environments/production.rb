@@ -1,5 +1,6 @@
 MVP::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
+  #FIX LOOK AT RAILS SCHOOL HOST MAILER TEMPLATES ETC
 
   # Code is not reloaded between requests
   config.cache_classes = true
