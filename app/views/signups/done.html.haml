@@ -14,13 +14,16 @@
         What is good food without friends to share it with?
         %br
         The more you share, the better the meal.
-      -#%p
-      -#  %br
+      %p
+        %br
       -#  share socially
-      -#  %br
-      -#  %br
+        %br
+        %br
       -#  %a.sb.facebook.gradient.text{:href =>"#"} Facebook
-      -#  %a.sb.twitter.gradient.text{:href =>"#"} Twitter
+      = render :partial => "social_media/tweet", :locals => {:message => "I'm on my way to the best meals of my life.", :url => "http://www.mainstprojet.com"}
+      %br
+      %br
+      = render :partial => "social_media/like"
       -#  %br
       -#  %br
       -#  share by email
