@@ -9,4 +9,10 @@ class NotificationMailer < ActionMailer::Base
     mail( :to => user.email,
     :subject => "Welcome #{user.email}!")
   end
+  
+  def waitlist_email(signup)
+    @signup = signup
+    mail( :to => signup.email,
+    :subject => "You're on Your Way to Some of the Best Meals of Your Life!")
+  end
 end

@@ -1,0 +1,8 @@
+=simple_form_for @signup do |f|
+  =f.input :email, :autofocus => "autofocus", :label => false, :placeholder => 'email'
+  .signupcheckbox
+<<<<<<< HEAD
+    =f.input :chef, :label => false, inline_label: 'I\'m a Chef'
+=======
+    =f.input :chef, :label => false, inline_label: 'I\'m a Chef!'
+>>>>>>> 5ff4dd2d56d0d7e5adda0be0c8d3bc8fb064a5ca
