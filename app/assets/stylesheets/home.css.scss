@@ -15,71 +15,74 @@ body {
 
 // header styling
 
-.navbar-inner{
-	background-color: $dark_coral;
-	background-image: -webkit-gradient(linear, left top, left bottom, from($main_coral), to($dark_coral));
-	background-image: -webkit-linear-gradient(top, $main_coral, $dark_coral);
-	background-image:    -moz-linear-gradient(top, $main_coral, $dark_coral);
-	background-image:      -o-linear-gradient(top, $main_coral, $dark_coral);
-	background-image:         linear-gradient(to bottom, $main_coral, $dark_coral);
-	border: $main_coral;
-	box-shadow: 0;
-	border-radius: 0;
-	display: block;
-	margin-top: 0px;
-	padding-right: 0;
-	font-weight: 500;
-	.nav{	
-		font-size: 16px;
-		float: none;
-		.pull-right{
-			float: right;
-		}
-		li > a:link, a:visited{
-			background-color: transparent;
-			box-shadow: none;
-			color:white;
-			padding: 25px 30px 25px;
-			text-shadow: none;
-			font-weight: normal;
-		}
-		li > a:hover, a:active{
-			color: white;
-			background-color: rgba(255, 255, 255, 0.25);
-		}
-		li > a:focus{
-			outline: none;
-			color: white;
-		}
-		.caret{
-			border-top-color: white !important;
-		}
-		.dropdown-menu{
-			background-color: white;
-			right: 0;
-			left: 0;
-		}
-		.dropitem{
-			p{
-				padding: 0px 10px 0px 10px;
+.navbar{
+	margin-bottom: 0px;
+	.navbar-inner{
+		background-color: $dark_coral;
+		background-image: -webkit-gradient(linear, left top, left bottom, from($main_coral), to($dark_coral));
+		background-image: -webkit-linear-gradient(top, $main_coral, $dark_coral);
+		background-image:    -moz-linear-gradient(top, $main_coral, $dark_coral);
+		background-image:      -o-linear-gradient(top, $main_coral, $dark_coral);
+		background-image:         linear-gradient(to bottom, $main_coral, $dark_coral);
+		border: $main_coral;
+		box-shadow: 0;
+		border-radius: 0;
+		display: block;
+		margin-top: 0px;
+		padding-right: 0;
+		font-weight: 500;
+		.nav{	
+			font-size: 16px;
+			float: none;
+			.pull-right{
+				float: right;
 			}
-			form{
-				padding: 0px 10px 10px 10px;
-			}
-			a:link, a:visited{
+			li > a:link, a:visited{
+				background-color: transparent;
 				box-shadow: none;
-				padding: 10px 0px 10px 10px;
-				color: black;
+				color:white;
+				padding: 25px 30px 25px;
 				text-shadow: none;
 				font-weight: normal;
 			}
-			a:hover{
-	 			color: white;
-	 			background-color: $main_coral;
-	 			background-image: none;
+			li > a:hover, a:active{
+				color: white;
+				background-color: rgba(255, 255, 255, 0.25);
 			}
-		}
-	}		
+			li > a:focus{
+				outline: none;
+				color: white;
+			}
+			.caret{
+				border-top-color: white !important;
+			}
+			.dropdown-menu{
+				background-color: white;
+				right: 0;
+				left: 0;
+			}
+			.dropitem{
+				p{
+					padding: 0px 10px 0px 10px;
+				}
+				form{
+					padding: 0px 10px 10px 10px;
+				}
+				a:link, a:visited{
+					box-shadow: none;
+					padding: 10px 0px 10px 10px;
+					color: black;
+					text-shadow: none;
+					font-weight: normal;
+				}
+				a:hover{
+		 			color: white;
+		 			background-color: $main_coral;
+		 			background-image: none;
+				}
+			}
+		}		
+	}
 }
 
 // end header styling
@@ -87,17 +90,39 @@ body {
 
 .hero-unit{
     background-color: transparent;
-	padding: 80px;
 	color: white;
 	text-shadow: 2px 2px 20px #000;
-	margin-below: 0;
+	padding-left: 0;
+	margin-left: auto;
+	margin-right: auto;
+	z-index: 1;
+	position: relative;
 	.copy{
-		display:inline-block;
-		width: 525px;
+		padding-left: 80px;
+		width: auto;
 		float: left;
+		position: relative;
+		margin: 0 auto 0 auto;
 		h1{
 			font-size: 70px;
 			line-height: 80px
+		}
+	}
+	.hero-bkgd{
+		position: absolute;
+		top: 0;
+		width:100%;
+		margin-left: auto;
+		margin-right: auto;
+		height: 400px;
+		z-index: -1;
+		.carousel-inner{
+			height: 450px;
+		}
+		.carousel-control{
+			border: none;
+			background: none;
+			top: 90%;
 		}
 	}
 }
