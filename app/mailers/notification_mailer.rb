@@ -19,6 +19,6 @@ class NotificationMailer < ActionMailer::Base
   def waitlist_chef_email(signup)
     @signup = signup
     mail( :to => signup.email,
-    :subject => "You're on Your Way to Simple Livin'!")
+    :subject => "You're on Your Way to Sharing Your Food with the World")
   end
 end
