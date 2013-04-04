@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// colors
+
 $trans_black: rgba(0,0,0,0.75);
 $trans: rgba(0,0,0,0);
 $main_coral: rgb(252, 73, 43);
@@ -10,6 +12,8 @@ $dark_coral: rgb(214, 61, 45);
 body {
 	font-family: 'Noto Sans', sans-serif !important;
 }
+
+// header styling
 
 .navbar-inner{
 	background-color: $dark_coral;
@@ -78,14 +82,8 @@ body {
 	}		
 }
 
-.sign_up.btn{
-	margin-top: 50px;
-	margin-left: 30px;
-	width: 140px;
-	height: 30px;
-	padding: 15px 25px;
-	font-size: 25px;
-}
+// end header styling
+// hero unit styling
 
 .hero-unit{
     background-color: transparent;
@@ -93,23 +91,19 @@ body {
 	color: white;
 	text-shadow: 2px 2px 20px #000;
 	margin-below: 0;
-	h1{
+	.copy{
 		display:inline-block;
-		width: 550px;
-		float:left;
-		font-size: 70px;
-		line-height: 80px;
-	}
-	a.btn.btn-primary.btn-large{
-		display:inline-block;
-		width: 150px;
-		float: right;
+		width: 525px;
+		float: left;
+		h1{
+			font-size: 70px;
+			line-height: 80px
+		}
 	}
 }
 
-.abovefold{
-	background-image: url('hero1_resized.jpg');
-}
+// end hero unit styling
+// modal styling
 
 .modal{
 	width: 350px;
