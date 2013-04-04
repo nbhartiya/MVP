@@ -2,24 +2,88 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$black_trans: rgba(0, 0, 0, 0.75);
-$main_blue: rgb(0, 113, 188);
-$main_gray: rgb(200, 200, 200);
-$white_trans: rgba(255, 255, 255, 0.75);
-$blue_trans: rgba(0, 113, 188, 0.5);
+// colors
+
+$trans_black: rgba(0,0,0,0.75);
+$trans: rgba(0,0,0,0);
+$main_coral: rgb(252, 73, 43);
+$dark_coral: rgb(214, 61, 45);
 
 body {
-	font-family: 'Merriweather Sans', sans-serif;
+	font-family: 'Noto Sans', sans-serif !important;
 }
 
-.sign_up.btn{
-	margin-top: 50px;
-	margin-left: 30px;
-	width: 140px;
-	height: 30px;
-	padding: 15px 25px;
-	font-size: 25px;
+// header styling
+
+.navbar-inner{
+	background-color: $dark_coral;
+	background-image: -webkit-gradient(linear, left top, left bottom, from($main_coral), to($dark_coral));
+	background-image: -webkit-linear-gradient(top, $main_coral, $dark_coral);
+	background-image:    -moz-linear-gradient(top, $main_coral, $dark_coral);
+	background-image:      -o-linear-gradient(top, $main_coral, $dark_coral);
+	background-image:         linear-gradient(to bottom, $main_coral, $dark_coral);
+	border: $main_coral;
+	box-shadow: 0;
+	border-radius: 0;
+	display: block;
+	margin-top: 0px;
+	padding-right: 0;
+	font-weight: 500;
+	.nav{	
+		font-size: 16px;
+		float: none;
+		.pull-right{
+			float: right;
+		}
+		li > a:link, a:visited{
+			background-color: transparent;
+			box-shadow: none;
+			color:white;
+			padding: 25px 30px 25px;
+			text-shadow: none;
+			font-weight: normal;
+		}
+		li > a:hover, a:active{
+			color: white;
+			background-color: rgba(255, 255, 255, 0.25);
+		}
+		li > a:focus{
+			outline: none;
+			color: white;
+		}
+		.caret{
+			border-top-color: white !important;
+		}
+		.dropdown-menu{
+			background-color: white;
+			right: 0;
+			left: 0;
+		}
+		.dropitem{
+			p{
+				padding: 0px 10px 0px 10px;
+			}
+			form{
+				padding: 0px 10px 10px 10px;
+			}
+			a:link, a:visited{
+				box-shadow: none;
+				padding: 10px 0px 10px 10px;
+				color: black;
+				text-shadow: none;
+				font-weight: normal;
+			}
+			a:hover{
+	 			color: white;
+	 			background-color: $main_coral;
+	 			background-image: none;
+			}
+		}
+	}		
 }
+
+// end header styling
+// hero unit styling
 
 .hero-unit{
     background-color: transparent;
@@ -27,117 +91,19 @@ body {
 	color: white;
 	text-shadow: 2px 2px 20px #000;
 	margin-below: 0;
-	h1{
+	.copy{
 		display:inline-block;
-		width: 550px;
-		float:left;
-		font-family: 'Merriweather Sans', sans-serif;
-		font-size: 70px;
-		line-height: 80px;
-	}
-	a.btn.btn-primary.btn-large{
-		display:inline-block;
-		width: 150px;
-		float: right;
+		width: 525px;
+		float: left;
+		h1{
+			font-size: 70px;
+			line-height: 80px
+		}
 	}
 }
 
-.container{
-	background-color: black;
-}
-
-.container.main{
-	background-image: url('fabric_of_squares_gray_@2X.png');
-}
-
-.footer{
-	display:block;
-	margin: 0;
-	padding: 0;
-	border-top-style: dashed;
-	border-top-width: 1px;
-	border-top-color: black;
-	background-image: url('fabric_of_squares_gray_@2X.png');
-	li{
-		border: none;
-		margin: 0;
-		padding: 0;
-	}
-	p.credits{
-		color: $main_gray;
-	}
-	a.footerlink{
-		color: dark-gray;
-	}
-	a.footerlink:hover{
-		color: black;
-		background-color: transparent;
-	}
-	.footernav{
-		margin-left: auto;
-		margin-right: auto;
-		width: 46%;
-		float: none;
-		margin-top: 10px;
-	}
-}
-
-p.credits {
-	text-align: center;
-	padding-top: 10px;
-}
-
-.navbar-inner{
-	background-image: none;
-	background-color: $blue_trans;
-	border: 0;
-	box-shadow: 0;
-	border-radius: 0;
-	display: block;
-	margin-top: 0px;
-	padding-right: 0;
-	font-weight: 500;
-}
-
-ul.nav.top{	
-	font-size: 16px;
-	a:link, a:visited{
-		background-color: transparent;
-		box-shadow: none;
-		color: white;
-		padding: 25px 30px 25px;
-		text-shadow: none;
-		font-weight: normal;
-	}
-	a:hover{
-		color: white;
-		background-color: rgba(255, 255, 255, 0.25);
-	}
-}
-
-.abovefold{
-	background-image: url('hero1_resized.jpg');
-	a:visited{
-	color: white;
-	height: 250px;
-	}
-}
-
-.span3 h1{
-	color: $main_blue;
-}
-
-.belowfold, .footer{
-	text-align: center;
-}
-
-.points{
-	margin-bottom:40px;
-}
-
-.belowfold{
-	font-family: 'Merriweather Sans', sans-serif;
-}
+// end hero unit styling
+// modal styling
 
 .modal{
 	width: 350px;
@@ -172,7 +138,7 @@ ul.nav.top{
 			margin-bottom: 5px;
 		}
 			.learn_more_link{
-				color: $main_blue;
+				color: $main_coral;
 				a:hover{
 					background-color: transparent;
 					color: black;

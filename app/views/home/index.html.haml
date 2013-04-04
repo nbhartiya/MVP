@@ -1,10 +1,31 @@
-%body.container.backgroundimage
-  .abovefold.navbar
+%body.container
+  .navbar
     = render "layouts/header"
 
     .hero-unit.clearfix
-      %h1 invest in your community
-      %a.btn.btn-warning.btn-large.sign_up{"data-toggle" => "modal", :href => "#sign_up", :role => "button"} start now
+      .copy
+        %h1 love at first bite
+        %h3 be the first to find out about <br> exclusive events with chefs
+        %form.navbar-search.pull-left
+          %input.search-query{:placeholder => "Find a Chef", :type => "text"}
+
+
+          
+
+#myCarousel.carousel.slide
+  %ol.carousel-indicators
+    %li.active{"data-slide-to" => "0", "data-target" => "#myCarousel"}
+    %li{"data-slide-to" => "1", "data-target" => "#myCarousel"}
+    %li{"data-slide-to" => "2", "data-target" => "#myCarousel"}
+  / Carousel items
+  .carousel-inner
+    .active.item …
+    .item …
+    .item …
+  / Carousel nav
+  %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
+  %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
+
 
   .belowfold
     .row.points
@@ -35,10 +56,6 @@
             = render "shared/signup"
       .modal-footer
         %button.usersignup.btn.btn-warning Sign Up
-  
-    .container.footer
-      .span12.footernav
-        = render "layouts/footer"
 
 :javascript
   $('.learn_more_link').tooltip('toggle');
