@@ -1,5 +1,11 @@
 MVP::Application.routes.draw do
   
+  resources :events
+
+
+  resources :locations
+
+
   resources :accreditations
 
 

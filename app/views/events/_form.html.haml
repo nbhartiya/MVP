@@ -1,0 +1,15 @@
+= simple_form_for(@event) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :title
+    = f.input :location_id
+    = f.input :people_limit
+    = f.input :description
+    = f.input :menu_pdf
+    = f.input :menu_text
+    = f.input :date
+    = f.input :cost
+
+  .form-actions
+    = f.button :submit

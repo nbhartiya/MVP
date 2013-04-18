@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130404225316) do
+ActiveRecord::Schema.define(:version => 20130418221154) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -31,10 +31,36 @@ ActiveRecord::Schema.define(:version => 20130404225316) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "events", :force => true do |t|
+    t.string   "title"
+    t.integer  "location_id"
+    t.integer  "people_limit"
+    t.text     "description"
+    t.string   "menu_pdf"
+    t.text     "menu_text"
+    t.datetime "date"
+    t.float    "cost"
+    t.string   "location_title"
+    t.integer  "length"
+    t.string   "other_info"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
   create_table "investments", :force => true do |t|
     t.integer  "user_id"
     t.integer  "project_id"
     t.integer  "amount"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "locations", :force => true do |t|
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -104,7 +130,7 @@ ActiveRecord::Schema.define(:version => 20130404225316) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "completed",              :default => false
-    t.string   "zipcode"
+    t.integer  "location_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
