@@ -17,6 +17,7 @@ gem 'twitter'
 gem 'annotate', ">=2.5.0"
 gem 'simple_form'
 gem 'sendgrid'
+gem 'filepicker-rails'
 
 # not necessary yet...will change to this when everything working...
 # gem 'linkedin'

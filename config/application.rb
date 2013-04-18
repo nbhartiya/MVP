@@ -61,5 +61,8 @@ module MVP
     
     #For devise
     config.assets.initialize_on_precompile = false
+    
+    #For filepicker
+    config.filepicker_rails.api_key = ENV["FILEPICKER_API_KEY"]
   end
 end
