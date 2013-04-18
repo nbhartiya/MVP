@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   has_many :projects
   has_many :authentications
   has_one :accreditation
+  has_one :location
   
   before_create :confirmation_email
   
