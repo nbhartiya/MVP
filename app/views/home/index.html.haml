@@ -6,31 +6,32 @@
     .copy
       %h1 love at first bite
       %h3 be the first to find out about <br> exclusive events with chefs
-      %form.navbar-search.pull-left
-        %input.search-query{:placeholder => "Find a Chef", :type => "text"}
-    .hero-bkgd
+      %form.navbar-search.pull-left.clearfix
+        %input.search-query{:placeholder => "Find a Chef or Restaurant", :type => "text"}
+    .hero-bkgd.clearfix
       #myCarousel.carousel.slide
         .carousel-inner
           .active.item 
-            %img{:alt => "HSC 3", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-2-hsc.jpg"}
+            %img{:alt => "HSC 1", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-2-hsc.jpg"}
           .item
-            %img{:alt => "HSC 4", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-1-hsc1.jpg"}
+            %img{:alt => "HSC 2", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-1-hsc1.jpg"}
           .item
-            %img{:alt => "HSC 5", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-3-hsc.jpg"}
+            %img{:alt => "HSC 3", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-3-hsc.jpg"}
           .item
-            %img{:alt => "HSC 5", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-4-hsc.jpg"}
+            %img{:alt => "HSC 4", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-4-hsc.jpg"}
           .item
             %img{:alt => "HSC 5", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-5-hsc.jpg"}
           .item
-            %img{:alt => "HSC 5", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-6-hsc.jpg"}
+            %img{:alt => "HSC 6", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-6-hsc.jpg"}
           .item
-            %img{:alt => "HSC 5", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-7-hsc.jpg"}
+            %img{:alt => "HSC 7", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-7-hsc.jpg"}
           .item
-            %img{:alt => "HSC 5", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-8-hsc.jpg"}
+            %img{:alt => "HSC 8", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-8-hsc.jpg"}
         %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
         %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
 
-  .belowfold
+  .events
+    %h1 Events in San Francisco
 
     #sign_up.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
       .modal-header
@@ -46,9 +47,6 @@
             = render "shared/signup"
       .modal-footer
         %button.usersignup.btn.btn-warning Sign Up
-
-:javascript
-  $('.learn_more_link').tooltip('toggle');
 
 
 -# Uncomment the below to have the log in credential form rendered into this page

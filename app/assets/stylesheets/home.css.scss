@@ -13,12 +13,17 @@ body {
 	font-family: 'Noto Sans', sans-serif !important;
 }
 
+.jquery_form_error_message{
+  display: block;
+  margin-top: 3px;
+}
+
 // header styling
 
 .navbar{
 	margin-bottom: 0px;
 	.navbar-inner{
-		background-color: $dark_coral;
+		background-color: black;
 		background-image: -webkit-gradient(linear, left top, left bottom, from($main_coral), to($dark_coral));
 		background-image: -webkit-linear-gradient(top, $main_coral, $dark_coral);
 		background-image:    -moz-linear-gradient(top, $main_coral, $dark_coral);
@@ -100,7 +105,6 @@ body {
 	.copy{
 		padding-left: 80px;
 		width: auto;
-		float: left;
 		position: relative;
 		margin: 0 auto 0 auto;
 		h1{
@@ -128,6 +132,22 @@ body {
 }
 
 // end hero unit styling
+
+// begin events area styling
+
+.events{
+	display: inline-block;
+	position: absolute;
+	top: 120%;
+	left: 6%;
+	z-index: 2000;
+	background-color: white;
+	width: 1080px;
+	h1{
+		margin-left: 5px;
+	}
+}
+
 // modal styling
 
 .modal{
