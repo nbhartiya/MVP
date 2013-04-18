@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418223102) do
+ActiveRecord::Schema.define(:version => 20130418224133) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -34,8 +34,10 @@ ActiveRecord::Schema.define(:version => 20130418223102) do
   create_table "comments", :force => true do |t|
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
   end
 
   create_table "events", :force => true do |t|
@@ -56,10 +58,12 @@ ActiveRecord::Schema.define(:version => 20130418223102) do
 
   create_table "images", :force => true do |t|
     t.string   "image"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.string   "title"
     t.text     "description"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
   end
 
   create_table "investments", :force => true do |t|

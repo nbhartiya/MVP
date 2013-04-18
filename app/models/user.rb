@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
   has_many :authentications
   has_one :accreditation
   has_one :location
+  has_one :image, :as => :imageable
   
   before_create :confirmation_email
   
