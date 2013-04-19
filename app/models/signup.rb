@@ -14,6 +14,6 @@ class Signup < ActiveRecord::Base
   # Makeshift email validation for now
   validates :email, :presence => true,
     :length => {:minimum => 3, :maximum => 254},
-    :uniqueness => true,
+    :uniqueness => {:message => "You've signed up with us already!"},
     :format => /@/
 end
