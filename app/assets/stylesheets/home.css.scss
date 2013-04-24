@@ -13,9 +13,12 @@ body {
 	font-family: 'Noto Sans', sans-serif !important;
 }
 
-.jquery_form_error_message{
-  display: block;
-  margin-top: 3px;
+// error message styling
+
+ul.parsley-error-list{
+  list-style-type: none;
+  font-size: 14px;
+  text-shadow: 2px 2px 20px #000;
 }
 
 // header styling

@@ -15,5 +15,4 @@
 //= require_tree .
 //= require twitter/bootstrap
 //= require parsley.js
-//= require jquery.formvalidator.min.js
 

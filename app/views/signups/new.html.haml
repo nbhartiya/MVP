@@ -1,25 +1,24 @@
 .launch
-  %h1
-    love at first bite
-  .hero
-    .copy
-      %h2 
-        be the first
-        %br 
-        to find out about
-        %br 
-        exclusive food events
-      %h4
-        %br
-        themed dinners, cooking classes, farm tours
-        %br
-        wine/coffee/beer/cocktail flights
-        %br
-        and much more 
-      %p
-        %br
-        %br
-        reserve your seat to hear when we lunch...er, launch
+  .copy.clearfix
+    %h2 
+      be the first
+      %br 
+      to find out about
+      %br 
+      exclusive food events
+    %h4
       %br
-      = render 'form'
-      %button.signup.btn.btn-warning.btn-large SIGN UP
+      themed dinners, cooking classes, farm tours
+      %br
+      wine/coffee/beer/cocktail flights
+      %br
+      and much more 
+    %p
+      %br
+      %br
+      reserve your seat to hear when we lunch...er, launch
+    %br
+  .signupform
+    = render 'form'
+  .signupbutton
+    %button.signup.btn.btn-warning.btn-large SIGN UP

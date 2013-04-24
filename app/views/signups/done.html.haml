@@ -1,32 +1,32 @@
 .launch
-  %h1
-    love at first bite
-  .hero
-    .copy
-      %h2 
-        be the first 
-        %br 
-        to find out about 
-        %br 
-        exclusive events with chefs
-      %h4
-        %br
-        What is good food without friends to share it with?
-        %br
-        The more you share, the better the meal.
-      %p
-        %br
-      -#  share socially
-        %br
-        %br
-      -#  %a.sb.facebook.gradient.text{:href =>"#"} Facebook
-      = render :partial => "social_media/tweet", :locals => {:message => "I'm on my way to the best meals of my life. Join me!", :url => "http://www.mainstprojet.com"}
+  .copy
+    %h2  
+      be the first 
+      %br 
+      to find out about 
+      %br 
+      exclusive events with chefs
+    %h4
+      %br
+      What is good food without friends to share it with?
+      %br
+      The more you share, the better the meal.
+  .sharing
+    %p
       %br
       %br
+      And what is good food 
+      %br
+      without good friends 
+      %br 
+      to share it with? 
+      %br
+      The more you share, 
+      %br
+      the better the meal!
+    .twittersharing
+      = render :partial => "social_media/tweet", :locals => {:message => "I'm on my way to the best meals of my life. Join me!", :url => "http://www.simmr.co"}
+      %br
+      %br
+    .fblike
       = render :partial => "social_media/like"
-      -#  %br
-      -#  %br
-      -#  share by email
-      -#.emails
-      -#%br
-      -#%a.sb.email.gradient.text{:href => "#"} Email
