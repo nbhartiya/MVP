@@ -1,4 +1,14 @@
-=simple_form_for @signup do |f|
-  =f.input :email, :autofocus => "autofocus", :label => false, :placeholder => 'email'
+%form#new_signup.simple_form.new_signup{"accept-charset" => "UTF-8", :action => "/signups", :method => "post", :"data-validate" => "parsley"}
+  %div{:style => "margin:0;padding:0;display:inline"}
+    %input{:name => "utf8", :type => "hidden", :value => "✓"}/
+    %input{:name => "authenticity_token", :type => "hidden", :value => "T/KLFKdC6Ph2zcvP0dQD9vOrq+/81VDnonQUfefcfW0="}/
+  .control-group.email.required.signup_email
+    .controls
+      %input#signup_email.string.email.required{:name => "signup[email]", :placeholder => "email", :required => "required", :size => "50", :type => "email", :"data-type-email-message" => "Please enter a valid email address or it's leftovers for you!", :"data-required-message" => "Please enter a valid email address or it's leftovers for you!", :"data-trigger" => "change"}
   .signupcheckbox
-    =f.input :chef, :label => false, inline_label: 'I\'m a Chef!'
+    .control-group.boolean.optional.signup_chef
+      .controls
+        %input{:name => "signup[chef]", :type => "hidden", :value => "0"}/
+        %label.checkbox
+          %input#signup_chef.boolean.optional{:name => "signup[chef]", :type => "checkbox", :value => "1"}>/
+          I'm with a Food Business!
