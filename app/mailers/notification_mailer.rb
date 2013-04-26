@@ -2,7 +2,7 @@ class NotificationMailer < ActionMailer::Base
   
   include SendGrid
   
-  default :from => "hello@mainstproject.com"
+  default :from => "neeharika@simmr.co"
 
   def signup_email(user)
     @user = user
