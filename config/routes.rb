@@ -12,13 +12,12 @@ MVP::Application.routes.draw do
   resources :accreditations
 
 
-  #resources :authentications
-
-  resources :investments
-  resources :projects
-  resources :user_answers
-  resources :survey_answers
-  resources :survey_questions
+  #resources :authentications #, :only => [:show]
+  #resources :investments
+  #resources :projects
+  #resources :user_answers
+  #resources :survey_answers
+  #resources :survey_questions
 
   get "home/index"
   get "home/about"
