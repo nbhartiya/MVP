@@ -4,13 +4,26 @@
 
 // colors
 
-$trans_black: rgba(0,0,0,0.75);
+$trans_black: rgba(54,54,54,0.9);
+$dark_gray: rgb(54, 54, 54);
+$trans_black_more: rgba(54, 54, 54, 0.7);
 $trans: rgba(0,0,0,0);
-$main_coral: rgb(252, 73, 43);
-$dark_coral: rgb(214, 61, 45);
+$main_orange: rgb(255, 178, 35);
+
+// body and universal styling
 
 body {
 	font-family: 'Open Sans', sans-serif !important; 
+	background-image: url("black-Linen_@2X.png");
+	.container.main{
+		width: 1290px;
+		margin-left: auto;
+		margin-right: auto;
+		position: relative;
+	}
+	a, a:hover{
+		background-color: transparent;
+	}
 }
 
 // error message styling
@@ -18,21 +31,24 @@ body {
 ul.parsley-error-list{
   list-style-type: none;
   font-size: 14px;
-  text-shadow: 2px 2px 20px #000;
+  margin-left: 0;
 }
 
 // header styling
 
 .navbar{
 	margin-bottom: 0px;
+	-webkit-box-shadow: 0px 0px 20px 0px #000;
+    box-shadow: 0px 0px 20px 0px #000;
+	.brand{
+		height: 40px;
+		width: 90px;
+		margin-left: 0;
+	}
 	.navbar-inner{
-		background-color: black;
-		background-image: -webkit-gradient(linear, left top, left bottom, from($main_coral), to($dark_coral));
-		background-image: -webkit-linear-gradient(top, $main_coral, $dark_coral);
-		background-image:    -moz-linear-gradient(top, $main_coral, $dark_coral);
-		background-image:      -o-linear-gradient(top, $main_coral, $dark_coral);
-		background-image:         linear-gradient(to bottom, $main_coral, $dark_coral);
-		border: $main_coral;
+		background-color: $trans_black;
+		background-image: none;
+		border: none;
 		box-shadow: 0;
 		border-radius: 0;
 		display: block;
@@ -40,7 +56,7 @@ ul.parsley-error-list{
 		padding-right: 0;
 		font-weight: 500;
 		.nav{	
-			font-size: 16px;
+			font-size: 14px;
 			float: none;
 			.pull-right{
 				float: right;
@@ -49,7 +65,7 @@ ul.parsley-error-list{
 				background-color: transparent;
 				box-shadow: none;
 				color:white;
-				padding: 25px 30px 25px;
+				padding: 20px 20px 20px;
 				text-shadow: none;
 				font-weight: normal;
 			}
@@ -65,7 +81,8 @@ ul.parsley-error-list{
 				border-top-color: white !important;
 			}
 			.dropdown-menu{
-				background-color: white;
+				background-color: $trans_black;
+				color: white;
 				right: 0;
 				left: 0;
 			}
@@ -75,17 +92,20 @@ ul.parsley-error-list{
 				}
 				form{
 					padding: 0px 10px 10px 10px;
+					.span2{
+						width: 120px;
+					}
 				}
 				a:link, a:visited{
 					box-shadow: none;
 					padding: 10px 0px 10px 10px;
-					color: black;
+					color: white;
 					text-shadow: none;
 					font-weight: normal;
 				}
 				a:hover{
 		 			color: white;
-		 			background-color: $main_coral;
+		 			background-color: $main_orange;
 		 			background-image: none;
 				}
 			}
@@ -93,61 +113,101 @@ ul.parsley-error-list{
 	}
 }
 
-// end header styling
 // hero unit styling
 
 .hero-unit{
     background-color: transparent;
 	color: white;
-	text-shadow: 2px 2px 20px #000;
-	padding-left: 0;
-	margin-left: auto;
-	margin-right: auto;
-	z-index: 1;
-	position: relative;
-	.copy{
-		padding-left: 80px;
-		width: auto;
+	padding: 0;
+	margin: 0;
+	height: 500px;
+	.darkbox{
+		z-index: 2;
+		background-color: $trans_black_more;
+		width: 450px;
+		height: 240px;
 		position: relative;
-		margin: 0 auto 0 auto;
-		h1{
-			font-size: 70px;
-			line-height: 80px
+		left: 90px;
+		top: 150px;
+		-webkit-border-radius: 12px;
+          border-radius: 12px;
+          background-clip: padding-box;
+		.copy{
+			padding-left: 15px;
+			padding-top: 5px;
+			width: auto;
+			margin: 0 auto 0 auto;
+			h1{
+				font-family: 'Satisfy', cursive;
+				font-size: 70px;
+				line-height: 80px;
+				font-weight: 500;
+			}
+			h3{
+				font-weight: 500;
+				line-height: 30px;
+			}
 		}
 	}
-	.hero-bkgd{
-		position: absolute;
-		top: 0;
-		width:100%;
+	#myCarousel{
+		position: relative;
+		top: -240px;
+		width: 90%;
 		margin-left: auto;
 		margin-right: auto;
-		height: 400px;
-		z-index: -1;
+		z-index: 1;
+		-webkit-box-shadow: 0px 0px 20px 0px #000;
+          box-shadow: 0px 0px 20px 0px #000;
 		.carousel-inner{
-			height: 450px;
+			height: 500px;
+			width: 1165px;
 		}
 		.carousel-control{
-			border: none;
-			background: none;
+			font-size: 50px;
+			color: white;
 			top: 90%;
 		}
 	}
 }
 
-// end hero unit styling
-
 // begin events area styling
 
 .events{
-	display: inline-block;
-	position: absolute;
-	top: 120%;
-	left: 6%;
-	z-index: 2000;
-	background-color: white;
-	width: 1080px;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 15px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	-webkit-border-radius: 6px;
+    border-radius: 6px;
+    background-clip: padding-box;
+    color: white;
+    	a{color: $main_orange;}
+		a:hover{background:none;}
+		a:visited{color: $main_orange;}
 	h1{
-		margin-left: 5px;
+		font-family: 'Satisfy', cursive;
+		font-size: 40px;
+		text-align: center;
+	}
+	p{
+		font-size: 14px;
+		line-height: 16px;
+		text-align: center;
+	}
+	section.eventlisting{
+		display: inline;
+		width: 90%;
+		margin: 0 auto;
+		img{
+			margin-top: 10px;
+			width:30%;
+			margin: 15px;
+		}
+		p{
+			display: inline;
+		}
 	}
 }
 
@@ -157,7 +217,6 @@ ul.parsley-error-list{
 	width: 350px;
 	background-color: rgba(255, 255, 255, 0.9);
 	left: 60%;
-
 	#myModalLabel{
 		font-size: 15px;
 		text-align: left;
@@ -176,7 +235,6 @@ ul.parsley-error-list{
  		-webkit-border-radius: 6px 6px 0 0;
           border-radius: 6px 6px 0 0;
          -webkit-background-clip: padding-box; background-clip: padding-box;
-
 	}
 	.modal-body{
 		padding: 0;
@@ -186,12 +244,7 @@ ul.parsley-error-list{
 			margin-bottom: 5px;
 		}
 			.learn_more_link{
-				color: $main_coral;
-				a:hover{
-					background-color: transparent;
-					color: black;
-					text-decoration: none;
-				}
+				color: $main_orange;
 			}
 	}
 	input{
@@ -223,9 +276,8 @@ ul.parsley-error-list{
 	width: 95%;
 	margin-right: auto;
 	border: 0;
-
-  -webkit-box-shadow: 0px 2px 4px 0px gray;
-          box-shadow: 0px 2px 4px 0px gray;
+	-webkit-box-shadow: 0px 2px 4px 0px gray;
+    box-shadow: 0px 2px 4px 0px gray;
 
 }
 

@@ -15,4 +15,3 @@
 //= require_tree .
 //= require twitter/bootstrap
 //= require parsley.js
-
