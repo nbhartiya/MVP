@@ -1,12 +1,9 @@
 %form#new_user{"accept-charset" => "UTF-8", :action => "/users", :method => "post", :"data-validate" => "parsley"}
   %div{:style => "margin:0;padding:0;display:inline"}
     %input{:name => "utf8", :type => "hidden", :value => "?"}/
-  = link_to "Facebook", user_omniauth_authorize_path(:facebook),
-    :class => "sb facebook text black"
-  = link_to "LinkedIn", user_omniauth_authorize_path(:linkedin),
-    :class => "sb linkedin text black"
-  = link_to "Twitter", user_omniauth_authorize_path(:twitter),
-    :class => "sb twitter text black"
+  = link_to "Facebook", user_omniauth_authorize_path(:facebook), :class => "sb facebook text black"
+  = link_to "LinkedIn", user_omniauth_authorize_path(:linkedin), :class => "sb linkedin text black"
+  = link_to "Twitter", user_omniauth_authorize_path(:twitter), :class => "sb twitter text black"
   %hr.or-line
   %p.strong
     Sign up with email
@@ -14,20 +11,20 @@
   %div
     %input#user_first_name{:required => "required", :placeholder => "first name", :autofocus => "autofocus", :name => "user[first_name]", :size => "30", :type => "text"}/
   %div
-    %input#user_last_name{:placeholder => "last name", :name => "user[last_name]", :size => "30", :type => "text"}/
+    %input#user_last_name{:required => "required", :placeholder => "last name", :name => "user[last_name]", :size => "30", :type => "text"}/
   %div
-    %input#user_email{:placeholder => "email", :name => "user[email]", :size => "30", :type => "email", :value => ""}/
+    %input#user_email{:required => "required", :placeholder => "email", :name => "user[email]", :size => "30", :type => "email", :value => ""}/
   %div
-    %input#user_password{:placeholder => "password", :name => "user[password]", :size => "30", :type => "password"}/
+    %input#user_password{:"data-minlength"=>"8", :"data-minlength-message" => "Password needs to be 8 characters", :required => "required", :placeholder => "password", :name => "user[password]", :size => "30", :type => "password"}/
   %div
-    %input#user_password_confirmation{:placeholder => "retype password",:name => "user[password_confirmation]", :size => "30", :type => "password"}/
+    %input#user_password_confirmation{:required => "required", :"data-equalto"=>"#user_password", :"data-equalto-message" => "Passwords need to match", :placeholder => "retype password",:name => "user[password_confirmation]", :size => "30", :type => "password"}/
   %div
     %label.radio.inline
       %input#optionsRadios1{:checked => "", :name => "user[kind]", :type => "radio", :value => "Foodie"}/
-      Food-lover
+      Foodie
     %label.radio.inline
-      %input#optionsRadios2{:checked => "", :name => "user[kind]", :type => "radio", :value => "Chef"}/
-      Chef
+      %input#optionsRadios2{:checked => "", :name => "user[kind]", :type => "radio", :value => "Food Business"}/
+      Food Business
     %br/
     %br/
   -# %div

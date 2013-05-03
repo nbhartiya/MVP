@@ -4,3 +4,6 @@
 
 $ ->
   $('.learn_more_link').tooltip()
+
+$(document).ready ->
+  $(".carousel").carousel interval: 8000

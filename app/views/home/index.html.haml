@@ -1,52 +1,62 @@
 %body.container
-  .navbar
+  .navbar.navbar-fixed-top
     = render "layouts/header"
 
   .hero-unit
-    .copy
-      %h1 love at first bite
-      %h3 be the first to find out about <br> exclusive events with chefs
-      %form.navbar-search.pull-left.clearfix
-        %input.search-query{:placeholder => "Find a Chef or Restaurant", :type => "text"}
-    .hero-bkgd.clearfix
-      #myCarousel.carousel.slide
-        .carousel-inner
-          .active.item 
-            %img{:alt => "HSC 1", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-2-hsc.jpg"}
-          .item
-            %img{:alt => "HSC 2", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-1-hsc1.jpg"}
-          .item
-            %img{:alt => "HSC 3", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-3-hsc.jpg"}
-          .item
-            %img{:alt => "HSC 4", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-4-hsc.jpg"}
-          .item
-            %img{:alt => "HSC 5", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-5-hsc.jpg"}
-          .item
-            %img{:alt => "HSC 6", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-6-hsc.jpg"}
-          .item
-            %img{:alt => "HSC 7", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-7-hsc.jpg"}
-          .item
-            %img{:alt => "HSC 8", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-8-hsc.jpg"}
-        %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
-        %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
-
+    .darkbox
+      .copy
+        %h1 love at first bite
+        %h3 be the first to find out about <br> exclusive food events
+        %form.navbar-search.pull-left.clearfix
+          %input.search-query{:placeholder => "Find a Chef or Restaurant", :type => "text"}
+    #myCarousel.carousel.slide
+      .carousel-inner
+        .active.item 
+          %img{:alt => "HSC 2", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-1-hsc1.jpg"}
+        .item
+          %img{:alt => "HSC 3", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-3-hsc.jpg"}
+        .item
+          %img{:alt => "HSC 7", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-7-hsc.jpg"}
+        .item
+          %img{:alt => "HSC 8", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-8-hsc.jpg"}
+      %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
+      %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
   .events
     %h1 Events in San Francisco
+    %p Don't see your fave? <a href="#">Request</a> an event or see <a href="#">Request Campaigns</a>
+    %ul.eventlisting
+      %li.listing-card
+        %a.listing-card-image{:href => "#"}
+          = image_tag "event_stock_image.jpg"
+        %table.listing-card-text
+          %tr
+            %td.listing-card-avatar
+            %td.listing-card-event
+            %td.listing-card-business
+            %td.listing-card-progress
+            %td.listing-card-action-button
 
-    #sign_up.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-      .modal-header
-        %h3#myModalLabel Sign Up for MainStreet
-      .modal-body
-        %p<
-          Find the best places to visit recommended by your friends.&nbsp
-          %a.learn_more_link{"data-toggle"=>"tooltip", "data-placement"=>"right", :href=>"#", :title=>"See where friends have visited and their reviews"}> Learn More
-        %p.strong.sign-up-text
-          Sign up with
-        %p
-          -if user_signed_in? == false
-            = render "shared/signup"
-      .modal-footer
-        %button.usersignup.btn.btn-warning Sign Up
+    %section.eventlisting
+      %a{:href => "#"}
+        = image_tag "event_stock_image.jpg"
+    %section.eventlisting
+      %a{:href => "#"}
+        = image_tag "event_stock_image.jpg"
+
+  #sign_up.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+    .modal-header
+      %h3#myModalLabel Sign Up for simmr
+    .modal-body
+      %p<
+        Find the best events to attend recommended by your friends.&nbsp
+        %a.learn_more_link{"data-toggle"=>"tooltip", "data-placement"=>"right", :href=>"#", :title=>"See where friends have visited and their reviews"}> Learn More
+      %p.strong.sign-up-text
+        Sign up with
+      %p
+        -if user_signed_in? == false
+          = render "shared/signup"
+    .modal-footer
+      %button.usersignup.btn.btn-warning Sign Up
 
 
 -# Uncomment the below to have the log in credential form rendered into this page
