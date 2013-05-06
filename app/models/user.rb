@@ -32,7 +32,10 @@ class User < ActiveRecord::Base
   has_many :authentications
   has_one :accreditation
   has_one :location
-  has_one :image, :as => :imageable
+  #right now location_id is not being assigned to user when a new location is created under user...
+  has_many :images, :as => :imageable
+  # how can i put has_one :image, :as => :imageable
+  # get an error "NoMethodError: undefined method 'create!' for nol:NilClass
   has_many :tickets
   has_many :events, :through => :tickets
   # foodie user has many :events, :through =>:tickets

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130506204623) do
+ActiveRecord::Schema.define(:version => 20130506224148) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -79,6 +79,8 @@ ActiveRecord::Schema.define(:version => 20130506204623) do
     t.string   "imageable_type"
   end
 
+  add_index "images", ["imageable_id", "imageable_type"], :name => "index_images_on_imageable_id_and_imageable_type"
+
   create_table "investments", :force => true do |t|
     t.integer  "user_id"
     t.integer  "project_id"
@@ -95,6 +97,7 @@ ActiveRecord::Schema.define(:version => 20130506204623) do
     t.string   "zipcode"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
   create_table "projects", :force => true do |t|
