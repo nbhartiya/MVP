@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: signups
+#
+#  id         :integer          not null, primary key
+#  email      :string(255)
+#  chef       :boolean
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Signup < ActiveRecord::Base
   before_create :signup_email
   

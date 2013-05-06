@@ -1,0 +1,14 @@
+= simple_form_for(@guest) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :email
+    = f.input :ticket_id
+    = f.input :event_id
+    = f.input :foodie_id
+    = f.input :token
+
+  .form-actions
+    = f.button :submit

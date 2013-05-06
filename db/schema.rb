@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418224133) do
+ActiveRecord::Schema.define(:version => 20130506204623) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -54,6 +54,19 @@ ActiveRecord::Schema.define(:version => 20130418224133) do
     t.string   "other_info"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.integer  "host_id"
+  end
+
+  create_table "guests", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.integer  "ticket_id"
+    t.integer  "event_id"
+    t.integer  "foodie_id"
+    t.string   "token"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "images", :force => true do |t|
@@ -123,6 +136,16 @@ ActiveRecord::Schema.define(:version => 20130418224133) do
     t.string   "topic"
   end
 
+  create_table "tickets", :force => true do |t|
+    t.integer  "foodie_id"
+    t.integer  "event_id"
+    t.integer  "purchaser_id"
+    t.integer  "num_guests"
+    t.integer  "guest_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "user_answers", :force => true do |t|
     t.integer  "user_id"
     t.integer  "survey_question_id"
@@ -150,6 +173,7 @@ ActiveRecord::Schema.define(:version => 20130418224133) do
     t.string   "last_sign_in_ip"
     t.boolean  "completed",              :default => false
     t.integer  "location_id"
+    t.string   "work_zip"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Foodie:
+  = @ticket.foodie_id
+%p
+  %b Event:
+  = @ticket.event_id
+%p
+  %b Purchaser:
+  = @ticket.purchaser_id
+%p
+  %b Num guests:
+  = @ticket.num_guests
+%p
+  %b Guest:
+  = @ticket.guest_id
+
+= link_to 'Edit', edit_ticket_path(@ticket)
+\|
+= link_to 'Back', tickets_path

@@ -1,5 +1,11 @@
 MVP::Application.routes.draw do
   
+  resources :guests
+
+
+  resources :tickets
+
+
   resources :comments
 
 

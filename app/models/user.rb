@@ -6,7 +6,7 @@
 #  first_name             :string(255)
 #  last_name              :string(255)
 #  kind                   :string(255)
-#  approved               :boolean
+#  approved               :boolean          default(FALSE)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  email                  :string(255)      default(""), not null
@@ -20,7 +20,8 @@
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
 #  completed              :boolean          default(FALSE)
-#  zipcode                :string(255)
+#  location_id            :integer
+#  work_zip               :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -32,6 +33,11 @@ class User < ActiveRecord::Base
   has_one :accreditation
   has_one :location
   has_one :image, :as => :imageable
+  has_many :tickets
+  has_many :events, :through => :tickets
+  # foodie user has many :events, :through =>:tickets
+  # host user should have many :events generally... how to make it work for both?
+  # would adding has_many :events work? I feel like I'd be giving it conflicting infromation at that point...s
   
   before_create :confirmation_email
   
@@ -46,7 +52,7 @@ class User < ActiveRecord::Base
   
   # validates_presence_of :kind
   
-  # may need to change ot has_and_belongs_to_many later on when multiple entrepreneurs are going to be logged in owning one project, will require a third table
+  # may need to change to has_and_belongs_to_many later on when multiple entrepreneurs are going to be logged in owning one project, will require a third table
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
