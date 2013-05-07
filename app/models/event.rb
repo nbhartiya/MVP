@@ -12,7 +12,7 @@
 #  cost           :float
 #  location_title :string(255)
 #  length         :integer
-#  other_info     :string(255)
+#  other_info     :text
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  host_id        :integer
@@ -22,7 +22,7 @@ class Event < ActiveRecord::Base
   
   has_one :location
   has_many :images, :as => :imageable
-  belongs_to :host, :class_name => "User"
+  belongs_to :host, :class_name => "User", :foreign_key => "host_id"
   has_many :tickets
   has_many :foodies, :class_name => "User", :through => :tickets
   

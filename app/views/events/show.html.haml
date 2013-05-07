@@ -5,7 +5,7 @@
   = @event.title
 %p
   %b Location:
-  = @event.location_id
+  = @event.location_title
 %p
   %b People limit:
   = @event.people_limit
@@ -24,6 +24,12 @@
 %p
   %b Cost:
   = @event.cost
+%p
+  %b Length:
+  = @event.length
+%p
+  %b Other Information:
+  = @event.other_info
 
 = link_to 'Edit', edit_event_path(@event)
 \|
