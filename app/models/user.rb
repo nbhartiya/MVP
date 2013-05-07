@@ -20,7 +20,6 @@
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
 #  completed              :boolean          default(FALSE)
-#  location_id            :integer
 #  work_zip               :string(255)
 #
 
@@ -32,10 +31,8 @@ class User < ActiveRecord::Base
   has_many :authentications
   has_one :accreditation
   has_one :location
-  #right now location_id is not being assigned to user when a new location is created under user...
-  has_many :images, :as => :imageable
-  # how can i put has_one :image, :as => :imageable
-  # get an error "NoMethodError: undefined method 'create!' for nol:NilClass
+  has_one :image, :as => :imageable
+  # always do User.first.create_image instead of User.first.images.create!, but to destroy do User.first.image.destroy
   has_many :tickets
   has_many :events, :through => :tickets
   # foodie user has many :events, :through =>:tickets
@@ -65,7 +62,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :approved, :first_name, :last_name, :kind, :location_id
+  attr_accessible :approved, :first_name, :last_name, :kind, :work_zip
   
   def apply_omniauth(omni)
     if omni['provider'] == 'facebook'
