@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130506224148) do
+ActiveRecord::Schema.define(:version => 20130507154831) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -175,7 +175,6 @@ ActiveRecord::Schema.define(:version => 20130506224148) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "completed",              :default => false
-    t.integer  "location_id"
     t.string   "work_zip"
   end
 
