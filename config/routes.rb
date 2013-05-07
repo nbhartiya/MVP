@@ -4,14 +4,12 @@ MVP::Application.routes.draw do
 
   resources :guests
 
-
-  resources :tickets
-
-
   resources :comments
 
 
-  resources :events
+  resources :events do
+    resources :tickets
+  end
 
 
   resources :locations

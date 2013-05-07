@@ -15,6 +15,6 @@
 class Ticket < ActiveRecord::Base
   attr_accessible :event_id, :foodie_id, :guest_id, :num_guests, :purchaser_id
   belongs_to :event
-  belongs_to :foodie, :class_name => "User"
+  belongs_to :foodie, :class_name => "User", :foreign_key => "purchaser_id"
   has_many :guests
 end

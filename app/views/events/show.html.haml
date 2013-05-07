@@ -30,6 +30,9 @@
 %p
   %b Other Information:
   = @event.other_info
+%p
+  %b Host:
+  = @event.host.first_name.capitalize + " " + @event.host.last_name.capitalize
 
 = link_to 'Edit', edit_event_path(@event)
 \|

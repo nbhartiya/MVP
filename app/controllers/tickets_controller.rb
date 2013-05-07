@@ -25,6 +25,7 @@ class TicketsController < ApplicationController
   # GET /tickets/new.json
   def new
     @ticket = Ticket.new
+    @event = Event.find(params[:event_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +42,9 @@ class TicketsController < ApplicationController
   # POST /tickets.json
   def create
     @ticket = Ticket.new(params[:ticket])
+    @event = Event.find(params[:event_id])
+    @ticket.purchaser_id = current_user.id
+    @ticket.event_id = event_id
 
     respond_to do |format|
       if @ticket.save

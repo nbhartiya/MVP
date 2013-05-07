@@ -1,12 +1,9 @@
-= simple_form_for(@ticket) do |f|
+= simple_form_for([@event, @ticket]) do |f|
   = f.error_notification
 
   .form-inputs
-    = f.input :foodie_id
-    = f.input :event_id
-    = f.input :purchaser_id
     = f.input :num_guests
-    = f.input :guest_id
+    -# need to add some javascript to make guest form appear here if the number of guests is more than 0
 
   .form-actions
     = f.button :submit
