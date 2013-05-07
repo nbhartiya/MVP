@@ -34,10 +34,8 @@ class User < ActiveRecord::Base
   has_one :image, :as => :imageable
   # always do User.first.create_image instead of User.first.images.create!, but to destroy do User.first.image.destroy
   has_many :tickets
-  has_many :events, :through => :tickets
-  # foodie user has many :events, :through =>:tickets
-  # host user should have many :events generally... how to make it work for both?
-  # would adding has_many :events work? I feel like I'd be giving it conflicting infromation at that point...s
+  has_many :attended_events, :class_name => "Event", :through => :tickets
+  has_many :hosted_events, :class_name => "Event"
   
   before_create :confirmation_email
   

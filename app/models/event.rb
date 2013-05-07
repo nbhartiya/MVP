@@ -4,7 +4,6 @@
 #
 #  id             :integer          not null, primary key
 #  title          :string(255)
-#  location_id    :integer
 #  people_limit   :integer
 #  description    :text
 #  menu_pdf       :string(255)
@@ -27,5 +26,5 @@ class Event < ActiveRecord::Base
   has_many :tickets
   has_many :foodies, :class_name => "User", :through => :tickets
   
-  attr_accessible :other_info, :length, :location_title, :cost, :date, :description, :location_id, :menu_pdf, :menu_text, :people_limit, :title, :host_id
+  attr_accessible :other_info, :length, :location_title, :cost, :date, :description, :menu_pdf, :menu_text, :people_limit, :title, :host_id
 end

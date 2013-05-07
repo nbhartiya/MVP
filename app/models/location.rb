@@ -10,11 +10,14 @@
 #  zipcode    :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :integer
+#  event_id   :integer
 #
 
 class Location < ActiveRecord::Base
 
   belongs_to :user
+  belongs_to :event
   
-  attr_accessible :address1, :address2, :city, :state, :zipcode, :user_id
+  attr_accessible :address1, :address2, :city, :state, :zipcode, :user_id, :event_id
 end
