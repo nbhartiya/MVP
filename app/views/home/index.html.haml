@@ -1,4 +1,4 @@
-%body.container
+%body.container.home
   .navbar.navbar-fixed-top
     = render "layouts/header"
 
@@ -7,6 +7,8 @@
       .copy
         %h1 love at first bite
         %h3 be the first to find out about <br> exclusive food events
+        %a
+          .btn.btn-large.btn-warning{"data-toggle" => "modal", :href => "#sign_up", :role => "button"} Sign Up
     #myCarousel.carousel.slide
       .carousel-inner
         .active.item 
