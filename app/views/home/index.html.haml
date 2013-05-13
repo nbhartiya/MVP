@@ -33,12 +33,17 @@
             %td.listing-card-avatar
               =link_to image_tag("Favicon.png"), "#"
             %td.listing-card-event
-              <a href="#">4 Course "Liberty Duck" Dinner</a>
+              <a href="#">4 Course "Liberty Duck" Dinner with Chefs</a>
             %td.listing-card-price
               $120
-          %tr
-            %td.listing-card-progress
-            %td.listing-card-action-button
+          %tr.bottom
+            %td
+            %td.seatsleft
+              5 seats left
+              .progress.progress-warning
+                .bar{:style => "width: 60%;"}
+            %td.action
+              .btn.btn-warning Buy
       %li.listing-card
         %a.listing-card-image{:href => "#"}
           =image_tag "event_stock_image.jpg"
@@ -47,12 +52,17 @@
             %td.listing-card-avatar
               =link_to image_tag("Favicon.png"), "#"
             %td.listing-card-event
-              <a href="#">4 Course "Liberty Duck" Dinner</a>
+              <a href="#">4 Course "Liberty Duck" Dinner with Chefs</a>
             %td.listing-card-price
               $120
-          %tr
-            %td.listing-card-progress
-            %td.listing-card-action-button
+          %tr.bottom
+            %td
+            %td.seatsleft
+              5 seats left
+              .progress.progress-warning
+                .bar{:style => "width: 60%;"}
+            %td.action
+              .btn.btn-warning Buy
       %li.listing-card
         %a.listing-card-image{:href => "#"}
           =image_tag "event_stock_image.jpg"
@@ -61,12 +71,18 @@
             %td.listing-card-avatar
               =link_to image_tag("Favicon.png"), "#"
             %td.listing-card-event
-              <a href="#">4 Course "Liberty Duck" Dinner</a>
+              <a href="#">4 Course "Liberty Duck" Dinner with Chefs</a>
             %td.listing-card-price
               $120
-          %tr
-            %td.listing-card-progress
-            %td.listing-card-action-button
+          %tr.bottom
+            %td
+            %td.seatsleft
+              5 seats left
+              .progress.progress-warning
+                .bar{:style => "width: 60%;"}
+            %td.action
+              .btn.btn-warning Buy
+    .more.btn.btn-large.btn-warning More Events
 
   #sign_up.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
     .modal-header
