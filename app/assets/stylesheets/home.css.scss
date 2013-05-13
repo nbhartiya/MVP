@@ -12,7 +12,7 @@ $main_orange: rgb(255, 178, 35);
 
 // body and universal styling
 
-body {
+body.home {
 	font-family: 'Open Sans', sans-serif !important; 
 	background-image: url("black-Linen_@2X.png");
 	.container.main{
@@ -125,7 +125,7 @@ ul.parsley-error-list{
 		z-index: 2;
 		background-color: $trans_black_more;
 		width: 450px;
-		height: 200px;
+		height: 250px;
 		position: relative;
 		left: 90px;
 		top: 150px;
@@ -146,12 +146,13 @@ ul.parsley-error-list{
 			h3{
 				font-weight: 500;
 				line-height: 30px;
+				padding-bottom: 10px;
 			}
 		}
 	}
 	#myCarousel{
 		position: relative;
-		top: -200px;
+		top: -190px;
 		width: 90%;
 		margin-left: auto;
 		margin-right: auto;
