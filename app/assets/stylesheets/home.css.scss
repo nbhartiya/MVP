@@ -285,6 +285,48 @@ ul.parsley-error-list{
 	background-color: gray;
 }
 
+// event listing
+
+.eventlisting {
+	margin: 20px 0;
+	li {
+		list-style: none;
+		float: left;
+		margin: 0 10px;
+		}
+	.listing-card-image > img{
+		width: 365px;
+	}
+	.listing-card-text{
+		background-color: white;
+		color: black;
+		border-top: 1px solid $dark_gray;
+		width: 365px;
+		border-collapse: collapse;
+		font-size: 16px;
+	}
+	.listing-card-avatar > img{
+		height: 50px;
+	}
+	td.listing-card-avatar{
+		height: 50px;
+		width: 50px;
+		padding: 8px 4px;
+	}
+	.listing-card-event{
+		font-size: 18px;
+		line-height: 20px;
+		padding: 8px 4px;
+	}
+	.listing-card-price{
+		font-size: 26px;
+		padding: 8px 4px;
+	}
+	.listing-card-business{
+		font-size: 16px;
+	}
+}
+
 .clearfix {
   *zoom: 1;
   &:before,

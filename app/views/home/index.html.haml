@@ -3,7 +3,7 @@
     = render "layouts/header"
 
   .hero-unit
-    .darkbox
+    .darkbox 
       .copy
         %h1 love at first bite
         %h3 be the first to find out about <br> exclusive food events
@@ -27,21 +27,46 @@
     %ul.eventlisting
       %li.listing-card
         %a.listing-card-image{:href => "#"}
-          = image_tag "event_stock_image.jpg"
+          =image_tag "event_stock_image.jpg"
         %table.listing-card-text
           %tr
             %td.listing-card-avatar
+              =link_to image_tag("Favicon.png"), "#"
             %td.listing-card-event
-            %td.listing-card-business
+              <a href="#">4 Course "Liberty Duck" Dinner</a>
+            %td.listing-card-price
+              $120
+          %tr
             %td.listing-card-progress
             %td.listing-card-action-button
-
-    %section.eventlisting
-      %a{:href => "#"}
-        = image_tag "event_stock_image.jpg"
-    %section.eventlisting
-      %a{:href => "#"}
-        = image_tag "event_stock_image.jpg"
+      %li.listing-card
+        %a.listing-card-image{:href => "#"}
+          =image_tag "event_stock_image.jpg"
+        %table.listing-card-text
+          %tr
+            %td.listing-card-avatar
+              =link_to image_tag("Favicon.png"), "#"
+            %td.listing-card-event
+              <a href="#">4 Course "Liberty Duck" Dinner</a>
+            %td.listing-card-price
+              $120
+          %tr
+            %td.listing-card-progress
+            %td.listing-card-action-button
+      %li.listing-card
+        %a.listing-card-image{:href => "#"}
+          =image_tag "event_stock_image.jpg"
+        %table.listing-card-text
+          %tr
+            %td.listing-card-avatar
+              =link_to image_tag("Favicon.png"), "#"
+            %td.listing-card-event
+              <a href="#">4 Course "Liberty Duck" Dinner</a>
+            %td.listing-card-price
+              $120
+          %tr
+            %td.listing-card-progress
+            %td.listing-card-action-button
 
   #sign_up.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
     .modal-header
