@@ -176,7 +176,6 @@ ul.parsley-error-list{
 	width: 90%;
 	margin-left: auto;
 	margin-right: auto;
-	padding-left: 15px;
 	padding-top: 15px;
 	padding-bottom: 15px;
 	-webkit-border-radius: 6px;
@@ -196,19 +195,71 @@ ul.parsley-error-list{
 		line-height: 16px;
 		text-align: center;
 	}
-	section.eventlisting{
-		display: inline;
-		width: 90%;
-		margin: 0 auto;
-		img{
-			margin-top: 10px;
-			width:30%;
-			margin: 15px;
+	.more{
+		width: 30%;
+		margin: 40px 385px 30px;
+	}
+	.eventlisting {
+	margin: 20px 0;
+	li {
+		list-style: none;
+		float: left;
+		margin: 0 11px;
 		}
-		p{
-			display: inline;
+	.listing-card-image > img{
+		width: 365px;
+		border-bottom: 1px solid rgb(150, 150, 150);
+	}
+	.listing-card-text{
+		background-color: white;
+		color: black;
+		width: 365px;
+		td{
+			font-size: 16px;
+		}
+		.listing-card-avatar > img{
+			height: 50px;
+			-webkit-border-radius: 40px;
+			-moz-border-radius: 40px;
+			-ms-border-radius: 40px;
+			-o-border-radius: 40px;
+			border-radius: 40px;
+		}
+		td.listing-card-avatar{
+			height: 50px;
+			width: 50px;
+			padding: 8px;
+		}
+		.listing-card-event{
+			line-height: 20px;
+			padding: 8px 4px;
+		}
+		.listing-card-price{
+			padding: 8px 4px;
+			font-size: 22px;
+			font-weight: 800;
+			color: $dark_gray;
+		}
+		tr.bottom{
+			background-color: rgb(240,240,240);
+		}
+		.progress{
+			height: 10px;
+			padding: 0;
+			margin: 0;
+			.bar{
+				height: 10px;
+			}
+		}
+		td.action{
+			padding: 10px 14px 10px 14px;
+		}
+		.seatsleft{
+			font-size: 12px;
+			color: $dark_gray;
 		}
 	}
+}
 }
 
 // modal styling
