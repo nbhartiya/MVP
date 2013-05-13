@@ -125,7 +125,7 @@ ul.parsley-error-list{
 		z-index: 2;
 		background-color: $trans_black_more;
 		width: 450px;
-		height: 240px;
+		height: 200px;
 		position: relative;
 		left: 90px;
 		top: 150px;
@@ -151,7 +151,7 @@ ul.parsley-error-list{
 	}
 	#myCarousel{
 		position: relative;
-		top: -240px;
+		top: -200px;
 		width: 90%;
 		margin-left: auto;
 		margin-right: auto;
@@ -233,6 +233,12 @@ ul.parsley-error-list{
 		.listing-card-event{
 			line-height: 20px;
 			padding: 8px 4px;
+			a{
+				color: $dark_gray;
+			}
+			a:hover{
+				color: $dark_gray;
+			}
 		}
 		.listing-card-price{
 			padding: 8px 4px;
@@ -247,6 +253,7 @@ ul.parsley-error-list{
 			height: 10px;
 			padding: 0;
 			margin: 0;
+			margin-left: -50px;
 			.bar{
 				height: 10px;
 			}
@@ -257,6 +264,7 @@ ul.parsley-error-list{
 		.seatsleft{
 			font-size: 12px;
 			color: $dark_gray;
+			text-align: right;
 		}
 	}
 }
