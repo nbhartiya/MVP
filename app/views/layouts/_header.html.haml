@@ -22,15 +22,15 @@
       %li.pull-right
         = link_to "Sign Out", destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?"        
     %li.dropdown.pull-right
-      %a{:href => "#", "data-toggle" => "dropdown"} About <span class="caret color=white"></span>
+      %a{:href => "#", "data-toggle" => "dropdown"} Learn More <span class="caret color=white"></span>
       %ul.dropdown-menu{"aria-labeledby" => "dLabel", :role => "menu"}
         %li.dropitem
-          %a{:href => "#", :tabindex => "-1"} About
+          %a{:href => "../home/howitworks", :tabindex => "-1"} How It Works
         %li.dropitem
-          %a{:href => "#", :tabindex => "-1"} Jobs
+          %a{:href => "../home/teamandjobs", :tabindex => "-1"} Team & Jobs
         %li.dropitem
-          %a{:href => "#", :tabindex => "-1"} Legal
+          %a{:href => "../home/tos", :tabindex => "-1"} Terms of Service
         %li.dropitem
-          %a{:href => "#", :tabindex => "-1"} Contact Us 
+          %a{:href => "../home/contactus", :tabindex => "-1"} Contact Us 
     %li.pull-right
       %a{:href => "#"} Create an Event
