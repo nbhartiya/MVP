@@ -13,11 +13,14 @@
           %p Don't see your city? Enter your zip code or city name
           %form.navbar-form
             %input.span2{:type => "text"}/
-    %li.pull-right
-      -if user_signed_in?
-        = link_to "Sign Out", destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?"
-      -if user_signed_in? == false
-        = link_to "Log In", new_user_session_path
+    -if user_signed_in? == false
+      %li.pull-right
+        = link_to "Sign Up", "#sign_up", :"data-toggle" => "modal"
+      %li.pull-right
+        = link_to "Log In", "#sign_in", :"data-toggle" =>"modal"
+    -if user_signed_in?
+      %li.pull-right
+        = link_to "Sign Out", destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?"        
     %li.dropdown.pull-right
       %a{:href => "#", "data-toggle" => "dropdown"} About <span class="caret color=white"></span>
       %ul.dropdown-menu{"aria-labeledby" => "dLabel", :role => "menu"}

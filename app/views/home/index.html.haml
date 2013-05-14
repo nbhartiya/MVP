@@ -1,4 +1,4 @@
-%body.container.home
+%body.container.home 
   .navbar.navbar-fixed-top
     = render "layouts/header"
 
@@ -7,8 +7,6 @@
       .copy
         %h1 love at first bite
         %h3 be the first to find out about <br> exclusive food events
-        %a
-          .btn.btn-large.btn-warning{"data-toggle" => "modal", :href => "#sign_up", :role => "button"} Sign Up
     #myCarousel.carousel.slide
       .carousel-inner
         .active.item 
@@ -43,7 +41,7 @@
               .progress.progress-warning
                 .bar{:style => "width: 60%;"}
             %td.action
-              .btn.btn-warning Buy
+              .btn.btn-warning Go!
       %li.listing-card
         %a.listing-card-image{:href => "#"}
           =image_tag "event_stock_image.jpg"
@@ -62,7 +60,7 @@
               .progress.progress-warning
                 .bar{:style => "width: 60%;"}
             %td.action
-              .btn.btn-warning Buy
+              .btn.btn-warning Go!
       %li.listing-card
         %a.listing-card-image{:href => "#"}
           =image_tag "event_stock_image.jpg"
@@ -81,7 +79,7 @@
               .progress.progress-warning
                 .bar{:style => "width: 60%;"}
             %td.action
-              .btn.btn-warning Buy
+              .btn.btn-warning Go!
     .more.btn.btn-large.btn-warning More Events
 
   #sign_up.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
@@ -98,6 +96,21 @@
           = render "shared/signup"
     .modal-footer
       %button.usersignup.btn.btn-warning Sign Up
+
+  #sign_in.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+    .modal-header
+      %h3#myModalLabel Sign In
+    .modal-body
+      %p<
+        Find the best events to attend recommended by your friends.&nbsp
+        %a.learn_more_link{"data-toggle"=>"tooltip", "data-placement"=>"right", :href=>"#", :title=>"See where friends have visited and their reviews"}> Learn More
+      %p.strong.sign-up-text
+        Sign in with
+      %p
+        -if user_signed_in? == false
+          = render "shared/login"
+    .modal-footer
+      %button.userlogin.btn.btn-warning Log In
 
 
 -# Uncomment the below to have the log in credential form rendered into this page
