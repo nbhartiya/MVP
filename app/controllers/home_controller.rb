@@ -5,10 +5,16 @@ class HomeController < ApplicationController
   def index
   end
 
-  def about
+  def howitworks
   end
 
-  def blog
+  def teamandjobs
+  end
+
+  def tos
+  end
+
+  def contactus
   end
 
 end
