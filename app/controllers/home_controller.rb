@@ -17,4 +17,7 @@ class HomeController < ApplicationController
   def contactus
   end
 
+  def blog
+  end
+
 end

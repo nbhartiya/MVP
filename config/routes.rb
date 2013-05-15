@@ -30,6 +30,7 @@ MVP::Application.routes.draw do
   get "home/teamandjobs"
   get "home/tos"
   get "home/contactus"
+  get "home/blog"
   get "/done" => "signups#done"
   get "/wireframes" => redirect {"http://mainstproject.com/wireframes"}
   
