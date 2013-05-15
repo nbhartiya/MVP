@@ -1,6 +1,42 @@
-%body.container.home 
+%body.container.staticpages
   .navbar.navbar-fixed-top
     = render "layouts/header"
 
-%h1 Team and Jobs
-%p blahblahblah
+  .hero-unit
+    .copycontainer
+      .darkbox.teamandjobs
+        .copy
+          %h1 let's taco 'bout us
+          %h2 join us in building a platform that forges real relationships between people and where they eat
+    #myCarousel.carousel.slide.teamandjobs
+      .carousel-inner
+        .active.item 
+          =image_tag "Food 12.jpg"
+        .item
+          =image_tag "Food 19.jpg"
+        .item
+          =image_tag "Food 24.jpg"
+        .item
+          =image_tag "Food 25.jpg"
+      %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
+      %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
+  
+
+  .wendyandnee
+    =image_tag "wendyandneeharika.png"
+  .infographic
+    %h1 at simmr we
+    .infographiccontent
+      %h1 work hard and move fast
+      %p We're nimble, passionate, and determined. There is no shortage of responsibility and we WANT you to have a voice in what we do.
+    .infographiccontent
+      %h1 have <br> fun
+      %p It's not a job if you're having fun. :)
+    .infographiccontent
+      %h1 stay <br> humble
+      %p We put aside egos for the sake of learning.
+    .infographiccontent
+      %h1 make a difference
+      %p We're fundamentally changing the relationship between a customer and a small business. These businesses make up the fabric of our lives and economies.
+    %h1 we're always looking for great people
+    %h2 if you're interested <a href = "../home/contactus"> drop us a line </a>

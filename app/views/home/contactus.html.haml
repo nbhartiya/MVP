@@ -1,6 +1,31 @@
-%body.container.home 
+%body.container.staticpages
   .navbar.navbar-fixed-top
     = render "layouts/header"
 
-%h1 Contact Us
-%p blahblahblah
+  .hero-unit
+    .copycontainer
+      .darkbox.contactus
+        .copy
+          %h1 we really value your thoughts
+          %h2 and love getting mail
+          .contact
+            %h3 email 
+            %a{:href=>"mailto:hello@simmr.co"}hello@simmr.co
+          .contact
+            %h3 call 
+            %p 415-555-5555
+          .contact
+            %h3 visit
+            %p 212 Clara Street <br> San Francisco, CA 94107 
+    #myCarousel.carousel.slide.contactus
+      .carousel-inner
+        .active.item 
+          =image_tag "Food 12.jpg"
+        .item
+          =image_tag "Food 19.jpg"
+        .item
+          =image_tag "Food 24.jpg"
+        .item
+          =image_tag "Food 25.jpg"
+      %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
+      %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›

@@ -1,6 +1,42 @@
-%body.container.home 
+%body.container.staticpages
   .navbar.navbar-fixed-top
     = render "layouts/header"
 
-%h1 How it works
-%p blahblahblah
+  .hero-unit
+    .copycontainer
+      .darkbox.howitworks
+        .copy
+          %h2 we want to make you <h1> more than a customer </h1>
+          %h2 by connecting you more meaningfully with your fave food businesses and helping you be the first to discover new ones
+    #myCarousel.carousel.slide.howitworks
+      .carousel-inner
+        .active.item 
+          =image_tag "Food 6.jpg"
+        .item
+          =image_tag "Food 8.jpg"
+        .item
+          =image_tag "Food 9.jpg"
+        .item
+          =image_tag "Food 10.jpg"
+      %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
+      %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
+  
+
+  .infographic.clearfix
+    %h1 but how?
+    .infographiccontent.howitworks
+      .number 1
+      %h1 browse
+      %p Find something cool to attend! All our events are designed to be different from the typical restaurant visit.
+    .infographiccontent.howitworks
+      .number 2
+      %h1 register 
+      %p See something you like? Book it! But wait - the event doesn't happen until the minimum number of tickets is sold. Help make this happen by inviting your favorite people! We won't charge anybody until the event is on.
+    .infographiccontent.howitworks
+      .number 3
+      %h1 attend
+      %p Woohoo, party time! You've already paid, so all you have to do day of is sit back and enjoy. 
+    .infographiccontent.howitworks
+      .number 4
+      %h1 share
+      %p Talk about your awesome experience and make everybody jealous, especially the not-so-favorite people you didn't invite to begin with.
