@@ -36,6 +36,7 @@ class TicketsController < ApplicationController
   # GET /tickets/1/edit
   def edit
     @ticket = Ticket.find(params[:id])
+    @event = Event.find(params[:event_id])
   end
 
   # POST /tickets
@@ -44,11 +45,12 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new(params[:ticket])
     @event = Event.find(params[:event_id])
     @ticket.purchaser_id = current_user.id
-    @ticket.event_id = event_id
+    @ticket.event_id = @event.id
+    # if @ticket.num_guest > 0, 
 
     respond_to do |format|
       if @ticket.save
-        format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
+        format.html { redirect_to event_ticket_path(@event.id, @ticket), notice: 'Ticket was successfully created.' }
         format.json { render json: @ticket, status: :created, location: @ticket }
       else
         format.html { render action: "new" }
@@ -80,7 +82,7 @@ class TicketsController < ApplicationController
     @ticket.destroy
 
     respond_to do |format|
-      format.html { redirect_to tickets_url }
+      format.html { redirect_to event_tickets_path }
       format.json { head :no_content }
     end
   end

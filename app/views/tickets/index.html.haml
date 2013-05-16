@@ -1,3 +1,4 @@
+
 %h1 Listing tickets
 
 %table
@@ -6,7 +7,7 @@
     %th Event
     %th Purchaser
     %th Num guests
-    %th Guest
+    %th Guest ID
     %th
     %th
     %th
@@ -18,10 +19,10 @@
       %td= ticket.purchaser_id
       %td= ticket.num_guests
       %td= ticket.guest_id
-      %td= link_to 'Show', ticket
-      %td= link_to 'Edit', edit_ticket_path(ticket)
-      %td= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' }
+      %td= link_to 'Show', event_ticket_path(ticket.event_id, ticket.id)
+      %td= link_to 'Edit', edit_event_ticket_path(ticket.event_id, ticket)
+      %td= link_to 'Destroy', event_ticket_path(ticket.event_id, ticket), method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
-= link_to 'New Ticket', new_ticket_path
+= link_to 'New Ticket', new_event_ticket_path

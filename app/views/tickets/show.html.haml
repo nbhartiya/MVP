@@ -13,9 +13,9 @@
   %b Num guests:
   = @ticket.num_guests
 %p
-  %b Guest:
-  = @ticket.guest_id
-
-= link_to 'Edit', edit_ticket_path(@ticket)
+  -unless @ticket.guest_id.nil?
+    %b Guest:
+    = @ticket.guest_id
+= link_to 'Edit', edit_event_ticket_path
 \|
-= link_to 'Back', tickets_path
+= link_to 'Back', event_tickets_path

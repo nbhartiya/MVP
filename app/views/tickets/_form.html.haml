@@ -2,7 +2,7 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :num_guests
+    = f.input :num_guests, label: 'Guests', collection: ['0','1','2','3'], default: '0'
     -# need to add some javascript to make guest form appear here if the number of guests is more than 0
 
   .form-actions
