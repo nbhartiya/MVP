@@ -1,24 +1,23 @@
-%body.container.home
-  .navbar.navbar-fixed-top
+%body.container.home 
+  .navbar.navbar-fixed-top 
     = render "layouts/header"
 
   .hero-unit
     .darkbox 
       .copy
-        %h1 love at first bite
-        %h3 be the first to find out about <br> exclusive food events
-        %a
-          .btn.btn-large.btn-warning{"data-toggle" => "modal", :href => "#sign_up", :role => "button"} Sign Up
+        %h2 make your life more &nbsp <h1> delicious </h1>
+        %h3 be the first to find out about exclusive food events
+        %a.btn.btn-large.btn-warning{:href => "../home/howitworks", :tabindex => "-1"} how does it work?
     #myCarousel.carousel.slide
       .carousel-inner
         .active.item 
-          %img{:alt => "HSC 2", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-1-hsc1.jpg"}
+          =image_tag "Food 17.jpg"
         .item
-          %img{:alt => "HSC 3", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-3-hsc.jpg"}
+          =image_tag "Food 18.jpg"
         .item
-          %img{:alt => "HSC 7", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-7-hsc.jpg"}
+          =image_tag "Food 22.jpg"
         .item
-          %img{:alt => "HSC 8", :src => "http://thescenicroute0.files.wordpress.com/2013/03/food-8-hsc.jpg"}
+          =image_tag "Food 23.jpg"
       %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
       %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
   .events
@@ -43,7 +42,7 @@
               .progress.progress-warning
                 .bar{:style => "width: 60%;"}
             %td.action
-              .btn.btn-warning Buy
+              .btn.btn-warning Go!
       %li.listing-card
         %a.listing-card-image{:href => "#"}
           =image_tag "event_stock_image.jpg"
@@ -62,7 +61,7 @@
               .progress.progress-warning
                 .bar{:style => "width: 60%;"}
             %td.action
-              .btn.btn-warning Buy
+              .btn.btn-warning Go!
       %li.listing-card
         %a.listing-card-image{:href => "#"}
           =image_tag "event_stock_image.jpg"
@@ -81,23 +80,8 @@
               .progress.progress-warning
                 .bar{:style => "width: 60%;"}
             %td.action
-              .btn.btn-warning Buy
+              .btn.btn-warning Go!
     .more.btn.btn-large.btn-warning More Events
-
-  #sign_up.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-    .modal-header
-      %h3#myModalLabel Sign Up for simmr
-    .modal-body
-      %p<
-        Find the best events to attend recommended by your friends.&nbsp
-        %a.learn_more_link{"data-toggle"=>"tooltip", "data-placement"=>"right", :href=>"#", :title=>"See where friends have visited and their reviews"}> Learn More
-      %p.strong.sign-up-text
-        Sign up with
-      %p
-        -if user_signed_in? == false
-          = render "shared/signup"
-    .modal-footer
-      %button.usersignup.btn.btn-warning Sign Up
 
 
 -# Uncomment the below to have the log in credential form rendered into this page

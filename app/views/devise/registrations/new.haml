@@ -1,0 +1,22 @@
+%body.container.home
+  .navbar.navbar-fixed-top
+    = render "layouts/header"
+
+%h2 Sign up
+= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :"data-validate" => "parsley") do |f|
+  = devise_error_messages!
+  %div
+    = f.email_field :email, :autofocus => true, :required => true, :placeholder => "email"
+  - if f.object.password_required?
+    %div
+      = f.password_field :password, :"data-minlength"=>"8", :"data-minlength-message" => "Password needs to be 8 characters", :required => true, :placeholder => "password"
+    %div
+      = f.password_field :password_confirmation, :required => true, :"data-equalto"=>"#user_password", :"data-equalto-message" => "Passwords need to match", :placeholder => "retype password"
+  %div
+    <input type = "radio", checked = "", name = "user[kind]", value = "Foodie"> Foodie
+    %br/
+    <input type = "radio", checked = "", name = "user[kind]", value = "Food Business"> Food Business
+    %br/
+    %br/
+  %div= f.submit "Sign up"
+= render "devise/shared/links"

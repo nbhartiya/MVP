@@ -1,20 +1,24 @@
-%form#new_user.new_user{"accept-charset" => "UTF-8", :action => "/users/sign_in", :method => "post"}
+%form#new_user_session{"accept-charset" => "UTF-8", :action => "/users/sign_in", :method => "post", :"data-validate" => "parsley"}
   %div{:style => "margin:0;padding:0;display:inline"}
     %input{:name => "utf8", :type => "hidden", :value => "?"}/
-    %input{:name => "authenticity_token", :type => "hidden", :value => "ASVH9mq4sf3rNjnwtoJ8kgxIzVor0TuOn/jEAyV3mGc="}/
+    %input{:name => "authenticity_token", :type => "hidden", :value => "ASVH9mq4sf3rNjnwtoJ8kgxIzVor0TuOn/jEAyV3mGc="}
+  = link_to "Facebook", user_omniauth_authorize_path(:facebook), :class => "sb facebook text black"
+  = link_to "LinkedIn", user_omniauth_authorize_path(:linkedin), :class => "sb linkedin text black"
+  = link_to "Twitter", user_omniauth_authorize_path(:twitter), :class => "sb twitter text black"
+  %hr.or-line
+  %p.strong
+    Log in with email
+  %br
   %div
-    %label{:for => "user_email"} Email
-    %br/
-    %input#user_email{:autofocus => "autofocus", :name => "user[email]", :size => "30", :type => "email", :value => ""}/
+    %input#user_email{:autofocus => "autofocus", :required => "required", :name => "user[email]", :size => "30", :type => "email", :placeholder => "email", :value => ""}/
   %div
-    %label{:for => "user_password"} Password
-    %br/
-    %input#user_password{:name => "user[password]", :size => "30", :type => "password"}/
+    %input#user_password{:"data-minlength"=>"8", :"data-minlength-message" => "Password needs to be 8 characters", :required => "required", :placeholder => "password", :name => "user[password]", :size => "30", :type => "password"}/
   %div
-    %input{:name => "user[remember_me]", :type => "hidden", :value => "0"}/
-    %input#user_remember_me{:name => "user[remember_me]", :type => "checkbox", :value => "1"}/
+    %input#user_remember_me{:name => "user[remember_me]", :type => "hidden", :value => "0"}
+    %input#user_remember_me{:name => "user[remember_me]", :type => "checkbox", :value => "1"}
     %label{:for => "user_remember_me"} Remember me
-  %div
-    %input{:name => "commit", :type => "submit", :value => "Sign in"}/
-  %div
-    %a{:href => "/users/sign_up"} Sign up
+-#  %div
+-#    %a{"data-toggle" => "modal", :href => "#sign_up", :role=>"button"} Sign Up
+
+-#  %div
+-#    %input{:name => "commit", :type => "submit", :value => "Sign in"}

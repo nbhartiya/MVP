@@ -1,21 +1,4 @@
-= form_for @user do |f|
-  Just one more step. Please confirm your name and email address!
-  %p
-  .field
-    = f.label :first_name
-    = f.text_field :first_name
-  .field
-    = f.label :last_name
-    = f.text_field :last_name
-  .field
-    = f.label :email
-    = f.text_field :email   
-  I am an
-  .field
-    =f.label :kind do
-      %input#optionsRadios1{:checked => "", :name => "user[kind]", :type => "radio", :value => "Foodie"}/
-      Food-lover
-      %input#optionsRadios2{:checked => "", :name => "user[kind]", :type => "radio", :value => "Chef"}/
-      Chef
-  .actions
-    = f.submit 'Confirm'
+.container.main
+  %h2 Sign in
+    = render "shared/login"
+    = render "devise/shared/links"

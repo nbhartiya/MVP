@@ -26,7 +26,10 @@ MVP::Application.routes.draw do
   #resources :survey_questions
 
   get "home/index"
-  get "home/about"
+  get "home/howitworks"
+  get "home/teamandjobs"
+  get "home/tos"
+  get "home/contactus"
   get "home/blog"
   get "/done" => "signups#done"
   get "/wireframes" => redirect {"http://mainstproject.com/wireframes"}

@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// colors
+// colors 
 
 $trans_black: rgba(54,54,54,0.9);
 $dark_gray: rgb(54, 54, 54);
@@ -12,6 +12,10 @@ $main_orange: rgb(255, 178, 35);
 
 // body and universal styling
 
+body{
+	line-height: 15px;
+}
+
 body.home {
 	font-family: 'Open Sans', sans-serif !important; 
 	background-image: url("black-Linen_@2X.png");
@@ -20,9 +24,6 @@ body.home {
 		margin-left: auto;
 		margin-right: auto;
 		position: relative;
-	}
-	a, a:hover{
-		background-color: transparent;
 	}
 }
 
@@ -113,166 +114,183 @@ ul.parsley-error-list{
 	}
 }
 
-// hero unit styling
-
-.hero-unit{
-    background-color: transparent;
-	color: white;
-	padding: 0;
-	margin: 0;
-	height: 500px;
-	.darkbox{
-		z-index: 2;
-		background-color: $trans_black_more;
-		width: 450px;
-		height: 250px;
-		position: relative;
-		left: 90px;
-		top: 150px;
-		-webkit-border-radius: 12px;
-          border-radius: 12px;
-          background-clip: padding-box;
-		.copy{
-			padding-left: 15px;
-			padding-top: 5px;
-			width: auto;
-			margin: 0 auto 0 auto;
-			h1{
-				font-family: 'Satisfy', cursive;
-				font-size: 70px;
-				line-height: 80px;
-				font-weight: 500;
+// hero unit styling 
+.home{
+	.hero-unit{
+	    background-color: transparent;
+		color: white;
+		padding: 0;
+		margin: 0;
+		height: 500px;
+		.darkbox{
+			z-index: 2;
+			background-color: $trans_black_more;
+			width: 630px;
+			height: 200px;
+			position: relative;
+			left: 90px;
+			top: 150px;
+			-webkit-border-radius: 12px;
+	          border-radius: 12px;
+	          background-clip: padding-box;
+			.copy{
+				padding-left: 15px;
+				padding-top: 5px;
+				width: auto;
+				margin: 0 auto 0 auto;
+				h1{
+					font-family: 'Satisfy', cursive;
+					font-size: 70px;
+					line-height: 60px;
+					font-weight: 500;
+					display: inline-block;
+				}
+				h2{
+					font-size: 40px;
+					display: inline-block;
+					font-weight: 200;
+				}
+				h3{
+					font-weight: 200;
+					line-height: 30px;
+					font-size: 20px;
+					padding-bottom: 10px;
+				}
+			a.btn:visited{
+				color:white;
 			}
-			h3{
-				font-weight: 500;
-				line-height: 30px;
-				padding-bottom: 10px;
+			}
+		}
+		#myCarousel{
+			position: relative;
+			top: -135px;
+			width: 90%;
+			margin-left: auto;
+			margin-right: auto;
+			z-index: 1;
+			-webkit-box-shadow: 0px 0px 20px 0px #000;
+	          box-shadow: 0px 0px 20px 0px #000;
+			.carousel-inner{
+				height: 500px;
+				width: 1165px;
+				.item > img{
+					width: 150%;
+				}
+			}
+			.carousel-control{
+				font-size: 50px;
+				color: white;
+				top: 90%;
 			}
 		}
 	}
-	#myCarousel{
-		position: relative;
-		top: -190px;
+}
+// begin events area styling
+.home{
+	.events{
 		width: 90%;
 		margin-left: auto;
 		margin-right: auto;
-		z-index: 1;
-		-webkit-box-shadow: 0px 0px 20px 0px #000;
-          box-shadow: 0px 0px 20px 0px #000;
-		.carousel-inner{
-			height: 500px;
-			width: 1165px;
+		padding-top: 80px;
+		padding-bottom: 15px;
+		-webkit-border-radius: 6px;
+	    border-radius: 6px;
+	    background-clip: padding-box;
+	    color: white;
+	    	a{color: $main_orange;}
+			a:hover{background:none;}
+			a:visited{color: $main_orange;}
+		h1{
+			font-family: 'Satisfy', cursive;
+			font-size: 40px;
+			text-align: center;
 		}
-		.carousel-control{
-			font-size: 50px;
-			color: white;
-			top: 90%;
+		p{
+			font-size: 14px;
+			line-height: 16px;
+			text-align: center;
 		}
-	}
-}
-
-// begin events area styling
-
-.events{
-	width: 90%;
-	margin-left: auto;
-	margin-right: auto;
-	padding-top: 15px;
-	padding-bottom: 15px;
-	-webkit-border-radius: 6px;
-    border-radius: 6px;
-    background-clip: padding-box;
-    color: white;
-    	a{color: $main_orange;}
-		a:hover{background:none;}
-		a:visited{color: $main_orange;}
-	h1{
-		font-family: 'Satisfy', cursive;
-		font-size: 40px;
-		text-align: center;
-	}
-	p{
-		font-size: 14px;
-		line-height: 16px;
-		text-align: center;
-	}
-	.more{
-		width: 30%;
-		margin: 40px 385px 30px;
-	}
-	.eventlisting {
-	margin: 20px 0;
-	li {
-		list-style: none;
-		float: left;
-		margin: 0 11px;
+		.more{
+			width: 30%;
+			margin: 40px 385px 30px;
 		}
-	.listing-card-image > img{
-		width: 365px;
-		border-bottom: 1px solid rgb(150, 150, 150);
-	}
-	.listing-card-text{
-		background-color: white;
-		color: black;
-		width: 365px;
-		td{
-			font-size: 16px;
+		.eventlisting {
+		margin: 20px 0;
+		li {
+			list-style: none;
+			float: left;
+			margin: 0 11px;
+			}
+		.listing-card-image > img{
+			width: 365px;
+			border-bottom: 1px solid rgb(150, 150, 150);
 		}
-		.listing-card-avatar > img{
-			height: 50px;
-			-webkit-border-radius: 40px;
-			-moz-border-radius: 40px;
-			-ms-border-radius: 40px;
-			-o-border-radius: 40px;
-			border-radius: 40px;
-		}
-		td.listing-card-avatar{
-			height: 50px;
-			width: 50px;
-			padding: 8px;
-		}
-		.listing-card-event{
-			line-height: 20px;
-			padding: 8px 4px;
-			a{
+		.listing-card-text{
+			background-color: white;
+			color: black;
+			width: 365px;
+			td{
+				font-size: 16px;
+			}
+			.listing-card-avatar > img{
+				height: 50px;
+				-webkit-border-radius: 40px;
+				-moz-border-radius: 40px;
+				-ms-border-radius: 40px;
+				-o-border-radius: 40px;
+				border-radius: 40px;
+			}
+			td.listing-card-avatar{
+				height: 50px;
+				width: 50px;
+				padding: 8px;
+			}
+			.listing-card-event{
+				line-height: 20px;
+				padding: 8px 4px;
+				a{
+					color: $dark_gray;
+				}
+				a:hover{
+					color: $dark_gray;
+				}
+			}
+			.listing-card-price{
+				padding: 8px 4px;
+				font-size: 22px;
+				font-weight: 800;
 				color: $dark_gray;
 			}
-			a:hover{
-				color: $dark_gray;
+			tr.bottom{
+				background-color: rgb(240,240,240);
 			}
-		}
-		.listing-card-price{
-			padding: 8px 4px;
-			font-size: 22px;
-			font-weight: 800;
-			color: $dark_gray;
-		}
-		tr.bottom{
-			background-color: rgb(240,240,240);
-		}
-		.progress{
-			height: 10px;
-			padding: 0;
-			margin: 0;
-			margin-left: -50px;
-			.bar{
+			.progress{
 				height: 10px;
+				padding: 0;
+				margin: 0;
+				margin-left: -50px;
+				.bar{
+					height: 10px;
+				}
+			}
+			td.action{
+				padding: 10px 14px 10px 14px;
+			}
+			.seatsleft{
+				font-size: 12px;
+				color: $dark_gray;
+				text-align: right;
 			}
 		}
-		td.action{
-			padding: 10px 14px 10px 14px;
-		}
-		.seatsleft{
-			font-size: 12px;
-			color: $dark_gray;
-			text-align: right;
-		}
 	}
-}
+	}
 }
 
 // modal styling
 
+.modal-backdrop{
+		z-index: 1020;
+	}
 .modal{
 	width: 350px;
 	background-color: rgba(255, 255, 255, 0.9);
@@ -306,6 +324,9 @@ ul.parsley-error-list{
 			.learn_more_link{
 				color: $main_orange;
 			}
+			a.learn_more_link, a.learn_more_link:hover{
+				background-color: transparent;
+			}
 	}
 	input{
 		font-size: 16px;
@@ -315,6 +336,7 @@ ul.parsley-error-list{
 		line-height: 32px;
 		margin-left: 5px;
 		font-size: 13px;
+		display: inline-block;
 	}
 }
 

@@ -5,3 +5,7 @@
 $(document).on 'click', '.usersignup', (e) ->
   e.preventDefault()
   $('#new_user').submit()
+
+$(document).on 'click', '.userlogin', (e) ->
+  e.preventDefault()
+  $('#new_user_session').submit()
