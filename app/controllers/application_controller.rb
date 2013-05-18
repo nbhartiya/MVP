@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   helper_method :completed_user?
 
-  
   def after_sign_in_path_for(resource)
     #before_filter :completed_user?
     # Paths to come
@@ -12,7 +11,7 @@ class ApplicationController < ActionController::Base
     #else
     #  chef_path
     #end
-    home_index_path
+    home_index_path 
     #FIX SUCH THAT TWITTER CANT BE SAVED WITHOUT PROMPTING FOR EMAIL!!!
   end
   

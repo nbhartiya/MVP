@@ -8,4 +8,4 @@ $(document).on 'click', '.usersignup', (e) ->
 
 $(document).on 'click', '.userlogin', (e) ->
   e.preventDefault()
-  $('#new_user_session').submit()
+  $('.new_user_session').submit()

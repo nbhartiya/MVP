@@ -1,0 +1,53 @@
+// colors 
+
+$trans_black: rgba(54,54,54,0.9);
+$dark_gray: rgb(54, 54, 54);
+$trans_black_more: rgba(54, 54, 54, 0.7);
+$trans: rgba(0,0,0,0);
+$main_orange: rgb(255, 178, 35);
+
+// body and universal styling
+
+body{
+	line-height: 15px;
+}
+
+body.devise {
+	font-family: 'Open Sans', sans-serif !important; 
+	background-image: url("black-Linen_@2X.png");
+	.container.main{
+		width: 19.6%;
+		margin-left: auto;
+		margin-right: auto;
+		position: relative;
+	}
+}
+
+.signincontainer{
+	position: relative;
+	top: 160px;
+	width: 250px;
+	height: 310px;
+	background-color: rgba(255, 255, 255, 0.9);
+	padding: 15px;
+	-webkit-border-radius: 12px;
+	    border-radius: 12px;
+	    background-clip: padding-box;
+	h1{
+		font-size: 20px;
+		margin: 0;
+	}
+	.field{
+		margin: 5px 0;
+	}
+	label{
+		display: inline-block;
+	}
+	input{
+		margin-bottom: 8px;
+		margin-right: 5px;
+	}
+	button{
+		margin-top: 10px;
+	}
+}
