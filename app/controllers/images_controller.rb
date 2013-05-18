@@ -5,7 +5,9 @@ class ImagesController < ApplicationController
   end
 
   def show
-    @image = Image.find(params[:id])
+    @imageable = find_imageable
+    @image = @imageable.image
+    #not sure this will ALWAYS work yet..
   end
 
   def new
@@ -31,7 +33,7 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
     if @image.update_attributes(params[:image])
       flash[:notice] = "Successfully updated image."
-      redirect_to @image
+      redirect_to :id => nil
     else
       render :action => 'edit'
     end

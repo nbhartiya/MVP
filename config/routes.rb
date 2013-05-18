@@ -9,7 +9,11 @@ MVP::Application.routes.draw do
 
   resources :events do
     resources :tickets
+    resources :images
   end
+
+  #see if this will work...
+  resources :events, :has_many => :images
 
 
   resources :locations
@@ -40,7 +44,10 @@ MVP::Application.routes.draw do
   # I have no idea what changed that caused me to have to add this line...????
   devise_for :users do get '/users/sign_out' => 'devise/sessions#destroy' end
   
-  resources :users
+  resources :users do
+    resource :image
+  end
+  
   resources :signups
   
   get "survey" => "survey_questions#survey"

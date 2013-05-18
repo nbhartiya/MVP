@@ -1,0 +1,10 @@
+= simple_form_for([@imageable, Image.new]) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :image
+    = f.input :title
+    = f.input :description
+
+  .form-actions
+    = f.button :submit

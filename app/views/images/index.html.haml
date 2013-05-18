@@ -1,2 +1,5 @@
-%h1 Images#index
-%p Find me in app/views/images/index.html.haml
+%h1 Images
+#images
+  - for image in @images
+    .image
+      = simple_format image.content
