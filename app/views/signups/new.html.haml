@@ -2,6 +2,14 @@
   .bkgdimage
     %img
       = image_tag "launch_page_mock.png"
+  .footer
+    %ul
+      %li
+        %a{:href => "../home/howitworks"} How It Works
+      %li
+        %a{:href => "../home/teamandjobs"} Team and Jobs
+      %li.end
+        %a{:href => "../home/contactus"} Contact Us
   .copy
     %h2 
       be the first
@@ -25,11 +33,3 @@
     = render 'form'
   .signupbutton
     %button.signup.btn.btn-warning.btn-large SIGN UP
-  .footer
-    %ul
-      %li
-        %a{:href => "../home/howitworks"} How It Works
-      %li
-        %a{:href => "../home/teamandjobs"} Team and Jobs
-      %li.end
-        %a{:href => "../home/contactus"} Contact Us
