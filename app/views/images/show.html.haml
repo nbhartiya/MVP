@@ -1,2 +1,15 @@
-%h1 Images#show
-%p Find me in app/views/images/show.html.haml
+%p#notice= notice
+
+%p
+  %b Title:
+  = @image.title
+%p
+  = filepicker_image_tag @user.filepicker_url, w: 160, h: 160, fit: 'clip'
+%p
+  %b Caption:
+  = @image.description
+
+= link_to 'Edit', edit_user_image_path
+\|
+-#need to fix this path below...
+= link_to 'Back', images_path
