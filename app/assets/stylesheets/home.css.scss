@@ -35,6 +35,20 @@ ul.parsley-error-list{
   margin-left: 0;
 }
 
+// bootstrap alert styling
+.alert{
+	margin: 0;
+	padding: 0 5px;
+	border-radius: 0;
+	position: relative;
+	bottom: 250px;
+	p{
+		margin: 5px 0;
+		position: relative;
+		bottom: 0px;
+	}
+}
+
 // header styling
 
 .navbar{
@@ -331,6 +345,7 @@ ul.parsley-error-list{
 	input{
 		font-size: 16px;
 		height: 24px;
+		margin-bottom: 8px;
 	}
 	label{
 		line-height: 32px;

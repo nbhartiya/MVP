@@ -1,4 +1,4 @@
-.launch
+.launch 
   .bkgdimage.done
     %img
       = image_tag "launch_page_mock_done.png"
@@ -33,3 +33,11 @@
       %br
     .fblike
       = render :partial => "social_media/like"
+    .footer.done
+      %ul
+        %li
+          %a{:href => "../home/howitworks"} How It Works
+        %li
+          %a{:href => "../home/teamandjobs"} Team and Jobs
+        %li.end
+          %a{:href => "../home/contactus"} Contact Us
