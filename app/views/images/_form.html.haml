@@ -2,9 +2,15 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :image
-    = f.input :title
-    = f.input :description
+  -#still need to figure out the below:
+  -#need to show the 'title' field for event picture uploads only
+  -#how do you allow for multiple file uplaods but also get multiple title and caption fields for them
+  -#how to make the picture show up once you upload it?
+    = f.input :title, :label => false, :placeholder => 'title'
+    = f.filepicker_field :image, :services => 'COMPUTER, WEBCAM, URL, FACEBOOK, INSTAGRAM, PICASA', openTo: 'COMPUTER', :mimetype => 'image/*', :button_text => 'Upload Image', :container => 'modal', :multiple => 'false'
+    %p
+    = f.input :description, :label => false, :placeholder => 'caption', :as => 'string'
 
   .form-actions
+  -#should probably change the label of this button from create image to Submit or something...
     = f.button :submit
