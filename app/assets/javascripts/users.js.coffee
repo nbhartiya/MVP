@@ -2,10 +2,13 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-$(document).on 'click', '.usersignup', (e) ->
-  e.preventDefault()
-  $('#new_user').submit()
+$(document).ready ->
+  $(document).on "click", ".userlogin", ->
+    $("#new_user_session").submit()
 
-$(document).on 'click', '.userlogin', (e) ->
-  e.preventDefault()
-  $('.new_user_session').submit()
+  $(document).on "click", ".usersignup", ->
+    $("#new_user").submit()
+
+  $(document).on "click", ".newpass", ->
+    $("#new_pass").submit()
+
