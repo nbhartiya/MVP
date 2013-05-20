@@ -29,14 +29,16 @@ MVP::Application.routes.draw do
   #resources :survey_answers
   #resources :survey_questions
 
-  get "home/index"
+  #get "home/index"
   get "home/howitworks"
   get "home/teamandjobs"
-  get "home/tos"
+  #get "home/tos"
   get "home/contactus"
-  get "home/blog"
+  #get "home/blog"
   get "/done" => "signups#done"
   get "/wireframes" => redirect {"http://mainstproject.com/wireframes"}
+
+  match "home" => "signups#new"
   
   # didn't include registrations: "registrations", it seems to require a registrations controller...
   devise_for :users, controllers: {omniauth_callbacks: "authentications"}
@@ -47,7 +49,7 @@ MVP::Application.routes.draw do
   resources :users do
     resource :image
   end
-  
+
   resources :signups
   
   get "survey" => "survey_questions#survey"
