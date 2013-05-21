@@ -33,6 +33,15 @@
 %p
   %b Host:
   = @event.host.first_name.capitalize + " " + @event.host.last_name.capitalize
+-for image in @event.images
+  %p
+    %b Title:
+    = image.title
+  %p
+    = filepicker_image_tag image.image, w: 160, h: 160, fit: 'clip'
+  %p
+    %b Caption:
+    = image.description
 
 = link_to 'Edit', edit_event_path(@event)
 \|

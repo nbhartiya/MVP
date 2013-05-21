@@ -13,5 +13,8 @@
     = f.input :length
     = f.input :other_info
 
+  = f.fields_for :images do |builder|
+    = render 'image_fields', :f => builder
+
   .form-actions
     = f.button :submit

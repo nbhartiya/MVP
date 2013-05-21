@@ -15,6 +15,7 @@ class ImagesController < ApplicationController
   end
 
   def create
+    # NEED TO FIX THIS SO IT WORKS...
     @imageable = find_imageable
     @image = @imageable.images.build(params[:image])
     if @image.save

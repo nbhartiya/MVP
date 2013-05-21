@@ -21,10 +21,12 @@
 class Event < ActiveRecord::Base
   
   has_one :location
-  has_many :images, :as => :imageable
+  has_many :images, :as => :imageable, :dependent => :destroy
   belongs_to :host, :class_name => "User", :foreign_key => "host_id"
   has_many :tickets
   has_many :foodies, :class_name => "User", :through => :tickets
   
-  attr_accessible :other_info, :length, :location_title, :cost, :date, :description, :menu_pdf, :menu_text, :people_limit, :title, :host_id
+  attr_accessible :other_info, :length, :location_title, :cost, :date, :description, :menu_pdf, :menu_text, :people_limit, :title, :host_id, :images_attributes
+
+  accepts_nested_attributes_for :images, :reject_if => lambda { |a| a[:image].blank? }, :allow_destroy => true
 end
