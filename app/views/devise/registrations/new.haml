@@ -2,21 +2,26 @@
   .navbar.navbar-fixed-top
     = render "layouts/headerAbbrev"
 
-  %h1 Sign up
-  = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-    = devise_error_messages!
-    %div
-      = f.email_field :email, :autofocus => true, :placeholder => "email"
-    - if f.object.password_required?
+  .devisecontainer
+    %h1 Sign up
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+      = devise_error_messages!
       %div
-        = f.password_field :password, :placeholder => "password"
+        = f.text_field :first_name, :placeholder => "first name"
       %div
-        = f.password_field :password_confirmation, :placeholder => "retype password"
-    %div
-      <input type = "radio", checked = "", name = "user[kind]", value = "Foodie"> Foodie
-      %br/
-      <input type = "radio", checked = "", name = "user[kind]", value = "Food Business"> Food Business
-      %br/
-      %br/
-    %div= f.submit "Sign up"
-  = render "devise/shared/links"
+        = f.text_field :last_name, :placeholder => "last name"
+      %div
+        = f.email_field :email, :autofocus => true, :placeholder => "email"
+      - if f.object.password_required?
+        %div
+          = f.password_field :password, :placeholder => "password"
+        %div
+          = f.password_field :password_confirmation, :placeholder => "retype password"
+      %div
+        <input type = "radio", checked = "", name = "user[kind]", value = "Foodie"> Foodie
+        %br/
+        <input type = "radio", checked = "", name = "user[kind]", value = "Food Business"> Food Business
+        %br/
+        %br/
+      %button.usersignup.btn.btn-warning Sign Up
+    = render "devise/shared/links"

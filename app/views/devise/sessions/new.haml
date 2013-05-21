@@ -1,8 +1,8 @@
-%body.container.devise 
+%body.container.devise
   .navbar.navbar-fixed-top
-    = render "layouts/headerAbbrev"
+    = render "layouts/header"
 
-  .signincontainer
+  .devisecontainer
     %h1 Log In
 
     = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
@@ -15,6 +15,5 @@
           = f.check_box :remember_me
           = f.label :remember_me
       %button.userlogin.btn.btn-warning Log In
-      %div= f.submit "Sign in"
     = render "devise/shared/links"
    

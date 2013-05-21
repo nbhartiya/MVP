@@ -10,26 +10,21 @@ $main_orange: rgb(255, 178, 35);
 
 body{
 	line-height: 15px;
+	a:hover{
+		background-color: transparent;
+		color: black;
+	}
 }
 
 body.devise {
 	font-family: 'Open Sans', sans-serif !important; 
 	background-image: url("black-Linen_@2X.png");
-	.container.main{
-		width: 19.6%;
-		margin-left: auto;
-		margin-right: auto;
-		position: relative;
-	}
 }
 
-.signincontainer{
-	position: relative;
-	top: 160px;
-	width: 250px;
-	height: 310px;
-	background-color: rgba(255, 255, 255, 0.9);
+.devisecontainer{
+	background-color: rgba(255, 255, 255, 0.85);
 	padding: 15px;
+	margin: 70px auto;
 	-webkit-border-radius: 12px;
 	    border-radius: 12px;
 	    background-clip: padding-box;
@@ -50,4 +45,17 @@ body.devise {
 	button{
 		margin-top: 10px;
 	}
+	#error_explanation{
+		width: auto;
+		border: none;
+		background-color: transparent;
+		h2{
+			background-color: $main_orange;
+		}
+	}
+	.field_with_errors{
+		padding: 0;
+		background-color: transparent;
+	}
 }
+
