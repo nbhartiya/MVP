@@ -61,7 +61,7 @@
         %a.learn_more_link{"data-toggle"=>"tooltip", "data-placement"=>"right", :href=>"#", :title=>"See where friends have visited and their reviews"}> Learn More
       %p.strong.sign-up-text
         Log in with
-      %p
+      %p.modal_content
         -if user_signed_in? == false
           = render "shared/login"
     .modal-footer

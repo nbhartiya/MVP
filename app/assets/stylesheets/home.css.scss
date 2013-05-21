@@ -13,19 +13,14 @@ $main_orange: rgb(255, 178, 35);
 // body and universal styling
 
 body{
-	line-height: 15px;
+	line-height: 15px; 
 }
 
 body.home {
 	font-family: 'Open Sans', sans-serif !important; 
 	background-image: url("black-Linen_@2X.png");
-	.container.main{
-		width: 1290px;
-		margin-left: auto;
-		margin-right: auto;
-		position: relative;
-	}
 }
+
 
 // error message styling
 
@@ -36,18 +31,20 @@ ul.parsley-error-list{
 }
 
 // bootstrap alert styling
-.alert{
-	margin: 0;
-	padding: 0 5px;
-	border-radius: 0;
-	position: relative;
-	bottom: 250px;
-	p{
-		margin: 5px 0;
-		position: relative;
-		bottom: 0px;
-	}
+div.alert{
+	margin: 0 auto;
+	padding: 0px 5px;
+//	border-radius: 0;
+//	position: fixed;
+	width: 100%;
+//	top: 70px;
+//	left: 0px;
+	border: none;
+//	z-index: 1000;
 }
+//p.alert{
+//	margin: 0;
+//}
 
 // header styling
 
@@ -136,6 +133,7 @@ ul.parsley-error-list{
 		padding: 0;
 		margin: 0;
 		height: 500px;
+		line-height: 20px;
 		.darkbox{
 			z-index: 2;
 			background-color: $trans_black_more;
@@ -186,7 +184,7 @@ ul.parsley-error-list{
 	          box-shadow: 0px 0px 20px 0px #000;
 			.carousel-inner{
 				height: 500px;
-				width: 1165px;
+				width: 1060px;
 				.item > img{
 					width: 150%;
 				}
@@ -202,7 +200,7 @@ ul.parsley-error-list{
 // begin events area styling
 .home{
 	.events{
-		width: 90%;
+		width: 100%;
 		margin-left: auto;
 		margin-right: auto;
 		padding-top: 80px;
