@@ -1,37 +1,42 @@
-%h1 Listing events
+%body.container.events
+  .navbar.navbar-fixed-top 
+    = render "layouts/header"
+  
+  .eventslist
+    %h1 Events in San Francisco 
 
-%table 
-  %tr
-    %th Title
-    %th Location
-    %th People limit
-    %th Description
-    %th Menu pdf
-    %th Menu text
-    %th Date
-    %th Cost
-    %th Length
-    %th Other Information
-    %th
-    %th
-    %th
+    %table 
+      %tr
+        %th Title
+        %th Location
+        %th People limit
+        %th Description
+        %th Menu pdf
+        %th Menu text
+        %th Date
+        %th Cost
+        %th Length
+        %th Other Information
+        %th
+        %th
+        %th
 
-  - @events.each do |event|
-    %tr
-      %td= event.title
-      %td= event.location_title
-      %td= event.people_limit
-      %td= event.description
-      %td= event.menu_pdf
-      %td= event.menu_text
-      %td= event.date
-      %td= event.cost
-      %td= event.length
-      %td= event.other_info
-      %td= link_to 'Show', event
-      %td= link_to 'Edit', edit_event_path(event)
-      %td= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }
+      - @events.each do |event|
+        %tr
+          %td= event.title
+          %td= event.location_title
+          %td= event.people_limit
+          %td= event.description
+          %td= event.menu_pdf
+          %td= event.menu_text
+          %td= event.date
+          %td= event.cost
+          %td= event.length
+          %td= event.other_info
+          %td= link_to 'Show', event
+          %td= link_to 'Edit', edit_event_path(event)
+          %td= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }
 
-%br
+    %br
 
-= link_to 'New Event', new_event_path
+    = link_to 'New Event', new_event_path
