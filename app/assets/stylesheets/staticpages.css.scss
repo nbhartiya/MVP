@@ -29,7 +29,7 @@ body.staticpages {
 		margin: 0;
 		height: 500px;
 		line-height: 20px;
-		.darkbox{
+		.darkbox{ 
 			z-index: 2;
 			background-color: $trans_black_more;
 			position: relative;
@@ -40,6 +40,7 @@ body.staticpages {
 			.copy{
 				padding-left: 15px;
 				padding-top: 5px;
+				padding-bottom: 5px;
 				width: auto;
 				margin: 0 auto 0 auto;
 				h1{
@@ -75,17 +76,17 @@ body.staticpages {
 		}
 		.darkbox.howitworks{
 			width: 700px;
-			height: 300px;
+			height: auto;
 			top: 120px;
 	    }
 	    .darkbox.teamandjobs{
 			width: 480px;
-			height: 220px;
+			height: auto;
 			top: 120px;
 	    }
 	    .darkbox.tos{
 			width: 480px;
-			height: 220px;
+			height: auto;
 			top: 120px;
 	    }
 
