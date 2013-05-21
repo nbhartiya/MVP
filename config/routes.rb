@@ -13,7 +13,7 @@ MVP::Application.routes.draw do
   end
 
   #see if this will work...
-  resources :events, :has_many => :images
+  #resources :events, :has_many => :images
 
 
   resources :locations
