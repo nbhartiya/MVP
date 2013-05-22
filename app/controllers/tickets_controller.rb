@@ -26,6 +26,8 @@ class TicketsController < ApplicationController
   def new
     @ticket = Ticket.new
     @event = Event.find(params[:event_id])
+    #This event id thing isn't working...
+    1.times { @ticket.guests.build(:event_id => @event.id)}
 
     respond_to do |format|
       format.html # new.html.erb
@@ -46,6 +48,7 @@ class TicketsController < ApplicationController
     @event = Event.find(params[:event_id])
     @ticket.purchaser_id = current_user.id
     @ticket.event_id = @event.id
+
     # if @ticket.num_guest > 0, 
 
     respond_to do |format|

@@ -8,7 +8,9 @@ MVP::Application.routes.draw do
 
 
   resources :events do
-    resources :tickets
+    resources :tickets do
+      resources :guests
+    end
     resources :images
   end
 

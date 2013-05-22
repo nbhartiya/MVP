@@ -16,5 +16,7 @@
   = f.fields_for :images do |builder|
     = render 'image_fields', :f => builder
 
+  = link_to_add_fields "Add an Image", f, :images
+
   .form-actions
     = f.button :submit

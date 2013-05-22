@@ -16,6 +16,15 @@
   -unless @ticket.guest_id.nil?
     %b Guest:
     = @ticket.guest_id
+%p
+  -for guest in @ticket.guests
+    %p
+      %b Name:
+      = guest.first_name + " " + guest.last_name
+    %p
+      %b Email:
+      = guest.email
+      
 = link_to 'Edit', edit_event_ticket_path
 \|
 = link_to 'Back', event_tickets_path

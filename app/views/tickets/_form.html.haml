@@ -5,5 +5,10 @@
     = f.input :num_guests, label: 'Guests', collection: ['0','1','2','3'], default: '0'
     -# need to add some javascript to make guest form appear here if the number of guests is more than 0
 
+  = f.fields_for :guests do |builder|
+    = render 'guest_fields', :f => builder
+
+  = link_to_add_fields "Add a Guest", f, :guests
+
   .form-actions
     = f.button :submit
