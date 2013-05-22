@@ -1,7 +1,3 @@
-// Place all the styles related to the Events controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 // colors 
 
 $trans_black: rgba(54,54,54,0.9);
@@ -10,6 +6,135 @@ $trans_black_more: rgba(54, 54, 54, 0.7);
 $trans: rgba(0,0,0,0);
 $main_orange: rgb(255, 178, 35);
 
+// body styling
+
+body.events {
+	font-family: 'Open Sans', sans-serif !important; 
+	background-image: url("black-Linen_@2X.png");
+	color: white;
+}
+
+//h1{
+//	margin-top: 100px;
+//	font-family: 'Satisfy', cursive;
+//	font-size: 60px;
+//	font-weight: bold;
+//	text-align: center;
+//	line-height: 1em;
+//	color: white;
+//}
+
+// filters styling
+
+.filters{
+	float: left;
+	margin: 100px 20px 0 0;
+	padding: 10px;
+	border-radius: 5px;
+	background-color: rgba(255, 255, 255, 0.8);
+	border: 1px solid rgb(200, 200, 200);
+	-webkit-box-shadow: 0px 0px 2px 0px #000;
+          box-shadow: 0px 0px 2px 0px #000;
+    h4{
+    	color: $dark_gray;
+    }
+    ul{
+    	list-style-type: none;
+    	padding: 0;
+    	margin: 0;
+    	color: $dark_gray;
+    }
+    input{
+    	margin: 5px 0;
+    }
+}
+
+// events list styling
+
 .eventslist{
-	padding-top: 80px;
+	padding-top: 100px;
+	width: 900px;
+	float: left;
+	h1{
+		font-size: 18px;
+		font-weight: 400;
+		margin: 0 0 0 10px;
+		display: block;
+		color: white;
+	}
+	.eventlisting {
+		margin: 0;
+		li {
+			list-style: none;
+			float: left;
+			margin: 10px 5px;
+			border: 1px solid rgb(200, 200, 200);
+			width: 425px;
+			height: 280px;
+			background-image: url('event_stock_image.jpg');
+			}
+		.listing-card-text{	
+			z-index: 10;
+			background-color: rgba(50, 50, 50, 0.8);
+			color: white;
+			width: 100%;
+			height: 90px;
+			position: relative;
+			bottom: 133px;			
+			td{
+				font-size: 14px;
+			}
+			.listing-card-avatar > img{
+				height: 50px;
+				-webkit-border-radius: 40px;
+				-moz-border-radius: 40px;
+				-ms-border-radius: 40px;
+				-o-border-radius: 40px;
+				border-radius: 40px;
+			}
+			td.listing-card-avatar{
+				height: 50px;
+				width: 50px;
+				padding: 8px;
+			}
+			.listing-card-event{
+				line-height: 20px;
+				padding: 8px 4px;
+				a, a:hover, a:visited{
+					color: white;
+				}
+			}
+			.listing-card-price{
+				padding: 8px;
+				font-size: 22px;
+				font-weight: 800;
+			}
+			tr.bottom{
+				display: none;
+				min-height: 0;
+			}
+			.progress{
+				height: 10px;
+				padding: 0;
+				margin: 0 0 0 10px;
+				.bar{
+					height: 10px;
+				}
+			}
+			td.action{
+				padding: 5px 14px;
+			}
+			.seatsleft{
+				font-size: 12px;
+				text-align: right;
+			}
+		}
+	}
+
+} 
+
+//events forms styling
+
+.editevents, .newevent{
+	padding-top: 100px;
 }
