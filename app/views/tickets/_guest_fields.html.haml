@@ -3,4 +3,5 @@
   = f.input :first_name
   = f.input :last_name
   = f.input :email
+  = f.hidden_field :event_id, :value => params[:event_id]
   = link_to_remove_fields "remove", f

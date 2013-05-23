@@ -13,10 +13,14 @@
     = f.input :length
     = f.input :other_info
 
-  = f.fields_for :images do |builder|
-    = render 'image_fields', :f => builder
+  .fields
+    %a{:class => "GetFilepicker"} Load picture
 
-  = link_to_add_fields "Add an Image", f, :images
+  .the-images
+
+
+  -#%script{:id => 'image-template'}
+  -#  Hahaha wahaha
 
   .form-actions
     = f.button :submit
