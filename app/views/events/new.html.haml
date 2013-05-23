@@ -1,5 +1,10 @@
-%h1 New event
+%body.container.events
+  .navbar.navbar-fixed-top  
+    = render "layouts/header"
 
-= render 'form'
+  .newevent
+    %h1 New event
 
-= link_to 'Back', events_path
+    = render 'form'
+
+    = link_to 'Back', events_path

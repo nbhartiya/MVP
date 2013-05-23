@@ -1,0 +1,19 @@
+%ul.eventlisting
+  %li.listing-card
+    %a.listing-card-image{:href => "#"}
+      =image_tag "event_stock_image.jpg"
+    %table.listing-card-text 
+      %tr.top
+        %td.listing-card-avatar
+          =link_to image_tag("Favicon.png"), "#"
+        %td.listing-card-event
+          <a href="#">4 Course "Liberty Duck" Dinner with Chefs</a>
+        %td.listing-card-price
+          $120
+      %tr.bottom
+        %td.seatsleft{:colspan => "2"}
+          5 seats left
+          .progress.progress-warning
+            .bar{:style => "width: 60%;"}
+        %td.action
+          .btn.btn-warning Go!

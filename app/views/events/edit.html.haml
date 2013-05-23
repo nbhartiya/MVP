@@ -1,7 +1,12 @@
-%h1 Editing event
+%body.container.events
+  .navbar.navbar-fixed-top  
+    = render "layouts/header"
 
-= render 'form'
+  .editevents
+    %h1 Edit
 
-= link_to 'Show', @event
-\|
-= link_to 'Back', events_path
+    = render 'form'
+
+    = link_to 'Show', @event
+    \|
+    = link_to 'Back', events_path

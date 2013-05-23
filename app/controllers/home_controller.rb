@@ -12,4 +12,7 @@ class HomeController < ApplicationController
   def contactus
   end
 
+  def index
+  end
+
 end
