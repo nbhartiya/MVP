@@ -8,6 +8,5 @@ $(document).ready ->
     $(this).find("tr.bottom").show 0.000001
 
   $(".listing-card").mouseleave ->
-    $(this).find("tr.bottom").hide 0.000001
+    $(this).find("tr.bottom").hide 0.000001	
     $(this).find(".listing-card-text").css "bottom", "92px"
-    
