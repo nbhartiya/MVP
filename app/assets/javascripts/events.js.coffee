@@ -4,9 +4,10 @@
 
 $(document).ready ->
   $(".listing-card").mouseover ->
-#    $(this).addClass "highlight"
-    $(this).find("tr.bottom").slideDown 200
+    $(this).find(".listing-card-text").css "bottom", "132px"
+    $(this).find("tr.bottom").show 0.000001
 
   $(".listing-card").mouseleave ->
-#    $(this).removeClass "highlight"
-    $(this).find("tr.bottom").fadeOut 1
+    $(this).find("tr.bottom").hide 0.000001
+    $(this).find(".listing-card-text").css "bottom", "92px"
+    
