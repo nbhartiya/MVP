@@ -157,3 +157,31 @@ body.events {
 		width: 200px;
 	}
 }
+
+// event profile styling
+
+.eventProfile{
+	margin-top: 100px;
+	.eventPhotos {
+		width: 200px;
+		float: left;
+		-webkit-border-radius: 40px;
+		-moz-border-radius: 40px;
+		-ms-border-radius: 40px;
+		-o-border-radius: 40px;
+		border-radius: 40px;
+	}
+	.eventInfo{
+		display: inline-block;
+		float: left;
+		h1{
+			font-size: 30px;
+			font-weight: 100;
+			line-height: 1em;
+		}
+		p{
+			font-size: 16px;
+			line-height: 1em;
+		}
+	}
+}
