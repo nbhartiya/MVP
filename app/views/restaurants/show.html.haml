@@ -1,0 +1,38 @@
+%body.container.restos
+  .navbar.navbar-fixed-top 
+    = render "layouts/header"
+
+  .restoProfile
+    %table
+      %tr
+        %td.restoName
+          %h1 Hillside Supper Club
+        %td.restoSocial
+          %p 198 Followers
+      %tr
+        %td.restoOwners
+          %h3 Jonathan Sutton and Tony Ferrari
+        %td.restoReviews
+          %p image of stars
+          %p 224 reviews
+      %tr
+        %td.photos
+          =image_tag "Food 6.jpg"
+        %td.restoInfo
+          %h1
+    .restoAnnouncements
+      %h2 Announcement: we're fundraising for a new stove! check out the campaign here
+    .restoEvents
+      %h2 Events (3)
+      %p No current events! Request one now?
+      = render "layouts/singleevent"
+      = render "layouts/singleevent"     
+      = render "layouts/singleevent"
+    .restoFollowers
+      %h2 Followers (4)
+      = render "layouts/usercard"
+      = render "layouts/usercard"
+      = render "layouts/usercard"
+      = render "layouts/usercard"
+    .chatter
+      
