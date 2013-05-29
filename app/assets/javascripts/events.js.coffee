@@ -5,7 +5,7 @@
 $(document).ready ->
   $(".listing-card").mouseover ->
     $(this).find(".listing-card-text").css "bottom", "132px"
-    $(this).find("tr.bottom").show 0.000001
+    $(this).find("tr.bottom").show 500
 
   $(".listing-card").mouseleave ->
     $(this).find("tr.bottom").hide 0.000001	

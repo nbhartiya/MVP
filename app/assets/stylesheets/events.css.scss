@@ -27,8 +27,8 @@ body.events {
 // filters styling
 
 .filters{
-	float: left;
-	margin: 100px 20px 0 0;
+	float: right;
+	margin: 150px 10px 0 0;
 	padding: 10px;
 	border-radius: 5px;
 	background-color: rgba(255, 255, 255, 0.8);
@@ -53,7 +53,7 @@ body.events {
 
 .eventslist{
 	padding-top: 100px;
-	width: 900px;
+	width: 880px;
 	float: left;
 	h1{
 		font-size: 18px;
@@ -133,4 +133,27 @@ body.events {
 
 .editevents, .newevent{
 	padding-top: 100px;
+}
+
+// responsive design
+
+// Portrait tablet to landscape and desktop
+@media (min-width: 768px) and (max-width: 979px) {
+	.eventslist{
+		width: 600px;
+	}
+}
+ 
+// Landscape phone to portrait tablet
+@media (max-width: 767px) {
+	.eventslist{
+		width: 350px;
+	}
+}
+ 
+// Landscape phones and down
+@media (max-width: 480px) {
+	.eventslist{
+		width: 200px;
+	}
 }

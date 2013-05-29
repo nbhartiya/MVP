@@ -2,6 +2,18 @@
   .navbar.navbar-fixed-top  
     = render "layouts/header"
 
+
+  .eventslist
+    %h1 Recommended
+    =render "layouts/singleevent"
+    =render "layouts/singleevent"
+    =render "layouts/singleevent"
+    =render "layouts/singleevent"
+    =render "layouts/singleevent"
+    =render "layouts/singleevent"
+    =render "layouts/singleevent"
+    =render "layouts/singleevent"
+
   .filters
     %h4 Search
     %input{:placeholder => "search"}
@@ -36,18 +48,6 @@
       %li Popular Tag 1
       %li Popular Tag 2
     %input{:placeholder => "find tag"}
-
-
-  .eventslist
-    %h1 Recommended
-    =render "layouts/singleevent"
-    =render "layouts/singleevent"
-    =render "layouts/singleevent"
-    =render "layouts/singleevent"
-    =render "layouts/singleevent"
-    =render "layouts/singleevent"
-    =render "layouts/singleevent"
-    =render "layouts/singleevent"
     
 -#    %table 
 -#      %tr
