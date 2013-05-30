@@ -15,7 +15,7 @@
 #
 
 class Guest < ActiveRecord::Base
-  attr_accessible :email, :event_id, :first_name, :foodie_id, :last_name, :ticket_id, :token
+  attr_accessible :email, :event_id, :first_name, :user_id, :last_name, :ticket_id, :token
 
   belongs_to :ticket, :dependent => :destroy
 end

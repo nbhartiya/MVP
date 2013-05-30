@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130507202948) do
+ActiveRecord::Schema.define(:version => 20130529212448) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(:version => 20130507202948) do
     t.string   "email"
     t.integer  "ticket_id"
     t.integer  "event_id"
-    t.integer  "foodie_id"
+    t.integer  "user_id"
     t.string   "token"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -140,13 +140,12 @@ ActiveRecord::Schema.define(:version => 20130507202948) do
   end
 
   create_table "tickets", :force => true do |t|
-    t.integer  "foodie_id"
+    t.integer  "user_id"
     t.integer  "event_id"
-    t.integer  "purchaser_id"
     t.integer  "num_guests"
-    t.integer  "guest_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.float    "total_paid"
   end
 
   create_table "user_answers", :force => true do |t|

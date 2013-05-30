@@ -32,7 +32,7 @@
   = @event.other_info
 %p
   %b Host:
-  = @event.host.first_name.capitalize + " " + @event.host.last_name.capitalize
+  = @event.host.first_name.split(' ').map(&:capitalize).join(' ') + " " + @event.host.last_name.split(' ').map(&:capitalize).join(' ')
 -for image in @event.images
   %p
     %b Title:

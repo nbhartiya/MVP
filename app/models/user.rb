@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   has_one :location
   has_one :image, :as => :imageable
   # always do User.first.create_image instead of User.first.images.create!, but to destroy do User.first.image.destroy
-  has_many :tickets, :foreign_key => "purchaser_id"
+  has_many :tickets
   has_many :events_attended, :class_name => "Event", :through => :tickets
   has_many :events_hosted, :class_name => "Event", :foreign_key => "host_id"
   

@@ -1,29 +1,48 @@
 MVP::Application.routes.draw do
-  
+
+  # You can have the root of your site routed with "root"
+  # just remember to delete public/index.html.
+  root :to => "signups#new"
+
+
+  match "home" => "signups#new"
+  get "/done" => "signups#done"
+  get "/wireframes" => redirect {"http://mainstproject.com/wireframes"}
+
+  get "home/indexABC"
+  get "home/howitworks"
+  get "home/teamandjobs"
+  get "home/contactus"
+  #get "home/tos"
+  #get "home/blog"
+  get "survey" => "survey_questions#survey"
+  get "incomplete_survey" => "survey_questions#survey"
+
   resources :images
-
+  resources :signups
   resources :guests
-
   resources :comments
-
+  resources :locations
 
   resources :events do
     resources :tickets do
       resources :guests
     end
-    resources :images
+    resources :imagess
   end
 
-  #see if this will work...
-  #resources :events, :has_many => :images
+  resources :users do
+    resource :image
+  end
 
+  devise_for :users, controllers: {omniauth_callbacks: "authentications"}
+  
+  # I have no idea what changed that caused me to have to add this line...????
+  devise_for :users do 
+    get '/users/sign_out' => 'devise/sessions#destroy' 
+  end
 
-  resources :locations
-
-
-  resources :accreditations
-
-
+  #resources :accreditations
   #resources :authentications #, :only => [:show]
   #resources :investments
   #resources :projects
@@ -31,35 +50,7 @@ MVP::Application.routes.draw do
   #resources :survey_answers
   #resources :survey_questions
 
-  #get "home/index"
-  get "home/howitworks"
-  get "home/teamandjobs"
-  #get "home/tos"
-  get "home/contactus"
-  #get "home/blog"
-  get "/done" => "signups#done"
-  get "/wireframes" => redirect {"http://mainstproject.com/wireframes"}
-
-  match "home" => "signups#new"
-  
-  # didn't include registrations: "registrations", it seems to require a registrations controller...
-  devise_for :users, controllers: {omniauth_callbacks: "authentications"}
-  
-  # I have no idea what changed that caused me to have to add this line...????
-  devise_for :users do get '/users/sign_out' => 'devise/sessions#destroy' end
-  
-  resources :users do
-    resource :image
-  end
-
-  resources :signups
-  
-  get "survey" => "survey_questions#survey"
-  get "incomplete_survey" => "survey_questions#survey"
-  
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  root :to => "signups#new"
+#########################################################################
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -87,25 +78,12 @@ MVP::Application.routes.draw do
   #     end
   #   end
 
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
   # Sample resource route with more complex sub-resources
   #   resources :products do
   #     resources :comments
   #     resources :sales do
   #       get 'recent', :on => :collection
   #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
   #   end
 
   # See how all your routes lay out with "rake routes"

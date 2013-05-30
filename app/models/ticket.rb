@@ -13,9 +13,9 @@
 #
 
 class Ticket < ActiveRecord::Base
-  attr_accessible :event_id, :foodie_id, :guest_id, :num_guests, :purchaser_id, :guests_attributes
+  attr_accessible :event_id, :user_id, :num_guests, :guests_attributes, :total_paid
   belongs_to :event
-  belongs_to :foodie, :class_name => "User", :foreign_key => "purchaser_id"
+  belongs_to :user
 
   has_many :guests, :dependent => :destroy
   accepts_nested_attributes_for :guests, :reject_if => lambda { |a| a[:email].blank? }, :allow_destroy => true

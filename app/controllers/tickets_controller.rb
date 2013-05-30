@@ -40,13 +40,13 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
     @event = Event.find(params[:event_id])
   end
-
+i
   # POST /tickets
   # POST /tickets.json
   def create
     @ticket = Ticket.new(params[:ticket])
     @event = Event.find(params[:event_id])
-    @ticket.purchaser_id = current_user.id
+    @ticket.user_id = current_user.id
     @ticket.event_id = @event.id
 
     # if @ticket.num_guest > 0, 
