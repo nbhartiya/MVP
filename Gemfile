@@ -27,6 +27,7 @@ gem 'filepicker-rails'
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'rspec-rails'
 end
 
 group :production do
@@ -34,9 +35,15 @@ group :production do
 end
 
 group :test do
-  gem 'rspec-rails'
 	gem 'capybara'
 	gem 'capybara-webkit'
+	gem 'factory_girl_rails'
+	# may want to consider the below for later:
+	# gem 'launcy'
+  #- for easy database cleaning after every set of tests is run
+	# gem 'database_cleaner'
+	#- for constantly running tests
+	# gem 'guard-rspec'
 end
 
 
