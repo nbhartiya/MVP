@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130529212448) do
+ActiveRecord::Schema.define(:version => 20130602030740) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -29,6 +29,16 @@ ActiveRecord::Schema.define(:version => 20130529212448) do
     t.string   "uid"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "charges", :force => true do |t|
+    t.string   "full_name"
+    t.string   "last4"
+    t.integer  "user_id"
+    t.string   "token"
+    t.integer  "location_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "comments", :force => true do |t|

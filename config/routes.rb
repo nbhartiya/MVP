@@ -24,6 +24,8 @@ MVP::Application.routes.draw do
   resources :comments
   resources :locations
 
+  resources :charges
+
   resources :events do
     resources :tickets do
       resources :guests

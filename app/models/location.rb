@@ -18,6 +18,7 @@ class Location < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :event
+  has_many :charges, :foreign_key => "billing_address_id"
   
   attr_accessible :address1, :address2, :city, :state, :zipcode, :user_id, :event_id
 end

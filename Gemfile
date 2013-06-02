@@ -19,6 +19,8 @@ gem 'simple_form'
 gem 'sendgrid'
 gem 'filepicker-rails'
 
+gem 'stripe'
+
 # not necessary yet...will change to this when everything working...
 # gem 'linkedin'
 
