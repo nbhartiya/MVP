@@ -4,9 +4,10 @@
     %title simmr
     %link{:href => "http://thescenicroute0.files.wordpress.com/2013/03/favicon2.png", :rel => "icon", :type => "image/png"}/
     = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "application"
-    -#REMOVED javascript_include_tag "default"..can't find default.js....
+    = javascript_include_tag "https://js.stripe.com/v1/"
+    = javascript_tag "Stripe.publishableKey = '#{STRIPE_PUBLISHABLE_KEY}';"
     = filepicker_js_include_tag
+    = javascript_include_tag "application"
     = csrf_meta_tags
     %link{:href => "http://fonts.googleapis.com/css?family=Merriweather+Sans|Noto+Sans|Open+Sans|Satisfy", :rel => "stylesheet", :type => "text/css"}
   %body

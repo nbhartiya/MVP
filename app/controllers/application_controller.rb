@@ -11,13 +11,13 @@ class ApplicationController < ActionController::Base
     #else
     #  chef_path
     #end
-    home_index_path 
+    home_indexABC_path 
     #FIX SUCH THAT TWITTER CANT BE SAVED WITHOUT PROMPTING FOR EMAIL!!!
   end
   
 
   def after_sign_out_path_for(resource)
-    home_index_path
+    home_indexABC_path
   end
   
   #not necessary now, but if we want logout to go somewhere in particular...

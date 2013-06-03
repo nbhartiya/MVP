@@ -1,0 +1,19 @@
+
+= simple_form_for Charge.new do |f|
+  -#%form#charge_form{:name=>'Nene', :action => "/charges", :method => "post"}
+  %input{:type => 'string', :id => 'full_name', :placeholder => 'full name'}
+  %input{:type => 'text', :id => 'credit_card_number', :placeholder => 'number', :value => '4242424242424242'}
+  %input{:type => 'number', :id => 'security_code', :placeholder => 'security code', :value => '123'}
+  %input{:type => 'text', :id => 'expiration_month', :placeholder => 'expiration month', :value => '12'}
+  %input{:type => 'integer', :id => 'expiration_year', :placeholder => 'expiration year', :value => '2015'}
+  %input{:type => 'string', :id => 'address1', :placeholder => 'Address Line 1'}
+  %input{:type => 'string', :id => 'address2', :placeholder => 'Address Line 2'}
+  %input{:type => 'string', :id => 'city', :placeholder => 'City'}
+  %input{:type => 'string', :id => 'state', :placeholder => 'State'}
+  %input{:type => 'string', :id => 'zipcode', :placeholder => 'Zip Code'}
+  =f.hidden_field :last4
+  =f.hidden_field :token
+  -#%input{:type => 'hidden', :id => 'stripe_token'}
+  -#%input{:type => 'hidden', :id => 'last_4_digits'}
+
+  =f.submit 
