@@ -40,7 +40,7 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
     @event = Event.find(params[:event_id])
   end
-i
+
   # POST /tickets
   # POST /tickets.json
   def create
