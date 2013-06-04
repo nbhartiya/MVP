@@ -29,8 +29,6 @@ h2{
 .userProfile{
 	margin-top: 100px;
 	.profilePic {
-		width: 200px;
-		float: left;
 		-webkit-border-radius: 40px;
 		-moz-border-radius: 40px;
 		-ms-border-radius: 40px;
@@ -38,8 +36,6 @@ h2{
 		border-radius: 40px;
 	}
 	.userInfo{
-		display: inline-block;
-		float: left;
 		h1{
 			font-size: 30px;
 			font-weight: 100;
@@ -75,22 +71,20 @@ h2{
 
 .userEvents{
 	margin-top: 40px;
-	width: 1170px;
-	float: left;
 	.eventlisting {
 		margin: 0;
 		li {
 			list-style: none;
 			float: left;
-			margin: 10px 5px;
-			width: 31%;
-			height: 250px;
-			background-image: url('event_stock_image.jpg'), no-repeat;
+			margin: 10px 0;
+			width: 525px;
+			height: 350px;
 			}
 		.listing-card-text{	
 			z-index: 10;
 			background-color: rgba(50, 50, 50, 0.8);
 			color: white;
+			width: 525px;
 			position: relative;
 			bottom: 92px;
 			td{
@@ -147,32 +141,47 @@ h2{
 
 // restaurants followed styling
 .restaurantsFollowed{
-	.userCard{
+	h2{
+		margin-top: 20px;
+	}
+	.userCard {
+		list-style: none;
 		float: left;
-		width: 25%;
-	}
-	.userPhoto > img{
-		width: 50px;
-		-webkit-border-radius: 40px;
-		-moz-border-radius: 40px;
-		-ms-border-radius: 40px;
-		-o-border-radius: 40px;
-		border-radius: 40px;
-	}
-	td.userPhoto{
-		height: 50px;
-		width: 50px;
-		padding: 8px;
-	}
-	td.userName{
-		padding: 17px 0 0 10px;
-		vertical-align: bottom;
-		font-weight: 900;
-		font-size: 20px;
-	}
-	td.userBlurb{
-		vertical-align: top;
-		padding: 5px 0 0 10px;
-		font-style: italic;
+		margin: 10px 0;
+		width: 525px;
+		height: 350px;
+		.user-card-text{	
+			z-index: 10;
+			background-color: rgba(50, 50, 50, 0.8);
+			color: white;
+			width: 525px;
+			position: relative;
+			bottom: 92px;
+			td{
+				font-size: 14px;
+			}
+			.user-card-avatar > img{
+				height: 50px;
+				-webkit-border-radius: 40px;
+				-moz-border-radius: 40px;
+				-ms-border-radius: 40px;
+				-o-border-radius: 40px;
+				border-radius: 40px;
+			}
+			td.user-card-avatar{
+				height: 50px;
+				width: 50px;
+				padding: 8px;
+			}
+			.user-card-blurb{
+				line-height: 20px;
+				padding: 8px 4px;
+				font-size: 13px;
+			}
+			tr.bottom{
+				display:none;
+				min-height: 0;
+			}
+		}
 	}
 }

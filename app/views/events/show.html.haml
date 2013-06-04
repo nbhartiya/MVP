@@ -1,48 +1,106 @@
-%p#notice= notice
+%body.container.events
+  .navbar.navbar-fixed-top 
+    = render "layouts/header"
 
-%p
-  %b Title:
-  = @event.title
-%p
-  %b Location:
-  = @event.location_title
-%p
-  %b People limit:
-  = @event.people_limit
-%p
-  %b Description:
-  = @event.description
-%p
-  %b Menu pdf:
-  = @event.menu_pdf
-%p
-  %b Menu text:
-  = @event.menu_text
-%p
-  %b Date:
-  = @event.date
-%p
-  %b Cost:
-  = @event.cost
-%p
-  %b Length:
-  = @event.length
-%p
-  %b Other Information:
-  = @event.other_info
-%p
-  %b Host:
-  = @event.host.first_name.split(' ').map(&:capitalize).join(' ') + " " + @event.host.last_name.split(' ').map(&:capitalize).join(' ')
--for image in @event.images
+  .eventProfile
+    .eventImages.span7
+      #eventCarousel.carousel.slide
+        %ol.carousel-indicators
+          %li.active{"data-target" => "#eventCarousel", "data-slide-to" => "0"}
+          %li{"data-target" => "#eventCarousel", "data-slide-to" => "1"} 
+          %li{"data-target" => "#eventCarousel", "data-slide-to" => "2"}
+        .carousel-inner
+          .item.active
+            =image_tag "Food 17.jpg"
+          .item
+            =image_tag "Food 18.jpg"
+          .item
+            =image_tag "Food 22.jpg"
+        %a.carousel-control.left{"data-slide" => "prev", :href => "#eventCarousel"} ‹
+        %a.carousel-control.right{"data-slide" => "next", :href => "#eventCarousel"} ›
+      
+    %table.eventInfo.span4
+      %tr
+        %td.eventTitle
+          %h1 4 Course "Liberty Duck" Dinner with Chefs
+        %td.socialProof{:rowspan => "2"}
+          %p 198 Followers
+          %p 224 reviews
+          %p Share Buttons
+      %tr
+        %td.eventHostDate
+          %h3 Jonathan Sutton and Tony Ferrari          
+          %h3 5/31/2013
+      %tr.eventProgress
+        %td.seatsleft{:colspan => "2"}
+          5 seats left
+          .progress.progress-warning
+            .bar{:style => "width: 60%;"}
+      %tr.purchase
+        %td.tickets
+          select number of tickets
+        %td.action
+          .btn.btn-warning Buy
+    .location.span11
+      123 Hillside Road <br>
+      San Francisco, CA 94109
+      .map.span4 Map
+    .hostStory.span11
+      host story
+    .eventMenu.span11
+      menu
+    .eventAttendees.span11
+      attendees
+      .chatter.span4
+        chattering
+
+
+-#
+  %p#notice= notice
+
   %p
     %b Title:
-    = image.title
+    = @event.title
   %p
-    = filepicker_image_tag image.image, w: 160, h: 160, fit: 'clip'
+    %b Location:
+    = @event.location_title
   %p
-    %b Caption:
-    = image.description
+    %b People limit:
+    = @event.people_limit
+  %p
+    %b Description:
+    = @event.description
+  %p
+    %b Menu pdf:
+    = @event.menu_pdf
+  %p
+    %b Menu text:
+    = @event.menu_text
+  %p
+    %b Date:
+    = @event.date
+  %p
+    %b Cost:
+    = @event.cost
+  %p
+    %b Length:
+    = @event.length
+  %p
+    %b Other Information:
+    = @event.other_info
+  %p
+    %b Host:
+    = @event.host.first_name.split(' ').map(&:capitalize).join(' ') + " " + @event.host.last_name.split(' ').map(&:capitalize).join(' ')
+  -for image in @event.images
+    %p
+      %b Title:
+      = image.title
+    %p
+      = filepicker_image_tag image.image, w: 160, h: 160, fit: 'clip'
+    %p
+      %b Caption:
+      = image.description
 
-= link_to 'Edit', edit_event_path(@event)
-\|
-= link_to 'Back', events_path
+  = link_to 'Edit', edit_event_path(@event)
+  \|
+  = link_to 'Back', events_path

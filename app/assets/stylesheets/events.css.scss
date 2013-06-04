@@ -27,9 +27,8 @@ body.events {
 // filters styling
 
 .filters{
-	float: right;
-	margin: 150px 10px 0 0;
-	padding: 10px;
+	padding: 10px 20px;
+	margin-top: 140px;
 	border-radius: 5px;
 	background-color: rgba(255, 255, 255, 0.8);
 	border: 1px solid rgb(200, 200, 200);
@@ -46,31 +45,31 @@ body.events {
     }
     input{
     	margin: 5px 0;
+    	width: 150px;
     }
 }
 
-// events list styling
+// events list and breadcrumb styling
 
-.eventslist{
-	padding-top: 100px;
-	width: 880px;
-	float: left;
+.eventslist{	
+	padding-top: 80px;
 	h1{
 		font-size: 18px;
 		font-weight: 400;
 		margin: 0 0 0 5px;
-		display: block;
 		color: white;
+	}
+	p{
+		margin: 0 0 0 5px;
 	}
 	.eventlisting {
 		margin: 0;
 		li {
 			list-style: none;
 			float: left;
-			margin: 10px 5px;
-			width: 425px;
-			height: 280px;
-			background-image: url('event_stock_image.jpg');
+			margin: 0;
+			width: 400px;
+			height: 260px;
 			}
 		.listing-card-text{	
 			z-index: 10;
@@ -81,7 +80,7 @@ body.events {
 			td{
 				font-size: 14px;
 			}
-			.listing-card-avatar > img{
+			.listing-card-avatar img{
 				height: 50px;
 				-webkit-border-radius: 40px;
 				-moz-border-radius: 40px;
@@ -108,7 +107,6 @@ body.events {
 			}
 			tr.bottom{
 				display:none;
-				min-height: 0;
 			}
 			.progress{
 				height: 10px;
@@ -161,27 +159,83 @@ body.events {
 // event profile styling
 
 .eventProfile{
-	margin-top: 100px;
-	.eventPhotos {
-		width: 200px;
-		float: left;
-		-webkit-border-radius: 40px;
-		-moz-border-radius: 40px;
-		-ms-border-radius: 40px;
-		-o-border-radius: 40px;
-		border-radius: 40px;
-	}
-	.eventInfo{
-		display: inline-block;
-		float: left;
-		h1{
-			font-size: 30px;
-			font-weight: 100;
-			line-height: 1em;
+	margin-top: 80px;
+	#eventCarousel {
+		.carousel-indicators{
+			position: absolute;
+			top: 15px;
+			right: 15px;
+			z-index: 5;
+			margin: 0;
+			list-style: none;
+			li{
+				display: block;
+				float: left;
+				width: 10px;
+				height: 10px;
+				margin-left: 5px;
+				text-indent: -999px;
+				border-radius: 5px;
+				background-color: rgba(255, 255, 255, 0.25);
+			}
+			li.active{
+				background-color: rgba(255, 255, 255, 0.8);
+			}
 		}
-		p{
-			font-size: 16px;
-			line-height: 1em;
+		.carousel-inner{
+			height: 450px;
+			width: auto;
+		}
+		.carousel-control{
+			margin-top: 200px;
+		}
+	}
+	.eventTitle h1{
+		font-size: 20px;
+		line-height: 1.5em;
+		font-weight: 100;
+	}
+	.eventHostDate h3{
+		font-size: 16px;
+		line-height: 1.5em;
+		font-weight: 100;
+	}
+	.progress{
+		color: white;
+	}
+	.location{
+		background-color: rgba(255, 255, 255, 0.8);
+		color: black;
+		line-height: 1.5em;
+		padding: 20px 10px;
+		margin: 10px 0 10px 30px;
+		.map{
+			float: right;
+		}
+	}
+	.hostStory{
+		background-color: rgba(255, 255, 255, 0.8);
+		color: black;
+		line-height: 1.5em;
+		padding: 20px 10px;
+		margin: 10px 0 10px 30px;
+	}
+	.eventMenu{
+		background-color: rgba(255, 255, 255, 0.8);
+		color: black;
+		line-height: 1.5em;
+		padding: 20px 10px;
+		margin: 10px 0 10px 30px;
+	}
+	.eventAttendees{
+		background-color: rgba(255, 255, 255, 0.8);
+		color: black;
+		line-height: 1.5em;
+		padding: 20px 10px;
+		margin: 10px 0 10px 30px;
+		.chatter{
+			float: right;
 		}
 	}
 }
+

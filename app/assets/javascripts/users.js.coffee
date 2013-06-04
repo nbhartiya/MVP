@@ -12,3 +12,10 @@ $(document).ready ->
   $(document).on "click", ".newpass", ->
     $("#new_pass").submit()
 
+  $(".userCard").mouseover ->
+    $(this).find(".user-card-text").css "bottom", "132px"
+    $(this).find("tr.bottom").show 500
+
+  $(".userCard").mouseleave ->
+    $(this).find("tr.bottom").hide 0.000001	
+    $(this).find(".user-card-text").css "bottom", "92px"

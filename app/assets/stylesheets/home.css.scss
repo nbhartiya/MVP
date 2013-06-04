@@ -29,6 +29,15 @@ body.home {
         box-shadow: 0px 0px 10px 0px white;
 }
 
+.hide{
+	display: none;
+}
+
+.muted{
+	font-size: 75%;
+	background-color: rgba(255, 255, 255, 0.9);
+}
+
 // error message styling
 
 ul.parsley-error-list{
