@@ -23,9 +23,8 @@ function remove_fields (link) {
 }
 
 function add_fields (link, association, content) {
-	alert("happy birthday");
+	alert("you just ran the javascript function called add_fields");
 	var new_id = new Date().getTime();
 	var regexp = new RegExp("new_" + association, "g")
-	$(link).parent().append(content.replace(regexp, new_id));
-	//This is ugly, make sure you fix it later!
+	$(link).before(content.replace(regexp, new_id));
 }
