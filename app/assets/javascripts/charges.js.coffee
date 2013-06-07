@@ -1,6 +1,6 @@
 $ ->
   # $("#credit-card input, #credit-card select").attr "disabled", false
-  ($ "input[type='submit']").click ->
+  ($ "input[id='new_charge']").click ->
     # $("#user_submit").attr "disabled", true
     # $("#credit-card input, #credit-card select").attr "name", ""
     # $("#credit-card-errors").hide()

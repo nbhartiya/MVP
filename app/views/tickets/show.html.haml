@@ -2,20 +2,13 @@
 
 %p
   %b Foodie:
-  = @ticket.foodie_id
+  = @ticket.user_id
 %p
   %b Event:
   = @ticket.event_id
 %p
-  %b Purchaser:
-  = @ticket.purchaser_id
-%p
   %b Num guests:
   = @ticket.num_guests
-%p
-  -unless @ticket.guest_id.nil?
-    %b Guest:
-    = @ticket.guest_id
 %p
   -for guest in @ticket.guests
     %p

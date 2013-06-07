@@ -3,22 +3,18 @@
 
 %table
   %tr
-    %th Foodie
+    %th User
     %th Event
-    %th Purchaser
     %th Num guests
-    %th Guest ID
     %th
     %th
     %th
 
   - @tickets.each do |ticket|
     %tr
-      %td= ticket.foodie_id
+      %td= ticket.user_id
       %td= ticket.event_id
-      %td= ticket.purchaser_id
       %td= ticket.num_guests
-      %td= ticket.guest_id
       %td= link_to 'Show', event_ticket_path(ticket.event_id, ticket.id)
       %td= link_to 'Edit', edit_event_ticket_path(ticket.event_id, ticket)
       %td= link_to 'Destroy', event_ticket_path(ticket.event_id, ticket), method: :delete, data: { confirm: 'Are you sure?' }
