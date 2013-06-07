@@ -12,10 +12,16 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
-//= require twitter/bootstrap
-//= require bootstrap.min.js
+//= require bootstrap
 //= require parsley.js
+//= require angular
+//= require angular-resource
+//= require angularjs/rails/resource
+//= require angular-ui
+//= require angular-bootstrap
+//= require angular-ui-bootstrap-tpls
+//= require_tree .
+
 
 function remove_fields (link) {
 	$(link).prev("input[type=hidden]").value = "1";

@@ -161,27 +161,6 @@ body.events {
 .eventProfile{
 	margin-top: 80px;
 	#eventCarousel {
-		.carousel-indicators{
-			position: absolute;
-			top: 15px;
-			right: 15px;
-			z-index: 5;
-			margin: 0;
-			list-style: none;
-			li{
-				display: block;
-				float: left;
-				width: 10px;
-				height: 10px;
-				margin-left: 5px;
-				text-indent: -999px;
-				border-radius: 5px;
-				background-color: rgba(255, 255, 255, 0.25);
-			}
-			li.active{
-				background-color: rgba(255, 255, 255, 0.8);
-			}
-		}
 		.carousel-inner{
 			height: 450px;
 			width: auto;
