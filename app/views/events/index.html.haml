@@ -2,7 +2,19 @@
   .navbar.navbar-fixed-top  
     = render "layouts/header"
 
-  .filters
+  .eventslist.span9
+    %p filter >> and >> search >> breadcrumbs
+    %h1 Recommended
+    =render "layouts/singleevent"
+    =render "layouts/singleevent"
+    =render "layouts/singleevent"
+    =render "layouts/singleevent"
+    =render "layouts/singleevent"
+    =render "layouts/singleevent"
+    =render "layouts/singleevent"
+    =render "layouts/singleevent"
+
+  .filters.span2
     %h4 Search
     %input{:placeholder => "search"}
     %h4 Sort
@@ -31,23 +43,6 @@
       %li Hands On
       %li Tasting
       %li Etc
-    %h4 Tag
-    %ul
-      %li Popular Tag 1
-      %li Popular Tag 2
-    %input{:placeholder => "find tag"}
-
-
-  .eventslist
-    %h1 Recommended
-    =render "layouts/singleevent"
-    =render "layouts/singleevent"
-    =render "layouts/singleevent"
-    =render "layouts/singleevent"
-    =render "layouts/singleevent"
-    =render "layouts/singleevent"
-    =render "layouts/singleevent"
-    =render "layouts/singleevent"
     
 -#    %table 
 -#      %tr

@@ -1,8 +1,16 @@
-%table.userCard
-  %tr
-    %td.userPhoto{:rowspan=>"2"}
-      = image_tag "Favicon.png"
-    %td.userName Chef Stuart
-  %tr
-    %td.userBlurb user blurb
-  
+.userCard
+  %a.user-card-image{:href => "#"}
+    =image_tag "event_stock_image.jpg"
+  %table.user-card-text 
+    %tr.top
+      %td.user-card-avatar
+        =link_to image_tag("Favicon.png"), "#"
+      %td.user-card-blurb
+        user name and blurb
+      %tr.bottom
+        %td
+        %td.socialButtons.sb.text.black
+          =link_to "Facebook"
+          =link_to "Twitter"
+          =link_to "Follow"
+          =link_to "Message"

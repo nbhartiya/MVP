@@ -27,9 +27,8 @@ body.events {
 // filters styling
 
 .filters{
-	float: left;
-	margin: 100px 20px 0 0;
-	padding: 10px;
+	padding: 10px 20px;
+	margin-top: 140px;
 	border-radius: 5px;
 	background-color: rgba(255, 255, 255, 0.8);
 	border: 1px solid rgb(200, 200, 200);
@@ -46,42 +45,42 @@ body.events {
     }
     input{
     	margin: 5px 0;
+    	width: 150px;
     }
 }
 
-// events list styling
+// events list and breadcrumb styling
 
-.eventslist{
-	padding-top: 100px;
-	width: 900px;
-	float: left;
+.eventslist{	
+	padding-top: 80px;
 	h1{
 		font-size: 18px;
 		font-weight: 400;
 		margin: 0 0 0 5px;
-		display: block;
 		color: white;
+	}
+	p{
+		margin: 0 0 0 5px;
 	}
 	.eventlisting {
 		margin: 0;
 		li {
 			list-style: none;
 			float: left;
-			margin: 10px 5px;
-			width: 425px;
-			height: 280px;
-			background-image: url('event_stock_image.jpg');
+			margin: 0;
+			width: 400px;
+			height: 260px;
 			}
 		.listing-card-text{	
 			z-index: 10;
 			background-color: rgba(50, 50, 50, 0.8);
 			color: white;
 			position: relative;
-			bottom: 92px;
+			bottom: 70px;
 			td{
 				font-size: 14px;
 			}
-			.listing-card-avatar > img{
+			.listing-card-avatar img{
 				height: 50px;
 				-webkit-border-radius: 40px;
 				-moz-border-radius: 40px;
@@ -108,7 +107,6 @@ body.events {
 			}
 			tr.bottom{
 				display:none;
-				min-height: 0;
 			}
 			.progress{
 				height: 10px;
@@ -134,3 +132,94 @@ body.events {
 .editevents, .newevent{
 	padding-top: 100px;
 }
+
+// responsive design
+
+// Portrait tablet to landscape and desktop
+@media (min-width: 768px) and (max-width: 979px) {
+	.eventslist{
+		width: 600px;
+	}
+}
+ 
+// Landscape phone to portrait tablet
+@media (max-width: 767px) {
+	.eventslist{
+		width: 350px;
+	}
+}
+ 
+// Landscape phones and down
+@media (max-width: 480px) {
+	.eventslist{
+		width: 200px;
+	}
+}
+
+// event profile styling
+
+.eventProfile{
+	margin-top: 80px;
+	#eventCarousel {
+		.carousel-inner{
+			height: 450px;
+			width: auto;
+		}
+		.carousel-control{
+			margin-top: 200px;
+		}
+	}
+	.eventTitle h1{
+		font-size: 20px;
+		line-height: 1.5em;
+		font-weight: 100;
+	}
+	.eventHostDate h3{
+		font-size: 16px;
+		line-height: 1.5em;
+		font-weight: 100;
+	}
+	.socialProof{
+		vertical-align: top;
+	}
+	.progress{
+		color: white;
+	}
+	.location{
+		background-color: rgba(255, 255, 255, 0.8);
+		color: black;
+		line-height: 1.5em;
+		padding: 20px 10px;
+		margin: 10px 0 10px 30px;
+		.map{
+			float: right;
+		}
+	}
+	.hostStory{
+		background-color: rgba(255, 255, 255, 0.8);
+		color: black;
+		line-height: 1.5em;
+		padding: 20px 10px;
+		margin: 10px 0 10px 30px;
+	}
+	.eventMenu{
+		background-color: rgba(255, 255, 255, 0.8);
+		color: black;
+		line-height: 1.5em;
+		padding: 20px 10px;
+		margin: 10px 0 10px 30px;
+	}
+	.eventAttendees{
+		background-color: rgba(255, 255, 255, 0.8);
+		color: black;
+		line-height: 1.5em;
+		padding: 20px 10px;
+		margin: 10px 0 10px 30px;
+		.chatter{
+			float: right;
+		}
+	}
+}
+
+// form styling
+

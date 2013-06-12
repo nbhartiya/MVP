@@ -1,7 +1,74 @@
 %body.container.events
-  .navbar.navbar-fixed-top  
+  .navbar.navbar-fixed-top 
     = render "layouts/header"
 
+= simple_form_for(@event) do |f|
+  = f.error_notification
+  .eventProfile
+    .eventImages.span7
+      #eventCarousel.carousel.slide
+        %ol.carousel-indicators
+          %li.active{"data-target" => "#eventCarousel", "data-slide-to" => "0"}
+          %li{"data-target" => "#eventCarousel", "data-slide-to" => "1"} 
+          %li{"data-target" => "#eventCarousel", "data-slide-to" => "2"}
+        .carousel-inner
+          .item.active
+            %a{:class => "GetFilepicker"} Load picture
+          .item
+            %a{:class => "GetFilepicker"} Load picture
+          .item
+            %a{:class => "GetFilepicker"} Load picture
+        %a.carousel-control.left{"data-slide" => "prev", :href => "#eventCarousel"} ‹
+        %a.carousel-control.right{"data-slide" => "next", :href => "#eventCarousel"} ›
+      
+    %table.eventInfo.span4
+      %tr
+        %td.eventTitle
+          %h1
+          = f.input :title
+        %td.socialProof{:rowspan => "2"}
+          %p 198 Followers
+          %p 224 reviews
+          %p Share Buttons
+      %tr
+        %td.eventHostDateInfo
+          %h3 Jonathan Sutton and Tony Ferrari          
+          %h3
+          = f.input :date
+          %p
+          = f.input :length
+          %p
+          = f.input :description
+          %p
+          = f.input :other_info
+      %tr.eventProgress
+        %td.seatsleft{:colspan => "2"}
+          = f.input :people_limit
+          .progress.progress-warning
+            .bar{:style => "width: 0%;"}
+      %tr.purchase
+        %td.tickets
+          select number of tickets
+          = f.input :cost
+        %td.action
+          .btn.btn-warning Buy
+    .location.span11
+      = f.input :location_title
+      .map.span4 Map
+    .hostStory.span11
+      host story
+    .eventMenu.span11
+      = f.input :menu_pdf
+      = f.input :menu_text
+    .eventAttendees.span11
+      attendees
+      .chatter.span4
+        chattering
+    .eventFormActions
+      = f.button :submit
+
+
+-#
   .newevent
     %h1 New event
 
