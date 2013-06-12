@@ -15,3 +15,134 @@
 
  @import "bootstrap";
  @import "bootstrap-responsive";
+
+// colors 
+
+$trans_black: rgba(54,54,54,0.9);
+$dark_gray: rgb(54, 54, 54);
+$trans_black_more: rgba(54, 54, 54, 0.7);
+$trans: rgba(0,0,0,0);
+$main_orange: rgb(255, 178, 35);
+
+// header styling
+
+.nav-container{
+	display: block;
+	width: 1170px;
+	margin: 30px auto;
+	.nav{	
+		.logo-and-location{
+			float: left;
+			ul{
+				list-style: none;
+				margin: 30px 10px 0 10px;
+				font-size: 13px;
+				li.dropdown{
+					a{
+						margin: 0;
+						padding: 0;
+					}
+					a:hover{
+						color: black;
+						background: none;
+					}
+					a:hover, a:visited, a:active, a:focus{
+						text-decoration: none;
+						outline: none;
+					}
+					.caret{
+						color: white;
+					}
+				}
+			}
+			.logo{
+				width: 50%;
+			}
+			.logo, ul{
+				float: left;
+
+			}
+			.dropdown-menu{
+				margin: 10px 0 0 0;
+				.dropitem{
+					font-size: 12px;
+					p{
+						padding: 0px 10px 0px 10px;
+						font-size: 12px;
+					}
+					form{
+						padding: 0px 10px 10px 10px;
+						.span2{
+							width: 120px;
+						}
+					}
+					a:link, a:visited{
+						padding: 10px 0px 10px 10px;
+					}
+					a:hover{
+	 					color: white;
+	 					background-color: $main_orange;
+	 					background-image: none;
+					}
+				}
+			}
+		}
+		ul{
+			list-style: none;
+			margin: 30px 0 0 10px;
+			.user-nav-control{
+				list-style: none;
+				margin: 0;
+				li.dropdown{
+					a{
+						margin: 0;
+						padding: 0;
+					}
+					a:hover{
+						color: black;
+						background: none;
+					}
+					a:hover, a:visited, a:active, a:focus{
+						text-decoration: none;
+						outline: none;
+					}
+					.caret{
+						color: white;
+					}
+					.dropdown-menu{
+						margin: 10px 0 0 0;
+						.dropitem{
+							font-size: 12px;
+							a:link, a:visited{
+								padding: 10px 0px 10px 10px;
+							}
+							a:hover{
+			 					color: white;
+			 					background-color: $main_orange;
+			 					background-image: none;
+							}
+						}
+					}
+				}
+			}
+			li a:link, a:visited{
+				padding: 10px;
+			}
+			li a:hover, a:active{
+				color: white;
+				background-color: $main_orange;
+				text-decoration: none;
+			}
+			li a:focus{
+				outline: none;
+			}
+			input{
+				margin-right: 10px;
+				margin-top: -3px;
+			}
+		}
+	.nav-right{
+		margin-right: -50px;
+	}
+	}		
+}

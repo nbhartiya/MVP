@@ -8,10 +8,8 @@ $main_orange: rgb(255, 178, 35);
 
 // body styling
 
-body.events {
+.events {
 	font-family: 'Open Sans', sans-serif !important; 
-	background-image: url("black-Linen_@2X.png");
-	color: white;
 }
 
 //h1{
@@ -158,78 +156,97 @@ body.events {
 
 // event profile styling
 
-.eventProfile{
-    position: relative;
-	margin-top: 80px;
-	#eventCarousel {
+.event-profile{
+	#event-carousel {
+		position: absolute;
+	    width: 1170px;
+	    z-index: -1;
 		.carousel-inner{
-			height: 450px;
+			height: 500px;
 			width: auto;
 		}
-		.carousel-control{
-			margin-top: 200px;
-		}
-	}
-	.eventImages {
-	    position: absolute;
-	    width: 100%;
-	    z-index: -1;
 	}
 	.event-registration {
 	    margin-top: 30px;
-	}
-	.event-info {
-	    background: rgba(0,0,0,.8);
-	    padding: 30px;
-	}
-	.eventTitle h1{
-		font-size: 20px;
-		line-height: 1.5em;
-		font-weight: 100;
-	}
-	.eventHostDate h3{
-		font-size: 16px;
-		line-height: 1.5em;
-		font-weight: 100;
-	}
-	.socialProof{
-		vertical-align: top;
-	}
-	.progress{
-		color: white;
-	}
-	.location{
-		background-color: rgba(255, 255, 255, 0.8);
-		color: black;
-		line-height: 1.5em;
-		padding: 20px 10px;
-		margin: 10px 0 10px 30px;
-		.map{
-			float: right;
+		.event-summary {
+		    background: rgba(0,0,0,.8);
+		    padding: 30px;
+			h1{
+				font-size: 40px;
+				line-height: 1.5em;
+				font-weight: 100;
+				color: white;
+				margin: 0;
+			}
+			h2{
+				font-size: 20px;
+				line-height: 1.5em;
+				font-weight: 100;
+				color: white;
+				margin: 0;
+			}
+			.number-of-seats{
+				margin-top: 10px;
+			}
+			.btn{
+				width: 50px;
+				margin-left: 10px;
+			}
+			.event-sharing{
+				margin-top: 20px;
+				color: white;
+			}
+		}
+		.event-purchase{
+			background: rgba(0,0,0,0.8);
+			padding: 30px;
+			h2{
+				font-size: 20px;
+				line-height: 1.5em;
+				font-weight: 100;
+				color: white;
+				margin: 0;
+			}
+			h3{
+				font-size: 14px;
+				line-height: 1.5em;
+				color: white;
+				font-weight: 100;
+			}
+			.address, .cc-number, .cc-expiration, .cc-csc{
+				width: 90%;
+			}
+			.city{
+				width: 64%
+			}
+			.state{
+				width: 25%;
+			}
 		}
 	}
-	.hostStory{
-		background-color: rgba(255, 255, 255, 0.8);
-		color: black;
-		line-height: 1.5em;
-		padding: 20px 10px;
-		margin: 10px 0 10px 30px;
+	.section-header-first-child{
+		margin: 110px 0 20px 0;
+		h1{
+			font-size: 30px;
+			color: black;
+			line-height: 1.5em;
+			font-weight: 100;
+		}
 	}
-	.eventMenu{
-		background-color: rgba(255, 255, 255, 0.8);
-		color: black;
-		line-height: 1.5em;
-		padding: 20px 10px;
-		margin: 10px 0 10px 30px;
+	.section-header{
+		margin: 20px 0 20px 0;
+		h1{
+			font-size: 30px;
+			color: black;
+			line-height: 1.5em;
+			font-weight: 100;
+		}
 	}
-	.eventAttendees{
-		background-color: rgba(255, 255, 255, 0.8);
-		color: black;
-		line-height: 1.5em;
-		padding: 20px 10px;
-		margin: 10px 0 10px 30px;
-		.chatter{
-			float: right;
+	.host-story, .event-menu, .event-attendees, .event-chatter{
+		background: rgb(240,240,240);
+		p{
+			font-size: 14px;
+			line-height: 1.5em;
 		}
 	}
 }

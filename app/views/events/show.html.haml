@@ -1,94 +1,96 @@
 .events
-
-  .eventProfile.row
-    .event-overview.span12
-      .eventImages
-        #eventCarousel.carousel.slide
-          %ol.carousel-indicators
-            %li.active{"data-target" => "#eventCarousel", "data-slide-to" => "0"}
-            %li{"data-target" => "#eventCarousel", "data-slide-to" => "1"} 
-            %li{"data-target" => "#eventCarousel", "data-slide-to" => "2"}
-          .carousel-inner
-            .item.active
-              =image_tag "Food 17.jpg", :width => '100%'
-            .item
-              =image_tag "Food 18.jpg"
-            .item
-              =image_tag "Food 22.jpg"
-          %a.carousel-control.left{"data-slide" => "prev", :href => "#eventCarousel"} ‹
-          %a.carousel-control.right{"data-slide" => "next", :href => "#eventCarousel"} ›
+  .event-profile.row
+    .event-stats.span12
+      #event-carousel.carousel.slide
+        %ol.carousel-indicators
+          %li.active{"data-target" => "#event-carousel", "data-slide-to" => "0"}
+          %li{"data-target" => "#event-carousel", "data-slide-to" => "1"} 
+          %li{"data-target" => "#event-carousel", "data-slide-to" => "2"}
+        .carousel-inner
+          .item.active
+            =image_tag "Food 17.jpg", :width => '100%'
+          .item
+            =image_tag "Food 18.jpg"
+          .item
+            =image_tag "Food 22.jpg"
       .event-registration.row{'ng-controller' => 'EventRegisterCtrl'}
         .span1
         .span4
-          .event-info
-            %h1 The Silk Road {{nene}}
+          .event-summary
+            %h1 The Silk Road
+            -# {{nene}}
             %h2 Tea Tasting with Samovar
             %h2 Saturday, June 28
             %p 2 seats left
-            .progress
+            .progress.progress-warning
               .bar{:style => "width: 60%;"}
-            %select
-              %option{:disabled => "disabled", :selected => "selected", :value => ""} Please select a name
+            %select.number-of-seats
+              %option{:disabled => "disabled", :selected => "selected", :value => ""} Number of Seats
               - @event.people_limit.times do |o|
                 %option{:value => o+1} #{o+1} seats
             .btn.btn-warning{'ng-click' => 'payment=true'} Go
-            %ul
-              %li Facebook
-              %li Twitter
-              %li Yelp
-              %li Email
+            %table.event-sharing
+              %tr
+                %td FB
+                %td TWT
+                %td YLP
+                %td MAIL
+              %tr
+                %td 190 likes
+                %td 190 followers
+                %td 190 reviews
+                %td Mail a friend
         .span2
         .span4
           .event-purchase{'ng-show' => 'payment'}
             %h2 Total: $120
             %h3 You will not be charged until the event tilts
-            %h2 Billing Information
-            %label Address
-            %input{:type=>'text'}
-            %label City/State
-            %input{:type=>'text'}
-            %h2 Payment
-            %label CC#
-            %input{:type=>'text'}
-            %label Expiration / CSC
-            %input{:type=>'text'}
+            %h3 Billing Information
+            %input.address{:type=>'text', :placeholder =>"Address"}
+            %input.city{:type=>'text', :placeholder =>"City"}
+            %select.state
+              %option{:disabled => "disabled", :selected => "selected", :value => ""} State
+            %h3 Payment
+            %input.cc-number{:type=>'text', :placeholder => "Credit Card Number"}
+            %input.cc-expiration{:type=>'text', :placeholder => "Expiration"}
+            %input.cc-csc{:type=>'text', :placeholder => "CSC"}
         .span1
-
-  .eventProfile.row    
-    %table.eventInfo.span4
-      %tr
-        %td.eventTitle
-          %h1 4 Course "Liberty Duck" Dinner with Chefs
-        %td.socialProof{:rowspan => "2"}
-          %p 198 Followers
-          %p 224 reviews
-          %p Share Buttons
-      %tr
-        %td.eventHostDate
-          %h3 Jonathan Sutton and Tony Ferrari          
-          %h3 5/31/2013
-      %tr.eventProgress
-        %td.seatsleft{:colspan => "2"}
-          5 seats left
-          .progress.progress-warning
-            .bar{:style => "width: 60%;"}
-      %tr.purchase
-        %td.tickets
-          select number of tickets
-        %td.action
-          .btn.btn-warning Buy
-    .location.span11
-      123 Hillside Road <br>
-      San Francisco, CA 94109
-      .map.span4 Map
-    .hostStory.span11
-      host story
-    .eventMenu.span11
-      menu
-    .eventAttendees.span11
-      attendees
-      .chatter.span4
-        chattering
+    .row
+    .row.section-header-first-child
+      .span1
+      .span10
+        %h1 Our Story
+      .span1
+    .host-story.row
+      .span1
+      .span10
+        %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip
+      .span1 
+    .row.section-header
+      .span1
+      .span10
+        %h1 The Menu
+      .span1
+    .event-menu.row
+      .span1
+      .span10
+        %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip
+      .span1
+    .row.section-header
+      .span1
+      .span10
+        %h1 Chatter
+      .span1
+    .event-attendees.row
+      .span1
+      .attendees.span10
+        %p attendees
+      .span1
+    .event-chatter.row
+      .span1
+      .chatter.span10
+        %p threaded comments
+      .span1
 
 
 -#

@@ -1,8 +1,8 @@
-.container
-  .row
-    .span3
-      = link_to image_tag("white_simmr.png", :border=>0), '../home/index', :class => 'brand'
-      %ul.nav
+.nav-container
+  .row.nav
+    .span4.logo-and-location
+      = link_to image_tag("logo_orange_text.png", :border=>0), '../home/index', :class => "logo"
+      %ul
         %li.dropdown
           %a{:href => "#", "data-toggle" => "dropdown"}
             San Francisco
@@ -16,10 +16,24 @@
             %li.dropitem 
               %p Don't see your city? Enter your zip code or city name
               %form.navbar-form
-                %input.span2{:type => "text"}/
-    .span9
-      Create an Event
-      Request an Event
-      User Profile
-      %input{:type => 'text'}
+                %input.span2{:type => "text", :placeholder => "City or Zip"}
+    .span8.nav-right
+      %ul
+        %ul.user-nav-control.pull-right
+          %li.dropdown
+            %a{:href => "#", "data-toggle" => "dropdown"}
+              User Name
+              %span.caret
+            %ul.dropdown-menu{"aria-labeledby" => "dLabel", :role => "menu"}
+              %li.dropitem
+                %a{:href => "#", :tabindex => "-1"} Dashboard
+              %li.dropitem
+                %a{:href => "#", :tabindex => "-1"} Profile
+              %li.dropitem
+                %a{:href => "#", :tabindex =>" -1"} Sign Out
+        %li.pull-right
+          %a{:href =>"#"}Request an Event
+        %li.pull-right
+          %a{:href =>"#"}Create an Event
+        %input.pull-right{:type => 'text', :placeholder => "Search Events"}
       
