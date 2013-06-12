@@ -1,5 +1,5 @@
 !!!
-%html{'ng-app' => 'simmr'}
+%html{'ng-app' => 'Simmr'}
   %head
     %title simmr
     %link{:href => "http://thescenicroute0.files.wordpress.com/2013/03/favicon2.png", :rel => "icon", :type => "image/png"}/
@@ -11,6 +11,7 @@
     = csrf_meta_tags
     %link{:href => "http://fonts.googleapis.com/css?family=Merriweather+Sans|Noto+Sans|Open+Sans|Satisfy", :rel => "stylesheet", :type => "text/css"}
   %body
+    = render 'layouts/header2'
     .container.main
       = yield
 

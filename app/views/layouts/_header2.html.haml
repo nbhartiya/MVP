@@ -1,0 +1,25 @@
+.container
+  .row
+    .span3
+      = link_to image_tag("white_simmr.png", :border=>0), '../home/index', :class => 'brand'
+      %ul.nav
+        %li.dropdown
+          %a{:href => "#", "data-toggle" => "dropdown"}
+            San Francisco
+            %span.caret
+          %ul.dropdown-menu{"aria-labeledby" => "dLabel", :role => "menu"}
+            %li.dropitem
+              %a{:href => "#", :tabindex => "-1"} Other City 1
+            %li.dropitem
+              %a{:href => "#", :tabindex => "-1"} Other City 2
+            %li.divider
+            %li.dropitem 
+              %p Don't see your city? Enter your zip code or city name
+              %form.navbar-form
+                %input.span2{:type => "text"}/
+    .span9
+      Create an Event
+      Request an Event
+      User Profile
+      %input{:type => 'text'}
+      

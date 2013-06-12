@@ -159,6 +159,7 @@ body.events {
 // event profile styling
 
 .eventProfile{
+    position: relative;
 	margin-top: 80px;
 	#eventCarousel {
 		.carousel-inner{
@@ -168,6 +169,18 @@ body.events {
 		.carousel-control{
 			margin-top: 200px;
 		}
+	}
+	.eventImages {
+	    position: absolute;
+	    width: 100%;
+	    z-index: -1;
+	}
+	.event-registration {
+	    margin-top: 30px;
+	}
+	.event-info {
+	    background: rgba(0,0,0,.8);
+	    padding: 30px;
 	}
 	.eventTitle h1{
 		font-size: 20px;

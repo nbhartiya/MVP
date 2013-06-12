@@ -1,24 +1,60 @@
-%body.container.events
-  .navbar.navbar-fixed-top 
-    = render "layouts/header"
+.events
 
-  .eventProfile
-    .eventImages.span7
-      #eventCarousel.carousel.slide
-        %ol.carousel-indicators
-          %li.active{"data-target" => "#eventCarousel", "data-slide-to" => "0"}
-          %li{"data-target" => "#eventCarousel", "data-slide-to" => "1"} 
-          %li{"data-target" => "#eventCarousel", "data-slide-to" => "2"}
-        .carousel-inner
-          .item.active
-            =image_tag "Food 17.jpg"
-          .item
-            =image_tag "Food 18.jpg"
-          .item
-            =image_tag "Food 22.jpg"
-        %a.carousel-control.left{"data-slide" => "prev", :href => "#eventCarousel"} ‹
-        %a.carousel-control.right{"data-slide" => "next", :href => "#eventCarousel"} ›
-      
+  .eventProfile.row
+    .event-overview.span12
+      .eventImages
+        #eventCarousel.carousel.slide
+          %ol.carousel-indicators
+            %li.active{"data-target" => "#eventCarousel", "data-slide-to" => "0"}
+            %li{"data-target" => "#eventCarousel", "data-slide-to" => "1"} 
+            %li{"data-target" => "#eventCarousel", "data-slide-to" => "2"}
+          .carousel-inner
+            .item.active
+              =image_tag "Food 17.jpg", :width => '100%'
+            .item
+              =image_tag "Food 18.jpg"
+            .item
+              =image_tag "Food 22.jpg"
+          %a.carousel-control.left{"data-slide" => "prev", :href => "#eventCarousel"} ‹
+          %a.carousel-control.right{"data-slide" => "next", :href => "#eventCarousel"} ›
+      .event-registration.row{'ng-controller' => 'EventRegisterCtrl'}
+        .span1
+        .span4
+          .event-info
+            %h1 The Silk Road {{nene}}
+            %h2 Tea Tasting with Samovar
+            %h2 Saturday, June 28
+            %p 2 seats left
+            .progress
+              .bar{:style => "width: 60%;"}
+            %select
+              %option{:disabled => "disabled", :selected => "selected", :value => ""} Please select a name
+              - @event.people_limit.times do |o|
+                %option{:value => o+1} #{o+1} seats
+            .btn.btn-warning{'ng-click' => 'payment=true'} Go
+            %ul
+              %li Facebook
+              %li Twitter
+              %li Yelp
+              %li Email
+        .span2
+        .span4
+          .event-purchase{'ng-show' => 'payment'}
+            %h2 Total: $120
+            %h3 You will not be charged until the event tilts
+            %h2 Billing Information
+            %label Address
+            %input{:type=>'text'}
+            %label City/State
+            %input{:type=>'text'}
+            %h2 Payment
+            %label CC#
+            %input{:type=>'text'}
+            %label Expiration / CSC
+            %input{:type=>'text'}
+        .span1
+
+  .eventProfile.row    
     %table.eventInfo.span4
       %tr
         %td.eventTitle
