@@ -39,13 +39,14 @@
               .progress.progress-warning
                 -#probably want to pull this arithmetic out too
                 .bar{:style => "width: #{(@event.guests.count/@event.people_limit.to_f)*100}%"}
-              %select.number-of-seats
+              %select.number-of-seats{'ng-model' => 'num_guests'}
                 %option{:disabled => "disabled", :selected => "selected", :value => ""} Number of Seats
                 - (@event.people_limit - @event.guests.count).times do |s|
                   %option{:value => s+1} #{s+1} seats
               .btn.btn-warning{'ng-click' => 'payment=1'} Go
               %table.event-sharing
                 %tr
+<<<<<<< HEAD
                   %td
                     %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#"}
                   %td
@@ -75,6 +76,23 @@
               %h2 Who are you bringing?
               -#this needs to show fields for however many guests there are (ideally just 2-3 at a time if there's a TON)
               %h3 Guest
+=======
+                  %td FB
+                  %td TWT
+                  %td YLP
+                  %td MAIL
+                %tr
+                  %td 190 likes
+                  %td 190 followers
+                  %td 190 reviews
+                  %td Mail a friend
+          .span2
+          .span4
+            .event-purchase{'ng-show' => 'payment==1', 'ng-init'=> "cost=#{@event.cost}"}
+              %h2 Total: ${{total()}}
+              %h3 You will not be charged until the event tilts
+              %h3 Billing Information
+>>>>>>> 30f6b47813923abc0cfac774ea5e5bcd13d013a4
               -# Need to hook up to user.charges.new
               %input.guest-name{:type=>'text', :placeholder =>"Guest Full Name"}
               %input.guest-email{:type=>'text', :placeholder =>"Guest Email"}
