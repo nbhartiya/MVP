@@ -157,13 +157,18 @@ $main_orange: rgb(255, 178, 35);
 // event profile styling
 
 .event-profile{
+	height: 500px;
 	#event-carousel {
 		position: absolute;
-	    width: 1170px;
+	    width: 100%;
 	    z-index: -1;
 		.carousel-inner{
 			height: 500px;
 			width: auto;
+			img{
+				width: 100%;
+				background: no-repeat;
+			}
 		}
 	}
 	.event-registration {

@@ -1,66 +1,91 @@
 .events
-  .event-profile.row
-    .event-stats.span12
+  .event-profile
+    .event-stats
       #event-carousel.carousel.slide
         %ol.carousel-indicators
-          %li.active{"data-target" => "#event-carousel", "data-slide-to" => "0"}
-          %li{"data-target" => "#event-carousel", "data-slide-to" => "1"} 
-          %li{"data-target" => "#event-carousel", "data-slide-to" => "2"}
+          -@event.images.each_with_index do |i, index|         
+            -if index == 0
+              %li.active{"data-target" => "#event-carousel", "data-slide-to" => index}
+            -else
+              %li{"data-target" => "#event-carousel", "data-slide-to" => index}
+           
         .carousel-inner
-          .item.active
-          -for image in @event.images
-            = filepicker_image_tag image.image, w: 1000, h: 500
-      .event-registration.row{'ng-controller' => 'EventRegisterCtrl'}
-        .span1
-        .span4
-          .event-summary
-            %h1
-              =@event.title
-            -# {{nene}}
-            %h2 
-              =@event.description
-            %h2 
-              =@event.date.strftime("%A %B %d, %I:%M%p")
-            %h2 Mission
-            %p 
-              -# pull out and make this a method somewhere...
-              =@event.people_limit - @event.guests.count
-              seats left
-            .progress.progress-warning
-              -#probably want to pull this arithmetic out too
-              .bar{:style => "width: #{(@event.guests.count/@event.people_limit.to_f)*100}%"}
-            %select.number-of-seats
-              %option{:disabled => "disabled", :selected => "selected", :value => ""} Number of Seats
-              - (@event.people_limit - @event.guests.count).times do |s|
-                %option{:value => s+1} #{s+1} seats
-            .btn.btn-warning{'ng-click' => 'payment=true'} Go
-            %table.event-sharing
-              %tr
-                %td FB
-                %td TWT
-                %td YLP
-                %td MAIL
-              %tr
-                %td 190 likes
-                %td 190 followers
-                %td 190 reviews
-                %td Mail a friend
-        .span2
-        .span4
-          .event-purchase{'ng-show' => 'payment'}
-            %h2 Total: $120
-            %h3 You will not be charged until the event tilts
-            %h3 Billing Information
-            -# Need to hook up to user.charges.new
-            %input.address{:type=>'text', :placeholder =>"Address"}
-            %input.city{:type=>'text', :placeholder =>"City"}
-            %select.state
-              %option{:disabled => "disabled", :selected => "selected", :value => ""} State
-            %h3 Payment
-            %input.cc-number{:type=>'text', :placeholder => "Credit Card Number"}
-            %input.cc-expiration{:type=>'text', :placeholder => "Expiration"}
-            %input.cc-csc{:type=>'text', :placeholder => "CSC"}
-        .span1
+          -@event.images.each_with_index do |i, index|
+            -if index == 0
+              .item.active
+                = filepicker_image_tag i.image, w: 1000, h: 500
+            -else
+              .item
+                = filepicker_image_tag i.image, w: 1000, h: 500
+      .container
+        .event-registration.row{'ng-controller' => 'EventRegisterCtrl'}
+          .span1
+          .span4
+            .event-summary
+              %h1
+                =@event.title
+              -# {{nene}}
+              %h2 
+                =@event.description
+              %h2 
+                =@event.date.strftime("%A %B %d, %I:%M%p")
+              %h2 Mission
+              %p 
+                -# pull out and make this a method somewhere...
+                =@event.people_limit - @event.guests.count
+                seats left
+              .progress.progress-warning
+                -#probably want to pull this arithmetic out too
+                .bar{:style => "width: #{(@event.guests.count/@event.people_limit.to_f)*100}%"}
+              %select.number-of-seats
+                %option{:disabled => "disabled", :selected => "selected", :value => ""} Number of Seats
+                - (@event.people_limit - @event.guests.count).times do |s|
+                  %option{:value => s+1} #{s+1} seats
+              .btn.btn-warning{'ng-click' => 'payment=1'} Go
+              %table.event-sharing
+                %tr
+                  %td FB
+                  %td TWT
+                  %td YLP
+                  %td MAIL
+                %tr
+                  %td 190 likes
+                  %td 190 followers
+                  %td 190 reviews
+                  %td Mail a friend
+          .span2
+          .span4
+            .event-purchase{'ng-show' => 'payment==1'}
+              %h2 Total: $120
+              %h3 You will not be charged until the event tilts
+              %h3 Billing Information
+              -# Need to hook up to user.charges.new
+              %input.address{:type=>'text', :placeholder =>"Address"}
+              %input.city{:type=>'text', :placeholder =>"City"}
+              %select.state
+                %option{:disabled => "disabled", :selected => "selected", :value => ""} State
+              %h3 Payment
+              %input.cc-number{:type=>'text', :placeholder => "Credit Card Number"}
+              %input.cc-expiration{:type=>'text', :placeholder => "Expiration"}
+              %input.cc-csc{:type=>'text', :placeholder => "CSC"}
+              .btn.btn-warning{'ng-click' =>'payment=2'} Next
+
+            .event-purchase{'ng-show' => 'payment==2'}
+              %h2 Total: $80
+              %h3 You will not be charged until the event tilts
+              %h3 Billing Information
+              -# Need to hook up to user.charges.new
+              %input.address{:type=>'text', :placeholder =>"Address"}
+              %input.city{:type=>'text', :placeholder =>"City"}
+              %select.state
+                %option{:disabled => "disabled", :selected => "selected", :value => ""} State
+              %h3 Payment
+              %input.cc-number{:type=>'text', :placeholder => "Credit Card Number"}
+              %input.cc-expiration{:type=>'text', :placeholder => "Expiration"}
+              %input.cc-csc{:type=>'text', :placeholder => "CSC"}
+              .btn.btn-warning{'ng-click' =>'payment=2'} Next
+          .span1
+  .container
     .row
     .row.section-header-first-child
       .span1

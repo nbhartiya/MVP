@@ -7,4 +7,4 @@ $ ->
 
 $(document).ready ->
   $("#myCarousel").carousel interval: 6000
-  $("#eventCarousel").carousel interval: false
+  $("#event-carousel").carousel interval: 7000
