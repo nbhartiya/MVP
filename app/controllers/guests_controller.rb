@@ -2,7 +2,12 @@ class GuestsController < ApplicationController
   # GET /guests
   # GET /guests.json
   def index
-    @guests = Guest.all
+    if params[:ticket_id].present?
+      @ticket = Ticket.find(params[:ticket_id])
+      @guests = @ticket.guests 
+    else
+      @guests = Guest.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb

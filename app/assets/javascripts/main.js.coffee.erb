@@ -2,4 +2,6 @@ Simmr = angular.module('Simmr', ['ngResource', 'rails', 'ui', 'ui.bootstrap'])
 
 Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
   $scope.nene = "cook something"
+  $scope.total = ->
+    $scope.num_guests * parseInt($scope.cost)
 ]
