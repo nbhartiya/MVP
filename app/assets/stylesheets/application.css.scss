@@ -24,67 +24,40 @@ $trans_black_more: rgba(54, 54, 54, 0.7);
 $trans: rgba(0,0,0,0);
 $main_orange: rgb(255, 178, 35);
 
+*{
+	font-family: 'Open Sans', sans-serif;        
+}
+
 // header styling
 
 .nav-container{
 	display: block;
 	width: 1170px;
-	margin: 30px auto;
+	margin: 20px auto;
+	font-size: 13px;
 	.nav{	
 		.logo-and-location{
 			float: left;
-			ul{
-				list-style: none;
-				margin: 30px 10px 0 10px;
-				font-size: 13px;
-				li.dropdown{
-					a{
-						margin: 0;
-						padding: 0;
-					}
-					a:hover{
-						color: black;
-						background: none;
-					}
-					a:hover, a:visited, a:active, a:focus{
-						text-decoration: none;
-						outline: none;
-					}
-					.caret{
-						color: white;
-					}
-				}
-			}
 			.logo{
-				width: 50%;
-			}
-			.logo, ul{
-				float: left;
-
-			}
-			.dropdown-menu{
-				margin: 10px 0 0 0;
-				.dropitem{
-					font-size: 12px;
-					p{
-						padding: 0px 10px 0px 10px;
-						font-size: 12px;
-					}
-					form{
-						padding: 0px 10px 10px 10px;
-						.span2{
-							width: 120px;
-						}
-					}
-					a:link, a:visited{
-						padding: 10px 0px 10px 10px;
-					}
-					a:hover{
-	 					color: white;
-	 					background-color: $main_orange;
-	 					background-image: none;
-					}
+					width: 50%;
 				}
+			.logo, ul{
+					float: left;
+				}
+			a.city{
+				margin: 0;
+				padding:0;
+				margin: 0;
+				list-style: none;
+				float: left;
+			}
+			a:hover{
+				color: black;
+				background: none;
+			}
+			a:hover, a:visited, a:active, a:focus{
+				text-decoration: none;
+				outline: none;
 			}
 		}
 		ul{
@@ -95,7 +68,7 @@ $main_orange: rgb(255, 178, 35);
 				margin: 0;
 				li.dropdown{
 					a{
-						margin: 0;
+						margin: 0 10px;
 						padding: 0;
 					}
 					a:hover{
@@ -106,15 +79,13 @@ $main_orange: rgb(255, 178, 35);
 						text-decoration: none;
 						outline: none;
 					}
-					.caret{
-						color: white;
-					}
 					.dropdown-menu{
 						margin: 10px 0 0 0;
+						min-width: 120px;
 						.dropitem{
-							font-size: 12px;
+							font-size: 13px;
 							a:link, a:visited{
-								padding: 10px 0px 10px 10px;
+								padding: 5px;
 							}
 							a:hover{
 			 					color: white;

@@ -1,19 +1,20 @@
-
-= simple_form_for Charge.new do |f|
-  -#%form#charge_form{:name=>'Nene', :action => "/charges", :method => "post"}
-  %input{:type => 'string', :id => 'full_name', :placeholder => 'full name'}
-  %input{:type => 'text', :id => 'credit_card_number', :placeholder => 'number', :value => '4242424242424242'}
-  %input{:type => 'number', :id => 'security_code', :placeholder => 'security code', :value => '123'}
-  %input{:type => 'text', :id => 'expiration_month', :placeholder => 'expiration month', :value => '12'}
-  %input{:type => 'integer', :id => 'expiration_year', :placeholder => 'expiration year', :value => '2015'}
-  %input{:type => 'string', :id => 'address1', :placeholder => 'Address Line 1'}
-  %input{:type => 'string', :id => 'address2', :placeholder => 'Address Line 2'}
-  %input{:type => 'string', :id => 'city', :placeholder => 'City'}
-  %input{:type => 'string', :id => 'state', :placeholder => 'State'}
-  %input{:type => 'string', :id => 'zipcode', :placeholder => 'Zip Code'}
-  =f.hidden_field :last4
-  =f.hidden_field :token
-  -#%input{:type => 'hidden', :id => 'stripe_token'}
-  -#%input{:type => 'hidden', :id => 'last_4_digits'}
-
-  =f.submit :id => 'new_charge'
+%form#new_charge.simple_form.new_charge.ng-pristine.ng-valid{"accept-charset" => "UTF-8", :action => "/charges", :method => "post"}
+  %div{:style => "margin:0;padding:0;display:inline"}
+    %input{:name => "utf8", :type => "hidden", :value => "✓"}
+    %input{:name => "authenticity_token", :type => "hidden", :value => "AOfcJWtiQMtPYck5bWTV5mlMRUf/q11ktoJXs5942to="}
+  %h2 You will not be charged until the event tilts
+  %h3 Credit Card Information
+  %input#full_name{:placeholder => "Full Name", :type => "string"}
+  %input#credit_card_number{:placeholder => "CC Number", :type => "text"}
+  %input#security_code{:placeholder => "Sec Code", :type => "number"}
+  %input#expiration_month{:placeholder => "Exp Month", :type => "text"}
+  %input#expiration_year{:placeholder => "Exp Year", :type => "integer"}
+  %h3 Billing Address
+  %input#address1{:placeholder => "Address", :type => "string"}
+  -#%input#address2{:placeholder => "Address Line 2", :type => "string"}/
+  %input#city{:placeholder => "City", :type => "string"}
+  %input#state{:placeholder => "State", :type => "string"}
+  %input#zipcode{:placeholder => "Zip Code", :type => "string"}
+  %input#charge_last4{:name => "charge[last4]", :type => "hidden"}
+  %input#charge_token{:name => "charge[token]", :type => "hidden"}
+  -#%input#new_charge{:name => "commit", :type => "submit", :value => "Create Charge"}
