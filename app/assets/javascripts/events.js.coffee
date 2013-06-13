@@ -16,6 +16,14 @@ $(document).ready ->
   $(document).on "click", "#ticket_purchase", ->
     $("#new_charge").submit()
 
+  $(".event-stats").mouseover ->
+    $("#event-carousel").carousel "pause"
+
+  $(".event-stats").mouseleave ->
+    $("#event-carousel").carousel "cycle"
+
+  $(document).on "click", ".event-go-button", ->
+    $("#event-carousel").carousel "pause"
 
   $(".listing-card").mouseover ->
     $(this).find(".listing-card-text").css "bottom", "110px"
