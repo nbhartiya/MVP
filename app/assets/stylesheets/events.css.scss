@@ -167,13 +167,13 @@ $main_orange: rgb(255, 178, 35);
 		}
 	}
 	.event-registration {
-	    margin-top: 30px;
+	    margin-top: 25px;
 		.event-summary {
 		    background: rgba(0,0,0,.8);
 		    padding: 30px;
 			h1{
-				font-size: 40px;
-				line-height: 1.5em;
+				font-size: 30px;
+				line-height: 1.2em;
 				font-weight: 100;
 				color: white;
 				margin: 0;
@@ -187,6 +187,7 @@ $main_orange: rgb(255, 178, 35);
 			}
 			.number-of-seats{
 				margin-top: 10px;
+				width: 60%
 			}
 			.btn{
 				width: 50px;
@@ -195,6 +196,10 @@ $main_orange: rgb(255, 178, 35);
 			.event-sharing{
 				margin-top: 20px;
 				color: white;
+			}
+			p{
+			    text-align: right;
+			    color: white;
 			}
 		}
 		.event-purchase{

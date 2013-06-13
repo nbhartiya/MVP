@@ -8,26 +8,31 @@
           %li{"data-target" => "#event-carousel", "data-slide-to" => "2"}
         .carousel-inner
           .item.active
-            =image_tag "Food 17.jpg", :width => '100%'
-          .item
-            =image_tag "Food 18.jpg"
-          .item
-            =image_tag "Food 22.jpg"
+          -for image in @event.images
+            = filepicker_image_tag image.image, w: 1000, h: 500
       .event-registration.row{'ng-controller' => 'EventRegisterCtrl'}
         .span1
         .span4
           .event-summary
-            %h1 The Silk Road
+            %h1
+              =@event.title
             -# {{nene}}
-            %h2 Tea Tasting with Samovar
-            %h2 Saturday, June 28
-            %p 2 seats left
+            %h2 
+              =@event.description
+            %h2 
+              =@event.date.strftime("%A %B %d, %I:%M%p")
+            %h2 Mission
+            %p 
+              -# pull out and make this a method somewhere...
+              =@event.people_limit - @event.guests.count
+              seats left
             .progress.progress-warning
-              .bar{:style => "width: 60%;"}
+              -#probably want to pull this arithmetic out too
+              .bar{:style => "width: #{(@event.guests.count/@event.people_limit.to_f)*100}%"}
             %select.number-of-seats
               %option{:disabled => "disabled", :selected => "selected", :value => ""} Number of Seats
-              - @event.people_limit.times do |o|
-                %option{:value => o+1} #{o+1} seats
+              - (@event.people_limit - @event.guests.count).times do |s|
+                %option{:value => s+1} #{s+1} seats
             .btn.btn-warning{'ng-click' => 'payment=true'} Go
             %table.event-sharing
               %tr
@@ -46,6 +51,7 @@
             %h2 Total: $120
             %h3 You will not be charged until the event tilts
             %h3 Billing Information
+            -# Need to hook up to user.charges.new
             %input.address{:type=>'text', :placeholder =>"Address"}
             %input.city{:type=>'text', :placeholder =>"City"}
             %select.state
@@ -64,7 +70,8 @@
     .host-story.row
       .span1
       .span10
-        %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip
+        %p
+          =@event.host.last_name
       .span1 
     .row.section-header
       .span1
@@ -74,7 +81,8 @@
     .event-menu.row
       .span1
       .span10
-        %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip
+        %p 
+          =@event.menu_text
       .span1
     .row.section-header
       .span1
@@ -84,7 +92,10 @@
     .event-attendees.row
       .span1
       .attendees.span10
-        %p attendees
+        %p
+          -for guest in @event.guests
+            = guest.first_name + " " + guest.last_name
+            %p
       .span1
     .event-chatter.row
       .span1
