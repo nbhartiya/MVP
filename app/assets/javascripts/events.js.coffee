@@ -3,6 +3,28 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(document).ready ->
+  $("#event-carousel").carousel interval: 6000
+
+  $(".heart_this a").click ->
+    if $(this).hasClass("black")
+      $(this).removeClass "black"
+      $(this).addClass "orange"
+    else
+      $(this).removeClass "orange"
+      $(this).addClass "black"
+
+  $(document).on "click", "#ticket_purchase", ->
+    $("#new_charge").submit()
+
+  $(".event-stats").mouseover ->
+    $("#event-carousel").carousel "pause"
+
+  $(".event-stats").mouseleave ->
+    $("#event-carousel").carousel "cycle"
+
+  $(document).on "click", ".event-go-button", ->
+    $("#event-carousel").carousel "pause"
+
   $(".listing-card").mouseover ->
     $(this).find(".listing-card-text").css "bottom", "110px"
     $(this).find("tr.bottom").show 500

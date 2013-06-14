@@ -13,10 +13,10 @@
           -@event.images.each_with_index do |i, index|
             -if index == 0
               .item.active
-                = filepicker_image_tag i.image, w: 1000, h: 500
+                = filepicker_image_tag i.image
             -else
               .item
-                = filepicker_image_tag i.image, w: 1000, h: 500
+                = filepicker_image_tag i.image
       .container
         .event-registration.row{'ng-controller' => 'EventRegisterCtrl'}
           .span1
@@ -27,9 +27,11 @@
               -# {{nene}}
               %h2 
                 =@event.description
-              %h2 
+              %h2 Host Name
+              %hr
+              %h3 
                 =@event.date.strftime("%A %B %d, %I:%M%p")
-              %h2 Mission
+              %h3 Mission
               %p 
                 -# pull out and make this a method somewhere...
                 =@event.people_limit - @event.guests.count
@@ -41,94 +43,95 @@
                 %option{:disabled => "disabled", :selected => "selected", :value => ""} Number of Seats
                 - (@event.people_limit - @event.guests.count).times do |s|
                   %option{:value => s+1} #{s+1} seats
-              .btn.btn-warning{'ng-click' => 'payment=1'} Go
+              .btn.btn-warning.event-go-button{'ng-click' => 'payment=1'} Go
               %table.event-sharing
                 %tr
-                  %td FB
-                  %td TWT
-                  %td YLP
-                  %td MAIL
-                %tr
-                  %td 190 likes
-                  %td 190 followers
-                  %td 190 reviews
-                  %td Mail a friend
-          .span2
-          .span4
-            .event-purchase{'ng-show' => 'payment==1', 'ng-init'=> "cost=#{@event.cost}"}
-              %h2 Total: ${{total()}}
-              %h3 You will not be charged until the event tilts
-              %h3 Billing Information
+                  %td
+                    %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#"}
+                  %td
+                    %a.sb.twitter.circle.no-border.no-shadow.orange{:href=>"#"}
+                  %td
+                    %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
+                  %td
+                    %a.sb.share_this.circle.no-border.no-shadow.orange{:href=>"#"}
+                %tr.host-stats
+                  %td 190
+                  %td 190
+                  %td 190
+                  %td Email
+                %tr.host-stat-labels
+                  %td likes
+                  %td followers
+                  %td reviews
+                  %td a friend
+          .span1.heart_this
+            %a.sb.heart.circle.no-border.no-shadow.orange
+          .span1
+          .span4 
+            -#this needs to happen only when tickets >1
+            .event-guests.clearfix{'ng-show' => 'payment==1', 'ng-init'=> "cost=#{@event.cost}"}
+              %h1 Total: ${{total()}}
+              %hr
+              %h2 Who are you bringing?
+              -#this needs to show fields for however many guests there are (ideally just 2-3 at a time if there's a TON)
+              %h3 Guest
               -# Need to hook up to user.charges.new
-              %input.address{:type=>'text', :placeholder =>"Address"}
-              %input.city{:type=>'text', :placeholder =>"City"}
-              %select.state
-                %option{:disabled => "disabled", :selected => "selected", :value => ""} State
-              %h3 Payment
-              %input.cc-number{:type=>'text', :placeholder => "Credit Card Number"}
-              %input.cc-expiration{:type=>'text', :placeholder => "Expiration"}
-              %input.cc-csc{:type=>'text', :placeholder => "CSC"}
-              .btn.btn-warning{'ng-click' =>'payment=2'} Next
+              %input.guest-name{'ng-model' => 'guest.name', :type=>'text', :placeholder =>"Guest Full Name", :class => "error-{{guest.nameError}}"}
+              %input.guest-email{'ng-model' => 'guest.email',:type=>'text', :placeholder =>"Guest Email", :class => "error-{{guest.emailError}}"}
+              .btn.btn-warning.standalone-button{'ng-click' => 'gotoPayment()'} Next
 
-            .event-purchase{'ng-show' => 'payment==2'}
-              %h2 Total: ${{total()}}
-              %h3 You will not be charged until the event tilts
-              %h3 Billing Information
-              -# Need to hook up to user.charges.new
-              %input.address{:type=>'text', :placeholder =>"Address"}
-              %input.city{:type=>'text', :placeholder =>"City"}
-              %select.state
-                %option{:disabled => "disabled", :selected => "selected", :value => ""} State
-              %h3 Payment
-              %input.cc-number{:type=>'text', :placeholder => "Credit Card Number"}
-              %input.cc-expiration{:type=>'text', :placeholder => "Expiration"}
-              %input.cc-csc{:type=>'text', :placeholder => "CSC"}
-              .btn.btn-warning{'ng-click' =>'payment=2'} Next
+            .event-purchase{'ng-show' => 'payment==2', 'ng-init'=> "cost=#{@event.cost}"}
+              %h1 Total: ${{total()}}
+              %hr
+              = render 'charges/stripe'
+              .btn.btn-warning#ticket_purchase{'ng-click' =>'payment=2'} Submit
+              .btn.btn-warning{'ng-click'=>'payment=1'} Previous
           .span1
   .container
-    .row
-    .row.section-header-first-child
+    .row.section-header
       .span1
       .span10
         %h1 Our Story
       .span1
-    .host-story.row
-      .span1
-      .span10
-        %p
-          =@event.host.last_name
-          -#=@event.host.profile.story
-          -# Need to make sure a host story exists for that host before they can create the event...
-      .span1 
+  .host-story.row
+    .span1
+    .span10
+      %p
+        =@event.host.last_name
+        -#=@event.host.profile.story
+        -# Need to make sure a host story exists for that host before they can create the event...
+    .span1 
+  .container
     .row.section-header
       .span1
       .span10
         %h1 The Menu
       .span1
-    .event-menu.row
-      .span1
-      .span10
-        %p 
-          =@event.menu_text
-      .span1
+  .event-menu.row
+    .span1
+    .span10
+      %p 
+        =@event.menu_text
+    .span1
+  .container
     .row.section-header
       .span1
       .span10
         %h1 Chatter
       .span1
-    .event-attendees.row
-      .span1
-      .attendees.span10
-        %p
-          -for guest in @event.guests
-            = guest.first_name + " " + guest.last_name
-            %p
-      .span1
-    .event-chatter.row
-      .span1
-      .chatter.span10
-        %p threaded comments
-      .span1
+  .event-attendees.row
+    .span1
+    .attendees.span10
+      %p 
+        -for guest in @event.guests
+          = guest.first_name + " " + guest.last_name
+          %p
+    .span1
+  .event-chatter.row
+    .span1
+    .chatter.span10
+      %p threaded comments
+    .span1
 
 
 -#
