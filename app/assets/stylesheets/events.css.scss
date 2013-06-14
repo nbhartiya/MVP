@@ -68,6 +68,7 @@ $main_orange: rgb(255, 178, 35);
 			margin: 0;
 			width: 400px;
 			height: 260px;
+			overflow: hidden;
 			}
 		.listing-card-text{	
 			z-index: 10;
@@ -222,7 +223,6 @@ $main_orange: rgb(255, 178, 35);
 				margin-left: auto;
 				margin-right: auto;
 				td{
-					width: 25%;
 					text-align: center;
 				}
 			}
@@ -321,12 +321,19 @@ $main_orange: rgb(255, 178, 35);
 
 .host-story, .event-menu, .event-attendees, .event-chatter{
 	background: rgb(230,230,230);
-	padding: 10px 0;
+	padding: 20px 0;
 	p{
 		font-size: 14px;
-		line-height: 1.5em;
+		line-height: 2em;
 	}
 }
 
 // form styling
+
+
+// error styling
+
+input.error-true {
+	color: red;
+}
 

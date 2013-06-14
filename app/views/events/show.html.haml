@@ -65,7 +65,7 @@
                   %td reviews
                   %td a friend
           .span1.heart_this
-            %a.sb.heart.circle.no-border.no-shadow.black
+            %a.sb.heart.circle.no-border.no-shadow.orange
           .span1
           .span4 
             -#this needs to happen only when tickets >1
@@ -76,9 +76,9 @@
               -#this needs to show fields for however many guests there are (ideally just 2-3 at a time if there's a TON)
               %h3 Guest
               -# Need to hook up to user.charges.new
-              %input.guest-name{:type=>'text', :placeholder =>"Guest Full Name"}
-              %input.guest-email{:type=>'text', :placeholder =>"Guest Email"}
-              .btn.btn-warning.standalone-button{'ng-click' =>'payment=2'} Next
+              %input.guest-name{'ng-model' => 'guest.name', :type=>'text', :placeholder =>"Guest Full Name", :class => "error-{{guest.nameError}}"}
+              %input.guest-email{'ng-model' => 'guest.email',:type=>'text', :placeholder =>"Guest Email", :class => "error-{{guest.emailError}}"}
+              .btn.btn-warning.standalone-button{'ng-click' => 'gotoPayment()'} Next
 
             .event-purchase{'ng-show' => 'payment==2', 'ng-init'=> "cost=#{@event.cost}"}
               %h1 Total: ${{total()}}
@@ -120,7 +120,7 @@
   .event-attendees.row
     .span1
     .attendees.span10
-      %p
+      %p 
         -for guest in @event.guests
           = guest.first_name + " " + guest.last_name
           %p

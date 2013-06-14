@@ -1,6 +1,27 @@
 Simmr = angular.module('Simmr', ['ngResource', 'rails', 'ui', 'ui.bootstrap'])
 
 Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
+  $scope.guest = {}
+  $scope.guest.name = ''
+  $scope.guest.email = ''
+  $scope.nene = "cook something"
+  $scope.total = ->
+    $scope.num_guests * parseInt($scope.cost)
+  $scope.gotoPayment = ->
+  	console.log $scope.guest.name, $scope.guest.email
+  	if ($scope.guest.name == '')
+  		$scope.guest.nameError = true
+  	else
+  		$scope.guest.nameError = false
+  	if ($scope.guest.email == '')
+  		$scope.guest.emailError = true
+  	else
+  		$scope.guest.emailError = false
+  	if ($scope.guest.emailError != true) && ($scope.guest.nameError != true)
+  		$scope.payment = 2
+]
+
+Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
   $scope.nene = "cook something"
   $scope.total = ->
     $scope.num_guests * parseInt($scope.cost)
