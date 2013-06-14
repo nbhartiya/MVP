@@ -71,7 +71,7 @@
               .btn.btn-warning{'ng-click' =>'payment=2'} Next
 
             .event-purchase{'ng-show' => 'payment==2'}
-              %h2 Total: $80
+              %h2 Total: ${{total()}}
               %h3 You will not be charged until the event tilts
               %h3 Billing Information
               -# Need to hook up to user.charges.new
@@ -97,6 +97,8 @@
       .span10
         %p
           =@event.host.last_name
+          -#=@event.host.profile.story
+          -# Need to make sure a host story exists for that host before they can create the event...
       .span1 
     .row.section-header
       .span1

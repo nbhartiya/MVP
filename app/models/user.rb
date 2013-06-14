@@ -37,6 +37,7 @@ class User < ActiveRecord::Base
   has_many :events_attended, :class_name => "Event", :through => :tickets
   has_many :events_hosted, :class_name => "Event", :foreign_key => "host_id"
   has_many :charges
+  has_one :profile
   
   before_create :confirmation_email
   

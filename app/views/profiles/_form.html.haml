@@ -1,0 +1,12 @@
+= simple_form_for(@profile) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :blurb
+    = f.input :location_id
+    = f.input :story
+    = f.input :home_zip
+    = f.input :work_zip
+
+  .form-actions
+    = f.button :submit
