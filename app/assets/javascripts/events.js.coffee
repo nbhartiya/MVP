@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(document).ready ->
+
   $("#event-carousel").carousel interval: 6000
 
   $(".heart_this a").click ->
@@ -12,9 +13,6 @@ $(document).ready ->
     else
       $(this).removeClass "orange"
       $(this).addClass "black"
-
-  $(document).on "click", "#ticket_purchase", ->
-    $("#new_charge").submit()
 
   $(".event-stats").mouseover ->
     $("#event-carousel").carousel "pause"

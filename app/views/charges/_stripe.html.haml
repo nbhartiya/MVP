@@ -4,17 +4,29 @@
     %input{:name => "authenticity_token", :type => "hidden", :value => "AOfcJWtiQMtPYck5bWTV5mlMRUf/q11ktoJXs5942to="}
   %h2 You will not be charged until the event tilts
   %h3 Credit Card Information
-  %input#full_name{:placeholder => "Full Name", :type => "string"}
-  %input#credit_card_number{:placeholder => "CC Number", :type => "text"}
-  %input#security_code{:placeholder => "Sec Code", :type => "number"}
-  %input#expiration_month{:placeholder => "Exp Month", :type => "text"}
-  %input#expiration_year{:placeholder => "Exp Year", :type => "integer"}
+  
+  %input#full_name{'ng-model' => "buyer.name", :placeholder => "Full Name", :type => "string", :class => "error-{{buyer.nameError}}"}
+  
+  %input#credit_card_number{'ng-model' => "buyer.ccNumber", :placeholder => "CC Number", :type => "text", :class => "error-{{buyer.ccNumberError}}"}
+  
+  %input#security_code{'ng-model' => "buyer.ccSecCode", :placeholder => "Sec Code", :type => "text", :class => "error-{{buyer.ccSecCodeError}}"}
+  
+  %input#expiration_month{'ng-model' => "buyer.ccExpMonth", :placeholder => "Exp Month", :type => "text", :class => "error-{{buyer.ccExpMonthError}}"}
+  
+  %input#expiration_year{'ng-model' => "buyer.ccExpYear", :placeholder => "Exp Year", :type => "text", :class => "error-{{buyer.ccExpYearError}}"}
+  
   %h3 Billing Address
-  %input#address1{:placeholder => "Address", :type => "string"}
+  
+  %input#address1{'ng-model' => "buyer.billingAddress", :placeholder => "Address", :type => "text", :class => "error-{{buyer.billingAddressError}}"}
   -#%input#address2{:placeholder => "Address Line 2", :type => "string"}/
-  %input#city{:placeholder => "City", :type => "string"}
-  %input#state{:placeholder => "State", :type => "string"}
-  %input#zipcode{:placeholder => "Zip Code", :type => "string"}
+  
+  %input#city{'ng-model' => "buyer.billingCity", :placeholder => "City", :type => "text", :class => "error-{{buyer.billingCityError}}"}
+  
+  %input#state{'ng-model' => "buyer.billingState", :placeholder => "State", :type => "text", :class => "error-{{buyer.billingStateError}}"}
+  
+  %input#zipcode{'ng-model' => "buyer.billingZip", :placeholder => "Zip Code", :type => "text", :class => "error-{{buyer.billingZipError}}"}
+  
   %input#charge_last4{:name => "charge[last4]", :type => "hidden"}
+  
   %input#charge_token{:name => "charge[token]", :type => "hidden"}
   -#%input#new_charge{:name => "commit", :type => "submit", :value => "Create Charge"}

@@ -5,24 +5,59 @@
       %ul
         %li
           %a.city{:href => "#", "data-toggle" => "tooltip", :href => "#", :title => "We're currently only in SF, but stay tuned for other cities!", "data-placement" => "right"} San Francisco
-          
+
     .span8.nav-right
       %ul
-        %ul.user-nav-control.pull-right
-          %li.dropdown
-            %a{:href => "#", "data-toggle" => "dropdown"}
-              =current_user.first_name + " " + current_user.last_name
-              %span.caret
-            %ul.dropdown-menu{"aria-labeledby" => "dLabel", :role => "menu"}
-              %li.dropitem
-                %a{:href => "#", :tabindex => "-1"} Dashboard
-              %li.dropitem
-                = link_to "Sign Out", destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?", :tabindex => "-1"
+        -if user_signed_in? == false
+          %li.pull-right
+            = link_to "Sign Up", "#sign_up", :"data-toggle" => "modal"
+          %li.pull-right
+            = link_to "Log In", "#sign_in", :"data-toggle" =>"modal"
+        -if user_signed_in?
+          %ul.user-nav-control.pull-right
+            %li.dropdown
+              %a{:href => "#", "data-toggle" => "dropdown"}
+                =current_user.first_name + " " + current_user.last_name
+                %span.caret
+              %ul.dropdown-menu{"aria-labeledby" => "dLabel", :role => "menu"}
+                %li.dropitem
+                  %a{:href => "#", :tabindex => "-1"} Dashboard
+                %li.dropitem
+                  = link_to "Sign Out", destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?", :tabindex => "-1"
         %li.pull-right
           %a{:href =>"#"}Request an Event
         %li.pull-right
           =link_to "Create an Event", new_event_path
         %input.pull-right{:type => 'text', :placeholder => "Search Events"}
+
+  #sign_up.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+    .modal-header
+      %h3#myModalLabel Sign Up for simmr
+    .modal-body
+      %p<
+        Find the best events to attend recommended by your friends.&nbsp
+        %a.learn_more_link{"data-toggle"=>"tooltip", "data-placement"=>"right", :href=>"#", :title=>"See where friends have visited and their reviews"}> Learn More
+      %p.strong.sign-up-text
+        Sign up with
+        %p
+          = render "shared/signup"
+    .modal-footer
+      %button.usersignup.btn.btn-warning Sign Up
+
+  #sign_in.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+    .modal-header
+      %h3#myModalLabel Log In
+    .modal-body
+      %p<
+        Find the best events to attend recommended by your friends.&nbsp
+        %a.learn_more_link{"data-toggle"=>"tooltip", "data-placement"=>"right", :href=>"#", :title=>"See where friends have visited and their reviews"}> Learn More
+      %p.strong.sign-up-text
+        Log in with
+        %p
+          = render "shared/login"
+    .modal-footer
+      %button.userlogin.btn.btn-warning Log In
+
 -#
   %a{:href => "#", "data-toggle" => "dropdown"}
     San Francisco
@@ -37,3 +72,4 @@
         %p Don't see your city? Enter your zip code or city name
         %form.navbar-form
           %input.span2{:type => "text", :placeholder => "City or Zip"}
+  

@@ -163,6 +163,9 @@ $main_orange: rgb(255, 178, 35);
 		position: absolute;
 	    width: 100%;
 	    z-index: -1;
+	    ol.carousel-indicators{
+	    	z-index: 50000000;
+	    }
 		.carousel-inner{
 			height: 550px;
 			width: auto;
@@ -174,9 +177,15 @@ $main_orange: rgb(255, 178, 35);
 	}
 	.event-registration {
 	    margin-top: 25px;
+	    -webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;    
+		box-sizing: border-box;
 		.event-summary {
 		    background: rgba(0,0,0,.8);
 		    padding: 30px;
+		    -webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;    
+			box-sizing: border-box;
 			h1{
 				font-size: 30px;
 				line-height: 1.2em;
@@ -210,7 +219,7 @@ $main_orange: rgb(255, 178, 35);
 				width: 75%;
 			}
 			.btn{
-				width: 24%;
+				width: 23%;
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box; 
@@ -255,7 +264,7 @@ $main_orange: rgb(255, 178, 35);
 				line-height: 1.5em;
 				font-weight: 100;
 				color: white;
-				margin: 0;
+				margin-bottom: 20px;
 			}
 			h3{
 				font-size: 14px;
@@ -289,7 +298,7 @@ $main_orange: rgb(255, 178, 35);
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
-				width: 32.5%;
+				width: 32.25%;
 			}
 			.btn{
 				float: right;
@@ -328,12 +337,8 @@ $main_orange: rgb(255, 178, 35);
 	}
 }
 
-// form styling
-
-
 // error styling
 
-input.error-true {
-	color: red;
+input.error-true  {
+   border: 2px solid $main_orange;
 }
-

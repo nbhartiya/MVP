@@ -1,16 +1,8 @@
-%body.container.home 
-  .navbar.navbar-fixed-top 
-    = render "layouts/header"
-
+.home 
   .hero-unit
-    .darkbox 
-      .copy
-        %h2 make your life more &nbsp <h1> delicious </h1>
-        %h3 be the first to find out about exclusive food events
-        %a.btn.btn-large.btn-warning{:href => "../home/howitworks", :tabindex => "-1"} how does it work?
-    #myCarousel.carousel.slide
+    #homeCarousel.carousel.slide
       .carousel-inner
-        .active.item 
+        .active.item
           =image_tag "Food 17.jpg"
         .item
           =image_tag "Food 18.jpg"
@@ -18,68 +10,65 @@
           =image_tag "Food 22.jpg"
         .item
           =image_tag "Food 23.jpg"
-      %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
-      %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
-  .events
-    %h1 Events in San Francisco
-    %p Don't see your fave? <a href="#">Request</a> an event or see <a href="#">Request Campaigns</a>
-    %ul.eventlisting
-      %li.listing-card
-        %a.listing-card-image{:href => "#"}
-          =image_tag "event_stock_image.jpg"
-        %table.listing-card-text
-          %tr
-            %td.listing-card-avatar
-              =link_to image_tag("Favicon.png"), "#"
-            %td.listing-card-event
-              <a href="#">4 Course "Liberty Duck" Dinner with Chefs</a>
-            %td.listing-card-price
-              $120 
-          %tr.bottom
-            %td.seatsleft{:colspan=>"2"}
-              5 seats left
-              .progress.progress-warning
-                .bar{:style => "width: 60%;"}
-            %td.action
-              .btn.btn-warning Go!
-      %li.listing-card
-        %a.listing-card-image{:href => "#"}
-          =image_tag "event_stock_image.jpg"
-        %table.listing-card-text
-          %tr
-            %td.listing-card-avatar
-              =link_to image_tag("Favicon.png"), "#"
-            %td.listing-card-event
-              <a href="#">4 Course "Liberty Duck" Dinner with Chefs</a>
-            %td.listing-card-price
-              $120
-          %tr.bottom
-            %td.seatsleft{:colspan=>"2"}
-              5 seats left
-              .progress.progress-warning
-                .bar{:style => "width: 60%;"}
-            %td.action
-              .btn.btn-warning Go!
-      %li.listing-card
-        %a.listing-card-image{:href => "#"}
-          =image_tag "event_stock_image.jpg"
-        %table.listing-card-text
-          %tr
-            %td.listing-card-avatar
-              =link_to image_tag("Favicon.png"), "#"
-            %td.listing-card-event
-              <a href="#">4 Course "Liberty Duck" Dinner with Chefs</a>
-            %td.listing-card-price
-              $120
-          %tr.bottom
-            %td.seatsleft{:colspan=>"2"}
-              5 seats left
-              .progress.progress-warning
-                .bar{:style => "width: 60%;"}
-            %td.action
-              .btn.btn-warning Go!
-    .more.btn.btn-large.btn-warning More Events
-
+      
+      %a.carousel-control.left{"data-slide" => "prev", :href => "#homeCarousel"} ‹
+      %a.carousel-control.right{"data-slide" => "next", :href => "#homeCarousel"} ›
+    .container
+      .copy.row
+        .span1
+        .span4
+          %h1 We want to make your life more delicious
+          %a.btn.btn-warning{:href => "#how-it-works-accordian", "data-target" => "#how-it-works-accordian", "data-toggle" => "collapse", :type => "link"} How Does It Work?
+          %a.btn.btn-warning{:href => "#sign_up", :"data-toggle" =>"modal"} Get Started
+          %p Already a member?
+          %a{:href => "#sign_in", :"data-toggle" =>"modal"} Sign In
+        .span7
+      .row
+        .span1
+        .span10
+          %h1 How It Works
+        .span1
+    .row
+      .span1
+      .span10
+        #how-it-works-accordian.accordion
+          .accordion-group
+            .accordion-heading
+              %a.accordion-toggle{"data-parent" => "#how-it-works-accordian", "data-toggle" => "collapse", :href => "#collapseOne"}
+                Read
+            #collapseOne.accordion-body.collapse
+              .accordion-inner
+                %p
+                  We want to make you more than a customer by connecting you more meaningfully with your fave food businesses and helping you be the first to discover new ones
+                .row
+                  .span3
+                    %h1 browse
+                  .span3
+                    %h1 register
+                  .span3
+                    %h1 attend
+                  .span3
+                    %h1 share
+      .span1
+    .container
+      .row
+        .span1
+        .span11
+          %h1 Featured Events in San Francisco
+    .row
+      .span1
+      .span10
+        %p Don’t see your favorite?
+        %p <a href = "#">Request an event</a> or <a href = "#">join a Request Campaign</a>
+      .span1
+    .container
+      =render "layouts/singleevent"
+      =render "layouts/singleevent"
+      =render "layouts/singleevent"
+      =render "layouts/singleevent"
+      .row
+        .span4.offset4
+          .btn.btn-warning More
 
 -# Uncomment the below to have the log in credential form rendered into this page
 -# =render "shared/login"

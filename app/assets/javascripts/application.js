@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require parsley.js
+//= require moment.js
 //= require angular
 //= require angular-resource
 //= require angularjs/rails/resource
