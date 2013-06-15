@@ -9,6 +9,9 @@
     = filepicker_js_include_tag
     = javascript_include_tag "application"
     = csrf_meta_tags
+    :javascript
+        var analytics=analytics||[];(function(){var e=["identify","track","trackLink","trackForm","trackClick","trackSubmit","page","pageview","ab","alias","ready","group"],t=function(e){return function(){analytics.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var n=0;n<e.length;n++)analytics[e[n]]=t(e[n])})(),analytics.load=function(e){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"===document.location.protocol?"https://":"http://")+"d2dq2ahtl5zl1z.cloudfront.net/analytics.js/v1/"+e+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n)};
+        analytics.load("z5mkxezlb4");
     %link{:href => "http://fonts.googleapis.com/css?family=Merriweather+Sans|Noto+Sans|Open+Sans|Satisfy", :rel => "stylesheet", :type => "text/css"}
   %body
     = render 'layouts/header2'
@@ -16,7 +19,6 @@
       = yield
     = render 'layouts/footer'
    
-
 -# can add a closer alert x thingie later or tweak it later...
 -if alert
   .alert
@@ -24,5 +26,3 @@
 -elsif notice
   .alert
     %p.notice= notice
-
--#hello
