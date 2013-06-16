@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Blurb:
+  = @profile.blurb
+%p
+  %b Location:
+  = @profile.location_id
+%p
+  %b Story:
+  = @profile.story
+%p
+  %b Home zip:
+  = @profile.home_zip
+%p
+  %b Work zip:
+  = @profile.work_zip
+
+= link_to 'Edit', edit_profile_path(@profile)
+\|
+= link_to 'Back', profiles_path

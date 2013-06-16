@@ -1,0 +1,27 @@
+%h1 Listing profiles
+
+%table
+  %tr
+    %th Blurb
+    %th Location
+    %th Story
+    %th Home zip
+    %th Work zip
+    %th
+    %th
+    %th
+
+  - @profiles.each do |profile|
+    %tr
+      %td= profile.blurb
+      %td= profile.location_id
+      %td= profile.story
+      %td= profile.home_zip
+      %td= profile.work_zip
+      %td= link_to 'Show', profile
+      %td= link_to 'Edit', edit_profile_path(profile)
+      %td= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Profile', new_profile_path

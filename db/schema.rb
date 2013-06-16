@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130613003944) do
+ActiveRecord::Schema.define(:version => 20130614005315) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -112,6 +112,17 @@ ActiveRecord::Schema.define(:version => 20130613003944) do
     t.integer  "event_id"
   end
 
+  create_table "profiles", :force => true do |t|
+    t.text     "blurb"
+    t.integer  "location_id"
+    t.text     "story"
+    t.string   "home_zip"
+    t.string   "work_zip"
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "projects", :force => true do |t|
     t.integer  "user_id"
     t.string   "name"
@@ -186,7 +197,6 @@ ActiveRecord::Schema.define(:version => 20130613003944) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "completed",              :default => false
-    t.string   "work_zip"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

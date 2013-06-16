@@ -97,14 +97,14 @@
     .row.section-header
       .span12
         %h1 Our Story
-  .host-story
-    .container
-      .row
-        .span1
-        .span10
-          %p
-            =@event.host.last_name
-        .span1 
+  .host-story.row
+    .span1
+    .span10
+      %p
+        =@event.host.last_name
+        -#=@event.host.profile.story
+        -# Need to make sure a host story exists for that host before they can create the event...
+    .span1 
   .container
     .row.section-header
       .span12
