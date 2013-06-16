@@ -1,157 +1,69 @@
 // colors 
 
-$trans_black: rgba(54,54,54,0.9);
-$dark_gray: rgb(54, 54, 54);
-$trans_black_more: rgba(54, 54, 54, 0.7);
-$trans: rgba(0,0,0,0);
 $main_orange: rgb(255, 178, 35);
 
-// body styling
-
-.events {
-	font-family: 'Open Sans', sans-serif !important; 
-}
-
-//h1{
-//	margin-top: 100px;
-//	font-family: 'Satisfy', cursive;
-//	font-size: 60px;
-//	font-weight: bold;
-//	text-align: center;
-//	line-height: 1em;
-//	color: white;
-//}
-
-// filters styling
-
-.filters{
-	padding: 10px 20px;
-	margin-top: 140px;
-	border-radius: 5px;
-	background-color: rgba(255, 255, 255, 0.8);
-	border: 1px solid rgb(200, 200, 200);
-	-webkit-box-shadow: 0px 0px 2px 0px #000;
-          box-shadow: 0px 0px 2px 0px #000;
-    h4{
-    	color: $dark_gray;
-    }
-    ul{
-    	list-style-type: none;
-    	padding: 0;
-    	margin: 0;
-    	color: $dark_gray;
-    }
-    input{
-    	margin: 5px 0;
-    	width: 150px;
-    }
-}
-
-// events list and breadcrumb styling
-
-.eventslist{	
-	padding-top: 80px;
-	h1{
-		font-size: 18px;
-		font-weight: 400;
-		margin: 0 0 0 5px;
-		color: white;
-	}
-	p{
-		margin: 0 0 0 5px;
-	}
-	.eventlisting {
-		margin: 0;
-		li {
-			list-style: none;
-			float: left;
+// events index styling
+.events-index{
+	.events{ 
+		margin: 40px 0 0 0;
+		.section-header{
+			margin-top: 0;
+		}
+		.events-index-header, .events-index-content{
 			margin: 0;
-			width: 400px;
-			height: 260px;
-			overflow: hidden;
-			}
-		.listing-card-text{	
-			z-index: 10;
-			background-color: rgba(50, 50, 50, 0.8);
-			color: white;
+		}
+		.events-row{
+			margin-top: 20px;
+		}
+		.single-event{
+			background: url('Food 17.jpg');
+			height: 280px;
+			max-width: 100%;
+			overflow: none;
+		.event-first-row, .event-second-row{
+			background: rgba(0,0,0,0.8);
+			padding: 10px;
 			position: relative;
-			bottom: 70px;
-			td{
-				font-size: 14px;
-			}
-			.listing-card-avatar img{
-				height: 50px;
-				-webkit-border-radius: 40px;
-				-moz-border-radius: 40px;
-				-ms-border-radius: 40px;
-				-o-border-radius: 40px;
-				border-radius: 40px;
-			}
-			td.listing-card-avatar{
-				height: 50px;
+			margin: 0;
+			bottom: -53%;
+		}
+		.event-first-row{
+			.event-host-image{
 				width: 50px;
-				padding: 8px;
+				-webkit-border-radius: 50px;
+	      		border-radius: 50px;
+	      		background-clip: padding-box;
 			}
-			.listing-card-event{
-				line-height: 20px;
-				padding: 8px 4px;
-				a, a:hover, a:visited{
+			.event-host-image, .event-title, .event-price, .event-progress, .event-go{
+				margin: 0 10px;
+			}
+			.event-title{
+				font-size: 16px;
+				line-height: 1.5em;
+				a{
 					color: white;
 				}
 			}
-			.listing-card-price{
-				padding: 8px;
-				font-size: 22px;
-				font-weight: 800;
-			}
-			tr.bottom{
-				display:none;
-			}
-			.progress{
-				height: 10px;
-				padding: 0;
-				margin: 0 0 0 10px;
-				.bar{
-					height: 10px;
-				}
-			}
-			td.action{
-				padding: 5px 14px;
-			}
-			.seatsleft{
-				font-size: 12px;
-				text-align: right;
+			.event-price{
+				font-size: 24px;
+				color: white;
+				font-weight: 500;
 			}
 		}
-	}
-} 
+		.event-second-row{
+			.event-progress, .event-go{
+				margin: 0 10px;
+			}
+			.event-process{
+				font-size: 10px;
+				color: white;
+			}
 
-//events forms styling
-
-.editevents, .newevent{
-	padding-top: 100px;
-}
-
-// responsive design
-
-// Portrait tablet to landscape and desktop
-@media (min-width: 768px) and (max-width: 979px) {
-	.eventslist{
-		width: 600px;
-	}
-}
- 
-// Landscape phone to portrait tablet
-@media (max-width: 767px) {
-	.eventslist{
-		width: 350px;
-	}
-}
- 
-// Landscape phones and down
-@media (max-width: 480px) {
-	.eventslist{
-		width: 200px;
+		}
+		.event-second-row{
+			display: none;
+			}
+		}
 	}
 }
 
@@ -308,15 +220,6 @@ $main_orange: rgb(255, 178, 35);
 	}
 }
 .container{
-	.section-header-first-child{
-		margin: 110px 0 20px 0;
-		h1{
-			font-size: 30px;
-			color: black;
-			line-height: 1.5em;
-			font-weight: 100;
-		}
-	}
 	.section-header{
 		margin: 20px 0 20px 0;
 		h1{

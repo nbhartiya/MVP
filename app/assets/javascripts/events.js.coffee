@@ -23,10 +23,10 @@ $(document).ready ->
   $(document).on "click", ".event-go-button", ->
     $("#event-carousel").carousel "pause"
 
-  $(".listing-card").mouseover ->
-    $(this).find(".listing-card-text").css "bottom", "110px"
-    $(this).find("tr.bottom").show 500
+  $(".single-event").mouseover ->
+    $(this).find(".event-first-row").css "bottom", "-50%"
+    $(this).find(".event-second-row").slideDown "400"
 
-  $(".listing-card").mouseleave ->
-    $(this).find("tr.bottom").hide 0.000001	
-    $(this).find(".listing-card-text").css "bottom", "70px"
+  $(".single-event").mouseleave ->
+    $(this).find(".event-second-row").slideUp "400"	
+    $(this).find(".event-first-row").css "bottom", "-73%"

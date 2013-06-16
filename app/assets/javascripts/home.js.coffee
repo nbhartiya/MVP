@@ -6,4 +6,10 @@ $ ->
   $('.learn_more_link').tooltip()
 
 $(document).ready ->
-  $("#myCarousel").carousel interval: 6000
+  $("#home-carousel").carousel interval: 6000
+
+  $(".step").mouseover ->
+    $(".step-description", this).slideDown "400"
+  
+  $(".step").mouseleave ->
+    $(".step-description", this).slideUp "400"

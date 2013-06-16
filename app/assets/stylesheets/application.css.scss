@@ -28,6 +28,12 @@ html body {
 	font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;        
 }
 
+// effects
+
+.hide{
+	display: none;
+}
+
 // header styling
 
 .nav-container{
@@ -128,7 +134,7 @@ html body {
 // footer styling
 .footer{
 	background: black;
-	margin-top: 20px;
+	margin-top: 40px;
 	color: white;
 	padding: 20px 0 80px 0;
 	ul{

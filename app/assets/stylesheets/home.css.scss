@@ -4,10 +4,6 @@
 
 // colors 
 
-$trans_black: rgba(54,54,54,0.9);
-$dark_gray: rgb(54, 54, 54);
-$trans_black_more: rgba(54, 54, 54, 0.7);
-$trans: rgba(0,0,0,0);
 $main_orange: rgb(255, 178, 35);
 
 // error message styling
@@ -18,190 +14,218 @@ ul.parsley-error-list{
   margin-left: 0;
 }
 
-// bootstrap alert styling
-div.alert{
-	margin: 0 auto;
-	padding: 0px 5px;
-//	border-radius: 0;
-//	position: fixed;
-	width: 100%;
-//	top: 70px;
-//	left: 0px;
-	border: none;
-//	z-index: 1000;
-}
-//p.alert{
-//	margin: 0;
-//}
-
 // hero unit styling 
-.home{
-	.hero-unit{
-	    background-color: transparent;
-		color: white;
-		padding: 0;
-		margin: 0;
-		height: 500px;
-		line-height: 20px;
-		.darkbox{
-			z-index: 2;
-			background-color: $trans_black_more;
-			width: 630px;
-			height: 200px;
-			position: relative;
-			left: 90px;
-			top: 150px;
-			-webkit-border-radius: 12px;
-	          border-radius: 12px;
-	          background-clip: padding-box;
-			.copy{
-				padding-left: 15px;
-				padding-top: 5px;
-				width: auto;
-				margin: 0 auto 0 auto;
-				h1{
-					font-family: 'Satisfy', cursive;
-					font-size: 70px;
-					line-height: 60px;
-					font-weight: 500;
-				}
-				h2{
-					font-size: 40px;
-					display: inline-block;
-					font-weight: 200;
-				}
-				h3{
-					font-weight: 200;
-					line-height: 30px;
-					font-size: 20px;
-					padding-bottom: 10px;
-				}
-			a.btn:visited{
-				color:white;
-			}
+.attention-getter{
+	height: 550px;
+	#home-carousel{
+		position: absolute;
+		width: 100%;
+	    z-index: -1;
+		.carousel-inner{
+			height: 550px;
+			width: auto;
+			img{
+				width: 100%;
+				background: no-repeat;
 			}
 		}
-		#myCarousel{
-			position: relative;
-			top: -135px;
-			width: 90%;
-			margin-left: auto;
-			margin-right: auto;
-			z-index: 1;
-			-webkit-box-shadow: 0px 0px 20px 0px #000;
-	          box-shadow: 0px 0px 20px 0px #000;
-			.carousel-inner{
-				height: 500px;
-				width: 1060px;
-				.item > img{
-					width: 150%;
-				}
-			}
-			.carousel-control{
-				font-size: 50px;
+		.carousel-control{
+			font-size: 50px;
+			color: white;
+			top: 90%;
+			z-index: 500000;
+		}
+	}
+	.copy{
+		margin-top: 80px;
+    	-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;    
+		box-sizing: border-box;
+		.copy-content{
+			background: rgba(0,0,0,.8);
+	    	padding: 30px;
+	    	-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;    
+			box-sizing: border-box;
+			h1{
+				font-size: 30px;
+				line-height: 1.2em;
+				font-weight: 100;
 				color: white;
-				top: 90%;
+				margin: 0;
+				text-align: center;
 			}
+			h2{
+				font-size: 20px;
+				line-height: 1.5em;
+				font-weight: 100;
+				color: white;
+				margin: 0;
+			}
+			p{
+			    text-align: center;
+			    color: white;
+			    margin-top: 10px;
+			    font-size: 12px;
+			}
+			a.sign-in-link{
+				color: $main_orange;
+			}
+			a.sign-in-link:hover{
+				color: white;
+				text-decoration: none;
+			}
+		}
+		.how-it-works-button{
+			margin: 20px auto 0 auto;
+			display: block;
+			width: 80%;
+			height: 20%;	
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;    
+			box-sizing: border-box; 
+		}
+		.sign-up-button{
+			margin: 10px auto 0 auto;
+			display: block;
+			width: 80%;
+			height: 20%;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;    
+			box-sizing: border-box; 
 		}
 	}
 }
-// begin events area styling
-.home{
-	.events{ 
-		width: 100%;
-		margin-left: auto;
-		margin-right: auto;
-		padding-top: 80px;
-		padding-bottom: 15px;
-		-webkit-border-radius: 6px;
-	    border-radius: 6px;
-	    background-clip: padding-box;
-	    color: white;
-	    	a{color: $main_orange;}
-			a:hover{background:none;}
-			a:visited{color: $main_orange;}
-		h1{
-			font-family: 'Satisfy', cursive;
-			font-size: 40px;
-			text-align: center;
-		}
+
+// how it works styling
+.section-header{
+	margin: 20px 0 20px 0;
+	h1{
+		font-size: 30px;
+		color: black;
+		line-height: 1.5em;
+		font-weight: 100;
+	}
+}
+
+#how-it-works{
+	.caret{
+		display: inline-block;
+		vertical-align: middle;
+		border-top: 6px solid gray;
+		border-right: 6px solid transparent;
+		border-left: 6px solid transparent;
+		font-size: 60px;
+	}
+	.caret.collapsed{
+		border-top: 6px solid $main_orange;
+		border-right: 6px solid transparent;
+		border-left: 6px solid transparent;
+	}
+}
+
+.step{
+	background: url('Food 17.jpg');
+	height: 350px;
+	margin-top: 20px;
+	h1{
+		font-size: 30px;
+		line-height: 1.5em;
+		font-weight: 100;
+		background: rgba(0,0,0,0.8);
+		color: white;
+		text-align: center;
+	}
+	.step-description{
+		height: 250px;
+		background: rgba(0,0,0,0.8);
+		padding: 10px;
+		display: none;
 		p{
 			font-size: 14px;
-			line-height: 16px;
-			text-align: center;
+			line-height: 1.5em;
+			font-weight: 100;
+			color: white;
+			text-align: left;
 		}
-		.more{
-			width: 30%;
-			margin: 40px 385px 30px;
+	}
+}
+
+.section{
+	margin: 0;
+	padding: 20px 0;
+	background: rgb(240, 240, 240);
+}
+
+.featured-events{
+	a{
+		color: $main_orange;
+		text-decoration: none;
+	}
+	a:hover{
+		color: white;
+		text-decoration: none;
+	}
+}
+
+// begin events styling
+.home{
+	.events{ 
+		margin: 40px 0 0 0;
+		.single-event{
+			background: url('Food 17.jpg');
+			height: 280px;
+			max-width: 100%;
+			overflow: none;
+		.event-first-row, .event-second-row{
+			background: rgba(0,0,0,0.8);
+			padding: 10px;
+			position: relative;
+			margin: 0;
+			bottom: -53%;
 		}
-		.eventlisting {
-		margin: 20px 0;
-		li {
-			list-style: none;
-			float: left;
-			margin: 0 11px;
-			}
-		.listing-card-image > img{
-			width: 365px;
-			border-bottom: 1px solid rgb(150, 150, 150);
-		}
-		.listing-card-text{
-			background-color: white;
-			color: black;
-			width: 365px;
-			td{
-				font-size: 16px;
-			}
-			.listing-card-avatar > img{
-				height: 50px;
-				-webkit-border-radius: 40px;
-				-moz-border-radius: 40px;
-				-ms-border-radius: 40px;
-				-o-border-radius: 40px;
-				border-radius: 40px;
-			}
-			td.listing-card-avatar{
-				height: 50px;
+		.event-first-row{
+			.event-host-image{
 				width: 50px;
-				padding: 8px;
+				-webkit-border-radius: 50px;
+          		border-radius: 50px;
+          		background-clip: padding-box;
 			}
-			.listing-card-event{
-				line-height: 20px;
-				padding: 8px 4px;
+			.event-host-image, .event-title, .event-price, .event-progress, .event-go{
+				margin: 0 10px;
+			}
+			.event-title{
+				font-size: 16px;
+				line-height: 1.5em;
 				a{
-					color: $dark_gray;
-				}
-				a:hover{
-					color: $dark_gray;
+					color: white;
 				}
 			}
-			.listing-card-price{
-				padding: 8px 4px;
-				font-size: 22px;
-				font-weight: 800;
-				color: $dark_gray;
-			}
-			tr.bottom{
-				background-color: rgb(240,240,240);
-			}
-			.progress{
-				height: 10px;
-				padding: 0 0 0 10px;
-				margin: 0;
-				.bar{
-					height: 10px;
-				}
-			}
-			td.action{
-				padding: 10px 14px 10px 14px;
-			}
-			.seatsleft{
-				font-size: 12px;
-				color: $dark_gray;
-				text-align: right;
+			.event-price{
+				font-size: 24px;
+				color: white;
+				font-weight: 500;
 			}
 		}
+		.event-second-row{
+			.event-progress, .event-go{
+				margin: 0 10px;
+			}
+			.event-process{
+				font-size: 10px;
+				color: white;
+			}
+
+		}
+		.event-second-row{
+			display: none;
+		}
+		}
 	}
-	}
+}
+
+.more-button{
+	margin-top: 20px;
+	width: 100%;
 }
 

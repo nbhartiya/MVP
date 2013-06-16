@@ -1,6 +1,6 @@
 .home 
-  .hero-unit
-    #homeCarousel.carousel.slide
+  .attention-getter
+    #home-carousel.carousel.slide
       .carousel-inner
         .active.item
           =image_tag "Food 17.jpg"
@@ -11,64 +11,82 @@
         .item
           =image_tag "Food 23.jpg"
       
-      %a.carousel-control.left{"data-slide" => "prev", :href => "#homeCarousel"} ‹
-      %a.carousel-control.right{"data-slide" => "next", :href => "#homeCarousel"} ›
+      %a.carousel-control.left{"data-slide" => "prev", :href => "#home-carousel"} ‹
+      %a.carousel-control.right{"data-slide" => "next", :href => "#home-carousel"} ›
     .container
       .copy.row
         .span1
-        .span4
+        .span4.copy-content
           %h1 We want to make your life more delicious
-          %a.btn.btn-warning{:href => "#how-it-works-accordian", "data-target" => "#how-it-works-accordian", "data-toggle" => "collapse", :type => "link"} How Does It Work?
-          %a.btn.btn-warning{:href => "#sign_up", :"data-toggle" =>"modal"} Get Started
-          %p Already a member?
-          %a{:href => "#sign_in", :"data-toggle" =>"modal"} Sign In
+          %a.btn.how-it-works-button{:href => "#how-it-works", "data-target" => "#how-it-works-detail", "data-toggle" => "collapse", :type => "button"} How Does It Work?
+          %a.btn.btn-warning.sign-up-button{:href => "#sign_up", :"data-toggle" =>"modal"} Get Started
+          %p Already a member? &nbsp <a href = "#sign_in" class = "sign-in-link" data-toggle = "modal"> Sign In </a>
         .span7
+  .container
+    .row.section-header
+      .span12#how-it-works
+        %h1 How It Works <a data-target="#how-it-works-detail", data-toggle="collapse" class="caret collapsed"></a>
+  .section
+    .container
       .row
         .span1
         .span10
-          %h1 How It Works
-        .span1
-    .row
-      .span1
-      .span10
-        #how-it-works-accordian.accordion
-          .accordion-group
-            .accordion-heading
-              %a.accordion-toggle{"data-parent" => "#how-it-works-accordian", "data-toggle" => "collapse", :href => "#collapseOne"}
-                Read
-            #collapseOne.accordion-body.collapse
+          #how-it-works-accordian.accordion
+            #how-it-works-detail.accordion-body.collapse
               .accordion-inner
                 %p
                   We want to make you more than a customer by connecting you more meaningfully with your fave food businesses and helping you be the first to discover new ones
                 .row
-                  .span3
+                  .span1
+                  .span2.step
                     %h1 browse
-                  .span3
+                    .step-description
+                      %p Find something cool to attend! All our events are designed to be different from the typical restaurant visit.
+                  .span2.step
                     %h1 register
-                  .span3
+                    .step-description
+                      %p See something you like? Book it! But wait - the event doesn't happen until the minimum number of tickets is sold. Help make this happen by inviting your favorite people! We won't charge anybody until the event is on.
+                  .span2.step
                     %h1 attend
-                  .span3
+                    .step-description
+                      %p Woohoo, party time! You've already paid, so all you have to do day of is sit back and enjoy.
+                  .span2.step
                     %h1 share
-      .span1
+                    .step-description
+                      %p Talk about your awesome experience and make everybody jealous!
+                  .span1
+          .span1
+  .container
+    .row.section-header
+      .span12
+        %h1 Featured Events in San Francisco
+  .section
     .container
-      .row
+      .row.featured-events
         .span1
-        .span11
-          %h1 Featured Events in San Francisco
+        .span10
+          %p Don’t see your favorite? <a href = "#">Request an event</a> or <a href = "#">join a Request Campaign</a>
+        .span1
+  .container
+    .row.events
+      .span1
+      .span5.single-event
+        =render "layouts/singleevent"
+      .span5.single-event
+        =render "layouts/singleevent"
+      .span1
+  .container
+    .row.events
+      .span1
+      .span5.single-event
+        =render "layouts/singleevent"
+      .span5.single-event 
+        =render "layouts/singleevent"
+      .span1
+  .container
     .row
-      .span1
-      .span10
-        %p Don’t see your favorite?
-        %p <a href = "#">Request an event</a> or <a href = "#">join a Request Campaign</a>
-      .span1
-    .container
-      =render "layouts/singleevent"
-      =render "layouts/singleevent"
-      =render "layouts/singleevent"
-      =render "layouts/singleevent"
-      .row
-        .span4.offset4
-          .btn.btn-warning More
+      .span4.offset4
+        %a.btn.btn-warning.more-button{:href=>"../events"} More
 
 -# Uncomment the below to have the log in credential form rendered into this page
 -# =render "shared/login"
