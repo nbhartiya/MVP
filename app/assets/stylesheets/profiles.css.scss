@@ -1,3 +1,294 @@
-// Place all the styles related to the Profiles controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// colors 
+
+$main_orange: rgb(255, 178, 35);
+
+// single event
+.single-event, .single-following, .single-campaign{
+	overflow: none;
+	height: 280px;
+	margin: 10px;
+	.event-image, .user-image, .campaign-image{
+		height: 280px;
+		max-width: 100%;
+		img{
+			height: 280px;
+			min-width: 100%;
+		}
+	}
+.event-first-row, .event-second-row, .user-first-row, .user-second-row, .campaign-first-row, .campaign-second-row{
+	position: relative;
+	margin: 0;
+	color: white;
+}
+
+.event-first-row{
+	bottom: 77px;
+}
+
+.user-first-row{
+	bottom: 80px;
+}
+
+.campaign-first-row{
+	bottom: 76px;
+	.join-button{
+	margin-left: 0;
+		.btn{
+			width: 20px;
+			margin: 10px 0;
+			float: right;
+		}
+	}
+}
+
+.event-first-row, .user-first-row, .campaign-first-row{
+	background: rgba(0,0,0,0.8);
+	padding: 10px;
+	.event-host-image, .user-profile-image, .campaign-lead-image{
+		width: 50px;
+		-webkit-border-radius: 50%;
+  		border-radius: 50%;
+  		background-clip: padding-box;
+	}
+	.event-host-image, .event-title, .event-price, .event-progress, .event-go, .user-profile-image, .user-name-and-blurb, .campaign-lead-image, .campaign-title-and-blurb, .join-button{
+		margin: 0 10px;
+	}
+	.event-title, .user-name-and-blurb, .campaign-title-and-blurb{
+		font-size: 16px;
+		line-height: 1.5em;
+		a{
+			color: white;
+		}
+		p{
+			font-size: 12px;
+		}
+	}
+	.event-price p{
+		font-size: 24px;
+		font-weight: 500;
+		line-height: 2em;
+	}
+}
+.event-second-row{
+	display: none;
+	position: relative;
+	bottom: 156px;
+	background: rgba(0,0,0,0.5);
+	.event-progress{
+		margin: 10px;
+		font-size: 10px;
+		}
+	table{
+		width: 100%;
+	}
+	.event-time-and-date{
+		text-align: left;
+	}
+	.event-seats-left{
+		text-align: right;
+	}
+	.go-button{
+		margin-left: 0;
+		.btn{
+			width: 20px;
+			margin: 20px 0;
+			float: right;
+		}
+	}
+}
+}
+
+// user and campaign second row
+.user-second-row{
+	bottom: 174px;
+}
+
+.campaign-second-row{
+	bottom: 170px;
+}
+
+.user-second-row, .campaign-second-row{
+	display: none;
+	position: relative;
+	background: rgba(0,0,0,0.5);
+	padding: 10px 0;
+	.social-stats{
+		margin-left: 0;
+	}
+	table{
+		width: 100%;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;    
+		box-sizing: border-box;
+		td{
+			width: 25%;
+			text-align: center;
+			font-size: 10px;
+		}
+	}
+}
+
+
+// user profile styling
+
+.user-profile{
+	height: 550px;
+	#profile-carousel {
+		position: absolute;
+	    width: 100%;
+	    z-index: -1;
+	    ol.carousel-indicators{
+	    	z-index: 50000000;
+	    }
+		.carousel-inner{
+			height: 550px;
+			width: auto;
+			img{
+				width: 100%;
+				background: no-repeat;
+			}
+		}
+	}
+	.user-overview{
+		margin-top: 25px;
+	    -webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;    
+		box-sizing: border-box;
+		.user-summary {
+		    -webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;    
+			box-sizing: border-box;
+		    background: rgba(0,0,0,.8);
+		    padding: 30px;
+			h1{
+				font-size: 30px;
+				line-height: 1.2em;
+				font-weight: 100;
+				color: white;
+				margin: 0;
+			}
+			h2{
+				font-size: 20px;
+				line-height: 1.5em;
+				font-weight: 100;
+				color: white;
+				margin: 0;
+			}
+			h3{
+				font-size: 16px;
+				line-height: 1.5em;
+				font-weight: 100;
+				color: white;
+				margin: 0;
+			}
+			hr{
+				margin: 10px 0;
+				border-bottom: none;
+			}
+			.btn{
+				width: 23%;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box; 
+				padding-left: 10px;
+			}
+			.user-social-stats{
+				margin-top: 25px;
+				color: white;
+				width: 100%;
+				margin-left: auto;
+				margin-right: auto;
+				td{
+					text-align: center;
+				}
+			}
+			p{
+			    text-align: right;
+			    color: white;
+			    margin-top: 10px;
+			    font-size: 12px;
+			}
+		}
+		.heart_this{
+			margin: 0 auto;
+			padding: 10px;
+			background: rgba(0,0,0,0.8);
+			width: 33px;
+			height: 33px;
+		}
+	}
+}
+
+.container{
+	.section-header{
+		margin: 20px 0 20px 0;
+		h1{
+			font-size: 30px;
+			color: black;
+			line-height: 1.5em;
+			font-weight: 100;
+			display: inline-block;
+		}
+		ul{
+			list-style: none;
+			display: inline-block;
+			vertical-align: middle;
+			li{
+				float: left;
+				margin: 0 10px;
+				a, a:visited{
+					font-size: 16px;
+					text-decoration: none;
+					padding: 10px;
+				}
+				a:hover, a:active{
+					background: $main_orange;
+					text-decoration: none;
+					color: white;
+				}
+			}
+		}
+	}
+}
+
+.user-announcements, .user-about, .user-events, .user-campaigns, .user-following, .user-chatter{
+	background: rgb(230,230,230);
+	padding: 20px 0;
+	.accordion{
+		margin: 0;
+	}
+	p{
+		font-size: 14px;
+		line-height: 2em;
+	}
+	.conversants, .comments{
+		img{
+			width: 50px;
+			height: auto;
+			margin: 0 5px;
+		}
+	}
+	.comments{
+		margin-top: 10px;
+		padding-top: 10px;
+		img{
+			margin-right: 10px;
+		}
+	}
+}
+
+#user-announcements, #user-about, #user-events, #user-campaigns, #user-following, #user-chatter{
+	.caret{
+		display: inline-block;
+		vertical-align: middle;
+		border-top: 6px solid gray;
+		border-right: 6px solid transparent;
+		border-left: 6px solid transparent;
+		font-size: 60px;
+	}
+	.caret.collapsed{
+		border-top: 6px solid $main_orange;
+		border-right: 6px solid transparent;
+		border-left: 6px solid transparent;
+	}
+}

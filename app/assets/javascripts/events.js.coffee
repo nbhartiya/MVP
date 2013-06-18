@@ -28,9 +28,9 @@ $(document).ready ->
     $("#event-carousel").carousel "pause"
 
   $(".single-event").mouseover ->
-    $(this).find(".event-first-row").css "bottom", "120px"
+    $(this).find(".event-first-row").css "bottom", "156px"
     $(this).find(".event-second-row").slideDown "900"
 
   $(".single-event").mouseleave ->
     $(this).find(".event-second-row").hide()	
-    $(this).find(".event-first-row").css "bottom", "43px"
+    $(this).find(".event-first-row").css "bottom", "77px"
