@@ -1,12 +1,133 @@
-%body.container.events
-  .navbar.navbar-fixed-top  
-    = render "layouts/header"
+.events
+  .event-profile
+    .event-stats
+      #event-carousel.carousel.slide
+        %ol.carousel-indicators
+          -@event.images.each_with_index do |i, index|         
+            -if index == 0
+              %li.active{"data-target" => "#event-carousel", "data-slide-to" => index}
+            -else
+              %li{"data-target" => "#event-carousel", "data-slide-to" => index}
+           
+        .carousel-inner
+          -# if doesn't have images, then show default image
+          -@event.images.each_with_index do |i, index|
+            -if index == 0
+              .item.active
+                = filepicker_image_tag i.image
+            -else
+              .item
+                = filepicker_image_tag i.image
+      .container
+        .event-registration.row{'ng-controller' => 'EventCreateCtrl'}
+          .span1
+          .span4
+            .event-summary
+              %h1
+                {{event.title}}
+              %h2 
+                {{event.description}}
+              %h2 Host Name
+              %hr
+              %h3 
+                {{event.date}}
+              %h3 Mission
+              %p 
+                -# pull out and make this a method somewhere...
+                {{event.min-seats}}
+                seats left
+              .progress.progress-warning
+                -#probably want to pull this arithmetic out too
+                .bar{:style => "width: 0%"}
+              %select.number-of-seats
+                %option{:disabled => "disabled", :selected => "selected", :value => ""} Number of Seats
+                -#{{event.min-seats}}.times do |s|
+                  -#%option{:value => s+1} #{s+1} seats
+              .btn.btn-warning.event-go-button Go
+              %table.event-sharing
+                %tr
+                  %td
+                    %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#"}
+                  %td
+                    %a.sb.twitter.circle.no-border.no-shadow.orange{:href=>"#"}
+                  %td
+                    %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
+                  %td
+                    %a.sb.share_this.circle.no-border.no-shadow.orange{:href=>"#"}
+                %tr.host-stats
+                  %td 190
+                  %td 190
+                  %td 190
+                  %td Email
+                %tr.host-stat-labels
+                  %td likes
+                  %td followers
+                  %td reviews
+                  %td a friend
+          .span1.heart_this
+            %a.sb.heart.circle.no-border.no-shadow.orange
+          .span1
+          .span4 
+            -#this needs to happen only when tickets >1
+            .event-create-form.clearfix
+              %input{'ng-model' => 'event.title', :type=>"text", :placeholder =>"Event Title"}
+              %input{'ng-model' => 'event.date', :type=>"text", :placeholder =>"Event Date"}
+              %input{'ng-model' => 'event.time', :type=>"text", :placeholder =>"Event Time"}
+              %input{'ng-model' => 'event.address',:type=>"text", :placeholder =>"Event Address"}
+              %input{'ng-model' => 'event.city',:type=>"text", :placeholder =>"Event City"}
+              %select
+                %option{'ng-model' => 'event.state',:disabled => "disabled", :selected => "selected", :value => ""} State
+              %input{'ng-model' => 'event.price',:type=>"text", :placeholder =>"Event Price"}
+              %input{'ng-model' => 'event.min-seats',:type=>"text", :placeholder =>"Min Seats"}
+              %input{'ng-model' => 'event.max-seats',:type=>"text", :placeholder =>"Max Seats"}
+              .btn.btn-warning.standalone-button Update
 
-  .editevents
-    %h1 Edit
-
-    = render 'form'
-
-    = link_to 'Show', @event
-    \|
-    = link_to 'Back', events_path
+  .container
+    .row.section-header
+      .span1
+      .span10
+        %h1 Our Story
+      .span1
+  .host-story
+    .container
+      .row
+        .span1
+        .span10
+        .span1 
+  .container
+    .row.section-header
+      .span1
+      .span10
+        %h1 The Menu
+      .span1
+  .event-menu
+    .container
+      .row
+        .span1
+        .span10
+          %p 
+            =@event.menu_text
+        .span1
+  .container
+    .row.section-header
+      .span1
+      .span10
+        %h1 Chatter
+      .span1
+  .event-attendees
+    .container
+      .row
+        .span1
+        .attendees.span10
+          %p 
+            -for guest in @event.guests
+              = guest.first_name + " " + guest.last_name
+              %p
+        .span1
+  .event-chatter
+    .container
+      .row
+        .span1
+        .chatter.span10
+          %p threaded comments
+        .span1

@@ -82,6 +82,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", (
     	$scope.payment = 3
     	$(document).on "click", "#ticket_purchase", ->
     	  $("#new_charge").submit()
+        
 ]
 
 Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->

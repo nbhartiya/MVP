@@ -4,6 +4,8 @@
 
 $(document).ready ->
 
+  $(".one-attendee").tooltip()
+
   $("#event-carousel").carousel interval: 6000
 
   $(".heart_this a").click ->

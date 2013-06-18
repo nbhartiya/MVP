@@ -78,12 +78,12 @@
         .span4 
           -#this needs to happen only when tickets >1
           .event-survey.clearfix{'ng-show' => 'feedback==1'}
-            %h1 Survey view
+            %h1 Survey
             %input.survey-question-1{:type=>'text', :placeholder =>"Custom Survey Question 1"}
             .btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Submit
 
           .event-yelp.clearfix{'ng-show' => 'feedback==2'}
-            %h1 Yelp Review View
+            %h1 Yelp Review
             %input.yelp-review-link{:type=>'text', :placeholder =>"Paste Yelp Review Link Here"}
             .btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Submit
 
@@ -227,15 +227,43 @@
       .row
         .span1
         .attendees.span10
-          %p 
-            -for guest in @event.guests
-              = guest.first_name + " " + guest.last_name
-              %p
+          =link_to image_tag("Favicon.png"), "#"
+          =link_to image_tag("Favicon.png"), "#"
+          =link_to image_tag("Favicon.png"), "#"
+          =link_to image_tag("Favicon.png"), "#"
+          =link_to image_tag("Favicon.png"), "#"
+          -#
+            %p 
+              -for guest in @event.guests
+                = guest.first_name + " " + guest.last_name
+                %p
         .span1
   .event-chatter
     .container
       .row
         .span1
         .chatter.span10
-          %p threaded comments
+          %table
+            %tr
+              %td
+                =link_to image_tag("Favicon.png"), "#"
+              %td
+                Comment blahblahblahblah
+            %tr
+              %td
+                =link_to image_tag("Favicon.png"), "#"
+              %td
+                Comment blahblahblahblah
+          %table.response-level1.offset1
+            %tr
+              %td
+                =link_to image_tag("Favicon.png"), "#"
+              %td
+                Comment blahblahblahblah
+          %table.response-level2.offset2
+            %tr
+              %td
+                =link_to image_tag("Favicon.png"), "#"
+              %td
+                Comment blahblahblahblah
         .span1

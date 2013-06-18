@@ -241,7 +241,21 @@ $main_orange: rgb(255, 178, 35);
 		font-size: 14px;
 		line-height: 2em;
 	}
+	.attendees, .chatter{
+		img{
+			width: 50px;
+			height: auto;
+			margin: 0 5px;
+		}
+	}
+	.chatter{
+		img{
+			margin-right: 10px;
+		}
+	}
 }
+
+
 
 // event feedback styling
 
