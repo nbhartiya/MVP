@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
-  
+
   def index 
   end
   
   def show
   end
 
-# come back to this
+# TODO: come back to this
   def incomplete
     current_user.complete!(params[:kind])
   end
