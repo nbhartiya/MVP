@@ -40,8 +40,9 @@ group :test do
 	gem 'capybara'
 	gem 'capybara-webkit'
 	gem 'factory_girl_rails'
-	# may want to consider the below for later:
-	# gem 'launcy'
+  gem 'mocha'
+  gem 'shoulda-matchers'
+	gem 'launchy'
   #- for easy database cleaning after every set of tests is run
 	# gem 'database_cleaner'
 	#- for constantly running tests
@@ -83,5 +84,3 @@ end
 
 # To use debugger
 # gem 'debugger'
-
-gem "mocha", :group => :test
