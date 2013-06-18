@@ -28,6 +28,7 @@ GEM
     activesupport (3.2.11)
       i18n (~> 0.6)
       multi_json (~> 1.0)
+    addressable (2.2.7)
     angular-ui-bootstrap-rails (0.3.0.1)
     angular-ui-rails (0.4.0.2)
     angularjs-rails (1.0.7)
@@ -101,6 +102,8 @@ GEM
     json (1.7.7)
     jwt (0.1.5)
       multi_json (>= 1.0)
+    launchy (2.1.0)
+      addressable (~> 2.2.6)
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -199,6 +202,8 @@ GEM
     sendgrid (1.1.0)
       json
       json
+    shoulda-matchers (2.2.0)
+      activesupport (>= 3.0.0)
     simple_form (2.1.0)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
@@ -251,6 +256,7 @@ DEPENDENCIES
   filepicker-rails
   haml-rails
   jquery-rails
+  launchy
   mocha
   nifty-generators
   omniauth
@@ -264,6 +270,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 3.2.3)
   sendgrid
+  shoulda-matchers
   simple_form
   sqlite3
   stripe
