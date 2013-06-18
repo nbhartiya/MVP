@@ -10,6 +10,7 @@ MVP::Application.routes.draw do
 
   match "home" => "signups#new"
   get "/done" => "signups#done"
+  get "/thanks" => "signups#thanks"
   get "/wireframes" => redirect {"http://mainstproject.com/wireframes"}
 
   get "home/indexABC"

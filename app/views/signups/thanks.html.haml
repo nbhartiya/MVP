@@ -1,0 +1,43 @@
+.launch 
+  .bkgdimage.done
+    %img
+      = image_tag "launch_page_mock_done.jpg"
+  .copy
+    %h2  
+      be the first 
+      %br 
+      to find out about 
+      %br 
+      exclusive events with chefs
+    %h4
+      %br
+      What is good food without friends to share it with?
+      %br
+      The more you share, the better the meal.
+  .sharing
+    %p
+      %br
+      %br
+      It seems like you like us
+      %br
+      so much that you signed up
+      %br 
+      twice. :) As our biggest fan
+      %br
+      take the time to tweet about
+      %br
+      us and like us on facebook!
+    .twittersharing
+      = render :partial => "social_media/tweet", :locals => {:message => "I'm on my way to the best meals of my life. Join me!", :url => "http://www.simmr.co"}
+      %br
+      %br
+    .fblike
+      = render :partial => "social_media/like"
+    .donefooter
+      %ul
+        %li
+          %a{:href => "../home/howitworks"} How It Works
+        %li
+          %a{:href => "../home/teamandjobs"} Team and Jobs
+        %li.end
+          %a{:href => "../home/contactus"} Contact Us

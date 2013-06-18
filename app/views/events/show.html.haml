@@ -48,7 +48,7 @@
               .btn.btn-warning.event-go-button#sign_up{:"data-toggle" => "modal"} Sign Up
               .btn.btn-warning.event-go-button#sign_in{:"data-toggle" =>"modal"} Sign In
             -if user_signed_in?
-              .btn.btn-warning.event-go-button{'ng-click' => 'payment=1'} Go
+              .btn.btn-warning.event-go-button{'ng-click' => 'showPayment()'} Go
             %table.event-sharing
               %tr
                 %td
@@ -80,12 +80,13 @@
             %h2 Who are you bringing?
             -#this needs to show fields for however many guests there are (ideally just 2-3 at a time if there's a TON)
             %h3 Guest
-            -# Need to hook up to user.charges.new
-            %input.guest-name{'ng-model' => 'guest.name', :type=>'text', :placeholder =>"Guest Full Name", :class => "error-{{guest.nameError}}"}
-            %input.guest-email{'ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :class => "error-{{guest.emailError}}"}
+            .guests{'ng-repeat' => 'guest in guests'}
+              %input.guest-name{'ng-model' => 'guest.name', :type=>'text', :placeholder =>"Guest Full Name", :class => "error-{{guest.nameError}}"}
+              %input.guest-email{'ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :class => "error-{{guest.emailError}}"}
             .btn.btn-warning.standalone-button{'ng-click' => 'gotoPayment()'} Next
 
-          .event-purchase.clearfix{'ng-show' => 'payment==2', 'ng-init'=> "cost=#{@event.cost}"}
+          -# TODO: May want to not pass user like this...
+          .event-purchase.clearfix{'ng-show' => 'payment==2', 'ng-init'=> "cost=#{@event.cost};currentUser=#{current_user.to_json}"}
             %h1 Total: ${{total()}}
             %hr
             = render 'charges/stripe'

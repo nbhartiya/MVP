@@ -44,16 +44,24 @@ class SignupsController < ApplicationController
   # POST /signups.json
   def create
     @signup = Signup.new(params[:signup])
-
-    respond_to do |format|
-      if @signup.save
-        format.html { redirect_to "/done"}
-        format.json { render json: @signup, status: :created, location: @signup }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @signup.errors, status: :unprocessable_entity }
+    if Signup.where(:email => @signup.email).length != 0
+      respond_to do |format|
+        format.html { redirect_to "/thanks", notice: 'You like us bro. If you wanna signup again ask us to delete your record first!'}
       end
+    else
+      respond_to do |format|
+        if @signup.save
+          format.html { redirect_to "/done" }
+          format.json { render json: @signup, status: :created, location: @signup }
+        else
+          format.html { render action: "new", notice: 'Something went wrong! Make sure your email address is valid! :)' }
+          format.json { render json: @signup.errors, status: :unprocessable_entity }
+        end
+      end    
+
     end
+
+    
   end
 
   # PUT /signups/1
@@ -85,5 +93,8 @@ class SignupsController < ApplicationController
   end
   
   def done
+  end
+
+  def thanks
   end
 end

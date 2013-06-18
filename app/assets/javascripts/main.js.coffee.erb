@@ -1,6 +1,8 @@
 Simmr = angular.module('Simmr', ['ngResource', 'rails', 'ui', 'ui.bootstrap'])
 
 Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
+  $scope.guests = []
+
   $scope.guest = {}
   $scope.guest.name = ''
   $scope.guest.email = ''
@@ -18,19 +20,33 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", (
   $scope.total = ->
     $scope.num_guests * parseInt($scope.cost)
 
+  $scope.showPayment = ->
+    console.log $scope.num_guests
+    $scope.currentUser.name = $scope.currentUser.first_name + ' ' + $scope.currentUser.last_name
+    $scope.guests.push($scope.currentUser)
+    if $scope.num_guests > 0
+      i = 0
+      while i <  $scope.num_guests - 1
+        $scope.guests.push({})
+        i++
+      $scope.payment = 1
+    else
+      alert 'Please select number of seats!'
+    # TODO: Make this error message appear inline somewhere instead of as an alert
+
   $scope.gotoPayment = ->
-  	if ($scope.guest.name == '')
-  		$scope.guest.nameError = true
-  	else
-  		$scope.guest.nameError = false
-
-  	if ($scope.guest.email == '')
-  		$scope.guest.emailError = true
-  	else
-  		$scope.guest.emailError = false
-
-  	if ($scope.guest.emailError == false) and ($scope.guest.nameError == false)
-  		$scope.payment = 2
+    error = 0
+    angular.forEach($scope.guests, (guest) =>
+      if guest.name == "" or guest.email == ""
+        error = 1
+      if typeof guest.name is 'undefined' or typeof guest.email is 'undefined'
+        error = 1
+    )
+    if error == 0
+      $scope.payment = 2 
+    else
+      alert "Please enter the name and email addresses of all of the guests."
+    # TODO: Make this error message appear inline somewhere instead of as an alert
 
   $scope.submitPayment = ->
     if $scope.buyer.name == ''
