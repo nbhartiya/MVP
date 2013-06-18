@@ -58,6 +58,9 @@ module MVP
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Uncomment this if you want to see all the assets stuff when server is run
+    # config.quiet_assets = false
     
     #For devise
     config.assets.initialize_on_precompile = false
