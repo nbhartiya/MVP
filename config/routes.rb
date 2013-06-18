@@ -11,7 +11,7 @@ MVP::Application.routes.draw do
   match "home" => "signups#new"
   get "/done" => "signups#done"
   get "/thanks" => "signups#thanks"
-  get "/wireframes" => redirect {"http://mainstproject.com/wireframes"}
+  #get "/wireframes" => redirect {"http://mainstproject.com/wireframes"}
 
   get "home/indexABC"
   get "home/howitworks"
@@ -37,16 +37,14 @@ MVP::Application.routes.draw do
     resources :imagess
   end
 
-  resources :users do
+  devise_for :users, controllers: {omniauth_callbacks: "authentications"} do
     resource :image
   end
-
-  devise_for :users, controllers: {omniauth_callbacks: "authentications"}
   
   # I have no idea what changed that caused me to have to add this line...????
-  devise_for :users do 
-    get '/users/sign_out' => 'devise/sessions#destroy' 
-  end
+  #devise_scope :user do 
+  #  get '/users/sign_out' => 'devise/sessions#destroy' 
+  #end
 
   match 'events/:id/feedback' => 'events#feedback'
 
