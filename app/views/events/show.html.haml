@@ -41,9 +41,14 @@
               -#probably want to pull this arithmetic out too
               .bar{:style => "width: #{(@event.guests.count/@event.people_limit.to_f)*100}%"}
             %select.number-of-seats{'ng-model' => 'num_guests'}
+              %option{:selected => "selected", :value => 1} 1 seat
               - (@event.people_limit - @event.guests.count).times do |s|
-                %option{:disabled => "disabled", :selected => "selected", :value => s+1} #{s+1} seats
-            .btn.btn-warning.event-go-button{'ng-click' => 'payment=1'} Go
+                %option{:value => s+2} #{s+2} seats
+            -if user_signed_in? == false
+              .btn.btn-warning.event-go-button#sign_up{:"data-toggle" => "modal"} Sign Up
+              .btn.btn-warning.event-go-button#sign_in{:"data-toggle" =>"modal"} Sign In
+            -if user_signed_in?
+              .btn.btn-warning.event-go-button{'ng-click' => 'payment=1'} Go
             %table.event-sharing
               %tr
                 %td
@@ -94,80 +99,87 @@
         .span1
   .container
     .row.section-header
-      .span12
-        %h1 Our Story
+      .span12#host-story
+        %a{:href => "#host-story", 'data-target'=>"#host-story-detail", 'data-toggle'=>"collapse"} Host Story <span class="caret collapsed"></span>
   .host-story
     .container
       .row
         .span1
         .span10
-          %p
-            =@event.host.last_name
+          #host-story-accordion.accordion
+            #host-story-detail.accordion-body.collapse.in
+              .accordion-inner
+                %p
+                  =@event.host.last_name
             -#=@event.host.profile.story
             -# Need to make sure a host story exists for that host before they can create the event...
         .span1 
   .container
     .row.section-header
-      .span12
-        %h1 The Menu
+      .span12#event-menu
+        %a{:href => "#event-menu", 'data-target'=>"#event-menu-detail", 'data-toggle'=>"collapse"} The Menu <span class="caret collapsed"></span>
   .event-menu
     .container
       .row
         .span1
         .span10
-          %p 
-            =@event.menu_text
+          #event-menu-accordion.accordion
+            #event-menu-detail.accordion-body.collapse.in
+              .accordion-inner
+                %p
+                  =@event.menu_text
         .span1
   .container
     .row.section-header
-      .span12
-        %h1 Chatter
-  .event-attendees
-    .container
-      .row
-        .span1
-        .attendees.span10
-          =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
-          =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
-          =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
-          =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Christine Lee", "class" => "one-attendee", "data-placement" => "bottom"
-          =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Michael Makarov", "class" => "one-attendee", "data-placement" => "bottom"
-
-          -#
-            %p 
-              -for guest in @event.guests
-                = guest.first_name + " " + guest.last_name
-                %p
-        .span1
+      .span12#event-chatter
+        %a{:href => "#event-chatter", 'data-target'=>"#event-chatter-detail", 'data-toggle'=>"collapse"} Chatter <span class="caret collapsed"></span>
   .event-chatter
     .container
       .row
         .span1
-        .chatter.span10
-          %table
-            %tr
-              %td
-                =link_to image_tag("Favicon.png"), "#"
-              %td
-                Comment blahblahblahblah
-            %tr
-              %td
-                =link_to image_tag("Favicon.png"), "#"
-              %td
-                Comment blahblahblahblah
-          %table.response-level1.offset1
-            %tr
-              %td
-                =link_to image_tag("Favicon.png"), "#"
-              %td
-                Comment blahblahblahblah
-          %table.response-level2.offset2
-            %tr
-              %td
-                =link_to image_tag("Favicon.png"), "#"
-              %td
-                Comment blahblahblahblah
+        .span10
+          #event-chatter-accordion.accordion
+            #event-chatter-detail.accordion-body.collapse.in
+              .accordion-inner
+                .row.attendees
+                  .span12
+                    =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
+                    =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
+                    =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
+                    =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Christine Lee", "class" => "one-attendee", "data-placement" => "bottom"
+                    =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Michael Makarov", "class" => "one-attendee", "data-placement" => "bottom"
+                    -#
+                      %p 
+                        -for guest in @event.guests
+                          = guest.first_name + " " + guest.last_name
+                          %p
+                .row.comments
+                  .span12
+                    %table
+                      %tr
+                        %td
+                          =link_to image_tag("Favicon.png"), "#"
+                        %td
+                          Comment blahblahblahblah
+                      %tr
+                        %td
+                          =link_to image_tag("Favicon.png"), "#"
+                        %td
+                          Comment blahblahblahblah
+                    %table.response-level1.offset1
+                      %tr
+                        %td
+                          =link_to image_tag("Favicon.png"), "#"
+                        %td
+                          Comment blahblahblahblah
+                    %table.response-level2.offset2
+                      %tr
+                        %td
+                          =link_to image_tag("Favicon.png"), "#"
+                        %td
+                          Comment blahblahblahblah
         .span1
+
 
 
 -#

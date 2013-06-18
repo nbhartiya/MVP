@@ -81,8 +81,8 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", (
     if $scope.buyer.nameError == false and $scope.buyer.ccNumberError == false and $scope.buyer.ccSecCodeError == false and $scope.buyer.ccExpMonthError == false and $scope.buyer.ccExpYearError == false and $scope.buyer.billingAddressError == false and $scope.buyer.billingCityError == false and $scope.buyer.billingStateError == false and $scope.buyer.billingZipError == false
     	$scope.payment = 3
     	$(document).on "click", "#ticket_purchase", ->
-    	  $("#new_charge").submit()
-        
+        $("#new_charge").submit()
+        $("#event-carousel").carousel "cycle"
 ]
 
 Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->

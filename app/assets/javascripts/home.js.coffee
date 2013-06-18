@@ -10,6 +10,3 @@ $(document).ready ->
 
   $(".step").mouseover ->
     $(".step-description", this).slideDown "400"
-  
-  $(".step").mouseleave ->
-    $(".step-description", this).slideUp "400"

@@ -241,14 +241,16 @@ $main_orange: rgb(255, 178, 35);
 		font-size: 14px;
 		line-height: 2em;
 	}
-	.attendees, .chatter{
+	.attendees, .comments{
 		img{
 			width: 50px;
 			height: auto;
 			margin: 0 5px;
 		}
 	}
-	.chatter{
+	.comments{
+		margin-top: 10px;
+		padding-top: 10px;
 		img{
 			margin-right: 10px;
 		}
@@ -403,7 +405,7 @@ $main_orange: rgb(255, 178, 35);
 	}
 }
 
-#host-story, #event-menu{
+#host-story, #event-menu, #event-chatter{
 	.caret{
 		display: inline-block;
 		vertical-align: middle;
