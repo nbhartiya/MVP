@@ -187,11 +187,14 @@ ul.parsley-error-list{
 // how it works styling
 .section-header{
 	margin: 20px 0 20px 0;
-	h1{
+	h1, a{
 		font-size: 30px;
 		color: black;
 		line-height: 1.5em;
 		font-weight: 100;
+	}
+	a{
+		text-decoration: none;
 	}
 }
 
@@ -211,6 +214,10 @@ ul.parsley-error-list{
 	}
 }
 
+.accordion-inner{
+		border-top: none;
+	}
+	
 .step{
 	background: url('Food 17.jpg');
 	height: 350px;

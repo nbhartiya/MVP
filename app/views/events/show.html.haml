@@ -41,9 +41,8 @@
               -#probably want to pull this arithmetic out too
               .bar{:style => "width: #{(@event.guests.count/@event.people_limit.to_f)*100}%"}
             %select.number-of-seats{'ng-model' => 'num_guests'}
-              %option{:disabled => "disabled", :selected => "selected", :value => ""} Number of Seats
               - (@event.people_limit - @event.guests.count).times do |s|
-                %option{:value => s+1} #{s+1} seats
+                %option{:disabled => "disabled", :selected => "selected", :value => s+1} #{s+1} seats
             .btn.btn-warning.event-go-button{'ng-click' => 'payment=1'} Go
             %table.event-sharing
               %tr
@@ -97,14 +96,16 @@
     .row.section-header
       .span12
         %h1 Our Story
-  .host-story.row
-    .span1
-    .span10
-      %p
-        =@event.host.last_name
-        -#=@event.host.profile.story
-        -# Need to make sure a host story exists for that host before they can create the event...
-    .span1 
+  .host-story
+    .container
+      .row
+        .span1
+        .span10
+          %p
+            =@event.host.last_name
+            -#=@event.host.profile.story
+            -# Need to make sure a host story exists for that host before they can create the event...
+        .span1 
   .container
     .row.section-header
       .span12

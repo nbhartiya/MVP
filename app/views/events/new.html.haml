@@ -10,6 +10,7 @@
               %li{"data-target" => "#event-carousel", "data-slide-to" => index}
            
         .carousel-inner
+          -# if doesn't have images, then show default image
           -@event.images.each_with_index do |i, index|
             -if index == 0
               .item.active
@@ -24,9 +25,8 @@
             .event-summary
               %h1
                 {{event.title}}
-              -# {{nene}}
               %h2 
-                =@event.description
+                {{event.description}}
               %h2 Host Name
               %hr
               %h3 
@@ -34,15 +34,16 @@
               %h3 Mission
               %p 
                 -# pull out and make this a method somewhere...
-                {{event.guests}}
+                {{event.min-seats}}
                 seats left
               .progress.progress-warning
                 -#probably want to pull this arithmetic out too
-                .bar{:style => "width: #{(@event.guests.count/@event.people_limit.to_f)*100}%"}
-              %select.number-of-seats{'ng-model' => 'num_guests'}
+                .bar{:style => "width: 0%"}
+              %select.number-of-seats
                 %option{:disabled => "disabled", :selected => "selected", :value => ""} Number of Seats
-                
-              .btn.btn-warning.event-go-button{'ng-click' => 'payment=1'} Go
+                -#{{event.min-seats}}.times do |s|
+                  -#%option{:value => s+1} #{s+1} seats
+              .btn.btn-warning.event-go-button Go
               %table.event-sharing
                 %tr
                   %td
@@ -68,117 +69,65 @@
           .span1
           .span4 
             -#this needs to happen only when tickets >1
-            .event-guests.clearfix
+            .event-create-form.clearfix
               %input{'ng-model' => 'event.title', :type=>"text", :placeholder =>"Event Title"}
               %input{'ng-model' => 'event.date', :type=>"text", :placeholder =>"Event Date"}
-              %input{:type=>"text", :placeholder =>"Event Time"}
-              %input{:type=>"text", :placeholder =>"Event Address"}
-              %input{:type=>"text", :placeholder =>"Event City"}
+              %input{'ng-model' => 'event.time', :type=>"text", :placeholder =>"Event Time"}
+              %input{'ng-model' => 'event.address',:type=>"text", :placeholder =>"Event Address"}
+              %input{'ng-model' => 'event.city',:type=>"text", :placeholder =>"Event City"}
               %select
-                %option{:disabled => "disabled", :selected => "selected", :value => ""} State
-              %input{:type=>"text", :placeholder =>"Event Price"}
-              %input{:type=>"text", :placeholder =>"Min Seats"}
-              %input{:type=>"text", :placeholder =>"Max Seats"}
+                %option{'ng-model' => 'event.state',:disabled => "disabled", :selected => "selected", :value => ""} State
+              %input{'ng-model' => 'event.price',:type=>"text", :placeholder =>"Event Price"}
+              %input{'ng-model' => 'event.min-seats',:type=>"text", :placeholder =>"Min Seats"}
+              %input{'ng-model' => 'event.max-seats',:type=>"text", :placeholder =>"Max Seats"}
               .btn.btn-warning.standalone-button Update
 
-            .event-purchase{'ng-show' => 'payment==2', 'ng-init'=> "cost=#{@event.cost}"}
-              %h1 Total: ${{total()}}
-              %hr
-              = render 'charges/stripe'
-              .btn.btn-warning#ticket_purchase{'ng-click' =>'payment=2'} Submit
-              .btn.btn-warning{'ng-click'=>'payment=1'} Previous
-          .span1
   .container
     .row.section-header
       .span1
       .span10
         %h1 Our Story
       .span1
-  .host-story.row
-    .span1
-    .span10
-      %p
-        {{event.host}}
-    .span1 
+  .host-story
+    .container
+      .row
+        .span1
+        .span10
+        .span1 
   .container
     .row.section-header
       .span1
       .span10
         %h1 The Menu
       .span1
-  .event-menu.row
-    .span1
-    .span10
-      %p 
-        =@event.menu_text
-    .span1
+  .event-menu
+    .container
+      .row
+        .span1
+        .span10
+          %p 
+            =@event.menu_text
+        .span1
   .container
     .row.section-header
       .span1
       .span10
         %h1 Chatter
       .span1
-  .event-attendees.row
-    .span1
-    .attendees.span10
-      %p 
-        -for guest in @event.guests
-          = guest.first_name + " " + guest.last_name
-          %p
-    .span1
-  .event-chatter.row
-    .span1
-    .chatter.span10
-      %p threaded comments
-    .span1
-
-
--#
-  %p#notice= notice
-
-  %p
-    %b Title:
-    = @event.title
-  %p
-    %b Location:
-    = @event.location_title
-  %p
-    %b People limit:
-    = @event.people_limit
-  %p
-    %b Description:
-    = @event.description
-  %p
-    %b Menu pdf:
-    = @event.menu_pdf
-  %p
-    %b Menu text:
-    = @event.menu_text
-  %p
-    %b Date:
-    = @event.date
-  %p
-    %b Cost:
-    = @event.cost
-  %p
-    %b Length:
-    = @event.length
-  %p
-    %b Other Information:
-    = @event.other_info
-  %p
-    %b Host:
-    = @event.host.first_name.split(' ').map(&:capitalize).join(' ') + " " + @event.host.last_name.split(' ').map(&:capitalize).join(' ')
-  -for image in @event.images
-    %p
-      %b Title:
-      = image.title
-    %p
-      = filepicker_image_tag image.image, w: 160, h: 160, fit: 'clip'
-    %p
-      %b Caption:
-      = image.description
-
-  = link_to 'Edit', edit_event_path(@event)
-  \|
-  = link_to 'Back', events_path
+  .event-attendees
+    .container
+      .row
+        .span1
+        .attendees.span10
+          %p 
+            -for guest in @event.guests
+              = guest.first_name + " " + guest.last_name
+              %p
+        .span1
+  .event-chatter
+    .container
+      .row
+        .span1
+        .chatter.span10
+          %p threaded comments
+        .span1

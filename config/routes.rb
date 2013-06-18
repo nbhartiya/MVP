@@ -47,6 +47,8 @@ MVP::Application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy' 
   end
 
+  match 'events/:id/feedback' => 'events#feedback'
+
   #resources :accreditations
   #resources :authentications #, :only => [:show]
   #resources :investments

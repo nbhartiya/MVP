@@ -10,6 +10,13 @@ class EventsController < ApplicationController
     end
   end
 
+  def feedback
+    @event = Event.find(params[:id])
+    respond_to do |format|
+      format.html
+    end
+  end
+
   # GET /events/1
   # GET /events/1.json
   def show

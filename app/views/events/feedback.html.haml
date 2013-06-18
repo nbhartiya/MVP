@@ -17,34 +17,41 @@
             .item
               = filepicker_image_tag i.image
     .container
-      .event-registration.row{'ng-controller' => 'EventRegisterCtrl'}
+      .event-feedback.row{'ng-controller' => 'EventFeedbackCtrl'}
         .span1
         .span4
-          .event-summary
+          .event-summary.clearfix
             %h1
               =@event.title
             %h2 
               =@event.description
-            %h2
-              = @event.host.first_name.split(' ').map(&:capitalize).join(' ') + " " + @event.host.last_name.split(' ').map(&:capitalize).join(' ')
-            %h2#event-cost
-              =number_to_currency(@event.cost, :unit => "$")
-            %hr
             %h3#event-date
               =@event.date.strftime("%A %B %d, %I:%M%p")
             %h3 Mission
-            %p 
-              -# pull out and make this a method somewhere...
-              =@event.people_limit - @event.guests.count
-              seats left
-            .progress.progress-warning
-              -#probably want to pull this arithmetic out too
-              .bar{:style => "width: #{(@event.guests.count/@event.people_limit.to_f)*100}%"}
-            %select.number-of-seats{'ng-model' => 'num_guests'}
-              %option{:disabled => "disabled", :selected => "selected", :value => ""} Number of Seats
-              - (@event.people_limit - @event.guests.count).times do |s|
-                %option{:value => s+1} #{s+1} seats
-            .btn.btn-warning.event-go-button{'ng-click' => 'payment=1'} Go
+            %table.feedback-actions
+              %tr
+                %td
+                  %h3.point-action Thank you for attending!
+                %td
+                  .points.btn.event-attending-points{'ng-click' => 'feedback=3'} +10
+            %hr
+            %table.feedback-actions
+              %tr
+                %td
+                  %h3.point-action Fill out a quick survey
+                %td
+                  .points.btn.btn-warning.event-survey-button{'ng-click' => 'feedback=1'} +15
+              %tr
+                %td
+                  %h3.point-action Write a Yelp Review
+                %td
+                  .btn.btn-warning.points.event-yelp-button{'ng-click' => 'feedback=2'} +20
+              %tr
+                %td
+                  %h3.point-action Like on Facebook
+                %td
+                  .btn.btn-warning.points.event-fblike-button{'ng-click' => 'feedback=3'} +10
+
             %table.event-sharing
               %tr
                 %td
@@ -70,52 +77,146 @@
         .span1
         .span4 
           -#this needs to happen only when tickets >1
-          .event-guests.clearfix{'ng-show' => 'payment==1', 'ng-init'=> "cost=#{@event.cost}"}
-            %h1 Total: ${{total()}}
-            %hr
-            %h2 Who are you bringing?
-            -#this needs to show fields for however many guests there are (ideally just 2-3 at a time if there's a TON)
-            %h3 Guest
-            -# Need to hook up to user.charges.new
-            %input.guest-name{'ng-model' => 'guest.name', :type=>'text', :placeholder =>"Guest Full Name", :class => "error-{{guest.nameError}}"}
-            %input.guest-email{'ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :class => "error-{{guest.emailError}}"}
-            .btn.btn-warning.standalone-button{'ng-click' => 'gotoPayment()'} Next
+          .event-survey.clearfix{'ng-show' => 'feedback==1'}
+            %h1 Survey view
+            %input.survey-question-1{:type=>'text', :placeholder =>"Custom Survey Question 1"}
+            .btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Submit
 
-          .event-purchase.clearfix{'ng-show' => 'payment==2', 'ng-init'=> "cost=#{@event.cost}"}
-            %h1 Total: ${{total()}}
-            %hr
-            = render 'charges/stripe'
-            .btn.btn-warning#ticket_purchase{'ng-click' => 'submitPayment()'} Submit
-            .btn.btn-warning{'ng-click' => 'payment=1'} Previous
+          .event-yelp.clearfix{'ng-show' => 'feedback==2'}
+            %h1 Yelp Review View
+            %input.yelp-review-link{:type=>'text', :placeholder =>"Paste Yelp Review Link Here"}
+            .btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Submit
 
-          .event-purchase.clearfix{'ng-show' => 'payment==3'}
-            %h2 Thank you for your purchase! You will receive an email confirmation shortly.
-            .btn.btn-warning{'ng-click'=>'payment=1'} Edit Guests
-            .btn.btn-warning{'ng-click'=>'payment=2'} Edit Payment Info
+          .point-ranking.clearfix{'ng-show' => 'feedback==3'}
+            %h1 Leader Boards
+            %ul.nav.nav-tabs
+              %li.active
+                %a{"data-toggle" => "tab", :href => "#friends-ranking"} Friends
+              %li
+                %a{"data-toggle" => "tab", :href => "#city-ranking"} City
+              %li
+                %a{"data-toggle" => "tab", :href => "#global-ranking"} Global
+            #myTabContent.tab-content
+              #friends-ranking.tab-pane.fade.active.in
+                %table.point-ranking-table
+                  %tr 
+                    %td 1
+                    %td 
+                      =link_to image_tag("Favicon.png"), "#"
+                    %td Wendy
+                    %td 5000
+                  %tr 
+                    %td 2
+                    %td 
+                      =link_to image_tag("Favicon.png"), "#"
+                    %td Wendy
+                    %td 4000
+                  %tr 
+                    %td 3
+                    %td 
+                      =link_to image_tag("Favicon.png"), "#"
+                    %td Wendy
+                    %td 3000
+              #city-ranking.tab-pane.fade
+                %table.point-ranking-table
+                  %tr 
+                    %td 1
+                    %td 
+                      =link_to image_tag("Favicon.png"), "#"
+                    %td SF Citizen
+                    %td 5000
+                  %tr 
+                    %td 2
+                    %td 
+                      =link_to image_tag("Favicon.png"), "#"
+                    %td SF Citizen
+                    %td 4000
+                  %tr 
+                    %td 3
+                    %td 
+                      =link_to image_tag("Favicon.png"), "#"
+                    %td SF Citizen
+                    %td 3000
+              #global-ranking.tab-pane.fade
+                %table.point-ranking-table
+                  %tr 
+                    %td 1
+                    %td 
+                      =link_to image_tag("Favicon.png"), "#"
+                    %td Random Guy
+                    %td 5000
+                  %tr 
+                    %td 2
+                    %td 
+                      =link_to image_tag("Favicon.png"), "#"
+                    %td Random Guy
+                    %td 4000
+                  %tr 
+                    %td 3
+                    %td 
+                      =link_to image_tag("Favicon.png"), "#"
+                    %td Random Guy
+                    %td 3000
+            .btn.btn-warning.standalone-button{'ng-click' => 'feedback=4'} Get More Points
+              
+          .more-points.clearfix{'ng-show' => 'feedback==4'}
+            %h1 Get More Points
+            %table.feedback-actions
+              %tr
+                %td
+                  %h3.point-action Attend Another Event
+                %td
+                  .btn.btn-warning.points.attend-another-event-button{'ng-click' => 'feedback=2'} +10
+              %tr
+                %td
+                  %h3.point-action Refer a Friend to An Event
+                %td
+                  .btn.btn-warning.points.refer-friend-event-button{'ng-click' => 'feedback=2'} +10
+              %tr
+                %td
+                  %h3.point-action Start a Campaign
+                %td
+                  .points.btn.btn-warning.start-campaign-button{'ng-click' => 'feedback=1'} +10
+              %tr
+                %td
+                  %h3.point-action Tell Friends About Simmr
+                %td
+                  .btn.btn-warning.points.refer-friend-simmr-button{'ng-click' => 'feedback=2'} +20
+            .btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Back to Leader Boards
+
+
         .span1
   .container
     .row.section-header
-      .span12
-        %h1 Our Story
+      .span12#host-story
+        %a{:href => "#host-story", 'data-target'=>"#host-story-detail", 'data-toggle'=>"collapse"} Host Story <span class="caret collapsed"></span>
   .host-story
     .container
       .row
         .span1
         .span10
-          %p
-            =@event.host.last_name
+          #host-story-accordion.accordion
+            #host-story-detail.accordion-body.collapse
+              .accordion-inner
+                %p
+                  =@event.host.last_name
+            -#=@event.host.profile.story
+            -# Need to make sure a host story exists for that host before they can create the event...
         .span1 
   .container
     .row.section-header
-      .span12
-        %h1 The Menu
+      .span12#event-menu
+        %a{:href => "#event-menu", 'data-target'=>"#event-menu-detail", 'data-toggle'=>"collapse"} The Menu <span class="caret collapsed"></span>
   .event-menu
     .container
       .row
         .span1
         .span10
-          %p 
-            =@event.menu_text
+          #event-menu-accordion.accordion
+            #event-menu-detail.accordion-body.collapse
+              .accordion-inner
+                %p
+                  =@event.menu_text
         .span1
   .container
     .row.section-header

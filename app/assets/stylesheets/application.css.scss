@@ -28,10 +28,10 @@ html body {
 	font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;        
 }
 
-// effects
+// error styling
 
-.hide{
-	display: none;
+input.error-true  {
+   border: 2px solid $main_orange;
 }
 
 // header styling

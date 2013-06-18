@@ -28,13 +28,13 @@
   .container
     .row.section-header
       .span12#how-it-works
-        %h1 How It Works <a data-target="#how-it-works-detail", data-toggle="collapse" class="caret collapsed"></a>
+        %a{:href => "#how-it-works", 'data-target'=>"#how-it-works-detail", 'data-toggle'=>"collapse"} How It Works <span class="caret collapsed"></span>
   .section
     .container
       .row
         .span1
         .span10
-          #how-it-works-accordian.accordion
+          #how-it-works-accordion.accordion
             #how-it-works-detail.accordion-body.collapse
               .accordion-inner
                 %p
