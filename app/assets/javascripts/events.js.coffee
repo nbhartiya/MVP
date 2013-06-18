@@ -6,6 +6,8 @@ $(document).ready ->
 
   $(".one-attendee").tooltip()
 
+  $(".event-card-host-name").tooltip()
+
   $("#event-carousel").carousel interval: 6000
 
   $(".heart_this a").click ->
@@ -26,9 +28,9 @@ $(document).ready ->
     $("#event-carousel").carousel "pause"
 
   $(".single-event").mouseover ->
-    $(this).find(".event-first-row").css "bottom", "-50%"
-    $(this).find(".event-second-row").slideDown "400"
+    $(this).find(".event-first-row").css "bottom", "120px"
+    $(this).find(".event-second-row").slideDown "900"
 
   $(".single-event").mouseleave ->
-    $(this).find(".event-second-row").slideUp "400"	
-    $(this).find(".event-first-row").css "bottom", "-73%"
+    $(this).find(".event-second-row").hide()	
+    $(this).find(".event-first-row").css "bottom", "43px"

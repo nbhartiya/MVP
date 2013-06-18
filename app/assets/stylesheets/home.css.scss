@@ -264,26 +264,28 @@ ul.parsley-error-list{
 
 // begin events styling
 .home{
-	.events{ 
-		margin: 40px 0 0 0;
-		.single-event{
-			background: url('Food 17.jpg');
-			height: 280px;
-			max-width: 100%;
+	.single-event{
 			overflow: none;
+			height: 280px;
+			margin: 0 10px 40px 10px;
+			.event-image{
+				height: 280px;
+				max-width: 100%;
+			}
 		.event-first-row, .event-second-row{
 			background: rgba(0,0,0,0.8);
 			padding: 10px;
 			position: relative;
 			margin: 0;
-			bottom: -53%;
+			bottom: 43px;
+			color: white;
 		}
 		.event-first-row{
 			.event-host-image{
 				width: 50px;
 				-webkit-border-radius: 50px;
-          		border-radius: 50px;
-          		background-clip: padding-box;
+	      		border-radius: 50px;
+	      		background-clip: padding-box;
 			}
 			.event-host-image, .event-title, .event-price, .event-progress, .event-go{
 				margin: 0 10px;
@@ -297,23 +299,28 @@ ul.parsley-error-list{
 			}
 			.event-price{
 				font-size: 24px;
-				color: white;
 				font-weight: 500;
 			}
 		}
 		.event-second-row{
-			.event-progress, .event-go{
-				margin: 0 10px;
-			}
-			.event-process{
-				font-size: 10px;
-				color: white;
-			}
-
-		}
-		.event-second-row{
 			display: none;
-		}
+			position: relative;
+			bottom: 120px;
+			background: rgba(0,0,0,0.5);
+			.event-progress{
+				margin: 0 10px;
+				font-size: 10px;
+				width: 95%;
+				}
+			table{
+				width: 100%;
+			}
+			.event-time-and-date{
+				text-align: left;
+			}
+			.event-seats-left{
+				text-align: right;
+			}
 		}
 	}
 }
