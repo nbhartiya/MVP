@@ -30,6 +30,7 @@ MVP::Application.routes.draw do
 
   namespace :api do
     resources :charges
+    resources :campaigns
   end
 
   resources :events do

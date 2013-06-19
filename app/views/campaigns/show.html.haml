@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Bus name:
+  = @campaign.bus_name
+%p
+  %b Blurb:
+  = @campaign.blurb
+%p
+  %b About:
+  = @campaign.about
+%p
+  %b Why join:
+  = @campaign.why_join
+%p
+  %b Location:
+  = @campaign.location_id
+%p
+  %b Foodie:
+  = @campaign.foodie_id
+%p
+  %b Host:
+  = @campaign.host_id
+
+= link_to 'Edit', edit_campaign_path(@campaign)
+\|
+= link_to 'Back', campaigns_path

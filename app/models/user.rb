@@ -38,6 +38,8 @@ class User < ActiveRecord::Base
   has_many :events_hosted, :class_name => "Event", :foreign_key => "host_id"
   has_many :charges
   has_one :profile
+  has_many :campaigns, :foreign_key => "campaign_starter_id"
+  has_and_belongs_to :campaign, :foreign_key => "host_id"
   
   before_create :confirmation_email
   
