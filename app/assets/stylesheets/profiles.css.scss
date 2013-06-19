@@ -73,6 +73,7 @@ $main_orange: rgb(255, 178, 35);
 		font-size: 24px;
 		font-weight: 500;
 		line-height: 2em;
+		height: 2em;
 	}
 }
 .event-second-row{
@@ -116,8 +117,9 @@ $main_orange: rgb(255, 178, 35);
 			margin: 10px;
 			text-align: center;
 			a{
+				position: relative;
+				top: 20%;
 				color: white;
-				vertical-align: middle;
 			}
 			a:hover{
 				cursor: pointer;
@@ -285,7 +287,7 @@ $main_orange: rgb(255, 178, 35);
 
 .user-announcements, .user-about, .user-events, .user-campaigns, .user-following, .user-chatter{
 	background: rgb(230,230,230);
-	padding: 20px 0;
+	padding: 0;
 	.accordion{
 		margin: 0;
 	}
@@ -330,6 +332,7 @@ $main_orange: rgb(255, 178, 35);
 .edit-button{
 	background: rgba(0,0,0,0.8);
 	margin-left: 0;
+	width: auto;
 	.btn{
 		margin: 10px;
 	}

@@ -1,13 +1,6 @@
 .events
   .event-profile
-    #event-carousel.carousel.slide
-      %ol.carousel-indicators
-        -@event.images.each_with_index do |i, index|         
-          -if index == 0
-            %li.active{"data-target" => "#event-carousel", "data-slide-to" => index}
-          -else
-            %li{"data-target" => "#event-carousel", "data-slide-to" => index}
-         
+    #event-carousel.carousel.slide         
       .carousel-inner
         -@event.images.each_with_index do |i, index|
           -if index == 0
@@ -16,6 +9,12 @@
           -else
             .item
               = filepicker_image_tag i.image
+    %ol.carousel-indicators
+      -@event.images.each_with_index do |i, index|         
+        -if index == 0
+          %li.active{"data-target" => "#event-carousel", "data-slide-to" => index}
+        -else
+          %li{"data-target" => "#event-carousel", "data-slide-to" => index}
     .container
       .event-feedback.row{'ng-controller' => 'EventFeedbackCtrl'}
         .span1

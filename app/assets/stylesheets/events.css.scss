@@ -30,9 +30,6 @@ $main_orange: rgb(255, 178, 35);
 		position: absolute;
 	    width: 100%;
 	    z-index: -1;
-	    ol.carousel-indicators{
-	    	z-index: 50000000;
-	    }
 		.carousel-inner{
 			height: 550px;
 			width: auto;
@@ -40,6 +37,33 @@ $main_orange: rgb(255, 178, 35);
 				width: 100%;
 				background: no-repeat;
 			}
+		}
+	}
+	ol.carousel-indicators{
+		position: relative;
+		float: right;
+		top: 0px;
+		color: white;
+		display: block;
+		list-style-type: decimal;
+		-webkit-margin-before: 1em;
+		-webkit-margin-after: 1em;
+		-webkit-margin-start: 0px;
+		-webkit-margin-end: 0px;
+		-webkit-padding-start: 40px;
+		li{
+			display: block;
+			float: left;
+			width: 10px;
+			height: 10px;
+			margin-left: 5px;
+			text-indent: -999px;
+			background: rgba(255, 255, 255, 0.25);
+			border-radius: 5px;
+			z-index: 500;
+		}
+		.active{
+			background: rgba(255, 255, 255, 0.9);
 		}
 	}
 	.event-registration {
@@ -188,7 +212,7 @@ $main_orange: rgb(255, 178, 35);
 
 .host-story, .event-menu, .event-attendees, .event-chatter{
 	background: rgb(230,230,230);
-	padding: 20px 0;
+	padding: 0;
 	.accordion{
 		margin: 0;
 	}

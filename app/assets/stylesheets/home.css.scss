@@ -116,12 +116,12 @@ ul.parsley-error-list{
 				background: no-repeat;
 			}
 		}
-		.carousel-control{
-			font-size: 50px;
-			color: white;
-			top: 90%;
-			z-index: 500000;
-		}
+	}
+	.carousel-control{
+		font-size: 50px;
+		color: white;
+		top: 90%;
+		z-index: 50;
 	}
 	.copy{
 		margin-top: 80px;
@@ -214,6 +214,10 @@ ul.parsley-error-list{
 	}
 }
 
+.accordion{
+	margin: 0;
+}
+
 .accordion-inner{
 		border-top: none;
 	}
@@ -247,11 +251,12 @@ ul.parsley-error-list{
 
 .section{
 	margin: 0;
-	padding: 20px 0;
+	padding: 0;
 	background: rgb(240, 240, 240);
 }
 
 .featured-events{
+	padding: 10px 0;
 	a{
 		color: $main_orange;
 		text-decoration: none;

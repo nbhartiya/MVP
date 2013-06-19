@@ -1,14 +1,7 @@
 .events
   .event-profile
     .event-stats
-      #event-carousel.carousel.slide
-        %ol.carousel-indicators
-          -@event.images.each_with_index do |i, index|         
-            -if index == 0
-              %li.active{"data-target" => "#event-carousel", "data-slide-to" => index}
-            -else
-              %li{"data-target" => "#event-carousel", "data-slide-to" => index}
-           
+      #event-carousel.carousel.slide           
         .carousel-inner
           -# if doesn't have images, then show default image
           -@event.images.each_with_index do |i, index|
@@ -18,6 +11,12 @@
             -else
               .item
                 = filepicker_image_tag i.image
+      %ol.carousel-indicators
+        -@event.images.each_with_index do |i, index|         
+          -if index == 0
+            %li.active{"data-target" => "#event-carousel", "data-slide-to" => index}
+          -else
+            %li{"data-target" => "#event-carousel", "data-slide-to" => index}
       .container
         .event-registration.row{'ng-controller' => 'EventCreateCtrl'}
           .span1
