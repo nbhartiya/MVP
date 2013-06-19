@@ -27,14 +27,20 @@ $main_orange: rgb(255, 178, 35);
 
 .user-first-row{
 	bottom: 80px;
+	.unfollow-button{
+		margin-left: 0;
+		.btn{
+			margin: 10px 0;
+			float: right;
+		}
+	}
 }
 
 .campaign-first-row{
 	bottom: 76px;
-	.join-button{
-	margin-left: 0;
+	.join-button, .promote-button{
+		margin-left: 0;
 		.btn{
-			width: 20px;
 			margin: 10px 0;
 			float: right;
 		}
@@ -98,6 +104,29 @@ $main_orange: rgb(255, 178, 35);
 }
 }
 
+.single-event-actions{
+	ul{
+		list-style: none;
+		li{
+			height: 91px;
+			width: 91px;
+			float: left;
+			background: rgba(0, 0, 0, 0.8);
+			padding: 20px;
+			margin: 10px;
+			text-align: center;
+			a{
+				color: white;
+				vertical-align: middle;
+			}
+			a:hover{
+				cursor: pointer;
+				text-decoration: none;
+			}
+		}
+	}
+}
+
 // user and campaign second row
 .user-second-row{
 	bottom: 174px;
@@ -148,13 +177,16 @@ $main_orange: rgb(255, 178, 35);
 				background: no-repeat;
 			}
 		}
+		.carousel-control{
+			top: 90%;
+		}
 	}
 	.user-overview{
 		margin-top: 25px;
 	    -webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;    
 		box-sizing: border-box;
-		.user-summary {
+		.user-summary, .user-summary-edit {
 		    -webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box;
@@ -290,5 +322,15 @@ $main_orange: rgb(255, 178, 35);
 		border-top: 6px solid $main_orange;
 		border-right: 6px solid transparent;
 		border-left: 6px solid transparent;
+	}
+}
+
+// dashboard stuff
+
+.edit-button{
+	background: rgba(0,0,0,0.8);
+	margin-left: 0;
+	.btn{
+		margin: 10px;
 	}
 }

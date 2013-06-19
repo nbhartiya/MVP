@@ -1,0 +1,34 @@
+.row
+  .span5.user-image
+    =link_to image_tag("Food 6.jpg"), "#"
+.row.user-first-row
+  .span1.user-profile-image
+    =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "User Name", "class" => "user-card-name"
+  .span3.user-name-and-blurb
+    %a{:href => "#"} Neeharika Bharitya
+    %p Gimme that recipe!
+  .span1.unfollow-button
+    %a.btn{:href => "#"} Unfollow
+.row.user-second-row
+  .span5.social-stats
+    %table
+      %tr
+        %td
+          %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#"}
+        %td
+          %a.sb.twitter.circle.no-border.no-shadow.orange{:href=>"#"}
+        %td
+          %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
+        %td
+          %a.sb.share_this.circle.no-border.no-shadow.orange{:href=>"#"}
+      %tr.social-stats-numbers
+        %td 190
+        %td 190
+        %td 190
+        %td Email
+      %tr.social-stats-labels
+        %td likes
+        %td followers
+        %td reviews
+        %td a friend
+    
