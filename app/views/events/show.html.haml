@@ -81,8 +81,8 @@
             -#this needs to show fields for however many guests there are (ideally just 2-3 at a time if there's a TON)
             %h3 Guest
             .guests{'ng-repeat' => 'guest in guests'}
-              %input.guest-name{'ng-model' => 'guest.name', :type=>'text', :placeholder =>"Guest Full Name", :class => "error-{{guest.nameError}}"}
-              %input.guest-email{'ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :class => "error-{{guest.emailError}}"}
+              %input.guest-name{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.name', :type=>'text', :placeholder =>"Guest Full Name", :class => "error-{{guest.nameError}}"}
+              %input.guest-email{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :class => "error-{{guest.emailError}}"}
             %a.btn.btn-warning.standalone-button{'ng-click' => 'gotoPayment()'} Next
 
           -# TODO: May want to not pass user like this...

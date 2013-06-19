@@ -7,13 +7,13 @@
   
   %input#full_name{'ng-model' => "buyer.name", :placeholder => "Full Name", :type => "string", :class => "error-{{buyer.nameError}}"}
   
-  %input#credit_card_number{'ng-model' => "buyer.ccNumber", :placeholder => "CC Number", :type => "text", :class => "error-{{buyer.ccNumberError}}"}
+  %input#credit_card_number{'ng-model' => "card.number", :placeholder => "CC Number", :type => "text", :class => "error-{{buyer.ccNumberError}}"}
   
-  %input#security_code{'ng-model' => "buyer.ccSecCode", :placeholder => "Sec Code", :type => "text", :class => "error-{{buyer.ccSecCodeError}}"}
+  %input#security_code{'ng-model' => "card.cvc", :placeholder => "Sec Code", :type => "text", :class => "error-{{buyer.ccSecCodeError}}"}
   
-  %input#expiration_month{'ng-model' => "buyer.ccExpMonth", :placeholder => "Exp Month", :type => "text", :class => "error-{{buyer.ccExpMonthError}}"}
+  %input#expiration_month{'ng-model' => "card.expMonth", :placeholder => "Exp Month", :type => "text", :class => "error-{{buyer.ccExpMonthError}}"}
   
-  %input#expiration_year{'ng-model' => "buyer.ccExpYear", :placeholder => "Exp Year", :type => "text", :class => "error-{{buyer.ccExpYearError}}"}
+  %input#expiration_year{'ng-model' => "card.expYear", :placeholder => "Exp Year", :type => "text", :class => "error-{{buyer.ccExpYearError}}"}
   
   %h3 Billing Address
   
