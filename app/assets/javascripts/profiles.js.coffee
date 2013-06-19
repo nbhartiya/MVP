@@ -23,3 +23,9 @@ $(document).ready ->
   $(".single-campaign").mouseleave ->
     $(this).find(".campaign-second-row").hide()	
     $(this).find(".campaign-first-row").css "bottom", "76px"
+
+  $(".single-event-actions li").mouseover ->
+    $(this).css "background", "rgb(255, 178, 35)"
+
+  $(".single-event-actions li").mouseleave ->
+    $(this).css "background", "rgba(0, 0, 0, 0.8)"

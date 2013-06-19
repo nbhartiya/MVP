@@ -1,0 +1,34 @@
+.row
+  .span5.campaign-image
+    =link_to image_tag("Food 22.jpg"), "#"
+.row.campaign-first-row
+  .span1.campaign-lead-image
+    =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Campaign Lead Name", "class" => "campaign-card-lead-name"
+  .span3.campaign-title-and-blurb
+    %a{:href => "#"} State Bird Provisions
+    %p State Bird blurb
+  .span1.promote-button
+    %a.btn.btn-warning{:href => "#"} Promote
+.row.campaign-second-row
+  .span5.social-stats
+    %table
+      %tr
+        %td
+          %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#"}
+        %td
+          %a.sb.twitter.circle.no-border.no-shadow.orange{:href=>"#"}
+        %td
+          %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
+        %td
+          %a.sb.share_this.circle.no-border.no-shadow.orange{:href=>"#"}
+      %tr.social-stats-numbers
+        %td 190
+        %td 190
+        %td 190
+        %td Email
+      %tr.social-stats-labels
+        %td likes
+        %td followers
+        %td reviews
+        %td a friend
+    
