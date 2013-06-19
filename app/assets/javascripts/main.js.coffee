@@ -5,6 +5,12 @@ Simmr.factory "Charge", ["railsResourceFactory", (railsResourceFactory) ->
     name: "charge"
 ]
 
+Simmr.factory "Campaign", ["railsResourceFactory", (railsResourceFactory) ->
+  railsResourceFactory
+    url: "/api/campaigns"
+    name: "camapign"
+]
+
 Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "Charge", ($scope, $routeParams, $location, Charge) ->
   $scope.guests = []
 
