@@ -6,6 +6,7 @@ feature 'user can like an event', js: true do
 	  visit(event_path(event))
 	  sign_in
 	  # HELP: Not sure why username & password is invalid here...factories_spec.rb passed.
+	  page.save_screenshot 'screenshot.png'
 	  page.should have_content('Pie Shake Make')
 	  page.should have_css('sb heart circle no-border no-shadow orange')
 	end
@@ -14,6 +15,7 @@ feature 'user can like an event', js: true do
       user = create(:user)
       fill_in 'email', with: user.email
       fill_in 'password', with: user.password
-      click_button 'Log In'
+      
+      click_button 'login'
     end
 end	

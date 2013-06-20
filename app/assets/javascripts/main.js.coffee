@@ -1,6 +1,17 @@
 Simmr = angular.module('Simmr', ['ngResource', 'rails', 'ui', 'ui.bootstrap'])
+Simmr.factory "Charge", ["railsResourceFactory", (railsResourceFactory) ->
+  railsResourceFactory
+    url: "/api/charges"
+    name: "charge"
+]
 
-Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
+Simmr.factory "Campaign", ["railsResourceFactory", (railsResourceFactory) ->
+  railsResourceFactory
+    url: "/api/campaigns"
+    name: "camapign"
+]
+
+Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "Charge", ($scope, $routeParams, $location, Charge) ->
   $scope.guests = []
 
   $scope.guest = {}
@@ -21,10 +32,10 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", (
     $scope.num_guests * parseInt($scope.cost)
 
   $scope.showPayment = ->
-    console.log $scope.num_guests
-    $scope.currentUser.name = $scope.currentUser.first_name + ' ' + $scope.currentUser.last_name
-    $scope.guests.push($scope.currentUser)
+    $scope.guests = []
     if $scope.num_guests > 0
+      $scope.currentUser.name = $scope.currentUser.first_name + ' ' + $scope.currentUser.last_name
+      $scope.guests.push($scope.currentUser)
       i = 0
       while i <  $scope.num_guests - 1
         $scope.guests.push({})
@@ -93,12 +104,28 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", (
     	$scope.buyer.billingZipError = true
     else
     	$scope.buyer.billingZipError = false
-
-    if $scope.buyer.nameError == false and $scope.buyer.ccNumberError == false and $scope.buyer.ccSecCodeError == false and $scope.buyer.ccExpMonthError == false and $scope.buyer.ccExpYearError == false and $scope.buyer.billingAddressError == false and $scope.buyer.billingCityError == false and $scope.buyer.billingStateError == false and $scope.buyer.billingZipError == false
-    	$scope.payment = 3
-    	$(document).on "click", "#ticket_purchase", ->
-        $("#new_charge").submit()
-        $("#event-carousel").carousel "cycle"
+    
+    $scope.submitCard($scope.card)
+  $scope.card =
+    number: "4242424242424242"
+    expMonth: '12'
+    expYear: '2015'
+    cvc: '123'
+  $scope.data = {}
+  $scope.submitCard = (card) ->
+    Stripe.createToken card, (status, response) ->
+      if status is 200
+        console.log response
+        $scope.data.last4 = response.card.last4
+        $scope.data.token = response.id
+        $scope.data.guests = $scope.guests
+        $scope.data.buyer = $scope.buyer
+        new Charge($scope.data).create().then (data) =>
+          console.log data, "~~~~~~~~~~"
+          if data.status == "Success"
+            $scope.payment = 3
+      else
+        console.log response
 ]
 
 Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->

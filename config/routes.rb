@@ -28,7 +28,10 @@ MVP::Application.routes.draw do
   resources :comments
   resources :locations
 
-  resources :charges
+  namespace :api do
+    resources :charges
+    resources :campaigns
+  end
 
   resources :events do
     resources :tickets do

@@ -1,0 +1,31 @@
+%h1 Listing campaigns
+
+%table
+  %tr
+    %th Bus name
+    %th Blurb
+    %th About
+    %th Why join
+    %th Location
+    %th Foodie
+    %th Host
+    %th
+    %th
+    %th
+
+  - @campaigns.each do |campaign|
+    %tr
+      %td= campaign.bus_name
+      %td= campaign.blurb
+      %td= campaign.about
+      %td= campaign.why_join
+      %td= campaign.location_id
+      %td= campaign.foodie_id
+      %td= campaign.host_id
+      %td= link_to 'Show', campaign
+      %td= link_to 'Edit', edit_campaign_path(campaign)
+      %td= link_to 'Destroy', campaign, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Campaign', new_campaign_path
