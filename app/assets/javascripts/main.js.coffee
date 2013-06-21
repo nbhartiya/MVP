@@ -107,11 +107,12 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
     	$scope.buyer.billingZipError = false
     
     $scope.submitCard($scope.card)
+  
   $scope.card =
-    number: "4242424242424242"
-    expMonth: '12'
-    expYear: '2015'
-    cvc: '123'
+    number: ""
+    expMonth: ''
+    expYear: ''
+    cvc: ''
   $scope.data = {}
   $scope.submitCard = (card) ->
     Stripe.createToken card, (status, response) ->

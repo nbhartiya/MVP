@@ -9,3 +9,9 @@ $(document).ready ->
 
   $(".step").mouseover ->
     $(".step-description", this).slideDown "400"
+
+  $(".attention-getter").mouseover ->
+    $("#home-carousel").carousel "pause"
+
+  $(".attention-getter").mouseleave ->
+    $("#home-carousel").carousel "cycle"

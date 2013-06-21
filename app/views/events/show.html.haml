@@ -31,7 +31,7 @@
               =number_to_currency(@event.cost, :unit => "$")
             %hr
             %h3#event-date
-              =@event.date.strftime("%A %B %d, %I:%M%p")
+              =@event.date.strftime("%A %B %d, %l:%M%p")
             %h3 Mission
             %p 
               -# pull out and make this a method somewhere...
@@ -70,7 +70,7 @@
                 %td reviews
                 %td a friend
         .span1.heart_this
-          %a.sb.heart.circle.no-border.no-shadow.orange
+          %a.sb.heart.circle.no-border.no-shadow.black
         .span1
         .span4 
           -#this needs to happen only when tickets >1
@@ -95,8 +95,7 @@
 
           .event-purchase.clearfix{'ng-show' => 'payment==3'}
             %h2 Thank you for your purchase! You will receive an email confirmation shortly.
-            %button.btn.btn-warning{'ng-click'=>'payment=1'} Edit Guests
-            %button.btn.btn-warning{'ng-click'=>'payment=2'} Edit Payment Info
+            %button.btn.btn-warning{'ng-click' => "payment=0", 'ng-hide' => 'payment==0'} Done
         .span1
   .container
     .row.section-header
