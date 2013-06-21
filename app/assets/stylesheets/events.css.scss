@@ -15,10 +15,42 @@ $main_orange: rgb(255, 178, 35);
 				color: $main_orange;
 				text-decoration: underline;
 			}
+			a:visited{
+				color: $main_orange;
+			}
 		}
 		.events-row{
 			margin-top: 20px;
 		}
+	}
+}
+
+ol.carousel-indicators{
+	position: relative;
+	float: right;
+	top: 0px;
+	color: white;
+	display: block;
+	list-style-type: decimal;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	-webkit-padding-start: 40px;
+	z-index: 50;
+	li{
+		display: block;
+		float: left;
+		width: 10px;
+		height: 10px;
+		margin-left: 5px;
+		text-indent: -999px;
+		background: rgba(255, 255, 255, 0.25);
+		border-radius: 5px;
+		z-index: 500;
+	}
+	.active{
+		background: rgba(255, 255, 255, 0.9);
 	}
 }
 
@@ -37,33 +69,6 @@ $main_orange: rgb(255, 178, 35);
 				width: 100%;
 				background: no-repeat;
 			}
-		}
-	}
-	ol.carousel-indicators{
-		position: relative;
-		float: right;
-		top: 0px;
-		color: white;
-		display: block;
-		list-style-type: decimal;
-		-webkit-margin-before: 1em;
-		-webkit-margin-after: 1em;
-		-webkit-margin-start: 0px;
-		-webkit-margin-end: 0px;
-		-webkit-padding-start: 40px;
-		li{
-			display: block;
-			float: left;
-			width: 10px;
-			height: 10px;
-			margin-left: 5px;
-			text-indent: -999px;
-			background: rgba(255, 255, 255, 0.25);
-			border-radius: 5px;
-			z-index: 500;
-		}
-		.active{
-			background: rgba(255, 255, 255, 0.9);
 		}
 	}
 	.event-registration {

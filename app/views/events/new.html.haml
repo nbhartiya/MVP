@@ -42,7 +42,7 @@
                 %option{:disabled => "disabled", :selected => "selected", :value => ""} Number of Seats
                 -#{{event.min-seats}}.times do |s|
                   -#%option{:value => s+1} #{s+1} seats
-              .btn.btn-warning.event-go-button Go
+              %button.btn.btn-warning.event-go-button Go
               %table.event-sharing
                 %tr
                   %td
@@ -79,7 +79,7 @@
               %input{'ng-model' => 'event.price',:type=>"text", :placeholder =>"Event Price"}
               %input{'ng-model' => 'event.min-seats',:type=>"text", :placeholder =>"Min Seats"}
               %input{'ng-model' => 'event.max-seats',:type=>"text", :placeholder =>"Max Seats"}
-              .btn.btn-warning.standalone-button Update
+              %button.btn.btn-warning.standalone-button Update
 
   .container
     .row.section-header

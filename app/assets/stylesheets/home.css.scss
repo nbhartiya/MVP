@@ -65,9 +65,9 @@ ul.parsley-error-list{
         outline: none;
         color: white;
       }
-      .caret{
-        border-top-color: white !important;
-      }
+//      .caret{
+//        border-top-color: white;
+//      }
       .dropdown-menu{
         background-color: $trans_black;
         color: white;
@@ -257,12 +257,8 @@ ul.parsley-error-list{
 
 .featured-events{
 	padding: 10px 0;
-	a{
+	a, a:visited{
 		color: $main_orange;
-		text-decoration: none;
-	}
-	a:hover{
-		color: white;
 		text-decoration: none;
 	}
 }
@@ -272,5 +268,9 @@ ul.parsley-error-list{
 .more-button{
 	margin-top: 20px;
 	width: 100%;
+}
+
+a.more-button:visited{
+	color: white;
 }
 

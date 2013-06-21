@@ -10,6 +10,10 @@ $(document).ready ->
 
   $("#event-carousel").carousel interval: 6000
 
+  $(".carousel-indicators li").click ->
+    $(".carousel-indicators li").removeClass "active"
+    $(this).addClass "active"
+
   $(".heart_this a").click ->
     if $(this).hasClass("black")
       $(this).removeClass "black"
@@ -26,11 +30,3 @@ $(document).ready ->
 
   $(document).on "click", ".event-go-button", ->
     $("#event-carousel").carousel "pause"
-
-  $(".single-event").mouseover ->
-    $(this).find(".event-first-row").css "bottom", "156px"
-    $(this).find(".event-second-row").slideDown "900"
-
-  $(".single-event").mouseleave ->
-    $(this).find(".event-second-row").hide()	
-    $(this).find(".event-first-row").css "bottom", "77px"

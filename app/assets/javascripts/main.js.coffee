@@ -29,7 +29,8 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
   $scope.buyer.billingZip = ''
   
   $scope.total = ->
-    $scope.num_guests * parseInt($scope.cost)
+    total = $scope.num_guests * parseInt($scope.cost)
+    total = total.toFixed(2)
 
   $scope.showPayment = ->
     $scope.guests = []

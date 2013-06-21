@@ -1,10 +1,6 @@
 .profiles
   .user-profile
     #profile-carousel.carousel.slide
-      %ol.carousel-indicators
-        %li.active{"data-slide-to" => "0", "data-target" => "#profile-carousel"}
-        %li{"data-slide-to" => "1", "data-target" => "#profile-carousel"}
-        %li{"data-slide-to" => "2", "data-target" => "#profile-carousel"}
       .carousel-inner
         .active.item
           =image_tag "Food 17.jpg"
@@ -12,8 +8,10 @@
           =image_tag "Food 18.jpg"
         .item
           =image_tag "Food 22.jpg"
-    %a.carousel-control.left{"data-slide" => "prev", :href => "#profile-carousel"} ‹
-    %a.carousel-control.right{"data-slide" => "next", :href => "#profile-carousel"} ›
+    %ol.carousel-indicators
+      %li.active{"data-slide-to" => "0", "data-target" => "#profile-carousel"}
+      %li{"data-slide-to" => "1", "data-target" => "#profile-carousel"}
+      %li{"data-slide-to" => "2", "data-target" => "#profile-carousel"}
     .container
       .row.user-overview
         .span1
@@ -123,14 +121,14 @@
         .span10
           .row
             .span5.single-campaign
-              =render "layouts/singlecampaign"
+              =render "campaigns/singlecampaign"
             .span5.single-campaign
-              =render "layouts/singlecampaign"
+              =render "campaigns/singlecampaign"
           .row
             .span5.single-campaign
-              =render "layouts/singlecampaign"
+              =render "campaigns/singlecampaign"
             .span5.single-campaign
-              =render "layouts/singlecampaign"
+              =render "campaigns/singlecampaign"
   .container
     .row.section-header
       .span12

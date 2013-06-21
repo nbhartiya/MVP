@@ -28,6 +28,11 @@ html body {
 	font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;        
 }
 
+em{
+	font-style: normal;
+	font-weight: 900;
+}
+
 // error styling
 
 input.error-true  {
@@ -35,6 +40,10 @@ input.error-true  {
 }
 
 // header styling
+
+.nav li.dropdown.open a:hover .caret, .nav li.dropdown.open a:focus .caret{
+	border-top-color: black;
+}
 
 .nav-container{
 	display: block;
