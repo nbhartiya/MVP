@@ -154,6 +154,7 @@ $main_orange: rgb(255, 178, 35);
 .event-first-row, .user-first-row, .campaign-first-row{
 	background: rgba(0,0,0,0.8);
 	padding: 10px;
+	position: relative;
 	.event-host-image, .user-profile-image, .campaign-lead-image{
 		width: 50px;
 		-webkit-border-radius: 50%;
@@ -166,8 +167,12 @@ $main_orange: rgb(255, 178, 35);
 	.event-title, .user-name-and-blurb, .campaign-title-and-blurb{
 		font-size: 16px;
 		line-height: 1.5em;
+		position: relative;
+		height: 60px;
 		a{
 			color: white;
+			top: 10%;
+			position: absolute;
 		}
 		p{
 			font-size: 12px;
