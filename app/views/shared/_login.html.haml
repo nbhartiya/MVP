@@ -3,7 +3,6 @@
     %input{:name => "utf8", :type => "hidden", :value => "?"}/
     %input{:name => "authenticity_token", :type => "hidden", :value => "ASVH9mq4sf3rNjnwtoJ8kgxIzVor0TuOn/jEAyV3mGc="}
   = link_to "Facebook", user_omniauth_authorize_path(:facebook), :class => "sb facebook text black"
-  = link_to "LinkedIn", user_omniauth_authorize_path(:linkedin), :class => "sb linkedin text black"
   = link_to "Twitter", user_omniauth_authorize_path(:twitter), :class => "sb twitter text black"
   %hr.or-line
   %p.strong
@@ -22,3 +21,5 @@
 
 -#  %div
 -#    %input{:name => "commit", :type => "submit", :value => "Sign in"}
+-#
+  = link_to "LinkedIn", user_omniauth_authorize_path(:linkedin), :class => "sb linkedin text black"

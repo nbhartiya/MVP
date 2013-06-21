@@ -2,7 +2,6 @@
   %div{:style => "margin:0;padding:0;display:inline"}
     %input{:name => "utf8", :type => "hidden", :value => "?"}/
   = link_to "Facebook", user_omniauth_authorize_path(:facebook), :class => "sb facebook text black"
-  = link_to "LinkedIn", user_omniauth_authorize_path(:linkedin), :class => "sb linkedin text black"
   = link_to "Twitter", user_omniauth_authorize_path(:twitter), :class => "sb twitter text black"
   %hr.or-line
   %p.strong
@@ -20,12 +19,14 @@
     %input#user_password_confirmation{:required => "required", :"data-equalto"=>"#user_password", :"data-equalto-message" => "Passwords need to match", :placeholder => "retype password",:name => "user[password_confirmation]", :size => "30", :type => "password"}/
   %div
     %label.radio.inline
-      %input#optionsRadios1{:checked => "", :name => "user[kind]", :type => "radio", :value => "Foodie"}/
+      %input#optionsRadios1{:name => "user[kind]", :type => "radio", :value => "Foodie"}/
       Foodie
     %label.radio.inline
-      %input#optionsRadios2{:checked => "", :name => "user[kind]", :type => "radio", :value => "Food Business"}/
+      %input#optionsRadios2{:name => "user[kind]", :type => "radio", :value => "Food Business"}/
       Food Business
     %br/
     %br/
   -# %div
   -#   %button.btn{:name => "commit", :type => "submit"} Sign Up
+  -#
+    = link_to "LinkedIn", user_omniauth_authorize_path(:linkedin), :class => "sb linkedin text black"

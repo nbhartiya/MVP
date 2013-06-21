@@ -4,26 +4,46 @@
 .home 
   .attention-getter
     #home-carousel.carousel.slide
+      %ol.carousel-indicators
+        %li.active{"data-slide-to" => "0", "data-target" => "#home-carousel"}
+        %li{"data-slide-to" => "1", "data-target" => "#home-carousel"}
+        %li{"data-slide-to" => "2", "data-target" => "#home-carousel"}
+        %li{"data-slide-to" => "3", "data-target" => "#home-carousel"}
       .carousel-inner
         .active.item
           =image_tag "Food 17.jpg"
+          .caption
+            %h4 Sample Event Name 1
+            %p Event Description
         .item
           =image_tag "Food 18.jpg"
+          .caption
+            %h4 Sample Event Name 2
+            %p Event Description
         .item
           =image_tag "Food 22.jpg"
+          .caption
+            %h4 Sample Event Name 3
+            %p Event Description
         .item
           =image_tag "Food 23.jpg"
-      
-    %a.carousel-control.left{"data-slide" => "prev", :href => "#home-carousel"} ‹
-    %a.carousel-control.right{"data-slide" => "next", :href => "#home-carousel"} ›
+          .caption
+            %h4 Sample Event Name 4
+            %p Event Description
+    -#  
+      %a.carousel-control.left{"data-slide" => "prev", :href => "#home-carousel"} ‹
+      %a.carousel-control.right{"data-slide" => "next", :href => "#home-carousel"} ›
     .container
       .copy.row
         .span1
         .span4.copy-content
           %h1 We want to make your life more delicious
           %a.btn.how-it-works-button{:href => "#how-it-works", "data-target" => "#how-it-works-detail", "data-toggle" => "collapse", :type => "button"} How Does It Work?
-          %a.btn.btn-warning.sign-up-button{:href => "#sign_up", :"data-toggle" =>"modal"} Get Started
-          %p Already a member? &nbsp <a href = "#sign_in" class = "sign-in-link" data-toggle = "modal"> Sign In </a>
+          -if user_signed_in? == false
+            %a.btn.btn-warning.sign-up-button{:href => "#sign_up", :"data-toggle" =>"modal"} Get Started
+            %p Already a member? &nbsp <a href = "#sign_in" class = "sign-in-link" data-toggle = "modal"> Sign In </a>
+          -if user_signed_in?
+            %a.btn.btn-warning.view-events-button{:href => "../events"} Upcoming Events
         .span7
   .container
     .row.section-header
@@ -59,37 +79,38 @@
                       %p Talk about your awesome experience and make everybody jealous!
                   .span1
           .span1
-  .container
-    .row.section-header
-      .span12
-        %h1 Featured Events in San Francisco
-  .section
+  -#
     .container
-      .row.featured-events
+      .row.section-header
+        .span12
+          %h1 Featured Events in San Francisco
+    .section
+      .container
+        .row.featured-events
+          .span1
+          .span10
+            %p Don’t see your favorite? <a href = "#">Request an event</a> or <a href = "#">join a Request Campaign</a>
+          .span1
+    .container
+      .row.events
         .span1
-        .span10
-          %p Don’t see your favorite? <a href = "#">Request an event</a> or <a href = "#">join a Request Campaign</a>
+        .span5.single-event
+          =render "layouts/singleevent"
+        .span5.single-event
+          =render "layouts/singleevent"
         .span1
-  .container
-    .row.events
-      .span1
-      .span5.single-event
-        =render "layouts/singleevent"
-      .span5.single-event
-        =render "layouts/singleevent"
-      .span1
-  .container
-    .row.events
-      .span1
-      .span5.single-event
-        =render "layouts/singleevent"
-      .span5.single-event 
-        =render "layouts/singleevent"
-      .span1
-  .container
-    .row
-      .span4.offset4
-        %a.btn.btn-warning.more-button{:href=>"../events"} More
+    .container
+      .row.events
+        .span1
+        .span5.single-event
+          =render "layouts/singleevent"
+        .span5.single-event 
+          =render "layouts/singleevent"
+        .span1
+    .container
+      .row
+        .span4.offset4
+          %a.btn.btn-warning.more-button{:href=>"../events"} More
 
 -# temporary
 = render 'layouts/footer'
