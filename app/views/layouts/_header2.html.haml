@@ -28,6 +28,8 @@
           %a{:href =>"#"}Request an Event
         %li.pull-right
           =link_to "Create an Event", new_event_path
+        %li.pull-right
+          %a{:href =>"../events"}Browse Events
         %input.pull-right{:type => 'text', :placeholder => "Search Events"}
 
   #sign_up.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}

@@ -29,19 +29,31 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
   $scope.buyer.billingZip = ''
   
   $scope.total = ->
-    total = $scope.num_guests * parseInt($scope.cost)
+    total = $scope.num_guests * $scope.cost
     total = total.toFixed(2)
 
   $scope.showPayment = ->
     $scope.guests = []
+    $scope.guests_left = $scope.num_guests
+    $scope.guest_pages = 0
     if $scope.num_guests > 0
       $scope.currentUser.name = $scope.currentUser.first_name + ' ' + $scope.currentUser.last_name
       $scope.guests.push($scope.currentUser)
       i = 0
-      while i <  $scope.num_guests - 1
-        $scope.guests.push({})
-        i++
+      if $scope.num_guests % 3 == 0 
+        $scope.guest_pages = $scope.num_guests / 3
+      else
+        $scope.guest_pages = $scope.num_guests / 3 + 1
+      
+#      j=0
+#      while j<$guest_pages
+        while i < $scope.guests_left - 1 and i < 2
+          $scope.guests.push({})
+          i++
+        $scope.guests_left -= 3
+
       $scope.payment = 1
+
     else
       alert 'Please select number of seats!'
     # TODO: Make this error message appear inline somewhere instead of as an alert

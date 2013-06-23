@@ -4,13 +4,6 @@
       .row.section-header
         .span12.events-index-header
           %h1 Featured Events in San Francisco
-    .section
-      .container
-        .row.featured-events
-          .span1
-          .span10.events-index-content
-            %p Don’t see your favorite? <a href = "#">Request an event</a> or <a href = "#">join a Request Campaign</a>
-          .span1
     .container
       .row.events-row
         .span1
@@ -27,7 +20,14 @@
         .span5.single-event 
           =render "layouts/singleevent"
         .span1
-
+    .section
+      .container
+        .row.featured-events
+          .span1
+          .span10.events-index-content
+            %p Don’t see your favorite? <a href = "#">Request an event</a> or <a href = "#">join a Request Campaign</a>
+          .span1
+          
 -#    %table 
 -#      %tr
 -#        %th Title

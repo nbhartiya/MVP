@@ -13,14 +13,17 @@ $main_orange: rgb(255, 178, 35);
 			margin: 0;
 			a:hover{
 				color: $main_orange;
-				text-decoration: underline;
 			}
 			a:visited{
 				color: $main_orange;
 			}
 		}
+		.events-index-content{
+			font-size: 20px;
+			font-weight: 100;
+		}
 		.events-row{
-			margin-top: 20px;
+			margin-bottom: 20px;
 		}
 	}
 }
@@ -429,6 +432,13 @@ ol.carousel-indicators{
 	}
 	.nav-tabs{
 		border-bottom: none;
+	}
+	.current-user-rank{
+		background: rgba(255, 255, 255, 0.25);
+		td{
+			color: white;
+			font-weight: 800;
+		}
 	}
 }
 
