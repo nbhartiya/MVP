@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
   has_many :charges
   has_one :profile
   has_many :campaigns, :foreign_key => "campaign_starter_id"
-  has_and_belongs_to :campaign, :foreign_key => "host_id"
+  has_and_belongs_to_many :campaign, :foreign_key => "host_id"
   
   before_create :confirmation_email
   

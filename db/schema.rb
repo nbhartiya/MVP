@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130619034400) do
+ActiveRecord::Schema.define(:version => 20130619221025) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -29,6 +29,18 @@ ActiveRecord::Schema.define(:version => 20130619034400) do
     t.string   "uid"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "campaigns", :force => true do |t|
+    t.string   "biz_name"
+    t.text     "blurb"
+    t.text     "about"
+    t.text     "why_join"
+    t.integer  "location_id"
+    t.integer  "campaign_starter_id"
+    t.integer  "host_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "charges", :force => true do |t|
