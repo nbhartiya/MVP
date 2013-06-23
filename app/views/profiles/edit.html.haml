@@ -83,20 +83,20 @@
             .guests{'ng-repeat' => 'guest in guests'}
               %input.guest-name{'ng-model' => 'guest.name', :type=>'text', :placeholder =>"Guest Full Name", :class => "error-{{guest.nameError}}"}
               %input.guest-email{'ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :class => "error-{{guest.emailError}}"}
-            %a.btn.btn-warning.standalone-button{'ng-click' => 'gotoPayment()'} Next
+            %button.btn.btn-warning.standalone-button{'ng-click' => 'gotoPayment()'} Next
 
           -# TODO: May want to not pass user like this...
           .event-purchase.clearfix{'ng-show' => 'payment==2', 'ng-init'=> "cost=#{@event.cost};currentUser=#{current_user.to_json}"}
             %h1 Total: ${{total()}}
             %hr
             = render 'charges/stripe'
-            .btn.btn-warning#ticket_purchase{'ng-click' => 'submitPayment()'} Submit
-            .btn.btn-warning{'ng-click' => 'payment=1'} Previous
+            %button.btn.btn-warning#ticket_purchase{'ng-click' => 'submitPayment()'} Submit
+            %button.btn.btn-warning{'ng-click' => 'payment=1'} Previous
 
           .event-purchase.clearfix{'ng-show' => 'payment==3'}
             %h2 Thank you for your purchase! You will receive an email confirmation shortly.
-            .btn.btn-warning{'ng-click'=>'payment=1'} Edit Guests
-            .btn.btn-warning{'ng-click'=>'payment=2'} Edit Payment Info
+            %button.btn.btn-warning{'ng-click'=>'payment=1'} Edit Guests
+            %button.btn.btn-warning{'ng-click'=>'payment=2'} Edit Payment Info
         .span1
   .container
     .row.section-header

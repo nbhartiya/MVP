@@ -1,13 +1,6 @@
 .events
   .event-profile
-    #event-carousel.carousel.slide
-      %ol.carousel-indicators
-        -@event.images.each_with_index do |i, index|         
-          -if index == 0
-            %li.active{"data-target" => "#event-carousel", "data-slide-to" => index}
-          -else
-            %li{"data-target" => "#event-carousel", "data-slide-to" => index}
-         
+    #event-carousel.carousel.slide         
       .carousel-inner
         -@event.images.each_with_index do |i, index|
           -if index == 0
@@ -16,6 +9,12 @@
           -else
             .item
               = filepicker_image_tag i.image
+    %ol.carousel-indicators
+      -@event.images.each_with_index do |i, index|         
+        -if index == 0
+          %li.active{"data-target" => "#event-carousel", "data-slide-to" => index}
+        -else
+          %li{"data-target" => "#event-carousel", "data-slide-to" => index}
     .container
       .event-feedback.row{'ng-controller' => 'EventFeedbackCtrl'}
         .span1
@@ -80,12 +79,12 @@
           .event-survey.clearfix{'ng-show' => 'feedback==1'}
             %h1 Survey
             %input.survey-question-1{:type=>'text', :placeholder =>"Custom Survey Question 1"}
-            .btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Submit
+            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Submit
 
           .event-yelp.clearfix{'ng-show' => 'feedback==2'}
             %h1 Yelp Review
             %input.yelp-review-link{:type=>'text', :placeholder =>"Paste Yelp Review Link Here"}
-            .btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Submit
+            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Submit
 
           .point-ranking.clearfix{'ng-show' => 'feedback==3'}
             %h1 Leader Boards
@@ -157,7 +156,8 @@
                       =link_to image_tag("Favicon.png"), "#"
                     %td Random Guy
                     %td 3000
-            .btn.btn-warning.standalone-button{'ng-click' => 'feedback=4'} Get More Points
+            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=4'} Get More Points
+            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Done
               
           .more-points.clearfix{'ng-show' => 'feedback==4'}
             %h1 Get More Points
@@ -182,7 +182,7 @@
                   %h3.point-action Tell Friends About Simmr
                 %td
                   .btn.btn-warning.points.refer-friend-simmr-button{'ng-click' => 'feedback=2'} +20
-            .btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Back to Leader Boards
+            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Back to Leader Boards
 
 
         .span1

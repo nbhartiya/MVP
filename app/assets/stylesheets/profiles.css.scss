@@ -3,81 +3,89 @@
 $main_orange: rgb(255, 178, 35);
 
 // single event
-.single-event, .single-following, .single-campaign{
-	overflow: none;
-	height: 280px;
-	margin: 10px;
-	.event-image, .user-image, .campaign-image{
-		height: 280px;
-		max-width: 100%;
-		img{
-			height: 280px;
-			min-width: 100%;
-		}
-	}
-.event-first-row, .event-second-row, .user-first-row, .user-second-row, .campaign-first-row, .campaign-second-row{
-	position: relative;
-	margin: 0;
-	color: white;
-}
 
-.event-first-row{
-	bottom: 77px;
+.campaign-first-row{
+	bottom: 76px;
+	-webkit-transition-property:bottom;
+	-webkit-transition-duration:250ms;
+	-webkit-transition-timing-function:linear;
+	-webkit-transition-delay:250ms;
+}	
+.campaign-second-row{
+	opacity: 0;
+	-webkit-transition-property:opacity;
+	-webkit-transition-duration:250ms;
+	-webkit-transition-timing-function:linear;
+	-webkit-transition-delay:250ms;
 }
 
 .user-first-row{
 	bottom: 80px;
-	.unfollow-button{
-		margin-left: 0;
-		.btn{
-			margin: 10px 0;
-			float: right;
-		}
-	}
+	-webkit-transition-property:bottom;
+	-webkit-transition-duration:250ms;
+	-webkit-transition-timing-function:linear;
+	-webkit-transition-delay:250ms;
+}	
+.user-second-row{
+	opacity: 0;
+	-webkit-transition-property:opacity;
+	-webkit-transition-duration:250ms;
+	-webkit-transition-timing-function:linear;
+	-webkit-transition-delay:250ms;
 }
 
-.campaign-first-row{
-	bottom: 76px;
-	.join-button, .promote-button{
-		margin-left: 0;
-		.btn{
-			margin: 10px 0;
-			float: right;
-		}
-	}
+.single-following:hover .user-first-row{
+	bottom: 178px;
 }
 
-.event-first-row, .user-first-row, .campaign-first-row{
-	background: rgba(0,0,0,0.8);
-	padding: 10px;
-	.event-host-image, .user-profile-image, .campaign-lead-image{
-		width: 50px;
-		-webkit-border-radius: 50%;
-  		border-radius: 50%;
-  		background-clip: padding-box;
-	}
-	.event-host-image, .event-title, .event-price, .event-progress, .event-go, .user-profile-image, .user-name-and-blurb, .campaign-lead-image, .campaign-title-and-blurb, .join-button{
-		margin: 0 10px;
-	}
-	.event-title, .user-name-and-blurb, .campaign-title-and-blurb{
-		font-size: 16px;
-		line-height: 1.5em;
-		a{
-			color: white;
-		}
-		p{
-			font-size: 12px;
-		}
-	}
-	.event-price p{
-		font-size: 24px;
-		font-weight: 500;
-		line-height: 2em;
-	}
+.single-following:hover .user-second-row{
+	opacity: 1;
 }
+
+.single-campaign:hover .campaign-first-row{
+	bottom: 175px;
+}
+
+.single-campaign:hover .campaign-second-row{
+	opacity: 1;
+}
+
+.event-first-row{
+	bottom: 77px;
+	-webkit-transition-property:bottom;
+	-webkit-transition-duration:250ms;
+	-webkit-transition-timing-function:linear;
+	-webkit-transition-delay:250ms;
+}	
 .event-second-row{
-	display: none;
-	position: relative;
+	opacity: 0;
+	-webkit-transition-property:opacity;
+	-webkit-transition-duration:250ms;
+	-webkit-transition-timing-function:linear;
+	-webkit-transition-delay:250ms;
+}
+
+.single-event:hover .event-first-row{
+	bottom: 156px;
+}
+
+.single-event:hover .event-second-row{
+	opacity: 1;
+}
+
+.single-event-actions li{
+	background: rgba(0, 0, 0, 0.8);
+	-webkit-transition-property:background;
+	-webkit-transition-duration:250ms;
+	-webkit-transition-timing-function:linear;
+	-webkit-transition-delay:250ms;
+}
+
+.single-event-actions li:hover{
+	background: $main_orange;
+}
+
+.event-second-row{
 	bottom: 156px;
 	background: rgba(0,0,0,0.5);
 	.event-progress{
@@ -100,6 +108,81 @@ $main_orange: rgb(255, 178, 35);
 			margin: 20px 0;
 			float: right;
 		}
+		a:visited{
+			color: white;
+		}
+	}
+}
+
+.single-event, .single-following, .single-campaign{
+	height: 280px;
+	margin: 10px;
+	z-index: 500;
+	.event-image, .user-image, .campaign-image{
+		height: 280px;
+		max-width: 100%;
+		img{
+			height: 280px;
+			min-width: 100%;
+		}
+	}
+.event-first-row, .event-second-row, .user-first-row, .user-second-row, .campaign-first-row, .campaign-second-row{
+	position: relative;
+	margin: 0;
+	color: white;
+}
+
+.unfollow-button{
+	margin-left: 0;
+	.btn{
+		margin: 10px 0;
+		float: right;
+	}
+}
+
+.join-button, .promote-button{
+	margin-left: 0;
+	.btn{
+		margin: 10px 0;
+		float: right;
+	}
+	a:visited{
+		color: white;
+	}
+}
+
+.event-first-row, .user-first-row, .campaign-first-row{
+	background: rgba(0,0,0,0.8);
+	padding: 10px;
+	position: relative;
+	.event-host-image, .user-profile-image, .campaign-lead-image{
+		width: 50px;
+		-webkit-border-radius: 50%;
+  		border-radius: 50%;
+  		background-clip: padding-box;
+	}
+	.event-host-image, .event-title, .event-price, .event-progress, .event-go, .user-profile-image, .user-name-and-blurb, .campaign-lead-image, .campaign-title-and-blurb, .join-button{
+		margin: 0 10px;
+	}
+	.event-title, .user-name-and-blurb, .campaign-title-and-blurb{
+		font-size: 16px;
+		line-height: 1.5em;
+		position: relative;
+		height: 60px;
+		a{
+			color: white;
+			top: 10%;
+			position: absolute;
+		}
+		p{
+			font-size: 12px;
+		}
+	}
+	.event-price p{
+		font-size: 24px;
+		font-weight: 500;
+		line-height: 2em;
+		height: 2em;
 	}
 }
 }
@@ -111,13 +194,13 @@ $main_orange: rgb(255, 178, 35);
 			height: 91px;
 			width: 91px;
 			float: left;
-			background: rgba(0, 0, 0, 0.8);
 			padding: 20px;
 			margin: 10px;
 			text-align: center;
 			a{
+				position: relative;
+				top: 20%;
 				color: white;
-				vertical-align: middle;
 			}
 			a:hover{
 				cursor: pointer;
@@ -129,16 +212,14 @@ $main_orange: rgb(255, 178, 35);
 
 // user and campaign second row
 .user-second-row{
-	bottom: 174px;
+	bottom: 178px;
 }
 
 .campaign-second-row{
-	bottom: 170px;
+	bottom: 175px;
 }
 
 .user-second-row, .campaign-second-row{
-	display: none;
-	position: relative;
 	background: rgba(0,0,0,0.5);
 	padding: 10px 0;
 	.social-stats{
@@ -167,7 +248,7 @@ $main_orange: rgb(255, 178, 35);
 	    width: 100%;
 	    z-index: -1;
 	    ol.carousel-indicators{
-	    	z-index: 50000000;
+	    	z-index: 50;
 	    }
 		.carousel-inner{
 			height: 550px;
@@ -272,6 +353,7 @@ $main_orange: rgb(255, 178, 35);
 					font-size: 16px;
 					text-decoration: none;
 					padding: 10px;
+					color: black;
 				}
 				a:hover, a:active{
 					background: $main_orange;
@@ -280,12 +362,15 @@ $main_orange: rgb(255, 178, 35);
 				}
 			}
 		}
+		a:visited{
+			color: black;
+		}
 	}
 }
 
 .user-announcements, .user-about, .user-events, .user-campaigns, .user-following, .user-chatter{
 	background: rgb(230,230,230);
-	padding: 20px 0;
+	padding: 0;
 	.accordion{
 		margin: 0;
 	}
@@ -330,6 +415,7 @@ $main_orange: rgb(255, 178, 35);
 .edit-button{
 	background: rgba(0,0,0,0.8);
 	margin-left: 0;
+	width: auto;
 	.btn{
 		margin: 10px;
 	}

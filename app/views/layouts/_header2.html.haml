@@ -9,7 +9,7 @@
     .span8.nav-right
       %ul
         -if user_signed_in? == false
-          %li.pull-right
+          %li.pull-right#sign-up-header-link
             = link_to "Sign Up", "#sign_up", :"data-toggle" => "modal"
           %li.pull-right
             = link_to "Log In", "#sign_in", :"data-toggle" =>"modal"
@@ -35,9 +35,8 @@
       %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
       %h3#myModalLabel Sign Up for simmr
     .modal-body
-      %p<
-        Find the best events to attend recommended by your friends.&nbsp
-        %a.learn_more_link{"data-toggle"=>"tooltip", "data-placement"=>"right", :href=>"#", :title=>"See where friends have visited and their reviews"}> Learn More
+      %h3 Experiences recommended by your friends.
+      %p See what events friends have attended and their thoughts. We'll never share your info or post without your permission. 
       %p.strong.sign-up-text
         Sign up with
         %p
@@ -50,9 +49,8 @@
       %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
       %h3#myModalLabel Log In
     .modal-body
-      %p<
-        Find the best events to attend recommended by your friends.&nbsp
-        %a.learn_more_link{"data-toggle"=>"tooltip", "data-placement"=>"right", :href=>"#", :title=>"See where friends have visited and their reviews"}> Learn More
+      %h3 Experiences recommended by your friends.
+      %p See what events friends have attended and their thoughts. We'll never share your info or post without your permission. 
       %p.strong.sign-up-text
         Log in with
         %p

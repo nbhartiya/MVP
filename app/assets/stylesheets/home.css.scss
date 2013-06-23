@@ -65,9 +65,9 @@ ul.parsley-error-list{
         outline: none;
         color: white;
       }
-      .caret{
-        border-top-color: white !important;
-      }
+//      .caret{
+//        border-top-color: white;
+//      }
       .dropdown-menu{
         background-color: $trans_black;
         color: white;
@@ -112,16 +112,39 @@ ul.parsley-error-list{
 			height: 550px;
 			width: auto;
 			img{
-				width: 100%;
+				min-width: 100%;
 				background: no-repeat;
 			}
+			.caption{
+				background: rgba(0, 0, 0, 0.8);
+				position: absolute;
+				padding: 15px;
+				left: 0;
+				right: 0;
+				top: 400px;
+				z-index: 500;
+				color: white;
+				h4{
+					font-weight: 100;
+					line-height: 1.5em;
+					font-size: 20px;
+				}
+				p{
+					line-height: 1.5em;
+				}
+			}
 		}
-		.carousel-control{
-			font-size: 50px;
-			color: white;
-			top: 90%;
-			z-index: 500000;
-		}
+	}
+	.carousel-control{
+		font-size: 50px;
+		color: white;
+		top: 20%;
+		z-index: 50;
+	}
+	.carousel-indicators{
+		float: right;
+		position: absolute;
+		z-index: 50;
 	}
 	.copy{
 		margin-top: 80px;
@@ -172,7 +195,7 @@ ul.parsley-error-list{
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box; 
 		}
-		.sign-up-button{
+		.sign-up-button, .view-events-button{
 			margin: 10px auto 0 auto;
 			display: block;
 			width: 80%;
@@ -214,11 +237,15 @@ ul.parsley-error-list{
 	}
 }
 
+.accordion{
+	margin: 0;
+}
+
 .accordion-inner{
 		border-top: none;
 	}
 	
-.step{
+.step, .step-one{
 	background: url('Food 17.jpg');
 	height: 350px;
 	margin-top: 20px;
@@ -247,17 +274,14 @@ ul.parsley-error-list{
 
 .section{
 	margin: 0;
-	padding: 20px 0;
+	padding: 0;
 	background: rgb(240, 240, 240);
 }
 
 .featured-events{
-	a{
+	padding: 10px 0;
+	a, a:visited{
 		color: $main_orange;
-		text-decoration: none;
-	}
-	a:hover{
-		color: white;
 		text-decoration: none;
 	}
 }
@@ -267,5 +291,9 @@ ul.parsley-error-list{
 .more-button{
 	margin-top: 20px;
 	width: 100%;
+}
+
+a.more-button:visited{
+	color: white;
 }
 

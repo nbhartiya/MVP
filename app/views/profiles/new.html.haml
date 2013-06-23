@@ -1,10 +1,6 @@
 .profiles
   .user-profile
     #profile-carousel.carousel.slide
-      %ol.carousel-indicators
-        %li.active{"data-slide-to" => "0", "data-target" => "#profile-carousel"}
-        %li{"data-slide-to" => "1", "data-target" => "#profile-carousel"}
-        %li{"data-slide-to" => "2", "data-target" => "#profile-carousel"}
       .carousel-inner
         .active.item
           =image_tag "Food 17.jpg"
@@ -12,8 +8,10 @@
           =image_tag "Food 18.jpg"
         .item
           =image_tag "Food 22.jpg"
-      %a.carousel-control.left{"data-slide" => "prev", :href => "#profile-carousel"} ‹
-      %a.carousel-control.right{"data-slide" => "next", :href => "#profile-carousel"} ›
+    %ol.carousel-indicators
+      %li.active{"data-slide-to" => "0", "data-target" => "#profile-carousel"}
+      %li{"data-slide-to" => "1", "data-target" => "#profile-carousel"}
+      %li{"data-slide-to" => "2", "data-target" => "#profile-carousel"}
     .container
       .row.user-overview{'ng-controller' => 'ProfileEditCtrl'}
         .span1
@@ -47,7 +45,7 @@
                 %td reviews
                 %td a friend
         .span1.edit-button
-          %a.btn.btn-warning{'ng-click' => 'edit=1'} Edit
+          %button.btn.btn-warning{'ng-click' => 'edit=1'} Edit
         .span1
         .span4 
           .user-summary-edit{'ng-show' => 'edit==1'}
@@ -78,7 +76,7 @@
                 %td followers
                 %td reviews
                 %td a friend
-            .btn.btn-warning Done
+            %button.btn.btn-warning{'ng-click' => 'edit=0', 'ng-hide' => 'edit==0'} Done
         .span1
   .container
     .row.section-header
@@ -170,14 +168,14 @@
         .span10
           .row
             .span5.single-campaign
-              =render "layouts/singlecampaigndash"
+              =render "campaigns/singlecampaigndash"
             .span5.single-campaign
-              =render "layouts/singlecampaigndash"
+              =render "campaigns/singlecampaigndash"
           .row
             .span5.single-campaign
-              =render "layouts/singlecampaigndash"
+              =render "campaigns/singlecampaigndash"
             .span5.single-campaign
-              =render "layouts/singlecampaigndash"
+              =render "campaigns/singlecampaigndash"
   .container
     .row.section-header
       .span12

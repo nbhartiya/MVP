@@ -1,13 +1,6 @@
 .events
   .event-profile
-    #event-carousel.carousel.slide
-      %ol.carousel-indicators
-        -@event.images.each_with_index do |i, index|         
-          -if index == 0
-            %li.active{"data-target" => "#event-carousel", "data-slide-to" => index}
-          -else
-            %li{"data-target" => "#event-carousel", "data-slide-to" => index}
-         
+    #event-carousel.carousel.slide         
       .carousel-inner
         -@event.images.each_with_index do |i, index|
           -if index == 0
@@ -16,6 +9,13 @@
           -else
             .item
               = filepicker_image_tag i.image
+    %ol.carousel-indicators
+      -@event.images.each_with_index do |i, index|     
+        - if index == 0
+          %li.active{"data-target" => "#event-carousel", "data-slide-to" => index}
+        - else
+          %li{"data-target" => "#event-carousel", "data-slide-to" => index}
+        
     .container
       .event-registration.row{'ng-controller' => 'EventRegisterCtrl'}
         .span1
@@ -31,7 +31,7 @@
               =number_to_currency(@event.cost, :unit => "$")
             %hr
             %h3#event-date
-              =@event.date.strftime("%A %B %d, %I:%M%p")
+              =@event.date.strftime("%A %B %d, %l:%M%p")
             %h3 Mission
             %p 
               -# pull out and make this a method somewhere...
@@ -41,7 +41,7 @@
               -#probably want to pull this arithmetic out too
               .bar{:style => "width: #{(@event.guests.count/@event.people_limit.to_f)*100}%"}
             %select.number-of-seats{'ng-model' => 'num_guests'}
-              %option{:selected => "selected", :value => 1} 1 seat
+              %option{:value => 1} 1 seat
               - (@event.people_limit - @event.guests.count).times do |s|
                 %option{:value => s+2} #{s+2} seats
             -if user_signed_in? == false
@@ -70,7 +70,7 @@
                 %td reviews
                 %td a friend
         .span1.heart_this
-          %a.sb.heart.circle.no-border.no-shadow.orange
+          %a.sb.heart.circle.no-border.no-shadow.black
         .span1
         .span4 
           -#this needs to happen only when tickets >1
@@ -83,20 +83,19 @@
             .guests{'ng-repeat' => 'guest in guests'}
               %input.guest-name{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.name', :type=>'text', :placeholder =>"Guest Full Name", :class => "error-{{guest.nameError}}"}
               %input.guest-email{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :class => "error-{{guest.emailError}}"}
-            %a.btn.btn-warning.standalone-button{'ng-click' => 'gotoPayment()'} Next
+            %button.btn.btn-warning.standalone-button{'ng-click' => 'gotoPayment()'} Next
 
           -# TODO: May want to not pass user like this...
           .event-purchase.clearfix{'ng-show' => 'payment==2', 'ng-init'=> "cost=#{@event.cost};currentUser=#{current_user.to_json}"}
             %h1 Total: ${{total()}}
             %hr
             = render 'charges/stripe'
-            .btn.btn-warning#ticket_purchase{'ng-click' => 'submitPayment()'} Submit
-            .btn.btn-warning{'ng-click' => 'payment=1'} Previous
+            %button.btn.btn-warning#ticket_purchase{'ng-click' => 'submitPayment()'} Submit
+            %button.btn.btn-warning{'ng-click' => 'payment=1'} Previous
 
           .event-purchase.clearfix{'ng-show' => 'payment==3'}
             %h2 Thank you for your purchase! You will receive an email confirmation shortly.
-            .btn.btn-warning{'ng-click'=>'payment=1'} Edit Guests
-            .btn.btn-warning{'ng-click'=>'payment=2'} Edit Payment Info
+            %button.btn.btn-warning{'ng-click' => "payment=0", 'ng-hide' => 'payment==0'} Done
         .span1
   .container
     .row.section-header
