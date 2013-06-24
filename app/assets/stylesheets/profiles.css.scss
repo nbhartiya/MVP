@@ -266,12 +266,34 @@ $main_orange: rgb(255, 178, 35);
 	    -webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;    
 		box-sizing: border-box;
-		.user-summary, .user-summary-edit {
+		.profile-photo{
+			background: rgba(0,0,0,.8);
+			padding: 30px 0 0 30px;
+			vertical-align: top;
+			margin: 0;
+			img{
+				height: auto;
+				width: 100px;
+			}
+		}
+		.user-summary-edit, .user-title{
+			padding: 30px;
+		}
+		.user-summary{
+			padding: 0 30px 30px 30px;
+		}
+		.user-summary, .user-title, .user-summary-edit {
 		    -webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box;
 		    background: rgba(0,0,0,.8);
-		    padding: 30px;
+		    .read-more{
+		    	font-size: 10px;
+		    }
+		    a, a:visited, a:hover{
+		    	color: white;
+		    	text-decoration: none;
+		    }
 			h1{
 				font-size: 30px;
 				line-height: 1.2em;

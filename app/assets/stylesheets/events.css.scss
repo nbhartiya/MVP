@@ -132,6 +132,16 @@ ol.carousel-indicators{
 				margin-right: auto;
 				td{
 					text-align: center;
+					.btn{
+						width: 32px;
+						height: 32px;
+						border-radius: 50%;
+						font-size: 12px;
+						padding: 0;
+						text-align: center;
+						line-height: 32px;
+						font-weight: 900;
+					}
 				}
 			}
 			p{
@@ -292,6 +302,16 @@ ol.carousel-indicators{
 			margin-right: auto;
 			td{
 				text-align: center;
+				.btn{
+					width: 32px;
+					height: 32px;
+					border-radius: 50%;
+					font-size: 12px;
+					padding: 0;
+					text-align: center;
+					line-height: 32px;
+					font-weight: 900;
+				}
 			}
 		}
 		p{

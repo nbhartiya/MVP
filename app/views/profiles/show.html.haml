@@ -14,33 +14,39 @@
       %li{"data-slide-to" => "2", "data-target" => "#profile-carousel"}
     .container
       .row.user-overview
-        .span1
+        .span1          
         .span4
-          .user-summary
-            %h1
-              Samovar Tea Lounge
-            %h2 
-              Your Haven from the World
-            %h3
-              123 Mission Street
-            %h3
-              San Francisco, CA 94109
-            %table.user-social-stats
-              %tr
-                %td
-                  %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
-                %td
-                  %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
-                %td
-                  %a.sb.share_this.circle.no-border.no-shadow.orange{:href=>"#"}
-              %tr.user-stats
-                %td 190
-                %td 190
-                %td Tell
-              %tr.user-stat-labels
-                %td followers
-                %td reviews
-                %td a friend
+          %table
+            %tr
+              %td.profile-photo
+                =image_tag "Favicon.png"
+              %td.user-title
+                %h1
+                  Samovar Tea Lounge
+            %tr
+              %td.user-summary{:colspan => '2'}
+                %h2 
+                  Your Haven from the World <sup><a href = "#user-about", class = "read-more", data-target = "#user-about-detail", data-toggle = "collapse"> Read More </a></sup>
+                %h3
+                  123 Mission Street
+                %h3
+                  San Francisco, CA 94109
+                %table.user-social-stats
+                  %tr
+                    %td
+                      %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
+                    %td
+                      %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
+                    %td
+                      %a.sb.share_this.circle.no-border.no-shadow.orange{:href=>"#"}
+                  %tr.user-stats
+                    %td 190
+                    %td 190
+                    %td Tell
+                  %tr.user-stat-labels
+                    %td followers
+                    %td reviews
+                    %td a friend
         .span1.heart_this
           %a.sb.heart.circle.no-border.no-shadow.black
         .span1
@@ -61,21 +67,6 @@
                 %p
                   Announcements
         .span1 
-  .container
-    .row.section-header
-      .span12#user-about
-        %a{:href => "#user-about", 'data-target'=>"#user-about-detail", 'data-toggle'=>"collapse"} Our Story <span class="caret collapsed"></span>
-  .user-about
-    .container
-      .row
-        .span1
-        .span10
-          #user-about-accordion.accordion
-            #user-about-detail.accordion-body.collapse.in
-              .accordion-inner
-                %p
-                  About
-        .span1
   .container
     .row.section-header
       .span12
@@ -194,4 +185,19 @@
                           =link_to image_tag("Favicon.png"), "#"
                         %td
                           Comment blahblahblahblah
+        .span1
+  .container
+    .row.section-header
+      .span12#user-about
+        %a{:href => "#user-about", 'data-target'=>"#user-about-detail", 'data-toggle'=>"collapse"} Our Story <span class="caret collapsed"></span>
+  .user-about
+    .container
+      .row
+        .span1
+        .span10
+          #user-about-accordion.accordion
+            #user-about-detail.accordion-body.collapse
+              .accordion-inner
+                %p
+                  About
         .span1
