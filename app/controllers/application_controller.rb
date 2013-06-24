@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     if !current_user.email == nil
       current_user.completed = 'true'
     end
-    redirect_to "/users/#{current_user.id}/edit" if !current_user.completed
+    #redirect_to "/users/#{current_user.id}/edit" if !current_user.completed
   end
   
 end
