@@ -2,14 +2,13 @@
 #
 # Table name: tickets
 #
-#  id           :integer          not null, primary key
-#  foodie_id    :integer
-#  event_id     :integer
-#  purchaser_id :integer
-#  num_guests   :integer
-#  guest_id     :integer
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  event_id   :integer
+#  num_guests :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  total_paid :float
 #
 
 class Ticket < ActiveRecord::Base

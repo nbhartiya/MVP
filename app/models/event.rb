@@ -16,6 +16,8 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  host_id        :integer
+#  neighborhood   :string(255)
+#  blurb          :text
 #
 
 class Event < ActiveRecord::Base

@@ -20,7 +20,6 @@
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
 #  completed              :boolean          default(FALSE)
-#  work_zip               :string(255)
 #
 
 class User < ActiveRecord::Base
