@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130619221025) do
+ActiveRecord::Schema.define(:version => 20130624222705) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -170,9 +170,13 @@ ActiveRecord::Schema.define(:version => 20130619221025) do
   create_table "survey_questions", :force => true do |t|
     t.string   "kind"
     t.text     "question"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.string   "topic"
+    t.text     "low_extreme"
+    t.text     "high_extreme"
+    t.string   "format"
+    t.boolean  "active"
   end
 
   create_table "tickets", :force => true do |t|

@@ -19,8 +19,6 @@ MVP::Application.routes.draw do
   get "home/contactus"
   #get "home/tos"
   #get "home/blog"
-  get "survey" => "survey_questions#survey"
-  get "incomplete_survey" => "survey_questions#survey"
 
   resources :images
   resources :signups
@@ -43,6 +41,11 @@ MVP::Application.routes.draw do
   devise_for :users, controllers: {omniauth_callbacks: "authentications"} do
     resource :image
   end
+
+  resources :user_answers
+  resources :survey_questions
+  get "survey" => "survey_questions#survey"
+  #get "incomplete_survey" => "survey_questions#survey"
   
   # I have no idea what changed that caused me to have to add this line...????
   #devise_scope :user do 
@@ -55,9 +58,8 @@ MVP::Application.routes.draw do
   #resources :authentications #, :only => [:show]
   #resources :investments
   #resources :projects
-  #resources :user_answers
+
   #resources :survey_answers
-  #resources :survey_questions
 
 #########################################################################
 

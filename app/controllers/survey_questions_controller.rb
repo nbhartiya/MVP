@@ -1,6 +1,6 @@
 class SurveyQuestionsController < ApplicationController
   
-  before_filter :completed_user?
+  #before_filter :completed_user?
   
   def survey
     @questions = SurveyQuestion.where(:kind => current_user.kind)     
