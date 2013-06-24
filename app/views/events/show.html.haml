@@ -26,7 +26,9 @@
             %h2 
               =@event.description
             %h2
-              = @event.host.first_name.split(' ').map(&:capitalize).join(' ') + " " + @event.host.last_name.split(' ').map(&:capitalize).join(' ')
+              =@event.host.first_name.split(' ').map(&:capitalize).join(' ') + " " + @event.host.last_name.split(' ').map(&:capitalize).join(' ')
+              -#TODO: use titleize
+              -#TODO: FIX
             %h2#event-cost
               =number_to_currency(@event.cost, :unit => "$")
             %hr
@@ -70,7 +72,7 @@
                 %td reviews
                 %td a friend
         .span1.heart_this
-          %a.sb.heart.circle.no-border.no-shadow.black
+          %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
         .span1
         .span4 
           -#this needs to happen only when tickets >1

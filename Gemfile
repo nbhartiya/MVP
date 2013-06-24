@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Uncomment this when Wendy is ready and we make sure it works on heroku
+# ruby '2.0.0'
+
 gem 'rails', '3.2.11'
 gem 'haml-rails'
 gem 'pry'
@@ -43,8 +46,7 @@ group :test do
   gem 'mocha'
   gem 'shoulda-matchers'
 	gem 'launchy'
-  #- for easy database cleaning after every set of tests is run
-	# gem 'database_cleaner'
+	gem 'database_cleaner'
 	#- for constantly running tests
 	# gem 'guard-rspec'
 end

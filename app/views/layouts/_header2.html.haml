@@ -17,7 +17,7 @@
           %ul.user-nav-control.pull-right
             %li.dropdown
               %a{:href => "#", "data-toggle" => "dropdown"}
-                =current_user.first_name + " " + current_user.last_name
+                #{current_user.first_name} #{current_user.last_name}
                 %span.caret
               %ul.dropdown-menu{"aria-labeledby" => "dLabel", :role => "menu"}
                 %li.dropitem
