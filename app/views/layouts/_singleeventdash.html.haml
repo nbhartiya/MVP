@@ -1,0 +1,61 @@
+.row
+  .span5.single-event
+    .row
+      .event-time-and-date
+        July 8
+      .span5.event-image
+        =link_to image_tag("Food 17.jpg"), "#"
+    .row.event-first-row
+      .span1.event-host-image
+        =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Host Name", "class" => "event-card-host-name"
+      .span3.event-title
+        %a{:href => "#"} 4 Course "Liberty Duck" Dinner 
+      .span1.event-price
+        %p $120
+    .row.event-second-row
+      .span4.event-progress
+        %table
+          %tr
+            %td.event-seats-left 5 seats left
+        .progress.progress-warning
+          .bar{:style => "width: 60%;"}
+      .span1.go-button
+        %a.btn.btn-warning{:href => "#"} Go
+  .span5.single-event-dashboard
+    .row
+      .span4
+        %table.single-event-stats
+          %tr.single-event-numbers
+            %td 
+              %a{:href => "#"} 20
+            -if current_user.kind == "chef"
+              %td
+                %a{:href => "#"} $200
+            -else
+              %td
+                %a{:href => "#"} 2
+            %td
+              %a{:href => "#"} 20
+            %td
+              %a{:href => "#"} 20
+          %tr.single-event-labels
+            %td Guests
+            -if current_user.kind == "chef"
+              %td Sales
+            -else
+              %td Friends
+            %td Followers
+            %td Shared
+      .span1
+    .row
+      -if current_user == "chef"
+        .span2.single-event-actions
+          %a.action Edit <br> Event
+        .span2.single-event-actions
+          %a.action Event Communications
+      -else
+        .span2.single-event-actions
+          %a.action Edit <br> Ticket Info
+        .span2.single-event-actions
+          %a.action Event <br> Feedback
+      .span1
