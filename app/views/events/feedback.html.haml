@@ -32,7 +32,7 @@
                 %td
                   %h3.point-action Thank you for attending!
                 %td
-                  .points.btn.event-attending-points{'ng-click' => 'feedback=3'} +10
+                  .points.btn.event-attending-points +10
             %hr
             %table.feedback-actions
               %tr
@@ -45,18 +45,11 @@
                   %h3.point-action Write a Yelp Review
                 %td
                   .btn.btn-warning.points.event-yelp-button{'ng-click' => 'feedback=2'} +20
-              %tr
-                %td
-                  %h3.point-action Like on Facebook
-                %td
-                  .btn.btn-warning.points.event-fblike-button{'ng-click' => 'feedback=3'} +10
 
             %table.event-sharing
               %tr
                 %td
-                  %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#"}
-                %td
-                  %a.sb.twitter.circle.no-border.no-shadow.orange{:href=>"#"}
+                  %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
                 %td
                   %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
                 %td
@@ -64,15 +57,13 @@
               %tr.host-stats
                 %td 190
                 %td 190
-                %td 190
-                %td Email
+                %td Tell
               %tr.host-stat-labels
-                %td likes
                 %td followers
                 %td reviews
                 %td a friend
         .span1.heart_this
-          %a.sb.heart.circle.no-border.no-shadow.orange
+          %a.sb.heart.circle.no-border.no-shadow.black
         .span1
         .span4 
           -#this needs to happen only when tickets >1
@@ -80,11 +71,13 @@
             %h1 Survey
             %input.survey-question-1{:type=>'text', :placeholder =>"Custom Survey Question 1"}
             %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Submit
+            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Never Mind
 
           .event-yelp.clearfix{'ng-show' => 'feedback==2'}
             %h1 Yelp Review
             %input.yelp-review-link{:type=>'text', :placeholder =>"Paste Yelp Review Link Here"}
             %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Submit
+            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Never Mind
 
           .point-ranking.clearfix{'ng-show' => 'feedback==3'}
             %h1 Leader Boards
@@ -104,7 +97,7 @@
                       =link_to image_tag("Favicon.png"), "#"
                     %td Wendy
                     %td 5000
-                  %tr 
+                  %tr.current-user-rank
                     %td 2
                     %td 
                       =link_to image_tag("Favicon.png"), "#"
@@ -164,25 +157,22 @@
             %table.feedback-actions
               %tr
                 %td
-                  %h3.point-action Attend Another Event
+                  %h3.point-action Tell a Friend About Simmr - you'll get more points when they sign up and attend an event!
                 %td
-                  .btn.btn-warning.points.attend-another-event-button{'ng-click' => 'feedback=2'} +10
+                  .btn.btn-warning.points.refer-friend-event-button{} +10
               %tr
                 %td
-                  %h3.point-action Refer a Friend to An Event
+                  %h3.point-action Attend Another Event
                 %td
-                  .btn.btn-warning.points.refer-friend-event-button{'ng-click' => 'feedback=2'} +10
+                  %a.btn.btn-warning.points.attend-another-event-button{:href => "../../events"} +10
               %tr
                 %td
                   %h3.point-action Start a Campaign
                 %td
-                  .points.btn.btn-warning.start-campaign-button{'ng-click' => 'feedback=1'} +10
-              %tr
-                %td
-                  %h3.point-action Tell Friends About Simmr
-                %td
-                  .btn.btn-warning.points.refer-friend-simmr-button{'ng-click' => 'feedback=2'} +20
+                  .points.btn.btn-warning.start-campaign-button{:href=>"../../campaigns/new"} +10
+            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Done
             %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Back to Leader Boards
+
 
 
         .span1
