@@ -1,27 +1,34 @@
-MainStreet offers many cool investment opportunities, but in order to protect you, the investor, we only show some deatils to Accredited Investors.
-
-Not accredited? No problem. You can fund your favorite local businesses by pre-paying your purchases (and get a 5% bonus!).
-
-Accrediation Questionaire
-=form_for UserAnswer.new do
-  -@questions.each do |q|
-    .question
-    -if q.survey_answers.empty?
-      %b
-        =q.topic
-      %p
-      %input{:type => 'checkbox', :name => "user_answers[#{q.id}]"}
-      =q.question
-      %p
-    -else
-      %b
-        =q.topic
-      %p
-      =q.question
-      %select{:name => "user_answers[#{q.id}]"}
-        -q.survey_answers.each do |a|
-          %option
-            =a.text
-      %p
-  %button.secondary.button Send data
+.container
+  .row
+    .span12.foodie-quiz
+      %h1 What's Your Food Style
+      %p Take the quiz to discover your foodie profile in just a few minutes!
+  .row
+    .span4
+      %input{:type => "text", :placeholder =>"Home Zip"}
+      %input{:type => "text", :placeholder =>"Work Zip"}
+      %a.why-zip{:href => "#", "data-toggle" => "tooltip", :title => "So we can better recommend lunch and dinner events near you!", "data-placement" => "right"} <sup> Why? </sup>
+  .row
+    .span12
+      =form_for UserAnswer.new do
+        -@questions.each do |q|
+          .question
+          -if q.survey_answers.empty?
+            %b
+              =q.topic
+            %p
+            %input{:type => 'checkbox', :name => "user_answers[#{q.id}]"}
+            =q.question
+            %p
+          -else
+            %b
+              =q.topic
+            %p
+            =q.question
+            %select{:name => "user_answers[#{q.id}]"}
+              -q.survey_answers.each do |a|
+                %option
+                  =a.text
+            %p
+        %button.secondary.button Send data
 

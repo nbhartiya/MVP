@@ -1,27 +1,53 @@
-%p#notice= notice
+-# multiple selection type question
+.container	
+  .row
+    .span12
+      .row
+        .span12.question
+          %h2 Which <strong>three</strong> cuisines do you like the most?
+          .row
+            .span4.single-visual-answer
+              =render "layouts/visualanswer"
+            .span4.single-visual-answer
+              =render "layouts/visualanswer"
+            .span4.single-visual-answer
+              =render "layouts/visualanswer"
+          .row
+            .span4.single-visual-answer
+              =render "layouts/visualanswer"
+            .span4.single-visual-answer
+              =render "layouts/visualanswer"
+            .span4.single-visual-answer
+              =render "layouts/visualanswer"
 
-%p
-  %b Kind:
-  = @survey_question.kind
-%p
-  %b Topic:
-  = @survey_question.topic
-%p
-  %b Question:
-  = @survey_question.question
-%p
-  %b Low Extreme:
-  = @survey_question.low_extreme
-%p
-  %b High Extreme:
-  = @survey_question.high_extreme
-%p
-  %b Format:
-  = @survey_question.format
-%p
-  %b Active:
-  = @survey_question.active
 
-= link_to 'Edit', edit_survey_question_path(@survey_question)
-\|
-= link_to 'Back', survey_questions_path
+      -# range type question
+      .row
+        .span12.question
+          %h2 What type of event would you be most excited about?
+          .row
+            .span4.single-visual-answer-range
+              =render "layouts/visualanswerrange"
+            .span4
+              %slider.answer-slider{"floor" => "0", "ceiling" => "100", "step" => "1", "precision" => "0"}
+            .span4.single-visual-answer-range
+              =render "layouts/visualanswerrange"
+
+
+
+-#
+  %p#notice= notice
+
+  %p
+    %b Kind:
+    = @survey_question.kind
+  %p
+    %b Topic:
+    = @survey_question.topic
+  %p
+    %b Question:
+    = @survey_question.question
+
+  = link_to 'Edit', edit_survey_question_path(@survey_question)
+  \|
+  = link_to 'Back', survey_questions_path

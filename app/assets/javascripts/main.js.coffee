@@ -1,4 +1,4 @@
-Simmr = angular.module('Simmr', ['ngResource', 'rails', 'ui', 'ui.bootstrap'])
+Simmr = angular.module('Simmr', ['uiSlider', 'ngResource', 'rails', 'ui', 'ui.bootstrap'])
 Simmr.factory "Charge", ["railsResourceFactory", (railsResourceFactory) ->
   railsResourceFactory
     url: "/api/charges"
@@ -8,7 +8,7 @@ Simmr.factory "Charge", ["railsResourceFactory", (railsResourceFactory) ->
 Simmr.factory "Campaign", ["railsResourceFactory", (railsResourceFactory) ->
   railsResourceFactory
     url: "/api/campaigns"
-    name: "camapign"
+    name: "campaign"
 ]
 
 Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "Charge", ($scope, $routeParams, $location, Charge) ->
@@ -46,7 +46,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
         $scope.guest_pages = $scope.num_guests / 3 + 1
       
 #      j=0
-#      while j<$guest_pages
+#      while j<$scope.guest_pages
         while i < $scope.guests_left - 1 and i < 2
           $scope.guests.push({})
           i++

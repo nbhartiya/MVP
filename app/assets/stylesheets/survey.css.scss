@@ -1,0 +1,66 @@
+// colors 
+
+$main_orange: rgb(255, 178, 35);
+
+a.why-zip, a.why-zip:hover, a.why-zip:visited{
+	color: $main_orange;
+	text-decoration: none;
+}
+
+.foodie-quiz{
+	h1{
+		font-size: 30px;
+		line-height: 1.2em;
+		font-weight: 100;
+		margin: 0;
+	}
+	p{
+		font-weight: 100;
+	}
+}
+
+.question{
+	h2{
+		font-size: 24px;
+		line-height: 1.2em;
+		font-weight: 100;
+	}
+}
+
+.answer{
+	background: rgba(0, 0, 0, 0.8);
+	margin: 0;
+	padding: 0;
+	position: relative;
+	text-align: center;
+	.answer-caption{
+		margin-left: 0;
+	}
+	h3{
+		color: white;
+		font-size: 18px;
+		line-height: 1.2em;
+		font-weight: 100;
+	}
+}
+
+.single-visual-answer, .single-visual-answer-range{
+	height: 280px;
+	margin-top: 10px;
+}
+
+.single-visual-answer{
+	.answer{
+		bottom: 40px;
+	}
+}
+
+.single-visual-answer-range{
+	.answer{
+		bottom: 140px;
+	}
+}
+
+.answer-slider{
+	margin-top: 135px;
+}
