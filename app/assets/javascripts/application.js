@@ -21,6 +21,7 @@
 //= require angular-ui
 //= require angular-bootstrap
 //= require angular-ui-bootstrap-tpls
+//= require angular-slider.js
 //= require_tree .
 
 
@@ -38,4 +39,5 @@ function add_fields (link, association, content) {
 
 $(document).ready(function(){
 	$('.city').tooltip();
+	$('.why-zip').tooltip();
 });

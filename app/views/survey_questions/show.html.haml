@@ -1,12 +1,38 @@
-.container
+-# multiple selection type question
+.container	
   .row
     .span12
-      %h1 Foodie Profile
-      %p Take the quiz to discover your foodie profile in just a few minutes!
-  .row
-    .span4
-      %input{:type => "text", :placeholder =>"Home Zip"}
-      %input{:type => "text", :placeholder =>"Work Zip"}
+      .row
+        .span12.question
+          %h2 Which <strong>three</strong> cuisines do you like the most?
+          .row
+            .span4.single-visual-answer
+              =render "layouts/visualanswer"
+            .span4.single-visual-answer
+              =render "layouts/visualanswer"
+            .span4.single-visual-answer
+              =render "layouts/visualanswer"
+          .row
+            .span4.single-visual-answer
+              =render "layouts/visualanswer"
+            .span4.single-visual-answer
+              =render "layouts/visualanswer"
+            .span4.single-visual-answer
+              =render "layouts/visualanswer"
+
+
+      -# range type question
+      .row
+        .span12.question
+          %h2 What type of event would you be most excited about?
+          .row
+            .span4.single-visual-answer-range
+              =render "layouts/visualanswerrange"
+            .span4
+              %slider.answer-slider{"floor" => "0", "ceiling" => "100", "step" => "1", "precision" => "0"}
+            .span4.single-visual-answer-range
+              =render "layouts/visualanswerrange"
+
 
 
 -#

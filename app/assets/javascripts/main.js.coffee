@@ -1,4 +1,4 @@
-Simmr = angular.module('Simmr', ['ngResource', 'rails', 'ui', 'ui.bootstrap'])
+Simmr = angular.module('Simmr', ['uiSlider', 'ngResource', 'rails', 'ui', 'ui.bootstrap'])
 Simmr.factory "Charge", ["railsResourceFactory", (railsResourceFactory) ->
   railsResourceFactory
     url: "/api/charges"
