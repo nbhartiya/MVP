@@ -1,4 +1,5 @@
 class ImagesController < ApplicationController
+
   def index
     @imageable = find_imageable
     @images = @imageable.images
@@ -15,7 +16,7 @@ class ImagesController < ApplicationController
   end
 
   def create
-    # NEED TO FIX THIS SO IT WORKS...
+    # TODO: NEED TO FIX THIS SO IT WORKS...
     @imageable = find_imageable
     @image = @imageable.images.build(params[:image])
     if @image.save
@@ -47,7 +48,7 @@ class ImagesController < ApplicationController
     redirect_to images_url
   end
 
-  private
+private
 
   def find_imageable
     params.each do |name, value|

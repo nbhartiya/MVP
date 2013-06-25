@@ -1,5 +1,9 @@
 MVP::Application.routes.draw do
 
+  get "follow/index"
+
+  get "follow/new"
+
   resources :profiles
 
 
@@ -35,7 +39,8 @@ MVP::Application.routes.draw do
     resources :tickets do
       resources :guests
     end
-    resources :imagess
+    resources :images
+    resources :follows
   end
 
   devise_for :users, controllers: {omniauth_callbacks: "authentications"} do
