@@ -5,6 +5,10 @@
     %th Kind
     %th Topic
     %th Question
+    %th Low Extreme
+    %th High Extreme
+    %th Format
+    %th Active
     %th
     %th
     %th
@@ -14,6 +18,10 @@
       %td= survey_question.kind
       %td= survey_question.topic
       %td= survey_question.question
+      %td= survey_question.low_extreme
+      %td= survey_question.high_extreme
+      %td= survey_question.format
+      %td= survey_question.active
       %td= link_to 'Show', survey_question
       %td= link_to 'Edit', edit_survey_question_path(survey_question)
       %td= link_to 'Destroy', survey_question, method: :delete, data: { confirm: 'Are you sure?' }
