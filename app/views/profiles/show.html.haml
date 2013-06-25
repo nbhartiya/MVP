@@ -88,82 +88,56 @@
                   %p
                     Announcements
           .span1 
-  .container
-    .row.section-header
-      .span12
-        %h1 Events
-        %ul
-          %li 
-            %a{:href=>"#"} Upcoming
-          %li 
-            %a{:href=>"#"} Past
-          %li 
-            %a{:href=>"#"} Hearted
-  .user-events
-    .container
-      .row
-        .span1
-        .span10
-          .row.events-row
-            .span5.single-event
-              =render "layouts/singleevent"
-            .span5.single-event
-              =render "layouts/singleevent"
-          .row.events-row
-            .span5.single-event
-              =render "layouts/singleevent"
-            .span5.single-event
-              =render "layouts/singleevent"
-  -if current_user.kind != "chef"
     .container
       .row.section-header
         .span12
-          %h1 Campaigns
+          %h1 Events
           %ul
             %li 
-              %a{:href=>"#"} Ongoing
+              %a{:href=>"#"} Upcoming
             %li 
-              %a{:href=>"#"} Successful
-    .user-campaigns
+              %a{:href=>"#"} Past
+            %li 
+              %a{:href=>"#"} Hearted
+    .user-events
+      .container
+        .row
+          .span1
+          .span10
+            .row.events-row
+              .span5.single-event
+                =render "layouts/singleevent"
+              .span5.single-event
+                =render "layouts/singleevent"
+            .row.events-row
+              .span5.single-event
+                =render "layouts/singleevent"
+              .span5.single-event
+                =render "layouts/singleevent"
+    .container
+      .row.section-header
+        .span12
+          %h1 Following
+          %ul
+            %li 
+              %a{:href=>"#"} Restaurants
+            %li 
+              %a{:href=>"#"} Foodies
+    .user-following
       .container
         .row
           .span1
           .span10
             .row
-              .span5.single-campaign
-                =render "campaigns/singlecampaign"
-              .span5.single-campaign
-                =render "campaigns/singlecampaign"
+              .span5.single-following
+                =render "layouts/singleuser"
+              .span5.single-following
+                =render "layouts/singleuser"
             .row
-              .span5.single-campaign
-                =render "campaigns/singlecampaign"
-              .span5.single-campaign
-                =render "campaigns/singlecampaign"
-  .container
-    .row.section-header
-      .span12
-        %h1 Following
-        %ul
-          %li 
-            %a{:href=>"#"} Restaurants
-          %li 
-            %a{:href=>"#"} Foodies
-  .user-following
-    .container
-      .row
-        .span1
-        .span10
-          .row
-            .span5.single-following
-              =render "layouts/singleuser"
-            .span5.single-following
-              =render "layouts/singleuser"
-          .row
-            .span5.single-following
-              =render "layouts/singleuser"
-            .span5.single-following
-              =render "layouts/singleuser"
-  -if current_user.kind == "chef"
+              .span5.single-following
+                =render "layouts/singleuser"
+              .span5.single-following
+                =render "layouts/singleuser"
     .container
       .row.section-header
         .span12#user-chatter
@@ -224,3 +198,77 @@
                   %p
                     About
           .span1
+  -else
+    .container
+      .row
+        .span2.badges
+          =image_tag "Favicon.png"
+          =image_tag "Favicon.png"
+          =image_tag "Favicon.png"
+          =image_tag "Favicon.png"
+          =image_tag "Favicon.png"
+          =image_tag "Favicon.png"
+          =image_tag "Favicon.png"
+        .span10
+          .row.section-header
+            .span19
+              %h1 Events
+              %ul
+                %li 
+                  %a{:href=>"#"} Upcoming
+                %li 
+                  %a{:href=>"#"} Past
+                %li 
+                  %a{:href=>"#"} Hearted
+          .row.user-events
+            .span10
+              .row.events-row
+                .span5.single-event
+                  =render "layouts/singleevent"
+                .span5.single-event
+                  =render "layouts/singleevent"
+              .row.events-row
+                .span5.single-event
+                  =render "layouts/singleevent"
+                .span5.single-event
+                  =render "layouts/singleevent"
+          .row.section-header
+            .span10
+              %h1 Campaigns
+              %ul
+                %li 
+                  %a{:href=>"#"} Ongoing
+                %li 
+                  %a{:href=>"#"} Successful
+          .row.user-campaigns
+            .span10
+              .row
+                .span5.single-campaign
+                  =render "campaigns/singlecampaign"
+                .span5.single-campaign
+                  =render "campaigns/singlecampaign"
+              .row
+                .span5.single-campaign
+                  =render "campaigns/singlecampaign"
+                .span5.single-campaign
+                  =render "campaigns/singlecampaign"
+          .row.section-header
+            .span10
+              %h1 Following
+              %ul
+                %li 
+                  %a{:href=>"#"} Restaurants
+                %li 
+                  %a{:href=>"#"} Foodies
+          .row.user-following
+            .span10
+              .row
+                .span5.single-following
+                  =render "layouts/singleuser"
+                .span5.single-following
+                  =render "layouts/singleuser"
+              .row
+                .span5.single-following
+                  =render "layouts/singleuser"
+                .span5.single-following
+                  =render "layouts/singleuser"

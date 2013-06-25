@@ -492,6 +492,14 @@ $main_orange: rgb(255, 178, 35);
 	}
 }
 
+.badges{
+	margin-top: 105px;
+	img{
+		width: 70px;
+		height: auto;
+	}
+}
+
 #user-announcements, #user-about, #user-events, #user-campaigns, #user-following, #user-chatter{
 	.caret{
 		display: inline-block;
