@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130624222705) do
+ActiveRecord::Schema.define(:version => 20130624231526) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -79,6 +79,16 @@ ActiveRecord::Schema.define(:version => 20130624222705) do
     t.string   "neighborhood"
     t.text     "blurb"
   end
+
+  create_table "follows", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "followable_id"
+    t.string   "followable_type"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "follows", ["followable_id", "followable_type"], :name => "index_follows_on_followable_id_and_followable_type"
 
   create_table "guests", :force => true do |t|
     t.string   "first_name"

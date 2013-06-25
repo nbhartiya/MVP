@@ -19,5 +19,6 @@ class Campaign < ActiveRecord::Base
 
   belongs_to :campaign_starter, :class_name => "User", :foreign_key => "campaign_starter_id"
   belongs_to :host, :class_name => "User", :foreign_key => "host_id"
+  has_many :follows, :as => :followable, :dependent => :destroy
   
 end
