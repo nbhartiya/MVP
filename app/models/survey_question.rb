@@ -17,5 +17,5 @@
 class SurveyQuestion < ActiveRecord::Base 
   has_many :survey_answers
   has_many :user_answers
-  attr_accessible :question, :kind, :topic
+  attr_accessible :question, :kind, :topic, :low_extreme, :high_extreme, :format, :active
 end
