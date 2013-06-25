@@ -73,7 +73,7 @@
         .span1
         .span4 
           -if current_user.kind == "chef"
-            .user-summary-edit{'ng-show' => 'edit==1'}
+            .user-summary-edit.clearfix{'ng-show' => 'edit==1'}
               %input{:type=>"text", :placeholder =>"Name"}
               %input{:type=>"text", :placeholder =>"Blurb"}
               %input{:type=>"text", :placeholder =>"Address"}
@@ -82,17 +82,20 @@
                 %option{:disabled => "disabled", :selected => "selected", :value => ""} State
               %input{:type=>"text", :placeholder =>"Zip Code"}
               %button.btn Hook up Yelp
-              %button.btn.btn-warning{'ng-click' => 'edit=0', 'ng-hide' => 'edit==0'} Done
+              %button.btn.btn-warning{'ng-click' => 'edit=2'} Save Changes
+              %button.btn.btn-warning{'ng-click' => 'edit=0', 'ng-hide' => 'edit==0'} Never Mind
             -else
-              .user-summary-edit{'ng-show' => 'edit==1'}
-                %input{:type=>"text", :placeholder =>"Name"}
-                %input{:type=>"text", :placeholder =>"Blurb"}
-                %input{:type=>"text", :placeholder =>"Address (we'll only show your neighborhood"}
-                %input{:type=>"text", :placeholder =>"City"}
+              .user-summary-edit.clearfix{'ng-show' => 'edit==1'}
+                %input.name{:type=>"text", :placeholder =>"Name"}
+                %input.blurb{:type=>"text", :placeholder =>"Blurb"}
+                %input.address{:type=>"text", :placeholder =>"Address (we'll only show your neighborhood)"}
+                %input.city{:type=>"text", :placeholder =>"City"}
                 %select#state
                   %option{:disabled => "disabled", :selected => "selected", :value => ""} State
-                %input{:type=>"text", :placeholder =>"Zip Code"}
-                %button.btn.btn-warning{'ng-click' => 'edit=0', 'ng-hide' => 'edit==0'} Done
+                %input.zip{:type=>"text", :placeholder =>"Zip Code"}
+                %button.btn.btn-warning{'ng-click' => 'edit=2'} Save Changes
+                %button.btn.btn-warning{'ng-click' => 'edit=0', 'ng-hide' => 'edit==0'} Never Mind
+                
         .span1
   -if current_user.kind == "chef"
     .container
