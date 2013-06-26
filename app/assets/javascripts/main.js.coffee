@@ -5,13 +5,18 @@ Simmr.factory "Charge", ["railsResourceFactory", (railsResourceFactory) ->
     name: "charge"
 ]
 
+Simmr.factory "Event", ["railsResourceFactory", (railsResourceFactory) -> railsResourceFactory
+    url: "/api/events"
+    name: "event"
+]
+
 Simmr.factory "Campaign", ["railsResourceFactory", (railsResourceFactory) ->
   railsResourceFactory
     url: "/api/campaigns"
     name: "campaign"
 ]
 
-Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "Charge", ($scope, $routeParams, $location, Charge) ->
+Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "Charge", "Event", ($scope, $routeParams, $location, Charge, Event) ->
   $scope.guests = []
 
   $scope.guest = {}
@@ -142,7 +147,12 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
         console.log response
 ]
 
-Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
+Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
+
+  $scope.createEvent = (event) ->
+    alert "fjkfhj"
+    new Event(event).create().then (data) =>
+      console.log data, "~~~~~~~~~~"
 
 ]
 

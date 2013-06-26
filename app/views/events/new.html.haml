@@ -77,9 +77,9 @@
               %select
                 %option{'ng-model' => 'event.state',:disabled => "disabled", :selected => "selected", :value => ""} State
               %input{'ng-model' => 'event.price',:type=>"text", :placeholder =>"Event Price"}
-              %input{'ng-model' => 'event.min-seats',:type=>"text", :placeholder =>"Min Seats"}
-              %input{'ng-model' => 'event.max-seats',:type=>"text", :placeholder =>"Max Seats"}
-              %button.btn.btn-warning.standalone-button Update
+              %input{'ng-model' => 'event.minSeats',:type=>"text", :placeholder =>"Min Seats"}
+              %input{'ng-model' => 'event.maxSeats',:type=>"text", :placeholder =>"Max Seats"}
+              %button.btn.btn-warning.standalone-button{'ng-click' => 'createEvent(event)'} Update
 
   .container
     .row.section-header
