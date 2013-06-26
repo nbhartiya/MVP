@@ -37,6 +37,8 @@ MVP::Application.routes.draw do
     resources :events
   end
 
+  resources :campaigns
+
   resources :events do
     resources :tickets do
       resources :guests

@@ -1,4 +1,4 @@
-class Api::CampaignsController < ApplicationController
+class CampaignsController < ApplicationController
   # GET /campaigns
   # GET /campaigns.json
   

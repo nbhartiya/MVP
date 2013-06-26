@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
   # GET /events
   # GET /events.json
+  skip_before_filter :authenticate_user!, :only => [:index, :show]
+  
   def index
     @events = Event.all
 
