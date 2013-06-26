@@ -27,9 +27,15 @@ class AttendEvent < WorthPoints
       end
 end
 
-class ReferFriend < WorthPoints
+class ReferToSignup < WorthPoints
       def initialize
-      	  @name = :refer_friend
+      	  @name = :refer_signup
+      end
+end
+
+class ReferToEvent < WorthPoints
+      def initialize
+      	  @name = :refer_event
       end
 end
 
@@ -39,15 +45,23 @@ class Review < WorthPoints
       end
 end
 
+class StartCampaign < WorthPoints
+      def initialize
+      	  @name = :start_campaign
+      end
+end
+
 class PointsSystem
 # returns number of points for each activity type
 # TODO: nkulkarni improve this so we look in the DB 
-# for now use harcoded in-memory hash, we only have 5 types
+# for now use harcoded in-memory hash, we only have a few types
   @@points_hash = {    :rate_event => 1, 
   		       :survey => 2, 
 		       :attend_event => 3, 
-		       :refer_friend => 4, 
-		       :review => 5
+		       :refer_signup => 4,
+		       :refer_event => 4, 
+		       :review => 5,
+		       :start_campaign => 1
 		   }
 
   def self.points_for(activity_type)
