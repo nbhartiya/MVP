@@ -20,18 +20,23 @@
             .span4.single-visual-answer
               =render "layouts/visualanswer"
 
-
+      {{meow}}
+      %slider{:ceiling => "150", :floor => "0", "ng-model" => "meow", :precision => "0", :step => "10"}
       -# range type question
-      .row
+      .row{'ng-controller' => "SurveyCtrl"}
         .span12.question
-          %h2 What type of event would you be most excited about?
+          %h2 {{questions[currentQuestion].text}}
           .row
             .span4.single-visual-answer-range
-              =render "layouts/visualanswerrange"
+              {{questions[currentQuestion].low_extreme}}
+              %a{'ng-click' => 'currentQuestion = currentQuestion + 1'} NEXT GO
+
             .span4
-              %slider.answer-slider{"floor" => "0", "ceiling" => "100", "step" => "1", "precision" => "0"}
+              {{answers[currentQuestion]}}
+              {{answers}}
+              %slider{:ceiling => "50", :floor => "-50", "ng-model" => "answers[currentQuestion].level", :precision => "0", :step => "10"}
             .span4.single-visual-answer-range
-              =render "layouts/visualanswerrange"
+              {{questions[currentQuestion].high_extreme}}
 
 
 

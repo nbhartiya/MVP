@@ -82,9 +82,13 @@
             %h2 Who are you bringing?
             -#this needs to show fields for however many guests there are (ideally just 2-3 at a time if there's a TON)
             %h3 Guest
+            %form
             .guests{'ng-repeat' => 'guest in guests'}
-              %input.guest-name{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.name', :type=>'text', :placeholder =>"Guest Full Name", :class => "error-{{guest.nameError}}"}
-              %input.guest-email{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :class => "error-{{guest.emailError}}"}
+              %input.guest-name{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.name', :type=>'text', :placeholder =>"Guest Full Name", :class => "error-{{guest.nameError}}", :required => "required"}
+              %input.guest-email{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :class => "error-{{guest.emailError}}", :required => "required"}
+            %div.error.name Please check your guests' names!
+            %div.error.email Please check your guests' emails!
+            %div.error.both Please check your guests' names and emails!
             %button.btn.btn-warning.standalone-button{'ng-click' => 'gotoPayment()'} Next
 
           -# TODO: May want to not pass user like this...
@@ -102,7 +106,7 @@
   .container
     .row.section-header
       .span12#host-story
-        %a{:href => "#host-story", 'data-target'=>"#host-story-detail", 'data-toggle'=>"collapse"} Host Story <span class="caret collapsed"></span>
+        %a{:href => "#host-story", 'data-target'=>"#host-story-detail", 'data-toggle'=>"collapse"} Our Story <span class="caret collapsed"></span>
   .host-story
     .container
       .row

@@ -47,10 +47,11 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
       
 #      j=0
 #      while j<$scope.guest_pages
-        while i < $scope.guests_left - 1 and i < 2
-          $scope.guests.push({})
-          i++
-        $scope.guests_left -= 3
+      while i < $scope.guests_left - 1 and i < 2
+        $scope.guests.push({})
+        i++
+#        $scope.guests_left -= 3
+#        i=0
 
       $scope.payment = 1
 
@@ -61,16 +62,25 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
   $scope.gotoPayment = ->
     error = 0
     angular.forEach($scope.guests, (guest) =>
-      if guest.name == "" or guest.email == ""
+      if typeof guest.name is 'undefined'
         error = 1
-      if typeof guest.name is 'undefined' or typeof guest.email is 'undefined'
-        error = 1
+        guest.nameError = true
+      if typeof guest.email is 'undefined'
+        error = 2
+        guest.emailError = true
+      if typeof guest.name is 'undefined' and typeof guest.email is 'undefined'
+        error = 3
+        guest.nameError = true
+        guest.emailError = true
     )
     if error == 0
       $scope.payment = 2 
-    else
-      alert "Please enter the name and email addresses of all of the guests."
-    # TODO: Make this error message appear inline somewhere instead of as an alert
+    if error == 1
+      $('.error.name').show()
+    if error == 2
+      $('.error.email').show()
+    if error == 3
+      $('.error.both').show()
 
   $scope.submitPayment = ->
     if $scope.buyer.name == ''
@@ -144,6 +154,12 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
 
 Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
 
+  $scope.event = {title: "Event Title", description: "Event Blurb", date: "01/01/2020", time: "8:00PM", minseats: "30"};
+
+]
+
+Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
+
 ]
 
 Simmr.controller "EventFeedbackCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
@@ -151,5 +167,32 @@ Simmr.controller "EventFeedbackCtrl", ["$scope",  "$routeParams", "$location", (
 ]
 
 Simmr.controller "ProfileEditCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
+
+]
+
+Simmr.controller "SurveyCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
+
+  $scope.currentQuestion = 0
+  $scope.answers = []
+
+  question =
+    text: "fuck you do you like cats?"
+    low_extreme: "dogs are cool"
+    high_extreme: "cats are cool"
+    low_image: "google.com/cat.jpg"
+    high_image: "google.com/high.jpg"
+  $scope.questions = []
+
+  i = 0
+  while i < 10
+    q = angular.copy(question)
+    q.text = " #{q.text} N #{i}"
+    $scope.questions.push(q)
+    $scope.answers.push({level: 0})
+    i=i+1
+
+  $scope.goNextCat = ->
+    currentQuestion++
+
 
 ]

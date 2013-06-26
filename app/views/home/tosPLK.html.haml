@@ -1,26 +1,14 @@
-%body.container.staticpages
-  .navbar.navbar-fixed-top
-    = render "layouts/header"
+-# temporary
+= render 'layouts/header2'
 
-  .hero-unit
-    .copycontainer
-      .darkbox.tos
-        .copy
-          %h1 and now, a word from our lawyers
-          %h2 it's kind of a big dill
-    #myCarousel.carousel.slide.teamandjobs
-      .carousel-inner
-        .active.item 
-          =image_tag "Food 12.jpg"
-        .item
-          =image_tag "Food 19.jpg"
-        .item
-          =image_tag "Food 24.jpg"
-        .item
-          =image_tag "Food 25.jpg"
-      %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
-      %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
+.container.tos
+  .row
+    .span12
+      %h1 Terms of Service
+      %h2 Subheading
+      %h3 Subsubheading
+      %h4 Subsubsubheading
+      %p Text
 
-  .toscontent
-    %h1 terms of service 
-    %p wall of text
+-# temporary
+= render 'layouts/footer'

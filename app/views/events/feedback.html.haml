@@ -79,9 +79,10 @@
 
           .event-yelp.clearfix{'ng-show' => 'feedback==2'}
             %h1 Yelp Review
-            %input.yelp-review-link{:type=>'text', :placeholder =>"Paste Yelp Review Link Here"}
-            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Submit
-            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Never Mind
+            %form{:'data-validate'=>"parsley"}
+              %input.yelp-review-link{:type=>'url', :required => "required", :'data-trigger' => 'keyup', :placeholder =>"Paste Yelp Review Link Here"}
+              %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Submit
+              %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Never Mind
 
           .point-ranking.clearfix{'ng-show' => 'feedback==3'}
             %h1 Leader Boards
@@ -163,7 +164,7 @@
                 %td
                   %h3.point-action Tell a Friend About Simmr - you'll get more points when they sign up and attend an event!
                 %td
-                  .btn.btn-warning.points.refer-friend-event-button{} +10
+                  %a.btn.btn-warning.points.refer-friend-event-button{:href => "#"} +10
               %tr
                 %td
                   %h3.point-action Attend Another Event
@@ -173,7 +174,7 @@
                 %td
                   %h3.point-action Start a Campaign
                 %td
-                  .points.btn.btn-warning.start-campaign-button{:href=>"../../campaigns/new"} +10
+                  %a.points.btn.btn-warning.start-campaign-button{:href=>"../../campaigns/new"} +10
             %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Done
             %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Back to Leader Boards
 

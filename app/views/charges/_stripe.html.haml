@@ -1,30 +1,30 @@
-%form#new_charge.simple_form.new_charge.ng-pristine.ng-valid{"accept-charset" => "UTF-8", :action => "/charges", :method => "post"}
+%form#new_charge.simple_form.new_charge.ng-pristine.ng-valid{"accept-charset" => "UTF-8", :action => "/charges", :method => "post", :'data-validate' => "parsley"}
   %div{:style => "margin:0;padding:0;display:inline"}
     %input{:name => "utf8", :type => "hidden", :value => "✓"}
     %input{:name => "authenticity_token", :type => "hidden", :value => "AOfcJWtiQMtPYck5bWTV5mlMRUf/q11ktoJXs5942to="}
   %h2 You will not be charged until the event tilts
   %h3 Credit Card Information
   
-  %input#full_name{'ng-model' => "buyer.name", :placeholder => "Full Name", :type => "string", :class => "error-{{buyer.nameError}}"}
+  %input#full_name{'ng-model' => "buyer.name", :placeholder => "Full Name", :type => "string", :class => "error-{{buyer.nameError}}", :required => "required", :'data-trigger'=> 'keyup'}
   
-  %input#credit_card_number{'ng-model' => "card.number", :placeholder => "CC Number", :type => "text", :class => "error-{{buyer.ccNumberError}}"}
+  %input#credit_card_number{'ng-model' => "card.number", :placeholder => "CC Number", :type => "text", :class => "error-{{buyer.ccNumberError}}", :required => "required", :'data-trigger'=> 'keyup'}
   
-  %input#security_code{'ng-model' => "card.cvc", :placeholder => "Sec Code", :type => "text", :class => "error-{{buyer.ccSecCodeError}}"}
+  %input#security_code{'ng-model' => "card.cvc", :placeholder => "Sec Code", :type => "text", :class => "error-{{buyer.ccSecCodeError}}", :required => "required", :'data-trigger'=> 'keyup'}
   
-  %input#expiration_month{'ng-model' => "card.expMonth", :placeholder => "Exp Month", :type => "text", :class => "error-{{buyer.ccExpMonthError}}"}
+  %input#expiration_month{'ng-model' => "card.expMonth", :placeholder => "Exp Month", :type => "number", :min => '1', :max => '12', :class => "error-{{buyer.ccExpMonthError}}", :required => "required", :'data-trigger'=> 'keyup'}
   
-  %input#expiration_year{'ng-model' => "card.expYear", :placeholder => "Exp Year", :type => "text", :class => "error-{{buyer.ccExpYearError}}"}
+  %input#expiration_year{'ng-model' => "card.expYear", :placeholder => "Exp Year", :type => "number", :class => "error-{{buyer.ccExpYearError}}", :required => "required", :'data-trigger'=> 'keyup'}
   
   %h3 Billing Address
   
-  %input#address1{'ng-model' => "buyer.billingAddress", :placeholder => "Address", :type => "text", :class => "error-{{buyer.billingAddressError}}"}
+  %input#address1{'ng-model' => "buyer.billingAddress", :placeholder => "Address", :type => "text", :class => "error-{{buyer.billingAddressError}}", :required => "required", :'data-trigger'=> 'keyup'}
   -#%input#address2{:placeholder => "Address Line 2", :type => "string"}/
   
-  %input#city{'ng-model' => "buyer.billingCity", :placeholder => "City", :type => "text", :class => "error-{{buyer.billingCityError}}"}
+  %input#city{'ng-model' => "buyer.billingCity", :placeholder => "City", :type => "text", :class => "error-{{buyer.billingCityError}}", :required => "required", :'data-trigger'=> 'keyup'}
   
   %select#state
   
-  %input#zipcode{'ng-model' => "buyer.billingZip", :placeholder => "Zip Code", :type => "text", :class => "error-{{buyer.billingZipError}}"}
+  %input#zipcode{'ng-model' => "buyer.billingZip", :placeholder => "Zip Code", :type => "text", :class => "error-{{buyer.billingZipError}}", :required => "required", :'data-trigger'=> 'keyup'}
   
   %input#charge_last4{:name => "charge[last4]", :type => "hidden"}
   

@@ -21,7 +21,8 @@ MVP::Application.routes.draw do
   get "home/howitworks"
   get "home/teamandjobs"
   get "home/contactus"
-  #get "home/tos"
+  get "home/tosPLK"
+  get "home/teamandjobsREAL"
   #get "home/blog"
 
   resources :images

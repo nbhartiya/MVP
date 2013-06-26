@@ -79,6 +79,9 @@ ol.carousel-indicators{
 	    -webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;    
 		box-sizing: border-box;
+		.parsley-error-list > li{
+			color: white;
+		}
 		.event-summary {
 		    background: rgba(0,0,0,.8);
 		    padding: 30px;
@@ -158,7 +161,7 @@ ol.carousel-indicators{
 			width: 33px;
 			height: 33px;
 		}
-		.event-purchase, .event-guests{
+		.event-purchase, .event-guests, .event-create-form, .event-edit-form{
 			background: rgba(0,0,0,0.8);
 			padding: 30px;
 			h1{
@@ -213,6 +216,22 @@ ol.carousel-indicators{
 				float: right;
 				margin-left: 10px;
 			}
+			.event-date, .event-time, .ticket-price, .min-seats{
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				width: 49.25%;
+			}
+			.event-city{
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				width: 66%;
+			}
+			a, a:visited, a:hover{
+				color: white;
+				text-decoration: none;
+			}
 		}
 	}
 }
@@ -263,6 +282,9 @@ ol.carousel-indicators{
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;    
 	box-sizing: border-box;
+	.parsley-error-list > li{
+			color: white;
+		}
 	.event-summary{
 		background: rgba(0,0,0,.8);
 		padding: 30px;
