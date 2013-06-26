@@ -1,132 +1,166 @@
 .events
   .event-profile
-    .event-stats
-      #event-carousel.carousel.slide           
-        .carousel-inner
-          -# if doesn't have images, then show default image
-          -@event.images.each_with_index do |i, index|
-            -if index == 0
-              .item.active
-                = filepicker_image_tag i.image
-            -else
-              .item
-                = filepicker_image_tag i.image
-      %ol.carousel-indicators
-        -@event.images.each_with_index do |i, index|         
+    #event-carousel.carousel.slide           
+      .carousel-inner
+      -# create if statement to chefk if there are images; if there are, run loop; if not, pull up default image (food 17 is a placeholder for now)
+        .active.item
+          =image_tag "Food 17.jpg"
+        -@event.images.each_with_index do |i, index|
           -if index == 0
-            %li.active{"data-target" => "#event-carousel", "data-slide-to" => index}
+            .item.active
+              = filepicker_image_tag i.image
           -else
-            %li{"data-target" => "#event-carousel", "data-slide-to" => index}
-      .container
-        .event-registration.row{'ng-controller' => 'EventCreateCtrl'}
-          .span1
-          .span4
-            .event-summary
-              %h1
-                {{event.title}}
-              %h2 
-                {{event.description}}
-              %h2 Host Name
-              %hr
-              %h3 
-                {{event.date}}
-              %h3 Mission
-              %p 
-                -# pull out and make this a method somewhere...
-                {{event.min-seats}}
-                seats left
-              .progress.progress-warning
-                -#probably want to pull this arithmetic out too
-                .bar{:style => "width: 0%"}
-              %select.number-of-seats
-                %option{:disabled => "disabled", :selected => "selected", :value => ""} Number of Seats
-                -#{{event.min-seats}}.times do |s|
-                  -#%option{:value => s+1} #{s+1} seats
-              %button.btn.btn-warning.event-go-button Go
-              %table.event-sharing
-                %tr
-                  %td
-                    %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#"}
-                  %td
-                    %a.sb.twitter.circle.no-border.no-shadow.orange{:href=>"#"}
-                  %td
-                    %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
-                  %td
-                    %a.sb.share_this.circle.no-border.no-shadow.orange{:href=>"#"}
-                %tr.host-stats
-                  %td 190
-                  %td 190
-                  %td 190
-                  %td Email
-                %tr.host-stat-labels
-                  %td likes
-                  %td followers
-                  %td reviews
-                  %td a friend
-          .span1.heart_this
-            %a.sb.heart.circle.no-border.no-shadow.orange
-          .span1
-          .span4 
-            -#this needs to happen only when tickets >1
-            .event-create-form.clearfix
-              %input{'ng-model' => 'event.title', :type=>"text", :placeholder =>"Event Title"}
-              %input{'ng-model' => 'event.date', :type=>"text", :placeholder =>"Event Date"}
-              %input{'ng-model' => 'event.time', :type=>"text", :placeholder =>"Event Time"}
-              %input{'ng-model' => 'event.address',:type=>"text", :placeholder =>"Event Address"}
-              %input{'ng-model' => 'event.city',:type=>"text", :placeholder =>"Event City"}
-              %select
-                %option{'ng-model' => 'event.state',:disabled => "disabled", :selected => "selected", :value => ""} State
-              %input{'ng-model' => 'event.price',:type=>"text", :placeholder =>"Event Price"}
-              %input{'ng-model' => 'event.minSeats',:type=>"text", :placeholder =>"Min Seats"}
-              %input{'ng-model' => 'event.maxSeats',:type=>"text", :placeholder =>"Max Seats"}
-              %button.btn.btn-warning.standalone-button{'ng-click' => 'createEvent(event)'} Update
+            .item
+              = filepicker_image_tag i.image
+    %ol.carousel-indicators
+    -# same if statement applies here
+      -@event.images.each_with_index do |i, index|         
+        -if index == 0
+          %li.active{"data-target" => "#event-carousel", "data-slide-to" => index}
+        -else
+          %li{"data-target" => "#event-carousel", "data-slide-to" => index}
+    .container
+      .event-registration.row{'ng-controller' => 'EventCreateCtrl'}
+        .span1
+        .span4
+          .event-summary
+            %h1
+              {{event.title}}
+            %h2 
+              {{event.description}}
+            %h2 Host Name
+            %hr
+            %h3 
+              {{event.date}}
+            %h3 Mission
+            %p 
+              {{event.minseats}}
+              seats left
+            .progress.progress-warning
+              .bar{:style => "width: 0%"}
+            %select.number-of-seats
+              %option{:disabled => "disabled", :selected => "selected", :value => ""} Number of Seats
+              -#{{event.min-seats}}.times do |s|
+                -#%option{:value => s+1} #{s+1} seats
+            %button.btn.btn-warning.event-go-button Go
+            %table.event-sharing
+              %tr
+                %td
+                  .btn.btn-warning 2nd
+                %td
+                  %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
+                %td
+                  %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
+                %td
+                  %a.sb.share_this.circle.no-border.no-shadow.orange{:href=>"#"}
+              %tr.host-stats
+                %td 
+                %td 190
+                %td 190
+                %td Tell
+              %tr.host-stat-labels
+                %td event
+                %td followers
+                %td reviews
+                %td a friend
+        .span1.heart_this
+          %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
+        .span1
+        .span4 
+          .event-create-form.clearfix
+            %input{'ng-model' => 'event.title', :type=>"text", :placeholder =>"Event Title"}
+            %input{'ng-model' => 'event.description', :type=>"text", :placeholder =>"Blurb", :value => "Event Blurb"}
+            %input.event-date{'ng-model' => 'event.date', :type=>"datetime", :placeholder =>"Date", :value => "01/01/2015 8:00PM"}
+            %input{'ng-model' => 'event.address',:type=>"text", :placeholder =>"Address"}
+            %input.event-city{'ng-model' => 'event.city',:type=>"text", :placeholder =>"City"}
+            %select#state
+              %option{'ng-model' => 'event.state',:disabled => "disabled", :selected => "selected", :value => ""} State
+            %input.ticket-price{'ng-model' => 'event.price',:type=>"number", :placeholder =>"Ticket Price"}
+            %input.people-limit{'ng-model' => 'event.people_limit',:type=>"number", :placeholder =>"Seats", :value => "30"}
+            %a.GetFilepicker.clearfix Upload Event Images
+            %button.btn.btn-warning.standalone-button{'ng-click' => 'createEvent(event)'} Update
 
   .container
     .row.section-header
-      .span1
-      .span10
-        %h1 Our Story
-      .span1
+      .span12#host-story
+        %a{:href => "#host-story", 'data-target'=>"#host-story-detail", 'data-toggle'=>"collapse"} Our Story <span class="caret collapsed"></span>
   .host-story
     .container
       .row
         .span1
         .span10
+          #host-story-accordion.accordion
+            #host-story-detail.accordion-body.collapse.in
+              .accordion-inner
+                %p
+                  Host Story
         .span1 
   .container
     .row.section-header
-      .span1
-      .span10
-        %h1 The Menu
-      .span1
+      .span12#event-menu
+        %a{:href => "#event-menu", 'data-target'=>"#event-menu-detail", 'data-toggle'=>"collapse"} The Menu <span class="caret collapsed"></span>
   .event-menu
     .container
       .row
         .span1
         .span10
-          %p 
-            =@event.menu_text
+          #event-menu-accordion.accordion
+            #event-menu-detail.accordion-body.collapse.in
+              .accordion-inner
+                %textarea{:placeholder => "Type your menu here", "rows"=>'3'}
         .span1
   .container
     .row.section-header
-      .span1
-      .span10
-        %h1 Chatter
-      .span1
-  .event-attendees
-    .container
-      .row
-        .span1
-        .attendees.span10
-          %p 
-            -for guest in @event.guests
-              = guest.first_name + " " + guest.last_name
-              %p
-        .span1
+      .span12#event-chatter
+        %a{:href => "#event-chatter", 'data-target'=>"#event-chatter-detail", 'data-toggle'=>"collapse"} Sample Chatter <span class="caret collapsed"></span>
+        %ul
+          %li 
+            %a{:href=>"#"} Hide Participants
+          %li 
+            %a{:href=>"#"} Turn Off Chatter
   .event-chatter
     .container
       .row
         .span1
-        .chatter.span10
-          %p threaded comments
+        .span10
+          #event-chatter-accordion.accordion
+            #event-chatter-detail.accordion-body.collapse.in
+              .accordion-inner
+                .row.attendees
+                  .span12
+                    =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
+                    =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
+                    =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
+                    =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Christine Lee", "class" => "one-attendee", "data-placement" => "bottom"
+                    =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Michael Makarov", "class" => "one-attendee", "data-placement" => "bottom"
+                    -#
+                      %p 
+                        -for guest in @event.guests
+                          = guest.first_name + " " + guest.last_name
+                          %p
+                .row.comments
+                  .span12
+                    %table
+                      %tr
+                        %td
+                          =link_to image_tag("Favicon.png"), "#"
+                        %td
+                          Comment blahblahblahblah
+                      %tr
+                        %td
+                          =link_to image_tag("Favicon.png"), "#"
+                        %td
+                          Comment blahblahblahblah
+                    %table.response-level1.offset1
+                      %tr
+                        %td
+                          =link_to image_tag("Favicon.png"), "#"
+                        %td
+                          Comment blahblahblahblah
+                    %table.response-level2.offset2
+                      %tr
+                        %td
+                          =link_to image_tag("Favicon.png"), "#"
+                        %td
+                          Comment blahblahblahblah
         .span1

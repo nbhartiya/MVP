@@ -103,13 +103,13 @@ ul.parsley-error-list{
 
 // hero unit styling 
 .attention-getter{
-	height: 550px;
+	height: 600px;
 	#home-carousel{
 		position: absolute;
 		width: 100%;
 	    z-index: -1;
 		.carousel-inner{
-			height: 550px;
+			height: 600px;
 			width: auto;
 			img{
 				min-width: 100%;
@@ -138,7 +138,7 @@ ul.parsley-error-list{
 	.carousel-control{
 		font-size: 50px;
 		color: white;
-		top: 20%;
+		top: 95%;
 		z-index: 50;
 	}
 	.carousel-indicators{
@@ -242,8 +242,8 @@ ul.parsley-error-list{
 }
 
 .accordion-inner{
-		border-top: none;
-	}
+	border-top: none;
+}
 	
 .step, .step-one{
 	background: url('Food 17.jpg');
@@ -271,6 +271,8 @@ ul.parsley-error-list{
 		}
 	}
 }
+
+
 
 .section{
 	margin: 0;

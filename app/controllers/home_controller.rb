@@ -15,4 +15,10 @@ class HomeController < ApplicationController
   def indexABC
   end
 
+  def tosPLK
+  end
+
+  def teamandjobsREAL
+  end
+
 end

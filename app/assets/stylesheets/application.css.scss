@@ -28,9 +28,19 @@ html body, p {
 	font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;        
 }
 
+.error{
+	display: none;
+	color: white;
+	margin-bottom: 5px;
+}
+
 em{
 	font-style: normal;
 	font-weight: 900;
+}
+
+slider span.pointer.active:after {
+  background-color: $main_orange;
 }
 
 // error styling
