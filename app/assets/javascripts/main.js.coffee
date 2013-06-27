@@ -1,17 +1,15 @@
-Simmr = angular.module('Simmr', ['uiSlider', 'ngResource', 'rails', 'ui', 'ui.bootstrap'])
-
-Simmr.factory "Event", ["railsResourceFactory", (railsResourceFactory) -> railsResourceFactory
+angular.module('Simmr').factory "Event", ["railsResourceFactory", (railsResourceFactory) -> railsResourceFactory
     url: "/api/events"
     name: "event"
 ]
 
-Simmr.factory "Charge", ["railsResourceFactory", (railsResourceFactory) ->
+angular.module('Simmr').factory "Charge", ["railsResourceFactory", (railsResourceFactory) ->
   railsResourceFactory
     url: "/api/charges"
     name: "charge"
 ]
 
-Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "Charge", "Event", ($scope, $routeParams, $location, Charge, Event) ->
+angular.module('Simmr').controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "Charge", "Event", ($scope, $routeParams, $location, Charge, Event) ->
   $scope.guests = []
 
   $scope.guest = {}
@@ -152,7 +150,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
         console.log response
 ]
 
-Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
+angular.module('Simmr').controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
 
   $scope.createEvent = (event) ->
     alert "fjkfhj"
@@ -163,10 +161,10 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
 
 ]
 
-Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
+angular.module('Simmr').controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
 
 ]
 
-Simmr.controller "EventFeedbackCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
+angular.module('Simmr').controller "EventFeedbackCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
 
 ]

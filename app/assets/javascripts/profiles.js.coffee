@@ -8,13 +8,11 @@ $(document).ready ->
 
   $(".user-card-name").tooltip()
 
-Simmr = angular.module('Simmr', ['uiSlider', 'ngResource', 'rails', 'ui', 'ui.bootstrap'])
-
-Simmr.controller "ProfileEditCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
+angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
 
 ]
 
-Simmr.controller "SurveyCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
+angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
 
   $scope.currentQuestion = 0
   $scope.answers = []

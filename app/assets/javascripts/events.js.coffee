@@ -20,7 +20,7 @@ states = Table: [
 ,
     stateabbrev: "CO"
     statename: "Colorado"
-
+,
     stateabbrev: "CT"
     statename: "Connecticut"
 ,
