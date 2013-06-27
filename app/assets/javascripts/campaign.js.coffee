@@ -5,3 +5,11 @@ Simmr.factory "Campaign", ["railsResourceFactory", (railsResourceFactory) ->
     url: "/api/campaigns"
     name: "campaign"
 ]
+
+Simmr.controller "CampaignCreateCtrl", ["$scope",  "$routeParams", "$location", "Campaign", ($scope, $routeParams, $location, Event) ->
+
+]
+
+Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "Campaign", ($scope, $routeParams, $location, Event) ->
+
+]

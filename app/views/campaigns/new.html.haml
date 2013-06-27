@@ -1,5 +1,83 @@
-%h1 New campaign
+.campaigns
+  .campaign-profile
+    #campaign-carousel.carousel.slide           
+      .carousel-inner
+        .active.item
+          =image_tag "Food 17.jpg"
+    .container
+      .campaign-registration.row{'ng-controller' => 'CampaignCreateCtrl'}
+        .span1
+        .span4
+          .campaign-summary
+            %h1
+              {{campaign.title}}
+            %h2 
+              {{campaign.description}}
+            %h2 Campaign Started by XX
+            %hr
+            %h3 
+              Campaign End Date
+            %p 
+              100 more needed to tilt this campaign
+            .progress.progress-warning
+              .bar{:style => "width: 0%"}
+            %button.btn.btn-warning.campaign-join-button Join
+            %table.campaign-social-stats
+              %tr
+                %td
+                  %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
+                %td
+                  %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
+                %td
+                  %a.sb.share_this.circle.no-border.no-shadow.orange{:href=>"#"}
+              %tr.campaign-target-stats
+                %td 190
+                %td 190
+                %td Tell
+              %tr.campaign-target-stat-labels
+                %td followers
+                %td reviews
+                %td a friend
+        .span1.heart_this
+          %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
+        .span1
+        .span4 
+          .campaign-create-form.clearfix
+            %input{'ng-model' => 'campaign.title', :type=>"text", :placeholder =>"Campaign Title"}
+            %input{'ng-model' => 'campaign.description', :type=>"text", :placeholder =>"Blurb"}
+            %a.GetFilepicker.clearfix Upload Campaign Images
+            %button.btn.btn-warning.standalone-button{'ng-click' => 'campaign=1'} Create
 
-= render 'form'
+  .container
+    .row.section-header
+      .span12#campaign-target-story
+        %a{:href => "#campaign-target-story", 'data-target'=>"#campaign-target-story-detail", 'data-toggle'=>"collapse"} About Samovar <span class="caret collapsed"></span>
+  .campaign-target-story
+    .container
+      .row
+        .span1
+        .span10
+          #campaign-target-story-accordion.accordion
+            #campaign-target-story-detail.accordion-body.collapse.in
+              .accordion-inner
+                %p
+                  About Samovar blahblahblah
+        .span1 
+  .container
+    .row.section-header
+      .span12#why-join
+        %a{:href => "#why-join", 'data-target'=>"#why-join-detail", 'data-toggle'=>"collapse"} Why Join? <span class="caret collapsed"></span>
+  .why-join
+    .container
+      .row
+        .span1
+        .span10
+          #why-join-accordion.accordion
+            #why-join-detail.accordion-body.collapse.in
+              .accordion-inner
+                %textarea{:placeholder => "Why should others join your campaign?", "rows"=>'3'}
+        .span1
 
-= link_to 'Back', campaigns_path
+-#
+  = render 'form'
+  = link_to 'Back', campaigns_path
