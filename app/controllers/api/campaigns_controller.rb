@@ -1,86 +1,40 @@
 class Api::CampaignsController < ApplicationController
-  # GET /campaigns
-  # GET /campaigns.json
+  
   
   skip_before_filter :authenticate_user!, :only => [:index, :show]
-
+  
+  # GET /campaigns
+  # GET /campaigns.json
   def index
     @campaigns = Campaign.all
+    render json: @campaigns.to_json(include_hash)
+  end  
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @campaigns }
-    end
-  end
-
-  # GET /campaigns/1
-  # GET /campaigns/1.json
   def show
     @campaign = Campaign.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @campaign }
-    end
+    render json: @campaign.to_json(include_hash)
   end
 
-  # GET /campaigns/new
-  # GET /campaigns/new.json
-  def new
-    @campaign = Campaign.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @campaign }
-    end
-  end
-
-  # GET /campaigns/1/edit
-  def edit
-    @campaign = Campaign.find(params[:id])
-  end
-
-  # POST /campaigns
-  # POST /campaigns.json
   def create
-    @campaign = Campaign.new(params[:campaign])
-
-    respond_to do |format|
-      if @campaign.save
-        format.html { redirect_to @campaign, notice: 'Campaign was successfully created.' }
-        format.json { render json: @campaign, status: :created, location: @campaign }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @campaign.errors, status: :unprocessable_entity }
-      end
-    end
+    @campaign = Campaign.create(params[:campaign])
+    render json: @campaign.to_json(include_hash)
   end
 
-  # PUT /campaigns/1
-  # PUT /campaigns/1.json
   def update
     @campaign = Campaign.find(params[:id])
-
-    respond_to do |format|
-      if @campaign.update_attributes(params[:campaign])
-        format.html { redirect_to @campaign, notice: 'Campaign was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @campaign.errors, status: :unprocessable_entity }
-      end
-    end
+    @campaign.update_attributes(params[:campaign])
+    render json: @campaign.to_json(include_hash)
   end
 
-  # DELETE /campaigns/1
-  # DELETE /campaigns/1.json
   def destroy
     @campaign = Campaign.find(params[:id])
     @campaign.destroy
+  end
 
-    respond_to do |format|
-      format.html { redirect_to campaigns_url }
-      format.json { head :no_content }
-    end
+private
+  def include_hash
+    {:include => [:follows]}
+    #{:methods => :display_name, :include => [{:venue => {:include => :place}}, :users]}
+    #=> {:only => :hi}
   end
 end

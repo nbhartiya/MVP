@@ -12,7 +12,6 @@ class Api::EventsController < ApplicationController
   end
 
   def create
-    binding.pry
     @event = Event.create(params[:event])
     render json: @event.to_json(include_hash)
   end
