@@ -1,27 +1,125 @@
-%p#notice= notice
+.campaigns
+  .campaign-profile
+    #campaign-carousel.carousel.slide         
+      .carousel-inner
+        .active.item
+          =image_tag "Food 17.jpg"
+        -#
+          -@campaign.images.each_with_index do |i, index|
+            -if index == 0
+              .item.active
+                = filepicker_image_tag i.image
+            -else
+              .item
+                = filepicker_image_tag i.image
+    -#
+      %ol.carousel-indicators
+        -@campaign.images.each_with_index do |i, index|     
+          - if index == 0
+            %li.active{"data-target" => "#campaign-carousel", "data-slide-to" => index}
+          - else
+            %li{"data-target" => "#campaign-carousel", "data-slide-to" => index}
+        
+    .container
+      .row.campaign-registration
+        .span1
+        .span4
+          .campaign-summary.clearfix
+            %h1
+              Campaign Business
+            %h2 
+              Campaign blurb
+            %h2
+              Campaign started by XX
+            %hr
+            %h3
+              Campaign End Date
+            %p 
+              X more needed to tilt this campaign
+            .progress.progress-warning.clearfix
+              .bar{:style => "width: 80%"}
+            -if user_signed_in? == false
+              .btn.btn-warning.campaign-join-button#sign_up.clearfix{:"data-toggle" => "modal"} Sign Up
+              .btn.btn-warning.campaign-join-button#sign_in.clearfix{:"data-toggle" =>"modal"} Sign In
+            -if user_signed_in?
+              .btn.btn-warning.campaign-join-button.clearfix Join
+            %table.campaign-social-stats.clearfix
+              %tr
+                %td
+                  %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
+                %td
+                  %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
+                %td
+                  %a.sb.share_this.circle.no-border.no-shadow.orange{:href=>"#"}
+              %tr.campaign-target-stats
+                %td 190
+                %td 190
+                %td Tell
+              %tr.campaign-target-stat-labels
+                %td followers
+                %td reviews
+                %td a friend
+        .span1.heart_this
+          %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
+        .span1
+        .span4 
+        .span1
+  .container
+    .row.section-header
+      .span12#campaign-target-story
+        %a{:href => "#campaign-target-story", 'data-target'=>"#campaign-target-story-detail", 'data-toggle'=>"collapse"} About Samovar <span class="caret"></span>
+  .campaign-target-story
+    .container
+      .row
+        .span1
+        .span10
+          #campaign-target-story-accordion.accordion
+            #campaign-target-story-detail.accordion-body.collapse.in
+              .accordion-inner
+                %p
+                  About Samovar blahblahblah
+        .span1 
+  .container
+    .row.section-header
+      .span12#why-join
+        %a{:href => "#why-join", 'data-target'=>"#why-join-detail", 'data-toggle'=>"collapse"} Why Join? <span class="caret"></span>
+  .why-join
+    .container
+      .row
+        .span1
+        .span10
+          #why-join-accordion.accordion
+            #why-join-detail.accordion-body.collapse.in
+              .accordion-inner
+                %p
+                  Why join blahblahblahblah
+        .span1
 
-%p
-  %b Biz name:
-  = @campaign.biz_name
-%p
-  %b Blurb:
-  = @campaign.blurb
-%p
-  %b About:
-  = @campaign.about
-%p
-  %b Why join:
-  = @campaign.why_join
-%p
-  %b Location:
-  = @campaign.location_id
-%p
-  %b Foodie:
-  = @campaign.campaign_starter_id
-%p
-  %b Host:
-  = @campaign.host_id
+-#
+  %p#notice= notice
 
-= link_to 'Edit', edit_campaign_path(@campaign)
-\|
-= link_to 'Back', campaigns_path
+  %p
+    %b Biz name:
+    = @campaign.biz_name
+  %p
+    %b Blurb:
+    = @campaign.blurb
+  %p
+    %b About:
+    = @campaign.about
+  %p
+    %b Why join:
+    = @campaign.why_join
+  %p
+    %b Location:
+    = @campaign.location_id
+  %p
+    %b Foodie:
+    = @campaign.campaign_starter_id
+  %p
+    %b Host:
+    = @campaign.host_id
+
+  = link_to 'Edit', edit_campaign_path(@campaign)
+  \|
+  = link_to 'Back', campaigns_path

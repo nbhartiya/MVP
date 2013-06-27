@@ -221,22 +221,6 @@ ul.parsley-error-list{
 	}
 }
 
-#how-it-works{
-	.caret{
-		display: inline-block;
-		vertical-align: middle;
-		border-top: 6px solid gray;
-		border-right: 6px solid transparent;
-		border-left: 6px solid transparent;
-		font-size: 60px;
-	}
-	.caret.collapsed{
-		border-top: 6px solid $main_orange;
-		border-right: 6px solid transparent;
-		border-left: 6px solid transparent;
-	}
-}
-
 .accordion{
 	margin: 0;
 }

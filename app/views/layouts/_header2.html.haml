@@ -18,7 +18,7 @@
             %li.dropdown
               %a{:href => "#", "data-toggle" => "dropdown"}
                 #{current_user.first_name} #{current_user.last_name}
-                %span.caret
+                %span.caret.header-caret
               %ul.dropdown-menu{"aria-labeledby" => "dLabel", :role => "menu"}
                 %li.dropitem
                   %a{:href => "#", :tabindex => "-1"} Dashboard

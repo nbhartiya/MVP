@@ -48,11 +48,11 @@
                 %td followers
                 %td reviews
                 %td a friend
-        .span1.edit-button
-          %button.btn.btn-warning{'ng-click' => 'edit=1'} Edit
+        .span1.heart_this
+          %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
         .span1
         .span4 
-          .event-edit-form.clearfix{'ng-show' => 'edit==1'}
+          .event-edit-form.clearfix
             %input{'ng-model' => 'event.title', :type=>"text", :placeholder =>"Event Title"}
             %input{'ng-model' => 'event.description', :type=>"text", :placeholder =>"Blurb"}
             %input.event-date{'ng-model' => 'event.date', :type=>"date", :placeholder =>"Date"}
