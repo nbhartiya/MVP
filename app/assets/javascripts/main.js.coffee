@@ -153,11 +153,8 @@ angular.module('Simmr').controller "EventRegisterCtrl", ["$scope",  "$routeParam
 angular.module('Simmr').controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
 
   $scope.createEvent = (event) ->
-    alert "fjkfhj"
     new Event(event).create().then (data) =>
       console.log data, "~~~~~~~~~~"
-
-  $scope.event = {title: "Event Title", description: "Event Blurb", date: "01/01/2020", people_limit: "30"};
 
 ]
 
@@ -166,5 +163,7 @@ angular.module('Simmr').controller "EventEditCtrl", ["$scope",  "$routeParams", 
 ]
 
 angular.module('Simmr').controller "EventFeedbackCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
+
+  $scope.feedback=1
 
 ]

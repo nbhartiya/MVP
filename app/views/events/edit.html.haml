@@ -19,7 +19,7 @@
               {{event.date}}
             %h3 Mission
             %p 
-              {{event.minseats}}
+              {{event.peopleLimit}}
               seats left
             .progress.progress-warning
               .bar{:style => "width: 0%"}
@@ -56,13 +56,14 @@
             %input{'ng-model' => 'event.title', :type=>"text", :placeholder =>"Event Title"}
             %input{'ng-model' => 'event.description', :type=>"text", :placeholder =>"Blurb"}
             %input.event-date{'ng-model' => 'event.date', :type=>"date", :placeholder =>"Date"}
-            %input.event-time{'ng-model' => 'event.time', :type=>"time", :placeholder =>"Time"}
+            %select.event-neighborhood#neighborhoods
+              %option{'ng-model' => 'event.neighborhood',:disabled => "disabled", :selected => "selected", :value => ""} Neighborhood
             %input{'ng-model' => 'event.address',:type=>"text", :placeholder =>"Address"}
             %input.event-city{'ng-model' => 'event.city',:type=>"text", :placeholder =>"City"}
             %select#state
               %option{'ng-model' => 'event.state',:disabled => "disabled", :selected => "selected", :value => ""} State
             %input.ticket-price{'ng-model' => 'event.price',:type=>"number", :placeholder =>"Ticket Price"}
-            %input.min-seats{'ng-model' => 'event.minseats',:type=>"number", :placeholder =>"Seats"}
+            %input.people-limit{'ng-model' => 'event.peopleLimit',:type=>"number", :placeholder =>"Seats"}
             %a.GetFilepicker.clearfix Upload Event Images
             %button.btn.btn-warning.standalone-button Update
 

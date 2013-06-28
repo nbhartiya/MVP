@@ -46,7 +46,9 @@
             %input{'ng-model' => 'campaign.title', :type=>"text", :placeholder =>"Campaign Title"}
             %input{'ng-model' => 'campaign.description', :type=>"text", :placeholder =>"Blurb"}
             %a.GetFilepicker.clearfix Upload Campaign Images
-            %button.btn.btn-warning.standalone-button{'ng-click' => 'campaign=1'} Create
+            %button.btn.btn-warning.standalone-button{'ng-click' => 'campaign=1', 'ng-hide'=> "campaign==1"} Create
+          .campaign-create-confirmation.clearfix{'ng-show'=>"campaign==1"}
+            %h2 Thanks! You'll get an email when your campaign is approved and public!
 
   .container
     .row.section-header

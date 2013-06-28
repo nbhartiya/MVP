@@ -1,5 +1,5 @@
 -# temporary
-= render 'layouts/header2'
+  = render 'layouts/header2'
 
 .home 
   .attention-getter
@@ -42,7 +42,7 @@
             %a.btn.btn-warning.sign-up-button{:href => "#sign_up", :"data-toggle" =>"modal"} Get Started
             %p Already a member? &nbsp <a href = "#sign_in" class = "sign-in-link" data-toggle = "modal"> Sign In </a>
           -if user_signed_in?
-            %a.btn.btn-warning.view-events-button{:href => "../events"} Upcoming Events
+            %a.btn.btn-warning.view-events-button{:href => "/events"} Upcoming Events
         .span7
   .container
     .row.section-header
@@ -88,7 +88,7 @@
         .row.featured-events
           .span1
           .span10
-            %p Don’t see your favorite? <a href = "#">Request an event</a> or <a href = "#">join a Request Campaign</a>
+            %p Don’t see your favorite? <a href = "/campaigns/new">Request an event</a> or <a href = "/campaigns">join a Request Campaign</a>
           .span1
     .container
       .row.events
@@ -109,7 +109,7 @@
     .container
       .row
         .span4.offset4
-          %a.btn.btn-warning.more-button{:href=>"../events"} More
+          %a.btn.btn-warning.more-button{:href=>"/events"} More
 
 -# temporary
 = render 'layouts/footer'

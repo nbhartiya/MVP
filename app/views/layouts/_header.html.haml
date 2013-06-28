@@ -1,5 +1,5 @@
 .navbar-inner.clearfix
-  = link_to image_tag("white_simmr.png", :border=>0), '../home/index', :class => 'brand'
+  = link_to image_tag("white_simmr.png", :border=>0), '/home/index', :class => 'brand'
   %ul.nav
     %li.dropdown
       %a{:href => "#", "data-toggle" => "dropdown"} San Francisco <span class="caret color=white"></span>
@@ -12,7 +12,7 @@
         %li.dropitem 
           %p Don't see your city? Enter your zip code or city name
           %form.navbar-form
-            %input.span2{:type => "text"}/
+            %input.span2{:type => "text"}
     -if user_signed_in? == false
       %li.pull-right
         = link_to "Sign Up", "#sign_up", :"data-toggle" => "modal"
@@ -25,15 +25,15 @@
       %a{:href => "#", "data-toggle" => "dropdown"} Learn More <span class="caret color=white"></span>
       %ul.dropdown-menu{"aria-labeledby" => "dLabel", :role => "menu"}
         %li.dropitem
-          %a{:href => "../home/howitworks", :tabindex => "-1"} How It Works
+          %a{:href => "/home/howitworks", :tabindex => "-1"} How It Works
         %li.dropitem
-          %a{:href => "../home/teamandjobs", :tabindex => "-1"} Team & Jobs
+          %a{:href => "/home/teamandjobs", :tabindex => "-1"} Team & Jobs
         %li.dropitem
-          %a{:href => "../home/tos", :tabindex => "-1"} Terms of Service
+          %a{:href => "/home/tos", :tabindex => "-1"} Terms of Service
         %li.dropitem
-          %a{:href => "../home/contactus", :tabindex => "-1"} Contact Us 
+          %a{:href => "/home/contactus", :tabindex => "-1"} Contact Us 
         %li.dropitem
-          %a{:href => "../home/blog", :tabindex => "-1"} Blog
+          %a{:href => "/home/blog", :tabindex => "-1"} Blog
     %li.pull-right
       %a{:href => "/events/new"} Create an Event
 

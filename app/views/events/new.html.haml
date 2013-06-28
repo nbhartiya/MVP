@@ -32,9 +32,10 @@
             %hr
             %h3 
               {{event.date}}
-            %h3 Mission
+            %h3 
+              {{event.neighborhood}}
             %p 
-              {{event.minseats}}
+              {{event.peopleLimit}}
               seats left
             .progress.progress-warning
               .bar{:style => "width: 0%"}
@@ -71,14 +72,16 @@
             %input{'ng-model' => 'event.title', :type=>"text", :placeholder =>"Event Title"}
             %input{'ng-model' => 'event.description', :type=>"text", :placeholder =>"Blurb", :value => "Event Blurb"}
             %input.event-date{'ng-model' => 'event.date', :type=>"datetime", :placeholder =>"Date", :value => "01/01/2015 8:00PM"}
+            %select.event-neighborhood#neighborhoods
+              %option{'ng-model' => 'event.neighborhood',:disabled => "disabled", :selected => "selected", :value => ""} Neighborhood
             %input{'ng-model' => 'event.address',:type=>"text", :placeholder =>"Address"}
             %input.event-city{'ng-model' => 'event.city',:type=>"text", :placeholder =>"City"}
             %select#state
               %option{'ng-model' => 'event.state',:disabled => "disabled", :selected => "selected", :value => ""} State
             %input.ticket-price{'ng-model' => 'event.price',:type=>"number", :placeholder =>"Ticket Price"}
-            %input.people-limit{'ng-model' => 'event.people_limit',:type=>"number", :placeholder =>"Seats", :value => "30"}
+            %input.people-limit{'ng-model' => 'event.peopleLimit',:type=>"number", :placeholder =>"Seats", :value => "30"}
             %a.GetFilepicker.clearfix Upload Event Images
-            %button.btn.btn-warning.standalone-button{'ng-click' => 'createEvent(event)'} Update
+            %button.btn.btn-warning.standalone-button{'ng-click' => 'createEvent(event)'} Create
 
   .container
     .row.section-header

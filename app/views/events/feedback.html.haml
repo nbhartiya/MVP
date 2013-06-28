@@ -71,7 +71,7 @@
         .span1
         .span4 
           -#this needs to happen only when tickets >1
-          .event-survey.clearfix{'ng-show' => 'feedback==1'}
+          .event-survey.clearfix{'ng-hide' => 'feedback!=1'}
             %h1 Survey
             %input.survey-question-1{:type=>'text', :placeholder =>"Custom Survey Question 1"}
             %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Submit
@@ -169,12 +169,12 @@
                 %td
                   %h3.point-action Attend Another Event
                 %td
-                  %a.btn.btn-warning.points.attend-another-event-button{:href => "../../events"} +10
+                  %a.btn.btn-warning.points.attend-another-event-button{:href => "/events"} +10
               %tr
                 %td
                   %h3.point-action Start a Campaign
                 %td
-                  %a.points.btn.btn-warning.start-campaign-button{:href=>"../../campaigns/new"} +10
+                  %a.points.btn.btn-warning.start-campaign-button{:href=>"/campaigns/new"} +10
             %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Done
             %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Back to Leader Boards
 

@@ -120,12 +120,18 @@ ol.carousel-indicators{
 				box-sizing: border-box; 
 				width: 75%;
 			}
-			.btn{
+			.event-go-button{
 				width: 23%;
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box; 
 				padding-left: 10px;
+			}
+			.standalone-button{
+				width: 49%;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box; 
 			}
 			.event-sharing{
 				margin-top: 25px;
@@ -216,7 +222,7 @@ ol.carousel-indicators{
 				float: right;
 				margin-left: 10px;
 			}
-			.event-date, .event-time, .ticket-price, .min-seats{
+			.event-date, .event-neighborhood, .ticket-price, .people-limit{
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;

@@ -44,8 +44,13 @@ a.why-zip, a.why-zip:hover, a.why-zip:visited{
 	}
 }
 
-.single-visual-answer, .single-visual-answer-range{
+.single-visual-answer{
 	height: 280px;
+	margin-top: 10px;
+}
+
+.single-visual-answer-range{
+	height: 280px; // will be 400px
 	margin-top: 10px;
 }
 
@@ -57,10 +62,25 @@ a.why-zip, a.why-zip:hover, a.why-zip:visited{
 
 .single-visual-answer-range{
 	.answer{
-		bottom: 140px;
+		bottom: 140px; // will be 200px
 	}
 }
 
 .answer-slider{
 	margin-top: 135px;
+}
+
+.navigation-buttons{
+	border-top: 1px solid black;
+	padding-top: 20px;
+	.btn-warning{
+		margin-left: 10px;
+	}
+}
+
+.quiz-progress{
+	.progress{
+  		-webkit-box-shadow: inset 0px 1px 2px rgba(0,0,0,0.5);
+        box-shadow: inset 0px 1px 2px rgba(0,0,0,0.5);
+	}
 }

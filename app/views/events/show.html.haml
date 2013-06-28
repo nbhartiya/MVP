@@ -42,14 +42,14 @@
             .progress.progress-warning
               -#probably want to pull this arithmetic out too
               .bar{:style => "width: #{(@event.guests.count/@event.people_limit.to_f)*100}%"}
-            %select.number-of-seats{'ng-model' => 'num_guests'}
+            -if user_signed_in? == false
+              .btn.btn-warning.standalone-button{:"data-toggle" => "modal", :href=>"#sign_up"} Sign Up
+              %a.btn.btn-warning.standalone-button{:"data-toggle" =>"modal", :href=>"#sign_in"} Sign In
+            -if user_signed_in?
+              %select.number-of-seats{'ng-model' => 'num_guests'}
               %option{:value => 1} 1 seat
               - (@event.people_limit - @event.guests.count).times do |s|
                 %option{:value => s+2} #{s+2} seats
-            -if user_signed_in? == false
-              .btn.btn-warning.event-go-button#sign_up{:"data-toggle" => "modal"} Sign Up
-              .btn.btn-warning.event-go-button#sign_in{:"data-toggle" =>"modal"} Sign In
-            -if user_signed_in?
               .btn.btn-warning.event-go-button{'ng-click' => 'showPayment()'} Go
             %table.event-sharing
               %tr
