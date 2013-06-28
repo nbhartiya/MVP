@@ -5,7 +5,7 @@
         .active.item
           =image_tag "Food 17.jpg"
     .container
-      .campaign-registration.row{'ng-controller' => 'CampaignEditCtrl'}
+      .campaign-registration.row{'ng-controller' => 'CampaignCreateCtrl'}
         .span1
         .span4
           .campaign-summary
@@ -19,7 +19,7 @@
               Campaign End Date
             %p 
               100 more needed to tilt this campaign
-            .progress.progress-warning
+            .progress.signed-in.progress-warning
               .bar{:style => "width: 0%"}
             %button.btn.btn-warning.campaign-join-button Join
             %table.campaign-social-stats
@@ -42,11 +42,13 @@
           %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
         .span1
         .span4 
-          .campaign-edit-form.clearfix
+          .campaign-create-form.clearfix
             %input{'ng-model' => 'campaign.title', :type=>"text", :placeholder =>"Campaign Title"}
             %input{'ng-model' => 'campaign.description', :type=>"text", :placeholder =>"Blurb"}
             %a.GetFilepicker.clearfix Upload Campaign Images
-            %button.btn.btn-warning.standalone-button{'ng-click' => 'campaign=1'} Update
+            %button.btn.btn-warning.standalone-button{'ng-click' => 'campaign=1', 'ng-hide'=> "campaign==1"} Create
+          .campaign-create-confirmation.clearfix{'ng-show'=>"campaign==1"}
+            %h2 Thanks! You'll get an email when your campaign is approved and public!
 
   .container
     .row.section-header

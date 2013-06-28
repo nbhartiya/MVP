@@ -31,7 +31,7 @@
             %h2 Host Name
             %hr
             %h3 
-              {{event.date}}
+              {{event.date}}, {{event.time}}
             %h3 
               {{event.neighborhood}}
             %p 
@@ -71,7 +71,8 @@
           .event-create-form.clearfix
             %input{'ng-model' => 'event.title', :type=>"text", :placeholder =>"Event Title"}
             %input{'ng-model' => 'event.description', :type=>"text", :placeholder =>"Blurb", :value => "Event Blurb"}
-            %input.event-date{'ng-model' => 'event.date', :type=>"datetime", :placeholder =>"Date", :value => "01/01/2015 8:00PM"}
+            %input.event-date{'ng-model' => 'event.date', :type=>"date", :placeholder =>"Date"}
+            %input.event-time{'ng-model' => 'event.time', :type=>"time", :placeholder =>"Date"}
             %select.event-neighborhood#neighborhoods
               %option{'ng-model' => 'event.neighborhood',:disabled => "disabled", :selected => "selected", :value => ""} Neighborhood
             %input{'ng-model' => 'event.address',:type=>"text", :placeholder =>"Address"}

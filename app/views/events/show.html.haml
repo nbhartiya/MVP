@@ -47,9 +47,9 @@
               %a.btn.btn-warning.standalone-button{:"data-toggle" =>"modal", :href=>"#sign_in"} Sign In
             -if user_signed_in?
               %select.number-of-seats{'ng-model' => 'num_guests'}
-              %option{:value => 1} 1 seat
-              - (@event.people_limit - @event.guests.count).times do |s|
-                %option{:value => s+2} #{s+2} seats
+                %option{:value => 1} 1 seat
+                - (@event.people_limit - @event.guests.count).times do |s|
+                  %option{:value => s+2} #{s+2} seats
               .btn.btn-warning.event-go-button{'ng-click' => 'showPayment()'} Go
             %table.event-sharing
               %tr

@@ -22,18 +22,22 @@
                 =image_tag "Favicon.png"
               %td.user-title
                 %h1
-                  Samovar Tea Lounge
+                  {{profile.name}}
             %tr
               %td.user-summary{:colspan => '2'}
                 %h2 
-                  Your Haven from the World 
+                  {{profile.blurb}} 
                   -if current_user.kind == "chef"
                     <sup><a href = "#user-about", class = "read-more", data-target = "#user-about-detail", data-toggle = "collapse"> Read More </a></sup>
                 -# if foodie, just show neighborhood + city + zip; if host, show full address
+                -if current_user.kind == 'chef'
+                  %h3
+                    {{profile.address}}
+                else
+                  %h3
+                    {{profile.neighborhood}}
                 %h3
-                  123 Mission Street
-                %h3
-                  San Francisco, CA 94109
+                  {{profile.city}}, {{profile.state}} &nbsp {{profile.zip}}
                 -if current_user.kind == "chef"
                   %table.user-social-stats
                     %tr
@@ -74,25 +78,25 @@
         .span4 
           -if current_user.kind == "chef"
             .user-summary-edit.clearfix{'ng-show' => 'edit==1'}
-              %input{:type=>"text", :placeholder =>"Name"}
-              %input{:type=>"text", :placeholder =>"Blurb"}
-              %input{:type=>"text", :placeholder =>"Address"}
-              %input{:type=>"text", :placeholder =>"City"}
+              %input{'ng-model'=>'profile.name', :type=>"text", :placeholder =>"Name"}
+              %input{'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"Blurb"}
+              %input{'ng-model'=>'profile.address', :type=>"text", :placeholder =>"Address"}
+              %input.city{'ng-model'=>'profile.city', :type=>"text", :placeholder =>"City"}
               %select#state
-                %option{:disabled => "disabled", :selected => "selected", :value => ""} State
-              %input{:type=>"text", :placeholder =>"Zip Code"}
-              %button.btn Hook up Yelp
+                %option{'ng-model'=>'profile.state', :disabled => "disabled", :selected => "selected", :value => ""} State
+              %input.zip{'ng-model' => 'profile.zip', :type=>"text", :placeholder =>"Zip Code"}
+              %a.clearfix Hook up Yelp
               %button.btn.btn-warning{'ng-click' => 'edit=2'} Save Changes
               %button.btn.btn-warning{'ng-click' => 'edit=0', 'ng-hide' => 'edit==0'} Never Mind
             -else
               .user-summary-edit.clearfix{'ng-show' => 'edit==1'}
-                %input.name{:type=>"text", :placeholder =>"Name"}
-                %input.blurb{:type=>"text", :placeholder =>"Blurb"}
-                %input.address{:type=>"text", :placeholder =>"Address (we'll only show your neighborhood)"}
-                %input.city{:type=>"text", :placeholder =>"City"}
+                %input{'ng-model'=>'profile.name', :type=>"text", :placeholder =>"Name"}
+                %input{'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"Blurb"}
+                %select#neighborhoods{'ng-model'=>'profile.neighborhood'}
+                %input.city{'ng-model'=>'profile.city', :type=>"text", :placeholder =>"City"}
                 %select#state
-                  %option{:disabled => "disabled", :selected => "selected", :value => ""} State
-                %input.zip{:type=>"text", :placeholder =>"Zip Code"}
+                  %option{'ng-model'=>'profile.state', :disabled => "disabled", :selected => "selected", :value => ""} State
+                %input.zip{'ng-model' => 'profile.zip', :type=>"text", :placeholder =>"Zip Code"}
                 %button.btn.btn-warning{'ng-click' => 'edit=2'} Save Changes
                 %button.btn.btn-warning{'ng-click' => 'edit=0', 'ng-hide' => 'edit==0'} Never Mind
                 
@@ -112,6 +116,8 @@
                 .accordion-inner
                   %p
                     Announcements
+                  %button.btn.btn-warning{'ng-click' => 'edit=2'} Edit
+                  %textarea{'ng-show' => 'edit==2', :placeholder => "Type your announcements here. All your followers will be notified.", "rows"=>'3'}
           .span1
     .container
       .row.section-header
@@ -212,6 +218,8 @@
                 .accordion-inner
                   %p
                     About
+                  %button.btn.btn-warning{'ng-click' => 'edit=3'} Edit
+                  %textarea{'ng-show' => 'edit==3', :placeholder => "Type your story here", "rows"=>'3'}
           .span1
 
 
