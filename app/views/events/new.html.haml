@@ -91,11 +91,11 @@
             %input.event-date{'ng-model' => 'event.date', :type=>"date", :placeholder =>"Date", :value => "01/01/2015"}
             %input.event-time{'ng-model' => 'event.when', :type=>"time", :placeholder =>"Time", :value => "8:00PM"}
             -# TODO: Wendy, make date and time be next to each other...
-            %input{'ng-model' => 'space.address1',:type=>"text", :placeholder =>"Address"}
-            %input.event-city{'ng-model' => 'space.city',:type=>"text", :placeholder =>"City"}
+            %input{'ng-model' => 'event.location.address1',:type=>"text", :placeholder =>"Address"}
+            %input.event-city{'ng-model' => 'event.location.city',:type=>"text", :placeholder =>"City"}
             %select#state
-              %option{'ng-model' => 'space.state',:disabled => "disabled", :selected => "selected", :value => ""} State
-            %input.event-zipcode{'ng-model' => 'space.zipcode',:type=>"text", :placeholder =>"Zip"}
+              %option{'ng-model' => 'event.location.state',:disabled => "disabled", :selected => "selected", :value => ""} State
+            %input.event-zipcode{'ng-model' => 'event.location.zipcode',:type=>"text", :placeholder =>"Zip"}
             %input.ticket-cost{'ng-model' => 'event.cost',:type=>"number", :placeholder =>"Ticket Cost"}
             %input.people-limit{'ng-model' => 'event.people_limit',:type=>"number", :placeholder =>"Seats", :value => "30"}
             %a.GetFilepicker.clearfix Upload Event Images
