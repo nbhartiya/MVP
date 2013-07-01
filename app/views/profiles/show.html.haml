@@ -90,7 +90,7 @@
         .span10
           .row.section-header#news
             .span10#user-news
-              %a{:href => "#user-news", 'data-target'=>"#user-news-detail", 'data-toggle'=>"collapse"} News <span class="caret collapsed"></span>
+              %a{:href => "#user-news", 'data-target'=>"#user-news-detail", 'data-toggle'=>"collapse"} News <span class="caret"></span>
           .row.user-news
             .span10
               #user-news-accordion.accordion
@@ -98,100 +98,100 @@
                   .accordion-inner
                     %p
                       News
-      .row
-        .span10.offset2
-          .row.section-header#events
-            .span10
-              %h1 Events
-              %ul
-                %li 
-                  %a{:href=>"#"} Upcoming
-                %li 
-                  %a{:href=>"#"} Past
-                %li 
-                  %a{:href=>"#"} Hearted
-          .row.user-events
-            .span10
-              .row.events-row
-                .span5.single-event
-                  =render "layouts/singleevent"
-                .span5.single-event
-                  =render "layouts/singleevent"
-              .row.events-row
-                .span5.single-event
-                  =render "layouts/singleevent"
-                .span5.single-event
-                  =render "layouts/singleevent"
-          .row.section-header#following
-            .span10
-              %h1 Following
-              %ul
-                %li 
-                  %a{:href=>"#"} Restaurants
-                %li 
-                  %a{:href=>"#"} Foodies
-          .row.user-following
-            .span10
-              .row
-                .span5.single-following
-                  =render "layouts/singleuser"
-                .span5.single-following
-                  =render "layouts/singleuser"
-              .row
-                .span5.single-following
-                  =render "layouts/singleuser"
-                .span5.single-following
-                  =render "layouts/singleuser"
-          .row.section-header#chatter
-            .span10#user-chatter
-              %a{:href => "#user-chatter", 'data-target'=>"#user-chatter-detail", 'data-toggle'=>"collapse"} Chatter <span class="caret collapsed"></span>
-          .row.user-chatter
-            .span10
-              #user-chatter-accordion.accordion
-                #user-chatter-detail.accordion-body.collapse.in
-                  .accordion-inner
-                    .row.conversants
-                      .span10
-                        =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
-                        =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
-                        =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
-                        =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Christine Lee", "class" => "one-attendee", "data-placement" => "bottom"
-                        =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Michael Makarov", "class" => "one-attendee", "data-placement" => "bottom"
-                    .row.comments
-                      .span10
-                        %table
-                          %tr
-                            %td
-                              =link_to image_tag("Favicon.png"), "#"
-                            %td
-                              Comment blahblahblahblah
-                          %tr
-                            %td
-                              =link_to image_tag("Favicon.png"), "#"
-                            %td
-                              Comment blahblahblahblah
-                        %table.response-level1.offset1
-                          %tr
-                            %td
-                              =link_to image_tag("Favicon.png"), "#"
-                            %td
-                              Comment blahblahblahblah
-                        %table.response-level2.offset2
-                          %tr
-                            %td
-                              =link_to image_tag("Favicon.png"), "#"
-                            %td
-                              Comment blahblahblahblah
-          .row.section-header#about
-            .span10#user-about
-              %a{:href => "#user-about", 'data-target'=>"#user-about-detail", 'data-toggle'=>"collapse"} Our Story <span class="caret collapsed"></span>
-          .row.user-about
-            .span10
-              #user-about-accordion.accordion
-                #user-about-detail.accordion-body.collapse
-                  .accordion-inner
-                    %p
-                      Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.
+        .row
+          .span10.offset2
+            .row.section-header#events
+              .span10
+                %h1 Events
+                %ul
+                  %li 
+                    %a{:href=>"#"} Upcoming
+                  %li 
+                    %a{:href=>"#"} Past
+                  %li 
+                    %a{:href=>"#"} Hearted
+            .row.user-events
+              .span10
+                .row.events-row
+                  .span5.single-event
+                    =render "layouts/singleevent"
+                  .span5.single-event
+                    =render "layouts/singleevent"
+                .row.events-row
+                  .span5.single-event
+                    =render "layouts/singleevent"
+                  .span5.single-event
+                    =render "layouts/singleevent"
+            .row.section-header#following
+              .span10
+                %h1 Following
+                %ul
+                  %li 
+                    %a{:href=>"#"} Restaurants
+                  %li 
+                    %a{:href=>"#"} Foodies
+            .row.user-following
+              .span10
+                .row
+                  .span5.single-following
+                    =render "layouts/singleuser"
+                  .span5.single-following
+                    =render "layouts/singleuser"
+                .row
+                  .span5.single-following
+                    =render "layouts/singleuser"
+                  .span5.single-following
+                    =render "layouts/singleuser"
+            .row.section-header#chatter
+              .span10#user-chatter
+                %a{:href => "#user-chatter", 'data-target'=>"#user-chatter-detail", 'data-toggle'=>"collapse"} Chatter <span class="caret"></span>
+            .row.user-chatter
+              .span10
+                #user-chatter-accordion.accordion
+                  #user-chatter-detail.accordion-body.collapse.in
+                    .accordion-inner
+                      .row.conversants
+                        .span10
+                          =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
+                          =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
+                          =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
+                          =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Christine Lee", "class" => "one-attendee", "data-placement" => "bottom"
+                          =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Michael Makarov", "class" => "one-attendee", "data-placement" => "bottom"
+                      .row.comments
+                        .span10
+                          %table
+                            %tr
+                              %td
+                                =link_to image_tag("Favicon.png"), "#"
+                              %td
+                                Comment blahblahblahblah
+                            %tr
+                              %td
+                                =link_to image_tag("Favicon.png"), "#"
+                              %td
+                                Comment blahblahblahblah
+                          %table.response-level1.offset1
+                            %tr
+                              %td
+                                =link_to image_tag("Favicon.png"), "#"
+                              %td
+                                Comment blahblahblahblah
+                          %table.response-level2.offset2
+                            %tr
+                              %td
+                                =link_to image_tag("Favicon.png"), "#"
+                              %td
+                                Comment blahblahblahblah
+            .row.section-header#about
+              .span10#user-about
+                %a.collapsed{:href => "#user-about", 'data-target'=>"#user-about-detail", 'data-toggle'=>"collapse"} Our Story <span class="caret"></span>
+            .row.user-about
+              .span10
+                #user-about-accordion.accordion
+                  #user-about-detail.accordion-body.collapse
+                    .accordion-inner
+                      %p
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.
   -else
     .container
       .row
@@ -244,67 +244,67 @@
                   =image_tag "Favicon.png"
                 .span2.single-badge
                   =image_tag "Favicon.png"
-      .row
-        .span10.offset2
-          .row.section-header#events
-            .span10
-              %h1 Events
-              %ul
-                %li 
-                  %a{:href=>"#"} Upcoming
-                %li 
-                  %a{:href=>"#"} Past
-                %li 
-                  %a{:href=>"#"} Hearted
-          .row.user-events
-            .span10
-              .row.events-row
-                .span5.single-event
-                  =render "layouts/singleevent"
-                .span5.single-event
-                  =render "layouts/singleevent"
-              .row.events-row
-                .span5.single-event
-                  =render "layouts/singleevent"
-                .span5.single-event
-                  =render "layouts/singleevent"
-          .row.section-header#campaigns
-            .span10
-              %h1 Campaigns
-              %ul
-                %li 
-                  %a{:href=>"#"} Ongoing
-                %li 
-                  %a{:href=>"#"} Successful
-          .row.user-campaigns
-            .span10
-              .row
-                .span5.single-campaign
-                  =render "campaigns/singlecampaign"
-                .span5.single-campaign
-                  =render "campaigns/singlecampaign"
-              .row
-                .span5.single-campaign
-                  =render "campaigns/singlecampaign"
-                .span5.single-campaign
-                  =render "campaigns/singlecampaign"
-          .row.section-header#following
-            .span10
-              %h1 Following
-              %ul
-                %li 
-                  %a{:href=>"#"} Restaurants
-                %li 
-                  %a{:href=>"#"} Foodies
-          .row.user-following
-            .span10
-              .row
-                .span5.single-following
-                  =render "layouts/singleuser"
-                .span5.single-following
-                  =render "layouts/singleuser"
-              .row
-                .span5.single-following
-                  =render "layouts/singleuser"
-                .span5.single-following
-                  =render "layouts/singleuser"
+        .row
+          .span10.offset2
+            .row.section-header#events
+              .span10
+                %h1 Events
+                %ul
+                  %li 
+                    %a{:href=>"#"} Upcoming
+                  %li 
+                    %a{:href=>"#"} Past
+                  %li 
+                    %a{:href=>"#"} Hearted
+            .row.user-events
+              .span10
+                .row.events-row
+                  .span5.single-event
+                    =render "layouts/singleevent"
+                  .span5.single-event
+                    =render "layouts/singleevent"
+                .row.events-row
+                  .span5.single-event
+                    =render "layouts/singleevent"
+                  .span5.single-event
+                    =render "layouts/singleevent"
+            .row.section-header#campaigns
+              .span10
+                %h1 Campaigns
+                %ul
+                  %li 
+                    %a{:href=>"#"} Ongoing
+                  %li 
+                    %a{:href=>"#"} Successful
+            .row.user-campaigns
+              .span10
+                .row
+                  .span5.single-campaign
+                    =render "campaigns/singlecampaign"
+                  .span5.single-campaign
+                    =render "campaigns/singlecampaign"
+                .row
+                  .span5.single-campaign
+                    =render "campaigns/singlecampaign"
+                  .span5.single-campaign
+                    =render "campaigns/singlecampaign"
+            .row.section-header#following
+              .span10
+                %h1 Following
+                %ul
+                  %li 
+                    %a{:href=>"#"} Restaurants
+                  %li 
+                    %a{:href=>"#"} Foodies
+            .row.user-following
+              .span10
+                .row
+                  .span5.single-following
+                    =render "layouts/singleuser"
+                  .span5.single-following
+                    =render "layouts/singleuser"
+                .row
+                  .span5.single-following
+                    =render "layouts/singleuser"
+                  .span5.single-following
+                    =render "layouts/singleuser"

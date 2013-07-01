@@ -432,7 +432,7 @@ $main_orange: rgb(255, 178, 35);
 
 .container{
 	.section-header{
-		margin: 20px 0 20px 0;
+		margin: 20px 0 20px -15px;
 		h1{
 			font-size: 30px;
 			color: black;
@@ -492,22 +492,6 @@ $main_orange: rgb(255, 178, 35);
 	}
 }
 
-.badges{
-	margin-left: 0px;
-}
-
-#badges{
-	margin-left: 20px;
-}
-
-.user-news{
-	margin-left: 0;
-}
-
-#news{
-	margin-left: 20px;
-}
-
 
 #user-news, #user-about, #user-events, #user-campaigns, #user-following, #user-chatter{
 	.caret{
@@ -518,7 +502,7 @@ $main_orange: rgb(255, 178, 35);
 		border-left: 6px solid transparent;
 		font-size: 60px;
 	}
-	.caret.collapsed{
+	.collapsed .caret{
 		border-top: 6px solid $main_orange;
 		border-right: 6px solid transparent;
 		border-left: 6px solid transparent;
@@ -544,7 +528,7 @@ $main_orange: rgb(255, 178, 35);
 		background: $main_orange;
 	}
 	a{
-		color: $main_orange;
+		color: rgb(54, 54, 54);
 		font-size: 16px;
 		font-weight: 100;
 	}

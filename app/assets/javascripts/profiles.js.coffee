@@ -17,7 +17,7 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
 ]
 
 angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
-
+  
   $scope.currentQuestion = 0
   $scope.answers = []
 

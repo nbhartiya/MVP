@@ -247,7 +247,7 @@ ol.carousel-indicators{
 }
 .container{
 	.section-header{
-		margin: 20px 0 20px 0;
+		margin: 20px 0 20px -15px;
 		h1{
 			font-size: 30px;
 			color: black;
@@ -283,6 +283,25 @@ ol.carousel-indicators{
 	}
 }
 
+.scroll-menu.event{
+	margin-top: 85px;
+}
+
+#host-story, #event-menu, #event-chatter{
+	.caret{
+		display: inline-block;
+		vertical-align: middle;
+		border-top: 6px solid gray;
+		border-right: 6px solid transparent;
+		border-left: 6px solid transparent;
+		font-size: 60px;
+	}
+	.collapsed .caret{
+		border-top: 6px solid $main_orange;
+		border-right: 6px solid transparent;
+		border-left: 6px solid transparent;
+	}
+}
 
 
 // event feedback styling
