@@ -35,6 +35,7 @@ MVP::Application.routes.draw do
     resources :charges
     resources :campaigns
     resources :events
+    resources :locations
   end
 
   resources :campaigns

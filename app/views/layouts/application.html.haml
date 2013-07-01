@@ -11,7 +11,7 @@
     = csrf_meta_tags
     = render 'layouts/google_analytics'
     %link{:href => "http://fonts.googleapis.com/css?family=Merriweather+Sans|Noto+Sans|Open+Sans|Satisfy", :rel => "stylesheet", :type => "text/css"}
-  %body
+  %body{"data-spy"=>"scroll", "data-target" => ".scroll-menu"}
     = render 'layouts/header2'
     .main
       = yield

@@ -25,10 +25,11 @@
               =@event.title
             %h2 
               =@event.description
-            %h2
-              =@event.host.first_name.split(' ').map(&:capitalize).join(' ') + " " + @event.host.last_name.split(' ').map(&:capitalize).join(' ')
-              -#TODO: use titleize
-              -#TODO: FIX
+            -if @event.host.first_name != nil
+              %h2
+                =@event.host.first_name.split(' ').map(&:capitalize).join(' ') + " " + @event.host.last_name.split(' ').map(&:capitalize).join(' ')
+                -#TODO: use titleize
+                -#TODO: FIX
             %h2#event-cost
               =number_to_currency(@event.cost, :unit => "$")
             %hr

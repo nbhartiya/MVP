@@ -16,5 +16,5 @@
 class Profile < ActiveRecord::Base
 
   belongs_to :user
-  attr_accessible :blurb, :home_zip, :location_id, :story, :work_zip, :user_id
+  attr_accessible :blurb, :home_zip, :location_id, :story, :work_zip, :user_id, :biz_name
 end

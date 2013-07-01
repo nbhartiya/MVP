@@ -24,18 +24,34 @@
         .span1
         .span4
           .event-summary
-            %h1
+            %h1.default-text{'ng-show'=>'event.title=="" || event.title==nil'}
+              Event Title
+            %h1 
               {{event.title}}
+            %h2.default-text{'ng-show'=>'event.description=="" || event.description==nil'}
+              Event Description
             %h2 
               {{event.description}}
-            %h2 Host Name
+            -#TODO CHANGE to current.user.profile.biz_name != nil once we require everyone to fill profile
+            -if current_user.profile != nil
+              %h2
+                =current_user.profile.biz_name
+            -else
+              %h2.default-text
+                Input Biz Name on Profile
             %hr
+            %h3.default-text{'ng-show'=>'event.date=="" || event.date==nil'}
+              =Time.now().strftime("%A %B %d, %l:%M%p")
             %h3 
-              {{event.date}}, {{event.time}}
-            %h3 
+              {{event.date}} {{event.when}}
+            %h3.default-text{'ng-show'=>'event.neighborhood=="" || event.neighborhood==nil'}
+              Neighborhood
+            %h2 
               {{event.neighborhood}}
-            %p 
-              {{event.peopleLimit}}
+            %p.default-text{'ng-show'=>'event.people_limit=="" || event.people_limit==nil'}
+              0 seats left
+            %p{'ng-hide'=>'event.people_limit=="" || event.people_limit==nil'}
+              {{event.people_limit}}
               seats left
             .progress.progress-warning
               .bar{:style => "width: 0%"}
@@ -68,19 +84,22 @@
           %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
         .span1
         .span4 
-          .event-create-form.clearfix
+          .event-create-form.clearfix{'ng-init'=> "event.host_id=#{current_user.id}"}
             %input{'ng-model' => 'event.title', :type=>"text", :placeholder =>"Event Title"}
             %input{'ng-model' => 'event.description', :type=>"text", :placeholder =>"Blurb", :value => "Event Blurb"}
+            -# TODO: What format does datetime have to be inputted in??, Make placeholder indiciate that!
             %input.event-date{'ng-model' => 'event.date', :type=>"date", :placeholder =>"Date"}
-            %input.event-time{'ng-model' => 'event.time', :type=>"time", :placeholder =>"Date"}
+            %input.event-time{'ng-model' => 'event.when', :type=>"time", :placeholder =>"Time"}
             %select.event-neighborhood#neighborhoods
               %option{'ng-model' => 'event.neighborhood',:disabled => "disabled", :selected => "selected", :value => ""} Neighborhood
-            %input{'ng-model' => 'event.address',:type=>"text", :placeholder =>"Address"}
-            %input.event-city{'ng-model' => 'event.city',:type=>"text", :placeholder =>"City"}
+            -# TODO: Wendy, make date and time be next to each other...
+            %input{'ng-model' => 'space.address1',:type=>"text", :placeholder =>"Address"}
+            %input.event-city{'ng-model' => 'space.city',:type=>"text", :placeholder =>"City"}
             %select#state
-              %option{'ng-model' => 'event.state',:disabled => "disabled", :selected => "selected", :value => ""} State
-            %input.ticket-price{'ng-model' => 'event.price',:type=>"number", :placeholder =>"Ticket Price"}
-            %input.people-limit{'ng-model' => 'event.peopleLimit',:type=>"number", :placeholder =>"Seats", :value => "30"}
+              %option{'ng-model' => 'space.state',:disabled => "disabled", :selected => "selected", :value => ""} State
+            %input.event-zipcode{'ng-model' => 'space.zipcode',:type=>"text", :placeholder =>"Zip"}
+            %input.ticket-cost{'ng-model' => 'event.cost',:type=>"number", :placeholder =>"Ticket Cost"}
+            %input.people-limit{'ng-model' => 'event.people_limit',:type=>"number", :placeholder =>"Seats", :value => "30"}
             %a.GetFilepicker.clearfix Upload Event Images
             %button.btn.btn-warning.standalone-button{'ng-click' => 'createEvent(event)'} Create
 

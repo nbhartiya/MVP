@@ -466,7 +466,7 @@ $main_orange: rgb(255, 178, 35);
 	}
 }
 
-.user-announcements, .user-about, .user-events, .user-campaigns, .user-following, .user-chatter{
+.user-news, .user-about, .badges, .user-events, .user-campaigns, .user-following, .user-chatter{
 	background: rgb(230,230,230);
 	padding: 0;
 	.accordion{
@@ -493,14 +493,23 @@ $main_orange: rgb(255, 178, 35);
 }
 
 .badges{
-	margin-top: 105px;
-	img{
-		width: 70px;
-		height: auto;
-	}
+	margin-left: 0px;
 }
 
-#user-announcements, #user-about, #user-events, #user-campaigns, #user-following, #user-chatter{
+#badges{
+	margin-left: 20px;
+}
+
+.user-news{
+	margin-left: 0;
+}
+
+#news{
+	margin-left: 20px;
+}
+
+
+#user-news, #user-about, #user-events, #user-campaigns, #user-following, #user-chatter{
 	.caret{
 		display: inline-block;
 		vertical-align: middle;
@@ -525,4 +534,30 @@ $main_orange: rgb(255, 178, 35);
 	.btn{
 		margin: 10px;
 	}
+}
+
+.scroll-menu{
+	margin-top: 105px;
+	margin-right: 40px;
+	width: 105px;
+	.active a{
+		background: $main_orange;
+	}
+	a{
+		color: $main_orange;
+		font-size: 16px;
+		font-weight: 100;
+	}
+	.active a:hover{
+		background: $main_orange;
+	}
+}
+
+.scroll-menu.chef{
+	margin-top: 85px;
+}
+
+.affix{
+	top: 50px;
+	width: 75px;
 }
