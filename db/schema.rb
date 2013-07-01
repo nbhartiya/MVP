@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130624231526) do
+ActiveRecord::Schema.define(:version => 20130701193435) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(:version => 20130624231526) do
     t.text     "description"
     t.string   "menu_pdf"
     t.text     "menu_text"
-    t.datetime "date"
+    t.date     "date"
     t.float    "cost"
     t.string   "location_title"
     t.integer  "length"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20130624231526) do
     t.integer  "host_id"
     t.string   "neighborhood"
     t.text     "blurb"
+    t.time     "when"
   end
 
   create_table "follows", :force => true do |t|
@@ -144,6 +145,7 @@ ActiveRecord::Schema.define(:version => 20130624231526) do
     t.integer  "user_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "biz_name"
   end
 
   create_table "projects", :force => true do |t|
