@@ -19,7 +19,7 @@
               {{event.date}}
             %h3 Mission
             %p 
-              {{event.peopleLimit}}
+              {{event.people_limit}}
               seats left
             .progress.progress-warning
               .bar{:style => "width: 0%"}
@@ -63,7 +63,7 @@
             %select#state
               %option{'ng-model' => 'event.state',:disabled => "disabled", :selected => "selected", :value => ""} State
             %input.ticket-price{'ng-model' => 'event.price',:type=>"number", :placeholder =>"Ticket Price"}
-            %input.people-limit{'ng-model' => 'event.peopleLimit',:type=>"number", :placeholder =>"Seats"}
+            %input.people-limit{'ng-model' => 'event.people_limit',:type=>"number", :placeholder =>"Seats"}
             %a.GetFilepicker.clearfix Upload Event Images
             %button.btn.btn-warning.standalone-button Update
 
