@@ -85,24 +85,33 @@ $main_orange: rgb(255, 178, 35);
 				border-bottom: none;
 			}
 			.progress{
-				width:75%;
 				float: left;
 				margin-top: 5px;
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box; 
 			}
-			.btn{
+			.progress.signed-in{
+				width: 75%;
+			}
+			.progress.signed-out{
+				width: 100%;
+			}
+			.campaign-join-button{
 				width: 23%;
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box; 
 				padding-left: 10px;
 				float: right;
-
+			}
+			.standalone-button{
+				width: 49%;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box; 
 			}
 			.campaign-social-stats{
-				margin-top: 60px;
 				color: white;
 				width: 100%;
 				margin-left: auto;
@@ -110,6 +119,12 @@ $main_orange: rgb(255, 178, 35);
 				td{
 					text-align: center;
 				}
+			}
+			.campaign-social-stats.signed-out{
+				margin-top: 20px;
+			}
+			.campaign-social-stats.signed-in{
+				margin-top: 60px;
 			}
 			p{
 			    color: white;
@@ -125,7 +140,7 @@ $main_orange: rgb(255, 178, 35);
 			width: 33px;
 			height: 33px;
 		}
-		.campaign-create-form, .campaign-edit-form{
+		.campaign-create-form, .campaign-edit-form, .campaign-create-confirmation{
 			background: rgba(0,0,0,0.8);
 			padding: 30px;
 			h1{

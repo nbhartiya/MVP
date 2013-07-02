@@ -432,7 +432,7 @@ $main_orange: rgb(255, 178, 35);
 
 .container{
 	.section-header{
-		margin: 20px 0 20px 0;
+		margin: 20px 0 20px -15px;
 		h1{
 			font-size: 30px;
 			color: black;
@@ -466,7 +466,7 @@ $main_orange: rgb(255, 178, 35);
 	}
 }
 
-.user-announcements, .user-about, .user-events, .user-campaigns, .user-following, .user-chatter{
+.user-news, .user-about, .badges, .user-events, .user-campaigns, .user-following, .user-chatter{
 	background: rgb(230,230,230);
 	padding: 0;
 	.accordion{
@@ -492,15 +492,8 @@ $main_orange: rgb(255, 178, 35);
 	}
 }
 
-.badges{
-	margin-top: 105px;
-	img{
-		width: 70px;
-		height: auto;
-	}
-}
 
-#user-announcements, #user-about, #user-events, #user-campaigns, #user-following, #user-chatter{
+#user-news, #user-about, #user-events, #user-campaigns, #user-following, #user-chatter{
 	.caret{
 		display: inline-block;
 		vertical-align: middle;
@@ -509,7 +502,7 @@ $main_orange: rgb(255, 178, 35);
 		border-left: 6px solid transparent;
 		font-size: 60px;
 	}
-	.caret.collapsed{
+	.collapsed .caret{
 		border-top: 6px solid $main_orange;
 		border-right: 6px solid transparent;
 		border-left: 6px solid transparent;
@@ -525,4 +518,30 @@ $main_orange: rgb(255, 178, 35);
 	.btn{
 		margin: 10px;
 	}
+}
+
+.scroll-menu{
+	margin-top: 105px;
+	margin-right: 40px;
+	width: 105px;
+	.active a{
+		background: $main_orange;
+	}
+	a{
+		color: rgb(54, 54, 54);
+		font-size: 16px;
+		font-weight: 100;
+	}
+	.active a:hover{
+		background: $main_orange;
+	}
+}
+
+.scroll-menu.chef{
+	margin-top: 85px;
+}
+
+.affix{
+	top: 50px;
+	width: 75px;
 }

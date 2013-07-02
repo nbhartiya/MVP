@@ -28,6 +28,12 @@ html body, p {
 	font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;        
 }
 
+.highlight{
+	border: 3px solid $main_orange;
+}
+
+
+
 .error{
 	display: none;
 	color: white;
@@ -185,6 +191,13 @@ input.error-true  {
 		td{
 			padding: 0 10px 0 0;
 		}
+	}
+}
+
+.footer-logo{
+	padding-top: 50px;
+	img{
+		width: 80%;
 	}
 }
 

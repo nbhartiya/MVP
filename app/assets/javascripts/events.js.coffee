@@ -168,6 +168,169 @@ $(document).ready ->
 
   $("#state").html stateNames
 
+neighborhoodsSF = [
+    name: "Alamo Square"
+,
+    name: "Anza Vista"
+,
+    name: "Ashbury Heights"
+,
+    name: "Balboa Terrace"
+,
+    name: "Bayview-Hunters Point"
+,
+    name: "Bernal Heights"
+,
+    name: "Castro"
+,
+    name: "Chinatown"
+,
+    name: "Civic Center"
+,
+    name: "Cole Valley"
+,
+    name: "Corona Heights"
+,
+    name: "Crocker-Amazon"
+,
+    name: "Diamond Heights"
+,
+    name: "Dogpatch"
+,
+    name: "Duboce Triangle"
+,
+    name: "Embarcadero"
+,
+    name: "Excelsior"
+,
+    name: "Fillmore"
+,
+    name: "Financial District"
+,
+    name: "Fisherman's Wharf"
+,
+    name: "Forest Hill"
+,
+    name: "Glen Park"
+,
+    name: "Hayes Valley"
+,
+    name: "Ingleside"
+,
+    name: "Ingleside Heights"
+,
+    name: "Ingleside Terraces"
+,
+    name: "Inner Richmond"
+,
+    name: "Inner Sunset"
+,
+    name: "Japantown"
+,
+    name: "Lakeshore"
+,
+    name: "Lakeside"
+,
+    name: "Laurel Heights"
+,
+    name: "Lower Haight"
+,
+    name: "Lower Pacific Heights"
+,
+    name: "Marina/Cow Hollow"
+,
+    name: "Merced Heights"
+,
+    name: "Merced Manor"
+,
+    name: "Miraloma Park"
+,
+    name: "Mission"
+,
+    name: "Mission Bay"
+,
+    name: "Mission Terrace"
+,
+    name: "Monterey Heights"
+,
+    name: "Mount Davidson Manor"
+,
+    name: "NoPa"
+,
+    name: "Nob Hill"
+,
+    name: "Noe Valley"
+,
+    name: "North Beach/Telegraph Hill"
+,
+    name: "Oceanview"
+,
+    name: "Outer Mission"
+,
+    name: "Outer Richmond"
+,
+    name: "Outer Sunset"
+,
+    name: "Pacific Heights"
+,
+    name: "Parkmerced"
+,
+    name: "Parkside"
+,
+    name: "Portola"
+,
+    name: "Potrero Hill"
+,
+    name: "Presidio"
+,
+    name: "Presidio Heights"
+,
+    name: "Russian Hill"
+,
+    name: "Sausalito"
+,
+    name: "Sea Cliff"
+,
+    name: "Sherwood Forest"
+,
+    name: "SoMa"
+,
+    name: "St. Francis Wood"
+,
+    name: "Stonestown"
+,
+    name: "Sunnyside"
+,
+    name: "Tenderloin"
+,
+    name: "The Haight"
+,
+    name: "Twin Peaks"
+,
+    name: "Union Square"
+,
+    name: "Visitacion Valley"
+,
+    name: "West Portal"
+,
+    name: "Western Addition"
+,
+    name: "Westwood Highlands"
+,
+    name: "Westwood Park"
+]
+
+neighborhoodNames = ""
+k = 0
+
+$(document).ready ->
+
+  while k < neighborhoodsSF.length
+    neighborhoodNames += "<option value='" + neighborhoodsSF[k].name + "'>" + neighborhoodsSF[k].name + "</option>"
+    k++
+
+  $("#neighborhoods").html neighborhoodNames
+
   $(".one-attendee").tooltip()
 
   $(".event-card-host-name").tooltip()

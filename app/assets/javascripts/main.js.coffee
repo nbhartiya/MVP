@@ -164,4 +164,6 @@ angular.module('Simmr').controller "EventEditCtrl", ["$scope",  "$routeParams", 
 
 angular.module('Simmr').controller "EventFeedbackCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
 
+  $scope.feedback=1
+
 ]

@@ -22,18 +22,22 @@
                 =image_tag "Favicon.png"
               %td.user-title
                 %h1
-                  Samovar Tea Lounge
+                  {{profile.name}}
             %tr
               %td.user-summary{:colspan => '2'}
                 %h2 
-                  Your Haven from the World 
+                  {{profile.blurb}} 
                   -if current_user.kind == "chef"
                     <sup><a href = "#user-about", class = "read-more", data-target = "#user-about-detail", data-toggle = "collapse"> Read More </a></sup>
                 -# if foodie, just show neighborhood + city + zip; if host, show full address
+                -if current_user.kind == 'chef'
+                  %h3
+                    {{profile.address}}
+                -else
+                  %h3
+                    {{profile.neighborhood}}
                 %h3
-                  123 Mission Street
-                %h3
-                  San Francisco, CA 94109
+                  {{profile.city}}, {{profile.state}} &nbsp {{profile.zip}}
                 -if current_user.kind == "chef"
                   %table.user-social-stats
                     %tr
@@ -74,213 +78,258 @@
         .span4 
           -if current_user.kind == "chef"
             .user-summary-edit.clearfix{'ng-show' => 'edit==1'}
-              %input{:type=>"text", :placeholder =>"Name"}
-              %input{:type=>"text", :placeholder =>"Blurb"}
-              %input{:type=>"text", :placeholder =>"Address"}
-              %input{:type=>"text", :placeholder =>"City"}
+              %input{'ng-model'=>'profile.name', :type=>"text", :placeholder =>"Name"}
+              %input{'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"Blurb"}
+              %input{'ng-model'=>'profile.address', :type=>"text", :placeholder =>"Address"}
+              %input.city{'ng-model'=>'profile.city', :type=>"text", :placeholder =>"City"}
               %select#state
-                %option{:disabled => "disabled", :selected => "selected", :value => ""} State
-              %input{:type=>"text", :placeholder =>"Zip Code"}
-              %button.btn Hook up Yelp
+                %option{'ng-model'=>'profile.state', :disabled => "disabled", :selected => "selected", :value => ""} State
+              %input.zip{'ng-model' => 'profile.zip', :type=>"text", :placeholder =>"Zip Code"}
+              %a.clearfix Hook up Yelp
               %button.btn.btn-warning{'ng-click' => 'edit=2'} Save Changes
-              %button.btn.btn-warning{'ng-click' => 'edit=0', 'ng-hide' => 'edit==0'} Never Mind
+              %button.btn{'ng-click' => 'edit=0', 'ng-hide' => 'edit==0'} Never Mind
             -else
               .user-summary-edit.clearfix{'ng-show' => 'edit==1'}
-                %input.name{:type=>"text", :placeholder =>"Name"}
-                %input.blurb{:type=>"text", :placeholder =>"Blurb"}
-                %input.address{:type=>"text", :placeholder =>"Address (we'll only show your neighborhood)"}
-                %input.city{:type=>"text", :placeholder =>"City"}
+                %input{'ng-model'=>'profile.name', :type=>"text", :placeholder =>"Name"}
+                %input{'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"Blurb"}
+                %select#neighborhoods{'ng-model'=>'profile.neighborhood'}
+                %input.city{'ng-model'=>'profile.city', :type=>"text", :placeholder =>"City"}
                 %select#state
-                  %option{:disabled => "disabled", :selected => "selected", :value => ""} State
-                %input.zip{:type=>"text", :placeholder =>"Zip Code"}
+                  %option{'ng-model'=>'profile.state', :disabled => "disabled", :selected => "selected", :value => ""} State
+                %input.zip{'ng-model' => 'profile.zip', :type=>"text", :placeholder =>"Zip Code"}
                 %button.btn.btn-warning{'ng-click' => 'edit=2'} Save Changes
-                %button.btn.btn-warning{'ng-click' => 'edit=0', 'ng-hide' => 'edit==0'} Never Mind
+                %button.btn{'ng-click' => 'edit=0', 'ng-hide' => 'edit==0'} Never Mind
                 
         .span1
-  -if current_user.kind == "chef"
+  -if current_user.kind != "chef"
     .container
-      .row.section-header
-        .span12#user-announcements
-          %a{:href => "#user-announcements", 'data-target'=>"#user-announcements-detail", 'data-toggle'=>"collapse"} Announcements <span class="caret collapsed"></span>
-    .user-announcements
-      .container
+      .row
+        .span2.scroll-menu.chef
+          %ul.nav.nav-list.scroll-menu-items{"data-spy" => "affix", "data-offset-top" => "700", "data-offset-bottom"=> "150"}
+            %li 
+              %a{:href=>"#news"} News
+            %li 
+              %a{:href=>"#events"} Events
+            %li   
+              %a{:href=>"#following"} Following
+            %li 
+              %a{:href=>"#chatter"} Chatter
+            %li 
+              %a{:href=>"#about"} About
+        .span10
+          .row.section-header#news
+            .span10#user-news
+              %a{:href => "#user-news", 'data-target'=>"#user-news-detail", 'data-toggle'=>"collapse"} News <span class="caret"></span>
+          .row.user-news
+            .span10
+              #user-news-accordion.accordion
+                #user-news-detail.accordion-body.collapse.in
+                  .accordion-inner
+                    %p
+                      News
+                    %button.btn.btn-warning{'ng-click' => 'edit=2'} Edit
+                    %textarea{'ng-show' => 'edit==2', :placeholder => "Type your news here. All your followers will be notified.", "rows"=>'3'}
         .row
-          .span1
-          .span10
-            #user-announcements-accordion.accordion
-              #user-announcements-detail.accordion-body.collapse.in
-                .accordion-inner
-                  %p
-                    Announcements
-          .span1
-    .container
-      .row.section-header
-        .span12
-          %h1 Events
-          %ul
-            %li 
-              %a{:href=>"#"} Upcoming
-            %li 
-              %a{:href=>"#"} Past
-            %li 
-              %a{:href=>"#"} Create New
-            %li 
-              %a{:href=>"#"} Hearted
-    .user-events
-      .container
-        .row
-          .span1
-          .span10
-            =render "layouts/singleeventdash"
-            =render "layouts/singleeventdash"
-    .user-following
-      .container
-        .row
-          .span1
-          .span10
-            .row
-              .span5.single-following
-                =render "layouts/singleuserdash"
-              .span5.single-following
-                =render "layouts/singleuserdash"
-            .row
-              .span5.single-following
-                =render "layouts/singleuserdash"
-              .span5.single-following
-                =render "layouts/singleuserdash"
-    .container
-      .row.section-header
-        .span12#user-chatter
-          %a{:href => "#user-chatter", 'data-target'=>"#user-chatter-detail", 'data-toggle'=>"collapse"} Sample Chatter <span class="caret collapsed"></span>
-          %ul
-            %li 
-              %a{:href=>"#"} Hide Participants
-            %li 
-              %a{:href=>"#"} Turn Off Chatter
-    .user-chatter
-      .container
-        .row
-          .span1
-          .span10
-            #user-chatter-accordion.accordion
-              #user-chatter-detail.accordion-body.collapse.in
-                .accordion-inner
-                  .row.conversants
-                    .span12
-                      =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
-                      =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
-                      =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
-                      =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Christine Lee", "class" => "one-attendee", "data-placement" => "bottom"
-                      =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Michael Makarov", "class" => "one-attendee", "data-placement" => "bottom"
-                  .row.comments
-                    .span12
-                      %table
-                        %tr
-                          %td
-                            =link_to image_tag("Favicon.png"), "#"
-                          %td
-                            Comment blahblahblahblah
-                        %tr
-                          %td
-                            =link_to image_tag("Favicon.png"), "#"
-                          %td
-                            Comment blahblahblahblah
-                      %table.response-level1.offset1
-                        %tr
-                          %td
-                            =link_to image_tag("Favicon.png"), "#"
-                          %td
-                            Comment blahblahblahblah
-                      %table.response-level2.offset2
-                        %tr
-                          %td
-                            =link_to image_tag("Favicon.png"), "#"
-                          %td
-                            Comment blahblahblahblah
-          .span1
-    .container
-      .row.section-header
-        .span12#user-about
-          %a{:href => "#user-about", 'data-target'=>"#user-about-detail", 'data-toggle'=>"collapse"} Our Story <span class="caret collapsed"></span>
-    .user-about
-      .container
-        .row
-          .span1
-          .span10
-            #user-about-accordion.accordion
-              #user-about-detail.accordion-body.collapse
-                .accordion-inner
-                  %p
-                    About
-          .span1
+          .span10.offset2
+            .row.section-header#events
+              .span10
+                %h1 Events
+                %ul
+                  %li 
+                    %a{:href=>"#"} Upcoming
+                  %li 
+                    %a{:href=>"#"} Past
+                  %li 
+                    %a{:href=>"#"} Create New
+                  %li 
+                    %a{:href=>"#"} Hearted
+            .row.user-events
+              .span1
+              .span10
+                =render "layouts/singleeventdash"
+                =render "layouts/singleeventdash"
+            .row.section-header#following
+              .span10
+                %h1 Following
+            .row.user-following
+              .span10
+                .row
+                  .span5.single-following
+                    =render "layouts/singleuserdash"
+                  .span5.single-following
+                    =render "layouts/singleuserdash"
+                .row
+                  .span5.single-following
+                    =render "layouts/singleuserdash"
+                  .span5.single-following
+                    =render "layouts/singleuserdash"
+            .row.section-header#chatter
+              .span10#user-chatter
+                %a{:href => "#user-chatter", 'data-target'=>"#user-chatter-detail", 'data-toggle'=>"collapse"} Sample Chatter <span class="caret"></span>
+                %ul
+                  %li 
+                    %a{:href=>"#"} Hide Participants
+                  %li 
+                    %a{:href=>"#"} Turn Off Chatter
+            .row.user-chatter
+              .span10
+                #user-chatter-accordion.accordion
+                  #user-chatter-detail.accordion-body.collapse.in
+                    .accordion-inner
+                      .row.conversants
+                        .span10
+                          =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
+                          =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
+                          =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
+                          =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Christine Lee", "class" => "one-attendee", "data-placement" => "bottom"
+                          =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Michael Makarov", "class" => "one-attendee", "data-placement" => "bottom"
+                      .row.comments
+                        .span10
+                          %table
+                            %tr
+                              %td
+                                =link_to image_tag("Favicon.png"), "#"
+                              %td
+                                Comment blahblahblahblah
+                            %tr
+                              %td
+                                =link_to image_tag("Favicon.png"), "#"
+                              %td
+                                Comment blahblahblahblah
+                          %table.response-level1.offset1
+                            %tr
+                              %td
+                                =link_to image_tag("Favicon.png"), "#"
+                              %td
+                                Comment blahblahblahblah
+                          %table.response-level2.offset2
+                            %tr
+                              %td
+                                =link_to image_tag("Favicon.png"), "#"
+                              %td
+                                Comment blahblahblahblah
+            .row.section-header#about
+              .span10#user-about
+                %a.collapsed{:href => "#user-about", 'data-target'=>"#user-about-detail", 'data-toggle'=>"collapse"} Our Story <span class="caret"></span>
+            .row.user-about
+              .span10
+                #user-about-accordion.accordion
+                  #user-about-detail.accordion-body.collapse
+                    .accordion-inner
+                      %p
+                        About
+                      %button.btn.btn-warning{'ng-click' => 'edit=3'} Edit
+                      %textarea{'ng-show' => 'edit==3', :placeholder => "Type your story here", "rows"=>'3'}
 
 
   -else
     .container
       .row
-        .span2.badges
-          =image_tag "Favicon.png"
-          =image_tag "Favicon.png"
-          =image_tag "Favicon.png"
-          =image_tag "Favicon.png"
-          =image_tag "Favicon.png"
-          =image_tag "Favicon.png"
-          =image_tag "Favicon.png"
+        .span2.scroll-menu
+          %ul.nav.nav-list.scroll-menu-items{"data-spy" => "affix", "data-offset-top" => "720", "data-offset-bottom"=> "150"}
+            %li 
+              %a{:href=>"#badges"} Badges
+            %li 
+              %a{:href=>"#events"} Events
+            %li 
+              %a{:href=>"#campaigns"} Campaigns
+            %li 
+              %a{:href=>"#following"} Following
         .span10
-          .row.section-header
+          .row.section-header#badges
             .span10
-              %h1 Events
-              %ul
-                %li 
-                  %a{:href=>"#"} Upcoming
-                %li 
-                  %a{:href=>"#"} Past
-                %li 
-                  %a{:href=>"#"} Hearted
-          .row.user-events
+              %h1 Badges
+          .row.badges
             .span10
-              =render "layouts/singleeventdash"
-              =render "layouts/singleeventdash"
-          .row.section-header
-            .span10
-              %h1 Campaigns
-              %ul
-                %li 
-                  %a{:href=>"#"} Ongoing
-                %li 
-                  %a{:href=>"#"} Successful
-          .row.user-campaigns
-            .span10
-              .row
-                .span5.single-campaign
-                  =render "campaigns/singlecampaigndash"
-                .span5.single-campaign
-                  =render "campaigns/singlecampaigndash"
-              .row
-                .span5.single-campaign
-                  =render "campaigns/singlecampaigndash"
-                .span5.single-campaign
-                  =render "campaigns/singlecampaigndash"
-          .row.section-header
-            .span10
-              %h1 Following
-              %ul
-                %li 
-                  %a{:href=>"#"} Restaurants
-                %li 
-                  %a{:href=>"#"} Foodies
-          .row.user-following
-            .span10
-              .row
-                .span5.single-following
-                  =render "layouts/singleuserdash"
-                .span5.single-following
-                  =render "layouts/singleuserdash"
-              .row
-                .span5.single-following
-                  =render "layouts/singleuserdash"
-                .span5.single-following
-                  =render "layouts/singleuserdash"
+              .row.badges-row
+                .span2.single-badge
+                  =image_tag "Favicon.png"
+                .span2.single-badge
+                  =image_tag "Favicon.png"
+                .span2.single-badge
+                  =image_tag "Favicon.png"
+                .span2.single-badge
+                  =image_tag "Favicon.png"
+                .span2.single-badge
+                  =image_tag "Favicon.png"
+              .row.badges-row
+                .span2.single-badge
+                  =image_tag "Favicon.png"
+                .span2.single-badge
+                  =image_tag "Favicon.png"
+                .span2.single-badge
+                  =image_tag "Favicon.png"
+                .span2.single-badge
+                  =image_tag "Favicon.png"
+                .span2.single-badge
+                  =image_tag "Favicon.png"
+              .row.badges-row
+                .span2.single-badge
+                  =image_tag "Favicon.png"
+                .span2.single-badge
+                  =image_tag "Favicon.png"
+                .span2.single-badge
+                  =image_tag "Favicon.png"
+                .span2.single-badge
+                  =image_tag "Favicon.png"
+                .span2.single-badge
+                  =image_tag "Favicon.png"
+        .row
+          .span10.offset2
+            .row.section-header#events
+              .span10
+                %h1 Events
+                %ul
+                  %li 
+                    %a{:href=>"#"} Upcoming
+                  %li 
+                    %a{:href=>"#"} Past
+                  %li 
+                    %a{:href=>"#"} Hearted
+            .row.user-events
+              .span10
+                =render "layouts/singleeventdash"
+                =render "layouts/singleeventdash"
+            .row.section-header#campaigns
+              .span10
+                %h1 Campaigns
+                %ul
+                  %li 
+                    %a{:href=>"#"} Ongoing
+                  %li 
+                    %a{:href=>"#"} Successful
+            .row.user-campaigns
+              .span10
+                .row
+                  .span5.single-campaign
+                    =render "campaigns/singlecampaigndash"
+                  .span5.single-campaign
+                    =render "campaigns/singlecampaigndash"
+                .row
+                  .span5.single-campaign
+                    =render "campaigns/singlecampaigndash"
+                  .span5.single-campaign
+                    =render "campaigns/singlecampaigndash"
+            .row.section-header#following
+              .span10
+                %h1 Following
+                %ul
+                  %li 
+                    %a{:href=>"#"} Restaurants
+                  %li 
+                    %a{:href=>"#"} Foodies
+            .row.user-following
+              .span10
+                .row
+                  .span5.single-following
+                    =render "layouts/singleuserdash"
+                  .span5.single-following
+                    =render "layouts/singleuserdash"
+                .row
+                  .span5.single-following
+                    =render "layouts/singleuserdash"
+                  .span5.single-following
+                    =render "layouts/singleuserdash"
 
 
 -#  
