@@ -5,10 +5,10 @@
   .span1.campaign-lead-image
     =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Campaign Lead Name", "class" => "campaign-card-lead-name"
   .span3.campaign-title-and-blurb
-    %a{:href => "#"} State Bird Provisions
-    %p State Bird blurb
+    #{campaign.biz_name}
+    %p #{campaign.blurb}
   .span1.join-button
-    %a.btn.btn-warning{:href => "#"} Join
+    %a.btn.btn-warning{:href => campaign_path(campaign)} Join
 .row.campaign-second-row
   .span5.social-stats
     %table

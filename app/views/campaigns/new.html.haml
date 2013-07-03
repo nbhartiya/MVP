@@ -9,14 +9,18 @@
         .span1
         .span4
           .campaign-summary
+            %h1.default-text{'ng-show'=>'campaign.biz_name=="" || campaign.biz_name==nil'}
+              Campaign Title
             %h1
-              {{campaign.title}}
+              {{campaign.biz_name}}
+            %h2.default-text{'ng-show'=>'campaign.blurb=="" || campaign.blurb==nil'}
+              Campaign Blurb
             %h2 
-              {{campaign.description}}
-            %h2 Campaign Started by XX
+              {{campaign.blurb}}
+            %h2 By #{current_user.first_name} #{current_user.last_name}
             %hr
             %h3 
-              Campaign End Date
+              #{(Date.today + 30).strftime("%B %d, %Y")}
             %p 
               100 more needed to tilt this campaign
             .progress.signed-in.progress-warning
@@ -43,14 +47,14 @@
         .span1
         .span4 
           .campaign-create-form.clearfix
-            %input{'ng-model' => 'campaign.title', :type=>"text", :placeholder =>"Campaign Title"}
-            %input{'ng-model' => 'campaign.description', :type=>"text", :placeholder =>"Blurb"}
+            %input{'ng-model' => 'campaign.biz_name', :type=>"text", :placeholder =>"Campaign / Business Name"}
+            %input{'ng-model' => 'campaign.blurb', :type=>"text", :placeholder =>"Blurb"}
             %a.GetFilepicker.clearfix Upload Campaign Images
-            %button.btn.btn-warning.standalone-button{'ng-click' => 'campaign=1', 'ng-hide'=> "campaign==1"} Create
+            %button.btn.btn-warning.standalone-button{'ng-click' => 'campaign=1', 'ng-click' => 'createCampaign(campaign)', 'ng-hide'=> "campaign==1"} Create
           .campaign-create-confirmation.clearfix{'ng-show'=>"campaign==1"}
             %h2 Thanks! You'll get an email when your campaign is approved and public!
 
-  .container
+  .container{'ng-init'=> "campaign.campaign_starter_id=#{current_user.id}"}
     .row
       .span2.scroll-menu.campaign
         %ul.nav.nav-list.scroll-menu-items{"data-spy" => "affix", "data-offset-top" => "680", "data-offset-bottom"=> "150"}
@@ -61,14 +65,16 @@
       .span10
         .row.section-header#about
           .span10#campaign-target-story
-            %a{:href => "#campaign-target-story", 'data-target'=>"#campaign-target-story-detail", 'data-toggle'=>"collapse"} About Samovar <span class="caret"></span>
+            %a.default-text{:href => "#campaign-target-story", 'data-target'=>"#campaign-target-story-detail", 'data-toggle'=>"collapse", 'ng-show'=>'campaign.biz_name=="" || campaign.biz_name==nil'} About <i>Campaign Title</i> <span class="caret"></span>
+            -# Need to make below BLACK
+            %a{:href => "#campaign-target-story", 'data-target'=>"#campaign-target-story-detail", 'data-toggle'=>"collapse", 'ng-hide'=>'campaign.biz_name==nil || campaign.biz_name==""'} About {{campaign.biz_name}} <span class="caret"></span>
         .row.campaign-target-story
           .span10
             #campaign-target-story-accordion.accordion
               #campaign-target-story-detail.accordion-body.collapse.in
                 .accordion-inner
                   %p
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.
+                    %textarea{:placeholder => "Tell others about your favorite business.", "rows"=>'3', 'ng-model' => 'campaign.about'}
       .row
         .span10.offset2
           .row.section-header#why
@@ -79,7 +85,7 @@
               #why-join-accordion.accordion
                 #why-join-detail.accordion-body.collapse.in
                   .accordion-inner
-                    %textarea{:placeholder => "Why should others join your campaign?", "rows"=>'3'}
+                    %textarea{:placeholder => "Why should others join your campaign?", "rows"=>'3', 'ng-model' => 'campaign.why_join'}
 
 -#
   = render 'form'

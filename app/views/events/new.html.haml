@@ -88,12 +88,10 @@
           .event-create-form.clearfix{'ng-init'=> "event.host_id=#{current_user.id}"}
             %input{'ng-model' => 'event.title', :type=>"text", :placeholder =>"Event Title"}
             %input{'ng-model' => 'event.description', :type=>"text", :placeholder =>"Blurb", :value => "Event Blurb"}
-            -# TODO: What format does datetime have to be inputted in??, Make placeholder indiciate that!
             %input.event-date{'ng-model' => 'event.date', :type=>"date", :placeholder =>"Date"}
             %input.event-time{'ng-model' => 'event.when', :type=>"time", :placeholder =>"Time"}
             %select.event-neighborhood#neighborhoods
               %option{'ng-model' => 'event.neighborhood',:disabled => "disabled", :selected => "selected", :value => ""} Neighborhood
-            -# TODO: Wendy, make date and time be next to each other...
             %input{'ng-model' => 'event.location.address1',:type=>"text", :placeholder =>"Address"}
             %input.event-city{'ng-model' => 'event.location.city',:type=>"text", :placeholder =>"City"}
             %select#state

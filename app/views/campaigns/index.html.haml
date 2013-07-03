@@ -12,21 +12,18 @@
             %p How campaigns work
           .span1
     .container
-      .row.campaigns-row
+      -all_campaigns = @campaigns
+      -while all_campaigns.length > 0
+        -campaign = all_campaigns.pop
+        .row.campaigns-row
         .span1
         .span5.single-campaign
-          =render "campaigns/singlecampaign"
-        .span5.single-campaign
-          =render "campaigns/singlecampaign"
-        .span1
-    .container
-      .row.campaigns-row
-        .span1
-        .span5.single-campaign
-          =render "campaigns/singlecampaign"
-        .span5.single-campaign
-          =render "campaigns/singlecampaign"
-        .span1
+          =render "campaigns/singlecampaign", :campaign => campaign
+        -if all_campaigns.length > 0
+          -campaign = all_campaigns.pop
+          .span5.single-campaign
+            =render "campaigns/singlecampaign", :campaign => campaign
+          .span1
 
 -#
   %h1 Listing campaigns

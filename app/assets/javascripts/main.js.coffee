@@ -158,6 +158,10 @@ angular.module('Simmr').controller "EventCreateCtrl", ["$scope",  "$routeParams"
 
 ]
 
+angular.module('Simmr').controller "EventIndexCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
+
+]
+
 angular.module('Simmr').controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
 
 ]
@@ -165,5 +169,21 @@ angular.module('Simmr').controller "EventEditCtrl", ["$scope",  "$routeParams", 
 angular.module('Simmr').controller "EventFeedbackCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
 
   $scope.feedback=1
+
+]
+
+angular.module('Simmr').factory "Campaign", ["railsResourceFactory", (railsResourceFactory) ->
+  railsResourceFactory
+    url: "/api/campaigns"
+    name: "campaign"
+]
+
+angular.module('Simmr').controller "CampaignCreateCtrl", ["$scope",  "$routeParams", "$location", "Campaign", ($scope, $routeParams, $location, Campaign) ->
+  $scope.createCampaign = (campaign) ->
+    new Campaign(campaign).create().then (data) =>
+      console.log data, "~~~~~~~~~~"
+]
+
+angular.module('Simmr').controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "Campaign", ($scope, $routeParams, $location, Campaign) ->
 
 ]
