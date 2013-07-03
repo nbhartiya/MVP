@@ -1,19 +1,22 @@
-%body.container.devise
-  .navbar.navbar-fixed-top
-    = render "layouts/header"
-
-  .devisecontainer
-    %h1 Log In
-
-    = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-      %div.field
-        = f.email_field :email, :autofocus => true, :placeholder => "email"
-      %div.field
-        = f.password_field :password, :placeholder => "password"
-      - if devise_mapping.rememberable?
+.container
+  .row.devisecontainer
+    .span12
+      %h1 Log In
+      %form#new_user.new_user{"accept-charset" => "UTF-8", :action => "/users/sign_in", :method => "post", :name => "new_session"}
+        %div{:style => "margin:0;padding:0;display:inline"}
+          %input{:name => "utf8", :type => "hidden", :value => "✓"}
+          %input{:name => "authenticity_token", :type => "hidden", :value => "8792VebFEYKWEUkvc3eA2+ivbuej0mznMWB+l+1w7eA="}
+        .field
+          %input#user_email{:autofocus => "autofocus", :name => "user_email", :placeholder => "email", :size => "30", :type => "email", :required => "required", 'ng-model' => "user.email"}
+          %span.help-inline{'ng-show' => 'new_session.user_email.$error.required'} Required
+          %span.help-inline{'ng-show' => 'new_session.user_email.$error.email'} Please enter a valid email
+        .field
+          %input#user_password{:name => "user_password", :placeholder => "password", :size => "30", :type => "password", :required => "required", 'ng-model' => "user.password"}
+          %span.help-inline{'ng-show' => 'new_session.user_password.$error.required'} Required
         %div
-          = f.check_box :remember_me
-          = f.label :remember_me
-      %button#login.userlogin.btn.btn-warning Log In
-    = render "devise/shared/links"
+          %input{:name => "user[remember_me]", :type => "hidden", :value => "0"}
+          %input#user_remember_me{:name => "user[remember_me]", :type => "checkbox", :value => "1"}
+          %label{:for => "user_remember_me"} Remember me
+        %button#login.userlogin.btn.btn-warning{'ng-disabled' => 'new_session.$invalid'} Log In
+      = render "devise/shared/links"
    

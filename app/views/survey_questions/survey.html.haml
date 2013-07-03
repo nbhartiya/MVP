@@ -4,10 +4,17 @@
       %h1 What's Your Food Style
       %p Take the quiz to discover your foodie profile in just a few minutes!
   .row
-    .span4
-      %input{:type => "text", :placeholder =>"Home Zip"}
-      %input{:type => "text", :placeholder =>"Work Zip"}
-      %a.why-zip{:href => "#", "data-toggle" => "tooltip", :title => "So we can better recommend lunch and dinner events near you!", "data-placement" => "right"} <sup> Why? </sup>
+    .span5
+      %form{:name => "zipcodes"}
+        %input{:type => "text", :name => "home_zip", "ng-model" => "user.home_zip", :placeholder =>"Home Zip", :required => "required", :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/'}
+        %span.help-inline{'ng-show' => 'zipcodes.home_zip.$error.required'} Required
+        %span.help-inline{'ng-show' => 'zipcodes.home_zip.$error.pattern'} Please enter a valid zip code
+        .row
+          .span5    
+            %input{:type => "text", :name => "work_zip", 'ng-model' => 'user.work_zip', :placeholder =>"Work Zip", :required => 'required', :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/'}
+            %span.help-inline{'ng-show' => 'zipcodes.work_zip.$error.required'} Required
+            %span.help-inline{'ng-show' => 'zipcodes.work_zip.$error.pattern'} Please enter a valid zip code
+            %a.why-zip{:href => "#", "data-toggle" => "tooltip", :title => "So we can better recommend lunch and dinner events near you!", "data-placement" => "right"} <sup> Why? </sup>
 
   .row{'ng-show'=>'currentQuestion>3'}
     .span12.question
@@ -69,7 +76,7 @@
   .row
     .span12.navigation-buttons.clearfix
       %button.btn.btn-inverse{'ng-click' => 'prevQuestion()', 'ng-disabled'=>'beginning'} Previous
-      %button.btn.btn-warning.pull-right{'ng-disabled'=>'!done'} Submit
+      %button.btn.btn-warning.pull-right{'ng-disabled'=>'!end || zipcodes.$invalid'} Submit
       %button.btn.btn-inverse.pull-right{'ng-click' => 'nextQuestion()', 'ng-disabled' => 'end'} Next
   .row
     .span2

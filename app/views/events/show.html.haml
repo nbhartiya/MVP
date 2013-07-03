@@ -36,6 +36,9 @@
             %h3#event-date
               =@event.date.strftime("%A %B %d, %l:%M%p")
             %h3 Mission
+            -# upon registration show
+              %h3 123 Mission Street
+              %h3 San Francisco, CA 94107
             %p 
               -# pull out and make this a method somewhere...
               =@event.people_limit - @event.guests.count
@@ -51,7 +54,7 @@
                 %option{:value => 1} 1 seat
                 - (@event.people_limit - @event.guests.count).times do |s|
                   %option{:value => s+2} #{s+2} seats
-              .btn.btn-warning.event-go-button{'ng-click' => 'showPayment()'} Go
+              .btn.btn-warning.event-go-button{'ng-click' => 'showPayment()', 'ng-disabled' => 'num_guests == 0 || num_guests == nil'} Go
             %table.event-sharing
               %tr
                 %td
@@ -76,12 +79,10 @@
           %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
         .span1
         .span4 
-          -#this needs to happen only when tickets >1
           .event-guests.clearfix{'ng-show' => 'payment==1', 'ng-init'=> "cost=#{@event.cost}"}
             %h1 Total: ${{total()}}
             %hr
             %h2 Who are you bringing?
-            -#this needs to show fields for however many guests there are (ideally just 2-3 at a time if there's a TON)
             %h3 Guest
             %form
             .guests{'ng-repeat' => 'guest in guests'}

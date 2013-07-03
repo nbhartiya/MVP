@@ -26,16 +26,16 @@
         .span4
           .campaign-summary.clearfix
             %h1
-              Campaign Business
+              Campaign Business ABC123
             %h2 
-              Campaign blurb
+              Campaign Description ABC123
             %h2
-              Campaign started by XX
+              Campaign started by XX ABC123
             %hr
             %h3
-              Campaign End Date
+              Campaign End Date ABC123
             %p 
-              X more needed to tilt this campaign
+              X more needed to tilt this campaign ABC123
             -if user_signed_in? == false
               .progress.progress-warning.clearfix.signed-out
                 .bar{:style => "width: 80%"}
@@ -49,7 +49,8 @@
                     %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
                   %td
                     %a.sb.share_this.circle.no-border.no-shadow.orange{:href=>"#"}
-                %tr.campaign-target-stats
+                %tr.campaign-target-stats 
+                -#ABC123
                   %td 190
                   %td 190
                   %td Tell
@@ -70,6 +71,7 @@
                   %td
                     %a.sb.share_this.circle.no-border.no-shadow.orange{:href=>"#"}
                 %tr.campaign-target-stats
+                -#ABC123
                   %td 190
                   %td 190
                   %td Tell
@@ -82,37 +84,19 @@
         .span1
         .span4 
         .span1
-  .container
-    .row
-      .span2.scroll-menu.campaign
-        %ul.nav.nav-list.scroll-menu-items{"data-spy" => "affix", "data-offset-top" => "680", "data-offset-bottom"=> "150"}
-          %li 
-            %a{:href=>"#about"} About
-          %li 
-            %a{:href=>"#why"} Why Join
-      .span10
-        .row.section-header#about
-          .span10#campaign-target-story
-            %a{:href => "#campaign-target-story", 'data-target'=>"#campaign-target-story-detail", 'data-toggle'=>"collapse"} About Samovar <span class="caret"></span>
-        .row.campaign-target-story
-          .span10
-            #campaign-target-story-accordion.accordion
-              #campaign-target-story-detail.accordion-body.collapse.in
-                .accordion-inner
-                  %p
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.
+  .container  
+    .row.section-header#why
+      .span12#why-join
+        %a{:href => "#why-join", 'data-target'=>"#why-join-detail", 'data-toggle'=>"collapse"} Why Join? <span class="caret"></span>
+  .why-join
+    .container
       .row
-        .span10.offset2
-          .row.section-header#why
-            .span12#why-join
-              %a{:href => "#why-join", 'data-target'=>"#why-join-detail", 'data-toggle'=>"collapse"} Why Join? <span class="caret"></span>
-          .row.why-join
-            .span10
-              #why-join-accordion.accordion
-                #why-join-detail.accordion-body.collapse.in
-                  .accordion-inner
-                    %p
-                      Why join blahblahblahblah
+        .span12
+          #why-join-accordion.accordion
+            #why-join-detail.accordion-body.collapse.in
+              .accordion-inner
+                %p
+                  Why join ABC123
 
 -#
   %p#notice= notice

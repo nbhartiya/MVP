@@ -1,15 +1,9 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+$(".campaign-card-lead-name").tooltip()
 
-$(document).ready ->
+$(".user-card-name").tooltip()
 
-  $(".campaign-card-lead-name").tooltip()
-
-  $(".user-card-name").tooltip()
-
-  $(".answer-image img").click ->
-    $(this).toggleClass "highlight"
+$(".answer-image img").click ->
+  $(this).toggleClass "highlight"
 
 
 angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
@@ -17,7 +11,7 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
 ]
 
 angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
-  
+
   $scope.currentQuestion = 0
   $scope.answers = []
 
@@ -25,26 +19,26 @@ angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$l
     text: "What type of event would you be most excited about?"
     low_extreme: "low extreme 1"
     high_extreme: "high extreme 1"
-    low_image: "google.com/cat.jpg"
-    high_image: "google.com/high.jpg"
+    low_image: "Food 17.jpg"
+    high_image: "Food 17.jpg"
   ,
     text: "What type of event would you be most excited about?"
     low_extreme: "low extreme 2"
     high_extreme: "high extreme 2"
-    low_image: "google.com/cat.jpg"
-    high_image: "google.com/high.jpg"
+    low_image: "Food 17.jpg"
+    high_image: "Food 17.jpg"
   ,
     text: "What type of event would you be most excited about?"
     low_extreme: "low extreme 3"
     high_extreme: "high extreme 3"
-    low_image: "google.com/cat.jpg"
-    high_image: "google.com/high.jpg"
+    low_image: "Food 17.jpg"
+    high_image: "Food 17.jpg"
   ,
     text: "What type of event would you be most excited about?"
     low_extreme: "low extreme 4"
     high_extreme: "high extreme 4"
-    low_image: "google.com/cat.jpg"
-    high_image: "google.com/high.jpg"
+    low_image: "Food 17.jpg"
+    high_image: "Food 17.jpg"
   ,
     text: "Which of the below are your favorite restaurants?"
     answers: [
@@ -113,7 +107,6 @@ angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$l
   $scope.questions = []
   $scope.beginning = true
   $scope.end = false
-  $scope.done = false
 
   i = 0
   while i < question.length
@@ -131,7 +124,6 @@ angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$l
       $scope.currentQuestion = $scope.currentQuestion + 1
     if $scope.currentQuestion == $scope.questions.length-1
       $scope.end = true
-      $scope.done = true
     else
       $scope.end = false
     if $scope.currentQuestion == 0
@@ -145,7 +137,6 @@ angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$l
       $scope.currentQuestion = $scope.currentQuestion - 1
     if $scope.currentQuestion == $scope.questions.length-1
       $scope.end = true
-      $scope.done = true
     else
       $scope.end = false
     if $scope.currentQuestion == 0

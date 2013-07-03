@@ -4,32 +4,16 @@
       .carousel-inner
         .active.item
           =image_tag "Food 17.jpg"
-      -# create if statement to chefk if there are images; if there are, run loop; if not, pull up default image (food 17 is a placeholder for now)
-        -#
-          -@event.images.each_with_index do |i, index|
-            -if index == 0
-              .item.active
-                = filepicker_image_tag i.image
-            -else
-              .item
-                = filepicker_image_tag i.image
-    -# same if statement applies here
-      %ol.carousel-indicators
-        -@event.images.each_with_index do |i, index|         
-          -if index == 0
-            %li.active{"data-target" => "#event-carousel", "data-slide-to" => index}
-          -else
-            %li{"data-target" => "#event-carousel", "data-slide-to" => index}
     .container
       .event-registration.row{'ng-controller' => 'EventCreateCtrl'}
         .span1
         .span4
           .event-summary
-            %h1.default-text{'ng-show'=>'event.title=="" || event.title==nil'}
+            %h1#default-text{'ng-show'=>'event.title=="" || event.title==nil'}
               Event Title
             %h1 
               {{event.title}}
-            %h2.default-text{'ng-show'=>'event.description=="" || event.description==nil'}
+            %h2#default-text{'ng-show'=>'event.description=="" || event.description==nil'}
               Event Description
             %h2 
               {{event.description}}
@@ -38,18 +22,18 @@
               %h2
                 =current_user.profile.biz_name
             -else
-              %h2.default-text
+              %h2#default-text
                 Input Biz Name on Profile
             %hr
-            %h3.default-text{'ng-show'=>'event.date=="" || event.date==nil'}
+            %h3#default-text{'ng-show'=>'event.date=="" || event.date==nil'}
               =Time.now().strftime("%A %B %d, %l:%M%p")
             %h3 
               {{event.date}} {{event.when}}
-            %h3.default-text{'ng-show'=>'event.neighborhood=="" || event.neighborhood==nil'}
+            %h3#default-text{'ng-show'=>'event.neighborhood=="" || event.neighborhood==nil'}
               Neighborhood
             %h2 
               {{event.neighborhood}}
-            %p.default-text{'ng-show'=>'event.people_limit=="" || event.people_limit==nil'}
+            %p#default-text{'ng-show'=>'event.people_limit=="" || event.people_limit==nil'}
               0 seats left
             %p{'ng-hide'=>'event.people_limit=="" || event.people_limit==nil'}
               {{event.people_limit}}
