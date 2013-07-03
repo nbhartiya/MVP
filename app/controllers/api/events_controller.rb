@@ -12,7 +12,13 @@ class Api::EventsController < ApplicationController
   end
 
   def create
-    @event = Event.create(params[:event])
+    event_params=params[:event]
+    location_params = params[:event][:location]
+    event_params.delete("location")
+    @event = Event.create(event_params)
+    location_params.merge!("event_id"=>@event.id)
+    binding.pry
+    @location = Location.create(location_params)
     render json: @event.to_json(include_hash)
   end
 
@@ -29,7 +35,7 @@ class Api::EventsController < ApplicationController
 
 private
   def include_hash
-    {:include => [:guests, :tickets]}
+    {:include => [:guests, :tickets, :location]}
     #{:methods => :display_name, :include => [{:venue => {:include => :place}}, :users]}
     #=> {:only => :hi}
   end
