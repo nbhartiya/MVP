@@ -37,6 +37,9 @@ function add_fields (link, association, content) {
 	$(link).before(content.replace(regexp, new_id));
 }
 
+  $("input").attr("autocomplete", "off");
+
+
 // bootstrap tooltips 
 
 $('.city').tooltip();
