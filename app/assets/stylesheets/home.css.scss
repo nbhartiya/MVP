@@ -1,7 +1,3 @@
-// Place all the styles related to the Home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 // colors 
 
 $main_orange: rgb(255, 178, 35);
@@ -15,7 +11,7 @@ ul.parsley-error-list{
   margin-left: 0;
 }
 
-// header styling
+// header styling FOR SIGNUPS
 
 .launch-navbar{
   margin-bottom: 0px;
@@ -118,10 +114,10 @@ ul.parsley-error-list{
 			.caption{
 				background: rgba(0, 0, 0, 0.8);
 				position: absolute;
-				padding: 5px 15px;
+				padding: 5px 30px;
 				left: 0;
 				right: 0;
-				top: 550px;
+				top: 500px;
 				z-index: 500;
 				color: white;
 				h4{
@@ -231,6 +227,14 @@ ul.parsley-error-list{
 .accordion-inner{
 	border-top: none;
 }
+
+#how-it-works{
+	text-align: center;
+}
+
+#how-it-works-detail{
+	text-align: center;
+}
 	
 .step, .step-one{
 	background: url('Food 17.jpg');
@@ -259,13 +263,13 @@ ul.parsley-error-list{
 	}
 }
 
-
-
 .section{
 	margin: 0;
 	padding: 0;
 	background: rgb(240, 240, 240);
 }
+
+// not used
 
 .featured-events{
 	padding: 10px 0;

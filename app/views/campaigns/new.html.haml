@@ -9,12 +9,12 @@
         .span1
         .span4
           .campaign-summary
-            %h1.default-text{'ng-show'=>'campaign.biz_name=="" || campaign.biz_name==nil'}
-              Campaign Title
+            %h1#default-text{'ng-show'=>'campaign.biz_name=="" || campaign.biz_name==nil'}
+              Business Name
             %h1
               {{campaign.biz_name}}
-            %h2.default-text{'ng-show'=>'campaign.blurb=="" || campaign.blurb==nil'}
-              Campaign Blurb
+            %h2#default-text{'ng-show'=>'campaign.blurb=="" || campaign.blurb==nil'}
+              Business Description
             %h2 
               {{campaign.blurb}}
             %h2 By #{current_user.first_name} #{current_user.last_name}
@@ -46,46 +46,31 @@
           %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
         .span1
         .span4 
-          .campaign-create-form.clearfix
-            %input{'ng-model' => 'campaign.biz_name', :type=>"text", :placeholder =>"Campaign / Business Name"}
-            %input{'ng-model' => 'campaign.blurb', :type=>"text", :placeholder =>"Blurb"}
+          %form.campaign-create-form.clearfix{:name => "campaign_create", 'ng-hide' => "campaign==1"}
+            %input{'ng-model' => 'campaign.biz_name', :type=>"text", :placeholder =>"Business Name - who is this campaign for?", :name => "campaign_name", :required => "required"}
+            .help-block-white{'ng-show' => "campaign_create.campaign_name.$error.required"} Required
+            %textarea.campaign-blurb{:rows => "4", 'ng-model' => 'campaign.blurb', :type=>"text", :placeholder =>"Business Description - you get the length of a tweet to describe this business - what is its tagline? Make it sexy ;)", :required => "required", :name => "campaign_description", :maxlength => "140"}
+            .help-block-white{'ng-show' => "campaign_create.campaign_description.$error.required"} Required
             %a.GetFilepicker.clearfix Upload Campaign Images
-            %button.btn.btn-warning.standalone-button{'ng-click' => 'campaign=1', 'ng-click' => 'createCampaign(campaign)', 'ng-hide'=> "campaign==1"} Create
+            %button.btn.btn-warning.standalone-button{'ng-click' => 'campaign=1', 'ng-click' => 'createCampaign(campaign)', 'ng-disabled'=> 'campaign_create.$invalid'} Create
           .campaign-create-confirmation.clearfix{'ng-show'=>"campaign==1"}
-            %h2 Thanks! You'll get an email when your campaign is approved and public!
+            %h2 Thanks! You'll get an email when your campaign is approved and public. While you're waiting, fill out the 'why join' field below so others are more likely to join your campaign and make it happen!
 
   .container{'ng-init'=> "campaign.campaign_starter_id=#{current_user.id}"}
     .row
-      .span2.scroll-menu.campaign
-        %ul.nav.nav-list.scroll-menu-items{"data-spy" => "affix", "data-offset-top" => "680", "data-offset-bottom"=> "150"}
-          %li 
-            %a{:href=>"#about"} About
-          %li 
-            %a{:href=>"#why"} Why Join
-      .span10
-        .row.section-header#about
-          .span10#campaign-target-story
-            %a.default-text{:href => "#campaign-target-story", 'data-target'=>"#campaign-target-story-detail", 'data-toggle'=>"collapse", 'ng-show'=>'campaign.biz_name=="" || campaign.biz_name==nil'} About <i>Campaign Title</i> <span class="caret"></span>
-            -# Need to make below BLACK
-            %a{:href => "#campaign-target-story", 'data-target'=>"#campaign-target-story-detail", 'data-toggle'=>"collapse", 'ng-hide'=>'campaign.biz_name==nil || campaign.biz_name==""'} About {{campaign.biz_name}} <span class="caret"></span>
-        .row.campaign-target-story
-          .span10
-            #campaign-target-story-accordion.accordion
-              #campaign-target-story-detail.accordion-body.collapse.in
-                .accordion-inner
-                  %p
-                    %textarea{:placeholder => "Tell others about your favorite business.", "rows"=>'3', 'ng-model' => 'campaign.about'}
+      .span12
+        .row.section-header#why
+          .span12#why-join
+            %a{:href => "#why-join", 'data-target'=>"#why-join-detail", 'data-toggle'=>"collapse"} Why Join? <span class="caret"></span>
+  .why-join
+    .container
       .row
-        .span10.offset2
-          .row.section-header#why
-            .span10#why-join
-              %a{:href => "#why-join", 'data-target'=>"#why-join-detail", 'data-toggle'=>"collapse"} Why Join? <span class="caret"></span>
-          .row.why-join
-            .span10
-              #why-join-accordion.accordion
-                #why-join-detail.accordion-body.collapse.in
-                  .accordion-inner
-                    %textarea{:placeholder => "Why should others join your campaign?", "rows"=>'3', 'ng-model' => 'campaign.why_join'}
+        .span12
+          #why-join-accordion.accordion
+            #why-join-detail.accordion-body.collapse.in
+              .accordion-inner
+                %textarea.textarea-section{:placeholder => "Why should others join your campaign?", "rows"=>'3', 'ng-model' => "campaign.why_join"}
+                %button.btn.btn-warning{'ng-disabled'=> 'campaign.why_join == "" || campaign.why_join == nil'} Update
 
 -#
   = render 'form'

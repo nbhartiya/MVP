@@ -1,27 +1,35 @@
-%body.container.devise
-  .navbar.navbar-fixed-top
-    = render "layouts/headerAbbrev"
+.container
+  .row.devisecontainer
+    .span12
+      %h1 Sign up
+      %form#new_user.new_user{"accept-charset" => "UTF-8", :action => "/users", :method => "post", :name => "new_user"}
+        %div{:style => "margin:0;padding:0;display:inline"}
+          %input{:name => "utf8", :type => "hidden", :value => "✓"}
+          %input{:name => "authenticity_token", :type => "hidden", :value => "8792VebFEYKWEUkvc3eA2+ivbuej0mznMWB+l+1w7eA="}
+        %div
+          %input#user_first_name{:autofocus => "autofocus", :name => "user_first_name", :placeholder => "first name", :size => "30", :type => "text", :required => "required", 'ng-model' => 'user.first_name'}
+          %span.help-inline{'ng-show' => 'new_user.user_first_name.$error.required'} Required
+        %div
+          %input#user_last_name{:name => "user_last_name", :placeholder => "last name", :size => "30", :type => "text", :required => "required", 'ng-model' => 'user.last_name'}
+          %span.help-inline{'ng-show' => 'new_user.user_last_name.$error.required'} Required
+        %div
+          %input#user_email{:name => "user_email", :placeholder => "email", :size => "30", :type => "email", :required => "required", 'ng-model' => 'user.email'}
+          %span.help-inline{'ng-show' => 'new_user.user_email.$error.required'} Required
+          %span.help-inline{'ng-show' => 'new_user.user_email.$error.email'} Please enter a valid email
+        %div
+          %input#user_password{:name => "user_password", :placeholder => "password", :size => "30", :type => "password", :required => "required", 'ng-pattern' => '/^[a-zA-Z0-9@&#$.\s]{8,30}$/', 'ng-model' => 'user.password'}
+          %span.help-inline{'ng-show' => 'new_user.user_password.$error.required'} Required
+          %span.help-inline{'ng-show' => 'new_user.user_password.$error.pattern'} Please enter password with min 8 characters
+        %div
+          %input#user_password_confirmation{:name => "user_password_confirmation", :placeholder => "retype password", :size => "30", :type => "password", :required => "required", 'ui-validate' => '"$value==user.password"', 'ui-validate-watch' => '"user.password"', 'ng-model' => 'user.password_confirmation'}
+          %span.help-inline{'ng-show' => 'new_user.user_password_confirmation.$error.required'} Required
+          %span.help-inline{'ng-show' => 'new_user.user_password_confirmation.$error.validator'} Passwords must match
 
-  .devisecontainer
-    %h1 Sign up
-    = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-      = devise_error_messages!
-      %div
-        = f.text_field :first_name, :placeholder => "first name"
-      %div
-        = f.text_field :last_name, :placeholder => "last name"
-      %div
-        = f.email_field :email, :autofocus => true, :placeholder => "email"
-      - if f.object.password_required?
         %div
-          = f.password_field :password, :placeholder => "password"
-        %div
-          = f.password_field :password_confirmation, :placeholder => "retype password"
-      %div
-        <input type = "radio" name = "user[kind]" value = "Foodie" checked> Foodie
-        %br/
-        <input type = "radio" name = "user[kind]" value = "Food Business"> Food Business
-        %br/
-        %br/
-      %button.usersignup.btn.btn-warning Sign Up
-    = render "devise/shared/links"
+          %input{:name => "user[kind]", :type => "radio", :value => "Foodie"}
+          Foodie
+          %br
+          %input{:name => "user[kind]", :type => "radio", :value => "Food Business"}
+          Food Business
+        %button.usersignup.btn.btn-warning{'ng-disabled' => 'new_user.$invalid'} Sign Up
+      = render "devise/shared/links"

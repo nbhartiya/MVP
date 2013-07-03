@@ -1,20 +1,15 @@
 -# temporary
-  = render 'layouts/header2'
+  = render 'layouts/primary_header'
 
 .home 
   .attention-getter
     #home-carousel.carousel.slide
-      %ol.carousel-indicators
-        %li.active{"data-slide-to" => "0", "data-target" => "#home-carousel"}
-        %li{"data-slide-to" => "1", "data-target" => "#home-carousel"}
-        %li{"data-slide-to" => "2", "data-target" => "#home-carousel"}
-        %li{"data-slide-to" => "3", "data-target" => "#home-carousel"}
       .carousel-inner
         .active.item
           =image_tag "Food 17.jpg"
           .caption
             %h4 Sample Event Name 1
-            %p Event Description
+            %p Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description
         .item
           =image_tag "Food 18.jpg"
           .caption
@@ -34,7 +29,7 @@
     %a.carousel-control.right{"data-slide" => "next", :href => "#home-carousel"} ›
     .container
       .copy.row
-        .span1
+        .span4
         .span4.copy-content
           %h1 We want to make your life more delicious
           %a.btn.how-it-works-button{:href => "#how-it-works", "data-target" => "#how-it-works-detail", "data-toggle" => "collapse", :type => "button"} How Does It Work?
@@ -43,11 +38,11 @@
             %p Already a member? &nbsp <a href = "#sign_in" class = "sign-in-link" data-toggle = "modal"> Sign In </a>
           -if user_signed_in?
             %a.btn.btn-warning.view-events-button{:href => "/events"} Upcoming Events
-        .span7
+        .span4
   .container
     .row.section-header
       .span12#how-it-works
-        %a{:href => "#how-it-works", 'data-target'=>"#how-it-works-detail", 'data-toggle'=>"collapse"} How It Works <span class="caret collapsed"></span>
+        %a.collapsed{:href => "#how-it-works", 'data-target'=>"#how-it-works-detail", 'data-toggle'=>"collapse"} How It Works <span class="caret"></span>
   .section
     .container
       .row
@@ -112,7 +107,35 @@
           %a.btn.btn-warning.more-button{:href=>"/events"} More
 
 -# temporary
-= render 'layouts/footer'
+= render 'layouts/footer_index'
+
+#sign_up.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h3#myModalLabel Sign Up for simmr
+  .modal-body
+    %h3 Experiences recommended by your friends.
+    %p See what events friends have attended and their thoughts. We'll never share your info or post without your permission. 
+    %p.strong.sign-up-text
+      Sign up with
+      %p
+        = render "shared/signup"
+  .modal-footer
+    %button.usersignup.btn.btn-warning Sign Up
+
+#sign_in.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h3#myModalLabel Log In
+  .modal-body
+    %h3 Experiences recommended by your friends.
+    %p See what events friends have attended and their thoughts. We'll never share your info or post without your permission. 
+    %p.strong.sign-up-text
+      Log in with
+      %p
+        = render "shared/login"
+  .modal-footer
+    %button.userlogin.btn.btn-warning Log In
 
 
 -# Uncomment the below to have the log in credential form rendered into this page

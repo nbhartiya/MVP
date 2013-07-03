@@ -1,6 +1,4 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+# states and neighborhood jsons
 
 states = Table: [
     stateabbrev: "AL"
@@ -160,13 +158,11 @@ states = Table: [
 stateNames = ""
 j = 0
 
-$(document).ready ->
+while j < states.Table.length
+  stateNames += "<option value='" + states.Table[j].statename + "'>" + states.Table[j].stateabbrev + "</option>"
+  j++
 
-  while j < states.Table.length
-    stateNames += "<option value='" + states.Table[j].statename + "'>" + states.Table[j].stateabbrev + "</option>"
-    j++
-
-  $("#state").html stateNames
+$("#state").html stateNames
 
 neighborhoodsSF = [
     name: "Alamo Square"
@@ -323,28 +319,26 @@ neighborhoodsSF = [
 neighborhoodNames = ""
 k = 0
 
-$(document).ready ->
+while k < neighborhoodsSF.length
+  neighborhoodNames += "<option value='" + neighborhoodsSF[k].name + "'>" + neighborhoodsSF[k].name + "</option>"
+  k++
 
-  while k < neighborhoodsSF.length
-    neighborhoodNames += "<option value='" + neighborhoodsSF[k].name + "'>" + neighborhoodsSF[k].name + "</option>"
-    k++
+$("#neighborhoods").html neighborhoodNames
 
-  $("#neighborhoods").html neighborhoodNames
+$(".one-attendee").tooltip()
 
-  $(".one-attendee").tooltip()
+$(".event-card-host-name").tooltip()
 
-  $(".event-card-host-name").tooltip()
+$("#event-carousel").carousel interval: false
 
-  $("#event-carousel").carousel interval: false
+$(".carousel-indicators li").click ->
+  $(".carousel-indicators li").removeClass "active"
+  $(this).addClass "active"
 
-  $(".carousel-indicators li").click ->
-    $(".carousel-indicators li").removeClass "active"
-    $(this).addClass "active"
-
-  $(".heart_this a").click ->
-    if $(this).hasClass("black")
-      $(this).removeClass "black"
-      $(this).addClass "orange"
-    else
-      $(this).removeClass "orange"
-      $(this).addClass "black"
+$(".heart_this a").click ->
+if $(this).hasClass("black")
+  $(this).removeClass "black"
+  $(this).addClass "orange"
+else
+  $(this).removeClass "orange"
+  $(this).addClass "black"

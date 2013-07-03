@@ -2,7 +2,7 @@
 
 $main_orange: rgb(255, 178, 35);
 
-// single event
+// CSS animations and single event/profile/campaign cards
 
 .campaign-first-row{
 	bottom: 76px;
@@ -196,13 +196,13 @@ $main_orange: rgb(255, 178, 35);
 			font-size: 12px;
 		}
 	}
-	.event-price p{
-		font-size: 24px;
-		font-weight: 500;
-		line-height: 2em;
-		height: 2em;
+		.event-price p{
+			font-size: 24px;
+			font-weight: 500;
+			line-height: 2em;
+			height: 2em;
+		}
 	}
-}
 }
 
 .single-event-dashboard{
