@@ -5,21 +5,22 @@
         .span12.events-index-header
           %h1 Featured Events in San Francisco
     .container
-      .row.events-row
-        .span1
+      -all_events = @events
+      -while all_events.length > 1
+        -event = all_events.pop
+        .row.events-row
+          .span1
+          .span5.single-event
+            =render "events/singleevent", :event => event
+          -event = all_events.pop
+          .span5.single-event
+            =render "events/singleevent", :event => event
+          .span1
+      -if all_events.length == 1
+        -event = all_events.pop
+        .row.events-row
         .span5.single-event
-          =render "events/singleevent"
-        .span5.single-event
-          =render "events/singleevent"
-        .span1
-    .container
-      .row.events-row
-        .span1
-        .span5.single-event
-          =render "events/singleevent"
-        .span5.single-event 
-          =render "events/singleevent"
-        .span1
+          =render "events/singleevent", :event => event
     .section
       .container
         .row.featured-events
