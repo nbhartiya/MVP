@@ -41,18 +41,18 @@
               %h3 San Francisco, CA 94107
             %p 
               -# pull out and make this a method somewhere...
-              =@event.people_limit - @event.guests.count
+              =@event.seats_left
               seats left
             .progress.progress-warning
               -#probably want to pull this arithmetic out too
-              .bar{:style => "width: #{(@event.guests.count/@event.people_limit.to_f)*100}%"}
+              .bar{:style => "width: #{@event.percent_full}%"}
             -if user_signed_in? == false
               .btn.btn-warning.standalone-button{:"data-toggle" => "modal", :href=>"#sign_up"} Sign Up
               %a.btn.btn-warning.standalone-button{:"data-toggle" =>"modal", :href=>"#sign_in"} Sign In
             -if user_signed_in?
               %select.number-of-seats{'ng-model' => 'num_guests'}
                 %option{:value => 1} 1 seat
-                - (@event.people_limit - @event.guests.count).times do |s|
+                - (@event.seats_left).times do |s|
                   %option{:value => s+2} #{s+2} seats
               .btn.btn-warning.event-go-button{'ng-click' => 'showPayment()', 'ng-disabled' => 'num_guests == 0 || num_guests == nil'} Go
             %table.event-sharing

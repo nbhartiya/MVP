@@ -17,9 +17,9 @@
   .span4.event-progress
     %table
       %tr
-        %td.event-seats-left 5 seats left
+        %td.event-seats-left #{event.seats_left} seats left
     .progress.progress-warning
-      .bar{:style => "width: 60%;"}
+      .bar{:style => "width: #{event.percent_full}%;"}
   .span1.go-button
     %a.btn.btn-warning{:href => "#"} Go
     

@@ -32,4 +32,12 @@ class Event < ActiveRecord::Base
   attr_accessible :other_info, :length, :location_title, :cost, :date, :description, :menu_pdf, :menu_text, :people_limit, :title, :host_id, :images_attributes, :when
 
   accepts_nested_attributes_for :images, :reject_if => lambda { |a| a[:image].blank? }, :allow_destroy => true
+
+  def seats_left()
+    return self.people_limit - self.guests.count
+  end
+
+  def percent_full()
+    return (self.guests.count/self.people_limit.to_f)*100
+  end
 end
