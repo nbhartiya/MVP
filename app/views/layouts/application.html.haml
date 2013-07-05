@@ -10,7 +10,7 @@
     = csrf_meta_tags
     = render 'layouts/google_analytics'
     %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans", :rel => "stylesheet", :type => "text/css"}
-  %body{"data-spy"=>"scroll", "data-target" => ".scroll-menu"}
+  %body.ng-cloak{"data-spy"=>"scroll", "data-target" => ".scroll-menu"}
     = render 'layouts/primary_header'
     .main
       = yield

@@ -1,3 +1,5 @@
+Simmr = angular.module('Simmr', ['uiSlider', 'ngResource', 'rails', 'ui', 'ui.bootstrap'])
+
 angular.module('Simmr').factory "Event", ["railsResourceFactory", (railsResourceFactory) -> railsResourceFactory
     url: "/api/events"
     name: "event"
@@ -49,13 +51,12 @@ angular.module('Simmr').controller "EventRegisterCtrl", ["$scope",  "$routeParam
         $scope.guest_no_pages = $scope.num_guests / 6
       else
         $scope.guest_no_pages = $scope.num_guests / 6 + 1
-      
+    
       while i < $scope.guests_left - 1 and i < 5
         $scope.guests.push({})
         i++
 
-
-      $scope.payment = 1
+    $scope.payment = 1
 
   $scope.gotoPayment = ->
     error = 0
