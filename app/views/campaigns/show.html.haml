@@ -26,11 +26,11 @@
         .span4
           .campaign-summary.clearfix
             %h1
-              Campaign Business ABC123
+              #{@campaign.biz_name}
             %h2 
-              Campaign Description ABC123
+              #{@campaign.blurb}
             %h2
-              Campaign started by XX ABC123
+              by #{@campaign.campaign_starter.first_name} #{@campaign.campaign_starter.last_name}
             %hr
             %h3
               Campaign End Date ABC123
@@ -50,7 +50,6 @@
                   %td
                     %a.sb.share_this.circle.no-border.no-shadow.orange{:href=>"#"}
                 %tr.campaign-target-stats 
-                -#ABC123
                   %td 190
                   %td 190
                   %td Tell
@@ -71,7 +70,6 @@
                   %td
                     %a.sb.share_this.circle.no-border.no-shadow.orange{:href=>"#"}
                 %tr.campaign-target-stats
-                -#ABC123
                   %td 190
                   %td 190
                   %td Tell
@@ -96,8 +94,7 @@
             #why-join-detail.accordion-body.collapse.in
               .accordion-inner
                 %p
-                  Why join ABC123
-
+                  #{@campaign.why_join}
 -#
   %p#notice= notice
 
