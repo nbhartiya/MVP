@@ -189,7 +189,7 @@ ol.carousel-indicators{
 				margin-bottom: 20px;
 			}
 			h3{
-				font-size: 14px;
+				font-size: 16px;
 				line-height: 1.5em;
 				color: white;
 				font-weight: 100;
@@ -216,11 +216,70 @@ ol.carousel-indicators{
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box; 
 			}
-			#security_code, #expiration_month, #expiration_year, #city, #state, #zipcode{
+			#city, #state, #zipcode{
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
 				width: 32.25%;
+			}
+			#city{
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				width: 48%;
+			}
+			#state{
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				width: 24%;
+			}
+			#zipcode{
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				width: 25%;
+			}
+			#credit_card_number{
+				width: 47%;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+			}
+			#security_code{
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				width: 16%;
+				display: inline-block;
+			}
+			#expiration_month{
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				width: 49%;
+				display: inline-block;
+			}
+			#expiration_year{
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				width: 46%;
+				display: inline-block;
+			}
+			#expiration{
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				width: 34%;
+				display: inline-block;
+			}
+			#security_code, #expiration, #credit_card_number{
+				color: white;
+				label{
+					font-size: 12px;
+					font-weight: 100;
+				}
 			}
 			.btn{
 				float: right;
@@ -241,6 +300,15 @@ ol.carousel-indicators{
 			a, a:visited, a:hover{
 				color: white;
 				text-decoration: none;
+			}
+			.guest-name, .guest-email{
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				width: 49.25%;
+			}
+			.guests{
+				margin: 0;
 			}
 		}
 	}

@@ -1,6 +1,9 @@
 # states and neighborhood jsons
 
 states = Table: [
+    stateabbrev: "State"
+    statename: ""
+,
     stateabbrev: "AL"
     statename: "Alabama"
 ,
@@ -165,6 +168,8 @@ while j < states.Table.length
 $("#state").html stateNames
 
 neighborhoodsSF = [
+    name: "Neighborhood"
+,
     name: "Alamo Square"
 ,
     name: "Anza Vista"
@@ -326,6 +331,8 @@ while k < neighborhoodsSF.length
 $("#neighborhoods").html neighborhoodNames
 
 $(".one-attendee").tooltip()
+
+$(".cvc-explanation").tooltip()
 
 $(".event-card-host-name").tooltip()
 

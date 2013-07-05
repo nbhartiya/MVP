@@ -16,8 +16,8 @@
         - else
           %li{"data-target" => "#event-carousel", "data-slide-to" => index}
         
-    .container
-      .event-registration.row{'ng-controller' => 'EventRegisterCtrl'}
+    .container{'ng-controller' => 'EventRegisterCtrl'}
+      .event-registration.row
         .span1
         .span4
           .event-summary
@@ -82,16 +82,13 @@
           .event-guests.clearfix{'ng-show' => 'payment==1', 'ng-init'=> "cost=#{@event.cost}"}
             %h1 Total: ${{total()}}
             %hr
-            %h2 Who are you bringing?
-            %h3 Guest
-            %form
-            .guests{'ng-repeat' => 'guest in guests'}
-              %input.guest-name{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.name', :type=>'text', :placeholder =>"Guest Full Name", :class => "error-{{guest.nameError}}", :required => "required"}
-              %input.guest-email{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :class => "error-{{guest.emailError}}", :required => "required"}
-            %div.error.name Please check your guests' names!
-            %div.error.email Please check your guests' emails!
-            %div.error.both Please check your guests' names and emails!
-            %button.btn.btn-warning.standalone-button{'ng-click' => 'gotoPayment()'} Next
+            %h2 Who all are coming?
+            %form.guests{:name => "guest_registration", 'ng-repeat' => 'guest in guests'}
+              %input.guest-name{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.name', :type=>'text', :placeholder =>"Guest Full Name", :required => "required", :name => "guest", 'ng-class' => "{error: guest_registration.guest.$invalid}"}
+              %input.guest-email{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :required => "required", :name => "guest_email", 'ng-class' => "{error: guest_registration.guest_email.$invalid}"}
+              .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.email'} Please enter a valid email
+              .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.required || guest_registration.guest.$error.required'} All fields are required
+            %button.btn.btn-warning.standalone-button{'ng-click' => 'gotoPayment()', 'ng-disabled' => "guest_reservation.$invalid"} Next
 
           -# TODO: May want to not pass user like this...
           .event-purchase.clearfix{'ng-show' => 'payment==2', 'ng-init'=> "cost=#{@event.cost};currentUser=#{current_user.to_json}"}
@@ -102,8 +99,8 @@
             %button.btn.btn-warning{'ng-click' => 'payment=1'} Previous
 
           .event-purchase.clearfix{'ng-show' => 'payment==3'}
-            %h2 Thank you for your purchase! You will receive an email confirmation shortly.
-            %button.btn.btn-warning{'ng-click' => "payment=0", 'ng-hide' => 'payment==0'} Done
+            %h2 Thank you for your reservation! You will receive an email confirmation shortly.
+            %button.btn.btn-warning{'ng-click' => "payment=0", 'ng-hide' => 'payment==0'} Cool
         .span1
   .container
     .row

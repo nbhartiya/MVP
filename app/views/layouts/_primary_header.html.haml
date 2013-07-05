@@ -43,8 +43,8 @@
         Sign up with
         %p
           = render "shared/signup"
-    .modal-footer
-      %button.usersignup.btn.btn-warning{'ng-disabled' => 'new_user.$invalid'} Sign Up
+      .modal-footer
+        %button.usersignup.btn.btn-warning{'ng-disabled' => 'new_user.$invalid'} Sign Up
 
   #sign_in.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
     .modal-header

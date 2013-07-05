@@ -44,14 +44,13 @@ input.error-true  {
 }
 
 .error{
-	display: none;
-	color: white;
-	margin-bottom: 5px;
+	border: 2px solid $main_orange !important;
 }
 
 .help-inline{
 	color: rgb(54, 54, 54);
 	font-weight: 100;
+	font-size: 12px;
 }
 
 .help-block{
@@ -59,13 +58,15 @@ input.error-true  {
 	font-weight: 100;
 	padding-bottom: 2px;
 	padding-left: 4px;
+	font-size: 12px;
 }
 
 .help-block-white{
 	color: white;
 	font-weight: 100;
-	padding-bottom: 8px;
+	padding-bottom: 0px;
 	padding-left: 0px;
+	font-size: 12px;
 }
 
 .textarea-section{

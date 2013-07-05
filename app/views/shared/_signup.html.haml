@@ -1,4 +1,4 @@
-%form#new_user{"accept-charset" => "UTF-8", :action => "/users", :method => "post", :name => "new_user"}
+%form#new_user{"accept-charset" => "UTF-8", :action => "/users", :method => "post", :name => "new_registration"}
   %div{:style => "margin:0;padding:0;display:inline"}
     %input{:name => "utf8", :type => "hidden", :value => "?"}/
   = link_to "Facebook", user_omniauth_authorize_path(:facebook), :class => "sb facebook text black"
@@ -8,32 +8,32 @@
     Sign up with email 
   %br
   %div
-    %input#user_first_name{:required => "required", :placeholder => "first name", :autofocus => "autofocus", :name => "user_first_name", :size => "30", :type => "text", 'ng-model' => 'user.first_name'}
-  .help-block{'ng-show' => 'new_user.user_first_name.$error.required'} Required
+    %input#user_first_name{:required => "required", :placeholder => "first name", :autofocus => "autofocus", :name => "user[first_name]", :size => "30", :type => "text", 'ng-model' => 'user.first_name'}
+  .help-block{"ng-show" => "new_registration['user[first_name]'].$error.required"} Required
   %div
-    %input#user_last_name{:required => "required", :placeholder => "last name", :name => "user_last_name", :size => "30", :type => "text", 'ng-model' => 'user.last_name'}
-  .help-block{'ng-show' => 'new_user.user_last_name.$error.required'} Required
+    %input#user_last_name{:required => "required", :placeholder => "last name", :name => "user[last_name]", :size => "30", :type => "text", 'ng-model' => 'user.last_name'}
+  .help-block{"ng-show" => "new_registration['user[last_name]'].$error.required"} Required
   %div
-    %input#user_email{:required => "required", :placeholder => "email", :name => "user_email", :size => "30", :type => "email", 'ng-model' => 'user.email'}
-  .help-block{'ng-show' => 'new_user.user_email.$error.required'} Required
-  .help-block{'ng-show' => 'new_user.user_email.$error.email'} Please enter a valid email
+    %input#user_email{:required => "required", :placeholder => "email", :name => "user[email]", :size => "30", :type => "email", 'ng-model' => 'user.email'}
+  .help-block{"ng-show" => "new_registration['user[email]'].$error.required"} Required
+  .help-block{"ng-show" => "new_registration['user[email]'].$error.email"} Please enter a valid email
   %div
-    %input#user_password{:required => "required", :placeholder => "password", :name => "user_password", :size => "30", :type => "password", 'ng-pattern' => '/^[a-zA-Z0-9@&#$.\s]{8,30}$/', 'ng-model' => 'user.password'}
-  .help-block{'ng-show' => 'new_user.user_password.$error.required'} Required
-  .help-block{'ng-show' => 'new_user.user_password.$error.pattern'} Please enter password with min 8 characters
+    %input#user_password{:required => "required", :placeholder => "password", :name => "user[password]", :size => "30", :type => "password", 'ng-pattern' => '/^[a-zA-Z0-9@&#$.\s]{8,30}$/', 'ng-model' => 'user.password'}
+  .help-block{'ng-show' => 'new_registration["user[password]"].$error.required'} Required
+  .help-block{'ng-show' => 'new_registration["user[password]"].$error.pattern'} Please enter password with min 8 characters
   %div
-    %input#user_password_confirmation{:required => "required", :placeholder => "retype password",:name => "user_password_confirmation", :size => "30", :type => "password", 'ui-validate' => "'$value==user.password'", 'ui-validate-watch' => '"user.password"', 'ng-model' => 'user.password_confirmation'}
-  .help-block{'ng-show' => 'new_user.user_password_confirmation.$error.required'} Required
-  .help-block{'ng-show' => 'new_user.user_password_confirmation.$error.validator'} Passwords must match
+    %input#user_password_confirmation{:required => "required", :placeholder => "retype password",:name => "user[password_confirmation]", :size => "30", :type => "password", 'ui-validate' => "'$value==user.password'", 'ui-validate-watch' => '"user.password"', 'ng-model' => 'user.password_confirmation'}
+  .help-block{'ng-show' => 'new_registration["user[password_confirmation]"].$error.required'} Required
+  .help-block{'ng-show' => 'new_registration["user[password_confirmation]"].$error.validator'} Passwords must match
   %div
     %label.radio.inline
-      %input#optionsRadios1{:name => "user[kind]", :type => "radio", :value => "Foodie"}/
+      %input#optionsRadios1{:name => "user[kind]", :checked => "", :type => "radio", :value => "Foodie"}
       Foodie
     %label.radio.inline
-      %input#optionsRadios2{:name => "user[kind]", :type => "radio", :value => "Food Business"}/
+      %input#optionsRadios2{:name => "user[kind]", :type => "radio", :value => "Food Business"}
       Food Business
-    %br/
-    %br/
+    %br
+    %br
   -# %div
   -#   %button.btn{:name => "commit", :type => "submit"} Sign Up
   -#
