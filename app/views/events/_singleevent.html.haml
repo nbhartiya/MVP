@@ -2,6 +2,7 @@
   .event-time-and-date
     #{event.date.strftime("%b %e")}
   .span5.event-image
+  -#TODO: Make this image into a link to events
     -if event.images.present?
       =filepicker_image_tag event.images.first.image
     -else
@@ -10,7 +11,7 @@
   .span1.event-host-image
     =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Host Name", "class" => "event-card-host-name"
   .span3.event-title
-    %a{:href => "#"} #{event.title} 
+    %a{:href => event_path(event)} #{event.title} 
   .span1.event-price
     %p $#{"%.2f" % event.cost}
 .row.event-second-row
@@ -21,5 +22,6 @@
     .progress.progress-warning
       .bar{:style => "width: #{event.percent_full}%;"}
   .span1.go-button
-    %a.btn.btn-warning{:href => "#"} Go
+    %a.btn.btn-warning{:href => event_path(event)} Go
+    -# TODO: How to make this go directly to that view with 'payment=1' (angular thingie)
     

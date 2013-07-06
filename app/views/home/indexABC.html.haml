@@ -4,27 +4,17 @@
 .home 
   .attention-getter
     #home-carousel.carousel.slide
+      -all_events=Event.all
+      -i=0
       .carousel-inner
-        .active.item
-          =image_tag "Food 17.jpg"
-          .caption
-            %h4 Sample Event Name 1
-            %p Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description Event Description
-        .item
-          =image_tag "Food 18.jpg"
-          .caption
-            %h4 Sample Event Name 2
-            %p Event Description
-        .item
-          =image_tag "Food 22.jpg"
-          .caption
-            %h4 Sample Event Name 3
-            %p Event Description
-        .item
-          =image_tag "Food 23.jpg"
-          .caption
-            %h4 Sample Event Name 4
-            %p Event Description
+        -for event in all_events
+          -if i==0
+            .active.item
+              =render 'home/sampleevent', :event => event
+          -else
+            .item
+              =render 'home/sampleevent', :event => event
+          -i=i+1
     %a.carousel-control.left{"data-slide" => "prev", :href => "#home-carousel"} ‹
     %a.carousel-control.right{"data-slide" => "next", :href => "#home-carousel"} ›
     .container
