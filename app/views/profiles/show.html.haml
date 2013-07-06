@@ -50,23 +50,23 @@
                       %td followers
                       %td reviews
                       %td a friend
-                  -else
-                    %table.user-social-stats
-                      %tr
-                        %td
-                          %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
-                        %td
-                          %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
-                        %td
-                          %a.sb.heart.circle.no-border.no-shadow.green{:href=>"#"}
-                      %tr.user-stats
-                        %td 190
-                        %td 190
-                        %td 190
-                      %tr.user-stat-labels
-                        %td points
-                        %td followers
-                        %td following
+                -else
+                  %table.user-social-stats
+                    %tr
+                      %td
+                        %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.green{:href=>"#"}
+                    %tr.user-stats
+                      %td 190
+                      %td 190
+                      %td 190
+                    %tr.user-stat-labels
+                      %td points
+                      %td followers
+                      %td following
         .span1.heart_this
           %a.sb.heart.circle.no-border.no-shadow.black
         .span1
@@ -260,14 +260,14 @@
               .span10
                 .row.events-row
                   .span5.single-event
-                    =render "layouts/singleevent"
+                    =render "events/singleevent"
                   .span5.single-event
-                    =render "layouts/singleevent"
+                    =render "events/singleevent"
                 .row.events-row
                   .span5.single-event
-                    =render "layouts/singleevent"
+                    =render "events/singleevent"
                   .span5.single-event
-                    =render "layouts/singleevent"
+                    =render "events/singleevent"
             .row.section-header#campaigns
               .span10
                 %h1 Campaigns
