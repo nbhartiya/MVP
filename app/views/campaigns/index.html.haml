@@ -13,17 +13,23 @@
           .span1
     .container
       -all_campaigns = @campaigns
-      -while all_campaigns.length > 0
+      -while all_campaigns.length > 1
         -campaign = all_campaigns.pop
         .row.campaigns-row
-        .span1
-        .span5.single-campaign
-          =render "campaigns/singlecampaign", :campaign => campaign
-        -if all_campaigns.length > 0
+          .span1
+          .span5.single-campaign
+            =render "campaigns/singlecampaign", :campaign => campaign
           -campaign = all_campaigns.pop
           .span5.single-campaign
             =render "campaigns/singlecampaign", :campaign => campaign
           .span1
+      -if all_campaigns.length == 1
+        -campaign = all_campaigns.pop
+        .row.campaigns-row
+          .span1
+          .span5.single-campaign
+            =render "campaigns/singlecampaign", :campaign => campaign
+          .span6
 
 -#
   %h1 Listing campaigns
