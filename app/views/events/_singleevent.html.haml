@@ -1,6 +1,6 @@
 .row
   .event-time-and-date
-    #{event.id} - #{event.date.strftime("%b %e")}
+    #{event.date.strftime("%b %e")}
   .span5.event-image
     -if event.images.present?
       =filepicker_image_tag event.images.first.image
