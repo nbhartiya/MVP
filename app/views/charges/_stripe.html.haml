@@ -56,7 +56,6 @@
   %input#city{'ng-model' => "buyer.billingCity", :placeholder => "City", :type => "text", :required => "required", :name => "billing_city", 'ng-class' => "{error: stripe.billing_city.$invalid}"}
     
   %select#state{'ng-model' => "buyer.billingState", :required => "required", :name => "billing_state", 'ng-class' => "{error: stripe.billing_state.$invalid}"}
-    %option{:disabled => "disabled", :selected => "selected", :value => ""} State
     
   %input#zipcode{'ng-model' => "buyer.billingZip", :placeholder => "Zip Code", :type => "text", :required => "required", :name => "billing_zip", :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: stripe.billing_zip.$invalid}"}
 

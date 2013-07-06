@@ -138,11 +138,15 @@ angular.module('Simmr').controller "EventRegisterCtrl", ["$scope",  "$routeParam
 ]
 
 angular.module('Simmr').controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Event", "Location", ($scope, $routeParams, $location, Event, Location) ->
-
+  $scope.today = moment().format("YYYY-MM-DD")
+  $scope.event = []
+  $scope.event.date = moment().format("dddd, MMMM D")
+  $scope.created = false
+  
   $scope.createEvent = (event, space) ->
     new Event(event).create().then (data) =>
       console.log data, "~~~~~~~~~~"
-
+      $created = true
 ]
 
 angular.module('Simmr').controller "EventIndexCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
@@ -150,7 +154,9 @@ angular.module('Simmr').controller "EventIndexCtrl", ["$scope",  "$routeParams",
 ]
 
 angular.module('Simmr').controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
-
+  $scope.today = moment().format("YYYY-MM-DD")
+  $scope.event = []
+  $scope.event.date = moment().format("dddd, MMMM D")
 ]
 
 angular.module('Simmr').controller "EventFeedbackCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->

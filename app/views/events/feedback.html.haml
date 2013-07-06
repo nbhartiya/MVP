@@ -72,16 +72,19 @@
         .span1
         .span4 
           -#this needs to happen only when tickets >1
-          .event-survey.clearfix{'ng-hide' => 'feedback!=1'}
+          %form.event-survey.clearfix{'ng-hide' => 'feedback!=1', :name => "feedback_survey"}
             %h1 Survey
-            %input.survey-question-1{:type=>'text', :placeholder =>"Custom Survey Question 1"}
+            %input.survey-question-1{:type=>'text', :placeholder =>"Custom Survey Question 1", :name => "question_1", :required => "required", 'ng-model' => 'survey.question1'}
+            .help-block-white{'ng-show' => 'feedback_survey.question_1.$error.required'} Required
             %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Submit
             %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Never Mind
 
           .event-yelp.clearfix{'ng-show' => 'feedback==2'}
             %h1 Yelp Review
-            %form{:'data-validate'=>"parsley"}
-              %input.yelp-review-link{:type=>'url', :required => "required", :'data-trigger' => 'keyup', :placeholder =>"Paste Yelp Review Link Here"}
+            %form{:name => "yelp_review"}
+              %input.yelp-review-link{:type=>'url', :required => "required", :placeholder =>"Paste Yelp Review Link Here", :name => "yelp_link", 'ng-model' => "yelplink"}
+              .help-block-white{'ng-show' => 'yelp_review.yelp_link.$error.required'} Required
+              .help-block-white{'ng-show' => 'yelp_review.yelp_link.$error.url'} Please enter a valid URL
               %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Submit
               %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Never Mind
 
@@ -163,7 +166,7 @@
             %table.feedback-actions
               %tr
                 %td
-                  %h3.point-action Tell a Friend About Simmr - you'll get more points when they sign up and attend an event!
+                  %h3.point-action Tell a Friend About Simmr (you'll get more points when they sign up and attend an event!)
                 %td
                   %a.btn.btn-warning.points.refer-friend-event-button{:href => "#"} +10
               %tr

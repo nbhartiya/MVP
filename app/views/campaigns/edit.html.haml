@@ -46,9 +46,8 @@
         .span4 
           %form.campaign-create-form.clearfix{:name => "campaign_create", 'ng-hide' => "campaign==1"}
             %input{'ng-model' => 'campaign.name', :type=>"text", :placeholder =>"Business Name - who is this campaign for?", :name => "campaign_name", :required => "required"}
-            .help-block-white{'ng-show' => "campaign_create.campaign_name.$error.required"} Required
             %textarea.campaign-blurb{:rows => "4", 'ng-model' => 'campaign.description', :type=>"text", :placeholder =>"Business Description - you get the length of a tweet to describe this business - what is its tagline? Make it sexy ;)", :required => "required", :name => "campaign_description", :maxlength => "140"}
-            .help-block-white{'ng-show' => "campaign_create.campaign_description.$error.required"} Required
+            .help-block-white{'ng-show' => "campaign_create.campaign_description.$error.required || campaign_create.campaign_name.$error.required"} Both field sare required!
             %a.GetFilepicker.clearfix Upload Campaign Images
             %button.btn.btn-warning.standalone-button{'ng-click' => 'campaign=1', 'ng-disabled'=> 'campaign_create.$invalid'} Create
           .campaign-create-confirmation.clearfix{'ng-show'=>"campaign==1"}

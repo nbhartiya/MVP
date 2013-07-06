@@ -86,6 +86,9 @@ ol.carousel-indicators{
 		.parsley-error-list > li{
 			color: white;
 		}
+		.ng-pristine{
+			border: 2px solid $main_orange;
+		}
 		.event-summary {
 		    background: rgba(0,0,0,.8);
 		    padding: 30px;
@@ -171,7 +174,7 @@ ol.carousel-indicators{
 			width: 33px;
 			height: 33px;
 		}
-		.event-purchase, .event-guests, .event-create-form, .event-edit-form{
+		.event-purchase, .event-create-confirmation, .event-guests, .event-create-form, .event-edit-form{
 			background: rgba(0,0,0,0.8);
 			padding: 30px;
 			h1{
@@ -197,6 +200,10 @@ ol.carousel-indicators{
 			hr{
 				margin: 10px 0;
 				border-bottom: none;
+			}
+			p{
+				font-size: 14px;
+				padding: 2px 0;
 			}
 			input, input[type='string'], input[type='integer']{
 				display: inline-block;
@@ -281,21 +288,109 @@ ol.carousel-indicators{
 					font-weight: 100;
 				}
 			}
-			.btn{
+			#submit{
 				float: right;
-				margin-left: 10px;
+				margin: 0;
 			}
-			.event-date, .event-time, .ticket-price, .people-limit{
+			.btn{
+				margin: 5px 0 5px 0;
+			}
+			#event-blurb{
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				width: 100%;
+			}
+			#event-date-time{
+				color: white;
+				font-weight: 100;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				#event-date, #times{
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+					width: 49.25%;
+				}
+			}
+			#event-location{
+				color: white;
+				font-weight: 100;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				#neighborhoods{
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+					width: 100%;
+				}
+				#event-address{
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+					width: 100%;
+				}
+				#event-city{
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+					width: 47%;
+				}
+				#state{
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+					width: 25%;
+				}
+				#event-zipcode{
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+					width: 25%;
+				}
+				#event-neighborhood{
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+					width: 100%;
+				}
+			}
+			#event-ticket-details{
+				color: white;
+				font-weight: 100;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				.input-prepend{
+					width: 49.25%;
+					margin: 0;
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+				}
+				.add-on{
+					color: rgb(54, 54, 54);
+				}
+				#ticket-cost{
+					width: 82%;
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+				}
+				#people-limit{
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+					width: 49.25%;
+				}
+			}
+			#event-images-button, #event-menu-button{
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
 				width: 49.25%;
-			}
-			.event-city{
-				-webkit-box-sizing: border-box;
-				-moz-box-sizing: border-box;    
-				box-sizing: border-box;
-				width: 66%;
 			}
 			a, a:visited, a:hover{
 				color: white;
@@ -368,9 +463,6 @@ ol.carousel-indicators{
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;    
 	box-sizing: border-box;
-	.parsley-error-list > li{
-			color: white;
-		}
 	.event-summary{
 		background: rgba(0,0,0,.8);
 		padding: 30px;

@@ -10,11 +10,11 @@
   %br
   %div
     %input#user_email{:autofocus => "autofocus", :required => "required", :name => "user[email]", :size => "30", :type => "email", :placeholder => "email", 'ng-model' => 'user.email'}
-  .help-block{"ng-show" => "new_session['user[email]'].$error.required"} Required
   .help-block{"ng-show" => "new_session['user[email]'].$error.email"} Please enter a valid email
   %div
     %input#user_password{:required => "required", :placeholder => "password", :name => "user[password]", :size => "30", :type => "password", 'ng-model' => 'user.password'}
-  %span.help-inline{"ng-show" => "new_session['user[password]'].$error.required"} Required
+    
+  .help-block{"ng-show" => "new_session['user[password]'].$error.required || new_session['user[email]'].$error.required"} Both fields are required!
   %div
     %input#user_remember_me{:name => "user[remember_me]", :type => "hidden", :value => "0"}
     %input#user_remember_me{:name => "user[remember_me]", :type => "checkbox", :value => "1"}
