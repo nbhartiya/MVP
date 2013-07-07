@@ -76,8 +76,8 @@
             %h1 Survey
             %input.survey-question-1{:type=>'text', :placeholder =>"Custom Survey Question 1", :name => "question_1", :required => "required", 'ng-model' => 'survey.question1'}
             .help-block-white{'ng-show' => 'feedback_survey.question_1.$error.required'} Required
-            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Submit
-            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Never Mind
+            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Get Points!
+            %button.btn.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Never Mind
 
           .event-yelp.clearfix{'ng-show' => 'feedback==2'}
             %h1 Yelp Review
@@ -85,8 +85,8 @@
               %input.yelp-review-link{:type=>'url', :required => "required", :placeholder =>"Paste Yelp Review Link Here", :name => "yelp_link", 'ng-model' => "yelplink"}
               .help-block-white{'ng-show' => 'yelp_review.yelp_link.$error.required'} Required
               .help-block-white{'ng-show' => 'yelp_review.yelp_link.$error.url'} Please enter a valid URL
-              %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Submit
-              %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Never Mind
+              %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Get Points!
+              %button.btn.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Never Mind
 
           .point-ranking.clearfix{'ng-show' => 'feedback==3'}
             %h1 Leader Boards
@@ -159,7 +159,7 @@
                     %td Random Guy
                     %td 3000
             %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=4'} Get More Points
-            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Done
+            %button.btn.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Done
               
           .more-points.clearfix{'ng-show' => 'feedback==4'}
             %h1 Get More Points
@@ -179,8 +179,8 @@
                   %h3.point-action Start a Campaign
                 %td
                   %a.points.btn.btn-warning.start-campaign-button{:href=>"/campaigns/new"} +10
-            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Done
-            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Back to Leader Boards
+            %button.btn.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Done
+            %button.btn.standalone-button{'ng-click' => 'feedback=3'} Back to Leader Boards
 
 
 

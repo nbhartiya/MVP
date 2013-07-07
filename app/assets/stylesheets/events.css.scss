@@ -83,12 +83,6 @@ ol.carousel-indicators{
 	    -webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;    
 		box-sizing: border-box;
-		.parsley-error-list > li{
-			color: white;
-		}
-		.ng-pristine{
-			border: 2px solid $main_orange;
-		}
 		.event-summary {
 		    background: rgba(0,0,0,.8);
 		    padding: 30px;
@@ -223,12 +217,6 @@ ol.carousel-indicators{
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box; 
 			}
-			#city, #state, #zipcode{
-				-webkit-box-sizing: border-box;
-				-moz-box-sizing: border-box;    
-				box-sizing: border-box;
-				width: 32.25%;
-			}
 			#city{
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
@@ -281,15 +269,20 @@ ol.carousel-indicators{
 				width: 34%;
 				display: inline-block;
 			}
-			#security_code, #expiration, #credit_card_number{
+			#security_code, #expiration{
 				color: white;
 				label{
 					font-size: 12px;
 					font-weight: 100;
 				}
 			}
-			#submit{
+			#submit, #ticket-purchase, #previous-button, #enter-payment-info, #ok-button{
 				float: right;
+			}
+			#ticket-purchase, #previous-button{
+				margin: 0 10px 0 0;
+			}
+			#submit, #enter-payment-info, #ok-button{
 				margin: 0;
 			}
 			.btn{

@@ -309,9 +309,6 @@ $main_orange: rgb(255, 178, 35);
 				background: no-repeat;
 			}
 		}
-		.carousel-control{
-			top: 90%;
-		}
 	}
 	.user-overview{
 		margin-top: 25px;
@@ -319,26 +316,36 @@ $main_orange: rgb(255, 178, 35);
 		-moz-box-sizing: border-box;    
 		box-sizing: border-box;
 		.profile-photo{
-			background: rgba(0,0,0,.8);
-			padding: 30px 0 0 30px;
 			vertical-align: top;
 			margin: 0;
 			img{
 				height: auto;
 				width: 100px;
+				min-width: 100px;
 			}
 		}
-		.user-summary-edit, .user-title{
+		.user-profile-overview{
+			background: rgba(0,0,0,.8);
+		    padding: 30px;
+		    -webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;    
+			box-sizing: border-box;
+		}
+		.user-summary-edit{
 			padding: 30px;
+			background: rgba(0, 0, 0, 0.8);
+		}
+		.user-title{
+			padding: 10px 0 0 30px;
+			vertical-align: top;
 		}
 		.user-summary{
-			padding: 0 30px 30px 30px;
+			padding-top: 10px;
 		}
 		.user-summary, .user-title, .user-summary-edit {
 		    -webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box;
-		    background: rgba(0,0,0,.8);
 		    .read-more{
 		    	font-size: 10px;
 		    }
@@ -371,21 +378,22 @@ $main_orange: rgb(255, 178, 35);
 				margin: 10px 0;
 				border-bottom: none;
 			}
-			.user-social-stats{
-				margin-top: 25px;
-				color: white;
-				width: 100%;
-				margin-left: auto;
-				margin-right: auto;
-				td{
-					text-align: center;
-				}
-			}
+			
 			p{
 			    text-align: right;
 			    color: white;
 			    margin-top: 10px;
 			    font-size: 12px;
+			}
+		}
+		.user-social-stats{
+			margin-top: 25px;
+			color: white;
+			width: 100%;
+			margin-left: auto;
+			margin-right: auto;
+			td{
+				text-align: center;
 			}
 		}
 		.heart_this{
@@ -396,6 +404,10 @@ $main_orange: rgb(255, 178, 35);
 			height: 33px;
 		}
 	}
+}
+
+.badges .span10{
+	margin: 0;
 }
 
 .user-summary, .user-title{
@@ -412,21 +424,72 @@ $main_orange: rgb(255, 178, 35);
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;    
 	box-sizing: border-box;
-	input{
-		width: 95%;
-	}
-	.city, #state, .zip{
+	#profile-name{
 		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;    
-		box-sizing: border-box;
-		width: 32.3%;
-	}
-	.city, .zip{
+	    -moz-box-sizing: border-box;    
+	    box-sizing: border-box;
+		width: 100%;
 		height: 100%;
 	}
-	.btn{
+	#profile-blurb{
+		-webkit-box-sizing: border-box;
+	    -moz-box-sizing: border-box;    
+	    box-sizing: border-box;
+		width: 100%;
+	}
+	#neighborhoods{
+		-webkit-box-sizing: border-box;
+	    -moz-box-sizing: border-box;    
+	    box-sizing: border-box;
+		width: 100%;
+	}
+	#profile-address{
+		-webkit-box-sizing: border-box;
+	    -moz-box-sizing: border-box;    
+	    box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+	}
+	#profile-city{
+		-webkit-box-sizing: border-box;
+	    -moz-box-sizing: border-box;    
+	    box-sizing: border-box;
+		width: 48%;
+		height: 100%;
+	}
+	#state{
+		-webkit-box-sizing: border-box;
+	    -moz-box-sizing: border-box;    
+	    box-sizing: border-box;
+		width: 24%;
+	}
+	#profile-zip{
+		-webkit-box-sizing: border-box;
+	    -moz-box-sizing: border-box;    
+	    box-sizing: border-box;
+		width: 25%;
+		height: 100%;
+	}
+	#submit, #cancel{
 		float: right;
-		margin-left: 5px;
+		margin: 5px 0 0 5px;
+	}
+	#yelp-connect{
+		margin: 10px 0;	
+		-webkit-box-sizing: border-box;
+	    -moz-box-sizing: border-box;    
+	    box-sizing: border-box;
+	}
+	#why-yelp{
+		font-size: 12px;
+		margin-left: 10px;
+		color: white;
+		-webkit-box-sizing: border-box;
+	    -moz-box-sizing: border-box;    
+	    box-sizing: border-box;
+	}
+	#profile-news{
+		width: 100%;
 	}
 }
 
@@ -544,4 +607,14 @@ $main_orange: rgb(255, 178, 35);
 .affix{
 	top: 50px;
 	width: 75px;
+}
+
+.badges-row{
+	margin: 10px 0;
+}
+
+.single-badge{
+	img{
+		width: 80px;
+	}
 }

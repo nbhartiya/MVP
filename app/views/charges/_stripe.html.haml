@@ -15,8 +15,8 @@
   
   #expiration
     %label Expiration
-    %select#expiration_month{'ng-model' => "card.expMonth", :required => "required", :name => "card_expMonth", :maxlength => "2", 'ng-class' => "{error: stripe.card_expMonth.$invalid}"}
-      %option{:selected => "selected", :disabled => "disabled", :value => ""} M
+    %select#expiration_month{'ng-model' => "card.expMonth", :required => "required", :name => "card_expMonth", 'ng-class' => "{error: stripe.card_expMonth.$invalid}"}
+      %option{:disabled => "disabled", :value => ""} M
       %option{:value => "1"} 01
       %option{:value => "2"} 02
       %option{:value => "3"} 03
@@ -31,7 +31,7 @@
       %option{:value => "12"} 12
 
     %select#expiration_year{'ng-model' => "card.expYear", :required => "required", :name => "card_expYear", 'ng-class' => "{error: stripe.card_expYear.$invalid}"}
-      %option{:selected => "selected", :disabled => "disabled", :value => ""} Y
+      %option{:disabled => "disabled", :value => ""} Y
       %option{:value => "2013"} 13
       %option{:value => "2014"} 14
       %option{:value => "2015"} 15

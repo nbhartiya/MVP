@@ -24,15 +24,6 @@ angular.module('Simmr').controller "EventRegisterCtrl", ["$scope",  "$routeParam
   $scope.guest.name = ''
   $scope.guest.email = ''
   $scope.buyer = {}
-  $scope.buyer.name = ''
-  $scope.buyer.ccNumber = ''
-  $scope.buyer.ccSecCode = ''
-  $scope.buyer.ccExpMonth = ''
-  $scope.buyer.ccExpYear = ''
-  $scope.buyer.billingAddress = ''
-  $scope.buyer.billingCity = ''
-  $scope.buyer.billingState = ''
-  $scope.buyer.billingZip = ''
   
   $scope.total = ->
     total = $scope.num_guests * $scope.cost
@@ -67,52 +58,7 @@ angular.module('Simmr').controller "EventRegisterCtrl", ["$scope",  "$routeParam
     if error == 0
       $scope.payment = 2 
 
-  $scope.submitPayment = ->
-    if $scope.buyer.name == ''
-    	$scope.buyer.nameError = true
-    else
-    	$scope.buyer.nameError = false
-
-    if $scope.buyer.ccNumber == ''
-    	$scope.buyer.ccNumberError = true
-    else
-    	$scope.buyer.ccNumberError = false
-
-    if $scope.buyer.ccSecCode == ''
-    	$scope.buyer.ccSecCodeError = true
-    else
-    	$scope.buyer.ccSecCodeError = false
-
-    if $scope.buyer.ccExpMonth == ''
-    	$scope.buyer.ccExpMonthError = true
-    else
-    	$scope.buyer.ccExpMonthError = false
-
-    if $scope.buyer.ccExpYear == ''
-    	$scope.buyer.ccExpYearError = true
-    else
-    	$scope.buyer.ccExpYearError = false
-
-    if $scope.buyer.billingAddress == ''
-    	$scope.buyer.billingAddressError = true
-    else
-    	$scope.buyer.billingAddressError = false
-
-    if $scope.buyer.billingCity == ''
-    	$scope.buyer.billingCityError = true
-    else
-    	$scope.buyer.billingCityError = false
-
-    if $scope.buyer.billingState == ''
-    	$scope.buyer.billingStateError = true
-    else
-    	$scope.buyer.billingStateError = false
-
-    if $scope.buyer.billingZip == ''
-    	$scope.buyer.billingZipError = true
-    else
-    	$scope.buyer.billingZipError = false
-    
+  $scope.submitPayment = ->    
     $scope.submitCard($scope.card)
   
   $scope.card =

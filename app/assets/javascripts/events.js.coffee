@@ -577,9 +577,9 @@ $(".carousel-indicators li").click ->
   $(this).addClass "active"
 
 $(".heart_this a").click ->
-if $(this).hasClass("black")
-  $(this).removeClass "black"
-  $(this).addClass "orange"
-else
-  $(this).removeClass "orange"
-  $(this).addClass "black"
+  if $(this).hasClass("black")
+    $(this).removeClass "black"
+    $(this).addClass "orange"
+  else
+    $(this).removeClass "orange"
+    $(this).addClass "black"
