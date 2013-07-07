@@ -118,9 +118,11 @@ angular.module('Simmr').factory "Campaign", ["railsResourceFactory", (railsResou
 ]
 
 angular.module('Simmr').controller "CampaignCreateCtrl", ["$scope",  "$routeParams", "$location", "Campaign", ($scope, $routeParams, $location, Campaign) ->
+
   $scope.createCampaign = (campaign) ->
     new Campaign(campaign).create().then (data) =>
       console.log data, "~~~~~~~~~~"
+      $scope.campaign = 1
 ]
 
 angular.module('Simmr').controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "Campaign", ($scope, $routeParams, $location, Campaign) ->

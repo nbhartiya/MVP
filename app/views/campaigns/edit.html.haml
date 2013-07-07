@@ -46,12 +46,18 @@
         .span4 
           %form.campaign-create-form.clearfix{:name => "campaign_create", 'ng-hide' => "campaign==1"}
             %input{'ng-model' => 'campaign.name', :type=>"text", :placeholder =>"Business Name - who is this campaign for?", :name => "campaign_name", :required => "required"}
-            %textarea.campaign-blurb{:rows => "4", 'ng-model' => 'campaign.description', :type=>"text", :placeholder =>"Business Description - you get the length of a tweet to describe this business - what is its tagline? Make it sexy ;)", :required => "required", :name => "campaign_description", :maxlength => "140"}
+            
+            %textarea.campaign-blurb{:rows => "4", 'ng-model' => 'campaign.description', :type=>"text", :placeholder =>"Business Description - you get the length of a tweet to describe this business - what is its tagline?", :required => "required", :name => "campaign_description", :maxlength => "140"}
+            
             .help-block-white{'ng-show' => "campaign_create.campaign_description.$error.required || campaign_create.campaign_name.$error.required"} Both field sare required!
-            %a.GetFilepicker.clearfix Upload Campaign Images
-            %button.btn.btn-warning.standalone-button{'ng-click' => 'campaign=1', 'ng-disabled'=> 'campaign_create.$invalid'} Create
+            
+            .clearfix
+              %button.btn.GetFilepicker#campaign-upload-images Upload Images
+            
+            %button.btn.btn-warning.standalone-button#submit{'ng-click' => 'createCampaign(campaign)', 'ng-disabled'=> 'campaign_create.$invalid'} Update
+          
           .campaign-create-confirmation.clearfix{'ng-show'=>"campaign==1"}
-            %h2 Thanks! You'll get an email when your campaign is approved and public. While you're waiting, fill out the 'why join' field below so others are more likely to join your campaign and make it happen!
+            %h2 Thanks! You'll get an email when your campaign edits are approved and public. While you're waiting, fill out the 'why join' field below so others are more likely to join your campaign and make it happen!
 
   .container
     .row
@@ -59,13 +65,15 @@
         .row.section-header#why
           .span12#why-join
             %a{:href => "#why-join", 'data-target'=>"#why-join-detail", 'data-toggle'=>"collapse"} Why Join? <span class="caret"></span>
-        .row.why-join
-          .span12
-            #why-join-accordion.accordion
-              #why-join-detail.accordion-body.collapse.in
-                .accordion-inner
-                  %textarea.textarea-section{:placeholder => "Why should others join your campaign?", "rows"=>'3', 'ng-model' => "campaign.why"}
-                  %button.btn.btn-warning{'ng-disabled'=> 'campaign.why == "" || campaign.why == nil'} Update
+  .why-join
+    .container
+      .row
+        .span12
+          #why-join-accordion.accordion
+            #why-join-detail.accordion-body.collapse.in
+              .accordion-inner
+                %textarea.textarea-section{:placeholder => "Why should others join your campaign?", "rows"=>'3', 'ng-model' => "campaign.why_join"}
+                %button.btn.btn-warning{'ng-disabled'=> 'campaign.why_join == "" || campaign.why_join == nil'} Update
 
 -#
   = render 'form'

@@ -271,7 +271,7 @@ ol.carousel-indicators{
 			}
 			#security_code, #expiration{
 				color: white;
-				label{
+				p{
 					font-size: 12px;
 					font-weight: 100;
 				}
@@ -367,7 +367,7 @@ ol.carousel-indicators{
 					color: rgb(54, 54, 54);
 				}
 				#ticket-cost{
-					width: 82%;
+					width: 83%;
 					-webkit-box-sizing: border-box;
 					-moz-box-sizing: border-box;    
 					box-sizing: border-box;
