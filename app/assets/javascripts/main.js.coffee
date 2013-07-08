@@ -24,7 +24,8 @@ angular.module('Simmr').controller "EventRegisterCtrl", ["$scope",  "$routeParam
   $scope.guest.name = ''
   $scope.guest.email = ''
   $scope.buyer = {}
-  $scope.mapUrl = "http://maps.google.com/?q123" + $scope.location
+  $scope.mapUrl = "http://maps.google.com/?q=" + $scope.location
+  $scope.currentUrl = document.URL
   
   $scope.total = ->
     total = $scope.num_guests * $scope.cost
@@ -106,6 +107,8 @@ angular.module('Simmr').controller "EventEditCtrl", ["$scope",  "$routeParams", 
 angular.module('Simmr').controller "EventFeedbackCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
 
   $scope.feedback=1
+  $scope.currentUrl = document.URL
+  $scope.eventUrl = $scope.currentUrl.substring(0, $scope.currentUrl.length-9)
 
 ]
 

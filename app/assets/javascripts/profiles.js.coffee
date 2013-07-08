@@ -21,7 +21,8 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
 ]
 
 angular.module('Simmr').controller "ProfileShowCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
-  $scope.mapUrl = "http://maps.google.com/?q123" + $scope.location
+  $scope.mapUrl = "http://maps.google.com/?q=" + $scope.location
+  $scope.currentUrl = document.URL
 ]
 
 angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->

@@ -14,7 +14,6 @@
     = render 'layouts/primary_header'
     .main
       = yield
-    = render 'layouts/footer'
     #fb-root
       :javascript
         (function(d, s, id) {
@@ -24,6 +23,7 @@
           js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=141737092659629";
           fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
+    = render 'layouts/footer'
     <script type="text/javascript" src="http://js.addthisevent.com/atemay.js"></script>
     = javascript_include_tag "application"
    

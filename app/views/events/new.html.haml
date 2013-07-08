@@ -177,26 +177,4 @@
                               %p
                     .row.comments
                       .span10
-                        %table
-                          %tr
-                            %td
-                              =link_to image_tag("Favicon.png"), "#"
-                            %td
-                              Comment blahblahblahblah
-                          %tr
-                            %td
-                              =link_to image_tag("Favicon.png"), "#"
-                            %td
-                              Comment blahblahblahblah
-                        %table.response-level1.offset1
-                          %tr
-                            %td
-                              =link_to image_tag("Favicon.png"), "#"
-                            %td
-                              Comment blahblahblahblah
-                        %table.response-level2.offset2
-                          %tr
-                            %td
-                              =link_to image_tag("Favicon.png"), "#"
-                            %td
-                              Comment blahblahblahblah
+                        .fb-comments{"data-href" => "http://www.example.com", "data-num-posts" => "10", "data-width" => "910"}
