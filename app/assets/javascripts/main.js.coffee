@@ -24,6 +24,7 @@ angular.module('Simmr').controller "EventRegisterCtrl", ["$scope",  "$routeParam
   $scope.guest.name = ''
   $scope.guest.email = ''
   $scope.buyer = {}
+  $scope.mapUrl = "http://maps.google.com/?q123" + $scope.location
   
   $scope.total = ->
     total = $scope.num_guests * $scope.cost

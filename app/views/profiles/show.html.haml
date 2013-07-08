@@ -15,7 +15,8 @@
     .container
       .row.user-overview
         .span1          
-        .span4.user-profile-overview
+        .span4.user-profile-overview{'ng-controller' => 'ProfileShowCtrl'}
+          -# need to pick up event address: 'ng-init' => "location=#{@event.location.address1} + ', ' + #{@event.location.city} + ', ' + #{@event.location.state} + ', ' #{@event.location.zipcode}"
           %table
             %tr
               %td.profile-photo
@@ -29,7 +30,7 @@
                   Your Haven from the World 
                   -if current_user.kind == "chef"
                     <sup><a href = "#user-about", class = "read-more", data-target = "#user-about-detail", data-toggle = "collapse"> Read More </a></sup>
-                    %h3 Full Address
+                    %h3 <a href = "{{mapURL}}> 123 Mission Street <br> San Francisco, CA 94107 </a>
                   -else
                     %h3 Just Neighborhood
                 -if current_user.kind == "chef"
@@ -40,15 +41,14 @@
                       %td
                         %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
                       %td
-                        %a.sb.share_this.circle.no-border.no-shadow.orange{:href=>"#"}
+                        %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
                     %tr.user-stats
                       %td 190
                       %td 190
-                      %td Tell
+                      %td{:rowspan => "2"} share
                     %tr.user-stat-labels
                       %td followers
                       %td reviews
-                      %td a friend
                 -else
                   %table.user-social-stats
                     %tr
