@@ -416,42 +416,6 @@ times = Table: [
     name: "12:30 AM"
     value: "12:30 AM"
 ,
-    name: "1:00 AM"
-    value: "1:00 AM"
-,
-    name: "1:30 AM"
-    value: "1:30 AM"
-,
-    name: "2:00 AM"
-    value: "2:00 AM"
-,
-    name: "2:30 AM"
-    value: "2:30 AM"
-,
-    name: "3:00 AM"
-    value: "3:00 AM"
-,
-    name: "3:30 AM"
-    value: "3:30 AM"
-,
-    name: "4:00 AM"
-    value: "4:00 AM"
-,
-    name: "4:30 AM"
-    value: "4:30 AM"
-,
-    name: "5:00 AM"
-    value: "5:00 AM"
-,
-    name: "5:30 AM"
-    value: "5:30 AM"
-,
-    name: "6:00 AM"
-    value: "6:00 AM"
-,
-    name: "6:30 AM"
-    value: "6:30 AM"
-,
     name: "7:00 AM"
     value: "7:00 AM"
 ,
