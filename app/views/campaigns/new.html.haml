@@ -33,7 +33,7 @@
                 %td
                   %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
                 %td
-                  %a.sb.share_this.circle.no-border.no-shadow.orange{:href=>"#"}
+                  %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#"}
               %tr.campaign-target-stats
                 %td 190
                 %td 190
@@ -43,12 +43,12 @@
                 %td reviews
                 %td a friend
         .span1.heart_this
-          %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
+          %a.sb.heart.circle.no-border.no-shadow.gray{title: 'Heart This'}
         .span1
         .span4 
           %form.campaign-create-form.clearfix{:name => "campaign_create", 'ng-hide' => "campaign==1"}
-            %input{'ng-model' => 'campaign.biz_name', :type=>"text", :placeholder =>"Business Name - who is this campaign for?", :name => "campaign_name", :required => "required"}
-            %textarea.campaign-blurb{:rows => "4", 'ng-model' => 'campaign.blurb', :type=>"text", :placeholder =>"Business Description - you get the length of a tweet to describe this business - what is its tagline?", :required => "required", :name => "campaign_description", :maxlength => "140"}
+            %input{'ng-model' => 'campaign.biz_name', :type=>"text", :placeholder =>"Business Name - who is this campaign for?", :name => "campaign_name", :required => "required", 'ng-class' => "{error: campaign_create.campaign_name.$invalid}"}
+            %textarea.campaign-blurb{:rows => "4", 'ng-model' => 'campaign.blurb', :type=>"text", :placeholder =>"Business Description - you get the length of a tweet to describe this business - what is its tagline?", :required => "required", :name => "campaign_description", :maxlength => "140", 'ng-class' => "{error: campaign_create.campaign_description.$invalid}"}
 
             .help-block-white{'ng-show' => "campaign_create.campaign_description.$error.required || campaign_create.campaign_name.$error.required"} Both field sare required!
             
