@@ -7,6 +7,14 @@ $("#why-yelp").tooltip()
 $(".answer-image img").click ->
   $(this).toggleClass "highlight"
 
+$(".profiles .heart_this a").click ->
+  if $(this).hasClass("gray")
+    $(this).removeClass "gray"
+    $(this).addClass "orange"
+  else
+    $(this).removeClass "orange"
+    $(this).addClass "gray"
+
 
 angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
 
