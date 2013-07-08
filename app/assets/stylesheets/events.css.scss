@@ -529,6 +529,28 @@ ol.carousel-indicators{
 					font-weight: 900;
 				}
 			}
+			.addthisevent-drop{
+				width: 32px;
+				height: 32px;
+				border-radius: 50%;
+				font-size: 12px;
+				padding: 0;
+				text-align: center;
+				line-height: 32px;
+				font-weight: 900;
+				background: rgb(255, 150, 0);
+				color: white !important;
+				border: none;
+				font-weight: 600;
+				font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; 
+			}
+			#atedrop1-drop{
+				font-weight: 500;
+				font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; 
+			}
+			.addthisevent_dropdown span{
+				color: black;
+			}
 		}
 		p{
 		    text-align: right;

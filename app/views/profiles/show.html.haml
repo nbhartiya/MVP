@@ -15,8 +15,7 @@
     .container
       .row.user-overview
         .span1          
-        .span4.user-profile-overview{'ng-controller' => 'ProfileShowCtrl'}
-          -# need to pick up event address: 'ng-init' => "location=#{@event.location.address1} + ', ' + #{@event.location.city} + ', ' + #{@event.location.state} + ', ' #{@event.location.zipcode}"
+        .span4.user-profile-overview{'ng-controller' => 'ProfileShowCtrl', 'ng-init' => "address1=#{@event.location.address1}; city = #{@event.location.city}; state = #{@event.location.state}; zipcode = #{@event.location.zipcode}"}
           %table
             %tr
               %td.profile-photo
@@ -30,7 +29,7 @@
                   Your Haven from the World 
                   -if current_user.kind == "chef"
                     <sup><a href = "#user-about", class = "read-more", data-target = "#user-about-detail", data-toggle = "collapse"> Read More </a></sup>
-                    %h3 <a href = "{{mapURL}}> 123 Mission Street <br> San Francisco, CA 94107 </a>
+                    %a{:href => "{{mapURL}}"} 123 Mission Street <br> San Francisco, CA 94107
                   -else
                     %h3 Just Neighborhood
                 -if current_user.kind == "chef"

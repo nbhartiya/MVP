@@ -16,8 +16,7 @@
         - else
           %li{"data-target" => "#event-carousel", "data-slide-to" => index}
         
-    .container{'ng-controller' => 'EventRegisterCtrl'}
-      -# need to pick up event address: 'ng-init' => "location=#{@event.location.address1} + ', ' + #{@event.location.city} + ', ' + #{@event.location.state} + ', ' #{@event.location.zipcode}"
+    .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1=#{@event.location.address1}; city = #{@event.location.city}; state = #{@event.location.state}; zipcode = #{@event.location.zipcode}"}
       .event-registration.row
         .span1
         .span4
@@ -38,7 +37,7 @@
               =@event.date.strftime("%A, %B %d, %l:%M%p")
             %h3 Mission
             -# upon registration show
-              %h3 <a href = "{{mapURL}}> 123 Mission Street <br> San Francisco, CA 94107 </a>
+              %a{:href => "{{mapURL}}"} 123 Mission Street <br> San Francisco, CA 94107
             %p 
               -# pull out and make this a method somewhere...
               =@event.seats_left
