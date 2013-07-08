@@ -83,16 +83,13 @@ angular.module('Simmr').controller "EventRegisterCtrl", ["$scope",  "$routeParam
         console.log response
 ]
 
-angular.module('Simmr').controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Event", "Location", ($scope, $routeParams, $location, Event, Location) ->
-  $scope.today = moment().format("YYYY-MM-DD")
-  $scope.event = []
-  $scope.event.date = moment().format("dddd, MMMM D")
+angular.module('Simmr').controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
   $scope.created = false
   
-  $scope.createEvent = (event, space) ->
+  $scope.createEvent = (event) ->
     new Event(event).create().then (data) =>
       console.log data, "~~~~~~~~~~"
-      $created = true
+      $scope.created = true
 ]
 
 angular.module('Simmr').controller "EventIndexCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
