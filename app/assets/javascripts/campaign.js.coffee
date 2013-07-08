@@ -11,3 +11,11 @@ angular.module('Simmr').controller "CampaignCreateCtrl", ["$scope",  "$routePara
 angular.module('Simmr').controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "Campaign", ($scope, $routeParams, $location, Campaign) ->
 
 ]
+
+$(".campaigns .heart_this a").click ->
+  if $(this).hasClass("gray")
+    $(this).removeClass "gray"
+    $(this).addClass "orange"
+  else
+    $(this).removeClass "orange"
+    $(this).addClass "gray"

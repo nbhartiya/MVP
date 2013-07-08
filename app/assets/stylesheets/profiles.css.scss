@@ -131,10 +131,16 @@ $main_orange: rgb(255, 178, 35);
 		}
 	}
 
-.event-first-row, .event-second-row, .user-first-row, .user-second-row, .campaign-first-row, .campaign-second-row{
+.event-first-row, .event-second-row{
 	position: relative;
 	margin: 0;
 	color: white;
+}
+
+.campaign-first-row, .campaign-second-row, .user-first-row, .user-second-row{
+	position: relative;
+	margin: 0;
+	color: black;
 }
 
 .unfollow-button{
@@ -170,8 +176,15 @@ $main_orange: rgb(255, 178, 35);
 	text-align: center;
 }
 
-.event-first-row, .user-first-row, .campaign-first-row{
+.campaign-first-row, .user-first-row{
+	background: rgba(255, 255, 255, 0.9);
+}
+
+.event-first-row{
 	background: rgba(0,0,0,0.8);
+}
+
+.event-first-row, .user-first-row, .campaign-first-row{
 	padding: 10px;
 	position: relative;
 	.event-host-image, .user-profile-image, .campaign-lead-image{
@@ -183,13 +196,18 @@ $main_orange: rgb(255, 178, 35);
 	.event-host-image, .event-title, .event-price, .event-progress, .event-go, .user-profile-image, .user-name-and-blurb, .campaign-lead-image, .campaign-title-and-blurb, .join-button{
 		margin: 0 10px;
 	}
+	.user-name-and-blurb, .campaign-title-and-blurb{
+		a{ color: black;}
+	}
+	.event-title{
+		a{ color: white;}
+	}
 	.event-title, .user-name-and-blurb, .campaign-title-and-blurb{
 		font-size: 16px;
 		line-height: 1.2em;
 		position: relative;
 		height: 60px;
 		a{
-			color: white;
 			top: 10%;
 		}
 		p{
@@ -271,7 +289,7 @@ $main_orange: rgb(255, 178, 35);
 }
 
 .user-second-row, .campaign-second-row{
-	background: rgba(0,0,0,0.5);
+	background: rgba(255,255,255,0.8);
 	padding: 10px 0;
 	.social-stats{
 		margin-left: 0;
@@ -325,7 +343,7 @@ $main_orange: rgb(255, 178, 35);
 			}
 		}
 		.user-profile-overview{
-			background: rgba(0,0,0,.8);
+			background: rgba(255, 255, 255,.8);
 		    padding: 30px;
 		    -webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;    
@@ -333,7 +351,7 @@ $main_orange: rgb(255, 178, 35);
 		}
 		.user-summary-edit{
 			padding: 30px;
-			background: rgba(0, 0, 0, 0.8);
+			background: rgba(255, 255, 255, 0.8);
 		}
 		.user-title{
 			padding: 10px 0 0 30px;
@@ -357,21 +375,21 @@ $main_orange: rgb(255, 178, 35);
 				font-size: 30px;
 				line-height: 1.2em;
 				font-weight: 100;
-				color: white;
+				color: black;
 				margin: 0;
 			}
 			h2{
 				font-size: 20px;
 				line-height: 1.5em;
 				font-weight: 100;
-				color: white;
+				color: black;
 				margin: 0;
 			}
 			h3{
 				font-size: 16px;
 				line-height: 1.5em;
 				font-weight: 100;
-				color: white;
+				color: black;
 				margin: 0;
 			}
 			hr{
@@ -381,14 +399,14 @@ $main_orange: rgb(255, 178, 35);
 			
 			p{
 			    text-align: right;
-			    color: white;
+			    color: black;
 			    margin-top: 10px;
 			    font-size: 12px;
 			}
 		}
 		.user-social-stats{
 			margin-top: 25px;
-			color: white;
+			color: black;
 			width: 100%;
 			margin-left: auto;
 			margin-right: auto;
@@ -399,7 +417,7 @@ $main_orange: rgb(255, 178, 35);
 		.heart_this{
 			margin: 0 auto;
 			padding: 10px;
-			background: rgba(0,0,0,0.8);
+			background: rgba(255,255,255,0.8);
 			width: 33px;
 			height: 33px;
 		}
@@ -483,7 +501,7 @@ $main_orange: rgb(255, 178, 35);
 	#why-yelp{
 		font-size: 12px;
 		margin-left: 10px;
-		color: white;
+		color: black;
 		-webkit-box-sizing: border-box;
 	    -moz-box-sizing: border-box;    
 	    box-sizing: border-box;
@@ -575,7 +593,7 @@ $main_orange: rgb(255, 178, 35);
 // dashboard stuff
 
 .edit-button{
-	background: rgba(0,0,0,0.8);
+	background: rgba(255,255,255,0.8);
 	margin-left: 0;
 	width: auto;
 	.btn{
