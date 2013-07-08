@@ -15,24 +15,23 @@
     .container
       .row.user-overview
         .span1          
-        .span4
+        .span4.user-profile-overview
           %table
             %tr
               %td.profile-photo
                 =image_tag "Favicon.png"
               %td.user-title
                 %h1
-                  Samovar Tea Lounge
+                  Samovar Tea Lounge 
             %tr
               %td.user-summary{:colspan => '2'}
                 %h2 
                   Your Haven from the World 
                   -if current_user.kind == "chef"
                     <sup><a href = "#user-about", class = "read-more", data-target = "#user-about-detail", data-toggle = "collapse"> Read More </a></sup>
-                %h3
-                  123 Mission Street
-                %h3
-                  San Francisco, CA 94109
+                    %h3 Full Address
+                  -else
+                    %h3 Just Neighborhood
                 -if current_user.kind == "chef"
                   %table.user-social-stats
                     %tr
@@ -50,23 +49,23 @@
                       %td followers
                       %td reviews
                       %td a friend
-                  -else
-                    %table.user-social-stats
-                      %tr
-                        %td
-                          %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
-                        %td
-                          %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
-                        %td
-                          %a.sb.heart.circle.no-border.no-shadow.green{:href=>"#"}
-                      %tr.user-stats
-                        %td 190
-                        %td 190
-                        %td 190
-                      %tr.user-stat-labels
-                        %td points
-                        %td followers
-                        %td following
+                -else
+                  %table.user-social-stats
+                    %tr
+                      %td
+                        %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.green{:href=>"#"}
+                    %tr.user-stats
+                      %td 190
+                      %td 190
+                      %td 190
+                    %tr.user-stat-labels
+                      %td points
+                      %td followers
+                      %td following
         .span1.heart_this
           %a.sb.heart.circle.no-border.no-shadow.black
         .span1
@@ -110,18 +109,19 @@
                     %a{:href=>"#"} Past
                   %li 
                     %a{:href=>"#"} Hearted
-            .row.user-events
-              .span10
-                .row.events-row
-                  .span5.single-event
-                    =render "layouts/singleevent"
-                  .span5.single-event
-                    =render "layouts/singleevent"
-                .row.events-row
-                  .span5.single-event
-                    =render "layouts/singleevent"
-                  .span5.single-event
-                    =render "layouts/singleevent"
+            -#        
+              .row.user-events
+                .span10
+                  .row.events-row
+                    .span5.single-event
+                      =render "layouts/singleevent"
+                    .span5.single-event
+                      =render "layouts/singleevent"
+                  .row.events-row
+                    .span5.single-event
+                      =render "layouts/singleevent"
+                    .span5.single-event
+                      =render "layouts/singleevent"
             .row.section-header#following
               .span10
                 %h1 Following
@@ -212,37 +212,34 @@
           .row.badges
             .span10
               .row.badges-row
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
-              .row.badges-row
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
-                .span2.single-badge
-                  =image_tag "Favicon.png"
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
               .row.badges-row
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
         .row
           .span10.offset2
@@ -256,18 +253,19 @@
                     %a{:href=>"#"} Past
                   %li 
                     %a{:href=>"#"} Hearted
-            .row.user-events
-              .span10
-                .row.events-row
-                  .span5.single-event
-                    =render "layouts/singleevent"
-                  .span5.single-event
-                    =render "layouts/singleevent"
-                .row.events-row
-                  .span5.single-event
-                    =render "layouts/singleevent"
-                  .span5.single-event
-                    =render "layouts/singleevent"
+            -#
+              .row.user-events
+                .span10
+                  .row.events-row
+                    .span5.single-event
+                      =render "events/singleevent"
+                    .span5.single-event
+                      =render "events/singleevent"
+                  .row.events-row
+                    .span5.single-event
+                      =render "events/singleevent"
+                    .span5.single-event
+                      =render "events/singleevent"
             .row.section-header#campaigns
               .span10
                 %h1 Campaigns
@@ -276,18 +274,19 @@
                     %a{:href=>"#"} Ongoing
                   %li 
                     %a{:href=>"#"} Successful
-            .row.user-campaigns
-              .span10
-                .row
-                  .span5.single-campaign
-                    =render "campaigns/singlecampaign"
-                  .span5.single-campaign
-                    =render "campaigns/singlecampaign"
-                .row
-                  .span5.single-campaign
-                    =render "campaigns/singlecampaign"
-                  .span5.single-campaign
-                    =render "campaigns/singlecampaign"
+            -#
+              .row.user-campaigns
+                .span10
+                  .row
+                    .span5.single-campaign
+                      =render "campaigns/singlecampaign"
+                    .span5.single-campaign
+                      =render "campaigns/singlecampaign"
+                  .row
+                    .span5.single-campaign
+                      =render "campaigns/singlecampaign"
+                    .span5.single-campaign
+                      =render "campaigns/singlecampaign"
             .row.section-header#following
               .span10
                 %h1 Following
@@ -300,11 +299,11 @@
               .span10
                 .row
                   .span5.single-following
-                    =render "layouts/singleuser"
+                    =render "profiles/singleuser"
                   .span5.single-following
-                    =render "layouts/singleuser"
+                    =render "profiles/singleuser"
                 .row
                   .span5.single-following
-                    =render "layouts/singleuser"
+                    =render "profiles/singleuser"
                   .span5.single-following
-                    =render "layouts/singleuser"
+                    =render "profiles/singleuser"

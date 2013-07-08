@@ -7,8 +7,8 @@
           %input{:name => "utf8", :type => "hidden", :value => "✓"}/
           %input{:name => "authenticity_token", :type => "hidden", :value => "bakqW+41reaR0EEjB0noRbFHFLFXOfC4gt6jk85LCiw="}/
         %div
-          %input{:autofocus => "autofocus", :name => "user_email", :size => "30", :type => "email", :placeholder => "Email", "ng-model" => "user.email", :required => "required"}
-          %span.help-inline{'ng-show' => 'new_pass.user_email.$error.required'} Required
-          %span.help-inline{'ng-show' => 'new_pass.user_email.$error.email'} Please enter a valid email
+          %input{:autofocus => "autofocus", :name => "user[email]", :size => "30", :type => "email", :placeholder => "Email", "ng-model" => "user.email", :required => "required"}
+          %span.help-inline{"ng-show" => "new_pass['user[email]'].$error.required"} Required
+          %span.help-inline{"ng-show" => "new_pass['user[email]'].$error.email"} Please enter a valid email
         %button.newpass.btn.btn-warning{'ng-disabled' => 'new_pass.$invalid'} Send me reset password instructions
       = render "devise/shared/links" 

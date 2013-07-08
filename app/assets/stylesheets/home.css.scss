@@ -234,12 +234,20 @@ ul.parsley-error-list{
 
 #how-it-works-detail{
 	text-align: center;
+	h3{
+		font-size: 20px;
+		font-weight: 100;
+		line-height: 1.2em;
+	}
 }
 	
 .step, .step-one{
 	background: url('Food 17.jpg');
 	height: 350px;
 	margin-top: 20px;
+	table{
+		width: 100%;
+	}
 	h1{
 		font-size: 30px;
 		line-height: 1.5em;
@@ -253,12 +261,14 @@ ul.parsley-error-list{
 		background: rgba(0,0,0,0.8);
 		padding: 10px;
 		display: none;
+		vertical-align: middle;
 		p{
 			font-size: 14px;
 			line-height: 1.5em;
 			font-weight: 100;
 			color: white;
 			text-align: left;
+			vertical-align: middle;
 		}
 	}
 }

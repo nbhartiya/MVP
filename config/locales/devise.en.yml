@@ -8,8 +8,8 @@ en:
       already_confirmed: "was already confirmed, please try signing in"
       not_locked: "was not locked"
       not_saved:
-        one: "1 error prohibited this %{resource} from being saved:"
-        other: "%{count} errors prohibited this %{resource} from being saved:"
+        one: "Uh-oh, there was 1 error:"
+        other: "Uh-oh, there were %{count} errors:"
       confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
 
   devise:

@@ -6,3 +6,7 @@ $(document).on "click", ".usersignup", ->
 
 $(document).on "click", ".newpass", ->
   $("#new_pass").submit()
+
+angular.module('Simmr').controller "UserRegisterCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
+
+]

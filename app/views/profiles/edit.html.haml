@@ -15,93 +15,121 @@
     .container
       .row.user-overview{'ng-controller' => 'ProfileEditCtrl'}
         .span1          
-        .span4
+        .span4.user-profile-overview
           %table
             %tr
               %td.profile-photo
                 =image_tag "Favicon.png"
               %td.user-title
+                %h1#default-text{'ng-show'=>'profile.name=="" || profile.name==nil'} Your Name
                 %h1
                   {{profile.name}}
             %tr
               %td.user-summary{:colspan => '2'}
+                %h2#default-text{'ng-show'=>'profile.blurb=="" || profile.blurb==nil'} Your Blurb
                 %h2 
                   {{profile.blurb}} 
-                  -if current_user.kind == "chef"
-                    <sup><a href = "#user-about", class = "read-more", data-target = "#user-about-detail", data-toggle = "collapse"> Read More </a></sup>
-                -# if foodie, just show neighborhood + city + zip; if host, show full address
                 -if current_user.kind == 'chef'
+                  %h3#default-text{'ng-show'=>'profile.neighborhood=="" || profile.neighborhood==nil'} Your Neighborhood
+                  %h3
+                    {{profile.neighborhood}}
+                  %h3#default-text{'ng-show'=>'profile.address=="" || profile.address==nil'} Your Address
                   %h3
                     {{profile.address}}
                 -else
+                  %h3#default-text{'ng-show'=>'profile.neighborhood=="" || profile.neighborhood==nil'} Your Neighborhood
                   %h3
                     {{profile.neighborhood}}
-                %h3
-                  {{profile.city}}, {{profile.state}} &nbsp {{profile.zip}}
-                -if current_user.kind == "chef"
-                  %table.user-social-stats
-                    %tr
-                      %td
-                        %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
-                      %td
-                        %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
-                      %td
-                        %a.sb.share_this.circle.no-border.no-shadow.orange{:href=>"#"}
-                    %tr.user-stats
-                      %td 190
-                      %td 190
-                      %td Tell
-                    %tr.user-stat-labels
-                      %td followers
-                      %td reviews
-                      %td a friend
-                  -else
-                    %table.user-social-stats
-                      %tr
-                        %td
-                          %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
-                        %td
-                          %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
-                        %td
-                          %a.sb.heart.circle.no-border.no-shadow.green{:href=>"#"}
-                      %tr.user-stats
-                        %td 190
-                        %td 190
-                        %td 190
-                      %tr.user-stat-labels
-                        %td points
-                        %td followers
-                        %td following
+                %h3#default-text{'ng-show'=>'profile.city=="" || profile.city==nil || profile.state=="" || profile.state==nil || rofile.zip=="" || profile.zip==nil'} Your City, State and Zipcode       
+                %h3{'ng-hide' => 'profile.zip=="" || profile.zip==nil'} {{profile.city + ','}} {{profile.state}} {{profile.zip}} 
+              -if current_user.kind == "chef"
+                %table.user-social-stats
+                  %tr
+                    %td
+                      %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
+                    %td
+                      %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
+                    %td
+                      %a.sb.share_this.circle.no-border.no-shadow.orange{:href=>"#"}
+                  %tr.user-stats
+                    %td 190
+                    %td 190
+                    %td Tell
+                  %tr.user-stat-labels
+                    %td followers
+                    %td reviews
+                    %td a friend
+              -else
+                %table.user-social-stats
+                  %tr
+                    %td
+                      %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
+                    %td
+                      %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
+                    %td
+                      %a.sb.heart.circle.no-border.no-shadow.green{:href=>"#"}
+                  %tr.user-stats
+                    %td 190
+                    %td 190
+                    %td 190
+                  %tr.user-stat-labels
+                    %td points
+                    %td followers
+                    %td following
         .span1.edit-button
           %button.btn.btn-warning{'ng-click' => 'edit=1'} Edit
         .span1
         .span4 
           -if current_user.kind == "chef"
-            .user-summary-edit.clearfix{'ng-show' => 'edit==1'}
-              %input{'ng-model'=>'profile.name', :type=>"text", :placeholder =>"Name"}
-              %input{'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"Blurb"}
-              %input{'ng-model'=>'profile.address', :type=>"text", :placeholder =>"Address"}
-              %input.city{'ng-model'=>'profile.city', :type=>"text", :placeholder =>"City"}
-              %select#state
-                %option{'ng-model'=>'profile.state', :disabled => "disabled", :selected => "selected", :value => ""} State
-              %input.zip{'ng-model' => 'profile.zip', :type=>"text", :placeholder =>"Zip Code"}
-              %a.clearfix Hook up Yelp
-              %button.btn.btn-warning{'ng-click' => 'edit=2'} Save Changes
-              %button.btn{'ng-click' => 'edit=0', 'ng-hide' => 'edit==0'} Never Mind
-            -else
-              .user-summary-edit.clearfix{'ng-show' => 'edit==1'}
-                %input{'ng-model'=>'profile.name', :type=>"text", :placeholder =>"Name"}
-                %input{'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"Blurb"}
-                %select#neighborhoods{'ng-model'=>'profile.neighborhood'}
-                %input.city{'ng-model'=>'profile.city', :type=>"text", :placeholder =>"City"}
-                %select#state
-                  %option{'ng-model'=>'profile.state', :disabled => "disabled", :selected => "selected", :value => ""} State
-                %input.zip{'ng-model' => 'profile.zip', :type=>"text", :placeholder =>"Zip Code"}
-                %button.btn.btn-warning{'ng-click' => 'edit=2'} Save Changes
-                %button.btn{'ng-click' => 'edit=0', 'ng-hide' => 'edit==0'} Never Mind
+            %form.user-summary-edit.clearfix{'ng-show' => 'edit==1', :name => "profile_edit"}
+
+              %input#profile-name{'ng-model'=>'profile.name', :type=>"text", :placeholder =>"Your Name", :required => "required", :name => "profile_name", 'ng-class' => "{error: profile_edit.profile_name.$invalid}"}
+
+              %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet (you can add more below under 'Our Story')", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: profile_edit.profile_blurb.$invalid}"}
+
+              %input#profile-address{'ng-model'=>'profile.address', :type=>"text", :placeholder =>"Your Business Address", :required => "required", :name => "profile_address", 'ng-class' => "{error: profile_edit.profile_address.$invalid}"}
+
+              %input#profile-city{'ng-model'=>'profile.city', :type=>"text", :placeholder =>"Your City", :required => "required", :name => "profile_city", 'ng-class' => "{error: profile_edit.profile_city.$invalid}"}
+
+              %select#state{'ng-model'=>'profile.state', :required => "required", :name => "profile_state", 'ng-class' => "{error: profile_edit.profile_state.$invalid}"}
+
+              %input#profile-zip{'ng-model' => 'profile.zip', :type=>"text", :placeholder =>"Your Zip", :required => "required", :name => "profile_zip", :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: profile_edit.profile_zip.$invalid}"}
+
+              %select#neighborhoods{'ng-model'=>'profile.neighborhood', :name => "profile_neighborhood", :required => "required", 'ng-class' => "{error: profile_edit.profile_neighborhood.$invalid}"}
+              
+              .help-block-white{'ng-show' => 'profile_edit.profile_zip.$error.pattern'} Please enter a valid zip code
+
+              .help-block-white{'ng-show' => 'profile_edit.profile_name.$error.required || profile_edit.profile_blurb.$error.required || profile_edit.profile_address.$error.required || profile_edit.profile_city.$error.required || profile_edit.profile_state.$error.required || profile_edit.profile_zip.$error.required || profile_edit.profile_neighborhood.$error.required'} All fields are required
+
+              .clearfix
+                %button.btn#yelp-connect Connect Yelp
+                %span#yelp-explanation <a data-toggle = "tooltip" id = "why-yelp" title = "So guests know how great you already are and can easily leave you reviews!">Why?</a>
+              %button.btn.btn-warning#submit{'ng-click' => 'edit=2', 'ng-disabled' => 'profile_edit.$invalid'} Save Changes
+              %button.btn#cancel{'ng-click' => 'edit=0', 'ng-hide' => 'edit==0'} Never Mind
+          -else
+            %form.user-summary-edit.clearfix{'ng-show' => 'edit==1', :name => 'profile_edit'}
+              
+              %input#profile-name{'ng-model'=>'profile.name', :type=>"text", :placeholder =>"Your Name", :required => "required", :name => "profile_name", 'ng-class' => "{error: profile_edit.profile_name.$invalid}"}
+
+              %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: profile_edit.profile_blurb.$invalid}"}
+
+              %select#neighborhoods{'ng-model'=>'profile.neighborhood', :name => "profile_neighborhood", :required => "required", 'ng-class' => "{error: profile_edit.profile_neighborhood.$invalid}"}
+
+              %input#profile-city{'ng-model'=>'profile.city', :type=>"text", :placeholder =>"Your City", :required => "required", :name => "profile_city", 'ng-class' => "{error: profile_edit.profile_city.$invalid}"}
+
+              %select#state{'ng-model'=>'profile.state', :required => "required", :name => "profile_state", 'ng-class' => "{error: profile_edit.profile_state.$invalid}"}
+
+              %input#profile-zip{'ng-model' => 'profile.zip', :type=>"text", :placeholder =>"Your Zip", :required => "required", :name => "profile_zip", :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: profile_edit.profile_zip.$invalid}"}
+              
+              .help-block-white{'ng-show' => 'profile_edit.profile_zip.$error.pattern'} Please enter a valid zip code
+
+              .help-block-white{'ng-show' => 'profile_edit.profile_name.$error.required || profile_edit.profile_blurb.$error.required || profile_edit.profile_neighborhood.$error.required || profile_edit.profile_city.$error.required || profile_edit.profile_state.$error.required || profile_edit.profile_zip.$error.required'} All fields are required
+
+              %button.btn.btn-warning#submit{'ng-click' => 'edit=2', 'ng-disabled' => 'profile_edit.$invalid'} Save Changes
+              %button.btn#cancel{'ng-click' => 'edit=0', 'ng-hide' => 'edit==0'} Never Mind
                 
         .span1
-  -if current_user.kind != "chef"
+  -if current_user.kind == "chef"
     .container
       .row
         .span2.scroll-menu.chef
@@ -125,10 +153,8 @@
               #user-news-accordion.accordion
                 #user-news-detail.accordion-body.collapse.in
                   .accordion-inner
-                    %p
-                      News
-                    %button.btn.btn-warning{'ng-click' => 'edit=2'} Edit
-                    %textarea{'ng-show' => 'edit==2', :placeholder => "Type your news here. All your followers will be notified.", "rows"=>'3'}
+                    %textarea.textarea-section{:placeholder => "Type your news here. All your followers will be notified.", "rows"=>'3', 'ng-model' => "profile.news"}
+                    %button.btn.btn-warning{'ng-disabled'=> 'profile.news == "" || profile.news == nil'} Update
         .row
           .span10.offset2
             .row.section-header#events
@@ -146,8 +172,8 @@
             .row.user-events
               .span1
               .span10
-                =render "layouts/singleeventdash"
-                =render "layouts/singleeventdash"
+                =render "events/singleeventdash"
+                =render "events/singleeventdash"
             .row.section-header#following
               .span10
                 %h1 Following
@@ -155,14 +181,14 @@
               .span10
                 .row
                   .span5.single-following
-                    =render "layouts/singleuserdash"
+                    =render "profiles/singleuserdash"
                   .span5.single-following
-                    =render "layouts/singleuserdash"
+                    =render "profiles/singleuserdash"
                 .row
                   .span5.single-following
-                    =render "layouts/singleuserdash"
+                    =render "profiles/singleuserdash"
                   .span5.single-following
-                    =render "layouts/singleuserdash"
+                    =render "profiles/singleuserdash"
             .row.section-header#chatter
               .span10#user-chatter
                 %a{:href => "#user-chatter", 'data-target'=>"#user-chatter-detail", 'data-toggle'=>"collapse"} Sample Chatter <span class="caret"></span>
@@ -216,10 +242,8 @@
                 #user-about-accordion.accordion
                   #user-about-detail.accordion-body.collapse
                     .accordion-inner
-                      %p
-                        About
-                      %button.btn.btn-warning{'ng-click' => 'edit=3'} Edit
-                      %textarea{'ng-show' => 'edit==3', :placeholder => "Type your story here", "rows"=>'3'}
+                      %textarea.textarea-section{:placeholder => "Type your story here.", "rows"=>'3', 'ng-model' => "profile.story"}
+                      %button.btn.btn-warning{'ng-disabled'=> 'profile.story == "" || profile.story == nil'} Update
 
 
   -else
@@ -242,37 +266,34 @@
           .row.badges
             .span10
               .row.badges-row
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
-              .row.badges-row
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
-                .span2.single-badge
-                  =image_tag "Favicon.png"
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
               .row.badges-row
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
-                .span2.single-badge
+                .span1.single-badge
                   =image_tag "Favicon.png"
         .row
           .span10.offset2
@@ -288,8 +309,8 @@
                     %a{:href=>"#"} Hearted
             .row.user-events
               .span10
-                =render "layouts/singleeventdash"
-                =render "layouts/singleeventdash"
+                =render "events/singleeventdash"
+                =render "events/singleeventdash"
             .row.section-header#campaigns
               .span10
                 %h1 Campaigns
@@ -322,14 +343,14 @@
               .span10
                 .row
                   .span5.single-following
-                    =render "layouts/singleuserdash"
+                    =render "profiles/singleuserdash"
                   .span5.single-following
-                    =render "layouts/singleuserdash"
+                    =render "profiles/singleuserdash"
                 .row
                   .span5.single-following
-                    =render "layouts/singleuserdash"
+                    =render "profiles/singleuserdash"
                   .span5.single-following
-                    =render "layouts/singleuserdash"
+                    =render "profiles/singleuserdash"
 
 
 -#  

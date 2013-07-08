@@ -1,3 +1,5 @@
+Simmr = angular.module('Simmr', ['uiSlider', 'ngResource', 'rails', 'ui', 'ui.bootstrap'])
+
 angular.module('Simmr').factory "Event", ["railsResourceFactory", (railsResourceFactory) -> railsResourceFactory
     url: "/api/events"
     name: "event"
@@ -9,6 +11,12 @@ angular.module('Simmr').factory "Charge", ["railsResourceFactory", (railsResourc
     name: "charge"
 ]
 
+angular.module('Simmr').factory "Location", ["railsResourceFactory", (railsResourceFactory) ->
+  railsResourceFactory
+    url: "/api/locations"
+    name: "location"
+]
+
 angular.module('Simmr').controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "Charge", "Event", ($scope, $routeParams, $location, Charge, Event) ->
   $scope.guests = []
 
@@ -16,7 +24,6 @@ angular.module('Simmr').controller "EventRegisterCtrl", ["$scope",  "$routeParam
   $scope.guest.name = ''
   $scope.guest.email = ''
   $scope.buyer = {}
-  $scope.buyer.name = ''
   
   $scope.total = ->
     total = $scope.num_guests * $scope.cost
@@ -24,49 +31,32 @@ angular.module('Simmr').controller "EventRegisterCtrl", ["$scope",  "$routeParam
 
   $scope.showPayment = ->
     $scope.guests = []
+    $scope.guest_pages = []
     $scope.guests_left = $scope.num_guests
-    $scope.guest_pages = 0
+    $scope.guest_no_pages = 0
     if $scope.num_guests > 0
       $scope.currentUser.name = $scope.currentUser.first_name + ' ' + $scope.currentUser.last_name
       $scope.guests.push($scope.currentUser)
       i = 0
-      if $scope.num_guests % 3 == 0 
-        $scope.guest_pages = $scope.num_guests / 3
+      if $scope.num_guests % 6 == 0 
+        $scope.guest_no_pages = $scope.num_guests / 6
       else
-        $scope.guest_pages = $scope.num_guests / 3 + 1
-      
-#      j=0
-#      while j<$scope.guest_pages
-      while i < $scope.guests_left - 1 and i < 2
+        $scope.guest_no_pages = $scope.num_guests / 6 + 1
+    
+      while i < $scope.guests_left - 1 and i < 5
         $scope.guests.push({})
         i++
-#        $scope.guests_left -= 3
-#        i=0
 
-      $scope.payment = 1
+    $scope.payment = 1
 
   $scope.gotoPayment = ->
     error = 0
     angular.forEach($scope.guests, (guest) =>
-      if typeof guest.name is 'undefined'
+      if typeof guest.name is 'undefined' || typeof guest.email is 'undefined'
         error = 1
-        guest.nameError = true
-      if typeof guest.email is 'undefined'
-        error = 2
-        guest.emailError = true
-      if typeof guest.name is 'undefined' and typeof guest.email is 'undefined'
-        error = 3
-        guest.nameError = true
-        guest.emailError = true
     )
     if error == 0
       $scope.payment = 2 
-    if error == 1
-      $('.error.name').show()
-    if error == 2
-      $('.error.email').show()
-    if error == 3
-      $('.error.both').show()
 
   $scope.submitPayment = ->    
     $scope.submitCard($scope.card)
@@ -93,12 +83,16 @@ angular.module('Simmr').controller "EventRegisterCtrl", ["$scope",  "$routeParam
         console.log response
 ]
 
-angular.module('Simmr').controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
-
-  $scope.createEvent = (event) ->
+angular.module('Simmr').controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Event", "Location", ($scope, $routeParams, $location, Event, Location) ->
+  $scope.today = moment().format("YYYY-MM-DD")
+  $scope.event = []
+  $scope.event.date = moment().format("dddd, MMMM D")
+  $scope.created = false
+  
+  $scope.createEvent = (event, space) ->
     new Event(event).create().then (data) =>
       console.log data, "~~~~~~~~~~"
-
+      $created = true
 ]
 
 angular.module('Simmr').controller "EventIndexCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
@@ -106,7 +100,9 @@ angular.module('Simmr').controller "EventIndexCtrl", ["$scope",  "$routeParams",
 ]
 
 angular.module('Simmr').controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
-
+  $scope.today = moment().format("YYYY-MM-DD")
+  $scope.event = []
+  $scope.event.date = moment().format("dddd, MMMM D")
 ]
 
 angular.module('Simmr').controller "EventFeedbackCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
@@ -122,9 +118,11 @@ angular.module('Simmr').factory "Campaign", ["railsResourceFactory", (railsResou
 ]
 
 angular.module('Simmr').controller "CampaignCreateCtrl", ["$scope",  "$routeParams", "$location", "Campaign", ($scope, $routeParams, $location, Campaign) ->
+
   $scope.createCampaign = (campaign) ->
     new Campaign(campaign).create().then (data) =>
       console.log data, "~~~~~~~~~~"
+      $scope.campaign = 1
 ]
 
 angular.module('Simmr').controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "Campaign", ($scope, $routeParams, $location, Campaign) ->

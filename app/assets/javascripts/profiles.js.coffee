@@ -2,6 +2,8 @@ $(".campaign-card-lead-name").tooltip()
 
 $(".user-card-name").tooltip()
 
+$("#why-yelp").tooltip()
+
 $(".answer-image img").click ->
   $(this).toggleClass "highlight"
 

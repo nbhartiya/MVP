@@ -184,14 +184,20 @@ $main_orange: rgb(255, 178, 35);
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box; 
 			}
-			.btn{
+			#submit, #done{
 				float: right;
 				margin-left: 10px;
 			}
+
+			#campaign-upload-images{
+				margin: 5px 0;
+			}
+
 			a, a:visited, a:hover{
 				color: white;
 				text-decoration: none;
 			}
+
 		}
 	}
 }

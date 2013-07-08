@@ -22,7 +22,7 @@
         .span4
         .span4.copy-content
           %h1 We want to make your life more delicious
-          %a.btn.how-it-works-button{:href => "#how-it-works", "data-target" => "#how-it-works-detail", "data-toggle" => "collapse", :type => "button"} How Does It Work?
+          %a.btn.how-it-works-button{:href => "#how-it-works", "data-target" => "#how-it-works-detail", :type => "button"} How Does It Work?
           -if user_signed_in? == false
             %a.btn.btn-warning.sign-up-button{:href => "#sign_up", :"data-toggle" =>"modal"} Get Started
             %p Already a member? &nbsp <a href = "#sign_in" class = "sign-in-link" data-toggle = "modal"> Sign In </a>
@@ -41,26 +41,46 @@
           #how-it-works-accordion.accordion
             #how-it-works-detail.accordion-body.collapse
               .accordion-inner
-                %p
-                  We want to make you <em> more than a customer </em> by connecting you more meaningfully with your fave food businesses and helping you be the first to discover new ones
+                %h3
+                  We want to make you <em> more than a customer </em> 
+                %h3
+                  by connecting you more meaningfully with your fave food businesses and 
+                %h3
+                  helping you be the first to discover new ones
                 .row
                   .span1
                   .span2.step
-                    %h1 browse
-                    .step-description
-                      %p Find something cool to attend! All our events are designed to be different from the typical restaurant visit.
+                    %table
+                      %tr
+                        %td
+                          %h1 browse
+                      %tr
+                        %td.step-description
+                          %p Find something cool to attend! All our events are designed to be different from the typical restaurant visit.
                   .span2.step
-                    %h1 register
-                    .step-description
-                      %p See something you like? Book it! But wait - the event doesn't happen until the minimum number of tickets is sold. Help make this happen by inviting your favorite people! We won't charge anybody until the event is on.
+                    %table
+                      %tr
+                        %td
+                          %h1 register
+                      %tr
+                        %td.step-description
+                          %p See something you like? Book it! But wait - the event doesn't happen until the minimum number of tickets is sold. Help make this happen by inviting your favorite people! We won't charge anybody until the event is on.
                   .span2.step
-                    %h1 attend
-                    .step-description
-                      %p Woohoo, party time! You've already paid, so all you have to do day of is sit back and enjoy.
+                    %table
+                      %tr
+                        %td
+                          %h1 attend
+                      %tr
+                        %td.step-description
+                          %p Woohoo, party time! You've already paid, so all you have to do day of is sit back and enjoy.
                   .span2.step
-                    %h1 share
-                    .step-description
-                      %p Talk about your awesome experience and make everybody jealous!
+                    %table
+                      %tr
+                        %td
+                          %h1 share
+                      %tr
+                        %td.step-description
+                          %p Talk about your awesome experience and make everybody jealous!
                   .span1
           .span1
   -#

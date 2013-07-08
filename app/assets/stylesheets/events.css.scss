@@ -83,9 +83,6 @@ ol.carousel-indicators{
 	    -webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;    
 		box-sizing: border-box;
-		.parsley-error-list > li{
-			color: white;
-		}
 		.event-summary {
 		    background: rgba(0,0,0,.8);
 		    padding: 30px;
@@ -171,7 +168,7 @@ ol.carousel-indicators{
 			width: 33px;
 			height: 33px;
 		}
-		.event-purchase, .event-guests, .event-create-form, .event-edit-form{
+		.event-purchase, .event-create-confirmation, .event-guests, .event-create-form, .event-edit-form{
 			background: rgba(0,0,0,0.8);
 			padding: 30px;
 			h1{
@@ -189,7 +186,7 @@ ol.carousel-indicators{
 				margin-bottom: 20px;
 			}
 			h3{
-				font-size: 14px;
+				font-size: 16px;
 				line-height: 1.5em;
 				color: white;
 				font-weight: 100;
@@ -197,6 +194,10 @@ ol.carousel-indicators{
 			hr{
 				margin: 10px 0;
 				border-bottom: none;
+			}
+			p{
+				font-size: 14px;
+				padding: 2px 0;
 			}
 			input, input[type='string'], input[type='integer']{
 				display: inline-block;
@@ -216,31 +217,186 @@ ol.carousel-indicators{
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box; 
 			}
-			#security_code, #expiration_month, #expiration_year, #city, #state, #zipcode{
+			#city{
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
-				width: 32.25%;
+				width: 48%;
+			}
+			#state{
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				width: 24%;
+			}
+			#zipcode{
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				width: 25%;
+			}
+			#credit_card_number{
+				width: 47%;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+			}
+			#security_code{
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				width: 16%;
+				display: inline-block;
+			}
+			#expiration_month{
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				width: 49%;
+				display: inline-block;
+			}
+			#expiration_year{
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				width: 46%;
+				display: inline-block;
+			}
+			#expiration{
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				width: 34%;
+				display: inline-block;
+			}
+			#security_code, #expiration{
+				color: white;
+				p{
+					font-size: 12px;
+					font-weight: 100;
+				}
+			}
+			#submit, #ticket-purchase, #previous-button, #enter-payment-info, #ok-button{
+				float: right;
+			}
+			#ticket-purchase, #previous-button{
+				margin: 0 10px 0 0;
+			}
+			#submit, #enter-payment-info, #ok-button{
+				margin: 0;
 			}
 			.btn{
-				float: right;
-				margin-left: 10px;
+				margin: 5px 0 5px 0;
 			}
-			.event-date, .event-time, .ticket-price, .people-limit{
+			#event-blurb{
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				width: 100%;
+			}
+			#event-date-time{
+				color: white;
+				font-weight: 100;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				#event-date, #times{
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+					width: 49.25%;
+				}
+			}
+			#event-location{
+				color: white;
+				font-weight: 100;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				#neighborhoods{
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+					width: 100%;
+				}
+				#event-address{
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+					width: 100%;
+				}
+				#event-city{
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+					width: 47%;
+				}
+				#state{
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+					width: 25%;
+				}
+				#event-zipcode{
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+					width: 25%;
+				}
+				#event-neighborhood{
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+					width: 100%;
+				}
+			}
+			#event-ticket-details{
+				color: white;
+				font-weight: 100;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				.input-prepend{
+					width: 49.25%;
+					margin: 0;
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+				}
+				.add-on{
+					color: rgb(54, 54, 54);
+				}
+				#ticket-cost{
+					width: 83%;
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+				}
+				#people-limit{
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+					width: 49.25%;
+				}
+			}
+			#event-images-button, #event-menu-button{
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
 				width: 49.25%;
 			}
-			.event-city{
-				-webkit-box-sizing: border-box;
-				-moz-box-sizing: border-box;    
-				box-sizing: border-box;
-				width: 66%;
-			}
 			a, a:visited, a:hover{
 				color: white;
 				text-decoration: none;
+			}
+			.guest-name, .guest-email{
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				width: 49.25%;
+			}
+			.guests{
+				margin: 0;
 			}
 		}
 	}
@@ -300,9 +456,6 @@ ol.carousel-indicators{
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;    
 	box-sizing: border-box;
-	.parsley-error-list > li{
-			color: white;
-		}
 	.event-summary{
 		background: rgba(0,0,0,.8);
 		padding: 30px;

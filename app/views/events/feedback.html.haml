@@ -72,18 +72,21 @@
         .span1
         .span4 
           -#this needs to happen only when tickets >1
-          .event-survey.clearfix{'ng-hide' => 'feedback!=1'}
+          %form.event-survey.clearfix{'ng-hide' => 'feedback!=1', :name => "feedback_survey"}
             %h1 Survey
-            %input.survey-question-1{:type=>'text', :placeholder =>"Custom Survey Question 1"}
-            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Submit
-            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Never Mind
+            %input.survey-question-1{:type=>'text', :placeholder =>"Custom Survey Question 1", :name => "question_1", :required => "required", 'ng-model' => 'survey.question1'}
+            .help-block-white{'ng-show' => 'feedback_survey.question_1.$error.required'} Required
+            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Get Points!
+            %button.btn.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Never Mind
 
           .event-yelp.clearfix{'ng-show' => 'feedback==2'}
             %h1 Yelp Review
-            %form{:'data-validate'=>"parsley"}
-              %input.yelp-review-link{:type=>'url', :required => "required", :'data-trigger' => 'keyup', :placeholder =>"Paste Yelp Review Link Here"}
-              %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Submit
-              %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Never Mind
+            %form{:name => "yelp_review"}
+              %input.yelp-review-link{:type=>'url', :required => "required", :placeholder =>"Paste Yelp Review Link Here", :name => "yelp_link", 'ng-model' => "yelplink"}
+              .help-block-white{'ng-show' => 'yelp_review.yelp_link.$error.required'} Required
+              .help-block-white{'ng-show' => 'yelp_review.yelp_link.$error.url'} Please enter a valid URL
+              %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Get Points!
+              %button.btn.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Never Mind
 
           .point-ranking.clearfix{'ng-show' => 'feedback==3'}
             %h1 Leader Boards
@@ -156,14 +159,14 @@
                     %td Random Guy
                     %td 3000
             %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=4'} Get More Points
-            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Done
+            %button.btn.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Done
               
           .more-points.clearfix{'ng-show' => 'feedback==4'}
             %h1 Get More Points
             %table.feedback-actions
               %tr
                 %td
-                  %h3.point-action Tell a Friend About Simmr - you'll get more points when they sign up and attend an event!
+                  %h3.point-action Tell a Friend About Simmr (you'll get more points when they sign up and attend an event!)
                 %td
                   %a.btn.btn-warning.points.refer-friend-event-button{:href => "#"} +10
               %tr
@@ -176,8 +179,8 @@
                   %h3.point-action Start a Campaign
                 %td
                   %a.points.btn.btn-warning.start-campaign-button{:href=>"/campaigns/new"} +10
-            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Done
-            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Back to Leader Boards
+            %button.btn.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Done
+            %button.btn.standalone-button{'ng-click' => 'feedback=3'} Back to Leader Boards
 
 
 
@@ -185,7 +188,7 @@
   .container
     .row.section-header
       .span12#host-story
-        %a{:href => "#host-story", 'data-target'=>"#host-story-detail", 'data-toggle'=>"collapse"} Host Story <span class="caret collapsed"></span>
+        %a{:href => "#host-story", 'data-target'=>"#host-story-detail", 'data-toggle'=>"collapse", :class => "collapsed"} Host Story <span class="caret collapsed"></span>
   .host-story
     .container
       .row
@@ -202,7 +205,7 @@
   .container
     .row.section-header
       .span12#event-menu
-        %a{:href => "#event-menu", 'data-target'=>"#event-menu-detail", 'data-toggle'=>"collapse"} The Menu <span class="caret collapsed"></span>
+        %a{:href => "#event-menu", 'data-target'=>"#event-menu-detail", 'data-toggle'=>"collapse", :class => "collapsed"} The Menu <span class="caret collapsed"></span>
   .event-menu
     .container
       .row
