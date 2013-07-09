@@ -16,7 +16,7 @@
         - else
           %li{"data-target" => "#event-carousel", "data-slide-to" => index}
         
-    .container{'ng-controller' => 'EventRegisterCtrl'}
+    .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "eventId=#{@event.id}"}
       .event-registration.row
         .span1
         .span4
@@ -43,7 +43,6 @@
               =@event.seats_left
               seats left
             .progress.progress-warning
-              -#probably want to pull this arithmetic out too
               .bar{:style => "width: #{@event.percent_full}%"}
             -if user_signed_in? == false
               .btn.btn-warning.standalone-button{:"data-toggle" => "modal", :href=>"#sign_up"} Sign Up
@@ -121,7 +120,7 @@
               #host-story-detail.accordion-body.collapse.in
                 .accordion-inner
                   %p
-                    =@event.host.last_name
+                    =@event.host.profile.story
               -#=@event.host.profile.story
               -# Need to make sure a host story exists for that host before they can create the event...
       .row

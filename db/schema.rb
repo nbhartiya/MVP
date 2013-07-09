@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130701193435) do
+ActiveRecord::Schema.define(:version => 20130709053434) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -198,6 +198,7 @@ ActiveRecord::Schema.define(:version => 20130701193435) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.float    "total_paid"
+    t.integer  "charge_id"
   end
 
   create_table "user_answers", :force => true do |t|

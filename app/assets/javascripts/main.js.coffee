@@ -69,6 +69,7 @@ angular.module('Simmr').controller "EventRegisterCtrl", ["$scope",  "$routeParam
         $scope.data.token = response.id
         $scope.data.guests = $scope.guests
         $scope.data.buyer = $scope.buyer
+        $scope.data.eventId = $scope.eventId
         new Charge($scope.data).create().then (data) =>
           console.log data, "~~~~~~~~~~"
           if data.status == "Success"

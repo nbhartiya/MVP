@@ -2,11 +2,10 @@
   .event-time-and-date
     #{event.date.strftime("%b %e")}
   .span5.event-image
-    -#TODO: Make this image into a link to events
     -if event.images.present?
-      =filepicker_image_tag event.images.first.image
+      =link_to (filepicker_image_tag event.images.first.image), event_path(event)
     -else
-      =link_to image_tag("Food 17.jpg")
+      =link_to image_tag("Food 17.jpg"), event_path(event)
 .row.event-first-row
   .span1.event-host-image
     =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Host Name", "class" => "event-card-host-name"
