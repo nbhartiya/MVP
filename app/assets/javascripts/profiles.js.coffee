@@ -17,7 +17,12 @@ $(".profiles .heart_this a").click ->
 
 
 angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
+  $scope.edit = 1
+]
 
+angular.module('Simmr').controller "ProfileShowCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
+  $scope.mapUrl = "http://maps.google.com/?q=" + $scope.address1 + ", " + $scope.city + ", " + $scope.state + ", " + $scope.zipcode
+  $scope.currentUrl = document.URL
 ]
 
 angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->

@@ -48,23 +48,23 @@
             %table.event-sharing
               %tr
                 %td
-                  .btn.btn-warning 2nd
-                %td
                   %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
                 %td
                   %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
                 %td
-                  %a.sb.share_this.circle.no-border.no-shadow.orange{:href=>"#"}
+                  %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#"}
+                %td
+                  %a.addthisevent{:href => "#", :title => "Add to Calendar"}
+                    Add
               %tr.host-stats
-                %td 
                 %td 190
                 %td 190
-                %td Tell
+                %td{:rowspan => "2"} share
+                %td to
               %tr.host-stat-labels
-                %td event
                 %td followers
                 %td reviews
-                %td a friend
+                %td calendar
         .span1.heart_this
           %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
         .span1
@@ -178,26 +178,4 @@
                               %p
                     .row.comments
                       .span10
-                        %table
-                          %tr
-                            %td
-                              =link_to image_tag("Favicon.png"), "#"
-                            %td
-                              Comment blahblahblahblah
-                          %tr
-                            %td
-                              =link_to image_tag("Favicon.png"), "#"
-                            %td
-                              Comment blahblahblahblah
-                        %table.response-level1.offset1
-                          %tr
-                            %td
-                              =link_to image_tag("Favicon.png"), "#"
-                            %td
-                              Comment blahblahblahblah
-                        %table.response-level2.offset2
-                          %tr
-                            %td
-                              =link_to image_tag("Favicon.png"), "#"
-                            %td
-                              Comment blahblahblahblah
+                        .fb-comments{"data-href" => "http://www.example.com", "data-num-posts" => "10", "data-width" => "910"}

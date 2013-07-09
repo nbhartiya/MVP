@@ -49,24 +49,24 @@
 
             %table.event-sharing
               %tr
-                %td 
-                  .btn.btn-warning 2nd
                 %td
                   %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
                 %td
                   %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
                 %td
-                  %a.sb.share_this.circle.no-border.no-shadow.orange{:href=>"#"}
+                  %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
+                %td
+                  %a.addthisevent{:href => "#", :title => "Add to Calendar"}
+                    Add
               %tr.host-stats
-                %td 
                 %td 190
                 %td 190
-                %td Tell
+                %td{:rowspan => "2"} share
+                %td to
               %tr.host-stat-labels
-                %td event
                 %td followers
                 %td reviews
-                %td a friend
+                %td calendar
         .span1.heart_this
           %a.sb.heart.circle.no-border.no-shadow.black
         .span1
@@ -230,7 +230,7 @@
             #event-chatter-detail.accordion-body.collapse.in
               .accordion-inner
                 .row.attendees
-                  .span12
+                  .span10
                     =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
                     =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
                     =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
@@ -242,28 +242,6 @@
                           = guest.first_name + " " + guest.last_name
                           %p
                 .row.comments
-                  .span12
-                    %table
-                      %tr
-                        %td
-                          =link_to image_tag("Favicon.png"), "#"
-                        %td
-                          Comment blahblahblahblah
-                      %tr
-                        %td
-                          =link_to image_tag("Favicon.png"), "#"
-                        %td
-                          Comment blahblahblahblah
-                    %table.response-level1.offset1
-                      %tr
-                        %td
-                          =link_to image_tag("Favicon.png"), "#"
-                        %td
-                          Comment blahblahblahblah
-                    %table.response-level2.offset2
-                      %tr
-                        %td
-                          =link_to image_tag("Favicon.png"), "#"
-                        %td
-                          Comment blahblahblahblah
+                  .span10
+                    .fb-comments{"data-href" => "{{eventURL}}", "data-num-posts" => "10", "data-width" => "910"}
         .span1

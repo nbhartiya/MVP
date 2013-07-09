@@ -50,15 +50,14 @@
                     %td
                       %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
                     %td
-                      %a.sb.share_this.circle.no-border.no-shadow.orange{:href=>"#"}
+                      %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#"}
                   %tr.user-stats
                     %td 190
                     %td 190
-                    %td Tell
+                    %td{:rowspan => "2"} share
                   %tr.user-stat-labels
                     %td followers
                     %td reviews
-                    %td a friend
               -else
                 %table.user-social-stats
                   %tr
@@ -81,7 +80,8 @@
         .span1
         .span4 
           -if current_user.kind == "chef"
-            %form.user-summary-edit.clearfix{'ng-show' => 'edit==1', :name => "profile_edit"}
+            %form.user-summary-edit.clearfix{:name => "profile_edit", 'ng-show' => "edit==1", 'ng-hide' => "edit==0"}
+              %button.close{"ng-click" => "edit=0", :type => "button"} close
 
               %input#profile-name{'ng-model'=>'profile.name', :type=>"text", :placeholder =>"Your Name", :required => "required", :name => "profile_name", 'ng-class' => "{error: profile_edit.profile_name.$invalid}"}
 
@@ -105,9 +105,9 @@
                 %button.btn#yelp-connect Connect Yelp
                 %span#yelp-explanation <a data-toggle = "tooltip" id = "why-yelp" title = "So guests know how great you already are and can easily leave you reviews!">Why?</a>
               %button.btn.btn-warning#submit{'ng-click' => 'edit=2', 'ng-disabled' => 'profile_edit.$invalid'} Save Changes
-              %button.btn#cancel{'ng-click' => 'edit=0', 'ng-hide' => 'edit==0'} Never Mind
           -else
-            %form.user-summary-edit.clearfix{'ng-show' => 'edit==1', :name => 'profile_edit'}
+            %form.user-summary-edit.clearfix{'ng-show' => "edit==1", 'ng-hide' => "edit==0", :name => 'profile_edit'}
+              %button.close{"ng-click" => "edit=0", :type => "button"} close
               
               %input#profile-name{'ng-model'=>'profile.name', :type=>"text", :placeholder =>"Your Name", :required => "required", :name => "profile_name", 'ng-class' => "{error: profile_edit.profile_name.$invalid}"}
 
@@ -126,7 +126,6 @@
               .help-block-white{'ng-show' => 'profile_edit.profile_name.$error.required || profile_edit.profile_blurb.$error.required || profile_edit.profile_neighborhood.$error.required || profile_edit.profile_city.$error.required || profile_edit.profile_state.$error.required || profile_edit.profile_zip.$error.required'} All fields are required
 
               %button.btn.btn-warning#submit{'ng-click' => 'edit=2', 'ng-disabled' => 'profile_edit.$invalid'} Save Changes
-              %button.btn#cancel{'ng-click' => 'edit=0', 'ng-hide' => 'edit==0'} Never Mind
                 
         .span1
   -if current_user.kind == "chef"
@@ -210,30 +209,7 @@
                           =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Christine Lee", "class" => "one-attendee", "data-placement" => "bottom"
                           =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Michael Makarov", "class" => "one-attendee", "data-placement" => "bottom"
                       .row.comments
-                        .span10
-                          %table
-                            %tr
-                              %td
-                                =link_to image_tag("Favicon.png"), "#"
-                              %td
-                                Comment blahblahblahblah
-                            %tr
-                              %td
-                                =link_to image_tag("Favicon.png"), "#"
-                              %td
-                                Comment blahblahblahblah
-                          %table.response-level1.offset1
-                            %tr
-                              %td
-                                =link_to image_tag("Favicon.png"), "#"
-                              %td
-                                Comment blahblahblahblah
-                          %table.response-level2.offset2
-                            %tr
-                              %td
-                                =link_to image_tag("Favicon.png"), "#"
-                              %td
-                                Comment blahblahblahblah
+                        .fb-comments{"data-href" => "http://www.example.com", "data-num-posts" => "10", "data-width" => "910"}
             .row.section-header#about
               .span10#user-about
                 %a.collapsed{:href => "#user-about", 'data-target'=>"#user-about-detail", 'data-toggle'=>"collapse"} Our Story <span class="caret"></span>

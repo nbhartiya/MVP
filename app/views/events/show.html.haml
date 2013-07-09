@@ -15,8 +15,7 @@
           %li.active{"data-target" => "#event-carousel", "data-slide-to" => index}
         - else
           %li{"data-target" => "#event-carousel", "data-slide-to" => index}
-        
-    .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "eventId=#{@event.id}"}
+    .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1=#{@event.location.address1};city=#{@event.location.city};state=#{@event.location.state};zipcode=#{@event.location.zipcode};eventId=#{@event.id}"}
       .event-registration.row
         .span1
         .span4
@@ -37,8 +36,7 @@
               =@event.date.strftime("%A, %B %d, %l:%M%p")
             %h3 Mission
             -# upon registration show
-              %h3 123 Mission Street
-              %h3 San Francisco, CA 94107
+              %a{:href => "{{mapUrl()}}"} 123 Mission Street <br> San Francisco, CA 94107
             %p 
               =@event.seats_left
               seats left
@@ -56,23 +54,34 @@
             %table.event-sharing
               %tr
                 %td
-                  .btn.btn-warning 2nd
-                %td
                   %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
                 %td
                   %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
                 %td
-                  %a.sb.share_this.circle.no-border.no-shadow.orange{:href=>"#"}
+                  %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
+                %td
+                  %a.addthisevent{:href => "http://example.com/link-to-your-event", :title => "Add to Calendar"}
+                    Add
+                    %span._start 10-05-2012 11:38:46
+                    %span._end 11-05-2012 11:38:46
+                    %span._zonecode 6
+                    %span._summary Summary of the event
+                    %span._description Description of the event
+                    %span._location Location of the event
+                    %span._organizer Organizer
+                    %span._organizer_email Organizer e-mail
+                    %span._facebook_event http://www.facebook.com/events/160427380695693
+                    %span._all_day_event false
+                    %span._date_format DD/MM/YYYY
               %tr.host-stats
-                %td 
                 %td 190
                 %td 190
-                %td Tell
+                %td{:rowspan => "2"} share
+                %td to
               %tr.host-stat-labels
-                %td event
                 %td followers
                 %td reviews
-                %td a friend
+                %td calendar
         .span1.heart_this
           %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
         .span1
@@ -157,30 +166,7 @@
                               %p
                     .row.comments
                       .span10
-                        %table
-                          %tr
-                            %td
-                              =link_to image_tag("Favicon.png"), "#"
-                            %td
-                              Comment blahblahblahblah
-                          %tr
-                            %td
-                              =link_to image_tag("Favicon.png"), "#"
-                            %td
-                              Comment blahblahblahblah
-                        %table.response-level1.offset1
-                          %tr
-                            %td
-                              =link_to image_tag("Favicon.png"), "#"
-                            %td
-                              Comment blahblahblahblah
-                        %table.response-level2.offset2
-                          %tr
-                            %td
-                              =link_to image_tag("Favicon.png"), "#"
-                            %td
-                              Comment blahblahblahblah
-
+                        .fb-comments{"data-href" => '{{currentUrl}}', "data-num-posts" => "10", "data-width" => "910"}
 
 
 -#

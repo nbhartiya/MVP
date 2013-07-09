@@ -48,42 +48,42 @@
             %table.event-sharing
               %tr
                 %td
-                  .btn.btn-warning 2nd
-                %td
                   %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
                 %td
                   %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
                 %td
-                  %a.sb.share_this.circle.no-border.no-shadow.orange{:href=>"#"}
+                  %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#"}
+                %td
+                  %a.addthisevent{:href => "#", :title => "Add to Calendar"}
+                    Add
               %tr.host-stats
-                %td 
                 %td 190
                 %td 190
-                %td Tell
+                %td{:rowspan => "2"} share
+                %td to
               %tr.host-stat-labels
-                %td event
                 %td followers
                 %td reviews
-                %td a friend
+                %td calendar
         .span1.heart_this
           %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
         .span1
         .span4 
-          %form.event-create-form.clearfix{'ng-init'=> "event.host_id=#{current_user.id}", :name => "event_create"}
+          %form.event-create-form.clearfix{'ng-init'=> "event.host_id=#{current_user.id}", :name => "event_edit"}
             
-            %input#event-title{'ng-model' => 'event.title', :type=>"text", :placeholder =>"Event Title", :name => "event_title", :required => "required", 'ng-class' => "{error: event_create.event_title.$invalid}", :maxlength => "60"}
+            %input#event-title{'ng-model' => 'event.title', :type=>"text", :placeholder =>"Event Title", :name => "event_title", :required => "required", 'ng-class' => "{error: event_edit.event_title.$invalid}", :maxlength => "60"}
             
-            %textarea#event-blurb{:rows => "2", 'ng-model' => 'event.description', :type=>"text", :placeholder =>"Event Blurb - you get the length of a tweet. Make it sexy ;)", :name => "event_blurb", :maxlength => "140", :required => "required", 'ng-class' => "{error: event_create.event_blurb.$invalid}"}
+            %textarea#event-blurb{:rows => "2", 'ng-model' => 'event.description', :type=>"text", :placeholder =>"Event Blurb - you get the length of a tweet. Make it sexy ;)", :name => "event_blurb", :maxlength => "140", :required => "required", 'ng-class' => "{error: event_edit.event_blurb.$invalid}"}
 
             #event-ticket-details
               .input-prepend
                 %span.add-on $
-                %input#prependedInput#ticket-cost{'ng-model' => 'event.cost',:type=>"text", :required => "required", :name => "event_cost", 'ng-pattern' => '/^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$/', 'ng-class' => "{error: event_create.event_cost.$invalid}", :placeholder => "Ticket Price"}
+                %input#prependedInput#ticket-cost{'ng-model' => 'event.cost',:type=>"text", :required => "required", :name => "event_cost", 'ng-pattern' => '/^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$/', 'ng-class' => "{error: event_edit.event_cost.$invalid}", :placeholder => "Ticket Price"}
 
-              %input#people-limit{'ng-model' => 'event.people_limit',:type=>"text", :name => "event_limit", 'ng-pattern' => '/^[0-9]+$/', :required => "required", 'ng-class' => "{error: event_create.event_limit.$invalid}", :placeholder => "Number of Seats"}
+              %input#people-limit{'ng-model' => 'event.people_limit',:type=>"text", :name => "event_limit", 'ng-pattern' => '/^[0-9]+$/', :required => "required", 'ng-class' => "{error: event_edit.event_limit.$invalid}", :placeholder => "Number of Seats"}
               
-              .help-block-white{'ng-show' => 'event_create.event_cost.$error.pattern'} Please enter a valid event cost
-              .help-block-white{'ng-show' => 'event_create.event_limit.$error.pattern'} Please enter a valid number of seats
+              .help-block-white{'ng-show' => 'event_edit.event_cost.$error.pattern'} Please enter a valid event cost
+              .help-block-white{'ng-show' => 'event_edit.event_limit.$error.pattern'} Please enter a valid number of seats
 
             %button.GetFilepicker.clearfix.btn#event-images-button Upload Images
             %button.clearfix.btn#event-menu-button Upload Menu
@@ -92,28 +92,28 @@
 
             #event-date-time
               %p Date and Time
-              %input#event-date{'ng-model' => 'event.date', :type=>"date", :name => "event_date", :required => "required", :min => '{{today}}', 'ng-class' => "{error: event_create.event_date.$invalid}"}
+              %input#event-date{'ng-model' => 'event.date', :type=>"date", :name => "event_date", :required => "required", :min => '{{today}}', 'ng-class' => "{error: event_edit.event_date.$invalid}"}
 
-              %select#times{'ng-model' => 'event.when', :name => "event_when", :required => "required", 'ng-class' => "{error: event_create.event_when.$invalid}"}
+              %select#times{'ng-model' => 'event.when', :name => "event_when", :required => "required", 'ng-class' => "{error: event_edit.event_when.$invalid}"}
 
             #event-location
               %p Location (guests see full address after purchase)
 
-              %select#neighborhoods{'ng-model' => 'event.neighborhood', :required => "required", :name => "event_neighborhood", 'ng-class' => "{error: event_create.event_neighborhood.$invalid}"}
+              %select#neighborhoods{'ng-model' => 'event.neighborhood', :required => "required", :name => "event_neighborhood", 'ng-class' => "{error: event_edit.event_neighborhood.$invalid}"}
 
-              %input#event_address{'ng-model' => 'event.location.address1',:type=>"text", :placeholder =>"Address", :required => "required", :name => "event_address", 'ng-class' => "{error: event_create.event_address.$invalid}"}
+              %input#event_address{'ng-model' => 'event.location.address1',:type=>"text", :placeholder =>"Address", :required => "required", :name => "event_address", 'ng-class' => "{error: event_edit.event_address.$invalid}"}
 
-              %input#event-city{'ng-model' => 'event.location.city',:type=>"text", :placeholder =>"City", :required => "required", :name => "event_city", 'ng-class' => "{error: event_create.event_city.$invalid}"}
+              %input#event-city{'ng-model' => 'event.location.city',:type=>"text", :placeholder =>"City", :required => "required", :name => "event_city", 'ng-class' => "{error: event_edit.event_city.$invalid}"}
   
-              %select#state{'ng-model' => 'event.location.state', :required => "required", :name => "event_state", 'ng-class' => "{error: event_create.event_state.$invalid}"}
+              %select#state{'ng-model' => 'event.location.state', :required => "required", :name => "event_state", 'ng-class' => "{error: event_edit.event_state.$invalid}"}
 
-              %input#event-zipcode{'ng-model' => 'event.location.zipcode',:type=>"text", :maxlength => "5", :required => "required", 'ng-pattern' => '/^[0-9]+$/', :name => "event_zip", 'ng-class' => "{error: event_create.event_zip.$invalid}", :placeholder => "Zipcode"}
+              %input#event-zipcode{'ng-model' => 'event.location.zipcode',:type=>"text", :maxlength => "5", :required => "required", 'ng-pattern' => '/^[0-9]+$/', :name => "event_zip", 'ng-class' => "{error: event_edit.event_zip.$invalid}", :placeholder => "Zipcode"}
 
-              .help-block-white{'ng-show' => 'event_create.event_zip.$error.pattern'} Please enter a valid zip code
+              .help-block-white{'ng-show' => 'event_edit.event_zip.$error.pattern'} Please enter a valid zip code
 
-            .help-block-white{'ng-show' => 'event_create.event_title.$error.required || event_create.event_blurb.$error.required || event_create.event_date.$error.required || event_create.event_when.$error.required || event_create.event_neighborhood.$error.required || event_create.event_address.$error.required || event_create.event_city.$error.required || event_create.event_state.$error.required || event_create.event_zip.$error.required || event_create.event_cost.$error.required || event_create.event_limit.$error.required'} All fields are required
+            .help-block-white{'ng-show' => 'event_edit.event_title.$error.required || event_edit.event_blurb.$error.required || event_edit.event_date.$error.required || event_edit.event_when.$error.required || event_edit.event_neighborhood.$error.required || event_edit.event_address.$error.required || event_edit.event_city.$error.required || event_edit.event_state.$error.required || event_edit.event_zip.$error.required || event_edit.event_cost.$error.required || event_edit.event_limit.$error.required'} All fields are required
 
-            %button.btn.btn-warning.standalone-button#submit{'ng-disabled' => 'event_create.$invalid'} Update
+            %button.btn.btn-warning.standalone-button#submit{'ng-disabled' => 'event_edit.$invalid'} Update
 
   .container
     .row
