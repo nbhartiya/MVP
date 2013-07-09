@@ -15,7 +15,7 @@
           %li.active{"data-target" => "#event-carousel", "data-slide-to" => index}
         - else
           %li{"data-target" => "#event-carousel", "data-slide-to" => index}
-    .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1=#{@event.location.address1};city=#{@event.location.city};state=#{@event.location.state};zipcode=#{@event.location.zipcode};eventId=#{@event.id}"}
+    .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}'"}
       .event-registration.row
         .span1
         .span4
@@ -83,7 +83,9 @@
                 %td reviews
                 %td calendar
         .span1.heart_this
-          %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
+          -# Fix 
+          -# %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
+          %heart
         .span1
         .span4 
           .event-guests.clearfix{'ng-show' => 'payment==1', 'ng-init'=> "cost=#{@event.cost}"}

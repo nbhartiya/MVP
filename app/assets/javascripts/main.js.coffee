@@ -1,17 +1,28 @@
 Simmr = angular.module('Simmr', ['uiSlider', 'ngResource', 'rails', 'ui', 'ui.bootstrap'])
 
-angular.module('Simmr').factory "Event", ["railsResourceFactory", (railsResourceFactory) -> railsResourceFactory
+
+Simmr.directive "heart", ->
+  {
+  restrict: 'E'
+  scope:
+    followableType: "="
+    followableId: "="
+    userId: "="
+  templateUrl: "<%= asset_path('/assets/javascripts/templates/heart.html') %>"
+  }
+
+Simmr.factory "Event", ["railsResourceFactory", (railsResourceFactory) -> railsResourceFactory
     url: "/api/events"
     name: "event"
 ]
 
-angular.module('Simmr').factory "Charge", ["railsResourceFactory", (railsResourceFactory) ->
+Simmr.factory "Charge", ["railsResourceFactory", (railsResourceFactory) ->
   railsResourceFactory
     url: "/api/charges"
     name: "charge"
 ]
 
-angular.module('Simmr').controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "Charge", "Event", ($scope, $routeParams, $location, Charge, Event) ->
+Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "Charge", "Event", ($scope, $routeParams, $location, Charge, Event) ->
   $scope.guests = []
 
   $scope.guest = {}
@@ -82,7 +93,7 @@ angular.module('Simmr').controller "EventRegisterCtrl", ["$scope",  "$routeParam
         console.log response
 ]
 
-angular.module('Simmr').controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
+Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
   $scope.created = false
   
   $scope.createEvent = (event) ->
@@ -91,17 +102,17 @@ angular.module('Simmr').controller "EventCreateCtrl", ["$scope",  "$routeParams"
       $scope.created = true
 ]
 
-angular.module('Simmr').controller "EventIndexCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
+Simmr.controller "EventIndexCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
 
 ]
 
-angular.module('Simmr').controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
+Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
   $scope.today = moment().format("YYYY-MM-DD")
   $scope.event = []
   $scope.event.date = moment().format("dddd, MMMM D")
 ]
 
-angular.module('Simmr').controller "EventFeedbackCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
+Simmr.controller "EventFeedbackCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
 
   $scope.feedback=1
   $scope.currentUrl = document.URL
@@ -109,13 +120,13 @@ angular.module('Simmr').controller "EventFeedbackCtrl", ["$scope",  "$routeParam
 
 ]
 
-angular.module('Simmr').factory "Campaign", ["railsResourceFactory", (railsResourceFactory) ->
+Simmr.factory "Campaign", ["railsResourceFactory", (railsResourceFactory) ->
   railsResourceFactory
     url: "/api/campaigns"
     name: "campaign"
 ]
 
-angular.module('Simmr').controller "CampaignCreateCtrl", ["$scope",  "$routeParams", "$location", "Campaign", ($scope, $routeParams, $location, Campaign) ->
+Simmr.controller "CampaignCreateCtrl", ["$scope",  "$routeParams", "$location", "Campaign", ($scope, $routeParams, $location, Campaign) ->
 
   $scope.createCampaign = (campaign) ->
     new Campaign(campaign).create().then (data) =>
@@ -123,6 +134,7 @@ angular.module('Simmr').controller "CampaignCreateCtrl", ["$scope",  "$routePara
       $scope.campaign = 1
 ]
 
-angular.module('Simmr').controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "Campaign", ($scope, $routeParams, $location, Campaign) ->
+Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "Campaign", ($scope, $routeParams, $location, Campaign) ->
 
 ]
+
