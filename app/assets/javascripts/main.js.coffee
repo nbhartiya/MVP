@@ -11,12 +11,6 @@ angular.module('Simmr').factory "Charge", ["railsResourceFactory", (railsResourc
     name: "charge"
 ]
 
-angular.module('Simmr').factory "Location", ["railsResourceFactory", (railsResourceFactory) ->
-  railsResourceFactory
-    url: "/api/locations"
-    name: "location"
-]
-
 angular.module('Simmr').controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "Charge", "Event", ($scope, $routeParams, $location, Charge, Event) ->
   $scope.guests = []
 

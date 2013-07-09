@@ -21,7 +21,7 @@
               %td.profile-photo
                 =image_tag "Favicon.png"
               %td.user-title
-                %h1#default-text{'ng-show'=>'profile.name=="" || profile.name==nil'} Your Name
+                %h1#default-text{'ng-show'=>'profile.name=="" || profile.name==nil'} #{@profile.user.first_name} #{@profile.user.last_name}
                 %h1
                   {{profile.name}}
             %tr
