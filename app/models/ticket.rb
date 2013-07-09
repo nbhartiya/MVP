@@ -12,9 +12,10 @@
 #
 
 class Ticket < ActiveRecord::Base
-  attr_accessible :event_id, :user_id, :num_guests, :guests_attributes, :total_paid
+  attr_accessible :event_id, :user_id, :num_guests, :guests_attributes, :total_paid, :charge_id
   belongs_to :event
   belongs_to :user
+  belongs_to :charge
 
   has_many :guests, :dependent => :destroy
   accepts_nested_attributes_for :guests, :reject_if => lambda { |a| a[:email].blank? }, :allow_destroy => true

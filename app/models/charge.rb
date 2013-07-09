@@ -13,7 +13,7 @@
 #
 
 class Charge < ActiveRecord::Base
-  attr_accessible :full_name, :last4, :location_id, :token, :user_id, :ticket_id
+  attr_accessible :full_name, :last4, :location_id, :token, :user_id
 
   belongs_to :user
   has_many :guests
