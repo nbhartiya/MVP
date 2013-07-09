@@ -16,7 +16,7 @@
         - else
           %li{"data-target" => "#event-carousel", "data-slide-to" => index}
         
-    .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1=#{@event.location.address1}; city = #{@event.location.city}; state = #{@event.location.state}; zipcode = #{@event.location.zipcode}"}
+    .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1=#{@event.location.address1};city=#{@event.location.city};state=#{@event.location.state};zipcode=#{@event.location.zipcode}"}
       .event-registration.row
         .span1
         .span4
@@ -37,7 +37,7 @@
               =@event.date.strftime("%A, %B %d, %l:%M%p")
             %h3 Mission
             -# upon registration show
-              %a{:href => "{{mapURL}}"} 123 Mission Street <br> San Francisco, CA 94107
+              %a{:href => "{{mapUrl()}}"} 123 Mission Street <br> San Francisco, CA 94107
             %p 
               -# pull out and make this a method somewhere...
               =@event.seats_left
@@ -169,7 +169,8 @@
                               %p
                     .row.comments
                       .span10
-                        .fb-comments{"data-href" => "{{currentURL}}", "data-num-posts" => "10", "data-width" => "910"}
+                        .fb-comments{"data-href" => '{{currentUrl}}', "data-num-posts" => "10", "data-width" => "910"}
+
 
 -#
   %p#notice= notice
