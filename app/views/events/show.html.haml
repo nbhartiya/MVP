@@ -85,10 +85,10 @@
         .span1.heart_this
           -# Fix 
           -# %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
-          %heart
+          %heart{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{params}'"}
         .span1
         .span4 
-          .event-guests.clearfix{'ng-show' => 'payment==1', 'ng-init'=> "cost=#{@event.cost}"}
+          .event-guests.clearfix{'ng-show' => 'payment==1', 'ng-init'=> "cost='#{@event.cost}'"}
             %h1 Total: ${{total()}}
             %hr
             %h2 Who all are coming?

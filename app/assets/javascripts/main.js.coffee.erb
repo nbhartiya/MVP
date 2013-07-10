@@ -1,5 +1,10 @@
 Simmr = angular.module('Simmr', ['uiSlider', 'ngResource', 'rails', 'ui', 'ui.bootstrap'])
 
+Simmr.factory "Follow", ["railsResourceFactory", (railsResourceFactory) ->
+  railsResourceFactory
+    url: "/api/follows"
+    name: "follow"
+]
 
 Simmr.directive "heart", ->
   {
@@ -10,6 +15,19 @@ Simmr.directive "heart", ->
     userId: "="
   templateUrl: "<%= asset_path('templates/heart.html') %>"
   }
+
+Simmr.controller "HeartCtrl", ["$scope",  "$routeParams", "Follow", ($scope, $routeParams, Follow) ->
+  console.log($scope)
+  console.log($scope.wah)
+  $scope.follow = ->
+    if $('.heart.follow').hasClass("black")
+        $('.heart.follow').removeClass "black"
+        $('.heart.follow').addClass "orange"
+      else
+        $('.heart.follow').removeClass "orange"
+        $('.heart.follow').addClass "black"
+  
+]
 
 Simmr.factory "Event", ["railsResourceFactory", (railsResourceFactory) -> railsResourceFactory
     url: "/api/events"
