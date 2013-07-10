@@ -24,10 +24,9 @@ angular.module('Simmr').controller "EventRegisterCtrl", ["$scope",  "$routeParam
   $scope.guest.name = ''
   $scope.guest.email = ''
   $scope.buyer = {}
-  $scope.currentUrl = document.URL
 
   $scope.mapUrl = ->
-    mapUrl = "http://maps.google.com/?q=" + $scope.address1 + ", " + $scope.city + ", " + $scope.state + ", " + $scope.zipcode
+    mapUrl = "http://maps.google.com/?q=#{$scope.address1},#{$scope.city}, #{$scope.state},#{$scope.zipcode}"
 
   $scope.total = ->
     total = $scope.num_guests * $scope.cost
@@ -35,19 +34,13 @@ angular.module('Simmr').controller "EventRegisterCtrl", ["$scope",  "$routeParam
 
   $scope.showPayment = ->
     $scope.guests = []
-    $scope.guest_pages = []
-    $scope.guests_left = $scope.num_guests
     $scope.guest_no_pages = 0
     if $scope.num_guests > 0
       $scope.currentUser.name = $scope.currentUser.first_name + ' ' + $scope.currentUser.last_name
       $scope.guests.push($scope.currentUser)
       i = 0
-      if $scope.num_guests % 6 == 0 
-        $scope.guest_no_pages = $scope.num_guests / 6
-      else
-        $scope.guest_no_pages = $scope.num_guests / 6 + 1
-    
-      while i < $scope.guests_left - 1 and i < 5
+      
+      while i < $scope.num_guests - 1
         $scope.guests.push({})
         i++
 
@@ -62,14 +55,15 @@ angular.module('Simmr').controller "EventRegisterCtrl", ["$scope",  "$routeParam
     if error == 0
       $scope.payment = 2 
 
-  $scope.submitPayment = ->    
-    $scope.submitCard($scope.card)
-  
   $scope.card =
     number: ""
-    expMonth: ''
-    expYear: ''
-    cvc: ''
+    expMonth: ""
+    expYear: ""
+    cvc: ""
+
+  $scope.submitPayment = ->    
+    $scope.submitCard($scope.card)
+
   $scope.data = {}
   $scope.submitCard = (card) ->
     Stripe.createToken card, (status, response) ->
@@ -109,9 +103,8 @@ angular.module('Simmr').controller "EventEditCtrl", ["$scope",  "$routeParams", 
 angular.module('Simmr').controller "EventFeedbackCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
 
   $scope.feedback=1
-  $scope.currentUrl = document.URL
-  $scope.eventUrl = $scope.currentUrl.substring(0, $scope.currentUrl.length-9)
-
+  $scope.mapUrl = ->
+    mapUrl = "http://maps.google.com/?q=#{$scope.address1},#{$scope.city}, #{$scope.state},#{$scope.zipcode}"
 ]
 
 angular.module('Simmr').factory "Campaign", ["railsResourceFactory", (railsResourceFactory) ->
