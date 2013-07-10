@@ -33,7 +33,8 @@ class User < ActiveRecord::Base
   has_one :image, :as => :imageable
   # always do User.first.create_image instead of User.first.images.create!, but to destroy do User.first.image.destroy
   has_many :tickets
-  has_many :events_attended, :class_name => "Event", :through => :tickets
+  # TODO: below relationship doesn't work...need to fix
+  has_many :events_attended, :class_name => "Event", :through => :guests
   has_many :events_hosted, :class_name => "Event", :foreign_key => "host_id"
   has_many :charges
   has_one :profile

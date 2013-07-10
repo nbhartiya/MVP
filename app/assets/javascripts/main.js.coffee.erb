@@ -8,7 +8,7 @@ Simmr.directive "heart", ->
     followableType: "="
     followableId: "="
     userId: "="
-  templateUrl: "<%= asset_path('/assets/javascripts/templates/heart.html') %>"
+  templateUrl: "<%= asset_path('templates/heart.html') %>"
   }
 
 Simmr.factory "Event", ["railsResourceFactory", (railsResourceFactory) -> railsResourceFactory

@@ -1,6 +1,9 @@
 .row
   .span5.campaign-image
-    =link_to image_tag("Food 22.jpg"), "#"
+    -if campaign.images.present?
+      =link_to (filepicker_image_tag campaign.images.first.image), campaign_path(campaign)
+    -else
+      =link_to image_tag("Food 17.jpg"), campaign_path(campaign)
 .row.campaign-first-row
   .span1.campaign-lead-image
     =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Campaign Lead Name", "class" => "campaign-card-lead-name"
