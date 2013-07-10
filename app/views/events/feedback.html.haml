@@ -16,7 +16,7 @@
         -else
           %li{"data-target" => "#event-carousel", "data-slide-to" => index}
     .container
-      .event-feedback.row{'ng-controller' => 'EventFeedbackCtrl'}
+      .event-feedback.row{'ng-controller' => 'EventFeedbackCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}'"}
         .span1
         .span4
           .event-summary.clearfix
@@ -27,7 +27,7 @@
             %h3#event-date
               =@event.date.strftime("%A %B %d, %I:%M%p")
               =@event.when
-            %h3 Mission
+            %a{:href => "{{mapUrl()}}"} 123 Mission Street <br> San Francisco, CA 94107
             %table.feedback-actions
               %tr
                 %td
@@ -243,5 +243,5 @@
                           %p
                 .row.comments
                   .span10
-                    .fb-comments{"data-href" => "{{eventURL}}", "data-num-posts" => "10", "data-width" => "910"}
+                    .fb-comments{"data-href" => "#{request.url[0..-10]}", "data-num-posts" => "10", "data-width" => "910"}
         .span1

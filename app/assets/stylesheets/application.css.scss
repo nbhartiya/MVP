@@ -27,6 +27,23 @@ html body {
 	font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;        
 }
 
+body{
+	scrollbar-face-color: transparent;
+	scrollbar-shadow-color: #2D2C4D;
+	scrollbar-highlight-color:#7D7E94;
+	scrollbar-3dlight-color: #7D7E94;
+	scrollbar-darkshadow-color: #2D2C4D;
+	scrollbar-track-color: #7D7E94;
+	scrollbar-arrow-color: #C1C1D1;
+	::-webkit-scrollbar{width:9px;height:9px;}
+	::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment{display:block;height:0;background-color:transparent;}
+	::-webkit-scrollbar-track-piece{background-color:transparent;-webkit-border-radius:0;-webkit-border-bottom-right-radius:8px;-webkit-border-bottom-left-radius:8px;}
+	::-webkit-scrollbar-thumb:vertical{height:50px;background-color:rgb(180, 180, 180);-webkit-border-radius:8px;}
+	::-webkit-scrollbar-thumb:horizontal{width:50px;background-color:rgb(180, 180, 180);-webkit-border-radius:8px;}
+}
+
+
+
 // general purpose classes
 
 .highlight{
@@ -234,12 +251,12 @@ input.error-true  {
 	}
 	a:link, a:visited{
 		text-decoration: none;
-		color: rgb(200, 200, 200);
+		color: white;
 		font-size: 16px;
 		line-height: 1.5em;
 	}
 	a:hover, a:active{
-		color: white;
+		color: rgb(200, 200, 200);
 	}
 	table{
 		margin: 0 0 20px 0;

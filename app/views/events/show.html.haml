@@ -15,6 +15,7 @@
           %li.active{"data-target" => "#event-carousel", "data-slide-to" => index}
         - else
           %li{"data-target" => "#event-carousel", "data-slide-to" => index}
+
     .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}'"}
       .event-registration.row
         .span1
@@ -47,6 +48,7 @@
               %a.btn.btn-warning.standalone-button{:"data-toggle" =>"modal", :href=>"#sign_in"} Sign In
             -if user_signed_in?
               %select.number-of-seats{'ng-model' => 'num_guests'}
+                %option{:value => ''} Number of Seats
                 %option{:value => 1} 1 seat
                 - (@event.seats_left).times do |s|
                   %option{:value => s+2} #{s+2} seats
@@ -104,7 +106,7 @@
             %h1 Total: ${{total()}}
             %hr
             = render 'charges/stripe'
-            %button.btn.btn-warning#ticket-purchase{'ng-click' => 'submitPayment()'} Purchase
+            %button.btn.btn-warning#ticket-purchase{'ng-click' => 'submitPayment()', 'ng-disabled'=> 'stripe.$invalid'} Purchase
             %button.btn#previous-button{'ng-click' => 'payment=1'} Previous
 
           .event-purchase.clearfix{'ng-show' => 'payment==3'}
@@ -168,7 +170,7 @@
                               %p
                     .row.comments
                       .span10
-                        .fb-comments{"data-href" => '{{currentUrl}}', "data-num-posts" => "10", "data-width" => "910"}
+                        .fb-comments{"data-href" => "#{request.url}", "data-num-posts" => "10", "data-width" => "910"}
 
 
 -#
