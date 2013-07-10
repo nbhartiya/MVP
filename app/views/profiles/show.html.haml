@@ -14,9 +14,12 @@
       %li{"data-slide-to" => "2", "data-target" => "#profile-carousel"}
     .container
       .row.user-overview
-        .span1          
-        .span4.user-profile-overview{'ng-controller' => 'ProfileShowCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}'"}
-          %table
+        .span1
+        -if @profile.user.kind == "chef"       
+          .span4.user-profile-overview{'ng-controller' => 'ProfileShowCtrl', 'ng-init' => "address1='#{@event.location.address1}'; city = '#{@event.location.city}'; state = '#{@event.location.state}'; zipcode = '#{@event.location.zipcode}'"}
+        -else
+          .span4.user-profile-overview{'ng-controller' => 'ProfileShowCtrl'}
+            %table
             %tr
               %td.profile-photo
                 =image_tag "Favicon.png"
@@ -27,12 +30,12 @@
               %td.user-summary{:colspan => '2'}
                 %h2 
                   Your Haven from the World 
-                  -if current_user.kind == "chef"
+                  -if @profile.user.kind == "chef"
                     <sup><a href = "#user-about", class = "read-more", data-target = "#user-about-detail", data-toggle = "collapse"> Read More </a></sup>
                     %a{:href => "{{mapUrl()}}"} 123 Mission Street <br> San Francisco, CA 94107
                   -else
                     %h3 Just Neighborhood
-                -if current_user.kind == "chef"
+                -if @profile.user.kind == "chef"
                   %table.user-social-stats
                     %tr
                       %td
@@ -70,7 +73,7 @@
         .span1
         .span4 
         .span1
-  -if current_user.kind == "chef"
+  -if @profile.user.kind == "chef"
     .container
       .row
         .span2.scroll-menu.chef
@@ -174,7 +177,7 @@
       .row
         .span2.scroll-menu
           %ul.nav.nav-list.scroll-menu-items{"data-spy" => "affix", "data-offset-top" => "720", "data-offset-bottom"=> "150"}
-            %li 
+            -# %li 
               %a{:href=>"#badges"} Badges
             %li 
               %a{:href=>"#events"} Events
@@ -183,10 +186,10 @@
             %li 
               %a{:href=>"#following"} Following
         .span10
-          .row.section-header#badges
+          -# .row.section-header#badges
             .span10
               %h1 Badges
-          .row.badges
+          -# .row.badges
             .span10
               .row.badges-row
                 .span1.single-badge
@@ -218,8 +221,7 @@
                   =image_tag "Favicon.png"
                 .span1.single-badge
                   =image_tag "Favicon.png"
-        .row
-          .span10.offset2
+          .span10
             .row.section-header#events
               .span10
                 %h1 Events
@@ -231,18 +233,24 @@
                   %li 
                     %a{:href=>"#"} Hearted
             -#
-              .row.user-events
-                .span10
-                  .row.events-row
-                    .span5.single-event
-                      =render "events/singleevent"
-                    .span5.single-event
-                      =render "events/singleevent"
-                  .row.events-row
-                    .span5.single-event
-                      =render "events/singleevent"
-                    .span5.single-event
-                      =render "events/singleevent"
+              -all_events = @events
+              -while all_events.length > 1
+                -event = all_events.pop
+                .row.events-row
+                  .span1
+                  .span5.single-event
+                    =render "events/singleevent", :event => event
+                  -event = all_events.pop
+                  .span5.single-event
+                    =render "events/singleevent", :event => event
+                  .span1
+              -if all_events.length == 1
+                -event = all_events.pop
+                .row.events-row
+                  .span1
+                  .span5.single-event
+                    =render "events/singleevent", :event => event
+                  .span6
             .row.section-header#campaigns
               .span10
                 %h1 Campaigns
@@ -251,19 +259,22 @@
                     %a{:href=>"#"} Ongoing
                   %li 
                     %a{:href=>"#"} Successful
-            -#
-              .row.user-campaigns
-                .span10
-                  .row
-                    .span5.single-campaign
-                      =render "campaigns/singlecampaign"
-                    .span5.single-campaign
-                      =render "campaigns/singlecampaign"
-                  .row
-                    .span5.single-campaign
-                      =render "campaigns/singlecampaign"
-                    .span5.single-campaign
-                      =render "campaigns/singlecampaign"
+            .span10
+              -user_campaigns = @profile.user.campaigns
+              -while user_campaigns.length > 1
+                -campaign = user_campaigns.pop
+                .row.user-campaigns
+                  .span5.single-campaign
+                    =render "campaigns/singlecampaign", :campaign => campaign
+                  -campaign = user_campaigns.pop
+                  .span5.single-campaign
+                    =render "campaigns/singlecampaign", :campaign => campaign
+              -if user_campaigns.length == 1
+                -campaign = user_campaigns.pop
+                .row.user-campaigns
+                  .span5.single-campaign
+                    =render "campaigns/singlecampaign", :campaign => campaign
+                  .span5
             .row.section-header#following
               .span10
                 %h1 Following

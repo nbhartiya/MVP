@@ -2,8 +2,8 @@
   .event-profile
     #event-carousel.carousel.slide           
       .carousel-inner
-        .active.item
-          =image_tag "Food 17.jpg"
+        .the-images
+      %a.carousel-control.right{"data-slide"=>"next", :href =>"#event-carousel"} >
     .container
       .event-registration.row{'ng-controller' => 'EventCreateCtrl'}
         .span1
@@ -86,6 +86,7 @@
               .help-block-white{'ng-show' => 'event_create.event_limit.$error.pattern'} Please enter a valid number of seats
 
             %button.GetFilepicker.clearfix.btn#event-images-button Upload Images
+
             %button.clearfix.btn#event-menu-button Upload Menu
             
             %hr

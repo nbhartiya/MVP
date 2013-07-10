@@ -539,11 +539,3 @@ $("#event-carousel").carousel interval: false
 $(".carousel-indicators li").click ->
   $(".carousel-indicators li").removeClass "active"
   $(this).addClass "active"
-
-$(".events .heart_this a").click ->
-  if $(this).hasClass("black")
-    $(this).removeClass "black"
-    $(this).addClass "orange"
-  else
-    $(this).removeClass "orange"
-    $(this).addClass "black"

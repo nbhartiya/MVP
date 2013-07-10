@@ -15,8 +15,8 @@
           %li.active{"data-target" => "#event-carousel", "data-slide-to" => index}
         - else
           %li{"data-target" => "#event-carousel", "data-slide-to" => index}
-        
-    .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}'"}
+
+    .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}'"}
       .event-registration.row
         .span1
         .span4
@@ -39,11 +39,9 @@
             -# upon registration show
               %a{:href => "{{mapUrl()}}"} 123 Mission Street <br> San Francisco, CA 94107
             %p 
-              -# pull out and make this a method somewhere...
               =@event.seats_left
               seats left
             .progress.progress-warning
-              -#probably want to pull this arithmetic out too
               .bar{:style => "width: #{@event.percent_full}%"}
             -if user_signed_in? == false
               .btn.btn-warning.standalone-button{:"data-toggle" => "modal", :href=>"#sign_up"} Sign Up
@@ -87,10 +85,12 @@
                 %td reviews
                 %td calendar
         .span1.heart_this
-          %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
+          -# Fix 
+          -# %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
+          %heart{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{params}'"}
         .span1
         .span4 
-          .event-guests.clearfix{'ng-show' => 'payment==1', 'ng-init'=> "cost=#{@event.cost}"}
+          .event-guests.clearfix{'ng-show' => 'payment==1', 'ng-init'=> "cost='#{@event.cost}'"}
             %h1 Total: ${{total()}}
             %hr
             %h2 Who all are coming?
@@ -133,7 +133,7 @@
               #host-story-detail.accordion-body.collapse.in
                 .accordion-inner
                   %p
-                    =@event.host.last_name
+                    =@event.host.profile.story
               -#=@event.host.profile.story
               -# Need to make sure a host story exists for that host before they can create the event...
       .row
