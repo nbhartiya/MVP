@@ -16,7 +16,7 @@
   
   #expiration
     %p Expiration
-    %select#expiration_month{'ng-model' => "card.expMonth", :required => "required", :name => "card_expMonth", 'ng-class' => "{error: stripe.card_expMonth.$invalid}"}
+    %select#expiration_month{'ng-model' => "card.expMonth", :required => "required", :name => "card_expMonth"}
       %option{:value => ""} M
       %option{:value => 1} 01
       %option{:value => 2} 02
@@ -31,7 +31,7 @@
       %option{:value => 11} 11
       %option{:value => 12} 12
 
-    %select#expiration_year{'ng-model' => "card.expYear", :required => "required", :name => "card_expYear", 'ng-class' => "{error: stripe.card_expYear.$invalid}"}
+    %select#expiration_year{'ng-model' => "card.expYear", :required => "required", :name => "card_expYear"}
       %option{:value => ""} Y
       %option{:value => 2013} 13
       %option{:value => 2014} 14
@@ -60,7 +60,7 @@
     
   %input#zipcode{'ng-model' => "buyer.billingZip", :placeholder => "Zip Code", :type => "text", :required => "required", :name => "billing_zip", :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: stripe.billing_zip.$invalid}"}
 
-  .help-block-white{'ng-show' => 'stripe.name.$error.required || stripe.card_number.$error.required || stripe.card_cvc.$error.required || stripe.card_expMonth.$error.required || stripe.card_expYear.$error.required || stripe.billing_address.$error.required || stripe.billing_city.$error.required || stripe.billing_state.$error.required || stripe.billing_zip.$error.required'} All fields are required
+  .help-block-white{'ng-show' => 'stripe.name.$error.required || stripe.card_number.$error.required || stripe.card_cvc.$error.required || stripe.billing_address.$error.required || stripe.billing_city.$error.required || stripe.billing_state.$error.required || stripe.billing_zip.$error.required'} All fields are required
   .help-block-white{'ng-show' => 'stripe.billing_zip.$error.pattern'} Please enter a valid zip code
     
   %input#charge_last4{:name => "charge[last4]", :type => "hidden"}
