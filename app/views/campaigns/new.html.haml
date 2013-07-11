@@ -49,10 +49,11 @@
             %input{'ng-model' => 'campaign.biz_name', :type=>"text", :placeholder =>"Business Name - who is this campaign for?", :name => "campaign_name", :required => "required", 'ng-class' => "{error: campaign_create.campaign_name.$invalid}"}
             %textarea.campaign-blurb{:rows => "4", 'ng-model' => 'campaign.blurb', :type=>"text", :placeholder =>"Business Description - you get the length of a tweet to describe this business - what is its tagline?", :required => "required", :name => "campaign_description", :maxlength => "140", 'ng-class' => "{error: campaign_create.campaign_description.$invalid}"}
 
-            .help-block-white{'ng-show' => "campaign_create.campaign_description.$error.required || campaign_create.campaign_name.$error.required"} Both field sare required!
+            .help-block-white{'ng-show' => "campaign_create.campaign_description.$error.required || campaign_create.campaign_name.$error.required"} Both fields are required!
             
             .clearfix
               %button.btn.GetFilepicker#campaign-upload-images Upload Images
+              -#NB710 MAKE IMAGES SHOW UP IN CAROUSEL
             
             %button.btn.btn-warning.standalone-button#submit{'ng-click' => 'createCampaign(campaign)', 'ng-disabled'=> 'campaign_create.$invalid'} Create
 
@@ -65,7 +66,7 @@
         .row.section-header#why
           .span12#why-join
             %a{:href => "#why-join", 'data-target'=>"#why-join-detail", 'data-toggle'=>"collapse"} Why Join? <span class="caret"></span>
-  .why-join
+  .why-join{'ng-controller'=>'CampaignEditCtrl'}
     .container
       .row
         .span12
@@ -73,7 +74,7 @@
             #why-join-detail.accordion-body.collapse.in
               .accordion-inner
                 %textarea.textarea-section{:placeholder => "Why should others join your campaign?", "rows"=>'3', 'ng-model' => "campaign.why_join"}
-                %button.btn.btn-warning{'ng-disabled'=> 'campaign.why_join == "" || campaign.why_join == nil'} Update
+                %button.btn.btn-warning{'ng-disabled'=> 'campaign.why_join == "" || campaign.why_join == nil', 'ng=click' => 'updateCampaign(campaign)'} Update
 
 -#
   = render 'form'

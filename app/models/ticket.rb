@@ -9,6 +9,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  total_paid :float
+#  charge_id  :integer
 #
 
 class Ticket < ActiveRecord::Base

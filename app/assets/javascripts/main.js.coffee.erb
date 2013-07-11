@@ -26,7 +26,6 @@ Simmr.controller "HeartCtrl", ["$scope",  "$routeParams", "Follow", ($scope, $ro
       else
         $('.heart.follow').removeClass "orange"
         $('.heart.follow').addClass "black"
-  
 ]
 
 Simmr.factory "Event", ["railsResourceFactory", (railsResourceFactory) -> railsResourceFactory
@@ -137,15 +136,19 @@ Simmr.factory "Campaign", ["railsResourceFactory", (railsResourceFactory) ->
     name: "campaign"
 ]
 
-Simmr.controller "CampaignCreateCtrl", ["$scope",  "$routeParams", "$location", "Campaign", ($scope, $routeParams, $location, Campaign) ->
-
+Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$location", "Campaign", ($scope, $window, $routeParams, $location, Campaign) ->
   $scope.createCampaign = (campaign) ->
     new Campaign(campaign).create().then (data) =>
       console.log data, "~~~~~~~~~~"
       $scope.campaign = 1
+      $window.location.href='/campaigns/'+data.id+'/edit'
+
 ]
 
 Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "Campaign", ($scope, $routeParams, $location, Campaign) ->
-
+  console.log $scope.campaign
+  console.log $routeParams.campaign
+  $scope.editCampaign = (campaign) ->
+    Campaign(campaign).update()
 ]
 

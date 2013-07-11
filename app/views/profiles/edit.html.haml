@@ -75,8 +75,8 @@
                     %td points
                     %td followers
                     %td following
-        .span1.edit-button
-          %button.btn.btn-warning{'ng-click' => 'edit=1'} Edit
+        -#.span1.edit-button
+          %button.btn.btn-warning{'ng-click' => 'edit=0'} Edit
         .span1
         .span4 
           -if current_user.kind == "chef"

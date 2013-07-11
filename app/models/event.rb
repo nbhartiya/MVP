@@ -8,7 +8,7 @@
 #  description    :text
 #  menu_pdf       :string(255)
 #  menu_text      :text
-#  date           :datetime
+#  date           :date
 #  cost           :float
 #  location_title :string(255)
 #  length         :integer
@@ -18,6 +18,7 @@
 #  host_id        :integer
 #  neighborhood   :string(255)
 #  blurb          :text
+#  when           :time
 #
 
 class Event < ActiveRecord::Base
