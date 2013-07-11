@@ -78,14 +78,16 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
     if error == 0
       $scope.payment = 2 
 
+  
+
+  $scope.submitPayment = ->    
+    $scope.submitCard($scope.card)
+
   $scope.card =
     number: ""
     expMonth: ""
     expYear: ""
     cvc: ""
-
-  $scope.submitPayment = ->    
-    $scope.submitCard($scope.card)
 
   $scope.data = {}
   $scope.submitCard = (card) ->

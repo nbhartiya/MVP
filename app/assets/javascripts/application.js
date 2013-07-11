@@ -38,6 +38,7 @@ function add_fields (link, association, content) {
 }
 
   $("input").attr("autocomplete", "off");
+  $("select").attr("autocomplete", "off");
 
 
 // bootstrap tooltips 
