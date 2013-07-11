@@ -12,6 +12,8 @@
 #  host_id             :integer
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  successful          :boolean
+#  expires             :date
 #
 
 require 'spec_helper'
