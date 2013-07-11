@@ -2,8 +2,6 @@
   .campaign-profile
     #campaign-carousel.carousel.slide           
       .carousel-inner
-        .active.item
-          =image_tag "Food 17.jpg"
     .container
       .campaign-registration.row{'ng-controller' => 'CampaignCreateCtrl'}
         .span1
@@ -52,7 +50,7 @@
             .help-block-white{'ng-show' => "campaign_create.campaign_description.$error.required || campaign_create.campaign_name.$error.required"} Both field sare required!
             
             .clearfix
-              %button.btn.GetFilepicker#campaign-upload-images Upload Images
+              %button.btn.GetFilepicker#campaign-upload-images{'ng-click'=> 'uploadImages()'} Upload Images
             
             %button.btn.btn-warning.standalone-button#submit{'ng-click' => 'createCampaign(campaign)', 'ng-disabled'=> 'campaign_create.$invalid'} Create
 
