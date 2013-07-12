@@ -199,8 +199,7 @@ Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$l
 ]
 
 Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "Campaign", ($scope, $routeParams, $location, Campaign) ->
-  console.log $scope.campaign
-  console.log $routeParams.campaign
+  console.log $scope
   $scope.editCampaign = (campaign) ->
     Campaign(campaign).update()
 ]
