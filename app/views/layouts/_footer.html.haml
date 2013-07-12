@@ -22,12 +22,12 @@
           %h3 Connect
           %table.social-media
             %tr#facebook-footer
-              .fb-like{"data-colorscheme" => "dark", "data-font" => "verdana", "data-href" => "http://www.facebook.com/simmrco", "data-send" => "true", "data-show-faces" => "true", "data-width" => "520"}
+              .fb-like{"data-colorscheme" => "dark", "data-font" => "verdana", "data-href" => "http://www.facebook.com/simmrco", "data-send" => "true", "data-show-faces" => "true", "data-width" => "360px"}
             %tr#twitter-footer
               %a.twitter-timeline{:href => "https://twitter.com/simmrco", :'data-widget-id' => "354072241715175424", :"data-chrome" => "noborders transparent", :"data-tweet-limit" => "2"} Tweets by @simmrco
               :javascript
                 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
     .span2.footer-logo
       =image_tag("white_simmr.png")
-      %p made {lovingly} in San Francisco
+      %p.hidden-phone made {lovingly} in San Francisco
     .span1

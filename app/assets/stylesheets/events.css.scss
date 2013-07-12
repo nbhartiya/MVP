@@ -205,7 +205,11 @@ ol.carousel-indicators{
 			overflow-y: scroll;
 			height: 450px;
 		}
-		.event-purchase, .event-create-confirmation, .event-guests, .event-create-form, .event-edit-form{
+		.event-purchase{
+			height: 450px;
+			overflow-y: scroll;
+		}
+		.event-purchase, .event-purchase-confirmation, .event-create-confirmation, .event-guests, .event-create-form, .event-edit-form{
 			background: rgba(0,0,0,0.8);
 			padding: 30px;
 			h1{
@@ -711,4 +715,238 @@ ol.carousel-indicators{
 			font-weight: 800;
 		}
 	}
-}		
+}
+
+@media (min-width: 980px) and (max-width: 1200px) {
+	.nav-container .nav ul input{
+		width: 70px;
+		font-size: 11px;
+	}
+	.event-profile .event-registration .event-guests .guest-name{
+		width: 49%;
+	}
+	.event-profile .event-registration .event-guests .guest-email{
+		width: 49%;
+	}
+	.event-profile .event-registration .event-guests #enter-payment-info{
+		margin: 10px 0 0 0;
+	}
+
+	.event-profile .event-registration .event-purchase #credit_card_number{
+		width: 68%;
+	}
+
+	.event-profile .event-registration .event-purchase #security_code p{
+		margin: 0;
+		padding: 0;
+	}
+
+	.event-profile .event-registration .event-purchase #security_code{
+		width: 30%;
+	}
+
+	.event-profile .event-registration .event-purchase #expiration{
+		width: 102%;
+	}
+
+	.event-profile .event-registration .event-purchase #state{
+		width: 48%;
+	}
+
+	.event-profile .event-registration .event-purchase #city{
+		width: 50%;
+	}
+
+	.event-profile .event-registration .event-purchase #zipcode{
+		width: 50%;
+	}
+
+	.scroll-menu.event{
+		margin-left: -15px;
+	}
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+	.nav-container .nav .logo-and-location .logo{
+		width: 60%;
+	}
+	.nav-container .nav ul li{
+		margin: 5px 0;
+	}
+	.nav-container .nav ul li a:link{
+		padding: 5px;
+	}
+	.nav-container .nav ul input{
+		width: 70px;
+		font-size: 11px;
+	}
+	.event-profile .event-registration .event-summary .number-of-seats{
+		width: 74.5%;
+	}
+	.event-profile .event-registration .event-summary .btn{
+		padding: 4px 8px;
+	}
+	body{
+		font-size: 10px !important;
+	}
+	.event-profile .event-registration .event-summary h3{
+		font-size: 14px;
+	}
+	.event-profile .event-registration .event-summary h2{
+		font-size: 18px;
+	}
+	.event-profile .event-registration .event-summary h1{
+		font-size: 26px;
+	}
+	.event-profile .event-registration .event-purchase h3{
+		font-size: 14px;
+	}
+	.event-profile .event-registration .event-purchase h2{
+		font-size: 18px;
+	}
+	.event-profile .event-registration .event-purchase h1{
+		font-size: 26px;
+	}
+	.event-profile .event-registration .event-purchase .btn{
+		font-size: 12px;
+	}
+
+	.event-profile .event-registration .event-guests .guest-name{
+		width: 49%;
+	}
+	.event-profile .event-registration .event-guests .guest-email{
+		width: 49%;
+	}
+	.event-profile .event-registration .event-guests #enter-payment-info{
+		margin: 10px 0 0 0;
+	}
+
+	.event-profile .event-registration .event-purchase #credit_card_number{
+		width: 68%;
+	}
+
+	.event-profile .event-registration .event-purchase #security_code p{
+		margin: 0;
+		padding: 0;
+	}
+
+	.event-profile .event-registration .event-purchase #security_code{
+		width: 30%;
+	}
+
+	.event-profile .event-registration .event-purchase #expiration{
+		width: 102%;
+	}
+
+	.event-profile .event-registration .event-purchase #state{
+		width: 48%;
+	}
+
+	.event-profile .event-registration .event-purchase #city{
+		width: 50%;
+	}
+
+	.event-profile .event-registration .event-purchase #zipcode{
+		width: 50%;
+	}
+
+	.scroll-menu.event{
+		margin-left: -40px;
+	}
+}
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+	.nav-container .nav .logo-and-location .logo{
+		width: 60%;
+	}
+	.nav-container .nav ul li{
+		margin: 5px 0;
+	}
+	.nav-container .nav ul li a:link{
+		padding: 5px;
+	}
+	.nav-container .nav ul input{
+		width: 70px;
+		font-size: 11px;
+	}
+	.event-profile .event-registration .event-summary .number-of-seats{
+		width: 74.5%;
+	}
+	.event-profile .event-registration .event-summary .btn{
+		padding: 4px 8px;
+	}
+	body{
+		font-size: 10px !important;
+	}
+	.event-profile .event-registration .event-summary h3{
+		font-size: 14px;
+	}
+	.event-profile .event-registration .event-summary h2{
+		font-size: 18px;
+	}
+	.event-profile .event-registration .event-summary h1{
+		font-size: 26px;
+	}
+	.event-profile .event-registration .event-purchase h3{
+		font-size: 14px;
+	}
+	.event-profile .event-registration .event-purchase h2{
+		font-size: 18px;
+	}
+	.event-profile .event-registration .event-purchase h1{
+		font-size: 26px;
+	}
+	.event-profile .event-registration .event-purchase .btn{
+		font-size: 12px;
+	}
+
+	.event-profile .event-registration .event-guests .guest-name{
+		width: 49%;
+	}
+	.event-profile .event-registration .event-guests .guest-email{
+		width: 49%;
+	}
+	.event-profile .event-registration .event-guests #enter-payment-info{
+		margin: 10px 0 0 0;
+	}
+
+	.event-profile .event-registration .event-purchase #credit_card_number{
+		width: 68%;
+	}
+
+	.event-profile .event-registration .event-purchase #security_code p{
+		margin: 0;
+		padding: 0;
+	}
+
+	.event-profile .event-registration .event-purchase #security_code{
+		width: 30%;
+	}
+
+	.event-profile .event-registration .event-purchase #expiration{
+		width: 102%;
+	}
+
+	.event-profile .event-registration .event-purchase #state{
+		width: 48%;
+	}
+
+	.event-profile .event-registration .event-purchase #city{
+		width: 50%;
+	}
+
+	.event-profile .event-registration .event-purchase #zipcode{
+		width: 50%;
+	}
+
+	.scroll-menu.event{
+		margin-left: -40px;
+	}
+}
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) {
+
+}

@@ -19,16 +19,17 @@
     %a.carousel-control.right{"data-slide" => "next", :href => "#home-carousel"} ›
     .container
       .copy.row
-        .span4
-        .span4.copy-content
-          %h1 We want to make your life more delicious
-          %a.btn.how-it-works-button{:href => "#how-it-works", "data-target" => "#how-it-works-detail", :type => "button"} How Does It Work?
-          -if user_signed_in? == false
-            %a.btn.btn-warning.sign-up-button{:href => "#sign_up", :"data-toggle" =>"modal"} Get Started
-            %p Already a member? &nbsp <a href = "#sign_in" class = "sign-in-link" data-toggle = "modal"> Sign In </a>
-          -if user_signed_in?
-            %a.btn.btn-warning.view-events-button{:href => "/events"} Upcoming Events
-        .span4
+        .span1
+        .span10.copy-content
+          %h2 We want to make your life <br> <h1> more delicious </h1>
+          .buttons
+            %a.btn.how-it-works-button{:href => "#how-it-works", "data-target" => "#how-it-works-detail", :type => "button"} How Does It Work?
+            -if user_signed_in? == false
+              %a.btn.btn-warning.sign-up-button{:href => "#sign_up", :"data-toggle" =>"modal"} Get Started
+              %p Already a member? &nbsp <a href = "#sign_in" class = "sign-in-link" data-toggle = "modal"> Sign In </a>
+            -if user_signed_in?
+              %a.btn.btn-warning.view-events-button{:href => "/events"} Upcoming Events
+          .span1
   .container
     .row.section-header
       .span12#how-it-works
@@ -42,7 +43,7 @@
             #how-it-works-detail.accordion-body.collapse
               .accordion-inner
                 %h3
-                  We want to make you <em> more than a customer </em> 
+                  We're making you <em> more than a customer </em> 
                 %h3
                   by connecting you more meaningfully with your fave food businesses and 
                 %h3
