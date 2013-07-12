@@ -762,8 +762,10 @@ ol.carousel-indicators{
 	}
 
 	.scroll-menu.event{
-		margin-left: -15px;
+		margin-left: 0px;
 	}
+
+
 }
 
 /* Portrait tablet to landscape and desktop */
@@ -787,9 +789,11 @@ ol.carousel-indicators{
 	.event-profile .event-registration .event-summary .btn{
 		padding: 4px 8px;
 	}
-	body .events .event-registration .event-summary .event-sharing{
+
+	body .events .event-summary .event-sharing{
 		font-size: 10px;
 	}
+
 	.event-profile .event-registration .event-summary h3{
 		font-size: 14px;
 	}
@@ -808,10 +812,21 @@ ol.carousel-indicators{
 	.event-profile .event-registration .event-purchase h1{
 		font-size: 26px;
 	}
+	.event-profile .event-feedback h3{
+		font-size: 14px;
+	}
+	.event-profile .event-feedback a{
+		font-size: 14px;
+	}
+	.event-profile .event-feedback h2{
+		font-size: 18px;
+	}
+	.event-profile .event-feedback h1{
+		font-size: 26px;
+	}
 	.event-profile .event-registration .event-purchase .btn{
 		font-size: 12px;
 	}
-
 	.event-profile .event-registration .event-guests .guest-name{
 		width: 49%;
 	}
@@ -821,36 +836,28 @@ ol.carousel-indicators{
 	.event-profile .event-registration .event-guests #enter-payment-info{
 		margin: 10px 0 0 0;
 	}
-
 	.event-profile .event-registration .event-purchase #credit_card_number{
 		width: 68%;
 	}
-
 	.event-profile .event-registration .event-purchase #security_code p{
 		margin: 0;
 		padding: 0;
 	}
-
 	.event-profile .event-registration .event-purchase #security_code{
 		width: 30%;
 	}
-
 	.event-profile .event-registration .event-purchase #expiration{
 		width: 102%;
 	}
-
 	.event-profile .event-registration .event-purchase #state{
 		width: 48%;
 	}
-
 	.event-profile .event-registration .event-purchase #city{
 		width: 50%;
 	}
-
 	.event-profile .event-registration .event-purchase #zipcode{
 		width: 50%;
 	}
-
 	.scroll-menu.event{
 		margin-left: -40px;
 	}
@@ -884,6 +891,11 @@ ol.carousel-indicators{
 	.event-profile .event-registration .heart_this{
 		padding: 0;
 	}
+
+	.event-profile .event-feedback .heart_this{
+		padding: 0;
+	}
+
 	.scroll-menu.event{
 		display: none;
 	}
@@ -897,13 +909,20 @@ ol.carousel-indicators{
 	}
 	.event-profile .event-registration .event-guests{
 		position: absolute;
-		width: 88%;
+		width: 92%;
 		z-index: 10;
 	}
 	.event-profile .event-registration .event-purchase{
 		position: absolute;
-		width: 88%;
+		width: 92%;
 		z-index: 10;
+	}
+	.event-profile .event-feedback{
+		.event-survey, .point-ranking, .more-points, .event-yelp{
+			position: absolute;
+			width: 92%;
+			z-index: 10;
+		}
 	}
 	.event-profile .event-registration .event-guests .guest-name{
 		width: 49%;
@@ -957,6 +976,17 @@ ol.carousel-indicators{
 
 	.event-profile .event-registration .event-purchase #zipcode{
 		width: 50%;
+	}
+	.event-profile .event-feedback{
+		.event-survey, .point-ranking, .more-points, .event-yelp{
+			width: 85%;
+		}
+	}
+	.event-profile .event-registration .event-guests{
+		width: 85%;
+	}
+	.event-profile .event-registration .event-purchase{
+		width: 85%;
 	}
 
 }
