@@ -7,7 +7,7 @@ $main_orange: rgb(255, 178, 35);
 	.events{ 
 		margin: 40px 0 0 0;
 		.section-header{
-			margin-top: 0;
+			margin-top: 10px;
 		}
 		.events-index-header, .events-index-content{
 			margin: 0;
@@ -787,8 +787,8 @@ ol.carousel-indicators{
 	.event-profile .event-registration .event-summary .btn{
 		padding: 4px 8px;
 	}
-	body{
-		font-size: 10px !important;
+	body .events .event-registration .event-summary .event-sharing{
+		font-size: 10px;
 	}
 	.event-profile .event-registration .event-summary h3{
 		font-size: 14px;
@@ -859,7 +859,10 @@ ol.carousel-indicators{
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) {
 	.nav-container .nav .logo-and-location .logo{
-		width: 60%;
+		width: 30%;
+	}
+	.nav-container .nav ul{
+		float: left;
 	}
 	.nav-container .nav ul li{
 		margin: 5px 0;
@@ -871,37 +874,37 @@ ol.carousel-indicators{
 		width: 70px;
 		font-size: 11px;
 	}
+	.nav-container .nav ul .input-append{
+		margin-top: 5px;
+	}
 	.event-profile .event-registration .event-summary .number-of-seats{
 		width: 74.5%;
 	}
-	.event-profile .event-registration .event-summary .btn{
-		padding: 4px 8px;
+
+	.event-profile .event-registration .heart_this{
+		padding: 0;
 	}
-	body{
-		font-size: 10px !important;
-	}
-	.event-profile .event-registration .event-summary h3{
-		font-size: 14px;
-	}
-	.event-profile .event-registration .event-summary h2{
-		font-size: 18px;
-	}
-	.event-profile .event-registration .event-summary h1{
-		font-size: 26px;
-	}
-	.event-profile .event-registration .event-purchase h3{
-		font-size: 14px;
-	}
-	.event-profile .event-registration .event-purchase h2{
-		font-size: 18px;
-	}
-	.event-profile .event-registration .event-purchase h1{
-		font-size: 26px;
-	}
-	.event-profile .event-registration .event-purchase .btn{
-		font-size: 12px;
+	.scroll-menu.event{
+		display: none;
 	}
 
+	.events .container .section-header{
+		margin: 30px 10px;
+	}
+
+	.event-profile .event-registration .event-summary .event-go-button{
+		width: 24.5%;
+	}
+	.event-profile .event-registration .event-guests{
+		position: absolute;
+		width: 88%;
+		z-index: 10;
+	}
+	.event-profile .event-registration .event-purchase{
+		position: absolute;
+		width: 88%;
+		z-index: 10;
+	}
 	.event-profile .event-registration .event-guests .guest-name{
 		width: 49%;
 	}
@@ -912,6 +915,21 @@ ol.carousel-indicators{
 		margin: 10px 0 0 0;
 	}
 
+	.event-profile .event-registration .event-purchase #credit_card_number{
+		width: 48.5%;
+	}
+
+	.event-profile .event-registration .event-purchase #zipcode{
+		width: 26.6%;
+	}
+
+}
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) {
+	.event-profile .event-registration .event-summary .event-go-button{
+		width: 24%;
+	}
 	.event-profile .event-registration .event-purchase #credit_card_number{
 		width: 68%;
 	}
@@ -940,13 +958,5 @@ ol.carousel-indicators{
 	.event-profile .event-registration .event-purchase #zipcode{
 		width: 50%;
 	}
-
-	.scroll-menu.event{
-		margin-left: -40px;
-	}
-}
- 
-/* Landscape phones and down */
-@media (max-width: 480px) {
 
 }
