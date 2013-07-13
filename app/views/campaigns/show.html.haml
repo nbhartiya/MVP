@@ -1,6 +1,6 @@
 .campaigns
   .campaign-profile
-    #campaign-carousel.carousel.slide         
+    #campaign-carousel.carousel.slide.hidden-phone       
       .carousel-inner
         .active.item
           =image_tag "Food 17.jpg"
@@ -13,7 +13,7 @@
               .item
                 = filepicker_image_tag i.image
     -#
-      %ol.carousel-indicators
+      %ol.carousel-indicators.hidden-phone
         -@campaign.images.each_with_index do |i, index|     
           - if index == 0
             %li.active{"data-target" => "#campaign-carousel", "data-slide-to" => index}

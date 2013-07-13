@@ -641,3 +641,17 @@ $main_orange: rgb(255, 178, 35);
 		width: 80px;
 	}
 }
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) { 
+
+}
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) { 
+}
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) {
+	
+}

@@ -190,9 +190,55 @@ Simmr.controller "CampaignCreateCtrl", ["$scope",  "$routeParams", "$location", 
     new Campaign(campaign).create().then (data) =>
       console.log data, "~~~~~~~~~~"
       $scope.campaign = 1
+
+  $scope.imageUrls = []
+
+  $scope.uploadImages = ->
+    filepicker.pickAndStore
+      mimetypes: ["image/*", "text/plain"]
+      services: ["COMPUTER", "FACEBOOK", "GMAIL", "INSTAGRAM"]
+      multiple: true
+    ,
+      location: "S3"
+      path: '/simmreventimages/'
+    , (InkBlobs) ->
+      console.log JSON.stringify(InkBlobs)
+
+      i=0
+      while i< Object.keys(InkBlobs).length
+        $scope.image="https://s3.amazonaws.com/#{InkBlobs[i].key}"
+        console.log $scope.image
+        $scope.imageUrls.push($scope.image)
+        filepicker.read InkBlobs[i].url,
+          base64encode: true
+        , (imgdata) ->
+          $('.campaigns .carousel-inner').append("<div class = 'item'><img src = 'data:image/png;base64,#{imgdata}'></div>")
+        i++
 ]
 
 Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "Campaign", ($scope, $routeParams, $location, Campaign) ->
+  $scope.imageUrls = []
 
+  $scope.uploadImages = ->
+    filepicker.pickAndStore
+      mimetypes: ["image/*", "text/plain"]
+      services: ["COMPUTER", "FACEBOOK", "GMAIL", "INSTAGRAM"]
+      multiple: true
+    ,
+      location: "S3"
+      path: '/simmreventimages/'
+    , (InkBlobs) ->
+      console.log JSON.stringify(InkBlobs)
+
+      i=0
+      while i< Object.keys(InkBlobs).length
+        $scope.image="https://s3.amazonaws.com/#{InkBlobs[i].key}"
+        console.log $scope.image
+        $scope.imageUrls.push($scope.image)
+        filepicker.read InkBlobs[i].url,
+          base64encode: true
+        , (imgdata) ->
+          $('.campaigns .carousel-inner').append("<div class = 'item'><img src = 'data:image/png;base64,#{imgdata}'></div>")
+        i++
 ]
 
