@@ -131,12 +131,20 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
         $scope.image="https://s3.amazonaws.com/#{InkBlobs[i].key}"
         console.log $scope.image
         $scope.imageUrls.push($scope.image)
-        filepicker.read InkBlobs[i].url,
-          base64encode: true
-        , (imgdata) ->
-          $('.events .carousel-inner').append("<div class = 'item'><img src = 'data:image/png;base64,#{imgdata}'></div>")
-          $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> > </a>")
+        $('.active.item').remove()
+        $('.carousel-inner').empty()
+        if i == 0
+          filepicker.read InkBlobs[i].url,
+            base64encode: true
+          , (imgdata) ->
+            $('.events .carousel-inner').append("<div class = 'item active'><img src = 'data:image/*;base64,#{imgdata}'></div>")
+        else
+          filepicker.read InkBlobs[i].url,
+            base64encode: true
+          , (imgdata) ->
+            $('.events .carousel-inner').append("<div class = 'item'><img src = 'data:image/*;base64,#{imgdata}'></div>")
         i++
+        $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> > </a>")
 ]
 
 Simmr.controller "EventIndexCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
@@ -164,12 +172,20 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
         $scope.image="https://s3.amazonaws.com/#{InkBlobs[i].key}"
         console.log $scope.image
         $scope.imageUrls.push($scope.image)
-        filepicker.read InkBlobs[i].url,
-          base64encode: true
-        , (imgdata) ->
-          $('.events .carousel-inner').append("<div class = 'item'><img src = 'data:image/png;base64,#{imgdata}'></div>")
-          $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> > </a>")
+        $('.active.item').remove()
+        $('.carousel-inner').empty()
+        if i == 0
+          filepicker.read InkBlobs[i].url,
+            base64encode: true
+          , (imgdata) ->
+            $('.events .carousel-inner').append("<div class = 'item active'><img src = 'data:image/*;base64,#{imgdata}'></div>")
+        else
+          filepicker.read InkBlobs[i].url,
+            base64encode: true
+          , (imgdata) ->
+            $('.events .carousel-inner').append("<div class = 'item'><img src = 'data:image/*;base64,#{imgdata}'></div>")
         i++
+        $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> > </a>")
 ]
 
 Simmr.controller "EventFeedbackCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
@@ -210,12 +226,20 @@ Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$l
         $scope.image="https://s3.amazonaws.com/#{InkBlobs[i].key}"
         console.log $scope.image
         $scope.imageUrls.push($scope.image)
-        filepicker.read InkBlobs[i].url,
-          base64encode: true
-        , (imgdata) ->
-          $('.campaigns .carousel-inner').append("<div class = 'item'><img src = 'data:image/png;base64,#{imgdata}'></div>")
-          $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#campaign-carousel'> > </a>")
+        $('.active.item').remove()
+        $('.carousel-inner').empty()
+        if i == 0
+          filepicker.read InkBlobs[i].url,
+            base64encode: true
+          , (imgdata) ->
+            $('.campaigns .carousel-inner').append("<div class = 'item active'><img src = 'data:image/*;base64,#{imgdata}'></div>")
+        else
+          filepicker.read InkBlobs[i].url,
+            base64encode: true
+          , (imgdata) ->
+            $('.campaigns .carousel-inner').append("<div class = 'item'><img src = 'data:image/*;base64,#{imgdata}'></div>")
         i++
+        $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#campaign-carousel'> > </a>")
 ]
 
 Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "Campaign", ($scope, $routeParams, $location, Campaign) ->
@@ -241,11 +265,19 @@ Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "C
         $scope.image="https://s3.amazonaws.com/#{InkBlobs[i].key}"
         console.log $scope.image
         $scope.imageUrls.push($scope.image)
-        filepicker.read InkBlobs[i].url,
-          base64encode: true
-        , (imgdata) ->
-          $('.campaigns .carousel-inner').append("<div class = 'item'><img src = 'data:image/png;base64,#{imgdata}'></div>")
-          $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#campaign-carousel'> > </a>")
+        $('.active.item').remove()
+        $('.carousel-inner').empty()
+        if i == 0
+          filepicker.read InkBlobs[i].url,
+            base64encode: true
+          , (imgdata) ->
+            $('.campaigns .carousel-inner').append("<div class = 'item active'><img src = 'data:image/*;base64,#{imgdata}'></div>")
+        else
+          filepicker.read InkBlobs[i].url,
+            base64encode: true
+          , (imgdata) ->
+            $('.campaigns .carousel-inner').append("<div class = 'item'><img src = 'data:image/*;base64,#{imgdata}'></div>")
         i++
+        $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#campaign-carousel'> > </a>")
 ]
 

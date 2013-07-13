@@ -37,12 +37,20 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
         $scope.image="https://s3.amazonaws.com/#{InkBlobs[i].key}"
         console.log $scope.image
         $scope.imageUrls.push($scope.image)
-        filepicker.read InkBlobs[i].url,
-          base64encode: true
-        , (imgdata) ->
-          $('.profiles .carousel-inner').append("<div class = 'item'><img src = 'data:image/png;base64,#{imgdata}'></div>")
-          $('.user-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#profile-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#profile-carousel'> > </a>")
+        $('.active.item').remove()
+        $('.carousel-inner').empty()
+        if i == 0
+          filepicker.read InkBlobs[i].url,
+            base64encode: true
+          , (imgdata) ->
+            $('.profiles .carousel-inner').append("<div class = 'item active'><img src = 'data:image/*;base64,#{imgdata}'></div>")
+        else
+          filepicker.read InkBlobs[i].url,
+            base64encode: true
+          , (imgdata) ->
+            $('.profiles .carousel-inner').append("<div class = 'item'><img src = 'data:image/*;base64,#{imgdata}'></div>")
         i++
+        $('.user-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#profile-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#profile-carousel'> > </a>")
 ]
 
 angular.module('Simmr').controller "ProfileShowCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
