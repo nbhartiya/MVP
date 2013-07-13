@@ -135,6 +135,7 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
           base64encode: true
         , (imgdata) ->
           $('.events .carousel-inner').append("<div class = 'item'><img src = 'data:image/png;base64,#{imgdata}'></div>")
+          $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> > </a>")
         i++
 ]
 
@@ -167,6 +168,7 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
           base64encode: true
         , (imgdata) ->
           $('.events .carousel-inner').append("<div class = 'item'><img src = 'data:image/png;base64,#{imgdata}'></div>")
+          $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> > </a>")
         i++
 ]
 
@@ -212,6 +214,7 @@ Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$l
           base64encode: true
         , (imgdata) ->
           $('.campaigns .carousel-inner').append("<div class = 'item'><img src = 'data:image/png;base64,#{imgdata}'></div>")
+          $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#campaign-carousel'> > </a>")
         i++
 ]
 
@@ -242,6 +245,7 @@ Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "C
           base64encode: true
         , (imgdata) ->
           $('.campaigns .carousel-inner').append("<div class = 'item'><img src = 'data:image/png;base64,#{imgdata}'></div>")
+          $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#campaign-carousel'> > </a>")
         i++
 ]
 

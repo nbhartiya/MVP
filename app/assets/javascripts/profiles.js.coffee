@@ -41,6 +41,7 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
           base64encode: true
         , (imgdata) ->
           $('.profiles .carousel-inner').append("<div class = 'item'><img src = 'data:image/png;base64,#{imgdata}'></div>")
+          $('.user-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#profile-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#profile-carousel'> > </a>")
         i++
 ]
 
