@@ -1,6 +1,6 @@
 .events
   .event-profile
-    #event-carousel.carousel.slide         
+    #event-carousel.carousel.slide.hidden-phone       
       .carousel-inner
         -@event.images.each_with_index do |i, index|
           -if index == 0
@@ -9,7 +9,7 @@
           -else
             .item
               = filepicker_image_tag i.image
-    %ol.carousel-indicators
+    %ol.carousel-indicators.hidden-phone
       -@event.images.each_with_index do |i, index|     
         - if index == 0
           %li.active{"data-target" => "#event-carousel", "data-slide-to" => index}

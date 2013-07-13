@@ -40,10 +40,7 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
         filepicker.read InkBlobs[i].url,
           base64encode: true
         , (imgdata) ->
-            if i == 0
-              $('.events .carousel-inner').append("<img src = 'data:image/png;base64,#{imgdata}' class = 'item active'>")
-            else
-              $('.events .carousel-inner').append("<img src = 'data:image/png;base64,#{imgdata}' class = 'item'>")
+          $('.events .carousel-inner').append("<div class = 'item'><img src = 'data:image/png;base64,#{imgdata}'></div>")
         i++
 ]
 

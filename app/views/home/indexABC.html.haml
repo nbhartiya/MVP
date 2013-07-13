@@ -3,7 +3,7 @@
 
 .home 
   .attention-getter
-    #home-carousel.carousel.slide
+    #home-carousel.carousel.slide.hidden-phone
       -all_events=Event.all
       -i=0
       .carousel-inner
@@ -15,8 +15,8 @@
             .item
               =render 'home/sampleevent', :event => event
           -i=i+1
-    %a.carousel-control.left{"data-slide" => "prev", :href => "#home-carousel"} ‹
-    %a.carousel-control.right{"data-slide" => "next", :href => "#home-carousel"} ›
+    %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#home-carousel"} ‹
+    %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#home-carousel"} ›
     .container
       .copy.row
         .span1

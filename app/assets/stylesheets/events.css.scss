@@ -78,6 +78,16 @@ ol.carousel-indicators{
 			}
 		}
 	}
+	.carousel-control{
+		font-size: 40px;
+		color: white;
+		top: 40%;
+		z-index: 50;
+		background: rgba(0, 0, 0, 0.7);
+		border: none;
+		line-height: 35px;
+		margin-top: 0;
+	}
 	.event-registration {
 	    margin-top: 25px;
 	    -webkit-box-sizing: border-box;
@@ -765,6 +775,41 @@ ol.carousel-indicators{
 		margin-left: 0px;
 	}
 
+	.event-profile .event-registration .event-create-form #event-ticket-details .input-prepend{
+		width: 98.5%;
+	}
+
+	.event-profile .event-registration .event-create-form #event-ticket-details #ticket-cost{
+		width: 90%;
+	}
+
+	.event-profile .event-registration .event-create-form #event-ticket-details #people-limit{
+		width: 100%;
+	}
+	.event-profile .event-registration .event-create-form #event-images-button{
+		width: 49%;
+		font-size: 12px;
+	}
+	.event-profile .event-registration .event-create-form #event-menu-button{
+		width: 49%;
+		font-size: 12px;
+	}
+	.event-profile .event-registration .event-create-form #event-date-time #event-date{
+		width: 49%;
+	}
+	.event-profile .event-registration .event-create-form #event-location #state{
+		width: 40%;
+	}
+	.event-profile .event-registration .event-create-form #event-location #event-city{
+		width: 58%;
+	}
+	.event-profile .event-registration .event-create-form #event-location #event-zipcode{
+		width: 58%;
+	}
+	.event-profile .event-registration .event-create-form{
+		overflow-y: scroll;
+		height: 480px;
+	}
 
 }
 
@@ -861,6 +906,41 @@ ol.carousel-indicators{
 	.scroll-menu.event{
 		margin-left: -40px;
 	}
+	.event-profile .event-registration .event-create-form #event-ticket-details .input-prepend{
+		width: 98.5%;
+	}
+
+	.event-profile .event-registration .event-create-form #event-ticket-details #ticket-cost{
+		width: 84%;
+	}
+
+	.event-profile .event-registration .event-create-form #event-ticket-details #people-limit{
+		width: 100%;
+	}
+	.event-profile .event-registration .event-create-form #event-images-button{
+		width: 48%;
+		font-size: 12px;
+	}
+	.event-profile .event-registration .event-create-form #event-menu-button{
+		width: 48%;
+		font-size: 12px;
+	}
+	.event-profile .event-registration .event-create-form #event-date-time #event-date{
+		width: 48%;
+	}
+	.event-profile .event-registration .event-create-form #event-location #state{
+		width: 40%;
+	}
+	.event-profile .event-registration .event-create-form #event-location #event-city{
+		width: 57%;
+	}
+	.event-profile .event-registration .event-create-form #event-location #event-zipcode{
+		width: 57%;
+	}
+	.event-profile .event-registration .event-create-form{
+		overflow-y: scroll;
+		height: 480px;
+	}
 }
  
 /* Landscape phone to portrait tablet */
@@ -917,8 +997,20 @@ ol.carousel-indicators{
 		width: 92%;
 		z-index: 10;
 	}
+	.event-profile .event-registration .event-purchase-confirmation{
+		position: absolute;
+		width: 92%;
+		z-index: 10;
+	}
 	.event-profile .event-feedback{
 		.event-survey, .point-ranking, .more-points, .event-yelp{
+			position: absolute;
+			width: 92%;
+			z-index: 10;
+		}
+	}
+	.event-profile .event-registration{
+		.event-create-form, .event-create-confirmation{
 			position: absolute;
 			width: 92%;
 			z-index: 10;
@@ -987,6 +1079,14 @@ ol.carousel-indicators{
 	}
 	.event-profile .event-registration .event-purchase{
 		width: 85%;
+	}
+	.event-profile .event-registration .event-purchase-confirmation{
+		width: 85%;
+	}
+	.event-profile .event-registration{
+		.event-create-form, .event-create-confirmation{
+			width: 85%;
+		}
 	}
 
 }
