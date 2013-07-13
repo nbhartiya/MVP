@@ -16,7 +16,7 @@
       .span4.event-progress
         %table
           %tr
-            %td.event-seats-left 5 seats left
+            %td.event-seats-left @event.seats_left seats left
         .progress.progress-warning
           .bar{:style => "width: 60%;"}
       .span1.go-button
@@ -28,7 +28,7 @@
           %tr.single-event-numbers
             %td 
               %a{:href => "#"} 20
-            -if current_user.kind == "chef"
+            -if current_user.chef == true
               %td
                 %a{:href => "#"} $200
             -else
@@ -40,7 +40,7 @@
               %a{:href => "#"} 20
           %tr.single-event-labels
             %td Guests
-            -if current_user.kind == "chef"
+            -if current_user.chef == true
               %td Sales
             -else
               %td Friends
@@ -48,7 +48,7 @@
             %td Shared
       .span1
     .row
-      -if current_user == "chef"
+      -if current_user.chef == true
         .span2.single-event-actions
           %a.action Edit <br> Event
         .span2.single-event-actions

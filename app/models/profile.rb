@@ -11,10 +11,12 @@
 #  user_id     :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  biz_name    :string(255)
+#  yelp_id     :string(255)
 #
 
 class Profile < ActiveRecord::Base
 
   belongs_to :user
-  attr_accessible :blurb, :home_zip, :location_id, :story, :work_zip, :user_id, :biz_name
+  attr_accessible :blurb, :home_zip, :location_id, :story, :work_zip, :user_id, :biz_name, :yelp_id
 end

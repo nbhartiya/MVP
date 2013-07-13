@@ -7,18 +7,19 @@
     %a.carousel-control.left.hidden-phone{"data-slide"=>"prev", :href =>"#campaign-carousel"} <
     %a.carousel-control.right.hidden-phone{"data-slide"=>"next", :href =>"#campaign-carousel"} >
     .container
-      .campaign-registration.row{'ng-controller' => 'CampaignEditCtrl'}
+      .campaign-registration.row{'ng-controller' => 'CampaignEditCtrl', 'ng-init' => "campaign.id=#{@campaign.id}"}
         .span1
         .span4
           .campaign-summary
             %h1#default-text{'ng-show'=>'campaign.biz_name=="" || campaign.biz_name==nil'}
-              Business Name
+              {{campaign.biz_name}}
+              #{@campaign.id}
             %h1
               {{campaign.biz_name}}
-            %h2#default-text{'ng-show'=>'campaign.blurb=="" || campaign.blurb==nil'}
+            %h2#default-text{'ng-show'=>'"#{@campaign.blurb}"=="" || "#{@campaign.blurb}"==nil'}
               Business Description
             %h2 
-              {{campaign.blurb}}
+              #{@campaign.blurb}
             %h2 By #{current_user.first_name} #{current_user.last_name}
             %hr
             %h3 
@@ -48,15 +49,15 @@
         .span1
         .span4 
           %form.campaign-create-form.clearfix{:name => "campaign_create", 'ng-hide' => "campaign==1"}
-            %input{'ng-model' => 'campaign.biz_name', :type=>"text", :placeholder =>"Business Name - who is this campaign for?", :name => "campaign_name", :required => "required", 'ng-class' => "{error: campaign_create.campaign_name.$invalid}"}
+            %input{'ng-model' => 'campaign.biz_name', :type=>"text", :placeholer =>'campaign.biz_name', :name => "campaign_name", :required => "required", 'ng-class' => "{error: campaign_create.campaign_name.$invalid}"}
             %textarea.campaign-blurb{:rows => "4", 'ng-model' => 'campaign.blurb', :type=>"text", :placeholder =>"Business Description - you get the length of a tweet to describe this business - what is its tagline?", :required => "required", :name => "campaign_description", :maxlength => "140", 'ng-class' => "{error: campaign_create.campaign_description.$invalid}"}
 
-            .help-block{'ng-show' => "campaign_create.campaign_description.$error.required || campaign_create.campaign_name.$error.required"} Both field sare required!
+            .help-block{'ng-show' => "campaign_create.campaign_description.$error.required || campaign_create.campaign_name.$error.required"} Both fields are required!
             
             .clearfix
               %button.btn#campaign-upload-images{'ng-click'=> 'uploadImages()'} Upload Images
             
-            %button.btn.btn-warning.standalone-button#submit{'ng-click' => 'campaign=1', 'ng-disabled'=> 'campaign_create.$invalid'} Update
+            %button.btn.btn-warning.standalone-button#submit{'ng-click' => 'editCampaign(campaign)', 'ng-disabled'=> 'campaign_create.$invalid'} Update
 
           .campaign-create-confirmation.clearfix{'ng-show'=>"campaign==1"}
             %h2 Thanks! You'll get an email when your campaign is approved and public. While you're waiting, fill out the 'why join' field below so others are more likely to join your campaign and make it happen!  
