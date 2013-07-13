@@ -1,11 +1,11 @@
 .profiles
-  .container{'ng-controller' => "SurveyCtrl"}
+  .container.foodie-quiz{'ng-controller' => "SurveyCtrl"}
     .row
-      .span12.foodie-quiz
+      .span12
         %h1 What's Your Food Style
         %p Take the quiz to discover your foodie profile in just a few minutes!
     .row
-      .span5
+      .span6
         %form.create-profile{:name => "create_profile"}
 
           %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: create_profile.profile_blurb.$invalid}"}
@@ -18,7 +18,7 @@
 
           %input{:type => "text", :name => "home_zip", "ng-model" => "user.home_zip", :placeholder =>"Home Zip", :required => "required", :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: create_profile.home_zip.$invalid}"}
           .row
-            .span5    
+            .span6    
               %input{:type => "text", :name => "work_zip", 'ng-model' => 'user.work_zip', :placeholder =>"Work Zip", :required => 'required', :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: create_profile.work_zip.$invalid}"}            
               %a.why-zip{:href => "#", "data-toggle" => "tooltip", :title => "So we can better recommend lunch and dinner events near you!", "data-placement" => "right"} <sup> Why? </sup>
 
@@ -30,20 +30,21 @@
 
           -#if chef
           .clearfix
-            %button.btn#profile-image-button{'ng-click'=> 'uploadProfileImage()'} Upload Profile Picture
-            %button.btn#cover-image-button{'ng-click'=> 'uploadImages()'} Upload Cover Image
-            %button.btn#yelp-connect Connect Yelp
-            %span#yelp-explanation <a data-toggle = "tooltip" id = "why-yelp" title = "So guests know how great you already are and can easily leave you reviews!">Why?</a>
+            %button.btn.btn-inverse#profile-image-button{'ng-click'=> 'uploadProfileImage()'} Upload Profile Picture
+            %button.btn.btn-inverse#cover-image-button{'ng-click'=> 'uploadImages()'} Upload Cover Image
+            %button.btn.btn-inverse#yelp-connect Connect Yelp
+            %a#yelp-explanation{:href => "#", "data-toggle" => "tooltip", :title => "So guests know how great you already are and can easily leave you reviews!", "data-placement" => "right"} <sup> Why? </sup>
 
           -#if foodie
           .clearfix
-            %button.btn#profile-image-button{'ng-click'=> 'uploadProfileImage()'} Upload Profile Picture
-      .span7
+            %button.btn.btn-inverse#profile-image-button{'ng-click'=> 'uploadProfileImage()'} Upload Profile Picture
+      .span6
         %p Profile Image
         .row.profile-image-row
           .span3.default
             =image_tag "Food 18.jpg"
         -#if chef
+        %br
         %p Cover Image
         .row.cover-image-row
           .span3.default

@@ -46,3 +46,5 @@ function add_fields (link, association, content) {
 $('.city').tooltip();
 
 $('.why-zip').tooltip();
+
+$('#yelp-explanation').tooltip();

@@ -7,6 +7,11 @@ a.why-zip, a.why-zip:hover, a.why-zip:visited{
 	text-decoration: none;
 }
 
+a#yelp-explanation, a#yelp-explanation:hover, a#yelp-explanation:visited{
+	color: $main_orange;
+	text-decoration: none;
+}
+
 .foodie-quiz{
 	h1{
 		font-size: 30px;
