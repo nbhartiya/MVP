@@ -88,3 +88,59 @@ a.why-zip, a.why-zip:hover, a.why-zip:visited{
 .create-profile #neighborhoods, .create-profile #state{
 	display: block;
 }
+
+slider span.bubble {
+	top: -30px;
+}
+
+slider span.pointer.active:after{
+	background: $main_orange;
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+	.single-visual-answer-range .answer {
+		bottom: 100px;
+	}
+	.single-visual-answer {
+		height: 200px;
+	}
+}
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+	.single-visual-answer-range .answer {
+		bottom: 300px;
+	}
+	.single-visual-answer-range {
+		height: 580px;
+	}
+	.answer-slider{
+		margin-top: 0;
+		margin-bottom: 80px;
+	}
+
+	.single-visual-answer {
+		height: 580px;
+	}
+}
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) {
+	.single-visual-answer-range .answer {
+		bottom: 140px;
+	}
+	.single-visual-answer-range {
+		height: 320px;
+	}
+	.answer-slider{
+		margin-top: 0;
+		margin-bottom: 40px;
+	}
+
+	.single-visual-answer {
+		height: 320px;
+	}
+
+}
+
