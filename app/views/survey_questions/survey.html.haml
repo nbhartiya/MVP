@@ -1,123 +1,145 @@
-.container{'ng-controller' => "SurveyCtrl"}
-  .row
-    .span12.foodie-quiz
-      %h1 What's Your Food Style
-      %p Take the quiz to discover your foodie profile in just a few minutes!
-  .row
-    .span5
-      %form.create-profile{:name => "create_profile"}
+.profiles
+  .container{'ng-controller' => "SurveyCtrl"}
+    .row
+      .span12.foodie-quiz
+        %h1 What's Your Food Style
+        %p Take the quiz to discover your foodie profile in just a few minutes!
+    .row
+      .span5
+        %form.create-profile{:name => "create_profile"}
 
-        %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: create_profile.profile_blurb.$invalid}"}
+          %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: create_profile.profile_blurb.$invalid}"}
 
-        %select#neighborhoods{'ng-model'=>'profile.neighborhood', :name => "profile_neighborhood", :required => "required", 'ng-class' => "{error: create_profile.profile_neighborhood.$invalid}"}
+          %select#neighborhoods{'ng-model'=>'profile.neighborhood', :name => "profile_neighborhood", :required => "required", 'ng-class' => "{error: create_profile.profile_neighborhood.$invalid}"}
 
-        %input#profile-city{'ng-model'=>'profile.city', :type=>"text", :placeholder =>"Your City", :required => "required", :name => "profile_city", 'ng-class' => "{error: create_profile.profile_city.$invalid}"}
+          %input#profile-city{'ng-model'=>'profile.city', :type=>"text", :placeholder =>"Your City", :required => "required", :name => "profile_city", 'ng-class' => "{error: create_profile.profile_city.$invalid}"}
 
-        %select#state{'ng-model'=>'profile.state', :required => "required", :name => "profile_state", 'ng-class' => "{error: create_profile.profile_state.$invalid}"}
+          %select#state{'ng-model'=>'profile.state', :required => "required", :name => "profile_state", 'ng-class' => "{error: create_profile.profile_state.$invalid}"}
 
-        %input{:type => "text", :name => "home_zip", "ng-model" => "user.home_zip", :placeholder =>"Home Zip", :required => "required", :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: create_profile.home_zip.$invalid}"}
+          %input{:type => "text", :name => "home_zip", "ng-model" => "user.home_zip", :placeholder =>"Home Zip", :required => "required", :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: create_profile.home_zip.$invalid}"}
+          .row
+            .span5    
+              %input{:type => "text", :name => "work_zip", 'ng-model' => 'user.work_zip', :placeholder =>"Work Zip", :required => 'required', :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: create_profile.work_zip.$invalid}"}            
+              %a.why-zip{:href => "#", "data-toggle" => "tooltip", :title => "So we can better recommend lunch and dinner events near you!", "data-placement" => "right"} <sup> Why? </sup>
+
+          .help-block{'ng-show' => 'create_profile.home_zip.$error.pattern'} Please enter a valid home zip code
+
+          .help-block{'ng-show' => 'create_profile.work_zip.$error.pattern'} Please enter a valid work zip code
+
+          .help-block{'ng-show' => 'create_profile.profile_blurb.$error.required || create_profile.profile_neighborhood.$error.required || create_profile.profile_city.$error.required || create_profile.profile_state.$error.required || create_profile.home_zip.$error.required || create_profile.work_zip.$error.required'} All fields are required
+
+          -#if chef
+          .clearfix
+            %button.btn#profile-image-button{'ng-click'=> 'uploadProfileImage()'} Upload Profile Picture
+            %button.btn#cover-image-button{'ng-click'=> 'uploadImages()'} Upload Cover Image
+            %button.btn#yelp-connect Connect Yelp
+            %span#yelp-explanation <a data-toggle = "tooltip" id = "why-yelp" title = "So guests know how great you already are and can easily leave you reviews!">Why?</a>
+
+          -#if foodie
+          .clearfix
+            %button.btn#profile-image-button{'ng-click'=> 'uploadProfileImage()'} Upload Profile Picture
+      .span7
+        %p Profile Image
+        .row.profile-image-row
+          .span3.default
+            =image_tag "Food 18.jpg"
+        -#if chef
+        %p Cover Image
+        .row.cover-image-row
+          .span3.default
+            =image_tag "Food 17.jpg"
+
+    .row{'ng-show'=>'currentQuestion>3'}
+      .span12.question
+        %h2 {{questions[currentQuestion].text}}
         .row
-          .span5    
-            %input{:type => "text", :name => "work_zip", 'ng-model' => 'user.work_zip', :placeholder =>"Work Zip", :required => 'required', :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: create_profile.work_zip.$invalid}"}            
-            %a.why-zip{:href => "#", "data-toggle" => "tooltip", :title => "So we can better recommend lunch and dinner events near you!", "data-placement" => "right"} <sup> Why? </sup>
+          .span4.single-visual-answer
+            .row
+              .span4.answer-image
+                =link_to image_tag("{{questions[currentQuestion].answers[0].image}}"), "javascript:;"
+            .row.answer
+              .span4.answer-caption
+                %h3 {{questions[currentQuestion].answers[0].answer}}
+          .span4.single-visual-answer
+            .row
+              .span4.answer-image
+                =link_to image_tag("{{questions[currentQuestion].answers[1].image}}"), "javascript:;"
+            .row.answer
+              .span4.answer-caption
+                %h3 {{questions[currentQuestion].answers[1].answer}}
+          .span4.single-visual-answer
+            .row
+              .span4.answer-image
+                =link_to image_tag("{{questions[currentQuestion].answers[2].image}}"), "javascript:;"
+            .row.answer
+              .span4.answer-caption
+                %h3 {{questions[currentQuestion].answers[2].answer}}
+        .row
+          .span4.single-visual-answer
+            .row
+              .span4.answer-image
+                =link_to image_tag("{{questions[currentQuestion].answers[3].image}}"), "javascript:;"
+            .row.answer
+              .span4.answer-caption
+                %h3 {{questions[currentQuestion].answers[3].answer}}
+          .span4.single-visual-answer
+            .row
+              .span4.answer-image
+                =link_to image_tag("{{questions[currentQuestion].answers[4].image}}"), "javascript:;"
+            .row.answer
+              .span4.answer-caption
+                %h3 {{questions[currentQuestion].answers[4].answer}}
+          .span4.single-visual-answer
+            .row
+              .span4.answer-image
+                =link_to image_tag("{{questions[currentQuestion].answers[5].image}}"), "javascript:;"
+            .row.answer
+              .span4.answer-caption
+                %h3 {{questions[currentQuestion].answers[5].answer}}
+    .row
+      .span12.question{'ng-hide'=>'currentQuestion>3'}
+        %h2 {{questions[currentQuestion].text}}
+        .row
+          .span4.single-visual-answer-range
+            =render "survey_questions/visualanswerlow"
+          .span4
+            %slider.answer-slider{:ceiling => "50", :floor => "-50", "ng-model" => "answers[currentQuestion].level", :precision => "0", :step => "10"}
+          .span4.single-visual-answer-range
+            =render "survey_questions/visualanswerhigh"
+    .row
+      .span12.navigation-buttons.clearfix
+        %button.btn.btn-inverse{'ng-click' => 'prevQuestion()', 'ng-disabled'=>'beginning'} Previous
+        %button.btn.btn-warning.pull-right{'ng-disabled'=>'!end || create_profile.$invalid'} Submit
+        %button.btn.btn-inverse.pull-right{'ng-click' => 'nextQuestion()', 'ng-disabled' => 'end'} Next
+    .row
+      .span2
+      .span8.quiz-progress
+        .progress.progress-warning
+          <div class = "bar" style = "width: {{progress}}%"> </div>
+      .span2
 
-        .help-block{'ng-show' => 'create_profile.home_zip.$error.pattern'} Please enter a valid home zip code
-
-        .help-block{'ng-show' => 'create_profile.work_zip.$error.pattern'} Please enter a valid work zip code
-
-        .help-block{'ng-show' => 'create_profile.profile_blurb.$error.required || create_profile.profile_neighborhood.$error.required || create_profile.profile_city.$error.required || create_profile.profile_state.$error.required || create_profile.home_zip.$error.required || create_profile.work_zip.$error.required'} All fields are required
-
-  .row{'ng-show'=>'currentQuestion>3'}
-    .span12.question
-      %h2 {{questions[currentQuestion].text}}
-      .row
-        .span4.single-visual-answer
-          .row
-            .span4.answer-image
-              =link_to image_tag("{{questions[currentQuestion].answers[0].image}}"), "javascript:;"
-          .row.answer
-            .span4.answer-caption
-              %h3 {{questions[currentQuestion].answers[0].answer}}
-        .span4.single-visual-answer
-          .row
-            .span4.answer-image
-              =link_to image_tag("{{questions[currentQuestion].answers[1].image}}"), "javascript:;"
-          .row.answer
-            .span4.answer-caption
-              %h3 {{questions[currentQuestion].answers[1].answer}}
-        .span4.single-visual-answer
-          .row
-            .span4.answer-image
-              =link_to image_tag("{{questions[currentQuestion].answers[2].image}}"), "javascript:;"
-          .row.answer
-            .span4.answer-caption
-              %h3 {{questions[currentQuestion].answers[2].answer}}
-      .row
-        .span4.single-visual-answer
-          .row
-            .span4.answer-image
-              =link_to image_tag("{{questions[currentQuestion].answers[3].image}}"), "javascript:;"
-          .row.answer
-            .span4.answer-caption
-              %h3 {{questions[currentQuestion].answers[3].answer}}
-        .span4.single-visual-answer
-          .row
-            .span4.answer-image
-              =link_to image_tag("{{questions[currentQuestion].answers[4].image}}"), "javascript:;"
-          .row.answer
-            .span4.answer-caption
-              %h3 {{questions[currentQuestion].answers[4].answer}}
-        .span4.single-visual-answer
-          .row
-            .span4.answer-image
-              =link_to image_tag("{{questions[currentQuestion].answers[5].image}}"), "javascript:;"
-          .row.answer
-            .span4.answer-caption
-              %h3 {{questions[currentQuestion].answers[5].answer}}
-  .row
-    .span12.question{'ng-hide'=>'currentQuestion>3'}
-      %h2 {{questions[currentQuestion].text}}
-      .row
-        .span4.single-visual-answer-range
-          =render "survey_questions/visualanswerlow"
-        .span4
-          %slider.answer-slider{:ceiling => "50", :floor => "-50", "ng-model" => "answers[currentQuestion].level", :precision => "0", :step => "10"}
-        .span4.single-visual-answer-range
-          =render "survey_questions/visualanswerhigh"
-  .row
-    .span12.navigation-buttons.clearfix
-      %button.btn.btn-inverse{'ng-click' => 'prevQuestion()', 'ng-disabled'=>'beginning'} Previous
-      %button.btn.btn-warning.pull-right{'ng-disabled'=>'!end || create_profile.$invalid'} Submit
-      %button.btn.btn-inverse.pull-right{'ng-click' => 'nextQuestion()', 'ng-disabled' => 'end'} Next
-  .row
-    .span2
-    .span8.quiz-progress
-      .progress.progress-warning
-        <div class = "bar" style = "width: {{progress}}%"> </div>
-    .span2
-
--#
-  .row
-    .span12
-      =form_for UserAnswer.new do
-        -@questions.each do |q|
-          .question
-          -if q.survey_answers.empty?
-            %b
-              =q.topic
-            %p
-            %input{:type => 'checkbox', :name => "user_answers[#{q.id}]"}
-            =q.question
-            %p
-          -else
-            %b
-              =q.topic
-            %p
-            =q.question
-            %select{:name => "user_answers[#{q.id}]"}
-              -q.survey_answers.each do |a|
-                %option
-                  =a.text
-            %p
-        %button.secondary.button Send data
+  -#
+    .row
+      .span12
+        =form_for UserAnswer.new do
+          -@questions.each do |q|
+            .question
+            -if q.survey_answers.empty?
+              %b
+                =q.topic
+              %p
+              %input{:type => 'checkbox', :name => "user_answers[#{q.id}]"}
+              =q.question
+              %p
+            -else
+              %b
+                =q.topic
+              %p
+              =q.question
+              %select{:name => "user_answers[#{q.id}]"}
+                -q.survey_answers.each do |a|
+                  %option
+                    =a.text
+              %p
+          %button.secondary.button Send data
 

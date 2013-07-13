@@ -124,6 +124,16 @@ slider span.pointer.active:after{
 		height: 580px;
 	}
 }
+
+.profile-image-row, .cover-image-row{
+	height: 150px;
+}
+
+.default img, .cover-image img, .profile-image img{
+	max-width: 100%;
+	height: 150px;
+}
+
  
 /* Landscape phones and down */
 @media (max-width: 480px) {
