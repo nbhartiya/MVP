@@ -15,7 +15,7 @@
 
   - @survey_questions.each do |survey_question|
     %tr
-      %td= survey_question.kind
+      %td= survey_question.for_chef
       %td= survey_question.topic
       %td= survey_question.question
       %td= survey_question.low_extreme

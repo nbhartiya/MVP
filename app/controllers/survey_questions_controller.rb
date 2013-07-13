@@ -3,7 +3,7 @@ class SurveyQuestionsController < ApplicationController
   #before_filter :completed_user?
   
   def survey
-    @questions = SurveyQuestion.where(:kind => current_user.kind)     
+    @questions = SurveyQuestion.where(:for_chef => current_user.chef)     
   end
 
   def index

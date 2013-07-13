@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130711230509) do
+ActiveRecord::Schema.define(:version => 20130713001609) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -78,7 +78,6 @@ ActiveRecord::Schema.define(:version => 20130711230509) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.integer  "host_id"
-    t.string   "neighborhood"
     t.text     "blurb"
     t.time     "when"
   end
@@ -132,10 +131,11 @@ ActiveRecord::Schema.define(:version => 20130711230509) do
     t.string   "city"
     t.string   "state"
     t.string   "zipcode"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "user_id"
     t.integer  "event_id"
+    t.string   "neighborhood"
   end
 
   create_table "profiles", :force => true do |t|
@@ -145,10 +145,11 @@ ActiveRecord::Schema.define(:version => 20130711230509) do
     t.string   "home_zip"
     t.string   "work_zip"
     t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.string   "biz_name"
     t.string   "yelp_id"
+    t.string   "neighborhood"
   end
 
   create_table "projects", :force => true do |t|
@@ -183,10 +184,10 @@ ActiveRecord::Schema.define(:version => 20130711230509) do
   end
 
   create_table "survey_questions", :force => true do |t|
-    t.string   "kind"
+    t.boolean  "for_chef",     :limit => 255
     t.text     "question"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.string   "topic"
     t.text     "low_extreme"
     t.text     "high_extreme"
@@ -215,21 +216,21 @@ ActiveRecord::Schema.define(:version => 20130711230509) do
   create_table "users", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "kind"
-    t.boolean  "approved",               :default => false
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
-    t.string   "email",                  :default => "",    :null => false
-    t.string   "encrypted_password",     :default => "",    :null => false
+    t.boolean  "chef",                   :limit => 255
+    t.boolean  "approved",                              :default => false
+    t.datetime "created_at",                                               :null => false
+    t.datetime "updated_at",                                               :null => false
+    t.string   "email",                                 :default => "",    :null => false
+    t.string   "encrypted_password",                    :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",                         :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.boolean  "completed",              :default => false
+    t.boolean  "completed",                             :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

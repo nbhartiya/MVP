@@ -3,7 +3,7 @@
 # Table name: survey_questions
 #
 #  id           :integer          not null, primary key
-#  kind         :string(255)
+#  for_chef     :boolean
 #  question     :text
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
@@ -17,5 +17,5 @@
 class SurveyQuestion < ActiveRecord::Base 
   has_many :survey_answers
   has_many :user_answers
-  attr_accessible :question, :kind, :topic, :low_extreme, :high_extreme, :format, :active
+  attr_accessible :question, :for_chef, :topic, :low_extreme, :high_extreme, :format, :active
 end
