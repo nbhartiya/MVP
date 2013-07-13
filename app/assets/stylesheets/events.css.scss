@@ -65,6 +65,11 @@ ol.carousel-indicators{
 
 .event-profile{
 	height: 580px;
+	.btn#remove-image{
+    	right: 5px;
+		position: absolute;
+		z-index: 50;
+    }
 	#event-carousel {
 		position: absolute;
 	    width: 100%;
