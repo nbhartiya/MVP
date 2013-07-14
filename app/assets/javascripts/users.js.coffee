@@ -5,6 +5,7 @@ $(document).on "click", ".usersignup", ->
   $.post('/users', $('#new_user').serialize(),
   	(data, status) ->
       if data.match('Uh-oh, there was')
+        #render this data
       	#TODO: Probably want to make this better later...
         console.log('WAHHHHH!!')
       else
