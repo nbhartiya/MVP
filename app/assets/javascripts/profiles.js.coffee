@@ -20,6 +20,7 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
   $scope.edit = 1
 
   $scope.imageUrls = []
+  $scope.profileImageUrl = []
 
   $scope.uploadImages = ->
     filepicker.pickAndStore
@@ -37,15 +38,43 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
         $scope.image="https://s3.amazonaws.com/#{InkBlobs[i].key}"
         console.log $scope.image
         $scope.imageUrls.push($scope.image)
-        filepicker.read InkBlobs[i].url,
-          base64encode: true
-        , (imgdata) ->
-            if i == 0
-              $('.events .carousel-inner').append("<img src = 'data:image/png;base64,#{imgdata}' class = 'item active'>")
-            else
-              $('.events .carousel-inner').append("<img src = 'data:image/png;base64,#{imgdata}' class = 'item'>")
+        $('.active.item').remove()
+        $('.carousel-inner').empty()
+        if i == 0
+          filepicker.read InkBlobs[i].url,
+            base64encode: true
+          , (imgdata) ->
+            $('.profiles .carousel-inner').append("<div class = 'item active'><img src = 'data:image/*;base64,#{imgdata}'></div>")
+            $('.profiles .user-profile .carousel-indicators').append("<li class = 'active' data-slide-to '0' data-target = 'profile-carousel'></li>")
+        else
+          filepicker.read InkBlobs[i].url,
+            base64encode: true
+          , (imgdata) ->
+            $('.profiles .carousel-inner').append("<div class = 'item'><img src = 'data:image/*;base64,#{imgdata}'></div>")
+            $('.profiles .user-profile .carousel-indicators').append("<li data-slide-to '0' data-target = 'profile-carousel'></li>")
         i++
+        $('.user-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#profile-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#profile-carousel'> > </a>")
+  
+  $scope.uploadProfileImage = ->
+    filepicker.pickAndStore
+      mimetypes: ["image/*", "text/plain"]
+      services: ["COMPUTER", "FACEBOOK", "GMAIL", "INSTAGRAM"]
+      multiple: false
+    ,
+      location: "S3"
+      path: '/simmreventimages/'
+    , (InkBlob) ->
+      console.log JSON.stringify(InkBlob)
+
+      $scope.image="https://s3.amazonaws.com/#{InkBlob[0].key}"
+      console.log $scope.image
+      $scope.profileImageUrl.push($scope.image)
+      $('td.profile-photo').remove()
+      filepicker.read InkBlob[0].url, base64encode: true, (imgdata) ->
+        $('.user-profile-overview table tr').append("<td class = 'profile-photo'><img src = 'data:image/*;base64,#{imgdata}'></div>")
 ]
+
+
 
 angular.module('Simmr').controller "ProfileShowCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
   $scope.mapUrl = ->
@@ -186,6 +215,46 @@ angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$l
     else
       $scope.beginning = false
     $scope.progress = ($scope.currentQuestion + 1) / ($scope.questions.length + 1) * 100
+  
+  $scope.coverImageUrl = []
+  $scope.profileImageUrl = []
 
+  $scope.uploadImages = ->
+    filepicker.pickAndStore
+      mimetypes: ["image/*", "text/plain"]
+      services: ["COMPUTER", "FACEBOOK", "GMAIL", "INSTAGRAM"]
+      multiple: false
+    ,
+      location: "S3"
+      path: '/simmreventimages/'
+    , (InkBlob) ->
+      console.log JSON.stringify(InkBlob)
+
+      $scope.image="https://s3.amazonaws.com/#{InkBlob[0].key}"
+      console.log $scope.image
+      $scope.coverImageUrl.push($scope.image)
+      $('.cover-image-row .default').remove()
+      $('.cover-image-row').empty()
+      filepicker.read InkBlob[0].url, base64encode: true, (imgdata) ->
+        $('.cover-image-row').append("<div class = 'cover-image span3'><img src = 'data:image/*;base64,#{imgdata}'></div>")
+  
+  $scope.uploadProfileImage = ->
+    filepicker.pickAndStore
+      mimetypes: ["image/*", "text/plain"]
+      services: ["COMPUTER", "FACEBOOK", "GMAIL", "INSTAGRAM"]
+      multiple: false
+    ,
+      location: "S3"
+      path: '/simmreventimages/'
+    , (InkBlob) ->
+      console.log JSON.stringify(InkBlob)
+
+      $scope.image="https://s3.amazonaws.com/#{InkBlob[0].key}"
+      console.log $scope.image
+      $scope.profileImageUrl.push($scope.image)
+      $('.profile-image-row .default').remove()
+      $('.profile-image-row').empty()
+      filepicker.read InkBlob[0].url, base64encode: true, (imgdata) ->
+        $('.profile-image-row').append("<div class = 'profile-image span3'><img src = 'data:image/*;base64,#{imgdata}'></div>")
   
 ]

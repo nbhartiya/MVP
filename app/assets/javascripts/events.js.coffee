@@ -539,3 +539,7 @@ $("#event-carousel").carousel interval: false
 $(".carousel-indicators li").click ->
   $(".carousel-indicators li").removeClass "active"
   $(this).addClass "active"
+
+$("#remove-image").click ->
+  $(".active.item").remove()
+  $(".item:first-child").addClass "active"

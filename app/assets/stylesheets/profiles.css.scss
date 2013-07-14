@@ -124,10 +124,10 @@ $main_orange: rgb(255, 178, 35);
 	z-index: 500;
 	.event-image, .user-image, .campaign-image{
 		height: 280px;
-		max-width: 100%;
+		background: black;
 		img{
 			height: 280px;
-			min-width: 100%;
+			max-width: 100%;
 		}
 	}
 
@@ -518,7 +518,7 @@ $main_orange: rgb(255, 178, 35);
 
 .container{
 	.section-header{
-		margin: 20px 0 20px -15px;
+		margin: 30px 0 30px -15px;
 		h1{
 			font-size: 30px;
 			color: black;
@@ -640,4 +640,41 @@ $main_orange: rgb(255, 178, 35);
 	img{
 		width: 80px;
 	}
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 980px) and (max-width: 1199px) { 
+	.single-campaign .campaign-first-row .join-button{
+		margin: 0;
+	}
+	.single-campaign .campaign-first-row .campaign-title-and-blurb{
+		margin: 0;
+	}
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) { 
+	.single-campaign .campaign-first-row .join-button{
+		margin: 0;
+	}
+	.single-campaign .campaign-first-row .campaign-title-and-blurb{
+		margin: 0;
+	}
+	.single-campaign .campaign-first-row .campaign-lead-image{
+		margin: 0 10px 0 0;
+		width: 40px;
+	}
+
+}
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) { 
+	.single-campaign{
+		margin: 0;
+	}
+}
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) {
+	
 }

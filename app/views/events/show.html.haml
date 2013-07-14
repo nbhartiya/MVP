@@ -1,6 +1,6 @@
 .events
   .event-profile
-    #event-carousel.carousel.slide         
+    #event-carousel.carousel.slide.hidden-phone       
       .carousel-inner
         -@event.images.each_with_index do |i, index|
           -if index == 0
@@ -9,7 +9,7 @@
           -else
             .item
               = filepicker_image_tag i.image
-    %ol.carousel-indicators
+    %ol.carousel-indicators.hidden-phone
       -@event.images.each_with_index do |i, index|     
         - if index == 0
           %li.active{"data-target" => "#event-carousel", "data-slide-to" => index}
@@ -109,14 +109,14 @@
             %button.btn.btn-warning#ticket-purchase{'ng-click' => 'submitPayment()', 'ng-disabled'=> 'stripe.$invalid'} Purchase
             %button.btn#previous-button{'ng-click' => 'payment=1'} Previous
 
-          .event-purchase.clearfix{'ng-show' => 'payment==3'}
+          .event-purchase-confirmation.clearfix{'ng-show' => 'payment==3'}
             %h2 Thank you for your reservation! You will receive an email confirmation shortly.
             %button.btn.btn-warning#ok-button{'ng-click' => "payment=0", 'ng-hide' => 'payment==0'} Great!
         .span1
   .container
     .row
       .span2.scroll-menu.event
-        %ul.nav.nav-list.scroll-menu-items{"data-spy" => "affix", "data-offset-top" => "680", "data-offset-bottom"=> "150"}
+        %ul.nav.nav-list.scroll-menu-items{"data-spy" => "affix", "data-offset-top" => "710", "data-offset-bottom"=> "300"}
           %li 
             %a{:href=>"#about"} Host Story
           %li 

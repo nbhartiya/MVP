@@ -1,7 +1,9 @@
 .campaigns
   .campaign-profile
-    #campaign-carousel.carousel.slide           
+    #campaign-carousel.carousel.slide.hidden-phone 
       .carousel-inner
+        .active.item
+          =image_tag "Food 17.jpg"
     .container
       .campaign-registration.row{'ng-controller' => 'CampaignEditCtrl', 'ng-init' => "campaign.id=#{@campaign.id}"}
         .span1
@@ -48,10 +50,10 @@
             %input{'ng-model' => 'campaign.biz_name', :type=>"text", :placeholer =>'campaign.biz_name', :name => "campaign_name", :required => "required", 'ng-class' => "{error: campaign_create.campaign_name.$invalid}"}
             %textarea.campaign-blurb{:rows => "4", 'ng-model' => 'campaign.blurb', :type=>"text", :placeholder =>"Business Description - you get the length of a tweet to describe this business - what is its tagline?", :required => "required", :name => "campaign_description", :maxlength => "140", 'ng-class' => "{error: campaign_create.campaign_description.$invalid}"}
 
-            .help-block-white{'ng-show' => "campaign_create.campaign_description.$error.required || campaign_create.campaign_name.$error.required"} Both fields are required!
+            .help-block{'ng-show' => "campaign_create.campaign_description.$error.required || campaign_create.campaign_name.$error.required"} Both fields are required!
             
             .clearfix
-              %button.btn.GetFilepicker#campaign-upload-images{'ng-click'=> 'uploadImages()'} Upload Images
+              %button.btn#campaign-upload-images{'ng-click'=> 'uploadImages()'} Upload Images
             
             %button.btn.btn-warning.standalone-button#submit{'ng-click' => 'editCampaign(campaign)', 'ng-disabled'=> 'campaign_create.$invalid'} Update
 

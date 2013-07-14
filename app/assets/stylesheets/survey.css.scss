@@ -7,6 +7,11 @@ a.why-zip, a.why-zip:hover, a.why-zip:visited{
 	text-decoration: none;
 }
 
+a#yelp-explanation, a#yelp-explanation:hover, a#yelp-explanation:visited{
+	color: $main_orange;
+	text-decoration: none;
+}
+
 .foodie-quiz{
 	h1{
 		font-size: 30px;
@@ -88,3 +93,68 @@ a.why-zip, a.why-zip:hover, a.why-zip:visited{
 .create-profile #neighborhoods, .create-profile #state{
 	display: block;
 }
+
+slider span.bubble {
+	top: -30px;
+}
+
+slider span.pointer.active:after{
+	background: $main_orange;
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+	.single-visual-answer-range .answer {
+		bottom: 100px;
+	}
+	.single-visual-answer {
+		height: 200px;
+	}
+}
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+	.single-visual-answer-range .answer {
+		bottom: 300px;
+	}
+	.single-visual-answer-range {
+		height: 580px;
+	}
+	.answer-slider{
+		margin-top: 0;
+		margin-bottom: 80px;
+	}
+
+	.single-visual-answer {
+		height: 580px;
+	}
+}
+
+.profile-image-row, .cover-image-row{
+	height: 150px;
+}
+
+.default img, .cover-image img, .profile-image img{
+	max-width: 100%;
+	height: 150px;
+}
+
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) {
+	.single-visual-answer-range .answer {
+		bottom: 140px;
+	}
+	.single-visual-answer-range {
+		height: 320px;
+	}
+	.answer-slider{
+		margin-top: 0;
+		margin-bottom: 40px;
+	}
+
+	.single-visual-answer {
+		height: 320px;
+	}
+}
+

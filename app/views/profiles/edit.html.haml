@@ -4,14 +4,7 @@
       .carousel-inner
         .active.item
           =image_tag "Food 17.jpg"
-        .item
-          =image_tag "Food 18.jpg"
-        .item
-          =image_tag "Food 22.jpg"
     %ol.carousel-indicators
-      %li.active{"data-slide-to" => "0", "data-target" => "#profile-carousel"}
-      %li{"data-slide-to" => "1", "data-target" => "#profile-carousel"}
-      %li{"data-slide-to" => "2", "data-target" => "#profile-carousel"}
     .container
       .row.user-overview{'ng-controller' => 'ProfileEditCtrl'}
         .span1          
@@ -97,11 +90,13 @@
 
               %select#neighborhoods{'ng-model'=>'profile.neighborhood', :name => "profile_neighborhood", :required => "required", 'ng-class' => "{error: profile_edit.profile_neighborhood.$invalid}"}
               
-              .help-block-white{'ng-show' => 'profile_edit.profile_zip.$error.pattern'} Please enter a valid zip code
+              .help-block{'ng-show' => 'profile_edit.profile_zip.$error.pattern'} Please enter a valid zip code
 
-              .help-block-white{'ng-show' => 'profile_edit.profile_name.$error.required || profile_edit.profile_blurb.$error.required || profile_edit.profile_address.$error.required || profile_edit.profile_city.$error.required || profile_edit.profile_state.$error.required || profile_edit.profile_zip.$error.required || profile_edit.profile_neighborhood.$error.required'} All fields are required
+              .help-block{'ng-show' => 'profile_edit.profile_name.$error.required || profile_edit.profile_blurb.$error.required || profile_edit.profile_address.$error.required || profile_edit.profile_city.$error.required || profile_edit.profile_state.$error.required || profile_edit.profile_zip.$error.required || profile_edit.profile_neighborhood.$error.required'} All fields are required
 
               .clearfix
+                %button.btn#profile-images-button{'ng-click'=> 'uploadProfileImage()'} Upload Profile Picture
+                %button.btn#cover-images-button{'ng-click'=> 'uploadImages()'} Upload Cover Images
                 %button.btn#yelp-connect Connect Yelp
                 %span#yelp-explanation <a data-toggle = "tooltip" id = "why-yelp" title = "So guests know how great you already are and can easily leave you reviews!">Why?</a>
               %button.btn.btn-warning#submit{'ng-click' => 'edit=2', 'ng-disabled' => 'profile_edit.$invalid'} Save Changes
@@ -121,10 +116,12 @@
 
               %input#profile-zip{'ng-model' => 'profile.zip', :type=>"text", :placeholder =>"Your Zip", :required => "required", :name => "profile_zip", :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: profile_edit.profile_zip.$invalid}"}
               
-              .help-block-white{'ng-show' => 'profile_edit.profile_zip.$error.pattern'} Please enter a valid zip code
+              .help-block{'ng-show' => 'profile_edit.profile_zip.$error.pattern'} Please enter a valid zip code
 
-              .help-block-white{'ng-show' => 'profile_edit.profile_name.$error.required || profile_edit.profile_blurb.$error.required || profile_edit.profile_neighborhood.$error.required || profile_edit.profile_city.$error.required || profile_edit.profile_state.$error.required || profile_edit.profile_zip.$error.required'} All fields are required
+              .help-block{'ng-show' => 'profile_edit.profile_name.$error.required || profile_edit.profile_blurb.$error.required || profile_edit.profile_neighborhood.$error.required || profile_edit.profile_city.$error.required || profile_edit.profile_state.$error.required || profile_edit.profile_zip.$error.required'} All fields are required
 
+              .clearfix
+                %button.btn#profile-images-button{'ng-click'=> 'uploadProfileImage()'} Upload Profile Picture
               %button.btn.btn-warning#submit{'ng-click' => 'edit=2', 'ng-disabled' => 'profile_edit.$invalid'} Save Changes
                 
         .span1

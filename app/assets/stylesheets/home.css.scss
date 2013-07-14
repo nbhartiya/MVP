@@ -112,32 +112,46 @@ ul.parsley-error-list{
 				background: no-repeat;
 			}
 			.caption{
-				background: rgba(0, 0, 0, 0.8);
+				background: rgba(0,0,0,0.7);
+				border: white 2px solid;
 				position: absolute;
-				padding: 5px 30px;
-				left: 0;
-				right: 0;
+				margin: 0 auto;
+				text-align: center;
+				right: 5px;
 				top: 500px;
-				z-index: 500;
+				height: 150px;
+				width: 150px;
+				border-radius: 50%;
+				padding: 12px;
+				z-index: 5;
 				color: white;
+				.caption-text{
+					position: relative;
+					top: 50%;
+					height: 200px;
+					margin-top: -45px;
+				}
 				h4{
-					font-weight: 100;
-					line-height: 1.5em;
-					font-size: 20px;
+					font-weight: 500;
+					line-height: 1em;
+					font-size: 16px;
+					z-index: 6;
 				}
 				p{
-					line-height: 1.5em;
+					line-height: 1em;
+					z-index: 6;
+					font-size: 14px;
+					font-weight: 300;
 				}
 			}
 		}
 	}
 	.carousel-control{
-		font-size: 50px;
+		font-size: 40px;
 		color: white;
-		font-size: 80px;
-		top: 50%;
+		top: 40%;
 		z-index: 50;
-		background: none;
+		background: rgba(0, 0, 0, 0.7);
 		border: none;
 	}
 	.carousel-indicators{
@@ -151,25 +165,26 @@ ul.parsley-error-list{
 		-moz-box-sizing: border-box;    
 		box-sizing: border-box;
 		.copy-content{
-			background: rgba(0,0,0,.8);
+			background: rgba(0, 0, 0, 0.7);
 	    	padding: 30px;
 	    	-webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box;
 			h1{
-				font-size: 30px;
-				line-height: 1.2em;
-				font-weight: 100;
+				font-size: 120px;
+				line-height: 1em;
+				font-weight: 400;
 				color: white;
 				margin: 0;
 				text-align: center;
 			}
 			h2{
-				font-size: 20px;
-				line-height: 1.5em;
+				font-size: 50px;
+				line-height: 1em;
 				font-weight: 100;
 				color: white;
 				margin: 0;
+				text-align: center;
 			}
 			p{
 			    text-align: center;
@@ -185,20 +200,26 @@ ul.parsley-error-list{
 				text-decoration: none;
 			}
 		}
-		.how-it-works-button{
+		.buttons{
 			margin: 20px auto 0 auto;
-			display: block;
-			width: 80%;
-			height: 20%;	
+			width: 60%;
+			padding: 0;
+		}
+		.how-it-works-button{
+			display: inline-block;
+			width: 49.25%;
+			padding: 12px 2px;
+			font-size: 18px;
 			-webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box; 
 		}
 		.sign-up-button, .view-events-button{
-			margin: 10px auto 0 auto;
-			display: block;
-			width: 80%;
-			height: 20%;
+			display: inline-block;
+			width: 49.25%;
+			padding: 12px 2px;
+			font-size: 18px;
+			font-weight: 100;
 			-webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box; 
@@ -226,6 +247,7 @@ ul.parsley-error-list{
 
 .accordion-inner{
 	border-top: none;
+	margin: 20px 20px 20px 0;
 }
 
 #how-it-works{
@@ -279,24 +301,145 @@ ul.parsley-error-list{
 	background: rgb(240, 240, 240);
 }
 
-// not used
 
-.featured-events{
-	padding: 10px 0;
-	a, a:visited{
-		color: $main_orange;
-		text-decoration: none;
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) { 
+	.attention-getter{
+  		height: 500px;
+  		#home-carousel{
+  			.carousel-inner{
+  				height: 500px;
+  			}
+  		}
+ 	}
+ 	.attention-getter .copy .copy-content{
+  		h1{
+  			font-size: 60px;
+  		}
+	  	h2{
+	  		font-size: 30px;
+	  	}
+  		.how-it-works-button, .sign-up-button, .view-events-button{
+  		font-size: 14px;	
+  		}
+	}
+    .attention-getter #home-carousel .carousel-inner .caption{
+		top: 300px;
+		font-size: 14px;
+  		height: 100px;
+  		width: 100px;
+  		.caption-text{
+  			height: 100px;
+  		}
+  		h4{
+  			font-size: 14px;
+  		}
+  		p{
+  			font-size: 12px;
+  		}
+	}
+    body{
+  	padding: 0;
+    }
+	.step .step-description p{
+    	font-size: 20px;
+    }
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) { 
+  	.attention-getter{
+  		height: 350px;
+  		#home-carousel{
+  			.carousel-inner{
+  				height: 350px;
+  			}
+  		}
+  	}
+  	.attention-getter .copy{
+  		margin-top: 20px;
+  	}
+  	.attention-getter #home-carousel .carousel-inner img{
+  		min-width: 50%;
+  	}
+  	.attention-getter .copy .copy-content{
+  		h1{
+  			font-size: 40px;
+  		}
+  		h2{
+  			font-size: 20px;
+  		}
+  		.buttons{
+  			width: 100%;
+  		}
+  		.how-it-works-button, .sign-up-button, .view-events-button{
+  			font-size: 10px;
+  			padding: 4px;
+  		}
+ 	}
+  	body{
+  		padding: 0;
+  	}
+  .attention-getter #home-carousel .carousel-inner .caption{
+		top: 200px;
+		left: 0;
+		right: 0;
+		font-size: 14px;
+  		height: 100px;
+  		width: 100px;
+  		.caption-text{
+  			height: 100px;
+  		}
+  		h4{
+  			font-size: 14px;
+  		}
+  		p{
+  			font-size: 12px;
+  		}
+	}
+    .attention-getter .carousel-control{
+  		top: 10%;
+    }
+    #how-it-works-detail h3{
+		font-size: 16px;
 	}
 }
 
-// begin events styling
 
-.more-button{
-	margin-top: 20px;
-	width: 100%;
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) { 
+	.attention-getter{
+  		height: 600px;
+  		#home-carousel{
+  			.carousel-inner{
+  				height: 600px;
+  			}
+  		}
+ 	}
+    .attention-getter .copy .copy-content{
+	  	h1{
+	  		font-size: 75px;
+	  	}
+	  	h2{
+	  		font-size: 35px;
+	  	}
+	  	.how-it-works-button, .sign-up-button, .view-events-button{
+	  		font-size: 14px;
+	  	}
+	}
+    .attention-getter #home-carousel .carousel-inner .caption{
+		top: 350px;
+	}
+	.attention-getter .carousel-control{
+  		top: 40%;
+    }
+    .step .step-description p{
+    	font-size: 11px;
+    }
+    .step h1{
+    	font-size: 24px;
+    }
+    #how-it-works-detail h3{
+		font-size: 16px;
+	}
 }
-
-a.more-button:visited{
-	color: white;
-}
-

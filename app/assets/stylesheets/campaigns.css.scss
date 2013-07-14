@@ -44,6 +44,16 @@ $main_orange: rgb(255, 178, 35);
 			}
 		}
 	}
+	.carousel-control{
+		font-size: 40px;
+		color: white;
+		top: 40%;
+		z-index: 50;
+		background: rgba(0, 0, 0, 0.7);
+		border: none;
+		line-height: 35px;
+		margin-top: 0;
+	}
 	.campaign-registration {
 	    margin-top: 25px;
 	    -webkit-box-sizing: border-box;
@@ -85,7 +95,7 @@ $main_orange: rgb(255, 178, 35);
 			}
 			.progress{
 				float: left;
-				margin-top: 5px;
+				margin-top: 10px;
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box; 
@@ -227,3 +237,58 @@ $main_orange: rgb(255, 178, 35);
 	box-sizing: border-box; 
 	width: 100%;
 }
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) { 
+	.campaign-profile .campaign-registration .campaign-summary h1 {
+		font-size: 26px;
+	}
+
+	.campaign-profile .campaign-registration .campaign-summary h2 {
+		font-size: 18px;
+	}
+
+	.campaign-profile .campaign-registration .campaign-summary h3 {
+		font-size: 14px;
+	}
+
+	.campaign-profile .campaign-registration .campaign-summary .campaign-join-button{
+		width: 24%;
+	}
+
+	body .campaigns .campaign-registration .campaign-summary .campaign-social-stats{
+		font-size: 10px;
+	}
+}
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) { 
+	.campaign-profile .campaign-registration .heart_this {
+		padding: 0;
+	}
+
+	.campaign-profile{
+		height: 500px;
+	}
+	.campaigns .container .section-header {
+		margin: 30px 10px;
+	}
+	.campaign-profile .campaign-registration{
+		.campaign-create-form, .campaign-create-confirmation{
+			position: absolute;
+			width: 92%;
+			z-index: 10;
+		}
+	}
+
+}
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) {
+	.campaign-profile .campaign-registration{
+		.campaign-create-form, .campaign-create-confirmation{
+			width: 85%;
+		}
+	}
+}
+

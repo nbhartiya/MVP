@@ -1,4 +1,4 @@
-.nav-container
+.container.nav-container
   .row.nav
     .span4.logo-and-location
       = link_to image_tag("logo_orange_text.png", :border=>0), '/home/index', :class => "logo"
@@ -32,7 +32,7 @@
           %a{:href =>"/events"}Browse Events
         %li.pull-right.input-append
           %input#appendedInputButton{:type => 'text', :placeholder => "Search Events"}
-          %button.btn <i class = "icon-search"></i>
+          %button.btn.search <i class = "icon-search"></i>
 
   #sign_up.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
     .modal-header

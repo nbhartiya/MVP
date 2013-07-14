@@ -1,8 +1,10 @@
 .events
   .event-profile
-    #event-carousel.carousel.slide           
+    #event-carousel.carousel.slide.hidden-phone           
       .carousel-inner
-    %a.carousel-control.right{"data-slide"=>"next", :href =>"#event-carousel"} >
+        .active.item
+          =image_tag "Food 17.jpg"
+    .btn#remove-image x
     .container
       .event-registration.row{'ng-controller' => 'EventCreateCtrl'}
         .span1

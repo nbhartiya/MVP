@@ -9,6 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require bootstrap-responsive
  *= require_tree .
  *= require css-social-buttons2/social-buttons
  */
@@ -42,6 +43,17 @@ body{
 	::-webkit-scrollbar-thumb:horizontal{width:50px;background-color:rgb(180, 180, 180);-webkit-border-radius:8px;}
 }
 
+.btn{
+	border-radius: 0;
+	box-shadow: 0;
+	text-shadow: none;
+	background-image: none;
+	margin: 5px 0;
+}
+
+.btn.search{
+	margin: 0 0 0 -2px;
+}
 
 
 // general purpose classes
@@ -131,7 +143,7 @@ input.error-true  {
 .nav-container{
 	display: block;
 	width: 1170px;
-	margin: 20px auto;
+	margin: 50px auto 10px auto;
 	font-size: 13px;
 	a{
 		color: black;
