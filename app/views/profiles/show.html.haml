@@ -36,14 +36,15 @@
                   =image_tag "Favicon.png"
               %td.user-title
                 %h1
-                  @profile.user.first_name @profile.user.last_name 
+                  #{@profile.user.first_name} #{@profile.user.last_name}
             %tr
               %td.user-summary{:colspan => '2'}
                 -if @profile.blurb.present?
                   %h2 
-                    @profile.blurb 
+                    =@profile.blurb 
                 -if @profile.neighborhood.present?
-                  %h3 @profile.neighborhood
+                  %h3 
+                    =@profile.neighborhood
         -else
           .span4.user-profile-overview{'ng-controller' => 'ProfileShowCtrl'}
             %table

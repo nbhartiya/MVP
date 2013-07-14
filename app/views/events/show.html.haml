@@ -87,7 +87,7 @@
         .span1.heart_this
           -# Fix 
           -# %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
-          %heart{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{params}'"}
+          %heart{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'"}
         .span1
         .span4 
           .event-guests.clearfix{'ng-show' => 'payment==1', 'ng-init'=> "cost='#{@event.cost}'"}
@@ -179,9 +179,6 @@
   %p
     %b Title:
     = @event.title
-  %p
-    %b Location:
-    = @event.location_title
   %p
     %b People limit:
     = @event.people_limit

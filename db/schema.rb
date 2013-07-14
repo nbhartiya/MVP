@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130713001609) do
+ActiveRecord::Schema.define(:version => 20130714070421) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -72,14 +72,13 @@ ActiveRecord::Schema.define(:version => 20130713001609) do
     t.text     "menu_text"
     t.date     "date"
     t.float    "cost"
-    t.string   "location_title"
     t.integer  "length"
     t.text     "other_info"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "host_id"
     t.text     "blurb"
-    t.time     "when"
+    t.time     "time"
   end
 
   create_table "follows", :force => true do |t|
@@ -131,11 +130,12 @@ ActiveRecord::Schema.define(:version => 20130713001609) do
     t.string   "city"
     t.string   "state"
     t.string   "zipcode"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.integer  "user_id"
     t.integer  "event_id"
     t.string   "neighborhood"
+    t.string   "location_title"
   end
 
   create_table "profiles", :force => true do |t|

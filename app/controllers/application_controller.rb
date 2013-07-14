@@ -6,10 +6,6 @@ class ApplicationController < ActionController::Base
   def after_sign_out_path_for(resource)
     home_indexABC_path
   end
-
-  def after_sign_in_path_for(resource)
-    events_path
-  end
   
   #not necessary now, but if we want logout to go somewhere in particular...
   #def after_sign_out_path_for(resource)

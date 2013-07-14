@@ -27,11 +27,11 @@
             %h3#default-text{'ng-show'=>'event.date=="" || event.date==nil'}
               =Time.now().strftime("%A, %B %d, %l:%M%p")
             %h3 
-              {{event.date}} {{event.when}}
-            %h3#default-text{'ng-show'=>'event.neighborhood=="" || event.neighborhood==nil'}
+              {{event.date}} {{event.time}}
+            %h3#default-text{'ng-show'=>'event.location.neighborhood=="" || event.location.neighborhood==nil'}
               Neighborhood
             %h3
-              {{event.neighborhood}}
+              {{event.location.neighborhood}}
             %p#default-text{'ng-show'=>'event.people_limit=="" || event.people_limit==nil'}
               0 seats left
             %p{'ng-hide'=>'event.people_limit=="" || event.people_limit==nil'}
@@ -94,12 +94,12 @@
               %p Date and Time
               %input#event-date{'ng-model' => 'event.date', :type=>"date", :name => "event_date", :required => "required", :min => '{{today}}', 'ng-class' => "{error: event_create.event_date.$invalid}"}
 
-              %select#times{'ng-model' => 'event.when', :name => "event_when", :required => "required", 'ng-class' => "{error: event_create.event_when.$invalid}"}
+              %select#times{'ng-model' => 'event.time', :name => "event_time", :required => "required", 'ng-class' => "{error: event_create.event_time.$invalid}"}
 
             #event-location
               %p Location (guests see full address after purchase)
 
-              %select#neighborhoods{'ng-model' => 'event.neighborhood', :required => "required", :name => "event_neighborhood", 'ng-class' => "{error: event_create.event_neighborhood.$invalid}"}
+              %select#neighborhoods{'ng-model' => 'event.location.neighborhood', :required => "required", :name => "event_neighborhood", 'ng-class' => "{error: event_create.event_neighborhood.$invalid}"}
 
               %input#event_address{'ng-model' => 'event.location.address1',:type=>"text", :placeholder =>"Address", :required => "required", :name => "event_address", 'ng-class' => "{error: event_create.event_address.$invalid}"}
 
@@ -111,12 +111,12 @@
 
               .help-block-white{'ng-show' => 'event_create.event_zip.$error.pattern'} Please enter a valid zip code
 
-            .help-block-white{'ng-show' => 'event_create.event_title.$error.required || event_create.event_blurb.$error.required || event_create.event_date.$error.required || event_create.event_when.$error.required || event_create.event_neighborhood.$error.required || event_create.event_address.$error.required || event_create.event_city.$error.required || event_create.event_state.$error.required || event_create.event_zip.$error.required || event_create.event_cost.$error.required || event_create.event_limit.$error.required'} All fields are required
+            .help-block-white{'ng-show' => 'event_create.event_title.$error.required || event_create.event_blurb.$error.required || event_create.event_date.$error.required || event_create.event_time.$error.required || event_create.event_neighborhood.$error.required || event_create.event_address.$error.required || event_create.event_city.$error.required || event_create.event_state.$error.required || event_create.event_zip.$error.required || event_create.event_cost.$error.required || event_create.event_limit.$error.required'} All fields are required
 
             %button.btn.btn-warning.standalone-button#submit{'ng-click' => 'createEvent(event)', 'ng-disabled' => 'event_create.$invalid'} Create Event
 
           .event-create-confirmation{'ng-show' => 'created'}
-            %h2 Thanks! You'll get an email when your event is approved and public. While you're waiting, make a video or upload more pictures? Or <a href = "/events"> browse </a> other events for cool ideas!
+            %h2 Thanks! You'll get an email time your event is approved and public. While you're waiting, make a video or upload more pictures? Or <a href = "/events"> browse </a> other events for cool ideas!
 
   .container
     .row
