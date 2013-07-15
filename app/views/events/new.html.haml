@@ -29,7 +29,7 @@
             %h3#default-text{'ng-show'=>'event.date=="" || event.date==nil'}
               =Time.now().strftime("%A, %B %d, %l:%M%p")
             %h3 
-              {{event.date}} {{event.when}}
+              {{eventDate()}} {{event.when}}
             %h3#default-text{'ng-show'=>'event.neighborhood=="" || event.neighborhood==nil'}
               Neighborhood
             %h3
