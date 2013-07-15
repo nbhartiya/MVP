@@ -5,7 +5,7 @@
 #  id                     :integer          not null, primary key
 #  first_name             :string(255)
 #  last_name              :string(255)
-#  kind                   :string(255)
+#  chef                   :boolean
 #  approved               :boolean          default(FALSE)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :approved, :first_name, :last_name, :kind, :work_zip
+  attr_accessible :approved, :first_name, :last_name, :chef, :work_zip
   
   def apply_omniauth(omni)
     if omni['provider'] == 'facebook'

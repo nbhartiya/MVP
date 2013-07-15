@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update_attributes(params[:user])
-      #TODO Come back and clean up!!f
+      #TODO Come back and clean up!!
       if !@user.kind.empty?
         @user.complete!
         flash[:notice] = "User was successfully saved."

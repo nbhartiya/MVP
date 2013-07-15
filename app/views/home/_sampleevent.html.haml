@@ -1,9 +1,10 @@
 -#TODO: Make this image into a link to events
 -if event.images.present?
-  =filepicker_image_tag event.images.first.image
+  =link_to (filepicker_image_tag event.images.first.image), event_path(event)
 -else
-  =link_to image_tag("Food 17.jpg")
-.caption
+  =link_to image_tag("Food 17.jpg"), event_path(event)
+%a.caption{href:event_path(event)}
   .caption-text
     %h4 #{event.title}
     %p #{event.description}
+    %p #{event.location.neighborhood}

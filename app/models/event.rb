@@ -2,23 +2,21 @@
 #
 # Table name: events
 #
-#  id             :integer          not null, primary key
-#  title          :string(255)
-#  people_limit   :integer
-#  description    :text
-#  menu_pdf       :string(255)
-#  menu_text      :text
-#  date           :date
-#  cost           :float
-#  location_title :string(255)
-#  length         :integer
-#  other_info     :text
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  host_id        :integer
-#  neighborhood   :string(255)
-#  blurb          :text
-#  when           :time
+#  id           :integer          not null, primary key
+#  title        :string(255)
+#  people_limit :integer
+#  description  :text
+#  menu_pdf     :string(255)
+#  menu_text    :text
+#  date         :date
+#  cost         :float
+#  length       :integer
+#  other_info   :text
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  host_id      :integer
+#  blurb        :text
+#  time         :time
 #
 
 class Event < ActiveRecord::Base
@@ -30,7 +28,7 @@ class Event < ActiveRecord::Base
   has_many :guests, :through => :tickets
   has_many :follows, :as => :followable, :dependent => :destroy
   
-  attr_accessible :other_info, :length, :location_title, :cost, :date, :description, :menu_pdf, :menu_text, :people_limit, :title, :host_id, :images_attributes, :when, :neighborhood
+  attr_accessible :other_info, :length, :cost, :date, :description, :menu_pdf, :menu_text, :people_limit, :title, :host_id, :images_attributes, :time, :neighborhood, :blurb
 
   accepts_nested_attributes_for :images, :reject_if => lambda { |a| a[:image].blank? }, :allow_destroy => true
 
