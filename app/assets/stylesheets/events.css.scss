@@ -69,6 +69,9 @@ ol.carousel-indicators{
     	right: 5px;
 		position: absolute;
 		z-index: 50;
+		background: rgba(0, 0, 0, 0.8);
+		border: none;
+		color: white;
     }
 	#event-carousel {
 		position: absolute;
@@ -80,6 +83,16 @@ ol.carousel-indicators{
 			img{
 				width: 100%;
 				background: no-repeat;
+			}
+			p{
+				right: 50px;
+				text-align: right;
+				z-index: 5;
+				font-weight: 100;
+				font-size: 12px;
+				top: 10px;
+				position: absolute;
+				color: white;
 			}
 		}
 	}
@@ -359,11 +372,19 @@ ol.carousel-indicators{
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
-				#event-date, #times{
+				#event-date, #times, #duration{
 					-webkit-box-sizing: border-box;
 					-moz-box-sizing: border-box;    
 					box-sizing: border-box;
-					width: 49.25%;
+				}
+				#event-date{
+					width: 48.5%;
+				}
+				#times{
+					width: 24%;
+				}
+				#duration{
+					width: 24.5%;
 				}
 			}
 			#event-location{

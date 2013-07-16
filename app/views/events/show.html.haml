@@ -35,6 +35,8 @@
             %hr
             %h3#event-date
               =@event.date.strftime("%A, %B %d, %l:%M%p")
+              to
+              End Time
             %h3 Mission
             -# upon registration show
               %a{:href => "{{mapUrl()}}"} 123 Mission Street <br> San Francisco, CA 94107

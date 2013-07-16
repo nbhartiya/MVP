@@ -109,17 +109,15 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
   $scope.imageUrls = []
   $scope.event = []
   $scope.today = moment().format("YYYY-MM-DD")
-  $scope.event.date = moment().format("dddd, MMMM D")
 
   $scope.eventDate = ->
-    console.log 'check1'
-    $scope.event.year = $scope.event.date.substring(0, 3)
-    $scope.event.month = $scope.event.date.substring(4, 6)
-    $scope.event.day = $scope.event.date.substring(7, 9)
-    console.log 'check2'
-    $scope.event.inputDate = moment new Date(event.year, event.month, event.day)
-    $scope.event.date = moment($scope.event.inputDate)
-    $scope.event.date = $scope.event.date.format("dddd, MMMM D")
+    moment($scope.event.date).format("dddd, MMMM D")
+  
+  $scope.eventEndTime = ->
+    $scope.datetime = moment($scope.event.date, "DDDD, MMM D")
+    $scope.datetime = moment($scope.event.time,  "h:mm A")
+    console.log($scope.datetime)
+    $scope.datetime.add(moment.duration($scope.event.length, 'minutes')).format('h:mm A')
   
   $scope.createEvent = (event) ->
     new Event(event).create().then (data) =>
@@ -165,8 +163,17 @@ Simmr.controller "EventIndexCtrl", ["$scope",  "$routeParams", "$location", "Eve
 Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
   $scope.today = moment().format("YYYY-MM-DD")
   $scope.event = []
-  $scope.event.date = moment().format("dddd, MMMM D")
   $scope.imageUrls = []
+
+  $scope.eventDate = ->
+    moment($scope.event.date).format("dddd, MMMM D")
+  
+  $scope.eventEndTime = ->
+    $scope.datetime = moment($scope.event.date, "DDDD, MMM D")
+    $scope.datetime = moment($scope.event.time,  "h:mm A")
+    console.log($scope.datetime)
+    $scope.datetime.add(moment.duration($scope.event.length, 'minutes')).format('h:mm A')
+    
   $scope.uploadImages = ->
     filepicker.pickAndStore
       mimetypes: ["image/*", "text/plain"]

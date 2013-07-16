@@ -27,10 +27,10 @@
           %span.help-inline{'ng-show' => 'new_registration["user[password_confirmation]"].$error.validator'} Passwords must match
 
         %div
-          %input{:name => "user[kind]", :checked => "", :type => "radio", :value => "Foodie"}
+          %input{:name => "user[chef]", :checked => "", :type => "radio", :value => "0"}
           Foodie
           %br
-          %input{:name => "user[kind]", :type => "radio", :value => "Food Business"}
+          %input{:name => "user[chef]", :type => "radio", :value => "1"}
           Food Business
         %button.usersignup.btn.btn-warning{'ng-disabled' => 'new_registration.$invalid'} Sign Up
       = render "devise/shared/links"

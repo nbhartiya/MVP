@@ -125,9 +125,9 @@ $main_orange: rgb(255, 178, 35);
 	.event-image, .user-image, .campaign-image{
 		height: 280px;
 		background: black;
+		overflow: hidden;
 		img{
-			height: 280px;
-			max-width: 100%;
+			width: 100%;
 		}
 	}
 
