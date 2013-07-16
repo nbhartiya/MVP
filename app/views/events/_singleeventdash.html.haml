@@ -1,10 +1,12 @@
 .row
+  .event-time-and-date
+    #{event.date.strftime("%b %e")}
   .span5.single-event
     .row
       .event-time-and-date
         July 8
       .span5.event-image
-        =link_to image_tag("Food 17.jpg"), "#"
+        =link_to image_tag("Food 26.jpg"), "#"
     .row.event-first-row
       .span1.event-host-image
         =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Host Name", "class" => "event-card-host-name"

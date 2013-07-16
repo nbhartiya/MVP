@@ -1,6 +1,6 @@
 .profiles
   .user-profile
-    #profile-carousel.carousel.slide
+    #profile-carousel.carousel.slide.hidden-phone
       .carousel-inner
         -if @profile.user.chef == true
           -@profile.user.images.each_with_index do |i, index|
@@ -12,61 +12,60 @@
                 = filepicker_image_tag i.image
         -else
           .active.item
-            =image_tag "Food 17.jpg"
-          .item
-            =image_tag "Food 18.jpg"
-          .item
-            =image_tag "Food 22.jpg"
-    %ol.carousel-indicators
-      %li.active{"data-slide-to" => "0", "data-target" => "#profile-carousel"}
-      %li{"data-slide-to" => "1", "data-target" => "#profile-carousel"}
-      %li{"data-slide-to" => "2", "data-target" => "#profile-carousel"}
+            =image_tag "Food 6.jpg"
+    -if @profile.user.chef == true
+      %ol.carousel-indicators.hidden-phone
+        -@profile.user.images.each_with_index do |i, index|     
+          - if index == 0
+            %li.active{"data-target" => "#profile-carousel", "data-slide-to" => index}
+          - else
+            %li{"data-target" => "#profile-carousel", "data-slide-to" => index}
     .container
       .row.user-overview
         .span1
         -if @profile.user.chef == false       
           .span4.user-profile-overview{'ng-controller' => 'ProfileShowCtrl', 'ng-init' => "address1='#{@profile.location.address1}'; address2='#{@profile.location.address2}'; city = '#{@profile.location.city}'; state = '#{@profile.location.state}'; zipcode = '#{@profile.location.zipcode}'"}
             %table
-            %tr
-              -if @profile.user.avatar.present?
-                %td.profile-photo
-                  =filepicker_image_tag @profile.user.avatar.image 
-              -else
-                %td.profile-photo
-                  =image_tag "Favicon.png"
-              %td.user-title
-                %h1
-                  #{@profile.user.first_name} #{@profile.user.last_name}
-            %tr
-              %td.user-summary{:colspan => '2'}
-                -if @profile.blurb.present?
-                  %h2 
-                    =@profile.blurb 
-                -if @profile.neighborhood.present?
-                  %h3 
-                    =@profile.neighborhood
+              %tr
+                -if @profile.user.avatar.present?
+                  %td.profile-photo
+                    =filepicker_image_tag @profile.user.avatar.image 
+                -else
+                  %td.profile-photo
+                    =image_tag "Favicon.png"
+                %td.user-title
+                  %h1
+                    #{@profile.user.first_name} #{@profile.user.last_name}
+              %tr
+                %td.user-summary{:colspan => '2'}
+                  -if @profile.blurb.present?
+                    %h2 
+                      =@profile.blurb 
+                  -if @profile.neighborhood.present?
+                    %h3 
+                      =@profile.neighborhood
         -else
           .span4.user-profile-overview{'ng-controller' => 'ProfileShowCtrl'}
             %table
-            %tr
-              -if @profile.user.avatar.present?
-                %td.profile-photo
-                  =filepicker_image_tag @profile.user.avatar.image 
-              -else
-                %td.profile-photo
-                  =image_tag "Favicon.png"
-              %td.user-title
-                %h1
-                  Samovar Tea Lounge 
-            %tr
-              %td.user-summary{:colspan => '2'}
-                %h2 
-                  Your Haven from the World 
-                  -if @profile.user.chef == true
-                    <sup><a href = "#user-about", class = "read-more", data-target = "#user-about-detail", data-toggle = "collapse"> Read More </a></sup>
-                    %a{:href => "{{mapUrl()}}"} 123 Mission Street <br> San Francisco, CA 94107
-                  -else
-                    %h3 Just Neighborhood
+              %tr
+                -if @profile.user.avatar.present?
+                  %td.profile-photo
+                    =filepicker_image_tag @profile.user.avatar.image 
+                -else
+                  %td.profile-photo
+                    =image_tag "Favicon.png"
+                %td.user-title
+                  %h1
+                    Samovar Tea Lounge 
+              %tr
+                %td.user-summary{:colspan => '2'}
+                  %h2 
+                    Your Haven from the World 
+                    -if @profile.user.chef == true
+                      <sup><a href = "#user-about", class = "read-more", data-target = "#user-about-detail", data-toggle = "collapse"> Read More </a></sup>
+                      %a{:href => "{{mapUrl()}}"} 123 Mission Street <br> San Francisco, CA 94107
+                    -else
+                      %h3 Just Neighborhood
                 -if @profile.user.chef == true
                   %table.user-social-stats
                     %tr
@@ -148,14 +147,14 @@
                 .span10
                   .row.events-row
                     .span5.single-event
-                      =render "layouts/singleevent"
+                      =render "events/singleevent"
                     .span5.single-event
-                      =render "layouts/singleevent"
+                      =render "events/singleevent"
                   .row.events-row
                     .span5.single-event
-                      =render "layouts/singleevent"
+                      =render "events/singleevent"
                     .span5.single-event
-                      =render "layouts/singleevent"
+                      =render "events/singleevent"
             .row.section-header#following
               .span10
                 %h1 Following
@@ -168,14 +167,14 @@
               .span10
                 .row
                   .span5.single-following
-                    =render "layouts/singleuser"
+                    =render "profiles/singleuser"
                   .span5.single-following
-                    =render "layouts/singleuser"
+                    =render "profiles/singleuser"
                 .row
                   .span5.single-following
-                    =render "layouts/singleuser"
+                    =render "profiles/singleuser"
                   .span5.single-following
-                    =render "layouts/singleuser"
+                    =render "profiles/singleuser"
             .row.section-header#chatter
               .span10#user-chatter
                 %a{:href => "#user-chatter", 'data-target'=>"#user-chatter-detail", 'data-toggle'=>"collapse"} Chatter <span class="caret"></span>
@@ -291,22 +290,23 @@
                     %a{:href=>"#"} Ongoing
                   %li 
                     %a{:href=>"#"} Successful
-            .span10
-              -user_campaigns = @profile.user.campaigns
-              -while user_campaigns.length > 1
-                -campaign = user_campaigns.pop
-                .row.user-campaigns
-                  .span5.single-campaign
-                    =render "campaigns/singlecampaign", :campaign => campaign
+            .row.user-campaigns
+              .span10
+                -user_campaigns = @profile.user.campaigns
+                -while user_campaigns.length > 1
                   -campaign = user_campaigns.pop
-                  .span5.single-campaign
-                    =render "campaigns/singlecampaign", :campaign => campaign
-              -if user_campaigns.length == 1
-                -campaign = user_campaigns.pop
-                .row.user-campaigns
-                  .span5.single-campaign
-                    =render "campaigns/singlecampaign", :campaign => campaign
-                  .span5
+                  .row
+                    .span5.single-campaign
+                      =render "campaigns/singlecampaign", :campaign => campaign
+                    -campaign = user_campaigns.pop
+                    .span5.single-campaign
+                      =render "campaigns/singlecampaign", :campaign => campaign
+                -if user_campaigns.length == 1
+                  -campaign = user_campaigns.pop
+                  .row.user-campaigns
+                    .span5.single-campaign
+                      =render "campaigns/singlecampaign", :campaign => campaign
+                    .span5
             .row.section-header#following
               .span10
                 %h1 Following

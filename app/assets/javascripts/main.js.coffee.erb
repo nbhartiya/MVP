@@ -105,6 +105,17 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
 Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
   $scope.created = false
   $scope.imageUrls = []
+  $scope.event = []
+  $scope.today = moment().format("YYYY-MM-DD")
+
+  $scope.eventDate = ->
+    moment($scope.event.date).format("dddd, MMMM D")
+  
+  $scope.eventEndTime = ->
+    $scope.datetime = moment($scope.event.date, "DDDD, MMM D")
+    $scope.datetime = moment($scope.event.time,  "h:mm A")
+    console.log($scope.datetime)
+    $scope.datetime.add(moment.duration($scope.event.length, 'minutes')).format('h:mm A')
   
   $scope.createEvent = (event) ->
     new Event(event).create().then (data) =>
@@ -150,8 +161,17 @@ Simmr.controller "EventIndexCtrl", ["$scope",  "$routeParams", "$location", "Eve
 Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
   $scope.today = moment().format("YYYY-MM-DD")
   $scope.event = []
-  $scope.event.date = moment().format("dddd, MMMM D")
   $scope.imageUrls = []
+
+  $scope.eventDate = ->
+    moment($scope.event.date).format("dddd, MMMM D")
+  
+  $scope.eventEndTime = ->
+    $scope.datetime = moment($scope.event.date, "DDDD, MMM D")
+    $scope.datetime = moment($scope.event.time,  "h:mm A")
+    console.log($scope.datetime)
+    $scope.datetime.add(moment.duration($scope.event.length, 'minutes')).format('h:mm A')
+    
   $scope.uploadImages = ->
     filepicker.pickAndStore
       mimetypes: ["image/*", "text/plain"]

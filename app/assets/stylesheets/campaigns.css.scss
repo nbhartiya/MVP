@@ -23,7 +23,7 @@ $main_orange: rgb(255, 178, 35);
 			font-weight: 100;
 		}
 		.campaigns-row{
-			margin: 20px 0 0 0;
+			margin: -10px 0 50px 0;
 		}
 	}
 }
@@ -31,6 +31,14 @@ $main_orange: rgb(255, 178, 35);
 // campaign profile styling
 .campaign-profile{
 	height: 580px;
+	.btn#remove-image{
+    	right: 5px;
+		position: absolute;
+		z-index: 50;
+		background: rgba(0, 0, 0, 0.8);
+		border: none;
+		color: white;
+    }
 	#campaign-carousel {
 		position: absolute;
 	    width: 100%;
@@ -41,6 +49,15 @@ $main_orange: rgb(255, 178, 35);
 			img{
 				width: 100%;
 				background: no-repeat;
+			}
+			p{
+				right: 50px;
+				text-align: right;
+				z-index: 5;
+				font-weight: 100;
+				font-size: 12px;
+				top: 10px;
+				position: absolute;
 			}
 		}
 	}

@@ -111,12 +111,8 @@ $main_orange: rgb(255, 178, 35);
 	}
 }
 
-.single-following, .single-campaign{
-	margin: 10px;
-}
-
-.single-event{
-	margin: -30px 10px 50px 10px;
+.single-following, .single-campaign, .single-event{
+	margin: -30px 7px 50px 7px;
 }
 
 .single-event, .single-following, .single-campaign, .single-event-profile{
@@ -125,9 +121,9 @@ $main_orange: rgb(255, 178, 35);
 	.event-image, .user-image, .campaign-image{
 		height: 280px;
 		background: black;
+		overflow: hidden;
 		img{
-			height: 280px;
-			max-width: 100%;
+			width: 100%;
 		}
 	}
 
@@ -172,6 +168,20 @@ $main_orange: rgb(255, 178, 35);
 	left: 30px;
 	top: 50px;
 	color: white;
+	font-size: 20px;
+	text-align: center;
+}
+
+.campaign-status, .user-kind{
+	position: relative;
+	background: rgba(255,255,255,0.8);
+	padding: 10px 5px;
+	margin: 0;
+	width: 100px;
+	height: 20px;
+	left: 30px;
+	top: 50px;
+	color: rgb(54, 54, 54);
 	font-size: 20px;
 	text-align: center;
 }
@@ -555,12 +565,13 @@ $main_orange: rgb(255, 178, 35);
 .user-news, .user-about, .badges, .user-events, .user-campaigns, .user-following, .user-chatter{
 	background: rgb(230,230,230);
 	padding: 0;
+	margin: 0;
 	.accordion{
 		margin: 0;
 	}
 	p{
 		font-size: 14px;
-		line-height: 2em;
+		line-height: 1em;
 	}
 	.conversants, .comments{
 		img{

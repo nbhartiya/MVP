@@ -515,7 +515,7 @@ times = Table: [
     name: "11:00 PM"
     value: "11:00 PM"
 ,
-    name: "11:30PM"
+    name: "11:30 PM"
     value: "11:30 PM"
 ]
 
