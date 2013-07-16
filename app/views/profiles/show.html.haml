@@ -290,22 +290,23 @@
                     %a{:href=>"#"} Ongoing
                   %li 
                     %a{:href=>"#"} Successful
-            .span10
-              -user_campaigns = @profile.user.campaigns
-              -while user_campaigns.length > 1
-                -campaign = user_campaigns.pop
-                .row.user-campaigns
-                  .span5.single-campaign
-                    =render "campaigns/singlecampaign", :campaign => campaign
+            .row.user-campaigns
+              .span10
+                -user_campaigns = @profile.user.campaigns
+                -while user_campaigns.length > 1
                   -campaign = user_campaigns.pop
-                  .span5.single-campaign
-                    =render "campaigns/singlecampaign", :campaign => campaign
-              -if user_campaigns.length == 1
-                -campaign = user_campaigns.pop
-                .row.user-campaigns
-                  .span5.single-campaign
-                    =render "campaigns/singlecampaign", :campaign => campaign
-                  .span5
+                  .row
+                    .span5.single-campaign
+                      =render "campaigns/singlecampaign", :campaign => campaign
+                    -campaign = user_campaigns.pop
+                    .span5.single-campaign
+                      =render "campaigns/singlecampaign", :campaign => campaign
+                -if user_campaigns.length == 1
+                  -campaign = user_campaigns.pop
+                  .row.user-campaigns
+                    .span5.single-campaign
+                      =render "campaigns/singlecampaign", :campaign => campaign
+                    .span5
             .row.section-header#following
               .span10
                 %h1 Following

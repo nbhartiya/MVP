@@ -1,4 +1,6 @@
 .row
+  .campaign-status
+    Status
   .span5.campaign-image
     -if campaign.images.present?
       =link_to (filepicker_image_tag campaign.images.first.image), campaign_path(campaign)
