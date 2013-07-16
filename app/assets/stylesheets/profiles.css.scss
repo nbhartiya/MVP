@@ -118,9 +118,14 @@ $main_orange: rgb(255, 178, 35);
 .single-event, .single-following, .single-campaign, .single-event-profile{
 	height: 280px;
 	z-index: 500;
+	.event-image{
+		background: black;
+	}
+	.campaign-image, .user-image{
+		background: white;
+	}
 	.event-image, .user-image, .campaign-image{
 		height: 280px;
-		background: black;
 		overflow: hidden;
 		img{
 			width: 100%;
@@ -661,6 +666,30 @@ $main_orange: rgb(255, 178, 35);
 	.single-campaign .campaign-first-row .campaign-title-and-blurb{
 		margin: 0;
 	}
+	.single-event .event-first-row .event-price{
+		margin: 0;
+		p{
+			font-size: 18px;
+		}
+	}
+	.single-event .event-first-row .event-title{
+		margin: 0;
+	}
+	.single-event .event-time-and-date{
+		left:20px;
+	}
+	.single-campaign .campaign-status{
+		left: 20px;
+	}
+	.single-following .user-kind{
+		left: 20px;
+	}
+	.single-following .user-first-row .user-name-and-blurb{
+		margin: 0;
+	}
+	.profiles .scroll-menu{
+		margin: 105px 0 0 0;
+	}
 }
 
 /* Portrait tablet to landscape and desktop */
@@ -675,6 +704,46 @@ $main_orange: rgb(255, 178, 35);
 		margin: 0 10px 0 0;
 		width: 40px;
 	}
+	.single-campaign .campaign-status{
+		left: 20px;
+	}
+	.single-following .user-kind{
+		left: 20px;
+	}
+	.single-following .user-first-row .user-name-and-blurb{
+		margin: 0;
+	}
+	.single-following .user-first-row .user-profile-image{
+		margin: 0 10px 0 0;
+		width: 40px;
+	}
+	.single-event .event-time-and-date{
+		left:20px;
+	}
+	.single-event .event-first-row .event-price{
+		margin: 0 2px;
+		p{
+			font-size: 16px;
+		}
+	}
+	.single-event .event-first-row .event-title{
+		margin: 0 2px;
+		p{
+			font-size: 14px;
+		}
+	}
+	.single-event .event-first-row .event-host-image{
+		margin: 0 10px 0 0;
+		width: 40px;
+	}
+	.user-profile .user-overview .profile-photo img {
+		width: 60px;
+		min-width: 60px;
+		margin-top: 10px;
+	}
+	.profiles .scroll-menu{
+		margin: 105px 0 0 0;
+	}
 
 }
  
@@ -682,6 +751,21 @@ $main_orange: rgb(255, 178, 35);
 @media (max-width: 767px) { 
 	.single-campaign{
 		margin: 0;
+	}
+	.single-event{
+		margin: 0;
+	}
+	.single-event .event-time-and-date{
+		left:0px;
+		top: 60px;
+	}
+	.single-campaign .campaign-status{
+		left: 0px;
+		top: 60px;
+	}
+	.single-following .user-kind{
+		left: 0px;
+		top: 60px;
 	}
 }
  

@@ -635,6 +635,10 @@ ol.carousel-indicators{
 			.points{
 				float: right;
 			}
+			img{
+				float: right;
+				width: 30px;
+			}
 		}
 	}
 	.heart_this{
@@ -643,6 +647,15 @@ ol.carousel-indicators{
 		background: rgba(0,0,0,0.8);
 		width: 33px;
 		height: 33px;
+	}
+	.event-survey, .event-yelp, .point-ranking{
+		td{
+			img{
+				width: 20px;
+				height: auto;
+			}
+		}
+
 	}
 	.event-survey, .event-yelp, .point-ranking, .more-points{
 		background: rgba(0,0,0,0.8);
@@ -699,10 +712,6 @@ ol.carousel-indicators{
 		}
 		td{
 			color: white;
-			img{
-				width: 20px;
-				height: auto;
-			}
 		}
 		tr:first-child{
 			border-top: none;

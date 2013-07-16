@@ -165,11 +165,12 @@
                     %a{:href=>"#"} Create New
                   %li 
                     %a{:href=>"#"} Hearted
-            .row.user-events
-              .span1
-              .span10
-                =render "events/singleeventdash"
-                =render "events/singleeventdash"
+            -#
+              .row.user-events
+                .span1
+                .span10
+                  =render "events/singleeventdash"
+                  =render "events/singleeventdash"
             .row.section-header#following
               .span10
                 %h1 Following
@@ -223,53 +224,52 @@
     .container
       .row
         .span2.scroll-menu
-          %ul.nav.nav-list.scroll-menu-items{"data-spy" => "affix", "data-offset-top" => "720", "data-offset-bottom"=> "150"}
-            %li 
-              %a{:href=>"#badges"} Badges
+          %ul.nav.nav-list.scroll-menu-items{"data-spy" => "affix", "data-offset-top" => "650", "data-offset-bottom"=> "150"}
             %li 
               %a{:href=>"#events"} Events
             %li 
               %a{:href=>"#campaigns"} Campaigns
             %li 
               %a{:href=>"#following"} Following
-        .span10
-          .row.section-header#badges
-            .span10
-              %h1 Badges
-          .row.badges
-            .span10
-              .row.badges-row
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-              .row.badges-row
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
+        -#
+          .span10
+            .row.section-header#badges
+              .span10
+                %h1 Badges
+            .row.badges
+              .span10
+                .row.badges-row
+                  .span1.single-badge
+                    =image_tag "Favicon.png"
+                  .span1.single-badge
+                    =image_tag "Favicon.png"
+                  .span1.single-badge
+                    =image_tag "Favicon.png"
+                  .span1.single-badge
+                    =image_tag "Favicon.png"
+                  .span1.single-badge
+                    =image_tag "Favicon.png"
+                  .span1.single-badge
+                    =image_tag "Favicon.png"
+                  .span1.single-badge
+                    =image_tag "Favicon.png"
+                  .span1.single-badge
+                    =image_tag "Favicon.png"
+                  .span1.single-badge
+                    =image_tag "Favicon.png"
+                .row.badges-row
+                  .span1.single-badge
+                    =image_tag "Favicon.png"
+                  .span1.single-badge
+                    =image_tag "Favicon.png"
+                  .span1.single-badge
+                    =image_tag "Favicon.png"
+                  .span1.single-badge
+                    =image_tag "Favicon.png"
+                  .span1.single-badge
+                    =image_tag "Favicon.png"
         .row
-          .span10.offset2
+          .span10
             .row.section-header#events
               .span10
                 %h1 Events
@@ -280,10 +280,11 @@
                     %a{:href=>"#"} Past
                   %li 
                     %a{:href=>"#"} Hearted
-            .row.user-events
-              .span10
-                =render "events/singleeventdash"
-                =render "events/singleeventdash"
+            -#
+              .row.user-events
+                .span10
+                  =render "events/singleeventdash"
+                  =render "events/singleeventdash"
             .row.section-header#campaigns
               .span10
                 %h1 Campaigns

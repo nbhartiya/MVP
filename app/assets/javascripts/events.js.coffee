@@ -543,3 +543,6 @@ $(".carousel-indicators li").click ->
 $("#remove-image").click ->
   $(".active.item").remove()
   $(".item:first-child").addClass "active"
+
+$(document).on 'click', '.points', (e) ->
+  e.preventDefault()
