@@ -65,12 +65,30 @@ Guest.create([
 
 
 Image.create([
-  { :image => nil, :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 1, :imageable_type => 'SurveyAnswer' }
-  { :image => nil, :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 1, :imageable_type => 'SurveyAnswer' }
-  { :image => nil, :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 1, :imageable_type => 'SurveyAnswer' }
-  { :image => nil, :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 1, :imageable_type => 'SurveyAnswer' }
-  { :image => nil, :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 1, :imageable_type => 'SurveyAnswer' }
-  { :image => nil, :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 1, :imageable_type => 'SurveyAnswer' }
+  { :image => 'https://s3-us-west-1.amazonaws.com/simmreventimages/simmreventimages/zxmyEXBJTNGN3Oc0eIlG_Food+4.jpg', :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 1, :imageable_type => 'SurveyAnswer' },
+  { :image => 'https://s3-us-west-1.amazonaws.com/simmreventimages/simmreventimages/z4Qvb3XQRuMQfwIckMJC_Food+6.jpg', :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 1, :imageable_type => 'SurveyAnswer' },
+  { :image => 'https://s3-us-west-1.amazonaws.com/simmreventimages/simmreventimages/yG4DhnAfQneTpsJbSDvT_Food+2.jpg', :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 1, :imageable_type => 'SurveyAnswer' },
+  { :image => 'https://s3-us-west-1.amazonaws.com/simmreventimages/simmreventimages/yDZKNZLBRYmdc1AxV9KQ_Food+20.jpg', :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 1, :imageable_type => 'SurveyAnswer' },
+  { :image => 'https://s3-us-west-1.amazonaws.com/simmreventimages/simmreventimages/xvKaCNccTmCPtnxw0N7o_Food+4.jpg', :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 1, :imageable_type => 'SurveyAnswer' },
+  { :image => 'https://s3-us-west-1.amazonaws.com/simmreventimages/simmreventimages/xOwmtOYVRhunCfXbite6_Food+1.jpg', :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 1, :imageable_type => 'SurveyAnswer' },
+  { :image => 'https://s3-us-west-1.amazonaws.com/simmreventimages/simmreventimages/0eqXVjawQjYY7TgVwhHF_Food+26.jpg', :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 2, :imageable_type => 'SurveyAnswer' },
+  { :image => 'https://s3-us-west-1.amazonaws.com/simmreventimages/simmreventimages/0rRazoNmQoexZADzPQts_Food+12.jpg', :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 2, :imageable_type => 'SurveyAnswer' },
+  { :image => 'https://s3-us-west-1.amazonaws.com/simmreventimages/simmreventimages/1osYRPMSyWf1cYXBRjnK_Food+2.jpg', :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 2, :imageable_type => 'SurveyAnswer' },
+  { :image => 'https://s3-us-west-1.amazonaws.com/simmreventimages/simmreventimages/2CpHoxIS9Cktg1QTHOiB_Food+63.jpg', :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 2, :imageable_type => 'SurveyAnswer' }, 
+  { :image => 'https://s3-us-west-1.amazonaws.com/simmreventimages/simmreventimages/31YyrhGTDOuGNOKdN9EV_Food+7.jpg', :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 2, :imageable_type => 'SurveyAnswer' },
+  { :image => 'https://s3-us-west-1.amazonaws.com/simmreventimages/simmreventimages/4TNPlzvSSXeHwkLJ9kNr_Food+54.jpg', :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 2, :imageable_type => 'SurveyAnswer' },
+  { :image => 'https://s3-us-west-1.amazonaws.com/simmreventimages/simmreventimages/5yjUMGmQJWJbcy32WNdw_Food+16.jpg', :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 3, :imageable_type => 'SurveyAnswer' },
+  { :image => 'https://s3-us-west-1.amazonaws.com/simmreventimages/simmreventimages/63AUR35R3Si4zifgNYFr_Food+61.jpg', :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 3, :imageable_type => 'SurveyAnswer' },
+  { :image => 'https://s3-us-west-1.amazonaws.com/simmreventimages/simmreventimages/64gUAX9TbK59N09tUE5S_Food+4.jpg', :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 3, :imageable_type => 'SurveyAnswer' },
+  { :image => 'https://s3-us-west-1.amazonaws.com/simmreventimages/simmreventimages/6NxAcryKRxW2gXpopmT2_Food+31.jpg', :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 3, :imageable_type => 'SurveyAnswer' },
+  { :image => 'https://s3-us-west-1.amazonaws.com/simmreventimages/simmreventimages/6nRYqrrTtipCsvgSo2ag_Food+30.jpg', :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 3, :imageable_type => 'SurveyAnswer' },
+  { :image => 'https://s3-us-west-1.amazonaws.com/simmreventimages/simmreventimages/71rRBcG6RlCp427rFUxq_Food+71.jpg', :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 3, :imageable_type => 'SurveyAnswer' },
+  { :image => 'https://s3-us-west-1.amazonaws.com/simmreventimages/simmreventimages/9n1JCc6rQiiDXVSWISnP_Food+25.jpg', :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 4, :imageable_type => 'SurveyAnswer' },
+  { :image => 'https://s3-us-west-1.amazonaws.com/simmreventimages/simmreventimages/9s4scj1STZmP63D0EL8K_Food+67.jpg', :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 4, :imageable_type => 'SurveyAnswer' },
+  { :image => 'https://s3-us-west-1.amazonaws.com/simmreventimages/simmreventimages/ApBUKvvUSpOusjzw9wfq_Food+2.jpg', :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 4, :imageable_type => 'SurveyAnswer' },
+  { :image => 'https://s3-us-west-1.amazonaws.com/simmreventimages/simmreventimages/BFSMNA3JQuueuD0KfnGw_Food+13.jpg', :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 4, :imageable_type => 'SurveyAnswer' },
+  { :image => 'https://s3-us-west-1.amazonaws.com/simmreventimages/simmreventimages/JxpR9iMRwqfmkLV3bRCK_Food+19.jpg', :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 4, :imageable_type => 'SurveyAnswer' },
+  { :image => 'https://s3-us-west-1.amazonaws.com/simmreventimages/simmreventimages/K57whb3jTlqTieqmKLCp_Food+75.jpg', :created_at => nil, :updated_at => nil, :title => nil, :description => nil, :imageable_id => 4, :imageable_type => 'SurveyAnswer' }
 ], :without_protection => true )
 
 
@@ -115,42 +133,42 @@ Signup.create([
 
 
 SurveyAnswer.create([
-  { :survey_question_id => 1, :text => 'established restaurants', :created_at => nil, :updated_at => nil }
-  { :survey_question_id => 1, :text => 'new restaurants', :created_at => nil, :updated_at => nil }
-  { :survey_question_id => 1, :text => 'food trucks/pop ups', :created_at => nil, :updated_at => nil }
-  { :survey_question_id => 1, :text => 'desserts & bakeries', :created_at => nil, :updated_at => nil }
-  { :survey_question_id => 1, :text => 'bars & nightlife', :created_at => nil, :updated_at => nil }
-  { :survey_question_id => 1, :text => 'coffee & tea', :created_at => nil, :updated_at => nil }
-  { :survey_question_id => 2, :text => 'Asian', :created_at => nil, :updated_at => nil }
-  { :survey_question_id => 2, :text => 'Mexican', :created_at => nil, :updated_at => nil }
-  { :survey_question_id => 2, :text => 'Italian', :created_at => nil, :updated_at => nil }
-  { :survey_question_id => 2, :text => 'French', :created_at => nil, :updated_at => nil }
-  { :survey_question_id => 2, :text => 'American (traditional)', :created_at => nil, :updated_at => nil }
-  { :survey_question_id => 2, :text => 'American (new)', :created_at => nil, :updated_at => nil }
-  { :survey_question_id => 3, :text => 'Foreign Cinema', :created_at => nil, :updated_at => nil }
-  { :survey_question_id => 3, :text => 'Sushirrito', :created_at => nil, :updated_at => nil }
-  { :survey_question_id => 3, :text => 'Chez Panisse', :created_at => nil, :updated_at => nil }
-  { :survey_question_id => 3, :text => 'Lazy Bear', :created_at => nil, :updated_at => nil }
-  { :survey_question_id => 3, :text => 'Radio Africa Kitchen', :created_at => nil, :updated_at => nil }
-  { :survey_question_id => 3, :text => 'Mission Chinese', :created_at => nil, :updated_at => nil }
-  { :survey_question_id => 4, :text => 'Tea Tasting with Samovar', :created_at => nil, :updated_at => nil }
-  { :survey_question_id => 4, :text => 'Naan Making with Tava', :created_at => nil, :updated_at => nil }
-  { :survey_question_id => 4, :text => 'Farm to Table Meal with Hillside Supper Club', :created_at => nil, :updated_at => nil }
-  { :survey_question_id => 4, :text => 'Sustainable Seafood Dinner with Fish', :created_at => nil, :updated_at => nil }
-  { :survey_question_id => 4, :text => "Cocktail Making with Capo's", :created_at => nil, :updated_at => nil }
+  { :survey_question_id => 1, :text => 'established restaurants', :created_at => nil, :updated_at => nil },
+  { :survey_question_id => 1, :text => 'new restaurants', :created_at => nil, :updated_at => nil },
+  { :survey_question_id => 1, :text => 'food trucks/pop ups', :created_at => nil, :updated_at => nil },
+  { :survey_question_id => 1, :text => 'desserts & bakeries', :created_at => nil, :updated_at => nil },
+  { :survey_question_id => 1, :text => 'bars & nightlife', :created_at => nil, :updated_at => nil },
+  { :survey_question_id => 1, :text => 'coffee & tea', :created_at => nil, :updated_at => nil },
+  { :survey_question_id => 2, :text => 'Asian', :created_at => nil, :updated_at => nil },
+  { :survey_question_id => 2, :text => 'Mexican', :created_at => nil, :updated_at => nil },
+  { :survey_question_id => 2, :text => 'Italian', :created_at => nil, :updated_at => nil },
+  { :survey_question_id => 2, :text => 'French', :created_at => nil, :updated_at => nil },
+  { :survey_question_id => 2, :text => 'American (traditional)', :created_at => nil, :updated_at => nil },
+  { :survey_question_id => 2, :text => 'American (new)', :created_at => nil, :updated_at => nil },
+  { :survey_question_id => 3, :text => 'Foreign Cinema', :created_at => nil, :updated_at => nil },
+  { :survey_question_id => 3, :text => 'Sushirrito', :created_at => nil, :updated_at => nil },
+  { :survey_question_id => 3, :text => 'Chez Panisse', :created_at => nil, :updated_at => nil },
+  { :survey_question_id => 3, :text => 'Lazy Bear', :created_at => nil, :updated_at => nil },
+  { :survey_question_id => 3, :text => 'Radio Africa Kitchen', :created_at => nil, :updated_at => nil },
+  { :survey_question_id => 3, :text => 'Mission Chinese', :created_at => nil, :updated_at => nil },
+  { :survey_question_id => 4, :text => 'Tea Tasting with Samovar', :created_at => nil, :updated_at => nil },
+  { :survey_question_id => 4, :text => 'Naan Making with Tava', :created_at => nil, :updated_at => nil },
+  { :survey_question_id => 4, :text => 'Farm to Table Meal with Hillside Supper Club', :created_at => nil, :updated_at => nil },
+  { :survey_question_id => 4, :text => 'Sustainable Seafood Dinner with Fish', :created_at => nil, :updated_at => nil },
+  { :survey_question_id => 4, :text => "Cocktail Making with Capo's", :created_at => nil, :updated_at => nil },
   { :survey_question_id => 4, :text => "Pizza Making with Tony's Pizza", :created_at => nil, :updated_at => nil }
 ], :without_protection => true )
 
 
 
 SurveyQuestion.create([
-  { :for_chef => nil, :question => 'Which 3 of the below categories of food/drink are you most interested in?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => nil, :high_extreme => nil, :format => 'option', :active => true }
-  { :for_chef => nil, :question => 'Which cuisines do you like the most?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => nil, :high_extreme => nil, :format => 'option', :active => true }
-  { :for_chef => nil, :question => 'Which 3 of the below restaurants would you be MOST likely to go to?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => nil, :high_extreme => nil, :format => 'option', :active => true }
-  { :for_chef => nil, :question => 'Which 3 of the below events would you be MOST excited to attend?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => nil, :high_extreme => nil, :format => 'option', :active => true }
-  { :for_chef => nil, :question => 'Which type of event would you be most excited about?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => "so hands off it's like I'm watching TV", :high_extreme => "so hands on I better wear an apron", :format => 'slider', :active => true }
-  { :for_chef => nil, :question => 'Which type of event would you be most excited about?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => "so small it's like a date between me and the chef", :high_extreme => "so big everybody's here. and their moms. and dads. and second cousins from Georgia", :format => 'slider', :active => true }
-  { :for_chef => nil, :question => 'Which type of event would you be most excited about?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => "so impossible to get into I needed an invite to my own party. and still bribed the bouncer", :high_extreme => "so easy to get into that I walked in without a shirt", :format => 'slider', :active => true }
+  { :for_chef => nil, :question => 'Which 3 of the below categories of food/drink are you most interested in?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => nil, :high_extreme => nil, :format => 'option', :active => true },
+  { :for_chef => nil, :question => 'Which cuisines do you like the most?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => nil, :high_extreme => nil, :format => 'option', :active => true },
+  { :for_chef => nil, :question => 'Which 3 of the below restaurants would you be MOST likely to go to?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => nil, :high_extreme => nil, :format => 'option', :active => true },
+  { :for_chef => nil, :question => 'Which 3 of the below events would you be MOST excited to attend?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => nil, :high_extreme => nil, :format => 'option', :active => true },
+  { :for_chef => nil, :question => 'Which type of event would you be most excited about?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => "so hands off it's like I'm watching TV", :high_extreme => "so hands on I better wear an apron", :format => 'slider', :active => true },
+  { :for_chef => nil, :question => 'Which type of event would you be most excited about?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => "so small it's like a date between me and the chef", :high_extreme => "so big everybody's here. and their moms. and dads. and second cousins from Georgia", :format => 'slider', :active => true },
+  { :for_chef => nil, :question => 'Which type of event would you be most excited about?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => "so impossible to get into I needed an invite to my own party. and still bribed the bouncer", :high_extreme => "so easy to get into that I walked in without a shirt", :format => 'slider', :active => true },
   { :for_chef => nil, :question => 'What is the maximum you would pay for a cool event?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => '$10', :high_extreme => '$250', :format => 'slider', :active => true }
 ], :without_protection => true )
 
