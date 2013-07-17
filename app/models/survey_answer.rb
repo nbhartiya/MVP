@@ -12,6 +12,7 @@
 class SurveyAnswer < ActiveRecord::Base
   
   belongs_to :survey_question
+  has_many :images, :as => :imageable
   
   attr_accessible :survey_question_id, :text
 end

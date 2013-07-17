@@ -26,7 +26,7 @@
               =@event.description
             %h3#event-date
               =@event.date.strftime("%A %B %d, %I:%M%p")
-              =@event.when
+              =@event.time
             %a{:href => "{{mapUrl()}}"} 123 Mission Street <br> San Francisco, CA 94107
             %table.feedback-actions
               %tr

@@ -17,5 +17,6 @@
 class SurveyQuestion < ActiveRecord::Base 
   has_many :survey_answers
   has_many :user_answers
+  has_many :images, :as => :imageable, :class_name =>"Image"
   attr_accessible :question, :for_chef, :topic, :low_extreme, :high_extreme, :format, :active
 end

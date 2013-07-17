@@ -2,10 +2,29 @@
   .container.foodie-quiz{'ng-controller' => "SurveyCtrl"}
     .row
       .span12
-        %h1 What's Your Food Style
-        %p Take the quiz to discover your foodie profile in just a few minutes!
     .row
-      .span6
+      .span3
+        -if current_user.chef?
+          %p Logo
+          .row.profile-image-row
+            .span3.default
+              =image_tag "Food 6.jpg"
+          %br
+          %p Cover Image
+          .row.cover-image-row
+            .span3.default
+              =image_tag "Food 9.jpg"
+        -else
+          .row.profile-image-row
+            .span3.default
+              =image_tag "Food 6.jpg"
+          %p Your Profile Image
+      .span9
+        -if current_user.chef?
+          %h1 Give Simmr guests a sense of what you're all about. 
+        -else
+          %h1 What's Your Food Style
+          %p Take the quiz to discover your foodie profile in just a few minutes!
         %form.create-profile{:name => "create_profile"}
 
           %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: create_profile.profile_blurb.$invalid}"}
@@ -24,89 +43,57 @@
 
           .help-block{'ng-show' => 'create_profile.profile_blurb.$error.required || create_profile.profile_neighborhood.$error.required || create_profile.home_zip.$error.required || create_profile.work_zip.$error.required'} All fields are required
 
-          -#if chef
-          .clearfix
-            %button.btn.btn-inverse#profile-image-button{'ng-click'=> 'uploadProfileImage()'} Upload Profile Picture
-            %button.btn.btn-inverse#cover-image-button{'ng-click'=> 'uploadImages()'} Upload Cover Image
-            %button.btn.btn-inverse#yelp-connect Connect Yelp
-            %a#yelp-explanation{:href => "#", "data-toggle" => "tooltip", :title => "So guests know how great you already are and can easily leave you reviews!", "data-placement" => "right"} <sup> Why? </sup>
+          -if current_user.chef?
+            .clearfix
+              %button.btn.btn-inverse#profile-image-button{'ng-click'=> 'uploadProfileImage()'} Upload Profile Picture
+              %button.btn.btn-inverse#cover-image-button{'ng-click'=> 'uploadImages()'} Upload Cover Image
+              %button.btn.btn-inverse#yelp-connect Connect Yelp
+              %a#yelp-explanation{:href => "#", "data-toggle" => "tooltip", :title => "So guests know how great you already are and can easily leave you reviews!", "data-placement" => "right"} <sup> Why? </sup>
+          -else
+            .clearfix
+              %button.btn.btn-inverse#profile-image-button{'ng-click'=> 'uploadProfileImage()'} Upload Profile Picture
 
-          -#if foodie
-          .clearfix
-            %button.btn.btn-inverse#profile-image-button{'ng-click'=> 'uploadProfileImage()'} Upload Profile Picture
-      .span6
-        %p Profile Image
-        .row.profile-image-row
-          .span3.default
-            =image_tag "Food 6.jpg"
-        -#if chef
-        %br
-        %p Cover Image
-        .row.cover-image-row
-          .span3.default
-            =image_tag "Food 9.jpg"
-    -for q in @questions
-      -if q.format == "slider"
-        .row
-          .span12.question
-            %h2 
-              =q.question
-            .row
-              .span4.single-visual-answer-range
-                =render "survey_questions/visualanswerlow", :q => q
-              .span4
-                %slider.answer-slider{:ceiling => "50", :floor => "-50", "ng-model" => "userAnswer.text", :precision => "0", :step => "10"}
-              .span4.single-visual-answer-range
-                =render "survey_questions/visualanswerhigh", :q => q
-      -else
-        .row
+    -if !current_user.chef
+      -for q in @questions
+        -if q.format == "slider"
           .row
             .span12.question
-              %h2 {{questions[currentQuestion].text}}
+              %h2 
+                =q.question
               .row
-                .span4.single-visual-answer
-                  .row
-                    .span4.answer-image
-                      =link_to image_tag("{{questions[currentQuestion].answers[0].image}}"), "javascript:;"
-                  .row.answer
-                    .span4.answer-caption
-                      %h3 {{questions[currentQuestion].answers[0].answer}}
-                .span4.single-visual-answer
-                  .row
-                    .span4.answer-image
-                      =link_to image_tag("{{questions[currentQuestion].answers[1].image}}"), "javascript:;"
-                  .row.answer
-                    .span4.answer-caption
-                      %h3 {{questions[currentQuestion].answers[1].answer}}
-                .span4.single-visual-answer
-                  .row
-                    .span4.answer-image
-                      =link_to image_tag("{{questions[currentQuestion].answers[2].image}}"), "javascript:;"
-                  .row.answer
-                    .span4.answer-caption
-                      %h3 {{questions[currentQuestion].answers[2].answer}}
-              .row
-                .span4.single-visual-answer
-                  .row
-                    .span4.answer-image
-                      =link_to image_tag("{{questions[currentQuestion].answers[3].image}}"), "javascript:;"
-                  .row.answer
-                    .span4.answer-caption
-                      %h3 {{questions[currentQuestion].answers[3].answer}}
-                .span4.single-visual-answer
-                  .row
-                    .span4.answer-image
-                      =link_to image_tag("{{questions[currentQuestion].answers[4].image}}"), "javascript:;"
-                  .row.answer
-                    .span4.answer-caption
-                      %h3 {{questions[currentQuestion].answers[4].answer}}
-                .span4.single-visual-answer
-                  .row
-                    .span4.answer-image
-                      =link_to image_tag("{{questions[currentQuestion].answers[5].image}}"), "javascript:;"
-                  .row.answer
-                    .span4.answer-caption
-                      %h3 {{questions[currentQuestion].answers[5].answer}}
+                .span4.single-visual-answer-range
+                  =render "survey_questions/visualanswerlow", :q => q
+                .span4
+                  %slider.answer-slider{:ceiling => "50", :floor => "-50", "ng-model" => "userAnswer.text", :precision => "0", :step => "10"}
+                .span4.single-visual-answer-range
+                  =render "survey_questions/visualanswerhigh", :q => q
+        -else
+          .row
+            .row
+              .span12.question
+                %h2
+                  =q.question
+                -answers=q.survey_answers
+                  -answers.each_with_index do |a, index|    
+                  - if index % 3 == 0
+                    .row
+                      .span4.single-visual-answer
+                        .row
+                          .span4.answer-image
+                            = filepicker_image_tag a.images.first.image
+                        .row.answer
+                          .span4.answer-caption
+                            %h3
+                              =a.text
+                  - else
+                    .span4.single-visual-answer
+                      .row
+                        .span4.answer-image
+                          = filepicker_image_tag a.images.first.image
+                      .row.answer
+                        .span4.answer-caption
+                          %h3
+                            =a.text
     .row
       .span12.navigation-buttons.clearfix
         %button.btn.btn-inverse{'ng-click' => 'prevQuestion()', 'ng-disabled'=>'beginning'} Previous

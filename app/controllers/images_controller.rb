@@ -21,7 +21,6 @@ class ImagesController < ApplicationController
     @image = @imageable.images.build(params[:image])
     if @image.save
       flash[notice] = "Successfully created image."
-      redirect_to images_url
     else
       render :action => 'new'
     end
