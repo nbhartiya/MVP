@@ -1,3 +1,8 @@
+angular.module('Simmr').factory "Profile", ["railsResourceFactory", (railsResourceFactory) -> railsResourceFactory
+    url: "api/profiles"
+    name: "profile"
+]
+
 $(".campaign-card-lead-name").tooltip()
 
 $(".user-card-name").tooltip()
@@ -16,11 +21,11 @@ $(".profiles .heart_this a").click ->
     $(this).addClass "gray"
 
 
-angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
+angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams", "$location", "Profile", ($scope, $routeParams, $location, Profile) ->
   $scope.edit = 1
 
   $scope.imageUrls = []
-  $scope.profileImageUrl = []
+  $scope.avatar = []
 
   $scope.uploadImages = ->
     filepicker.pickAndStore
@@ -68,7 +73,7 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
 
       $scope.image="https://s3.amazonaws.com/#{InkBlob[0].key}"
       console.log $scope.image
-      $scope.profileImageUrl.push($scope.image)
+      $scope.avatar.push($scope.image)
       $('td.profile-photo').remove()
       filepicker.read InkBlob[0].url, base64encode: true, (imgdata) ->
         $('.user-profile-overview table tr').append("<td class = 'profile-photo'><img src = 'data:image/*;base64,#{imgdata}'></div>")
@@ -81,7 +86,7 @@ angular.module('Simmr').controller "ProfileShowCtrl", ["$scope",  "$routeParams"
     mapUrl = "http://maps.google.com/?q=#{$scope.address1},#{$scope.city}, #{$scope.state},#{$scope.zipcode}"
 ]
 
-angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
+angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$location", "Profile", ($scope, $routeParams, $location, Profile) ->
 
   $scope.currentQuestion = 0
   $scope.answers = []
@@ -217,7 +222,7 @@ angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$l
     $scope.progress = ($scope.currentQuestion + 1) / ($scope.questions.length + 1) * 100
   
   $scope.coverImageUrl = []
-  $scope.profileImageUrl = []
+  $scope.avatar = []
 
   $scope.uploadImages = ->
     filepicker.pickAndStore
@@ -251,10 +256,22 @@ angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$l
 
       $scope.image="https://s3.amazonaws.com/#{InkBlob[0].key}"
       console.log $scope.image
-      $scope.profileImageUrl.push($scope.image)
+      $scope.avatar.push($scope.image)
       $('.profile-image-row .default').remove()
       $('.profile-image-row').empty()
       filepicker.read InkBlob[0].url, base64encode: true, (imgdata) ->
         $('.profile-image-row').append("<div class = 'profile-image span3'><img src = 'data:image/*;base64,#{imgdata}'></div>")
+
+  $scope.createProfile = (profile) ->
+    console.log($scope.coverImageUrl, $scope.avatar)
+    if $scope.coverImageUrl?
+      profile.coverImageUrl = $scope.coverImageUrl[0]
+    if $scope.avatar?
+      profile.avatar = $scope.avatar[0]
+    alert('inside!')
+    console.log(profile)
+    new Profile(profile).create().then (data) =>
+      console.log data, "~~~~~~~~~~"
+      $scope.created = true
   
 ]

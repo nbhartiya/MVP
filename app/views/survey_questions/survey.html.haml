@@ -10,23 +10,19 @@
 
           %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: create_profile.profile_blurb.$invalid}"}
 
-          %select#neighborhoods{'ng-model'=>'profile.neighborhood', :name => "profile_neighborhood", :required => "required", 'ng-class' => "{error: create_profile.profile_neighborhood.$invalid}"}
+          %select#neighborhoods{'ng-model'=>'profile.location.neighborhood', :name => "profile_neighborhood", :required => "required", 'ng-class' => "{error: create_profile.profile_neighborhood.$invalid}"}
 
-          %input#profile-city{'ng-model'=>'profile.city', :type=>"text", :placeholder =>"Your City", :required => "required", :name => "profile_city", 'ng-class' => "{error: create_profile.profile_city.$invalid}"}
-
-          %select#state{'ng-model'=>'profile.state', :required => "required", :name => "profile_state", 'ng-class' => "{error: create_profile.profile_state.$invalid}"}
-
-          %input{:type => "text", :name => "home_zip", "ng-model" => "user.home_zip", :placeholder =>"Home Zip", :required => "required", :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: create_profile.home_zip.$invalid}"}
+          %input{:type => "text", :name => "home_zip", "ng-model" => "profile.location.home_zip", :placeholder =>"Home Zip", :required => "required", :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: create_profile.home_zip.$invalid}"}
           .row
             .span6    
-              %input{:type => "text", :name => "work_zip", 'ng-model' => 'user.work_zip', :placeholder =>"Work Zip", :required => 'required', :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: create_profile.work_zip.$invalid}"}            
+              %input{:type => "text", :name => "work_zip", 'ng-model' => 'profile.location.work_zip', :placeholder =>"Work Zip", :required => 'required', :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: create_profile.work_zip.$invalid}"}            
               %a.why-zip{:href => "#", "data-toggle" => "tooltip", :title => "So we can better recommend lunch and dinner events near you!", "data-placement" => "right"} <sup> Why? </sup>
 
           .help-block{'ng-show' => 'create_profile.home_zip.$error.pattern'} Please enter a valid home zip code
 
           .help-block{'ng-show' => 'create_profile.work_zip.$error.pattern'} Please enter a valid work zip code
 
-          .help-block{'ng-show' => 'create_profile.profile_blurb.$error.required || create_profile.profile_neighborhood.$error.required || create_profile.profile_city.$error.required || create_profile.profile_state.$error.required || create_profile.home_zip.$error.required || create_profile.work_zip.$error.required'} All fields are required
+          .help-block{'ng-show' => 'create_profile.profile_blurb.$error.required || create_profile.profile_neighborhood.$error.required || create_profile.home_zip.$error.required || create_profile.work_zip.$error.required'} All fields are required
 
           -#if chef
           .clearfix
@@ -49,68 +45,72 @@
         .row.cover-image-row
           .span3.default
             =image_tag "Food 9.jpg"
-
-    .row{'ng-show'=>'currentQuestion>3'}
-      .span12.question
-        %h2 {{questions[currentQuestion].text}}
+    -for q in @questions
+      -if q.format == "slider"
         .row
-          .span4.single-visual-answer
+          .span12.question
+            %h2 
+              =q.question
             .row
-              .span4.answer-image
-                =link_to image_tag("{{questions[currentQuestion].answers[0].image}}"), "javascript:;"
-            .row.answer
-              .span4.answer-caption
-                %h3 {{questions[currentQuestion].answers[0].answer}}
-          .span4.single-visual-answer
-            .row
-              .span4.answer-image
-                =link_to image_tag("{{questions[currentQuestion].answers[1].image}}"), "javascript:;"
-            .row.answer
-              .span4.answer-caption
-                %h3 {{questions[currentQuestion].answers[1].answer}}
-          .span4.single-visual-answer
-            .row
-              .span4.answer-image
-                =link_to image_tag("{{questions[currentQuestion].answers[2].image}}"), "javascript:;"
-            .row.answer
-              .span4.answer-caption
-                %h3 {{questions[currentQuestion].answers[2].answer}}
+              .span4.single-visual-answer-range
+                =render "survey_questions/visualanswerlow", :q => q
+              .span4
+                %slider.answer-slider{:ceiling => "50", :floor => "-50", "ng-model" => "userAnswer.text", :precision => "0", :step => "10"}
+              .span4.single-visual-answer-range
+                =render "survey_questions/visualanswerhigh", :q => q
+      -else
         .row
-          .span4.single-visual-answer
-            .row
-              .span4.answer-image
-                =link_to image_tag("{{questions[currentQuestion].answers[3].image}}"), "javascript:;"
-            .row.answer
-              .span4.answer-caption
-                %h3 {{questions[currentQuestion].answers[3].answer}}
-          .span4.single-visual-answer
-            .row
-              .span4.answer-image
-                =link_to image_tag("{{questions[currentQuestion].answers[4].image}}"), "javascript:;"
-            .row.answer
-              .span4.answer-caption
-                %h3 {{questions[currentQuestion].answers[4].answer}}
-          .span4.single-visual-answer
-            .row
-              .span4.answer-image
-                =link_to image_tag("{{questions[currentQuestion].answers[5].image}}"), "javascript:;"
-            .row.answer
-              .span4.answer-caption
-                %h3 {{questions[currentQuestion].answers[5].answer}}
-    .row
-      .span12.question{'ng-hide'=>'currentQuestion>3'}
-        %h2 {{questions[currentQuestion].text}}
-        .row
-          .span4.single-visual-answer-range
-            =render "survey_questions/visualanswerlow"
-          .span4
-            %slider.answer-slider{:ceiling => "50", :floor => "-50", "ng-model" => "answers[currentQuestion].level", :precision => "0", :step => "10"}
-          .span4.single-visual-answer-range
-            =render "survey_questions/visualanswerhigh"
+          .row
+            .span12.question
+              %h2 {{questions[currentQuestion].text}}
+              .row
+                .span4.single-visual-answer
+                  .row
+                    .span4.answer-image
+                      =link_to image_tag("{{questions[currentQuestion].answers[0].image}}"), "javascript:;"
+                  .row.answer
+                    .span4.answer-caption
+                      %h3 {{questions[currentQuestion].answers[0].answer}}
+                .span4.single-visual-answer
+                  .row
+                    .span4.answer-image
+                      =link_to image_tag("{{questions[currentQuestion].answers[1].image}}"), "javascript:;"
+                  .row.answer
+                    .span4.answer-caption
+                      %h3 {{questions[currentQuestion].answers[1].answer}}
+                .span4.single-visual-answer
+                  .row
+                    .span4.answer-image
+                      =link_to image_tag("{{questions[currentQuestion].answers[2].image}}"), "javascript:;"
+                  .row.answer
+                    .span4.answer-caption
+                      %h3 {{questions[currentQuestion].answers[2].answer}}
+              .row
+                .span4.single-visual-answer
+                  .row
+                    .span4.answer-image
+                      =link_to image_tag("{{questions[currentQuestion].answers[3].image}}"), "javascript:;"
+                  .row.answer
+                    .span4.answer-caption
+                      %h3 {{questions[currentQuestion].answers[3].answer}}
+                .span4.single-visual-answer
+                  .row
+                    .span4.answer-image
+                      =link_to image_tag("{{questions[currentQuestion].answers[4].image}}"), "javascript:;"
+                  .row.answer
+                    .span4.answer-caption
+                      %h3 {{questions[currentQuestion].answers[4].answer}}
+                .span4.single-visual-answer
+                  .row
+                    .span4.answer-image
+                      =link_to image_tag("{{questions[currentQuestion].answers[5].image}}"), "javascript:;"
+                  .row.answer
+                    .span4.answer-caption
+                      %h3 {{questions[currentQuestion].answers[5].answer}}
     .row
       .span12.navigation-buttons.clearfix
         %button.btn.btn-inverse{'ng-click' => 'prevQuestion()', 'ng-disabled'=>'beginning'} Previous
-        %button.btn.btn-warning.pull-right{'ng-disabled'=>'!end || create_profile.$invalid'} Submit
+        %button.btn.btn-warning.pull-right{'ng-disabled'=>'!end || create_profile.$invalid', 'ng-click'=>'createProfile(profile)'} Submit
         %button.btn.btn-inverse.pull-right{'ng-click' => 'nextQuestion()', 'ng-disabled' => 'end'} Next
     .row
       .span2

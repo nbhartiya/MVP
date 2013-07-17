@@ -29,9 +29,7 @@ class User < ActiveRecord::Base
   has_many :projects
   has_many :authentications
   has_one :accreditation
-  has_one :location
-  has_many :images, :as => :imageable
-  has_one :avatar, :as => :imageable, :class_name =>"Image"
+  has_many :locations
   # always do User.first.create_image instead of User.first.images.create!, but to destroy do User.first.image.destroy
   has_many :tickets
   # TODO: below relationship doesn't work...need to fix

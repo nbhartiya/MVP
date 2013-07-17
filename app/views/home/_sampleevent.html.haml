@@ -7,4 +7,5 @@
   .caption-text
     %h4 #{event.title}
     %p #{event.description}
-    %p #{event.location.neighborhood}
+    -if event.location.present?
+      %p #{event.location.neighborhood}

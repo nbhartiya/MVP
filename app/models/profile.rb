@@ -20,5 +20,7 @@ class Profile < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :location
+  has_many :covers, :as => :imageable, :class_name =>"Image"
+  has_one :avatar, :as => :imageable, :class_name =>"Image"
   attr_accessible :blurb, :home_zip, :location_id, :story, :work_zip, :user_id, :biz_name, :yelp_id, :neighborhood
 end
