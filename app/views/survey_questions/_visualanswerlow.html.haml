@@ -1,6 +1,9 @@
 .row
   .span4.answer-image
-    =image_tag "Food 9.jpg"
+    -if q.images.first != nil
+      = filepicker_image_tag q.images.first.image
+    -else
+      =image_tag "Food 6.jpg"
 .row.answer
   .span4.answer-caption
     %h3
