@@ -23,13 +23,13 @@ class Api::ProfilesController < ApplicationController
   # POST /profiles
   # POST /profiles.json
   def create
-    binding.pry
-    #profile_params=params[:profile]
-    #survey_params = params[:profile][:survey]
-    #profile_params.delete("location")
-    @profile = Profile.new(params[:profile])
-    #survey_params.merge!("event_id"=>@event.id)
-    #@survey = SurveyAnswer.create(survey_params)
+    profile_params=params[:profile]
+    avatar_params=params[:profile][:avatar]
+    profile_params.delete("avatar")
+    @profile = Profile.new(profile_params)
+    @profile.user_id = current_user.id
+    @profile.avatar=Image.new(:image=>avatar_params)
+    @profile.save!
     render json: @profile.to_json(include_hash)
   end
 

@@ -13,22 +13,35 @@ a#yelp-explanation, a#yelp-explanation:hover, a#yelp-explanation:visited{
 }
 
 .foodie-quiz{
+	.title{
+		margin-bottom: 60px;
+	}
+	.profile-images{
+		p{
+			text-align: center;
+		}
+	}
 	h1{
-		font-size: 30px;
+		font-size: 50px;
 		line-height: 1.2em;
 		font-weight: 100;
 		margin: 0;
+		text-align: center;
 	}
 	p{
+		font-size: 20px;
 		font-weight: 100;
+		text-align: center;
 	}
 }
 
 .question{
+	margin-top: 50px;
 	h2{
 		font-size: 24px;
 		line-height: 1.2em;
 		font-weight: 100;
+		text-align: center;
 	}
 }
 
@@ -132,6 +145,10 @@ slider span.pointer.active:after{
 
 .profile-image-row, .cover-image-row{
 	height: 150px;
+}
+
+.default{
+	margin: 0 40px;
 }
 
 .default img, .cover-image img, .profile-image img{

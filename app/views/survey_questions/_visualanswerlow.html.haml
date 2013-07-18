@@ -1,7 +1,7 @@
 .row
   .span4.answer-image
     -if q.images.first != nil
-      = filepicker_image_tag q.images.first.image
+      = image_tag q.images.first.image
     -else
       =image_tag "Food 6.jpg"
 .row.answer
