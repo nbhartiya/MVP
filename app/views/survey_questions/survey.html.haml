@@ -29,12 +29,12 @@
 
           %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: create_profile.profile_blurb.$invalid}"}
 
-          %select#neighborhoods{'ng-model'=>'profile.location.neighborhood', :name => "profile_neighborhood", :required => "required", 'ng-class' => "{error: create_profile.profile_neighborhood.$invalid}"}
+          %select#neighborhoods{'ng-model'=>'profile.neighborhood', :name => "profile_neighborhood", :required => "required", 'ng-class' => "{error: create_profile.profile_neighborhood.$invalid}"}
 
-          %input{:type => "text", :name => "home_zip", "ng-model" => "profile.location.home_zip", :placeholder =>"Home Zip", :required => "required", :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: create_profile.home_zip.$invalid}"}
+          %input{:type => "text", :name => "home_zip", "ng-model" => "profile.home_zip", :placeholder =>"Home Zip", :required => "required", :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: create_profile.home_zip.$invalid}"}
           .row
             .span6    
-              %input{:type => "text", :name => "work_zip", 'ng-model' => 'profile.location.work_zip', :placeholder =>"Work Zip", :required => 'required', :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: create_profile.work_zip.$invalid}"}            
+              %input{:type => "text", :name => "work_zip", 'ng-model' => 'profile.work_zip', :placeholder =>"Work Zip", :required => 'required', :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: create_profile.work_zip.$invalid}"}            
               %a.why-zip{:href => "#", "data-toggle" => "tooltip", :title => "So we can better recommend lunch and dinner events near you!", "data-placement" => "right"} <sup> Why? </sup>
 
           .help-block{'ng-show' => 'create_profile.home_zip.$error.pattern'} Please enter a valid home zip code
@@ -69,31 +69,30 @@
                   =render "survey_questions/visualanswerhigh", :q => q
         -else
           .row
+            .span12.question
+              %h2
+                =q.question
             .row
-              .span12.question
-                %h2
-                  =q.question
-                -answers=q.survey_answers
-                  -answers.each_with_index do |a, index|    
-                  - if index % 3 == 0
-                    .row
-                      .span4.single-visual-answer
-                        .row
-                          .span4.answer-image
-                            = filepicker_image_tag a.images.first.image
-                        .row.answer
-                          .span4.answer-caption
-                            %h3
-                              =a.text
-                  - else
-                    .span4.single-visual-answer
-                      .row
-                        .span4.answer-image
-                          = filepicker_image_tag a.images.first.image
-                      .row.answer
-                        .span4.answer-caption
-                          %h3
-                            =a.text
+            -answers=q.survey_answers
+              -answers.each_with_index do |a, index| 
+              - if index % 3 == 0
+                .span4.single-visual-answer
+                  .row
+                    .span4.answer-image{'ng-click' => 'selectAns()', 'ng-init' => 'selection="#{a}"'}
+                      = filepicker_image_tag a.images.first.image
+                  .row.answer
+                    .span4.answer-caption
+                      %h3
+                        =a.text
+              - else
+                .span4.single-visual-answer
+                  .row
+                    .span4.answer-image{'ng-click' => 'selectAns("#{a}")', 'ng-init' => "selection='#{a}'"}
+                      = filepicker_image_tag a.images.first.image
+                  .row.answer
+                    .span4.answer-caption
+                      %h3
+                        =a.text
     .row
       .span12.navigation-buttons.clearfix
         %button.btn.btn-inverse{'ng-click' => 'prevQuestion()', 'ng-disabled'=>'beginning'} Previous

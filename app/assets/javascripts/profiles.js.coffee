@@ -11,6 +11,8 @@ $("#why-yelp").tooltip()
 
 $(".answer-image img").click ->
   $(this).toggleClass "highlight"
+  if $(this).hasClass "highlight"
+    console.log($(this))
 
 $(".profiles .heart_this a").click ->
   if $(this).hasClass("gray")
@@ -19,7 +21,6 @@ $(".profiles .heart_this a").click ->
   else
     $(this).removeClass "orange"
     $(this).addClass "gray"
-
 
 angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams", "$location", "Profile", ($scope, $routeParams, $location, Profile) ->
   $scope.edit = 1
@@ -262,6 +263,10 @@ angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$l
       filepicker.read InkBlob[0].url, base64encode: true, (imgdata) ->
         $('.profile-image-row').append("<div class = 'profile-image span3'><img src = 'data:image/*;base64,#{imgdata}'></div>")
 
+  $scope.selectAns = ->
+    alert("inside!")
+    console.log($scope.a)
+
   $scope.createProfile = (profile) ->
     console.log($scope.coverImageUrl, $scope.avatar)
     if $scope.coverImageUrl?
@@ -273,5 +278,6 @@ angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$l
     new Profile(profile).create().then (data) =>
       console.log data, "~~~~~~~~~~"
       $scope.created = true
+    $window.location.href='/events'
   
 ]
