@@ -32,20 +32,20 @@
               %tr
                 %td
                   %h3.point-action Thank you for attending!
-                %td
-                  .points.btn.event-attending-points +10
+                %td.points
+                  =link_to image_tag 'Ten_Point.png', :href => ""
             %hr
             %table.feedback-actions
               %tr
                 %td
                   %h3.point-action Fill out a quick survey
-                %td
-                  .points.btn.btn-warning.event-survey-button{'ng-click' => 'feedback=1'} +15
+                %td.points
+                  =link_to image_tag 'Fifteen_Point.png', 'ng-click' => 'feedback=1', :href => ""
               %tr
                 %td
                   %h3.point-action Write a Yelp Review
-                %td
-                  .btn.btn-warning.points.event-yelp-button{'ng-click' => 'feedback=2'} +20
+                %td.points
+                  =link_to image_tag 'Twenty_Point.png', 'ng-click' => 'feedback=2', :href => ""
 
             %table.event-sharing
               %tr
@@ -103,19 +103,19 @@
                   %tr 
                     %td 1
                     %td 
-                      =link_to image_tag("Favicon.png"), "#"
+                      =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
                     %td Wendy
                     %td 5000
                   %tr.current-user-rank
                     %td 2
                     %td 
-                      =link_to image_tag("Favicon.png"), "#"
+                      =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
                     %td Wendy
                     %td 4000
                   %tr 
                     %td 3
                     %td 
-                      =link_to image_tag("Favicon.png"), "#"
+                      =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
                     %td Wendy
                     %td 3000
               #city-ranking.tab-pane.fade
@@ -123,19 +123,19 @@
                   %tr 
                     %td 1
                     %td 
-                      =link_to image_tag("Favicon.png"), "#"
+                      =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
                     %td SF Citizen
                     %td 5000
                   %tr 
                     %td 2
                     %td 
-                      =link_to image_tag("Favicon.png"), "#"
+                      =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
                     %td SF Citizen
                     %td 4000
                   %tr 
                     %td 3
                     %td 
-                      =link_to image_tag("Favicon.png"), "#"
+                      =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
                     %td SF Citizen
                     %td 3000
               #global-ranking.tab-pane.fade
@@ -143,19 +143,19 @@
                   %tr 
                     %td 1
                     %td 
-                      =link_to image_tag("Favicon.png"), "#"
+                      =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
                     %td Random Guy
                     %td 5000
                   %tr 
                     %td 2
                     %td 
-                      =link_to image_tag("Favicon.png"), "#"
+                      =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
                     %td Random Guy
                     %td 4000
                   %tr 
                     %td 3
                     %td 
-                      =link_to image_tag("Favicon.png"), "#"
+                      =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
                     %td Random Guy
                     %td 3000
             %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=4'} Get More Points
@@ -167,18 +167,18 @@
               %tr
                 %td
                   %h3.point-action Tell a Friend About Simmr (you'll get more points when they sign up and attend an event!)
-                %td
-                  %a.btn.btn-warning.points.refer-friend-event-button{:href => "#"} +10
+                %td.points
+                  =link_to image_tag('Ten_Point.png'), ""
               %tr
                 %td
                   %h3.point-action Attend Another Event
                 %td
-                  %a.btn.btn-warning.points.attend-another-event-button{:href => "/events"} +10
+                  =link_to image_tag('Ten_Point.png'), "/events"
               %tr
                 %td
                   %h3.point-action Start a Campaign
                 %td
-                  %a.points.btn.btn-warning.start-campaign-button{:href=>"/campaigns/new"} +10
+                  =link_to image_tag('Ten_Point.png'), "/campaigns/new"
             %button.btn.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Done
             %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Back to Leader Boards
 
@@ -230,11 +230,11 @@
                   .accordion-inner
                     .row.attendees
                       .span10
-                        =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
-                        =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
-                        =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
-                        =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Christine Lee", "class" => "one-attendee", "data-placement" => "bottom"
-                        =link_to image_tag("Favicon.png"), "#", "data-toggle" => "tooltip", "title" => "Michael Makarov", "class" => "one-attendee", "data-placement" => "bottom"
+                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
+                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
+                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
+                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Christine Lee", "class" => "one-attendee", "data-placement" => "bottom"
+                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Michael Makarov", "class" => "one-attendee", "data-placement" => "bottom"
                         -#
                           %p 
                             -for guest in @event.guests

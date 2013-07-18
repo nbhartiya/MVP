@@ -25,6 +25,7 @@ gem 'thin'
 gem 'stripe'
 gem 'seed_dump'
 gem 'hirb'
+gem 'json'
 
 # not necessary yet...will change to this when everything working...
 # gem 'linkedin'

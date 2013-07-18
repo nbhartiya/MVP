@@ -1,14 +1,20 @@
 .profiles
   .container.foodie-quiz{'ng-controller' => "SurveyCtrl"}
     .row
-      .span12
+      .span12.title
+        -if current_user.chef?
+          %h1 Give Simmr guests a sense of what you're all about. 
+        -else
+          %h1 What's Your Food Style
+          %p Take the quiz to discover your foodie profile in just a few minutes!
     .row
       .span3
+      .span3.profile-images
         -if current_user.chef?
           %p Logo
           .row.profile-image-row
             .span3.default
-              =image_tag "Food 6.jpg"
+              =image_tag "Chef-Default-Profile-Image.png"
           %br
           %p Cover Image
           .row.cover-image-row
@@ -17,18 +23,10 @@
         -else
           .row.profile-image-row
             .span3.default
-              =image_tag "Food 6.jpg"
+              =image_tag "Foodie-Default-Profile-Image.png"
           %p Your Profile Image
-      .span9
-        -if current_user.chef?
-          %h1 Give Simmr guests a sense of what you're all about. 
-        -else
-          %h1 What's Your Food Style
-          %p Take the quiz to discover your foodie profile in just a few minutes!
+      .span3
         %form.create-profile{:name => "create_profile"}
-
-          
-          -#Wendy need to edit these to make them all perfect...for now I copied from Stripe view...
           -if current_user.chef?
             %p
             %input#address1{'ng-model' => "profile.biz_name", :placeholder => "Business Name", :type => "text", :name => "biz_name", 'ng-class' => "{error: stripe.billing_address.$invalid}"}
@@ -73,47 +71,45 @@
 
             .clearfix
               %button.btn.btn-inverse#profile-image-button{'ng-click'=> 'uploadProfileImage()'} Upload Profile Picture
-
-  -if !current_user.chef
-    -for q in @questions
-      -if q.format == "slider"
-        .row
-          .span12.question
-            %h2 
-              =q.question
+    .row
+      -if !current_user.chef
+        -for q in @questions
+          -if q.format == "slider"
+            .span12.question
+              %h2 
+                =q.question
+              .row
+                .span4.single-visual-answer-range
+                  =render "survey_questions/visualanswerlow", :q => q
+                .span4
+                  %slider.answer-slider{:ceiling => "50", :floor => "-50", "ng-model" => "userAnswer.text", :precision => "0", :step => "10"}
+                .span4.single-visual-answer-range
+                  =render "survey_questions/visualanswerhigh", :q => q
+          -else
+            .span12.question
+              %h2
+                =q.question
             .row
-              .span4.single-visual-answer-range
-                =render "survey_questions/visualanswerlow", :q => q
-              .span4
-                %slider.answer-slider{:ceiling => "50", :floor => "-50", "ng-model" => "userAnswer.text", :precision => "0", :step => "10"}
-              .span4.single-visual-answer-range
-                =render "survey_questions/visualanswerhigh", :q => q
-      -else
-        .row
-          .span12.question
-            %h2
-              =q.question
-          .row
-          -answers=q.survey_answers
-            -answers.each_with_index do |a, index| 
-            - if index % 3 == 0
-              .span4.single-visual-answer
-                .row
-                  .span4.answer-image{'ng-click' => 'selectAns()', 'ng-init' => 'selection="#{a}"'}
-                    = filepicker_image_tag a.images.first.image
-                .row.answer
-                  .span4.answer-caption
-                    %h3
-                      =a.text
-            - else
-              .span4.single-visual-answer
-                .row
-                  .span4.answer-image{'ng-click' => 'selectAns("#{a}")', 'ng-init' => "selection='#{a}'"}
-                    = filepicker_image_tag a.images.first.image
-                .row.answer
-                  .span4.answer-caption
-                    %h3
-                      =a.text
+            -answers=q.survey_answers
+              -answers.each_with_index do |a, index| 
+              - if index % 3 == 0
+                .span4.single-visual-answer
+                  .row
+                    .span4.answer-image{'ng-click' => 'selectAns()', 'ng-init' => 'selection="#{a}"'}
+                      = image_tag a.images.first.image
+                  .row.answer
+                    .span4.answer-caption
+                      %h3
+                        =a.text
+              - else
+                .span4.single-visual-answer
+                  .row
+                    .span4.answer-image{'ng-click' => 'selectAns("#{a}")', 'ng-init' => "selection='#{a}'"}
+                      = image_tag a.images.first.image
+                  .row.answer
+                    .span4.answer-caption
+                      %h3
+                        =a.text
     .row
       .span12.navigation-buttons.clearfix
         %button.btn.btn-inverse{'ng-click' => 'prevQuestion()', 'ng-disabled'=>'beginning'} Previous

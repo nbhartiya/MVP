@@ -108,7 +108,7 @@ input.error-true  {
 
 // site wide styling
 .section-header{
-	margin: 20px 0 20px -15px;
+	margin: 20px 0;
 	.collapsed .caret	{
 		display: inline-block;
 		vertical-align: middle;
@@ -152,7 +152,8 @@ input.error-true  {
 		.logo-and-location{
 			float: left;
 			.logo{
-				width: 55%;
+			  	margin-top: -45px;
+				width: 44%;
 			}
 			.logo, ul{
 				float: left;
@@ -283,9 +284,6 @@ input.error-true  {
 
 .footer-logo{
 	padding-top: 30px;
-	img{
-		width: 100%;
-	}
 	p{
 		font-size: 10px;
 		text-align: center;

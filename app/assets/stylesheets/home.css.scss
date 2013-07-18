@@ -192,10 +192,10 @@ ul.parsley-error-list{
 			    margin-top: 10px;
 			    font-size: 12px;
 			}
-			a.sign-in-link{
+			a.sign-in-link, a.sign-out-link{
 				color: $main_orange;
 			}
-			a.sign-in-link:hover{
+			a.sign-in-link:hover, a.sign-out-link:hover{
 				color: white;
 				text-decoration: none;
 			}
@@ -247,7 +247,7 @@ ul.parsley-error-list{
 
 .accordion-inner{
 	border-top: none;
-	margin: 20px 20px 20px 0;
+	margin: 20px;
 }
 
 #how-it-works{
@@ -262,34 +262,32 @@ ul.parsley-error-list{
 		line-height: 1.2em;
 	}
 }
-	
-.step, .step-one{
-	background: url('Food 17.jpg');
-	height: 350px;
-	margin-top: 20px;
-	table{
-		width: 100%;
-	}
-	h1{
-		font-size: 30px;
-		line-height: 1.5em;
-		font-weight: 100;
-		background: rgba(0,0,0,0.8);
-		color: white;
-		text-align: center;
-	}
-	.step-description{
-		height: 250px;
-		background: rgba(0,0,0,0.8);
-		padding: 10px;
-		display: none;
-		p{
-			font-size: 14px;
-			line-height: 1.5em;
+
+.how-it-works-event-infographic{
+	margin: 0 auto;
+	.step{
+		height: 240px;
+		width: 240px;
+		margin-top: 20px;
+		margin-left: 10px;
+		border-radius: 50%;
+		border: 25px $main_orange solid;
+		float: left;
+		h1{
+			font-size: 30px;
 			font-weight: 100;
-			color: white;
-			text-align: left;
-			vertical-align: middle;
+			text-align: center;
+		}
+		.step-description{
+			width: 220px;
+			padding: 10px;
+			p{
+				font-size: 14px;
+				line-height: 1.5em;
+				font-weight: 100;
+				text-align: center;
+				vertical-align: middle;
+			}
 		}
 	}
 }
@@ -339,9 +337,6 @@ ul.parsley-error-list{
 	}
     body{
   	padding: 0;
-    }
-	.step .step-description p{
-    	font-size: 20px;
     }
 }
 
@@ -431,12 +426,6 @@ ul.parsley-error-list{
 	}
 	.attention-getter .carousel-control{
   		top: 40%;
-    }
-    .step .step-description p{
-    	font-size: 11px;
-    }
-    .step h1{
-    	font-size: 24px;
     }
     #how-it-works-detail h3{
 		font-size: 16px;

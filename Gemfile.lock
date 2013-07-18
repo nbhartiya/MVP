@@ -271,6 +271,7 @@ DEPENDENCIES
   haml-rails
   hirb
   jquery-rails
+  json
   launchy
   mocha
   nifty-generators

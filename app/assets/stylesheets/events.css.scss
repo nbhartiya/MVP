@@ -10,7 +10,7 @@ $main_orange: rgb(255, 178, 35);
 			margin-top: 10px;
 		}
 		.events-index-header, .events-index-content{
-			margin: 0;
+			margin: 30px 0;
 			a:hover{
 				color: $main_orange;
 			}
@@ -21,12 +21,15 @@ $main_orange: rgb(255, 178, 35);
 		.events-index-content{
 			font-size: 20px;
 			font-weight: 100;
+			text-align: center;
 		}
 		.events-row{
 			margin: -10px 0 50px 0;
 		}
 	}
 }
+
+
 
 #default-text{
 	color: gray !important;
@@ -635,6 +638,10 @@ ol.carousel-indicators{
 			.points{
 				float: right;
 			}
+			img{
+				float: right;
+				width: 30px;
+			}
 		}
 	}
 	.heart_this{
@@ -643,6 +650,15 @@ ol.carousel-indicators{
 		background: rgba(0,0,0,0.8);
 		width: 33px;
 		height: 33px;
+	}
+	.event-survey, .event-yelp, .point-ranking{
+		td{
+			img{
+				width: 20px;
+				height: auto;
+			}
+		}
+
 	}
 	.event-survey, .event-yelp, .point-ranking, .more-points{
 		background: rgba(0,0,0,0.8);
@@ -699,10 +715,6 @@ ol.carousel-indicators{
 		}
 		td{
 			color: white;
-			img{
-				width: 20px;
-				height: auto;
-			}
 		}
 		tr:first-child{
 			border-top: none;
