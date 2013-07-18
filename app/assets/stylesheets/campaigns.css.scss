@@ -10,7 +10,7 @@ $main_orange: rgb(255, 178, 35);
 			margin-top: 0;
 		}
 		.campaigns-index-header, .campaigns-index-content{
-			margin: 0;
+			margin: 30px 0;
 			a:hover{
 				color: $main_orange;
 			}
@@ -21,9 +21,46 @@ $main_orange: rgb(255, 178, 35);
 		.campaigns-index-content{
 			font-size: 20px;
 			font-weight: 100;
+			text-align: center;
 		}
 		.campaigns-row{
-			margin: 10px 0 30px 0;
+			margin: 30px 0;
+		}
+	}
+}
+.campaign-how-it-works{
+	margin: 0;
+}
+
+.how-it-works-campaign-infographic{
+	margin: 0 auto;
+	p{
+		text-align: center;
+	}
+	.step{
+		height: 240px;
+		width: 240px;
+		margin-top: 20px;
+		margin-left: 25px;
+		border-radius: 50%;
+		border: 25px rgb(54, 54, 54) solid;
+		float: left;
+		h1{
+			font-size: 30px;
+			font-weight: 100;
+			text-align: center;
+			padding-top: 15px;
+		}
+		.step-description{
+			width: 200px;
+			padding: 20px;
+			p{
+				font-size: 14px;
+				line-height: 1.5em;
+				font-weight: 100;
+				text-align: center;
+				vertical-align: middle;
+			}
 		}
 	}
 }

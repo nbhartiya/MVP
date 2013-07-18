@@ -8,8 +8,21 @@
       .container
         .row.campaign-how-it-works
           .span1
-          .span10
-            %p How campaigns work
+          .span10.campaigns-index-content
+            .row.how-it-works-campaign-infographic 
+              %p How does it work?
+              .step
+                %h1 launch
+                .step-description
+                  %p Don't see a favorite food business or chef? Launch a campaign to get 'em on Simmr! It takes just a couple of minutes.
+              .step
+                %h1 promote
+                .step-description
+                  %p Once your campaign is approved, spread the word and start recruiting people to join!
+              .step
+                %h1 tilt
+                .step-description
+                  %p Once you have 100 people, we will contact the restaurant or chef and bring them on!
           .span1
     .container
       -all_campaigns = @campaigns

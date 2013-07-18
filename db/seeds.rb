@@ -170,14 +170,14 @@ SurveyAnswer.create([
 
 
 SurveyQuestion.create([
-  { :for_chef => nil, :question => 'Which 3 of the below categories of food/drink are you most interested in?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => nil, :high_extreme => nil, :format => 'option', :active => true },
-  { :for_chef => nil, :question => 'Which cuisines do you like the most?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => nil, :high_extreme => nil, :format => 'option', :active => true },
-  { :for_chef => nil, :question => 'Which 3 of the below restaurants would you be MOST likely to go to?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => nil, :high_extreme => nil, :format => 'option', :active => true },
-  { :for_chef => nil, :question => 'Which 3 of the below events would you be MOST excited to attend?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => nil, :high_extreme => nil, :format => 'option', :active => true },
-  { :for_chef => nil, :question => 'Which type of event would you be most excited about?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => "so hands off it's like I'm watching TV", :high_extreme => "so hands on I better wear an apron", :format => 'slider', :active => true },
-  { :for_chef => nil, :question => 'Which type of event would you be most excited about?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => "so small it's like a date between me and the chef", :high_extreme => "so big everybody's here. and their moms. and dads. and second cousins from Georgia", :format => 'slider', :active => true },
-  { :for_chef => nil, :question => 'Which type of event would you be most excited about?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => "so impossible to get into I needed an invite to my own party. and still bribed the bouncer", :high_extreme => "so easy to get into that I walked in without a shirt", :format => 'slider', :active => true },
-  { :for_chef => nil, :question => 'What is the maximum you would pay for a cool event?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => '$10', :high_extreme => '$250', :format => 'slider', :active => true }
+  { :for_chef => false, :question => 'Which 3 of the below categories of food/drink are you most interested in?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => nil, :high_extreme => nil, :format => 'option', :active => true },
+  { :for_chef => false, :question => 'Which cuisines do you like the most?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => nil, :high_extreme => nil, :format => 'option', :active => true },
+  { :for_chef => false, :question => 'Which 3 of the below restaurants would you be MOST likely to go to?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => nil, :high_extreme => nil, :format => 'option', :active => true },
+  { :for_chef => false, :question => 'Which 3 of the below events would you be MOST excited to attend?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => nil, :high_extreme => nil, :format => 'option', :active => true },
+  { :for_chef => false, :question => 'Which type of event would you be most excited about?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => "so hands off it's like I'm watching TV", :high_extreme => "so hands on I better wear an apron", :format => 'slider', :active => true },
+  { :for_chef => false, :question => 'Which type of event would you be most excited about?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => "so small it's like a date between me and the chef", :high_extreme => "so big everybody's here. and their moms. and dads. and second cousins from Georgia", :format => 'slider', :active => true },
+  { :for_chef => false, :question => 'Which type of event would you be most excited about?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => "so impossible to get into I needed an invite to my own party. and still bribed the bouncer", :high_extreme => "so easy to get into that I walked in without a shirt", :format => 'slider', :active => true },
+  { :for_chef => false, :question => 'What is the maximum you would pay for a cool event?', :created_at => nil, :updated_at => nil, :topic => nil, :low_extreme => '$10', :high_extreme => '$250', :format => 'slider', :active => true }
 ], :without_protection => true )
 
 

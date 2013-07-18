@@ -1,8 +1,5 @@
 $("#home-carousel").carousel interval: 6000
 
-$(".step").mouseover ->
-  $(".step-description", this).slideDown "400"
-
 $(".attention-getter").mouseover ->
   $("#home-carousel").carousel "pause"
 

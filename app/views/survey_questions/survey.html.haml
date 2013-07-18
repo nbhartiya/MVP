@@ -8,7 +8,7 @@
           %p Logo
           .row.profile-image-row
             .span3.default
-              =image_tag "Food 6.jpg"
+              =image_tag "Chef-Default-Profile-Image.png"
           %br
           %p Cover Image
           .row.cover-image-row
@@ -17,7 +17,7 @@
         -else
           .row.profile-image-row
             .span3.default
-              =image_tag "Food 6.jpg"
+              =image_tag "Foodie-Default-Profile-Image.png"
           %p Your Profile Image
       .span9
         -if current_user.chef?
@@ -69,23 +69,13 @@
                   =render "survey_questions/visualanswerhigh", :q => q
         -else
           .row
-            .row
-              .span12.question
-                %h2
-                  =q.question
-                -answers=q.survey_answers
-                  -answers.each_with_index do |a, index|    
-                  - if index % 3 == 0
-                    .row
-                      .span4.single-visual-answer
-                        .row
-                          .span4.answer-image
-                            = filepicker_image_tag a.images.first.image
-                        .row.answer
-                          .span4.answer-caption
-                            %h3
-                              =a.text
-                  - else
+            .span12.question
+              %h2
+                =q.question
+              -answers=q.survey_answers
+                -answers.each_with_index do |a, index|    
+                - if index % 3 == 0
+                  .row
                     .span4.single-visual-answer
                       .row
                         .span4.answer-image
@@ -94,6 +84,15 @@
                         .span4.answer-caption
                           %h3
                             =a.text
+                - else
+                  .span4.single-visual-answer
+                    .row
+                      .span4.answer-image
+                        = filepicker_image_tag a.images.first.image
+                    .row.answer
+                      .span4.answer-caption
+                        %h3
+                          =a.text
     .row
       .span12.navigation-buttons.clearfix
         %button.btn.btn-inverse{'ng-click' => 'prevQuestion()', 'ng-disabled'=>'beginning'} Previous
