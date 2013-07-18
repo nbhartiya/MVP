@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     home_indexABC_path
   end
 
-  def after_sign_up_path_for(resource)
+  def after_inactive_sign_up_path_for(resource)
     survey_path
   end
   
