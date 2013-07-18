@@ -27,21 +27,36 @@
           %p Take the quiz to discover your foodie profile in just a few minutes!
         %form.create-profile{:name => "create_profile"}
 
-          %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: create_profile.profile_blurb.$invalid}"}
+          
           -#Wendy need to edit these to make them all perfect...for now I copied from Stripe view...
           -if current_user.chef?
+            %p
+            %input#address1{'ng-model' => "profile.biz_name", :placeholder => "Business Name", :type => "text", :name => "biz_name", 'ng-class' => "{error: stripe.billing_address.$invalid}"}
+            %p
+            %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: create_profile.profile_blurb.$invalid}"}
             %p
             %input#address1{'ng-model' => "profile.location.address1", :placeholder => "Address", :type => "text", :name => "billing_address", 'ng-class' => "{error: stripe.billing_address.$invalid}"}
             -#%input#address2{:placeholder => "Address Line 2", :type => "string"} 
             %select#neighborhoods{'ng-model'=>'profile.location.neighborhood', :name => "profile_neighborhood", :required => "required", 'ng-class' => "{error: create_profile.profile_neighborhood.$invalid}"}
-            
+
             %input#city{'ng-model' => "profile.location.city", :placeholder => "City", :type => "text", :name => "billing_city", 'ng-class' => "{error: stripe.billing_city.$invalid}"}
               
             %select#state{'ng-model' => "profile.location.state", :name => "billing_state", 'ng-class' => "{error: stripe.billing_state.$invalid}"}
               
             %input#zipcode{'ng-model' => "profile.location.zipcode", :placeholder => "Zip Code", :type => "text", :name => "billing_zip", :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: stripe.billing_zip.$invalid}"}
 
+            .clearfix
+              %button.btn.btn-inverse#profile-image-button{'ng-click'=> 'uploadProfileImage()'} Upload Profile Picture
+              %button.btn.btn-inverse#cover-image-button{'ng-click'=> 'uploadImages()'} Upload Cover Image
+              %button.btn.btn-inverse#yelp-connect Connect Yelp
+              %a#yelp-explanation{:href => "#", "data-toggle" => "tooltip", :title => "So guests know how great you already are and can easily leave you reviews!", "data-placement" => "right"} <sup> Why? </sup>
+            .accordion-inner
+              %textarea.textarea-section{:placeholder => "Type your story here.", "rows"=>'3', 'ng-model' => "profile.story"}
+
+            %button.btn.btn-warning.pull-right{'ng-disabled'=>'!end || create_profile.$invalid', 'ng-click'=>'createProfile(profile)'} Submit
+
           -else
+            %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: create_profile.profile_blurb.$invalid}"}
             %select#neighborhoods{'ng-model'=>'profile.neighborhood', :name => "profile_neighborhood", :required => "required", 'ng-class' => "{error: create_profile.profile_neighborhood.$invalid}"}
 
             %input{:type => "text", :name => "home_zip", "ng-model" => "profile.home_zip", :placeholder =>"Home Zip", :required => "required", :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: create_profile.home_zip.$invalid}"}
@@ -58,13 +73,6 @@
 
             .clearfix
               %button.btn.btn-inverse#profile-image-button{'ng-click'=> 'uploadProfileImage()'} Upload Profile Picture
-
-          -if current_user.chef?
-            .clearfix
-              %button.btn.btn-inverse#profile-image-button{'ng-click'=> 'uploadProfileImage()'} Upload Profile Picture
-              %button.btn.btn-inverse#cover-image-button{'ng-click'=> 'uploadImages()'} Upload Cover Image
-              %button.btn.btn-inverse#yelp-connect Connect Yelp
-              %a#yelp-explanation{:href => "#", "data-toggle" => "tooltip", :title => "So guests know how great you already are and can easily leave you reviews!", "data-placement" => "right"} <sup> Why? </sup>
 
   -if !current_user.chef
     -for q in @questions
