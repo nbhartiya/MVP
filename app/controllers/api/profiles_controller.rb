@@ -25,12 +25,30 @@ class Api::ProfilesController < ApplicationController
   def create
     profile_params=params[:profile]
     avatar_params=params[:profile][:avatar]
+    if current_user.chef?
+      location_params=params[:profile][:location]
+      cover_params=params[:profile][:cover_image_url]
+      profile_params.delete("location")
+      profile_params.delete("cover_image_url")
+    end
     profile_params.delete("avatar")
     @profile = Profile.new(profile_params)
     @profile.user_id = current_user.id
     @profile.avatar=Image.new(:image=>avatar_params)
+    if current_user.chef?
+      @profile.save!
+      @profile.covers.create(:image=>cover_params)
+      @location = Location.new(location_params)
+      @location.save!
+      @profile.location_id=@location.id
+    end
     @profile.save!
-    render json: @profile.to_json(include_hash)
+    #render json: @profile.to_json(include_hash)
+    if current_user.chef?
+      redirect_to new_event_path
+    else
+      redirect to events_path
+    end
   end
 
   # PUT /profiles/1
