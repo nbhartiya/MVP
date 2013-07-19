@@ -24,7 +24,8 @@
           .row.profile-image-row
             .span3.default
               =image_tag "Foodie-Default-Profile-Image.png"
-          %p Your Profile Image
+          .clearfix
+            %button.btn.btn-inverse#profile-image-button{'ng-click'=> 'uploadProfileImage()'} Upload Profile Picture
       .span3
         %form.create-profile{:name => "create_profile"}
           -if current_user.chef?
@@ -63,14 +64,13 @@
                 %input{:type => "text", :name => "work_zip", 'ng-model' => 'profile.work_zip', :placeholder =>"Work Zip", :required => 'required', :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: create_profile.work_zip.$invalid}"}            
                 %a.why-zip{:href => "#", "data-toggle" => "tooltip", :title => "So we can better recommend lunch and dinner events near you!", "data-placement" => "right"} <sup> Why? </sup>
 
+            %input#vegetarian{:type => "checkbox", :name => "vegetarian", 'ng-model' => 'profile.vegetarian'} <p id="vegetarian"> I'm a vegetarian </p>
+
             .help-block{'ng-show' => 'create_profile.home_zip.$error.pattern'} Please enter a valid home zip code
 
             .help-block{'ng-show' => 'create_profile.work_zip.$error.pattern'} Please enter a valid work zip code
 
             .help-block{'ng-show' => 'create_profile.profile_blurb.$error.required || create_profile.profile_neighborhood.$error.required || create_profile.home_zip.$error.required || create_profile.work_zip.$error.required'} All fields are required
-
-            .clearfix
-              %button.btn.btn-inverse#profile-image-button{'ng-click'=> 'uploadProfileImage()'} Upload Profile Picture
     .row
       -if !current_user.chef
         -for q in @questions

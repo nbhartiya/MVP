@@ -13,7 +13,8 @@
 #
 
 class Image < ActiveRecord::Base
-  attr_accessible :image, :title, :description
+  attr_accessible :image, :title, :description, :imageable_id, :imageable_type
+  # TODO remove imageable ID and Type later
   
   belongs_to :imageable, :polymorphic => true, :dependent => :destroy
 end
