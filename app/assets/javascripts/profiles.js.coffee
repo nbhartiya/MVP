@@ -87,7 +87,7 @@ angular.module('Simmr').controller "ProfileShowCtrl", ["$scope",  "$routeParams"
     mapUrl = "http://maps.google.com/?q=#{$scope.address1},#{$scope.city}, #{$scope.state},#{$scope.zipcode}"
 ]
 
-angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$location", "Profile", ($scope, $routeParams, $location, Profile) ->
+angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$location", "Profile", "$window", ($scope, $routeParams, $location, Profile, $window) ->
 
   $scope.currentQuestion = 0
   $scope.answers = []

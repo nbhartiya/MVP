@@ -12,10 +12,10 @@ class HomeController < ApplicationController
   def contactus
   end
 
-  def indexABC
+  def index
   end
 
-  def tosPLK
+  def tos
   end
 
   def teamandjobsREAL

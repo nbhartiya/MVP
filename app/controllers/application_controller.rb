@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :completed_user?
 
   def after_sign_out_path_for(resource)
-    home_indexABC_path
+    home_index_path
   end
 
   def after_inactive_sign_up_path_for(resource)

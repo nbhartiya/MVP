@@ -52,7 +52,7 @@
             .accordion-inner
               %textarea.textarea-section{:placeholder => "Type your story here.", "rows"=>'3', 'ng-model' => "profile.story"}
 
-            %button.btn.btn-warning.pull-right{'ng-disabled'=>'!end || create_profile.$invalid', 'ng-click'=>'createProfile(profile)'} Submit
+            %button.btn.btn-warning.pull-right{'ng-click'=>'createProfile(profile)'} Submit
 
           -else
             %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: create_profile.profile_blurb.$invalid}"}

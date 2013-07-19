@@ -3,23 +3,25 @@
     #profile-carousel.carousel.slide.hidden-phone
       .carousel-inner
         -if @profile.user.chef == true
-          -@profile.user.images.each_with_index do |i, index|
-            -if index == 0
-              .active.item
-                = filepicker_image_tag i.image
-            -else
-              .item
-                = filepicker_image_tag i.image
+          -if @profile.covers.present?
+            -@profile.covers.each_with_index do |i, index|
+              -if index == 0
+                .active.item
+                  =image_tag i.image
+              -else
+                .item
+                  =image_tag i.image
         -else
           .active.item
             =image_tag "Food 6.jpg"
     -if @profile.user.chef == true
       %ol.carousel-indicators.hidden-phone
-        -@profile.user.images.each_with_index do |i, index|     
-          - if index == 0
-            %li.active{"data-target" => "#profile-carousel", "data-slide-to" => index}
-          - else
-            %li{"data-target" => "#profile-carousel", "data-slide-to" => index}
+        -if @profile.covers.present?
+          -@profile.covers.each_with_index do |i, index|     
+            - if index == 0
+              %li.active{"data-target" => "#profile-carousel", "data-slide-to" => index}
+            - else
+              %li{"data-target" => "#profile-carousel", "data-slide-to" => index}
     .container
       .row.user-overview
         .span1
@@ -27,9 +29,9 @@
           .span4.user-profile-overview{'ng-controller' => 'ProfileShowCtrl', 'ng-init' => "address1='#{@profile.location.address1}'; address2='#{@profile.location.address2}'; city = '#{@profile.location.city}'; state = '#{@profile.location.state}'; zipcode = '#{@profile.location.zipcode}'"}
             %table
               %tr
-                -if @profile.user.avatar.present?
+                -if @profile.avatar.present?
                   %td.profile-photo
-                    =filepicker_image_tag @profile.user.avatar.image 
+                    =image_tag @profile.avatar.image 
                 -else
                   %td.profile-photo
                     =image_tag "Foodie-Default-Profile-Image.png"
@@ -48,24 +50,26 @@
           .span4.user-profile-overview{'ng-controller' => 'ProfileShowCtrl'}
             %table
               %tr
-                -if @profile.user.avatar.present?
+                -if @profile.avatar.present?
                   %td.profile-photo
-                    =filepicker_image_tag @profile.user.avatar.image 
+                    =filepicker_image_tag @profile.avatar.image 
                 -else
                   %td.profile-photo
                     =image_tag "Chef-Default-Profile-Image.png"
                 %td.user-title
                   %h1
-                    Samovar Tea Lounge 
+                    =@profile.biz_name 
               %tr
                 %td.user-summary{:colspan => '2'}
                   %h2 
-                    Your Haven from the World 
+                    =@profile.blurb 
                     -if @profile.user.chef == true
                       <sup><a href = "#user-about", class = "read-more", data-target = "#user-about-detail", data-toggle = "collapse"> Read More </a></sup>
-                      %a{:href => "{{mapUrl()}}"} 123 Mission Street <br> San Francisco, CA 94107
+                      %p
+                      %a{:href => "{{mapUrl()}}"} #{@profile.location.address1} <br> #{@profile.location.city}, #{@profile.location.state} #{@profile.location.zipcode}
                     -else
-                      %h3 Just Neighborhood
+                      %h3
+                        =@profile.neighborhood
                 -if @profile.user.chef == true
                   %table.user-social-stats
                     %tr
@@ -202,7 +206,7 @@
                   #user-about-detail.accordion-body.collapse
                     .accordion-inner
                       %p
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.
+                        =@profile.story
   -else
     .container
       .row

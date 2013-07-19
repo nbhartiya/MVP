@@ -17,11 +17,11 @@ MVP::Application.routes.draw do
   get "/thanks" => "signups#thanks"
   #get "/wireframes" => redirect {"http://mainstproject.com/wireframes"}
 
-  get "home/indexABC"
+  get "home/index"
   get "home/howitworks"
   get "home/teamandjobs"
   get "home/contactus"
-  get "home/tosPLK"
+  get "home/tos"
   get "home/teamandjobsREAL"
   #get "home/blog"
 
