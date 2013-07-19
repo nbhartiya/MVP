@@ -1,26 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The change you wanted was rejected (422)</title>
+  <title>Ruh-Roh</title>
   <style type="text/css">
-    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-    div.dialog {
-      width: 25em;
-      padding: 0 4em;
-      margin: 4em auto 0 auto;
-      border: 1px solid #ccc;
-      border-right-color: #999;
-      border-bottom-color: #999;
+    body{
+      text-align: center;
+      font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; 
+      font-weight: 100;
     }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
+    h1 { 
+      font-size: 40px; 
+      line-height: 1.5em;
+      margin-top: 50px; 
+      font-weight: 100;
+    }
+    img{
+      margin-top: 20px;
+      margin-bottom: 20px;
+      width: 50%;
+    }
+    p{
+      font-size: 30px;
+      font-weight: 100;
+      margin-bottom: 0;
+    }
+    a, a:hover, a:visited{
+      color: rgb(255, 178, 35);
+      text-decoration: none;
+      font-weight: 100;
+      padding: 0 10px;
+    }
+    a.email{
+      display: block;
+      margin: 25px 0;
+      font-size: 30px;
+      font-weight:100;
+    }
   </style>
 </head>
 
 <body>
-  <!-- This file lives in public/422.html -->
-  <div class="dialog">
-    <h1>The change you wanted was rejected.</h1>
-    <p>Maybe you tried to change something you didn't have access to.</p>
+  <!-- This file lives in public/500.html -->
+  <div class="container">
+    <div class = 'row'>
+      <div class = 'span10 offset1'>
+        <h1>Ruh-roh ... it looks like we're in a pickle.</h1>
+        <img src = 'Pickle.png'>
+        <p>Get me out of here!</p>
+        <a href = "/home">Home</a>
+        <a href = "/events">Events</a>
+        <br>
+        <a class = 'email' href="mailto:hello@simmr.co?Subject=AGH!!&body=I was trying to (FILL ME!) but I ended up in a pickle o_O" target="_top">Tell us about it</a>
+      </div>
+    </div>
   </div>
 </body>
 </html>
