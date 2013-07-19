@@ -47,7 +47,7 @@ class Api::ProfilesController < ApplicationController
     if current_user.chef?
       redirect_to new_event_path
     else
-      redirect to events_path
+      redirect_to events_path
     end
   end
 

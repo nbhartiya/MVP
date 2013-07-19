@@ -1,0 +1,136 @@
+-# temporary
+  = render 'layouts/primary_header'
+
+.home 
+  .attention-getter
+    #home-carousel.carousel.slide.hidden-phone
+      -all_events=Event.all
+      -i=0
+      .carousel-inner
+        -for event in all_events
+          -if i==0
+            .active.item
+              =render 'home/sampleevent', :event => event
+          -else
+            .item
+              =render 'home/sampleevent', :event => event
+          -i=i+1
+    %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#home-carousel"} ‹
+    %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#home-carousel"} ›
+    .container
+      .copy.row
+        .span1
+        .span10.copy-content
+          %h2 We want to make your life <br> <h1> more delicious </h1>
+          .buttons
+            %a.btn.how-it-works-button{:href => "#how-it-works", "data-target" => "#how-it-works-detail", :type => "button"} How Does It Work?
+            -if user_signed_in? == false
+              %a.btn.btn-warning.sign-up-button{:href => "#sign_up", :"data-toggle" =>"modal"} Get Started
+              %p Already a member? &nbsp <a href = "#sign_in" class = "sign-in-link" data-toggle = "modal"> Sign In </a>
+            -if user_signed_in?
+              %a.btn.btn-warning.view-events-button{:href => "/events"} Upcoming Events
+              %p
+                = link_to "Sign Out", destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?", :tabindex => "-1", :class => 'sign-out-link'
+          .span1
+  .container
+    .row.section-header
+      .span12#how-it-works
+        %a.collapsed{:href => "#how-it-works", 'data-target'=>"#how-it-works-detail", 'data-toggle'=>"collapse"} How It Works <span class="caret"></span>
+  .section
+    .container
+      .row
+        .span1
+        .span10
+          #how-it-works-accordion.accordion
+            #how-it-works-detail.accordion-body.collapse
+              .accordion-inner
+                %h3
+                  We're making you <em> more than a customer </em> 
+                %h3
+                  by connecting you more meaningfully with your fave food businesses and 
+                %h3
+                  helping you be the first to discover new ones
+                .row.how-it-works-event-infographic 
+                  .step
+                    %h1 curate
+                    .step-description
+                      %p We work with established and new food businesses to bring to you experiences that are different from the typical restaurant visit. 
+                  .step
+                    %h1 register
+                    .step-description
+                      %p See something you like? Book it! But wait - the event doesn't happen until the minimum number of tickets is sold. Help make this happen by inviting your favorite people!
+                  .step
+                    %h1 tilt
+                    .step-description
+                      %p Woohoo, party time! At this point, we charge your card, so all you have to show up and enjoy.
+          .span1
+  -#
+    .container
+      .row.section-header
+        .span12
+          %h1 Featured Events in San Francisco
+    .section
+      .container
+        .row.featured-events
+          .span1
+          .span10
+            %p Don’t see your favorite? <a href = "/campaigns/new">Request an event</a> or <a href = "/campaigns">join a Request Campaign</a>
+          .span1
+    .container
+      .row.events
+        .span1
+        .span5.single-event
+          =render "layouts/singleevent"
+        .span5.single-event
+          =render "layouts/singleevent"
+        .span1
+    .container
+      .row.events
+        .span1
+        .span5.single-event
+          =render "layouts/singleevent"
+        .span5.single-event 
+          =render "layouts/singleevent"
+        .span1
+    .container
+      .row
+        .span4.offset4
+          %a.btn.btn-warning.more-button{:href=>"/events"} More
+
+-# temporary
+= render 'layouts/footer'
+
+#sign_up.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h3#myModalLabel Sign Up for simmr
+  .modal-body
+    %h3 Experiences recommended by your friends.
+    %p See what events friends have attended and their thoughts. We'll never share your info or post without your permission. 
+    %p.strong.sign-up-text
+      Sign up with
+      %p
+        = render "shared/signup"
+  .modal-footer
+    %button.usersignup.btn.btn-warning Sign Up
+
+#sign_in.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h3#myModalLabel Log In
+  .modal-body
+    %h3 Experiences recommended by your friends.
+    %p See what events friends have attended and their thoughts. We'll never share your info or post without your permission. 
+    %p.strong.sign-up-text
+      Log in with
+      %p
+        = render "shared/login"
+  .modal-footer
+    %button.userlogin.btn.btn-warning Log In
+
+
+-# Uncomment the below to have the log in credential form rendered into this page
+-# =render "shared/login"
+
+-#  %form.navbar-search.pull-left.clearfix
+-#    %input.search-query{:placeholder => "Find a Chef or Restaurant", :type => "text"}

@@ -25,18 +25,16 @@
               =@event.title
             %h2 
               =@event.description
-            -if @event.host.first_name != nil
+            -if @event.host.profile.biz_name != nil
               %h2
-                =@event.host.first_name.split(' ').map(&:capitalize).join(' ') + " " + @event.host.last_name.split(' ').map(&:capitalize).join(' ')
+                =@event.host.profile.biz_name
                 -#TODO: use titleize
                 -#TODO: FIX
             %h2#event-cost
               =number_to_currency(@event.cost, :unit => "$")
             %hr
             %h3#event-date
-              =@event.date.strftime("%A, %B %d, %l:%M%p")
-              to
-              End Time
+              #{@event.date.strftime("%A, %B %d")} at #{@event.time.strftime("%l:%M%p")}
             %h3 Mission
             -# upon registration show
               %a{:href => "{{mapUrl()}}"} 123 Mission Street <br> San Francisco, CA 94107
@@ -134,7 +132,7 @@
               #host-story-detail.accordion-body.collapse.in
                 .accordion-inner
                   %p
-                    -#=@event.host.profile.story
+                    =@event.host.profile.story
               -#=@event.host.profile.story
               -# Need to make sure a host story exists for that host before they can create the event...
       .row
