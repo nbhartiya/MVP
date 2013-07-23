@@ -4,13 +4,15 @@
   .span5.campaign-image
     =link_to image_tag("Food 9.jpg"), "#"
 .row.campaign-first-row
-  .span1.campaign-lead-image
-    =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Campaign Lead Name", "class" => "campaign-card-lead-name"
-  .span3.campaign-title-and-blurb
-    %a{:href => "#"} State Bird Provisions
-    %p State Bird blurb
-  .span1.promote-button
-    %a.btn.btn-warning{:href => "#"} Promote
+  %table
+    %tr
+      %td.span1.campaign-lead-image
+        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Campaign Lead Name", "class" => "campaign-card-lead-name"
+      %td.span3.campaign-title-and-blurb
+        #{campaign.biz_name}
+        %p #{campaign.blurb}
+      %td.span1.join-button
+        %a.btn.btn-warning{:href => campaign_path(campaign)} Promote
 .row.campaign-second-row
   .span5.social-stats
     %table
