@@ -72,7 +72,7 @@
           %button.btn.btn-warning{'ng-click' => 'edit=0'} Edit
         .span1
         .span4 
-          -if current_user.chef == true
+          -if current_user.chef != true
             %form.user-summary-edit.clearfix{:name => "profile_edit", 'ng-show' => "edit==1", 'ng-hide' => "edit==0"}
               %button.close{"ng-click" => "edit=0", :type => "button"} close
 
@@ -96,7 +96,7 @@
 
               .clearfix
                 %button.btn#profile-images-button{'ng-click'=> 'uploadProfileImage()'} Change Profile Picture
-                %button.btn#cover-images-button{'ng-click'=> 'uploadImages()'} Upload Cover Images
+                %button.btn#cover-images-button{'ng-click'=> 'uploadImages()'} Change Cover Image
                 %button.btn#yelp-connect Connect Yelp
                 %span#yelp-explanation <a data-toggle = "tooltip" id = "why-yelp" title = "So guests know how great you already are and can easily leave you reviews!">Why?</a>
               %button.btn.btn-warning#submit{'ng-click' => 'edit=2', 'ng-disabled' => 'profile_edit.$invalid'} Save Changes

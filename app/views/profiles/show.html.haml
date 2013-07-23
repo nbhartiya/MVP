@@ -46,6 +46,13 @@
                   -if @profile.neighborhood.present?
                     %h3 
                       =@profile.neighborhood
+                  %h3
+                    -if @profile.loIcation.city.present?
+                      =@profile.location.city + ', '
+                    -if @profile.location.state.present?
+                      =@profile.location.state 
+                    -if @profile.location.zipcode.present?
+                      =@profile.location.zipcode
         -else
           .span4.user-profile-overview{'ng-controller' => 'ProfileShowCtrl', 'ng-init' => "address1='#{@profile.location.address1}'; address2='#{@profile.location.address2}'; city = '#{@profile.location.city}'; state = '#{@profile.location.state}'; zipcode = '#{@profile.location.zipcode}'"}
             %table
@@ -64,10 +71,10 @@
                   %h2 
                     =@profile.blurb 
                   %h3
-                  -if @profile.user.chef == true
-                    %a{:href => "{{mapUrl()}}"} #{@profile.location.address1} <br> #{@profile.location.city}, #{@profile.location.state} #{@profile.location.zipcode}
-                  -else
-                    =@profile.neighborhood
+                    -if @profile.user.chef == true
+                      %a{:href => "{{mapUrl()}}"} #{@profile.location.address1} <br> #{@profile.location.city}, #{@profile.location.state} #{@profile.location.zipcode}
+                    -else
+                      =@profile.neighborhood
                 -if @profile.user.chef == true
                   %table.user-social-stats
                     %tr
