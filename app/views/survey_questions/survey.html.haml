@@ -3,7 +3,7 @@
     .row
       .span12.title
         -if current_user.chef?
-          %h1 Give Simmr guests a sense of what you're all about. 
+          %h1 Give Simmr guests a sense of <br> what you're all about. 
         -else
           %h1 What's Your Food Style
           %p Take the quiz to discover your foodie profile in just a few minutes!
@@ -11,15 +11,17 @@
       .span3
       .span3.profile-images
         -if current_user.chef?
-          %p Logo
           .row.profile-image-row
             .span3.default
               =image_tag "Chef-Default-Profile-Image.png"
+          .clearfix
+            %button.btn.btn-inverse#profile-image-button{'ng-click'=> 'uploadProfileImage()'} Upload Logo or Profile Picture
           %br
-          %p Cover Image
           .row.cover-image-row
             .span3.default
               =image_tag "Food 9.jpg"
+          .clearfix
+            %button.btn.btn-inverse#cover-image-button{'ng-click'=> 'uploadImages()'} Upload Cover Image
         -else
           .row.profile-image-row
             .span3.default
@@ -29,30 +31,18 @@
       .span3
         %form.create-profile{:name => "create_profile"}
           -if current_user.chef?
-            %p
-            %input#address1{'ng-model' => "profile.biz_name", :placeholder => "Business Name", :type => "text", :name => "biz_name", 'ng-class' => "{error: stripe.billing_address.$invalid}"}
-            %p
+            %input#biz_name{'ng-model' => "profile.biz_name", :placeholder => "Business Name", :type => "text", :name => "biz_name", 'ng-class' => "{error: create_profile.biz_name.$invalid}", :required => "required"}
             %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: create_profile.profile_blurb.$invalid}"}
-            %p
-            %input#address1{'ng-model' => "profile.location.address1", :placeholder => "Address", :type => "text", :name => "billing_address", 'ng-class' => "{error: stripe.billing_address.$invalid}"}
-            -#%input#address2{:placeholder => "Address Line 2", :type => "string"} 
+            %textarea#profile-story{:rows => "6", 'ng-model'=>'profile.story', :type=>"text", :placeholder =>"Your story - you can write a lot more here. People love to hear how you got to where you are now!", :name => "profile_story", :required => "required", 'ng-class' => "{error: create_profile.profile_story.$invalid}"}
+            %input#address1{'ng-model' => "profile.location.address1", :placeholder => "Address", :type => "text", :name => "address1", 'ng-class' => "{error: create_profile.address1.$invalid}", :required => 'required'}
             %select#neighborhoods{'ng-model'=>'profile.location.neighborhood', :name => "profile_neighborhood", :required => "required", 'ng-class' => "{error: create_profile.profile_neighborhood.$invalid}"}
-
-            %input#city{'ng-model' => "profile.location.city", :placeholder => "City", :type => "text", :name => "billing_city", 'ng-class' => "{error: stripe.billing_city.$invalid}"}
-              
-            %select#state{'ng-model' => "profile.location.state", :name => "billing_state", 'ng-class' => "{error: stripe.billing_state.$invalid}"}
-              
-            %input#zipcode{'ng-model' => "profile.location.zipcode", :placeholder => "Zip Code", :type => "text", :name => "billing_zip", :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: stripe.billing_zip.$invalid}"}
+            %input#city{'ng-model' => "profile.location.city", :placeholder => "City", :type => "text", :name => "city", 'ng-class' => "{error: create_profile.city.$invalid}", :required => 'required'}
+            %select#state{'ng-model' => "profile.location.state", :name => "state", 'ng-class' => "{error: create_profile.state.$invalid}", :required => 'required'}
+            %input#zipcode{'ng-model' => "profile.location.zipcode", :placeholder => "Zip Code", :type => "text", :name => "zip", :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: create_profile.zip.$invalid}", :required => 'required'}
 
             .clearfix
-              %button.btn.btn-inverse#profile-image-button{'ng-click'=> 'uploadProfileImage()'} Upload Profile Picture
-              %button.btn.btn-inverse#cover-image-button{'ng-click'=> 'uploadImages()'} Upload Cover Image
               %button.btn.btn-inverse#yelp-connect Connect Yelp
               %a#yelp-explanation{:href => "#", "data-toggle" => "tooltip", :title => "So guests know how great you already are and can easily leave you reviews!", "data-placement" => "right"} <sup> Why? </sup>
-            .accordion-inner
-              %textarea.textarea-section{:placeholder => "Type your story here.", "rows"=>'3', 'ng-model' => "profile.story"}
-
-            %button.btn.btn-warning.pull-right{'ng-click'=>'createProfile(profile)'} Submit
 
           -else
             %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: create_profile.profile_blurb.$invalid}"}
@@ -111,16 +101,19 @@
                       %h3
                         =a.text
     .row
+      .span12.offset3
+        %button.btn.btn-warning#submit-button{'ng-disabled'=>'create_profile.$invalid', 'ng-click'=>'createProfile(profile)'} I'm ready!
+    -# was previously pull-right and !end
+    -#
       .span12.navigation-buttons.clearfix
         %button.btn.btn-inverse{'ng-click' => 'prevQuestion()', 'ng-disabled'=>'beginning'} Previous
-        %button.btn.btn-warning.pull-right{'ng-disabled'=>'!end || create_profile.$invalid', 'ng-click'=>'createProfile(profile)'} Submit
         %button.btn.btn-inverse.pull-right{'ng-click' => 'nextQuestion()', 'ng-disabled' => 'end'} Next
-    .row
-      .span2
-      .span8.quiz-progress
-        .progress.progress-warning
-          <div class = "bar" style = "width: {{progress}}%"> </div>
-      .span2
+      .row
+        .span2
+        .span8.quiz-progress
+          .progress.progress-warning
+            <div class = "bar" style = "width: {{progress}}%"> </div>
+        .span2
 
   -#
     .row
