@@ -151,6 +151,7 @@ $main_orange: rgb(255, 178, 35);
 			hr{
 				margin: 10px 0;
 				border-bottom: none;
+				border-top: 1px solid black;
 			}
 			.progress{
 				float: left;
@@ -239,6 +240,7 @@ $main_orange: rgb(255, 178, 35);
 			hr{
 				margin: 10px 0;
 				border-bottom: none;
+				border-top: 1px solid black;
 			}
 			input, input[type='string'], input[type='integer']{
 				display: inline-block;
