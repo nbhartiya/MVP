@@ -225,7 +225,7 @@ ul.parsley-error-list{
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box; 
 		}
-		.sign-up-button, .view-events-button{
+		.view-events-button{
 			display: inline-block;
 			width: 49.25%;
 			padding: 12px 2px;
@@ -234,6 +234,16 @@ ul.parsley-error-list{
 			-webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box; 
+		}
+		.sign-up-button{
+			display: inline-block;
+			width: 24%;
+			padding: 12px 2px;
+			font-size: 18px;
+			font-weight: 100;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;    
+			box-sizing: border-box;
 		}
 	}
 }
@@ -263,6 +273,7 @@ ul.parsley-error-list{
 
 #how-it-works{
 	text-align: center;
+	margin-left: 0;
 }
 
 #how-it-works-detail{

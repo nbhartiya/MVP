@@ -5,12 +5,17 @@ $main_orange: rgb(255, 178, 35);
 // events index styling
 .events-index{
 	.events{ 
-		margin: 40px 0 0 0;
+		margin: 0;
 		.section-header{
 			margin-top: 10px;
 		}
-		.events-index-header, .events-index-content{
+		.events-index-header{
+			margin: 0;
+		}
+		.events-index-content{
 			margin: 30px 0;
+		}
+		.events-index-header, .events-index-content{
 			a:hover{
 				color: $main_orange;
 			}
