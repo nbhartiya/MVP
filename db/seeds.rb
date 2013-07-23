@@ -43,7 +43,7 @@ image = Image.find_or_create_by_image(:image => 'Large.jpg', :title => nil, :des
 image = Image.find_or_create_by_image(:image => 'Exclusive.jpg', :title => nil, :description => nil, :imageable_id => 7, :imageable_type => 'SurveyQuestion')
 image = Image.find_or_create_by_image(:image => 'Open.jpg', :title => nil, :description => nil, :imageable_id => 7, :imageable_type => 'SurveyQuestion')
 image = Image.find_or_create_by_image(:image => 'Cheap.jpg', :title => nil, :description => nil, :imageable_id => 8, :imageable_type => 'SurveyQuestion')
-image = Image.find_or_create_by_image(:image => 'Food 6.jpg', :title => nil, :description => nil, :imageable_id => 8, :imageable_type => 'SurveyQuestion')
+image = Image.find_or_create_by_image(:image => 'Expensive.jpg', :title => nil, :description => nil, :imageable_id => 8, :imageable_type => 'SurveyQuestion')
 image = Image.find_or_create_by_image(:image => 'Food 8.jpg', :title => nil, :description => nil, :imageable_id => 1, :imageable_type => 'Event')
 image = Image.find_or_create_by_image(:image => 'Food 9.jpg', :title => nil, :description => nil, :imageable_id => 2, :imageable_type => 'Event')
 image = Image.find_or_create_by_image(:image => 'Food 10.jpg', :title => nil, :description => nil, :imageable_id => 3, :imageable_type => 'Event')

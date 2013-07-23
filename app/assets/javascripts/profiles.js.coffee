@@ -11,7 +11,7 @@ $("#why-yelp").tooltip()
 
 $("#profile-carousel").carousel interval: false
 
-$(".answer-image img").click ->
+$(".answer-image").click ->
   $(this).toggleClass "highlight"
   if $(this).hasClass "highlight"
     console.log($(this))

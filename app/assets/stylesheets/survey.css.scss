@@ -65,22 +65,42 @@ a#yelp-explanation, a#yelp-explanation:hover, a#yelp-explanation:visited{
 .single-visual-answer{
 	height: 280px;
 	margin-top: 10px;
+	overflow: hidden;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;    
+	box-sizing: border-box;
+	.answer{
+		bottom: 40px;
+	}
+	.answer-image{
+		img{
+		min-height: 100%;
+		min-width: 340px;
+		width: 100%;
+		height: auto;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;    
+		box-sizing: border-box;
+		}
+	}
 }
 
 .single-visual-answer-range{
 	height: 280px; // will be 400px
 	margin-top: 10px;
-}
-
-.single-visual-answer{
-	.answer{
-		bottom: 40px;
-	}
-}
-
-.single-visual-answer-range{
 	.answer{
 		bottom: 140px; // will be 200px
+	}
+	.answer-image{
+		img{
+		min-height: 100%;
+		min-width: 340px;
+		width: 100%;
+		height: auto;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;    
+		box-sizing: border-box;
+		}
 	}
 }
 
@@ -125,8 +145,16 @@ slider span.pointer.active:after{
 	background: $main_orange;
 }
 
-#profile-image-button{
+#profile-image-button, #cover-image-button{
 	width: 100%;
+}
+
+#submit-button{
+	width: 50%;
+	height: 40px;
+	font-size: 20px;
+	font-weight: 200;
+	margin: 40px 0;
 }
 
 
