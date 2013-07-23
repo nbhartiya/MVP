@@ -139,14 +139,14 @@ ol.carousel-indicators{
 			}
 			h2{
 				font-size: 20px;
-				line-height: 1.5em;
+				line-height: 1.2em;
 				font-weight: 100;
 				color: white;
 				margin: 0;
 			}
 			h3{
 				font-size: 16px;
-				line-height: 1.5em;
+				line-height: 1.2em;
 				font-weight: 100;
 				color: white;
 				margin: 0;
@@ -233,12 +233,12 @@ ol.carousel-indicators{
 			height: 33px;
 		}
 		.event-guests{
-			overflow-y: scroll;
+			overflow-y: auto;
 			height: 450px;
 		}
 		.event-purchase{
 			height: 450px;
-			overflow-y: scroll;
+			overflow-y: auto;
 		}
 		.event-purchase, .event-purchase-confirmation, .event-create-confirmation, .event-guests, .event-create-form, .event-edit-form{
 			background: rgba(0,0,0,0.8);
@@ -252,14 +252,14 @@ ol.carousel-indicators{
 			}
 			h2{
 				font-size: 20px;
-				line-height: 1.5em;
+				line-height: 1.2em;
 				font-weight: 100;
 				color: white;
 				margin-bottom: 20px;
 			}
 			h3{
 				font-size: 16px;
-				line-height: 1.5em;
+				line-height: 1.2em;
 				color: white;
 				font-weight: 100;
 			}
@@ -496,6 +496,7 @@ ol.carousel-indicators{
 		line-height: 2em;
 	}
 	.attendees, .comments{
+		margin-left: 0;
 		img{
 			width: 50px;
 			height: auto;
@@ -512,7 +513,7 @@ ol.carousel-indicators{
 }
 
 .scroll-menu.event{
-	margin-top: 85px;
+	margin-top: 105px;
 }
 
 #host-story, #event-menu, #event-chatter{
@@ -564,14 +565,14 @@ ol.carousel-indicators{
 		}
 		h2{
 			font-size: 20px;
-			line-height: 1.5em;
+			line-height: 1.2em;
 			font-weight: 100;
 			color: white;
 			margin: 0;
 		}
 		h3{
 			font-size: 16px;
-			line-height: 1.5em;
+			line-height: 1.2em;
 			font-weight: 100;
 			color: white;
 			margin: 0;
@@ -630,13 +631,22 @@ ol.carousel-indicators{
 		.feedback-actions{
 			width: 100%;
 			.point-action{
+				cursor: pointer;
 				padding: 0;
 			}
 			.event-attending-points{
 				margin: 20px 0;
 			}
 			.points{
+				width: 100%;
+				color: white;
+				vertical-align: middle;
 				float: right;
+				line-height: 40px;
+				height: 40px;
+				font-size: 20px;
+				text-align: right;
+				font-weight: 100;
 			}
 			img{
 				float: right;
@@ -650,11 +660,13 @@ ol.carousel-indicators{
 		background: rgba(0,0,0,0.8);
 		width: 33px;
 		height: 33px;
+		cursor: pointer;
 	}
 	.event-survey, .event-yelp, .point-ranking{
 		td{
+			padding-left: 5px;
 			img{
-				width: 20px;
+				width: 30px;
 				height: auto;
 			}
 		}
@@ -673,16 +685,17 @@ ol.carousel-indicators{
 		}
 		h2{
 			font-size: 20px;
-			line-height: 1.5em;
+			line-height: 1.2em;
 			font-weight: 100;
 			color: white;
 			margin-bottom: 20px;
 		}
-		h3{
+		h3, a, a:hover, a:visited{
 			font-size: 14px;
-			line-height: 1.5em;
+			line-height: 1.2em;
 			color: white;
 			font-weight: 100;
+			text-decoration: none;
 		}
 		hr{
 			margin: 10px 0;
@@ -722,6 +735,37 @@ ol.carousel-indicators{
 		tr{
 			border-top: 1px solid white;
 			height: 40px;
+		}
+		.point-action-cell{
+			width: 80%;
+		}
+		.feedback-actions{
+			width: 100%;
+			.point-action{
+				cursor: pointer;
+				padding: 0;
+			}
+			.event-attending-points{
+				margin: 20px 0;
+			}
+			.points{
+				width: 100%;
+				color: white;
+				vertical-align: middle;
+				float: right;
+				line-height: 40px;
+				height: 40px;
+				font-size: 20px;
+				text-align: right;
+				font-weight: 100;
+			}
+			td.points{
+
+			}
+			img{
+				float: right;
+				width: 30px;
+			}
 		}
 	}
 	.more-points{
@@ -845,7 +889,7 @@ ol.carousel-indicators{
 		width: 58%;
 	}
 	.event-profile .event-registration .event-create-form{
-		overflow-y: scroll;
+		overflow-y: auto;
 		height: 480px;
 	}
 
@@ -976,7 +1020,7 @@ ol.carousel-indicators{
 		width: 57%;
 	}
 	.event-profile .event-registration .event-create-form{
-		overflow-y: scroll;
+		overflow-y: auto;
 		height: 480px;
 	}
 }

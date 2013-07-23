@@ -3,7 +3,7 @@
   =link_to (filepicker_image_tag event.images.first.image), event_path(event)
 -else
   =link_to image_tag("Food 26.jpg"), event_path(event)
-%a.caption{href:event_path(event)}
+%a.caption{:href => event_path(event)}
   .caption-text
     %h4 #{event.title}
     %p #{event.description}

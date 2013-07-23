@@ -100,6 +100,8 @@ ul.parsley-error-list{
 // hero unit styling 
 .attention-getter{
 	height: 700px;
+	z-index: 0;
+	position: relative;
 	#home-carousel{
 		position: absolute;
 		width: 100%;
@@ -107,9 +109,14 @@ ul.parsley-error-list{
 		.carousel-inner{
 			height: 700px;
 			width: auto;
+			position: relative;
+			z-index: 1;
 			img{
 				min-width: 100%;
 				background: no-repeat;
+			}
+			a, a:hover, a:visited{
+				text-decoration: none;
 			}
 			.caption{
 				background: rgba(0,0,0,0.7);
@@ -130,6 +137,7 @@ ul.parsley-error-list{
 					top: 50%;
 					height: 200px;
 					margin-top: -45px;
+					text-overflow: ellipsis;
 				}
 				h4{
 					font-weight: 500;
@@ -142,6 +150,9 @@ ul.parsley-error-list{
 					z-index: 6;
 					font-size: 14px;
 					font-weight: 300;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
 				}
 			}
 		}
