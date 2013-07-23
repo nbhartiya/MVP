@@ -1,10 +1,12 @@
 .profiles
   .user-profile
-    #profile-carousel.carousel.slide
+    #profile-carousel.carousel.slide.hidden-phone
       .carousel-inner
         .active.item
+          %p this is a stock image <br> (replace with your own!)
           =image_tag "Food 6.jpg"
-    %ol.carousel-indicators
+        %ol.carousel-indicators.hidden-phone
+    .btn#remove-image x  
     .container
       .row.user-overview{'ng-controller' => 'ProfileEditCtrl'}
         .span1          
@@ -95,8 +97,8 @@
               .help-block{'ng-show' => 'profile_edit.profile_name.$error.required || profile_edit.profile_blurb.$error.required || profile_edit.profile_address.$error.required || profile_edit.profile_city.$error.required || profile_edit.profile_state.$error.required || profile_edit.profile_zip.$error.required || profile_edit.profile_neighborhood.$error.required'} All fields are required
 
               .clearfix
-                %button.btn#profile-images-button{'ng-click'=> 'uploadProfileImage()'} Upload Profile Picture
-                %button.btn#cover-images-button{'ng-click'=> 'uploadImages()'} Upload Cover Images
+                %button.btn#profile-images-button{'ng-click'=> 'uploadProfileImage()'} Change Profile Picture
+                %button.btn#cover-images-button{'ng-click'=> 'uploadImages()'} Change Cover Image
                 %button.btn#yelp-connect Connect Yelp
                 %span#yelp-explanation <a data-toggle = "tooltip" id = "why-yelp" title = "So guests know how great you already are and can easily leave you reviews!">Why?</a>
               %button.btn.btn-warning#submit{'ng-click' => 'edit=2', 'ng-disabled' => 'profile_edit.$invalid'} Save Changes
@@ -121,7 +123,7 @@
               .help-block{'ng-show' => 'profile_edit.profile_name.$error.required || profile_edit.profile_blurb.$error.required || profile_edit.profile_neighborhood.$error.required || profile_edit.profile_city.$error.required || profile_edit.profile_state.$error.required || profile_edit.profile_zip.$error.required'} All fields are required
 
               .clearfix
-                %button.btn#profile-images-button{'ng-click'=> 'uploadProfileImage()'} Upload Profile Picture
+                %button.btn#profile-images-button{'ng-click'=> 'uploadProfileImage()'} Change Profile Picture
               %button.btn.btn-warning#submit{'ng-click' => 'edit=2', 'ng-disabled' => 'profile_edit.$invalid'} Save Changes
                 
         .span1

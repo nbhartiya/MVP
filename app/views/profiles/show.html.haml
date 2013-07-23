@@ -14,14 +14,14 @@
         -else
           .active.item
             =image_tag "Food 6.jpg"
-    -if @profile.user.chef == true
-      %ol.carousel-indicators.hidden-phone
-        -if @profile.covers.present?
-          -@profile.covers.each_with_index do |i, index|     
-            - if index == 0
-              %li.active{"data-target" => "#profile-carousel", "data-slide-to" => index}
-            - else
-              %li{"data-target" => "#profile-carousel", "data-slide-to" => index}
+        -if @profile.user.chef == true
+          %ol.carousel-indicators.hidden-phone
+            -if @profile.covers.present?
+              -@profile.covers.each_with_index do |i, index|     
+                - if index == 0
+                  %li.active{"data-target" => "#profile-carousel", "data-slide-to" => index}
+                - else
+                  %li{"data-target" => "#profile-carousel", "data-slide-to" => index}
     .container
       .row.user-overview
         .span1
@@ -46,13 +46,20 @@
                   -if @profile.neighborhood.present?
                     %h3 
                       =@profile.neighborhood
+                  %h3
+                    -if @profile.loIcation.city.present?
+                      =@profile.location.city + ', '
+                    -if @profile.location.state.present?
+                      =@profile.location.state 
+                    -if @profile.location.zipcode.present?
+                      =@profile.location.zipcode
         -else
-          .span4.user-profile-overview{'ng-controller' => 'ProfileShowCtrl'}
+          .span4.user-profile-overview{'ng-controller' => 'ProfileShowCtrl', 'ng-init' => "address1='#{@profile.location.address1}'; address2='#{@profile.location.address2}'; city = '#{@profile.location.city}'; state = '#{@profile.location.state}'; zipcode = '#{@profile.location.zipcode}'"}
             %table
               %tr
                 -if @profile.avatar.present?
                   %td.profile-photo
-                    =filepicker_image_tag @profile.avatar.image 
+                    =image_tag @profile.avatar.image 
                 -else
                   %td.profile-photo
                     =image_tag "Chef-Default-Profile-Image.png"
@@ -63,13 +70,11 @@
                 %td.user-summary{:colspan => '2'}
                   %h2 
                     =@profile.blurb 
+                  %h3
                     -if @profile.user.chef == true
-                      <sup><a href = "#user-about", class = "read-more", data-target = "#user-about-detail", data-toggle = "collapse"> Read More </a></sup>
-                      %p
                       %a{:href => "{{mapUrl()}}"} #{@profile.location.address1} <br> #{@profile.location.city}, #{@profile.location.state} #{@profile.location.zipcode}
                     -else
-                      %h3
-                        =@profile.neighborhood
+                      =@profile.neighborhood
                 -if @profile.user.chef == true
                   %table.user-social-stats
                     %tr
@@ -116,13 +121,13 @@
             %li 
               %a{:href=>"#news"} News
             %li 
+              %a{:href=>"#about"} Our Story
+            %li 
               %a{:href=>"#events"} Events
             %li   
               %a{:href=>"#following"} Following
             %li 
               %a{:href=>"#chatter"} Chatter
-            %li 
-              %a{:href=>"#about"} About
         .span10
           .row.section-header#news
             .span10#user-news
@@ -136,6 +141,16 @@
                       News
         .row
           .span10.offset2
+            .row.section-header#about
+              .span10#user-about
+                %a.collapsed{:href => "#user-about", 'data-target'=>"#user-about-detail", 'data-toggle'=>"collapse"} Our Story <span class="caret"></span>
+            .row.user-about
+              .span10
+                #user-about-accordion.accordion
+                  #user-about-detail.accordion-body.collapse
+                    .accordion-inner
+                      %p
+                        =@profile.story
             .row.section-header#events
               .span10
                 %h1 Events
@@ -197,16 +212,6 @@
                       .row.comments
                         .span10
                           .fb-comments{"data-href" => "#{request.url}", "data-num-posts" => "10", "data-width" => "910"}
-            .row.section-header#about
-              .span10#user-about
-                %a.collapsed{:href => "#user-about", 'data-target'=>"#user-about-detail", 'data-toggle'=>"collapse"} Our Story <span class="caret"></span>
-            .row.user-about
-              .span10
-                #user-about-accordion.accordion
-                  #user-about-detail.accordion-body.collapse
-                    .accordion-inner
-                      %p
-                        =@profile.story
   -else
     .container
       .row

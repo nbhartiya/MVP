@@ -25,7 +25,8 @@
           .buttons
             %a.btn.how-it-works-button{:href => "#how-it-works", "data-target" => "#how-it-works-detail", :type => "button"} How Does It Work?
             -if user_signed_in? == false
-              %a.btn.btn-warning.sign-up-button{:href => "#sign_up", :"data-toggle" =>"modal"} Get Started
+              %a.btn.btn-warning.sign-up-button{:href => "#sign_up", :"data-toggle" =>"modal"} I'm a Foodie
+              %a.btn.btn-warning.sign-up-button{:href => "#sign_up", :"data-toggle" =>"modal"} I'm a Business
               %p Already a member? &nbsp <a href = "#sign_in" class = "sign-in-link" data-toggle = "modal"> Sign In </a>
             -if user_signed_in?
               %a.btn.btn-warning.view-events-button{:href => "/events"} Upcoming Events

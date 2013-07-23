@@ -5,16 +5,16 @@
         -@event.images.each_with_index do |i, index|
           -if index == 0
             .item.active
-              = filepicker_image_tag i.image
+              = image_tag i.image
           -else
             .item
-              = filepicker_image_tag i.image
-    %ol.carousel-indicators.hidden-phone
-      -@event.images.each_with_index do |i, index|     
-        - if index == 0
-          %li.active{"data-target" => "#event-carousel", "data-slide-to" => index}
-        - else
-          %li{"data-target" => "#event-carousel", "data-slide-to" => index}
+              = image_tag i.image
+        %ol.carousel-indicators.hidden-phone
+          -@event.images.each_with_index do |i, index|     
+            - if index == 0
+              %li.active{"data-target" => "#event-carousel", "data-slide-to" => index}
+            - else
+              %li{"data-target" => "#event-carousel", "data-slide-to" => index}
 
     .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}'"}
       .event-registration.row
@@ -23,13 +23,13 @@
           .event-summary
             %h1
               =@event.title
-            %h2 
-              =@event.description
             -if @event.host.profile.biz_name != nil
               %h2
-                =@event.host.profile.biz_name
+                ='Hosted by ' + @event.host.profile.biz_name
                 -#TODO: use titleize
                 -#TODO: FIX
+            %h3 
+              =@event.description
             %h2#event-cost
               =number_to_currency(@event.cost, :unit => "$")
             %hr
@@ -115,7 +115,7 @@
   .container
     .row
       .span2.scroll-menu.event
-        %ul.nav.nav-list.scroll-menu-items{"data-spy" => "affix", "data-offset-top" => "710", "data-offset-bottom"=> "300"}
+        %ul.nav.nav-list.scroll-menu-items{"data-spy" => "affix", "data-offset-top" => "800", "data-offset-bottom"=> "300"}
           %li 
             %a{:href=>"#about"} Host Story
           %li 
@@ -155,8 +155,8 @@
               #event-chatter-accordion.accordion
                 #event-chatter-detail.accordion-body.collapse.in
                   .accordion-inner
-                    .row.attendees
-                      .span10
+                    .row
+                      .span10.attendees
                         =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
                         =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
                         =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
@@ -167,8 +167,8 @@
                             -for guest in @event.guests
                               = guest.first_name + " " + guest.last_name
                               %p
-                    .row.comments
-                      .span10
+                    .row
+                      .span10.comments
                         .fb-comments{"data-href" => "#{request.url}", "data-num-posts" => "10", "data-width" => "910"}
 
 

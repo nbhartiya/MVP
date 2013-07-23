@@ -5,12 +5,17 @@ $main_orange: rgb(255, 178, 35);
 // campaigns index styling
 .campaigns-index{
 	.campaigns{ 
-		margin: 40px 0 0 0;
+		margin: 0;
 		.section-header{
 			margin-top: 0;
 		}
-		.campaigns-index-header, .campaigns-index-content{
+		.campaigns-index-header{
+			margin: 0;
+		}
+		.campaigns-index-content{
 			margin: 30px 0;
+		}
+		.campaigns-index-header, .campaigns-index-content{
 			a:hover{
 				color: $main_orange;
 			}
@@ -146,6 +151,7 @@ $main_orange: rgb(255, 178, 35);
 			hr{
 				margin: 10px 0;
 				border-bottom: none;
+				border-top: 1px solid black;
 			}
 			.progress{
 				float: left;
@@ -234,6 +240,7 @@ $main_orange: rgb(255, 178, 35);
 			hr{
 				margin: 10px 0;
 				border-bottom: none;
+				border-top: 1px solid black;
 			}
 			input, input[type='string'], input[type='integer']{
 				display: inline-block;

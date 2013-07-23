@@ -139,7 +139,7 @@
   .container
     .row
       .span2.scroll-menu.event
-        %ul.nav.nav-list.scroll-menu-items{"data-spy" => "affix", "data-offset-top" => "680", "data-offset-bottom"=> "150"}
+        %ul.nav.nav-list.scroll-menu-items{"data-spy" => "affix", "data-offset-top" => "800", "data-offset-bottom"=> "150"}
           %li 
             %a{:href=>"#about"} Host Story
           %li 
@@ -181,8 +181,8 @@
               #event-chatter-accordion.accordion
                 #event-chatter-detail.accordion-body.collapse.in
                   .accordion-inner
-                    .row.attendees
-                      .span10
+                    .row
+                      .span10.attendees
                         =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
                         =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
                         =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
@@ -193,6 +193,6 @@
                             -for guest in @event.guests
                               = guest.first_name + " " + guest.last_name
                               %p
-                    .row.comments
-                      .span10
+                    .row
+                      .span10.comments
                         .fb-comments{"data-href" => "http://www.example.com", "data-num-posts" => "10", "data-width" => "910"}

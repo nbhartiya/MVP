@@ -43,6 +43,10 @@ body{
 	::-webkit-scrollbar-thumb:horizontal{width:50px;background-color:rgb(180, 180, 180);-webkit-border-radius:8px;}
 }
 
+a:active{
+	outline: none;
+}
+
 .btn{
 	border-radius: 0;
 	box-shadow: 0;

@@ -22,29 +22,31 @@
           .event-summary.clearfix
             %h1
               =@event.title
-            %h2 
+            %h2
               =@event.description
             %h3#event-date
-              =@event.date.strftime("%A %B %d, %I:%M%p")
-              =@event.time
+              #{@event.date.strftime("%A, %B %d")} at #{@event.time.strftime("%l:%M%p")}
             %a{:href => "{{mapUrl()}}"} 123 Mission Street <br> San Francisco, CA 94107
             %table.feedback-actions
               %tr
                 %td
-                  %h3.point-action Thank you for attending!
+                  %h3 Thank you for attending!
                 %td.points
-                  =link_to image_tag 'Ten_Point.png', :href => ""
+                  +
+                  =image_tag 'Ten_Point.png'
             %hr
             %table.feedback-actions
               %tr
                 %td
-                  %h3.point-action Fill out a quick survey
+                  %a.point-action{'ng-click' => 'feedback=1'} Fill out a quick survey
                 %td.points
+                  +
                   =link_to image_tag 'Fifteen_Point.png', 'ng-click' => 'feedback=1', :href => ""
               %tr
                 %td
-                  %h3.point-action Write a Yelp Review
+                  %a.point-action{'ng-click' => 'feedback=2'} Write a Yelp Review
                 %td.points
+                  +
                   =link_to image_tag 'Twenty_Point.png', 'ng-click' => 'feedback=2', :href => ""
 
             %table.event-sharing
@@ -68,24 +70,26 @@
                 %td reviews
                 %td calendar
         .span1.heart_this
-          %a.sb.heart.circle.no-border.no-shadow.black
+          -# Fix 
+          -# %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
+          %heart{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'"}
         .span1
         .span4 
           -#this needs to happen only when tickets >1
           %form.event-survey.clearfix{'ng-hide' => 'feedback!=1', :name => "feedback_survey"}
             %h1 Survey
-            %input.survey-question-1{:type=>'text', :placeholder =>"Custom Survey Question 1", :name => "question_1", :required => "required", 'ng-model' => 'survey.question1'}
+            %input.survey-question-1{:type=>'text', :placeholder =>"Custom Survey Question 1", :name => "question_1", :required => "required", 'ng-model' => 'survey.question1', 'ng-class' => "{error: feedback_survey.question_1.$invalid}"}
             .help-block-white{'ng-show' => 'feedback_survey.question_1.$error.required'} Required
-            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Get Points!
+            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3', 'ng-disabled' => 'feedback_survey.$invalid'} Get Points!
             %button.btn.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Never Mind
 
           .event-yelp.clearfix{'ng-show' => 'feedback==2'}
             %h1 Yelp Review
             %form{:name => "yelp_review"}
-              %input.yelp-review-link{:type=>'url', :required => "required", :placeholder =>"Paste Yelp Review Link Here", :name => "yelp_link", 'ng-model' => "yelplink"}
+              %input.yelp-review-link{:type=>'url', :required => "required", :placeholder =>"Paste Yelp Review Link Here", :name => "yelp_link", 'ng-model' => "yelplink", 'ng-class' => "{error: yelp_review.yelp_link.$invalid}"}
               .help-block-white{'ng-show' => 'yelp_review.yelp_link.$error.required'} Required
               .help-block-white{'ng-show' => 'yelp_review.yelp_link.$error.url'} Please enter a valid URL
-              %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Get Points!
+              %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3', 'ng-disabled' => 'yelp_review.$invalid'} Get Points!
               %button.btn.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Never Mind
 
           .point-ranking.clearfix{'ng-show' => 'feedback==3'}
@@ -163,24 +167,28 @@
               
           .more-points.clearfix{'ng-show' => 'feedback==4'}
             %h1 Get More Points
-            %table.feedback-actions
+            %table.feedback-actions.clearfix
               %tr
-                %td
-                  %h3.point-action Tell a Friend About Simmr (you'll get more points when they sign up and attend an event!)
+                %td.point-action-cell
+                  %a.point-action{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"} Tell a Friend About Simmr (you'll get more points when they sign up and attend an event!)
                 %td.points
+                  +
                   =link_to image_tag('Ten_Point.png'), ""
               %tr
-                %td
-                  %h3.point-action Attend Another Event
-                %td
+                %td.point-action-cell
+                  %a.point-action{:href => '/events'} Attend Another Event
+                %td.points
+                  +
                   =link_to image_tag('Ten_Point.png'), "/events"
               %tr
-                %td
-                  %h3.point-action Start a Campaign
-                %td
+                %td.point-action-cell
+                  %a.point-action{:href => '/campaigns/new'} Start a Campaign
+                %td.points
+                  +
                   =link_to image_tag('Ten_Point.png'), "/campaigns/new"
-            %button.btn.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Done
-            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Back to Leader Boards
+            .clearfix
+              %button.btn.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Done
+              %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Back to Leader Boards
 
 
 
@@ -188,7 +196,7 @@
   .container
     .row
       .span2.scroll-menu.event
-        %ul.nav.nav-list.scroll-menu-items{"data-spy" => "affix", "data-offset-top" => "710", "data-offset-bottom"=> "300"}
+        %ul.nav.nav-list.scroll-menu-items{"data-spy" => "affix", "data-offset-top" => "800", "data-offset-bottom"=> "300"}
           %li 
             %a{:href=>"#about"} Host Story
           %li 
@@ -228,8 +236,8 @@
               #event-chatter-accordion.accordion
                 #event-chatter-detail.accordion-body.collapse.in
                   .accordion-inner
-                    .row.attendees
-                      .span10
+                    .row
+                      .span10.attendees
                         =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
                         =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
                         =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
@@ -240,7 +248,7 @@
                             -for guest in @event.guests
                               = guest.first_name + " " + guest.last_name
                               %p
-                    .row.comments
-                      .span10
+                    .row
+                      .span10.comments
                         .fb-comments{"data-href" => "#{request.url[0..-10]}", "data-num-posts" => "10", "data-width" => "910"}
         .span1

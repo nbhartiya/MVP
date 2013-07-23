@@ -11,7 +11,7 @@
           .campaign-summary
             %h1#default-text{'ng-show'=>'campaign.biz_name=="" || campaign.biz_name==nil'}
               {{campaign.biz_name}}
-              #{@campaign.id}
+              #{@campaign.biz_name}
             %h1
               {{campaign.biz_name}}
             %h2#default-text{'ng-show'=>'"#{@campaign.blurb}"=="" || "#{@campaign.blurb}"==nil'}
