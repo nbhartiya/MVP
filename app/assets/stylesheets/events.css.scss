@@ -40,7 +40,7 @@ $main_orange: rgb(255, 178, 35);
 	color: gray !important;
 }
 
-ol.carousel-indicators{
+/*ol.carousel-indicators{
 	position: relative;
 	float: right;
 	top: 0px;
@@ -67,12 +67,14 @@ ol.carousel-indicators{
 	.active{
 		background: rgba(255, 255, 255, 0.9);
 	}
-}
+}*/
 
 // event profile styling
 
 .event-profile{
 	height: 580px;
+	position: relative;
+	z-index: 0;
 	.btn#remove-image{
     	right: 5px;
 		position: absolute;
@@ -88,6 +90,8 @@ ol.carousel-indicators{
 		.carousel-inner{
 			height: 580px;
 			width: auto;
+			position: relative;
+			z-index: 1;
 			img{
 				width: 100%;
 				background: no-repeat;
@@ -101,6 +105,15 @@ ol.carousel-indicators{
 				top: 10px;
 				position: absolute;
 				color: white;
+			}
+		}
+		.carousel-indicators{
+			float: none;
+			li{
+				background: rgb(200,200,200);
+			}
+			.active{
+				background: $main_orange;
 			}
 		}
 	}
@@ -172,7 +185,7 @@ ol.carousel-indicators{
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box; 
-				margin-top: -10px;
+				margin-top: -5px;
 			}
 			.standalone-button{
 				width: 49%;

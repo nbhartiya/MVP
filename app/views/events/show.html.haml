@@ -5,16 +5,16 @@
         -@event.images.each_with_index do |i, index|
           -if index == 0
             .item.active
-              = filepicker_image_tag i.image
+              = image_tag i.image
           -else
             .item
-              = filepicker_image_tag i.image
-    %ol.carousel-indicators.hidden-phone
-      -@event.images.each_with_index do |i, index|     
-        - if index == 0
-          %li.active{"data-target" => "#event-carousel", "data-slide-to" => index}
-        - else
-          %li{"data-target" => "#event-carousel", "data-slide-to" => index}
+              = image_tag i.image
+        %ol.carousel-indicators.hidden-phone
+          -@event.images.each_with_index do |i, index|     
+            - if index == 0
+              %li.active{"data-target" => "#event-carousel", "data-slide-to" => index}
+            - else
+              %li{"data-target" => "#event-carousel", "data-slide-to" => index}
 
     .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}'"}
       .event-registration.row
