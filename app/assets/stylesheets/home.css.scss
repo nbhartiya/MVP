@@ -111,8 +111,11 @@ ul.parsley-error-list{
 			width: auto;
 			position: relative;
 			z-index: 1;
-			img{
-				min-width: 100%;
+			img{				
+				min-height: 100%;
+				min-width: 1290px;
+				width: 100%;
+				height: auto;
 				background: no-repeat;
 			}
 			a, a:hover, a:visited{

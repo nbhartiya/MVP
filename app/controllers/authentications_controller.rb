@@ -33,7 +33,7 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
   end
   
   alias_method :twitter, :provider
-  alias_method :linkedin, :provider
+  # alias_method :linkedin, :provider
   alias_method :facebook, :provider
   
   def index

@@ -70,7 +70,9 @@
                 %td reviews
                 %td calendar
         .span1.heart_this
-          %a.sb.heart.circle.no-border.no-shadow.black
+          -# Fix 
+          -# %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
+          %heart{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'"}
         .span1
         .span4 
           -#this needs to happen only when tickets >1

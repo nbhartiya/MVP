@@ -5,7 +5,7 @@ $main_orange: rgb(255, 178, 35);
 // CSS animations and single event/profile/campaign cards
 
 .campaign-first-row{
-	bottom: 76px;
+	bottom: 79px;
 	-webkit-transition-property:bottom;
 	-webkit-transition-duration:250ms;
 	-webkit-transition-timing-function:linear;
@@ -43,7 +43,7 @@ $main_orange: rgb(255, 178, 35);
 }
 
 .single-campaign:hover .campaign-first-row{
-	bottom: 180px;
+	bottom: 183px;
 }
 
 .single-campaign:hover .campaign-second-row{
@@ -302,7 +302,7 @@ $main_orange: rgb(255, 178, 35);
 }
 
 .campaign-second-row{
-	bottom: 180px;
+	bottom: 183px;
 }
 
 .user-second-row, .campaign-second-row{
@@ -351,7 +351,7 @@ $main_orange: rgb(255, 178, 35);
 		-moz-box-sizing: border-box;    
 		box-sizing: border-box;
 		.profile-photo{
-			vertical-align: top;
+			vertical-align: middle;
 			margin: 0;
 			img{
 				height: auto;
@@ -390,7 +390,7 @@ $main_orange: rgb(255, 178, 35);
 		    	font-size: 10px;
 		    }
 		    a, a:visited, a:hover{
-		    	color: $main_orange;
+		    	color: black;
 		    	text-decoration: none;
 		    }
 			h1{

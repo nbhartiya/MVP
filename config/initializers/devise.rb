@@ -220,7 +220,7 @@ Devise.setup do |config|
   else
     config.omniauth :facebook, ENV["FACEBOOK_APP_ID_DEV"], ENV["FACEBOOK_APP_SECRET_DEV"]
   end
-  config.omniauth :linkedin, ENV["LINKEDIN_API_KEY"], ENV["LINKEDIN_SECRET_KEY"]
+  # config.omniauth :linkedin, ENV["LINKEDIN_API_KEY"], ENV["LINKEDIN_SECRET_KEY"]
   config.omniauth :twitter, ENV["TWITTER_CONSUMER_KEY"], ENV["TWITTER_CONSUMER_SECRET"]
 
   # ==> Warden configuration
