@@ -14,14 +14,14 @@
         -else
           .active.item
             =image_tag "Food 6.jpg"
-    -if @profile.user.chef == true
-      %ol.carousel-indicators.hidden-phone
-        -if @profile.covers.present?
-          -@profile.covers.each_with_index do |i, index|     
-            - if index == 0
-              %li.active{"data-target" => "#profile-carousel", "data-slide-to" => index}
-            - else
-              %li{"data-target" => "#profile-carousel", "data-slide-to" => index}
+        -if @profile.user.chef == true
+          %ol.carousel-indicators.hidden-phone
+            -if @profile.covers.present?
+              -@profile.covers.each_with_index do |i, index|     
+                - if index == 0
+                  %li.active{"data-target" => "#profile-carousel", "data-slide-to" => index}
+                - else
+                  %li{"data-target" => "#profile-carousel", "data-slide-to" => index}
     .container
       .row.user-overview
         .span1

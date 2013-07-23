@@ -9,6 +9,8 @@ $(".user-card-name").tooltip()
 
 $("#why-yelp").tooltip()
 
+$("#profile-carousel").carousel interval: false
+
 $(".answer-image img").click ->
   $(this).toggleClass "highlight"
   if $(this).hasClass "highlight"
@@ -59,7 +61,7 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
             $('.profiles .carousel-inner').append("<div class = 'item'><img src = 'data:image/*;base64,#{imgdata}'></div>")
             $('.profiles .user-profile .carousel-indicators').append("<li data-slide-to '0' data-target = 'profile-carousel'></li>")
         i++
-        $('.user-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#profile-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#profile-carousel'> > </a>")
+        $('.carousel-inner').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#profile-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#profile-carousel'> > </a>")
   
   $scope.uploadProfileImage = ->
     filepicker.pickAndStore
@@ -75,9 +77,9 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
       $scope.image="https://s3.amazonaws.com/#{InkBlob[0].key}"
       console.log $scope.image
       $scope.avatar.push($scope.image)
-      $('td.profile-photo').remove()
+      $('td.profile-photo').empty()
       filepicker.read InkBlob[0].url, base64encode: true, (imgdata) ->
-        $('.user-profile-overview table tr').append("<td class = 'profile-photo'><img src = 'data:image/*;base64,#{imgdata}'></div>")
+        $('td.profile-photo').append("<img src = 'data:image/*;base64,#{imgdata}'></div>")
 ]
 
 

@@ -1,10 +1,12 @@
 .profiles
   .user-profile
-    #profile-carousel.carousel.slide
+    #profile-carousel.carousel.slide.hidden-phone
       .carousel-inner
         .active.item
+          %p this is a stock image <br> (replace with your own!)
           =image_tag "Food 6.jpg"
-    %ol.carousel-indicators
+        %ol.carousel-indicators.hidden-phone
+    .btn#remove-image x  
     .container
       .row.user-overview{'ng-controller' => 'ProfileEditCtrl'}
         .span1          
@@ -72,7 +74,7 @@
           %button.btn.btn-warning{'ng-click' => 'edit=0'} Edit
         .span1
         .span4 
-          -if current_user.chef != true
+          -if current_user.chef == true
             %form.user-summary-edit.clearfix{:name => "profile_edit", 'ng-show' => "edit==1", 'ng-hide' => "edit==0"}
               %button.close{"ng-click" => "edit=0", :type => "button"} close
 
