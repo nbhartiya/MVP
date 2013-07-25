@@ -5,10 +5,10 @@
         -@event.images.each_with_index do |i, index|
           -if index == 0
             .item.active
-              = filepicker_image_tag i.image
+              = image_tag i.image
           -else
             .item
-              = filepicker_image_tag i.image
+              = image_tag i.image
     %ol.carousel-indicators
       -@event.images.each_with_index do |i, index|         
         -if index == 0
