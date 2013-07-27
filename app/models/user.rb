@@ -75,12 +75,12 @@ class User < ActiveRecord::Base
       self.last_name = omni['info']['last_name']
       #self.location = omni['info']['location']
     end
-    if omni['provider'] == 'linkedin'
-      self.email = omni['info']['email']
-      self.first_name = omni['info']['first_name']
-      self.last_name = omni['info']['last_name']
-      #self.location = omni['info']['location']
-    end
+    # if omni['provider'] == 'linkedin'
+    #   self.email = omni['info']['email']
+    #   self.first_name = omni['info']['first_name']
+    #   self.last_name = omni['info']['last_name']
+    #   #self.location = omni['info']['location']
+    # end
     if omni['provider'] == 'twitter'
       # wahh twitter doesn't give you email address, so have to make sure my log in doesn't require that
       fullname = omni['info']['name'].split(' ')

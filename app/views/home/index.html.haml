@@ -31,7 +31,7 @@
               -if user_signed_in?
                 %a.btn.btn-warning.view-events-button{:href => "/events"} Upcoming Events
                 %p
-                  = link_to "Sign Out", destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?", :tabindex => "-1", :class => 'sign-out-link'
+                  = link_to "Sign Out", destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?", :class => 'sign-out-link'
             .span1
     .container
       .row.section-header

@@ -598,6 +598,10 @@ $main_orange: rgb(255, 178, 35);
 	margin: 0;
 	.accordion{
 		margin: 0;
+		.accordion-inner{
+			margin: 20px 0;
+			padding: 4px 7px;
+		}
 	}
 	p{
 		font-size: 14px;
