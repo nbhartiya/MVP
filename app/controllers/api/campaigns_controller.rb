@@ -22,6 +22,10 @@ class Api::CampaignsController < ApplicationController
 
   def update
     @campaign = Campaign.find(params[:id])
+    params[:campaign].delete("id")
+    params[:campaign].delete("created_at")
+    params[:campaign].delete("updated_at")
+    params[:campaign].delete("follows")
     @campaign.update_attributes(params[:campaign])
     render json: @campaign.to_json(include_hash)
   end

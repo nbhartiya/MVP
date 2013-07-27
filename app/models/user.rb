@@ -38,7 +38,8 @@ class User < ActiveRecord::Base
   has_many :charges
   has_one :profile
   has_many :campaigns, :foreign_key => "campaign_starter_id"
-  has_and_belongs_to_many :campaign, :foreign_key => "host_id"
+  # TODO:fixTHISMAYBEHASMANY
+  has_many :campaigns, :foreign_key => "host_id"
   # TODO:this below relationship will be complicated, come back to this...
   has_many :follows, :as => :followable, :dependent => :destroy
   

@@ -47,7 +47,7 @@
                     %h3 
                       =@profile.neighborhood
                   %h3
-                    -if @profile.loIcation.city.present?
+                    -if @profile.location.city.present?
                       =@profile.location.city + ', '
                     -if @profile.location.state.present?
                       =@profile.location.state 

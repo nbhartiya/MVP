@@ -14,7 +14,7 @@ class Api::ProfilesController < ApplicationController
   end
 
   # GET /profiles/1/edit
-  def edit
+  def update
     @profile = Profile.find(params[:id])
     @profile.update_attributes(params[:profile])
     render json: @profile.to_json(include_hash)

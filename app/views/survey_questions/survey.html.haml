@@ -85,7 +85,7 @@
               - if index % 3 == 0
                 .span4.single-visual-answer
                   .row
-                    .span4.answer-image{'ng-click' => 'selectAns()', 'ng-init' => 'selection="#{a}"'}
+                    .span4.answer-image{'ng-click' => "selectAns(#{a.to_json})"}
                       = image_tag a.images.first.image
                   .row.answer
                     .span4.answer-caption
@@ -94,7 +94,7 @@
               - else
                 .span4.single-visual-answer
                   .row
-                    .span4.answer-image{'ng-click' => 'selectAns("#{a}")', 'ng-init' => "selection='#{a}'"}
+                    .span4.answer-image{'ng-click' => "selectAns(#{a.to_json})"}
                       = image_tag a.images.first.image
                   .row.answer
                     .span4.answer-caption

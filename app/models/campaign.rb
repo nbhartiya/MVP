@@ -23,5 +23,21 @@ class Campaign < ActiveRecord::Base
   belongs_to :host, :class_name => "User", :foreign_key => "host_id"
   has_many :follows, :as => :followable, :dependent => :destroy
   has_many :images, :as => :imageable, :dependent => :destroy
+
+  def follows_needed()
+    return 100-self.follows.count
+  end
+
+  def percent_follows()
+  	return (self.follows.count/100)*100
+  end
+
+  def expired?()
+  	if Date.today() > self.expires
+  		return true
+  	else
+  		return false
+  	end
+  end
   
 end

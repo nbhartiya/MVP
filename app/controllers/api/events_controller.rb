@@ -23,6 +23,14 @@ class Api::EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
+    params[:event].delete("id")
+    params[:event].delete("guests")
+    params[:event].delete("tickets")
+    params[:event].delete("follows")
+    params[:event].delete("location")
+    params[:event].delete("host")
+    params[:event].delete("created_at")
+    params[:event].delete("updated_at")
     @event.update_attributes(params[:event])
     render json: @event.to_json(include_hash)
   end
@@ -34,7 +42,7 @@ class Api::EventsController < ApplicationController
 
 private
   def include_hash
-    {:include => [:guests, :tickets, :location, :follows]}
+    {:include => [:guests, :tickets, :location, :follows, :host => {:include => :profile}]}
     #{:methods => :display_name, :include => [{:venue => {:include => :place}}, :users]}
     #=> {:only => :hi}
   end

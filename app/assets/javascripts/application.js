@@ -22,6 +22,7 @@
 //= require angular-bootstrap
 //= require angular-ui-bootstrap-tpls
 //= require angular-slider.js
+//= require jquery.cookie
 //= require_tree .
 
 // filepicker

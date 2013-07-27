@@ -1,4 +1,5 @@
-angular.module('Simmr').factory "Profile", ["railsResourceFactory", (railsResourceFactory) -> railsResourceFactory
+angular.module('Simmr').factory "Profile", ["railsResourceFactory", (railsResourceFactory) -> 
+  railsResourceFactory
     url: "api/profiles"
     name: "profile"
 ]
@@ -26,6 +27,11 @@ $(".profiles .heart_this a").click ->
 
 angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams", "$location", "Profile", ($scope, $routeParams, $location, Profile) ->
   $scope.edit = 1
+
+  $scope.getProfile = (profileId) ->
+    console.log Profile
+    Profile.get(id: profileId).then (result) ->
+      $scope.profile = result
 
   $scope.imageUrls = []
   $scope.avatar = []
@@ -264,10 +270,11 @@ angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$l
       $('.profile-image-row').empty()
       filepicker.read InkBlob[0].url, base64encode: true, (imgdata) ->
         $('.profile-image-row').append("<div class = 'profile-image span3'><img src = 'data:image/*;base64,#{imgdata}'></div>")
-
-  $scope.selectAns = ->
-    alert("inside!")
-    console.log($scope.a)
+  
+  $scope.selectAns = (selection) ->
+    $scope.user_answers ||= []
+    console.log(selection)
+    $scope.user_answers.push(selection)
 
   $scope.createProfile = (profile) ->
     console.log($scope.coverImageUrl, $scope.avatar)

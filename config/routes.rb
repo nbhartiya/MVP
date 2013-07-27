@@ -4,7 +4,7 @@ MVP::Application.routes.draw do
 
   get "follow/new"
 
-  resources :profiles
+  
 
 
   # You can have the root of your site routed with "root"
@@ -40,6 +40,7 @@ MVP::Application.routes.draw do
   end
 
   resources :campaigns
+  resources :profiles
 
   resources :events do
     resources :tickets do
