@@ -236,6 +236,7 @@ Simmr.factory "Campaign", ["railsResourceFactory", (railsResourceFactory) ->
 ]
 
 Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$location", "Campaign", ($scope, $window, $routeParams, $location, Campaign) ->
+  $scope.campaign.expires="2013-08-29"
   $scope.createCampaign = (campaign) ->
     new Campaign(campaign).create().then (data) =>
       console.log data, "~~~~~~~~~~"

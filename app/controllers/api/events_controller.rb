@@ -16,6 +16,7 @@ class Api::EventsController < ApplicationController
     location_params = params[:event][:location]
     event_params.delete("location")
     @event = Event.create(event_params)
+    #there is an error here if one of the below is nil...check out later
     location_params.merge!("event_id"=>@event.id)
     @location = Location.create(location_params)
     render json: @event.to_json(include_hash)
