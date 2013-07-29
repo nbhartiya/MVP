@@ -109,7 +109,6 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
 Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
   $scope.created = false
   $scope.imageUrls = []
-  $scope.event = []
   $scope.today = moment().format("YYYY-MM-DD")
 
   $scope.eventDate = ->
