@@ -16,7 +16,9 @@ class Api::CampaignsController < ApplicationController
   end
 
   def create
-    @campaign = Campaign.create(params[:campaign])
+    @campaign = Campaign.new(params[:campaign])
+    @campaign.expires = Date.today + 1.month
+    @campaign.save!
     render json: @campaign.to_json(include_hash)
   end
 
