@@ -43,13 +43,13 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
       multiple: true
     ,
       location: "S3"
-      path: '/simmreventimages/'
+      access: "public"
     , (InkBlobs) ->
       console.log JSON.stringify(InkBlobs)
 
       i=0
       while i< Object.keys(InkBlobs).length
-        $scope.image="https://s3.amazonaws.com/#{InkBlobs[i].key}"
+        $scope.image="https://s3-us-west-1.amazonaws.com/simmrimages/#{InkBlobs[i].key}"
         console.log $scope.image
         $scope.imageUrls.push($scope.image)
         $('.active.item').remove()
@@ -76,11 +76,11 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
       multiple: false
     ,
       location: "S3"
-      path: '/simmreventimages/'
+      access: "public"
     , (InkBlob) ->
       console.log JSON.stringify(InkBlob)
 
-      $scope.image="https://s3.amazonaws.com/#{InkBlob[0].key}"
+      $scope.image="https://s3-us-west-1.amazonaws.com/simmrimages/#{InkBlob[0].key}"
       console.log $scope.image
       $scope.avatar.push($scope.image)
       $('td.profile-photo').empty()
@@ -240,11 +240,11 @@ angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$l
       multiple: false
     ,
       location: "S3"
-      path: '/simmreventimages/'
+      access: "public"
     , (InkBlob) ->
       console.log JSON.stringify(InkBlob)
 
-      $scope.image="https://s3.amazonaws.com/#{InkBlob[0].key}"
+      $scope.image="https://s3-us-west-1.amazonaws.com/simmrimages/#{InkBlob[0].key}"
       console.log $scope.image
       $scope.coverImageUrl.push($scope.image)
       $('.cover-image-row .default').remove()
@@ -259,11 +259,11 @@ angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$l
       multiple: false
     ,
       location: "S3"
-      path: '/simmreventimages/'
+      access: "public"
     , (InkBlob) ->
       console.log JSON.stringify(InkBlob)
 
-      $scope.image="https://s3.amazonaws.com/#{InkBlob[0].key}"
+      $scope.image="https://s3-us-west-1.amazonaws.com/simmrimages/#{InkBlob[0].key}"
       console.log $scope.image
       $scope.avatar.push($scope.image)
       $('.profile-image-row .default').remove()
