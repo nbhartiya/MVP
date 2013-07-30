@@ -44,6 +44,11 @@ class User < ActiveRecord::Base
   has_many :follows, :as => :followable, :dependent => :destroy
   
   before_create :confirmation_email
+  before_save :default_values
+
+  def default_values
+    self.chef ||= false
+  end
   
   def confirmation_email
     NotificationMailer.signup_email(self).deliver
