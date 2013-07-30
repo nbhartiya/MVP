@@ -48,6 +48,7 @@ class User < ActiveRecord::Base
 
   def default_values
     self.chef ||= false
+    true
   end
   
   def confirmation_email
