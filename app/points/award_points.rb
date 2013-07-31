@@ -36,6 +36,7 @@ end
 class ReferToEvent < WorthPoints
       def initialize
       	  @name = :refer_event
+      	  
       end
 end
 
