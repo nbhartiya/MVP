@@ -10,6 +10,21 @@
       .campaign-registration.row{'ng-controller' => 'CampaignCreateCtrl'}
         .span1
         .span4
+          %form.campaign-create-form.clearfix{:name => "campaign_create", 'ng-hide' => "campaign==1"}
+            %input{'ng-model' => 'campaign.biz_name', :type=>"text", :placeholder =>"Business Name - who is this campaign for?", :name => "campaign_name", :required => "required", 'ng-class' => "{error: campaign_create.campaign_name.$invalid}"}
+            %textarea.campaign-blurb{:rows => "4", 'ng-model' => 'campaign.blurb', :type=>"text", :placeholder =>"Business Description - you get the length of a tweet to describe this business - what is its tagline?", :required => "required", :name => "campaign_description", :maxlength => "140", 'ng-class' => "{error: campaign_create.campaign_description.$invalid}"}
+
+            .help-block{'ng-show' => "campaign_create.campaign_description.$error.required || campaign_create.campaign_name.$error.required"} Both fields are required!
+            
+            .clearfix
+              %button.btn#campaign-upload-images{'ng-click'=> 'uploadImages()'} Upload Images
+            
+            %button.btn.btn-warning.standalone-button#submit{'ng-click' => 'createCampaign(campaign)', 'ng-disabled'=> 'campaign_create.$invalid'} Create
+
+          .campaign-create-confirmation.clearfix{'ng-show'=>"campaign==1"}
+            %h2 Thanks! You'll get an email when your campaign is approved and public. While you're waiting, fill out the 'why join' field below so others are more likely to join your campaign and make it happen! 
+        .span1
+        .span5
           .campaign-summary
             %h1#default-text{'ng-show'=>'campaign.biz_name=="" || campaign.biz_name==nil'}
               Business Name
@@ -43,23 +58,10 @@
               %tr.campaign-target-stat-labels
                 %td followers
                 %td reviews
-        .span1.heart_this
-          %a.sb.heart.circle.no-border.no-shadow.gray{title: 'Heart This'}
-        .span1
-        .span4 
-          %form.campaign-create-form.clearfix{:name => "campaign_create", 'ng-hide' => "campaign==1"}
-            %input{'ng-model' => 'campaign.biz_name', :type=>"text", :placeholder =>"Business Name - who is this campaign for?", :name => "campaign_name", :required => "required", 'ng-class' => "{error: campaign_create.campaign_name.$invalid}"}
-            %textarea.campaign-blurb{:rows => "4", 'ng-model' => 'campaign.blurb', :type=>"text", :placeholder =>"Business Description - you get the length of a tweet to describe this business - what is its tagline?", :required => "required", :name => "campaign_description", :maxlength => "140", 'ng-class' => "{error: campaign_create.campaign_description.$invalid}"}
-
-            .help-block{'ng-show' => "campaign_create.campaign_description.$error.required || campaign_create.campaign_name.$error.required"} Both fields are required!
-            
-            .clearfix
-              %button.btn#campaign-upload-images{'ng-click'=> 'uploadImages()'} Upload Images
-            
-            %button.btn.btn-warning.standalone-button#submit{'ng-click' => 'createCampaign(campaign)', 'ng-disabled'=> 'campaign_create.$invalid'} Create
-
-          .campaign-create-confirmation.clearfix{'ng-show'=>"campaign==1"}
-            %h2 Thanks! You'll get an email when your campaign is approved and public. While you're waiting, fill out the 'why join' field below so others are more likely to join your campaign and make it happen!  
+        -#
+          .span1.heart_this
+            %a.sb.heart.circle.no-border.no-shadow.gray{title: 'Heart This'}
+ 
 
   .container{'ng-init'=> "campaign.campaign_starter_id=#{current_user.id}"}
     .row

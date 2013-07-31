@@ -129,29 +129,35 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
       multiple: true
     ,
       location: "S3"
-      path: '/simmreventimages/'
+      access: "public"
     , (InkBlobs) ->
       console.log JSON.stringify(InkBlobs)
 
+      $('.active.item').remove()
+      $('.carousel-inner').empty()
+
       i=0
       while i< Object.keys(InkBlobs).length
-        $scope.image="https://s3.amazonaws.com/#{InkBlobs[i].key}"
+        $scope.image="https://s3-us-west-1.amazonaws.com/simmrimages/#{InkBlobs[i].key}"
         console.log $scope.image
         $scope.imageUrls.push($scope.image)
-        $('.active.item').remove()
-        $('.carousel-inner').empty()
         if i == 0
-          filepicker.read InkBlobs[i].url,
-            base64encode: true
-          , (imgdata) ->
-            $('.events .carousel-inner').append("<div class = 'item active'><img src = 'data:image/*;base64,#{imgdata}'></div>")
-        else
-          filepicker.read InkBlobs[i].url,
-            base64encode: true
-          , (imgdata) ->
-            $('.events .carousel-inner').append("<div class = 'item'><img src = 'data:image/*;base64,#{imgdata}'></div>")
+          console.log($scope.imageUrls[i])
+          $('.events .carousel-inner').append("<div class = 'item active'><img src = #{$scope.imageUrls[i]}></div>")
+        else 
+          console.log('else')
+          $('.events .carousel-inner').append("<div class = 'item'><img src = #{$scope.imageUrls[i]}></div>")
         i++
-        $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> > </a>")
+      $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> > </a>")
+
+  $scope.removeImages = ->
+    imageUrl = document.getElementsByClassName("active")[0]
+    console.log imageUrl
+    imageUrl = imageUrl.innerHTML
+    imageUrl = imageUrl.substring(0, imageUrl.legnth-7)
+    #.substring(37)
+    console.log imageUrl
+    
 ]
 
 Simmr.controller "EventIndexCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
