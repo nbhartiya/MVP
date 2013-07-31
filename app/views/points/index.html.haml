@@ -1,0 +1,13 @@
+%h1 Points
+
+%table
+  %tr
+    %th User
+    %th Total
+    %th Points
+
+  - @users.each do |user|
+    %tr
+      %td= user.email
+      %td= user.get_total_points
+      %td= link_to 'Show Points', point_path(user) 

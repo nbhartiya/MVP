@@ -1,0 +1,12 @@
+.points
+%h1 Points for #{@user.first_name} 
+
+%table
+  %tr
+    %th Activity
+    %th Points
+
+  - @points.each do |point_info|
+    %tr
+      %td= point_info[0]
+      %td= point_info[1]

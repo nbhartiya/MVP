@@ -45,6 +45,8 @@ class User < ActiveRecord::Base
   
   before_create :confirmation_email
   before_save :default_values
+  
+  serialize :points, Array
 
   def default_values
     self.chef ||= false
@@ -72,7 +74,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :approved, :first_name, :last_name, :chef, :work_zip
+  attr_accessible :approved, :first_name, :last_name, :chef, :work_zip, :points
   
   def apply_omniauth(omni)
     if omni['provider'] == 'facebook'
@@ -131,4 +133,11 @@ class User < ActiveRecord::Base
     save!
   end
   
+  def get_total_points
+    sum = 0
+    points.each do |info|
+      sum += info[1]
+    end
+    sum
+  end
 end
