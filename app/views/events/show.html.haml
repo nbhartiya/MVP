@@ -18,8 +18,7 @@
         .span1
         .span5
           #ribbon
-            -#
-              .inset
+            .inset
             .container
               .base
                 %h3
@@ -46,6 +45,11 @@
             %h3 Mission
             -# upon registration show
               %a{:href => "{{mapUrl()}}"} 123 Mission Street <br> San Francisco, CA 94107
+            .event-button-group
+              %button.btn.btn-inverse Details
+              %button.btn.btn-inverse Menu
+              %button.btn.btn-inverse Attendees and Chatter
+              %button.btn.btn-inverse Host Story
             %p 
               =@event.seats_left
               seats left
