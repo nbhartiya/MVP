@@ -3,15 +3,16 @@
     #campaign-carousel.carousel.slide.hidden-phone       
       .carousel-inner
         .active.item
-          =image_tag "Food 9.jpg"
-        -#
-          -@campaign.images.each_with_index do |i, index|
-            -if index == 0
-              .item.active
-                = filepicker_image_tag i.image
-            -else
-              .item
-                = filepicker_image_tag i.image
+          -if @campaign.images.present?
+            -@campaign.images.each_with_index do |i, index|
+              -if index == 0
+                .item.active
+                  = image_tag i.image
+              -else
+                .item
+                  = image_tag i.image
+          -else
+            =image_tag "Food 9.jpg"
     -#
       %ol.carousel-indicators.hidden-phone
         -@campaign.images.each_with_index do |i, index|     
@@ -33,9 +34,9 @@
               by #{@campaign.campaign_starter.first_name} #{@campaign.campaign_starter.last_name}
             %hr
             %h3
-              Campaign End Date ABC123
+              Campaign End Date #{@campaign.expires.strftime("%B %d, %Y")}
             %p 
-              X more needed to tilt this campaign ABC123
+              #{@campaign.follows_needed} more needed to tilt this campaign
             -if user_signed_in? == false
               .progress.progress-warning.clearfix.signed-out
                 .bar{:style => "width: 80%"}
@@ -50,7 +51,7 @@
                   %td
                     %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
                 %tr.campaign-target-stats 
-                  %td 190
+                  %td #{@campaign.follows.count}
                   %td 190
                   %td{:rowspan => "2"} share
                 %tr.campaign-target-stat-labels
@@ -69,7 +70,7 @@
                   %td
                     %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
                 %tr.campaign-target-stats
-                  %td 190
+                  %td #{@campaign.follows.count}
                   %td 190
                   %td{:rowspan => "2"} share
                 %tr.campaign-target-stat-labels

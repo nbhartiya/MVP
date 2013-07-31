@@ -38,11 +38,18 @@ class User < ActiveRecord::Base
   has_many :charges
   has_one :profile
   has_many :campaigns, :foreign_key => "campaign_starter_id"
-  has_and_belongs_to_many :campaign, :foreign_key => "host_id"
+  # TODO:fixTHISMAYBEHASMANY
+  has_many :campaigns, :foreign_key => "host_id"
   # TODO:this below relationship will be complicated, come back to this...
   has_many :follows, :as => :followable, :dependent => :destroy
   
   before_create :confirmation_email
+  before_save :default_values
+
+  def default_values
+    self.chef ||= false
+    true
+  end
   
   def confirmation_email
     NotificationMailer.signup_email(self).deliver

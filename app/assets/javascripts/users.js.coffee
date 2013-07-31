@@ -13,6 +13,22 @@ $(document).on "click", ".usersignup", ->
   #      window.location='/events'
   #)
 
+$(document).on "click", ".foodiesignup", ->
+  date = new Date()
+  minutes = 5
+  date.setTime date.getTime() + (minutes * 60 * 1000)
+  $.cookie "chef", false,
+    expires: date,
+    path: '/'
+
+$(document).on "click", ".bizsignup", ->
+  date = new Date()
+  minutes = 5
+  date.setTime date.getTime() + (minutes * 60 * 1000)
+  $.cookie "chef", true,
+    expires: date,
+
+
 $(document).on "click", ".newpass", ->
   $("#new_pass").submit()
 

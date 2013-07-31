@@ -1,31 +1,35 @@
-.campaigns
+.campaigns{'ng-controller' => 'CampaignEditCtrl', 'ng-init' => "getCampaign(#{@campaign.id})"}
   .campaign-profile
     #campaign-carousel.carousel.slide.hidden-phone 
       .carousel-inner
         .active.item
           =image_tag "Food 9.jpg"
     .container
-      .campaign-registration.row{'ng-controller' => 'CampaignEditCtrl', 'ng-init' => "campaign.id=#{@campaign.id}"}
+      .campaign-registration.row
         .span1
         .span4
           .campaign-summary
-            %h1#default-text{'ng-show'=>'campaign.biz_name=="" || campaign.biz_name==nil'}
-              {{campaign.biz_name}}
-              #{@campaign.biz_name}
+            %h1#default-text{'ng-show'=>'campaign.bizName=="" || campaign.bizName==nil'}
+              Business Name
             %h1
-              {{campaign.biz_name}}
+              {{campaign.bizName}}
             %h2#default-text{'ng-show'=>'"#{@campaign.blurb}"=="" || "#{@campaign.blurb}"==nil'}
               Business Description
-            %h2 
+            %h2#default-text{'ng-show'=>'campaign.blurb=="" || campaign.blurb==nil'}
               #{@campaign.blurb}
+            %h2
+              {{campaign.blurb}}
             %h2 By #{current_user.first_name} #{current_user.last_name}
             %hr
             %h3 
-              #{(Date.today + 30).strftime("%B %d, %Y")}
+              -if @campaign.expired?
+                Expired #{@campaign.expires.strftime("%B %d, %Y")}
+              -else
+                Expires #{@campaign.expires.strftime("%B %d, %Y")}
             %p 
-              100 more needed to tilt this campaign
+              #{@campaign.follows_needed} more needed to tilt this campaign
             .progress.signed-in.progress-warning
-              .bar{:style => "width: 0%"}
+              .bar{:style => "width: #{@campaign.percent_follows}%"}
             %button.btn.btn-warning.campaign-join-button Join
             %table.campaign-social-stats
               %tr
@@ -36,7 +40,7 @@
                 %td
                   %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#"}
               %tr.campaign-target-stats
-                %td 190
+                %td #{@campaign.follows.count}
                 %td 190
                 %td{:rowspan => "2"} share
               %tr.campaign-target-stat-labels
@@ -47,10 +51,8 @@
         .span1
         .span4 
           %form.campaign-create-form.clearfix{:name => "campaign_create", 'ng-hide' => "campaign==1"}
-            %input{'ng-model' => 'campaign.biz_name', :type=>"text", :placeholder =>'Business Name - who is this campaign for?', :name => "campaign_name", :required => "required", 'ng-class' => "{error: campaign_create.campaign_name.$invalid}"}
-            %textarea.campaign-blurb{:rows => "4", 'ng-model' => 'campaign.blurb', :type=>"text", :placeholder =>"Business Description - you get the length of a tweet to describe this business - what is its tagline?", :required => "required", :name => "campaign_description", :maxlength => "140", 'ng-class' => "{error: campaign_create.campaign_description.$invalid}"}
-
-            .help-block{'ng-show' => "campaign_create.campaign_description.$error.required || campaign_create.campaign_name.$error.required"} Both fields are required!
+            %input{'ng-model' => 'campaign.bizName', :type=>"text", :placeholder =>"#{@campaign.biz_name}", :name => "campaign_name", :required => "required", 'ng-class' => "{error: campaign_create.campaign_name.$invalid}"}
+            %textarea.campaign-blurb{:rows => "4", 'ng-model' => 'campaign.blurb', :type=>"text", :placeholder =>"#{@campaign.blurb}", :name => "campaign_description", :maxlength => "140", :required => "required",'ng-class' => "{error: campaign_create.campaign_description.$invalid}"}
             
             .clearfix
               %button.btn#campaign-upload-images{'ng-click'=> 'uploadImages()'} Upload Images
@@ -60,7 +62,7 @@
           .campaign-create-confirmation.clearfix{'ng-show'=>"campaign==1"}
             %h2 Thanks! You'll get an email when your campaign is approved and public. While you're waiting, fill out the 'why join' field below so others are more likely to join your campaign and make it happen!  
 
-  .container{'ng-init'=> "campaign.campaign_starter_id=#{current_user.id}"}
+  .container
     .row
       .span12
         .row.section-header#why
@@ -73,8 +75,8 @@
           #why-join-accordion.accordion
             #why-join-detail.accordion-body.collapse.in
               .accordion-inner
-                %textarea.textarea-section{:placeholder => "Why should others join your campaign?", "rows"=>'3', 'ng-model' => "campaign.why_join"}
-                %button.btn.btn-warning{'ng-disabled'=> 'campaign.why_join == "" || campaign.why_join == nil'} Update
+                %textarea.textarea-section{:placeholder => "#{@campaign.why_join}", "rows"=>'3', 'ng-model' => "campaign.whyJoin"}
+                %button.btn.btn-warning{'ng-disabled'=> 'campaign.whyJoin == "" || campaign.whyJoin == nil'} Update
 
 -#
   = render 'form'

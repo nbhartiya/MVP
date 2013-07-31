@@ -1,4 +1,5 @@
-angular.module('Simmr').factory "Profile", ["railsResourceFactory", (railsResourceFactory) -> railsResourceFactory
+angular.module('Simmr').factory "Profile", ["railsResourceFactory", (railsResourceFactory) -> 
+  railsResourceFactory
     url: "api/profiles"
     name: "profile"
 ]
@@ -27,6 +28,11 @@ $(".profiles .heart_this a").click ->
 angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams", "$location", "Profile", ($scope, $routeParams, $location, Profile) ->
   $scope.edit = 1
 
+  $scope.getProfile = (profileId) ->
+    console.log Profile
+    Profile.get(id: profileId).then (result) ->
+      $scope.profile = result
+
   $scope.imageUrls = []
   $scope.avatar = []
 
@@ -37,13 +43,13 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
       multiple: true
     ,
       location: "S3"
-      path: '/simmreventimages/'
+      access: "public"
     , (InkBlobs) ->
       console.log JSON.stringify(InkBlobs)
 
       i=0
       while i< Object.keys(InkBlobs).length
-        $scope.image="https://s3.amazonaws.com/#{InkBlobs[i].key}"
+        $scope.image="https://s3-us-west-1.amazonaws.com/simmrimages/#{InkBlobs[i].key}"
         console.log $scope.image
         $scope.imageUrls.push($scope.image)
         $('.active.item').remove()
@@ -70,11 +76,11 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
       multiple: false
     ,
       location: "S3"
-      path: '/simmreventimages/'
+      access: "public"
     , (InkBlob) ->
       console.log JSON.stringify(InkBlob)
 
-      $scope.image="https://s3.amazonaws.com/#{InkBlob[0].key}"
+      $scope.image="https://s3-us-west-1.amazonaws.com/simmrimages/#{InkBlob[0].key}"
       console.log $scope.image
       $scope.avatar.push($scope.image)
       $('td.profile-photo').empty()
@@ -234,11 +240,11 @@ angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$l
       multiple: false
     ,
       location: "S3"
-      path: '/simmreventimages/'
+      access: "public"
     , (InkBlob) ->
       console.log JSON.stringify(InkBlob)
 
-      $scope.image="https://s3.amazonaws.com/#{InkBlob[0].key}"
+      $scope.image="https://s3-us-west-1.amazonaws.com/simmrimages/#{InkBlob[0].key}"
       console.log $scope.image
       $scope.coverImageUrl.push($scope.image)
       $('.cover-image-row .default').remove()
@@ -253,21 +259,22 @@ angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$l
       multiple: false
     ,
       location: "S3"
-      path: '/simmreventimages/'
+      access: "public"
     , (InkBlob) ->
       console.log JSON.stringify(InkBlob)
 
-      $scope.image="https://s3.amazonaws.com/#{InkBlob[0].key}"
+      $scope.image="https://s3-us-west-1.amazonaws.com/simmrimages/#{InkBlob[0].key}"
       console.log $scope.image
       $scope.avatar.push($scope.image)
       $('.profile-image-row .default').remove()
       $('.profile-image-row').empty()
       filepicker.read InkBlob[0].url, base64encode: true, (imgdata) ->
         $('.profile-image-row').append("<div class = 'profile-image span3'><img src = 'data:image/*;base64,#{imgdata}'></div>")
-
-  $scope.selectAns = ->
-    alert("inside!")
-    console.log($scope.a)
+  
+  $scope.selectAns = (selection) ->
+    $scope.user_answers ||= []
+    console.log(selection)
+    $scope.user_answers.push(selection)
 
   $scope.createProfile = (profile) ->
     console.log($scope.coverImageUrl, $scope.avatar)

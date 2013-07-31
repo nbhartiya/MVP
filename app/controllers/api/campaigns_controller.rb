@@ -16,12 +16,26 @@ class Api::CampaignsController < ApplicationController
   end
 
   def create
-    @campaign = Campaign.create(params[:campaign])
+    binding.pry
+    campaign_images=params[:campaign][:campaign_image_urls]
+    campaign_params=params[:campaign]
+    campaign_params.delete("campaign_image_urls")
+    @campaign = Campaign.new(params[:campaign])
+    @campaign.expires = Date.today + 1.month
+    @campaign.save!
+    for i in campaign_images
+      @campaign.images.new(:image=>i)
+      @campaign.save!
+    end
     render json: @campaign.to_json(include_hash)
   end
 
   def update
     @campaign = Campaign.find(params[:id])
+    params[:campaign].delete("id")
+    params[:campaign].delete("created_at")
+    params[:campaign].delete("updated_at")
+    params[:campaign].delete("follows")
     @campaign.update_attributes(params[:campaign])
     render json: @campaign.to_json(include_hash)
   end

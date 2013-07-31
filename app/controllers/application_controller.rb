@@ -7,8 +7,12 @@ class ApplicationController < ActionController::Base
     home_index_path
   end
 
-  def after_inactive_sign_up_path_for(resource)
-    survey_path
+  def after_sign_in_path_for(resource)
+    if current_user.profile == nil
+      survey_path
+    else
+      edit_profile_path(current_user.profile)
+    end
   end
   
   #not necessary now, but if we want logout to go somewhere in particular...

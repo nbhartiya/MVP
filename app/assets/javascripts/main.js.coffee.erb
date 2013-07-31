@@ -26,6 +26,10 @@ Simmr.controller "HeartCtrl", ["$scope",  "$routeParams", "Follow", ($scope, $ro
     console.log($scope.wah)
 ]
 
+Simmr.controller "HomeIndexCtrl", ["$scope",  "$routeParams", ($scope, $routeParams) ->
+  
+]
+
 Simmr.factory "Event", ["railsResourceFactory", (railsResourceFactory) -> railsResourceFactory
     url: "/api/events"
     name: "event"
@@ -105,7 +109,6 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
 Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
   $scope.created = false
   $scope.imageUrls = []
-  $scope.event = []
   $scope.today = moment().format("YYYY-MM-DD")
 
   $scope.eventDate = ->
@@ -116,11 +119,6 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
     $scope.datetime = moment($scope.event.time,  "h:mm A")
     console.log($scope.datetime)
     $scope.datetime.add(moment.duration($scope.event.length, 'minutes')).format('h:mm A')
-  
-  $scope.createEvent = (event) ->
-    new Event(event).create().then (data) =>
-      console.log data, "~~~~~~~~~~"
-      $scope.created = true
 
   $scope.uploadImages = ->
     filepicker.pickAndStore
@@ -158,6 +156,13 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
     #.substring(37)
     console.log imageUrl
     
+  $scope.createEvent = (event) ->
+    console.log($scope.eventImageUrls)
+    if $scope.eventImageUrls?
+      event.eventImageUrls=$scope.eventImageUrls
+    new Event(event).create().then (data) =>
+      console.log data, "~~~~~~~~~~"
+      $scope.created = true
 ]
 
 Simmr.controller "EventIndexCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
@@ -165,12 +170,20 @@ Simmr.controller "EventIndexCtrl", ["$scope",  "$routeParams", "$location", "Eve
 ]
 
 Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
+  $scope.getEvent = (eventId) ->
+    console.log Event
+    Event.get(id: eventId).then (result) ->
+      $scope.event = result
+      console.log $scope.event, "++++++"
+
   $scope.today = moment().format("YYYY-MM-DD")
-  $scope.event = []
   $scope.imageUrls = []
 
   $scope.eventDate = ->
     moment($scope.event.date).format("dddd, MMMM D")
+
+  $scope.eventTime = ->
+    moment($scope.event.time).format("h:mm A")
   
   $scope.eventEndTime = ->
     $scope.datetime = moment($scope.event.date, "DDDD, MMM D")
@@ -185,13 +198,13 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
       multiple: true
     ,
       location: "S3"
-      path: '/simmreventimages/'
+      access: "public"
     , (InkBlobs) ->
       console.log JSON.stringify(InkBlobs)
 
       i=0
       while i< Object.keys(InkBlobs).length
-        $scope.image="https://s3.amazonaws.com/#{InkBlobs[i].key}"
+        $scope.image="https://s3-us-west-1.amazonaws.com/simmrimages/#{InkBlobs[i].key}"
         console.log $scope.image
         $scope.imageUrls.push($scope.image)
         $('.active.item').remove()
@@ -208,6 +221,12 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
             $('.events .carousel-inner').append("<div class = 'item'><img src = 'data:image/*;base64,#{imgdata}'></div>")
         i++
         $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> > </a>")
+
+  $scope.editEvent = (event) ->
+    new Event(event).update().then (data) =>
+      window.a=data
+      $scope.event=data
+      window.location.href = '/events/'+data.id
 ]
 
 Simmr.controller "EventFeedbackCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
@@ -224,13 +243,8 @@ Simmr.factory "Campaign", ["railsResourceFactory", (railsResourceFactory) ->
 ]
 
 Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$location", "Campaign", ($scope, $window, $routeParams, $location, Campaign) ->
-  $scope.createCampaign = (campaign) ->
-    new Campaign(campaign).create().then (data) =>
-      console.log data, "~~~~~~~~~~"
-      $scope.campaign = 1
-      $window.location.href='/campaigns/'+data.id+'/edit'
 
-  $scope.imageUrls = []
+  $scope.campaignImageUrls = []
 
   $scope.uploadImages = ->
     filepicker.pickAndStore
@@ -239,15 +253,15 @@ Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$l
       multiple: true
     ,
       location: "S3"
-      path: '/simmreventimages/'
+      access: "public"
     , (InkBlobs) ->
       console.log JSON.stringify(InkBlobs)
 
       i=0
       while i< Object.keys(InkBlobs).length
-        $scope.image="https://s3.amazonaws.com/#{InkBlobs[i].key}"
+        $scope.image="https://s3-us-west-1.amazonaws.com/simmrimages/#{InkBlobs[i].key}"
         console.log $scope.image
-        $scope.imageUrls.push($scope.image)
+        $scope.campaignImageUrls.push($scope.image)
         $('.active.item').remove()
         $('.carousel-inner').empty()
         if i == 0
@@ -262,12 +276,27 @@ Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$l
             $('.campaigns .carousel-inner').append("<div class = 'item'><img src = 'data:image/*;base64,#{imgdata}'></div>")
         i++
         $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#campaign-carousel'> > </a>")
+  
+  $scope.createCampaign = (campaign) ->
+    if $scope.campaignImageUrls?
+      campaign.campaignImageUrls=$scope.campaignImageUrls
+    new Campaign(campaign).create().then (data) =>
+      console.log data, "~~~~~~~~~~"
+      $scope.campaign = 1
+      $window.location.href='/campaigns/'
 ]
 
 Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "Campaign", ($scope, $routeParams, $location, Campaign) ->
-  console.log $scope
+  $scope.getCampaign = (campaignId) ->
+    console.log campaignId
+    Campaign.get(id: campaignId).then (result) ->
+      console.log result, "++++++++"
+      $scope.campaign = result
   $scope.editCampaign = (campaign) ->
-    Campaign(campaign).update()
+    new Campaign(campaign).update().then (data) =>
+      window.a=data
+      $scope.campaign=data
+      window.location.href = '/campaigns/'+data.id
 
   $scope.imageUrls = []
 
@@ -278,13 +307,13 @@ Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "C
       multiple: true
     ,
       location: "S3"
-      path: '/simmreventimages/'
+      access: "public"
     , (InkBlobs) ->
       console.log JSON.stringify(InkBlobs)
 
       i=0
       while i< Object.keys(InkBlobs).length
-        $scope.image="https://s3.amazonaws.com/#{InkBlobs[i].key}"
+        $scope.image="https://s3-us-west-1.amazonaws.com/simmrimages/#{InkBlobs[i].key}"
         console.log $scope.image
         $scope.imageUrls.push($scope.image)
         $('.active.item').remove()

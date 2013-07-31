@@ -1,4 +1,4 @@
-.profiles
+.profiles{'ng-controller' => 'ProfileEditCtrl', 'ng-init' => "getProfile(#{@profile.id})"}
   .user-profile
     #profile-carousel.carousel.slide.hidden-phone
       .carousel-inner
@@ -8,7 +8,7 @@
         %ol.carousel-indicators.hidden-phone
     .btn#remove-image x  
     .container
-      .row.user-overview{'ng-controller' => 'ProfileEditCtrl'}
+      .row.user-overview
         .span1          
         .span4.user-profile-overview
           %table
@@ -21,7 +21,7 @@
                   {{profile.name}}
             %tr
               %td.user-summary{:colspan => '2'}
-                %h2#default-text{'ng-show'=>'profile.blurb=="" || profile.blurb==nil'} Your Blurb
+                %h2#default-text{'ng-show'=>'profile.blurb=="" || profile.blurb==nil'} #{@profile.blurb}
                 %h2 
                   {{profile.blurb}} 
                 -if current_user.chef == true
