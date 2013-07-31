@@ -9,29 +9,37 @@
           -else
             .item
               = image_tag i.image
-        %ol.carousel-indicators.hidden-phone
-          -@event.images.each_with_index do |i, index|     
-            - if index == 0
-              %li.active{"data-target" => "#event-carousel", "data-slide-to" => index}
-            - else
-              %li{"data-target" => "#event-carousel", "data-slide-to" => index}
+    -if @event.images.count > 1
+      %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#event-carousel"} ‹
+      %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#event-carousel"} ›
 
     .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}'"}
       .event-registration.row
         .span1
-        .span4
+        .span5
+          #ribbon
+            -#
+              .inset
+            .container
+              .base
+                %h3
+                  =number_to_currency(@event.cost, :unit => "$", :precision => 0)
+              .left_corner
+              .right_corner
           .event-summary
-            %h1
-              =@event.title
-            -if @event.host.profile.biz_name != nil
-              %h2
-                ='Hosted by ' + @event.host.profile.biz_name
-                -#TODO: use titleize
-                -#TODO: FIX
+            .event-summary-top
+              %h1
+                =@event.title
+              -if @event.host.profile.biz_name != nil
+                %h2
+                  ='Hosted by ' + @event.host.profile.biz_name
+                  -#TODO: use titleize
+                  -#TODO: FIX
             %h3 
               =@event.description
-            %h2#event-cost
-              =number_to_currency(@event.cost, :unit => "$")
+              -#
+                %h3#event-cost
+                  =number_to_currency(@event.cost, :unit => "$")
             %hr
             %h3#event-date
               #{@event.date.strftime("%A, %B %d")} at #{@event.time.strftime("%l:%M%p")}
@@ -84,7 +92,8 @@
                 %td followers
                 %td reviews
                 %td calendar
-        .span1.heart_this
+        -#
+          .span1.heart_this
           -# Fix 
           -# %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
           %heart{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'"}

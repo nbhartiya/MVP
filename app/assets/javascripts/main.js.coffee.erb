@@ -131,26 +131,31 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
     , (InkBlobs) ->
       console.log JSON.stringify(InkBlobs)
 
+      $('.active.item').remove()
+      $('.carousel-inner').empty()
+
       i=0
       while i< Object.keys(InkBlobs).length
         $scope.image="https://s3-us-west-1.amazonaws.com/simmrimages/#{InkBlobs[i].key}"
         console.log $scope.image
         $scope.eventImageUrls.push($scope.image)
-        $('.active.item').remove()
-        $('.carousel-inner').empty()
         if i == 0
-          filepicker.read InkBlobs[i].url,
-            base64encode: true
-          , (imgdata) ->
-            $('.events .carousel-inner').append("<div class = 'item active'><img src = 'data:image/*;base64,#{imgdata}'></div>")
-        else
-          filepicker.read InkBlobs[i].url,
-            base64encode: true
-          , (imgdata) ->
-            $('.events .carousel-inner').append("<div class = 'item'><img src = 'data:image/*;base64,#{imgdata}'></div>")
+          console.log($scope.eventImageUrls[i])
+          $('.events .carousel-inner').append("<div class = 'item active'><img src = #{$scope.eventImageUrls[i]}></div>")
+        else 
+          console.log('else')
+          $('.events .carousel-inner').append("<div class = 'item'><img src = #{$scope.eventImageUrls[i]}></div>")
         i++
-        $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> > </a>")
+      $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> > </a>")
 
+  $scope.removeImages = ->
+    eventImageUrl = document.getElementsByClassName("active")[0]
+    console.log eventImageUrl
+    eventImageUrl = eventImageUrl.innerHTML
+    eventImageUrl = eventImageUrl.substring(0, eventImageUrl.length-7)
+    #.substring(37)
+    console.log eventImageUrl
+    
   $scope.createEvent = (event) ->
     console.log($scope.eventImageUrls)
     if $scope.eventImageUrls?

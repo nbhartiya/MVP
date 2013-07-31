@@ -114,7 +114,7 @@ input.error-true  {
 
 // site wide styling
 .section-header{
-	margin: 20px 0;
+	margin: 10px 0;
 	.collapsed .caret	{
 		display: inline-block;
 		vertical-align: middle;
@@ -149,17 +149,18 @@ input.error-true  {
 .nav-container{
 	display: block;
 	width: 1170px;
-	margin: 50px auto 10px auto;
+	margin: 30px auto 0px auto;
 	font-size: 13px;
 	a{
 		color: black;
 	}
 	.nav{	
+		margin-bottom: 0;
 		.logo-and-location{
 			float: left;
 			.logo{
-			  	margin-top: -45px;
-				width: 44%;
+			  	margin-top: -20px;
+				width: 35%;
 			}
 			.logo, ul{
 				float: left;
