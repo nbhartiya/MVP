@@ -26,6 +26,8 @@ gem 'stripe'
 gem 'seed_dump'
 gem 'hirb'
 gem 'json'
+gem 'taps'
+gem 'pg'
 
 # not necessary yet...will change to this when everything working...
 # gem 'linkedin'
@@ -36,10 +38,6 @@ gem 'json'
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
-end
-
-group :production do
-  gem 'pg'
 end
 
 group :test do
