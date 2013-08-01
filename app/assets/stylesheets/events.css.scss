@@ -375,10 +375,11 @@ $main_orange: rgb(255, 178, 35);
 				}
 			}
 			.addthisevent-drop{
+				vertical-align: middle;
 				width: 32px;
 				height: 32px;
 				border-radius: 50%;
-				font-size: 12px;
+				font-size: 32px;
 				padding: 0;
 				text-align: center;
 				line-height: 32px;
@@ -386,7 +387,7 @@ $main_orange: rgb(255, 178, 35);
 				background: #ececec;
 				color: black;
 				border: none;
-				font-weight: 600;
+				margin: 0 auto;
 				font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; 
 			}
 			#atedrop1-drop{
