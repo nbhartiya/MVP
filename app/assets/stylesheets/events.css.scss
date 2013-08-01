@@ -275,6 +275,7 @@ $main_orange: rgb(255, 178, 35);
 			}
 			.progress, .bar{
 				height: 10px;
+				border-radius: 0;
 			}
 			.event-summary-top{
 				width: 310px;
@@ -283,13 +284,28 @@ $main_orange: rgb(255, 178, 35);
 				margin: 20px auto 10px auto;
 				display: table;
 				width: 100%;
-				.btn{
+				li{
+					float: left;
 					display: table-cell;
 					width: 24%;
 					margin: 0 0.5%;
 					-webkit-box-sizing: border-box;
 					-moz-box-sizing: border-box;    
 					box-sizing: border-box;
+				}
+				button{
+					margin: 0;
+				}
+				.btn{
+					width: 100%;
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+				}
+				.active .btn{
+					background: $main_orange;
+					color: white;
+					border-color: $main_orange;
 				}
 			}
 			a, a:visited, a:active{
@@ -381,6 +397,9 @@ $main_orange: rgb(255, 178, 35);
 					line-height: 50px;
 					td{
 						line-height: 50px;
+						a{
+							cursor: pointer;
+						}
 					}
 				}
 				td{
@@ -441,7 +460,7 @@ $main_orange: rgb(255, 178, 35);
 			width: 33px;
 			height: 33px;
 		}
-		.event-guests, .event-purchase, .event-details, .event-menu, .event-attendees-and-chatter, .event-host-story{
+		.event-guests, .event-purchase, .event-details, .event-menu, .event-attendees-and-chatter, .event-host-story, .host-followers{
 			overflow-y: auto;
 			height: 490px;
 		}
@@ -449,10 +468,10 @@ $main_orange: rgb(255, 178, 35);
 			height: 490px;
 			margin-top: -20px;
 		}
-		.event-purchase, .event-purchase-confirmation, .event-create-confirmation, .event-guests, .event-details, .event-menu, .event-attendees-and-chatter, .event-host-story, .event-create-form, .event-edit-form{
+		.event-purchase, .event-purchase-confirmation, .event-create-confirmation, .event-guests, .event-details, .event-menu, .event-attendees-and-chatter, .event-host-story, .host-followers, .event-create-form, .event-edit-form{
 			background: rgba(0,0,0,0.8);
 			padding: 30px;
-			.attendees, .comments{
+			.attendees, .comments, .followers{
 				margin-left: 0;
 				img{
 					width: 50px;
@@ -518,22 +537,22 @@ $main_orange: rgb(255, 178, 35);
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
-				width: 48%;
+				width: 50%;
 			}
 			#state{
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
-				width: 24%;
+				width: 25%;
 			}
 			#zipcode{
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
-				width: 25%;
+				width: 23%;
 			}
 			#credit_card_number{
-				width: 47%;
+				width: 50%;
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
@@ -542,28 +561,28 @@ $main_orange: rgb(255, 178, 35);
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
-				width: 16%;
+				width: 15%;
 				display: inline-block;
 			}
 			#expiration_month{
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
-				width: 49%;
+				width: 48.5%;
 				display: inline-block;
 			}
 			#expiration_year{
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
-				width: 46%;
+				width: 48.5%;
 				display: inline-block;
 			}
 			#expiration{
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
-				width: 34%;
+				width: 33%;
 				display: inline-block;
 			}
 			#security_code, #expiration{
@@ -637,7 +656,7 @@ $main_orange: rgb(255, 178, 35);
 					-webkit-box-sizing: border-box;
 					-moz-box-sizing: border-box;    
 					box-sizing: border-box;
-					width: 47%;
+					width: 50%;
 				}
 				#state{
 					-webkit-box-sizing: border-box;
@@ -649,7 +668,7 @@ $main_orange: rgb(255, 178, 35);
 					-webkit-box-sizing: border-box;
 					-moz-box-sizing: border-box;    
 					box-sizing: border-box;
-					width: 25%;
+					width: 23%;
 				}
 				#event-neighborhood{
 					-webkit-box-sizing: border-box;
@@ -701,7 +720,7 @@ $main_orange: rgb(255, 178, 35);
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
-				width: 49.25%;
+				width: 49.5%;
 			}
 			.guests{
 				margin: 0;

@@ -137,7 +137,7 @@ ul.parsley-error-list{
 				color: white;
 				.caption-text{
 					position: relative;
-					top: 50%;
+					top: 55%;
 					height: 200px;
 					margin-top: -45px;
 					text-overflow: ellipsis;
@@ -174,7 +174,7 @@ ul.parsley-error-list{
 		z-index: 50;
 	}
 	.copy{
-		margin-top: 80px;
+		margin-top: 60px;
     	-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;    
 		box-sizing: border-box;
@@ -185,7 +185,7 @@ ul.parsley-error-list{
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box;
 			h1{
-				font-size: 120px;
+				font-size: 85px;
 				line-height: 1em;
 				font-weight: 400;
 				color: white;
@@ -200,6 +200,19 @@ ul.parsley-error-list{
 				margin: 0;
 				text-align: center;
 			}
+			hr{
+				width: 65%;
+				margin: 25px auto;
+				border-bottom-width: 2px;
+			}
+			h3{
+				font-size: 24px;
+				line-height: 1.3em;
+				font-weight: 100;
+				color: white;
+				margin: 10px 0;
+				text-align: center;
+			}
 			p{
 			    text-align: center;
 			    color: white;
@@ -210,12 +223,12 @@ ul.parsley-error-list{
 				color: $main_orange;
 			}
 			a.sign-in-link:hover, a.sign-out-link:hover{
-				color: white;
+				color: darken($main_orange, 10%);
 				text-decoration: none;
 			}
 		}
 		.buttons{
-			margin: 20px auto 0 auto;
+			margin: 30px auto 0 auto;
 			width: 60%;
 			padding: 0;
 		}
@@ -282,6 +295,22 @@ ul.parsley-error-list{
 	}
 	a{
 		text-decoration: none;
+
+	}
+	ul{
+		display: block;
+		margin: 0;
+		li{
+			float: left;
+			cursor: pointer;
+			.foodie{
+				padding-top: 33px;
+				height: 100px;
+			}
+			img{
+				width: 50%;
+			}
+		}
 	}
 }
 
@@ -297,6 +326,14 @@ ul.parsley-error-list{
 #how-it-works{
 	text-align: center;
 	margin-left: 0;
+	a{
+		display: block;
+		font-size: 14px;
+		cursor: pointer;
+	}
+	p{
+		font-size: 18px;
+	}
 }
 
 #how-it-works-detail{
@@ -308,23 +345,22 @@ ul.parsley-error-list{
 	}
 }
 
+.how-it-works{
+	padding-top: 30px;
+}
+
 .how-it-works-event-infographic{
 	margin: 0 auto;
 	.step{
-		height: 240px;
-		width: 240px;
-		margin-top: 20px;
-		margin-left: 10px;
 		border-radius: 50%;
 		border: 25px $main_orange solid;
-		float: left;
 		h1{
+			padding-top: 10px;
 			font-size: 30px;
 			font-weight: 100;
 			text-align: center;
 		}
 		.step-description{
-			width: 220px;
 			padding: 10px;
 			p{
 				font-size: 14px;
@@ -333,6 +369,54 @@ ul.parsley-error-list{
 				text-align: center;
 				vertical-align: middle;
 			}
+		}
+	}
+	.step.browse{
+		height: 240px;
+		width: 240px;
+		border-width: 12px;
+		.step-description{
+			width: 220px;
+			padding-top: 20px;
+		}
+	}
+	.step.register{
+		height: 300px;
+		width: 300px;
+		border-width: 26px;
+		.step-description{
+			width: 280px;
+			padding-top: 45px;
+		}
+	}
+	.step.tilt{
+		height: 200px;
+		width: 200px;
+		border-width: 18px;
+		.step-description{
+			width: 180px;
+			padding-top: 5px;
+		}
+	}
+	.step.return{
+		height: 280px;
+		width: 280px;
+		border-width: 15px;
+		.step-description{
+			width: 260px;
+			padding-top: 20px;
+		}
+	}
+	.step.get-started{
+		height: 150px;
+		width: 150px;
+		border-width: 20px;
+		.step-description{
+			width: 190px;
+			text-align: center;
+			font-size: 28px;
+			line-height: 1.5em;
+			padding-top: 20px;
 		}
 	}
 }

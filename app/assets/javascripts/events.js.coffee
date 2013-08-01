@@ -395,6 +395,10 @@ neighborhoodsSF = Table: [
 ,
     name: "Westwood Park"
     value: "Westwood Park"
+, 
+    name: "Other"
+    value: "Other"
+,
 ]
 
 neighborhoodNames = ""

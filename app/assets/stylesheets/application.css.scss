@@ -59,6 +59,14 @@ a:active{
 	margin: 0 0 0 -2px;
 }
 
+.btn-warning{
+	background: $main_orange;
+}
+
+.btn-warning:hover{
+	background: darken($main_orange, 5%);
+}
+
 
 // general purpose classes
 
@@ -242,10 +250,10 @@ input.error-true  {
 				margin: 0;
 				display: inline-block;
 				margin-top: -7px;
-				margin-right: 10px;
+				margin-left: 10px;
 				input{
 					font-size: 12px;
-					width: 100px;
+					width: 170px;
 				}
 				input:focus{
 					border: 1px solid $main_orange;

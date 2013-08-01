@@ -1,13 +1,16 @@
 .container.nav-container
   .row.nav
     .span4.logo-and-location
-      = link_to image_tag("logo_final.png", :border=>0), '/home/index', :class => "logo"
+      = link_to image_tag("logo_final.png", :border=>0), '/events', :class => "logo"
       %ul
         %li
           %a.city{:href => "#", "data-toggle" => "tooltip", :href => "#", :title => "We're currently only in SF, but stay tuned for other cities!", "data-placement" => "right"} San Francisco
 
     .span8.nav-right
       %ul
+        %li.pull-right.input-append
+          %input#appendedInputButton{:type => 'text', :placeholder => "Search Events or Businesses"}
+          %button.btn.search <i class = "icon-search"></i>
         -if user_signed_in? == false
           %li.pull-right#sign-up-header-link
             = link_to "Sign Up", "#sign_up", :"data-toggle" => "modal"
@@ -30,10 +33,6 @@
           =link_to "Create an Event", new_event_path
         %li.pull-right
           %a{:href =>"/events"}Browse Events
-        -#
-          %li.pull-right.input-append
-            %input#appendedInputButton{:type => 'text', :placeholder => "Search Anything"}
-            %button.btn.search <i class = "icon-search"></i>
 
   #sign_up.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
     .modal-header
