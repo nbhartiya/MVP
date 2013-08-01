@@ -147,7 +147,7 @@ $main_orange: rgb(255, 178, 35);
 			margin: 50px auto 0;
 			position: absolute;
 			left: 350px;
-			top: -30px;
+			top: -32px;
 			overflow: hidden;
 		}
 		#ribbon.preview{
@@ -184,8 +184,8 @@ $main_orange: rgb(255, 178, 35);
 		#ribbon .base {
 			height: 55px;
 			width: 100px;
-			
-			background: rgba(80, 80, 80, 1);
+			background: url(/assets/black-Linen_@2X.png);
+			//background: rgba(80, 80, 80, 1);
 			position: relative;
 			z-index: 2;
 			h3{
@@ -206,8 +206,8 @@ $main_orange: rgb(255, 178, 35);
 			width: 86px;
 			left: 6px;
 			height: 92px;
-			border-left: 1px dashed rgba(0, 0, 0, 1);
-			border-right: 1px dashed rgba(0, 0, 0, 1);
+			//border-left: 1px dashed rgba(0, 0, 0, 1);
+			//border-right: 1px dashed rgba(0, 0, 0, 1);
 		}
 
 		#ribbon .base:before {
@@ -224,7 +224,8 @@ $main_orange: rgb(255, 178, 35);
 		#ribbon .left_corner {
 			width: 100px;
 			height: 100px;
-			background: rgba(80, 80, 80, 1);
+			background: url(/assets/black-Linen_@2X.png);
+			//background: rgba(80, 80, 80, 1);
 			position: absolute;
 			bottom: 20px;
 			left: -50px;
@@ -240,7 +241,8 @@ $main_orange: rgb(255, 178, 35);
 		#ribbon .right_corner {
 			width: 100px;
 			height: 100px;
-			background: rgba(80, 80, 80, 1);
+			background: url(/assets/black-Linen_@2X.png);
+			//background: rgba(80, 80, 80, 1);
 			position: absolute;
 			bottom: 20px;
 			right: -50px;
@@ -253,16 +255,32 @@ $main_orange: rgb(255, 178, 35);
 			transform: rotate(30deg);
 		}
 		.event-summary {
-		    background: rgba(0,0,0,.8);
+		    background: rgba(0, 0, 0,.8);
 		    padding: 30px;
 		    -webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box;
+			.event-summary-logistics-container{
+				padding: 5px 0;
+				margin: 15px -37px 25px -37px;
+				background: url(/assets/black-Linen_@2X.png);
+			}
+			.event-summary-logistics{
+				//border-top: 1px dashed rgb(100, 100, 100);
+				//border-bottom: 1px dashed rgb(100, 100, 100);
+				background: url(/assets/black-Linen_@2X.png);
+				//background: rgb(80, 80, 80);
+				padding: 10px 30px;
+				margin: 0px;
+			}
+			.progress, .bar{
+				height: 10px;
+			}
 			.event-summary-top{
 				width: 310px;
 			}
 			.event-button-group{
-				margin: 20px auto 40px auto;
+				margin: 20px auto 10px auto;
 				display: table;
 				width: 100%;
 				.btn{
@@ -323,12 +341,20 @@ $main_orange: rgb(255, 178, 35);
 			}
 			.number-of-seats{
 				margin-top: 0;
+				margin-bottom: 15px;
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box; 
 				width: 75%;
 			}
 			.event-go-button{
+				width: 23%;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box; 
+				margin-top: -8.5px;
+			}
+			.grab-seats-button{
 				width: 100%;
 				padding: 7px 0;
 				-webkit-box-sizing: border-box;
@@ -401,6 +427,7 @@ $main_orange: rgb(255, 178, 35);
 			    text-align: right;
 			    color: white;
 			    margin-top: 0px;
+			    margin-bottom: 0px;
 			    font-size: 12px;
 			}
 		}
