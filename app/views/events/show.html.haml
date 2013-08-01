@@ -15,7 +15,6 @@
 
     .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}'"}
       .event-registration.row
-        .span1
         .span5
           #ribbon
             .inset
@@ -30,8 +29,9 @@
               %h1
                 =@event.title
               -if @event.host.profile.biz_name != nil
-                %h2
-                  ='Hosted by ' + @event.host.profile.biz_name
+                %h2.host Hosted by 
+                %a.host{:href => 'http://www.simmr.co/profiles/host_id'}
+                  =' ' + @event.host.profile.biz_name
                   -#TODO: use titleize
                   -#TODO: FIX
             %h3 
@@ -46,33 +46,34 @@
             -# upon registration show
               %a{:href => "{{mapUrl()}}"} 123 Mission Street <br> San Francisco, CA 94107
             .event-button-group
-              %button.btn.btn-inverse Details
-              %button.btn.btn-inverse Menu
-              %button.btn.btn-inverse Attendees and Chatter
-              %button.btn.btn-inverse Host Story
+              %button.btn{'ng-click' => 'info = "details"'} Details
+              %button.btn{'ng-click' => 'info = "menu"'} Menu
+              %button.btn{'ng-click' => 'info = "chatter"'} Attendees
+              %button.btn{'ng-click' => 'info = "story"'} Host Story
             %p 
               =@event.seats_left
               seats left
             .progress.progress-warning
               .bar{:style => "width: #{@event.percent_full}%"}
-            -if user_signed_in? == false
-              .btn.btn-warning.standalone-button{:"data-toggle" => "modal", :href=>"#sign_up"} Sign Up
-              %a.btn.btn-warning.standalone-button{:"data-toggle" =>"modal", :href=>"#sign_in"} Sign In
-            -if user_signed_in?
-              %select.number-of-seats{'ng-model' => 'num_guests'}
-                %option{:value => ''} Number of Seats
-                %option{:value => 1} 1 seat
-                - (@event.seats_left).times do |s|
-                  %option{:value => s+2} #{s+2} seats
-              .btn.btn-warning.event-go-button{'ng-click' => 'showPayment()', 'ng-disabled' => 'num_guests == 0 || num_guests == nil'} Go
+            .btn.btn-warning.event-go-button{'ng-click' => 'showPayment()'} Grab Seats
+            / -if user_signed_in? == false
+            /   .btn.btn-warning.standalone-button{:"data-toggle" => "modal", :href=>"#sign_up"} Sign Up
+            /   %a.btn.btn-warning.standalone-button{:"data-toggle" =>"modal", :href=>"#sign_in"} Sign In
+            / -if user_signed_in?
+            /   %select.number-of-seats{'ng-model' => 'num_guests'}
+            /     %option{:value => ''} Number of Seats
+            /     %option{:value => 1} 1 seat
+            /     - (@event.seats_left).times do |s|
+            /       %option{:value => s+2} #{s+2} seats
+            /   .btn.btn-warning.event-go-button{'ng-click' => 'showPayment()', 'ng-disabled' => 'num_guests == 0 || num_guests == nil'} Go
             %table.event-sharing
-              %tr
+              %tr.icons
                 %td
-                  %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
+                  %a.sb.heart.circle.no-border.no-shadow{:href=>"#"}
                 %td
-                  %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
+                  %a.sb.star.circle.no-border.no-shadow{:href=>"#"}
                 %td
-                  %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
+                  %a.sb.facebook.circle.no-border.no-shadow{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
                 %td
                   %a.addthisevent{:href => "http://example.com/link-to-your-event", :title => "Add to Calendar"}
                     Add
@@ -102,7 +103,31 @@
           -# %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
           %heart{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'"}
         .span1
-        .span4 
+        .span5
+          .event-details{'ng-show' => 'info=="details"'}
+            %h3 Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait
+          .event-menu{'ng-show' => 'info=="menu"'}
+            %h3 Event Menu
+            %p
+              =@event.menu_text
+          .event-attendees-and-chatter{'ng-show' => 'info=="chatter"'}
+            .attendees
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Christine Lee", "class" => "one-attendee", "data-placement" => "bottom"
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Michael Makarov", "class" => "one-attendee", "data-placement" => "bottom"
+              %p 
+                -for guest in @event.guests
+                  = guest.first_name + " " + guest.last_name
+            .row.comments
+              .fb-comments{"data-colorscheme" => "dark", "data-href" => "#{request.url}", "data-num-posts" => "5", "data-width" => "410"}
+          .event-host-story{'ng-show' => 'info=="story"'}
+            %h3
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait
+              =@event.host.profile.story
+
+
           .event-guests.clearfix{'ng-show' => 'payment==1', 'ng-init'=> "cost='#{@event.cost}'"}
             %h1 Total: ${{total()}}
             %hr
@@ -125,64 +150,67 @@
             %h2 Thank you for your reservation! You will receive an email confirmation shortly.
             %button.btn.btn-warning#ok-button{'ng-click' => "payment=0", 'ng-hide' => 'payment==0'} Great!
         .span1
+-#
   .container
-    .row
-      .span2.scroll-menu.event
-        %ul.nav.nav-list.scroll-menu-items{"data-spy" => "affix", "data-offset-top" => "800", "data-offset-bottom"=> "300"}
-          %li 
-            %a{:href=>"#about"} Host Story
-          %li 
-            %a{:href=>"#menu"} Menu
-          %li   
-            %a{:href=>"#chatter"} Chatter
+    .row.section-header#event-detail
+      %a.collapsed{:href => "#event-detail", 'data-target'=>"#event-detail-content", 'data-toggle'=>"collapse"} Details <span class="caret"></span>
+  .row.event-detail
+    .container
+      .span1
       .span10
-        .row.section-header#about
-          .span10#host-story
-            %a{:href => "#host-story", 'data-target'=>"#host-story-detail", 'data-toggle'=>"collapse"} Our Story <span class="caret"></span>
-        .row.host-story
-          .span10
-            #host-story-accordion.accordion
-              #host-story-detail.accordion-body.collapse.in
-                .accordion-inner
-                  %p
-                    =@event.host.profile.story
+        #event-detail-accordion.accordion
+        #event-detail-content.accordion-body.collapse
+          .accordion-inner
+            %p
+              =@event.host.profile.story
               -#=@event.host.profile.story
               -# Need to make sure a host story exists for that host before they can create the event...
-      .row
-        .span10.offset2
-          .row.section-header#menu
-            .span10#event-menu
-              %a{:href => "#event-menu", 'data-target'=>"#event-menu-detail", 'data-toggle'=>"collapse"} The Menu <span class="caret"></span>
-          .row.event-menu
-            .span10
-              #event-menu-accordion.accordion
-                #event-menu-detail.accordion-body.collapse.in
-                  .accordion-inner
-                    %p
-                      =@event.menu_text
-          .row.section-header#chatter
-            .span10#event-chatter
-              %a{:href => "#event-chatter", 'data-target'=>"#event-chatter-detail", 'data-toggle'=>"collapse"} Chatter <span class="caret"></span>
-          .row.event-chatter
-            .span10
-              #event-chatter-accordion.accordion
-                #event-chatter-detail.accordion-body.collapse.in
-                  .accordion-inner
-                    .row
-                      .span10.attendees
-                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
-                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
-                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
-                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Christine Lee", "class" => "one-attendee", "data-placement" => "bottom"
-                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Michael Makarov", "class" => "one-attendee", "data-placement" => "bottom"
-                        -#
-                          %p 
-                            -for guest in @event.guests
-                              = guest.first_name + " " + guest.last_name
-                              %p
-                    .row
-                      .span10.comments
-                        .fb-comments{"data-href" => "#{request.url}", "data-num-posts" => "10", "data-width" => "910"}
+  .container
+    .row.section-header
+      .span12#host-story
+      %a.collapsed{:href => "#host-story", 'data-target'=>"#host-story-detail", 'data-toggle'=>"collapse"} Our Story <span class="caret"></span>
+  .row.host-story
+    .container
+      #host-story-accordion.accordion
+        #host-story-detail.accordion-body.collapse
+          .accordion-inner
+            %p
+              =@event.host.profile.story
+              -#=@event.host.profile.story
+              -# Need to make sure a host story exists for that host before they can create the event...
+  .container
+    .row.section-header#event-menu
+      %a.collapsed{:href => "#event-menu", 'data-target'=>"#event-menu-detail", 'data-toggle'=>"collapse"} The Menu <span class="caret"></span>
+  .row.event-menu
+    .container
+      #event-menu-accordion.accordion
+        #event-menu-detail.accordion-body.collapse
+          .accordion-inner
+            %p
+              =@event.menu_text
+  .container
+    .row.section-header#event-chatter
+      %a.collapsed{:href => "#event-chatter", 'data-target'=>"#event-chatter-detail", 'data-toggle'=>"collapse"} Chatter <span class="caret"></span>
+  .row.event-chatter
+    .container
+      #event-chatter-accordion.accordion
+        #event-chatter-detail.accordion-body.collapse
+          .accordion-inner
+            .row
+              .attendees
+                =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
+                =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
+                =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
+                =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Christine Lee", "class" => "one-attendee", "data-placement" => "bottom"
+                =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Michael Makarov", "class" => "one-attendee", "data-placement" => "bottom"
+                -#
+                  %p 
+                    -for guest in @event.guests
+                      = guest.first_name + " " + guest.last_name
+                      %p
+            .row
+              .comments
+                .fb-comments{"data-href" => "#{request.url}", "data-num-posts" => "10", "data-width" => "910"}
 
 
 -#

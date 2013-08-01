@@ -30,9 +30,10 @@
           =link_to "Create an Event", new_event_path
         %li.pull-right
           %a{:href =>"/events"}Browse Events
-        %li.pull-right.input-append
-          %input#appendedInputButton{:type => 'text', :placeholder => "Search Events"}
-          %button.btn.search <i class = "icon-search"></i>
+        -#
+          %li.pull-right.input-append
+            %input#appendedInputButton{:type => 'text', :placeholder => "Search Anything"}
+            %button.btn.search <i class = "icon-search"></i>
 
   #sign_up.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
     .modal-header

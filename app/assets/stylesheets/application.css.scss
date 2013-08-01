@@ -147,20 +147,21 @@ input.error-true  {
 }
 
 .nav-container{
+	border-bottom: 1px solid rgb(150, 150, 150);
 	display: block;
 	width: 1170px;
-	margin: 30px auto 0px auto;
-	font-size: 13px;
+	margin: 10px auto 20px auto;
+	font-size: 12px;
 	a{
-		color: black;
+		color: rgb(150, 150, 150);
 	}
 	.nav{	
 		margin-bottom: 0;
 		.logo-and-location{
 			float: left;
 			.logo{
-			  	margin-top: -20px;
-				width: 35%;
+			  	margin-top: 1px;
+				width: 25%;
 			}
 			.logo, ul{
 				float: left;
@@ -171,8 +172,16 @@ input.error-true  {
 				list-style: none;
 				float: left;
 			}
+			.tooltip-inner{
+				background: none;
+/*				border: 1px solid rgb(150, 150, 150);*/
+				color: rgb(130, 130, 130);
+			}
+			.tooltip-arrow{
+				border-right-color: white;
+			}
 			a:hover{
-				color: black;
+				color: rgb(130, 130, 130);
 				background: none;
 			}
 			a:hover, a:visited, a:active, a:focus{
@@ -182,7 +191,7 @@ input.error-true  {
 		}
 		ul{
 			list-style: none;
-			margin: 30px 0 0 10px;
+			margin: 40px 0 0 10px;
 			.user-nav-control{
 				list-style: none;
 				margin: 0;
@@ -190,9 +199,10 @@ input.error-true  {
 					a{
 						margin: 0 10px;
 						padding: 0;
+						color: rgb(150, 150, 150);
 					}
 					a:hover{
-						color: black;
+						color: rgb(130, 130, 130);
 						background: none;
 					}
 					a:hover, a:visited, a:active, a:focus{
@@ -200,42 +210,46 @@ input.error-true  {
 						outline: none;
 					}
 					.dropdown-menu{
-						margin: 10px 0 0 0;
+						margin: 5px 0 0 0;
 						min-width: 120px;
 						.dropitem{
-							font-size: 13px;
+							font-size: 12px;
 							a:link, a:visited{
-								padding: 5px;
+								padding: 2px;
 							}
 							a:hover, a:active, a:focus{
-			 					color: white;
-			 					background-color: $main_orange;
-			 					background-image: none;
+			 					color: rgb(130, 130, 130);
+								background: none;
 							}
 						}
 					}
 				}
 			}
 			li a:link, a:visited{
-				padding: 10px;
+				padding: 5px;
 				margin: 0 5px;
 			}
 			li a:hover, a:active{
-				color: white;
-				background-color: $main_orange;
+				color: rgb(130, 130, 130);
+				background: none;
 				text-decoration: none;
 			}
 			li a:focus{
 				outline: none;
 			}
-			input{
-				width: 120px;
-			}
 			.input-append{
 				margin: 0;
 				display: inline-block;
-				margin-top: -4px;
+				margin-top: -7px;
 				margin-right: 10px;
+				input{
+					font-size: 12px;
+					width: 100px;
+				}
+				input:focus{
+					border: 1px solid $main_orange;
+					box-shadow: none;
+				}
 			}
 		}
 		.nav-right{
@@ -253,48 +267,32 @@ input.error-true  {
 // footer styling
 
 .footer{
-	background: black;
-	margin-top: 40px;
-	color: white;
-	padding: 20px 0;
+	padding: 20px 0 10px 0;
+	.footer-content{
+		border-top: 1px solid rgb(150, 150, 150);
+		margin: 0;
+		padding: 5px 0 0 0;
+	}
 	ul{
 		list-style: none;
 		margin: 0;
-	}
-	h3{
-		font-size: 20px;
-		font-weight: 100;
-	}
-	p{
-		font-size: 14px;
-		line-height: 1em;
-	}
-	a:link, a:visited{
-		text-decoration: none;
-		color: white;
-		font-size: 14px;
-		line-height: 1.5em;
-	}
-	a:hover, a:active{
-		color: rgb(200, 200, 200);
-	}
-	table{
-		margin: 0 0 20px 0;
-		td{
-			padding: 0 10px 0 0;
+		li{
+			color: rgb(150, 150, 150);
+			float: left;
+			font-size: 12px;
+			padding: 0 15px;			
+		}
+		li.social{
+			padding: 0 5px;
 		}
 	}
-	.fb-like{
-		margin-bottom: 30px;
+	a:link, a:visited{
+		color: rgb(150, 150, 150);
+		font-size: 12px;
+		text-decoration: none;
 	}
-}
-
-.footer-logo{
-	padding-top: 30px;
-	p{
-		font-size: 10px;
-		text-align: center;
-		font-weight: 100;
+	a:hover, a:active{
+		color: rgb(130, 130, 130);
 	}
 }
 

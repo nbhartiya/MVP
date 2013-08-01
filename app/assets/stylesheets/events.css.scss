@@ -72,7 +72,7 @@ $main_orange: rgb(255, 178, 35);
 // event profile styling
 
 .event-profile{
-	height: 580px;
+	height: 600px;
 	position: relative;
 	z-index: 0;
 	.btn#remove-image{
@@ -88,7 +88,7 @@ $main_orange: rgb(255, 178, 35);
 	    width: 100%;
 	    z-index: -1;
 		.carousel-inner{
-			height: 580px;
+			height: 600px;
 			width: auto;
 			position: relative;
 			z-index: 1;
@@ -146,7 +146,7 @@ $main_orange: rgb(255, 178, 35);
 			height: 110px;
 			margin: 50px auto 0;
 			position: absolute;
-			left: 450px;
+			left: 350px;
 			top: -30px;
 			overflow: hidden;
 		}
@@ -155,7 +155,7 @@ $main_orange: rgb(255, 178, 35);
 			top: 5px;
 		}
 		#ribbon .inset {
-			width: 155px;
+			width: 150px;
 			height: 55px;
 			position: absolute;
 			top: -50px;
@@ -262,7 +262,17 @@ $main_orange: rgb(255, 178, 35);
 				width: 310px;
 			}
 			.event-button-group{
-				margin: 10px auto;
+				margin: 20px auto 40px auto;
+				display: table;
+				width: 100%;
+				.btn{
+					display: table-cell;
+					width: 24%;
+					margin: 0 0.5%;
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+				}
 			}
 			a, a:visited, a:active{
 			font-size: 16px;
@@ -271,8 +281,19 @@ $main_orange: rgb(255, 178, 35);
 			margin: 0;
 			text-decoration: none;
 			}
+
+			a.host{
+				font-size: 20px;
+				line-height: 1.5em;
+				font-weight: 100;
+				color: white;
+				margin: 0;
+			}
 			a:hover{
 				color: rgb(200, 200, 200);
+			}
+			.host{
+				display: inline;
 			}
 
 			h1{
@@ -308,11 +329,15 @@ $main_orange: rgb(255, 178, 35);
 				width: 75%;
 			}
 			.event-go-button{
-				width: 23%;
+				width: 100%;
+				padding: 7px 0;
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box; 
 				margin-top: -5px;
+				margin-bottom: 15px;
+				font-size: 20px;
+				font-weight: 300;
 			}
 			.standalone-button{
 				width: 49%;
@@ -326,9 +351,17 @@ $main_orange: rgb(255, 178, 35);
 				width: 100%;
 				margin-left: auto;
 				margin-right: auto;
+				tr.icons{
+					line-height: 50px;
+					td{
+						line-height: 50px;
+					}
+				}
 				td{
 					text-align: center;
 					width: 25%;
+					font-weight: 100;
+					line-height: 15px;
 					.btn{
 						width: 32px;
 						height: 32px;
@@ -337,7 +370,7 @@ $main_orange: rgb(255, 178, 35);
 						padding: 0;
 						text-align: center;
 						line-height: 32px;
-						font-weight: 900;
+						font-weight: 400;
 					}
 				}
 			}
@@ -350,8 +383,8 @@ $main_orange: rgb(255, 178, 35);
 				text-align: center;
 				line-height: 32px;
 				font-weight: 900;
-				background: rgb(255, 150, 0);
-				color: white !important;
+				background: #ececec;
+				color: black;
 				border: none;
 				font-weight: 600;
 				font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; 
@@ -380,38 +413,50 @@ $main_orange: rgb(255, 178, 35);
 			width: 33px;
 			height: 33px;
 		}
-		.event-guests{
+		.event-guests, .event-purchase, .event-details, .event-menu, .event-attendees-and-chatter, .event-host-story{
 			overflow-y: auto;
-			height: 450px;
-		}
-		.event-purchase{
-			height: 450px;
-			overflow-y: auto;
+			height: 490px;
 		}
 		.event-create-form{
-			height: 450px;
+			height: 490px;
 			margin-top: -20px;
 		}
-		.event-purchase, .event-purchase-confirmation, .event-create-confirmation, .event-guests, .event-create-form, .event-edit-form{
+		.event-purchase, .event-purchase-confirmation, .event-create-confirmation, .event-guests, .event-details, .event-menu, .event-attendees-and-chatter, .event-host-story, .event-create-form, .event-edit-form{
 			background: rgba(0,0,0,0.8);
 			padding: 30px;
+			.attendees, .comments{
+				margin-left: 0;
+				img{
+					width: 50px;
+					height: auto;
+					margin: 0 5px;
+				}
+			}
+			.comments{
+				margin-top: 10px;
+				padding-top: 10px;
+				margin-left: 0;
+			}
+			.fb-comments{
+				margin: 0 auto;
+			}
 			h1{
 				font-size: 30px;
-				line-height: 1.2em;
+				line-height: 1.5em;
 				font-weight: 100;
 				color: white;
 				margin: 0;
 			}
 			h2{
 				font-size: 20px;
-				line-height: 1.2em;
+				line-height: 1.5em;
 				font-weight: 100;
 				color: white;
 				margin-bottom: 20px;
 			}
 			h3{
 				font-size: 16px;
-				line-height: 1.2em;
+				line-height: 1.5em;
 				color: white;
 				font-weight: 100;
 			}
@@ -710,21 +755,21 @@ $main_orange: rgb(255, 178, 35);
 		}
 		h1{
 			font-size: 30px;
-			line-height: 1.2em;
+			line-height: 1.5em;
 			font-weight: 100;
 			color: white;
 			margin: 0;
 		}
 		h2{
 			font-size: 20px;
-			line-height: 1.2em;
+			line-height: 1.5em;
 			font-weight: 100;
 			color: white;
 			margin: 0;
 		}
 		h3{
 			font-size: 16px;
-			line-height: 1.2em;
+			line-height: 1.5em;
 			font-weight: 100;
 			color: white;
 			margin: 0;
@@ -829,7 +874,7 @@ $main_orange: rgb(255, 178, 35);
 		padding: 30px;
 		h1{
 			font-size: 30px;
-			line-height: 1.2em;
+			line-height: 1.5em;
 			font-weight: 100;
 			color: white;
 			margin: 0;
@@ -837,14 +882,14 @@ $main_orange: rgb(255, 178, 35);
 		}
 		h2{
 			font-size: 20px;
-			line-height: 1.2em;
+			line-height: 1.5em;
 			font-weight: 100;
 			color: white;
 			margin-bottom: 20px;
 		}
 		h3, a, a:hover, a:visited{
 			font-size: 14px;
-			line-height: 1.2em;
+			line-height: 1.5em;
 			color: white;
 			font-weight: 100;
 			text-decoration: none;

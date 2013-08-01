@@ -1,32 +1,26 @@
 .footer.row
   .container
-    .span1
-    .span2.about-links
+    .span12.footer-content
       %ul
-        %li
-          %h3 About
         %li
           %a{:href => "#"} Blog
         %li
           %a{:href => "/home/teamandjobs"} Team & Jobs
         %li
           %a{:href => "/home/tos"} Terms of Service
-      %br
-      %h3 Contact
-      %p 144 2nd Street
-      %p San Francisco, CA
-      %p 415-939-4152
-    .span6.connect-with-us
-      %ul
         %li
-          %h3 Connect
-          %table.social-media
-            %tr#facebook-footer
-              .fb-like{"data-colorscheme" => "dark", "data-font" => "verdana", "data-href" => "http://www.facebook.com/simmrco", "data-send" => "true", "data-show-faces" => "true", "data-width" => "360px"}
-            %tr#twitter-footer
-              %a.twitter-timeline{:href => "https://twitter.com/simmrco", :'data-widget-id' => "354072241715175424", :"data-chrome" => "noborders transparent", :"data-tweet-limit" => "2"} Tweets by @simmrco
-              :javascript
-                !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-    .span2.footer-logo
-      =image_tag("logo_final_white.png")
-    .span1
+          %a{:href => "mailto:hello@simmr.co"} Contact
+      %ul.pull-right
+        %li
+          made (lovingly) in San Francisco, CA
+        %li.social
+          .fb-like{"data-href" => "http://www.facebook.com/simmrco", "data-layout" => "button_count", "data-send" => "true", "data-show-faces" => "true", "data-width" => "100"}
+        %li.social
+          %a.twitter-share-button{"data-text" => "become &gt; a customer by engaging with your fave food businesses and being the 1st to discover new ones :)", "data-url" => "http://www.simmr.co", "data-via" => "simmrco", "data-count" => "none", :href => "https://twitter.com/share"} Tweet
+          :javascript
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+        %li.social
+          %a.twitter-follow-button{"data-show-count" => "false", :href => "https://twitter.com/simmrco"} Follow @simmrco
+          :javascript
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+        
