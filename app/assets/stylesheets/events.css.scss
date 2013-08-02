@@ -72,7 +72,7 @@ $main_orange: rgb(255, 178, 35);
 // event profile styling
 
 .event-profile{
-	height: 520px;
+	height: 600px;
 	position: relative;
 	z-index: 0;
 	.btn#remove-image{
@@ -88,7 +88,7 @@ $main_orange: rgb(255, 178, 35);
 	    width: 100%;
 	    z-index: -1;
 		.carousel-inner{
-			height: 520px;
+			height: 600px;
 			width: auto;
 			position: relative;
 			z-index: 1;
@@ -132,17 +132,30 @@ $main_orange: rgb(255, 178, 35);
 	    -webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;    
 		box-sizing: border-box;
+		.preview-label{
+			background: $main_orange;
+			margin-top: -10px;
+			margin-bottom: 10px;
+			color: white;
+			padding: 2px 5px;
+			display: inline-block;
+		}
+
 		#ribbon {
 			width: 180px;
 			height: 110px;
 			margin: 50px auto 0;
 			position: absolute;
-			left: 450px;
-			top: -30px;
+			left: 350px;
+			top: -32px;
 			overflow: hidden;
 		}
+		#ribbon.preview{
+			right: -380px;
+			top: 5px;
+		}
 		#ribbon .inset {
-			width: 155px;
+			width: 150px;
 			height: 55px;
 			position: absolute;
 			top: -50px;
@@ -171,16 +184,8 @@ $main_orange: rgb(255, 178, 35);
 		#ribbon .base {
 			height: 55px;
 			width: 100px;
-			
-			background: rgba(100, 100, 100, 1);
-			background: -moz-linear-gradient(top,  rgba(100, 100, 100, 1) 0%, rgba(0, 0, 0, 1) 100%);
-			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(100, 100, 100, 1)), color-stop(100%,rgba(0, 0, 0, 1)));
-			background: -webkit-linear-gradient(top,  rgba(100, 100, 100, 1) 0%,rgba(0, 0, 0, 1) 100%);
-			background: -o-linear-gradient(top,  rgba(100, 100, 100, 1) 0%,rgba(0, 0, 0, 1) 100%);
-			background: -ms-linear-gradient(top,  lrgba(100, 100, 100, 1) 0%,rgba(0, 0, 0, 1) 100%);
-			background: linear-gradient(top,  rgba(100, 100, 100, 1) 0%,rgba(0, 0, 0, 1) 100%);
-			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c73b3c', endColorstr='#b8201f',GradientType=0 );
-
+			background: url(/assets/black-Linen_@2X.png);
+			//background: rgba(80, 80, 80, 1);
 			position: relative;
 			z-index: 2;
 			h3{
@@ -201,8 +206,8 @@ $main_orange: rgb(255, 178, 35);
 			width: 86px;
 			left: 6px;
 			height: 92px;
-			border-left: 1px dashed rgba(0, 0, 0, 1);
-			border-right: 1px dashed rgba(0, 0, 0, 1);
+			//border-left: 1px dashed rgba(0, 0, 0, 1);
+			//border-right: 1px dashed rgba(0, 0, 0, 1);
 		}
 
 		#ribbon .base:before {
@@ -219,7 +224,8 @@ $main_orange: rgb(255, 178, 35);
 		#ribbon .left_corner {
 			width: 100px;
 			height: 100px;
-			background: rgba(0, 0, 0, 1);
+			background: url(/assets/black-Linen_@2X.png);
+			//background: rgba(80, 80, 80, 1);
 			position: absolute;
 			bottom: 20px;
 			left: -50px;
@@ -235,7 +241,8 @@ $main_orange: rgb(255, 178, 35);
 		#ribbon .right_corner {
 			width: 100px;
 			height: 100px;
-			background: rgba(0, 0, 0, 1);
+			background: url(/assets/black-Linen_@2X.png);
+			//background: rgba(80, 80, 80, 1);
 			position: absolute;
 			bottom: 20px;
 			right: -50px;
@@ -248,16 +255,58 @@ $main_orange: rgb(255, 178, 35);
 			transform: rotate(30deg);
 		}
 		.event-summary {
-		    background: rgba(0,0,0,.8);
+		    background: rgba(0, 0, 0,.8);
 		    padding: 30px;
 		    -webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box;
+			.event-summary-logistics-container{
+				padding: 5px 0;
+				margin: 15px -37px 25px -37px;
+				background: url(/assets/black-Linen_@2X.png);
+			}
+			.event-summary-logistics{
+				//border-top: 1px dashed rgb(100, 100, 100);
+				//border-bottom: 1px dashed rgb(100, 100, 100);
+				background: url(/assets/black-Linen_@2X.png);
+				//background: rgb(80, 80, 80);
+				padding: 10px 30px;
+				margin: 0px;
+			}
+			.progress, .bar{
+				height: 10px;
+				border-radius: 0;
+			}
 			.event-summary-top{
 				width: 310px;
 			}
-			.preview{
-				float: right;
+			.event-button-group{
+				margin: 20px auto 10px auto;
+				display: table;
+				width: 100%;
+				li{
+					float: left;
+					display: table-cell;
+					width: 24%;
+					margin: 0 0.5%;
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+				}
+				button{
+					margin: 0;
+				}
+				.btn{
+					width: 100%;
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+				}
+				.active .btn{
+					background: $main_orange;
+					color: white;
+					border-color: $main_orange;
+				}
 			}
 			a, a:visited, a:active{
 			font-size: 16px;
@@ -266,8 +315,19 @@ $main_orange: rgb(255, 178, 35);
 			margin: 0;
 			text-decoration: none;
 			}
+
+			a.host{
+				font-size: 20px;
+				line-height: 1.5em;
+				font-weight: 100;
+				color: white;
+				margin: 0;
+			}
 			a:hover{
 				color: rgb(200, 200, 200);
+			}
+			.host{
+				display: inline;
 			}
 
 			h1{
@@ -297,6 +357,7 @@ $main_orange: rgb(255, 178, 35);
 			}
 			.number-of-seats{
 				margin-top: 0;
+				margin-bottom: 15px;
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box; 
@@ -307,7 +368,18 @@ $main_orange: rgb(255, 178, 35);
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box; 
+				margin-top: -8.5px;
+			}
+			.grab-seats-button{
+				width: 100%;
+				padding: 7px 0;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box; 
 				margin-top: -5px;
+				margin-bottom: 15px;
+				font-size: 20px;
+				font-weight: 300;
 			}
 			.standalone-button{
 				width: 49%;
@@ -321,9 +393,20 @@ $main_orange: rgb(255, 178, 35);
 				width: 100%;
 				margin-left: auto;
 				margin-right: auto;
+				tr.icons{
+					line-height: 50px;
+					td{
+						line-height: 50px;
+						a{
+							cursor: pointer;
+						}
+					}
+				}
 				td{
 					text-align: center;
 					width: 25%;
+					font-weight: 100;
+					line-height: 15px;
 					.btn{
 						width: 32px;
 						height: 32px;
@@ -332,23 +415,24 @@ $main_orange: rgb(255, 178, 35);
 						padding: 0;
 						text-align: center;
 						line-height: 32px;
-						font-weight: 900;
+						font-weight: 400;
 					}
 				}
 			}
 			.addthisevent-drop{
+				vertical-align: middle;
 				width: 32px;
 				height: 32px;
 				border-radius: 50%;
-				font-size: 12px;
+				font-size: 32px;
 				padding: 0;
 				text-align: center;
 				line-height: 32px;
 				font-weight: 900;
-				background: rgb(255, 150, 0);
-				color: white !important;
+				background: #ececec;
+				color: black;
 				border: none;
-				font-weight: 600;
+				margin: 0 auto;
 				font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; 
 			}
 			#atedrop1-drop{
@@ -362,6 +446,7 @@ $main_orange: rgb(255, 178, 35);
 			    text-align: right;
 			    color: white;
 			    margin-top: 0px;
+			    margin-bottom: 0px;
 			    font-size: 12px;
 			}
 		}
@@ -375,38 +460,50 @@ $main_orange: rgb(255, 178, 35);
 			width: 33px;
 			height: 33px;
 		}
-		.event-guests{
+		.event-guests, .event-purchase, .event-details, .event-menu, .event-attendees-and-chatter, .event-host-story, .host-followers{
 			overflow-y: auto;
-			height: 450px;
-		}
-		.event-purchase{
-			height: 450px;
-			overflow-y: auto;
+			height: 490px;
 		}
 		.event-create-form{
-			height: 450px;
+			height: 490px;
 			margin-top: -20px;
 		}
-		.event-purchase, .event-purchase-confirmation, .event-create-confirmation, .event-guests, .event-create-form, .event-edit-form{
+		.event-purchase, .event-purchase-confirmation, .event-create-confirmation, .event-guests, .event-details, .event-menu, .event-attendees-and-chatter, .event-host-story, .host-followers, .event-create-form, .event-edit-form{
 			background: rgba(0,0,0,0.8);
 			padding: 30px;
+			.attendees, .comments, .followers{
+				margin-left: 0;
+				img{
+					width: 50px;
+					height: auto;
+					margin: 0 5px;
+				}
+			}
+			.comments{
+				margin-top: 10px;
+				padding-top: 10px;
+				margin-left: 0;
+			}
+			.fb-comments{
+				margin: 0 auto;
+			}
 			h1{
 				font-size: 30px;
-				line-height: 1.2em;
+				line-height: 1.5em;
 				font-weight: 100;
 				color: white;
 				margin: 0;
 			}
 			h2{
 				font-size: 20px;
-				line-height: 1.2em;
+				line-height: 1.5em;
 				font-weight: 100;
 				color: white;
 				margin-bottom: 20px;
 			}
 			h3{
 				font-size: 16px;
-				line-height: 1.2em;
+				line-height: 1.5em;
 				color: white;
 				font-weight: 100;
 			}
@@ -440,22 +537,22 @@ $main_orange: rgb(255, 178, 35);
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
-				width: 48%;
+				width: 50%;
 			}
 			#state{
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
-				width: 24%;
+				width: 25%;
 			}
 			#zipcode{
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
-				width: 25%;
+				width: 23%;
 			}
 			#credit_card_number{
-				width: 47%;
+				width: 50%;
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
@@ -464,28 +561,28 @@ $main_orange: rgb(255, 178, 35);
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
-				width: 16%;
+				width: 15%;
 				display: inline-block;
 			}
 			#expiration_month{
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
-				width: 49%;
+				width: 48.5%;
 				display: inline-block;
 			}
 			#expiration_year{
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
-				width: 46%;
+				width: 48.5%;
 				display: inline-block;
 			}
 			#expiration{
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
-				width: 34%;
+				width: 33%;
 				display: inline-block;
 			}
 			#security_code, #expiration{
@@ -559,7 +656,7 @@ $main_orange: rgb(255, 178, 35);
 					-webkit-box-sizing: border-box;
 					-moz-box-sizing: border-box;    
 					box-sizing: border-box;
-					width: 47%;
+					width: 50%;
 				}
 				#state{
 					-webkit-box-sizing: border-box;
@@ -571,7 +668,7 @@ $main_orange: rgb(255, 178, 35);
 					-webkit-box-sizing: border-box;
 					-moz-box-sizing: border-box;    
 					box-sizing: border-box;
-					width: 25%;
+					width: 23%;
 				}
 				#event-neighborhood{
 					-webkit-box-sizing: border-box;
@@ -623,7 +720,7 @@ $main_orange: rgb(255, 178, 35);
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
-				width: 49.25%;
+				width: 49.5%;
 			}
 			.guests{
 				margin: 0;
@@ -632,7 +729,7 @@ $main_orange: rgb(255, 178, 35);
 	}
 }
 
-.host-story, .event-menu, .event-attendees, .event-chatter{
+/*.host-story, .event-menu, .event-attendees, .event-chatter{
 	background: rgb(230,230,230);
 	padding: 0;
 	.accordion{
@@ -677,7 +774,7 @@ $main_orange: rgb(255, 178, 35);
 		border-right: 6px solid transparent;
 		border-left: 6px solid transparent;
 	}
-}
+}*/
 
 
 // event feedback styling
@@ -705,21 +802,21 @@ $main_orange: rgb(255, 178, 35);
 		}
 		h1{
 			font-size: 30px;
-			line-height: 1.2em;
+			line-height: 1.5em;
 			font-weight: 100;
 			color: white;
 			margin: 0;
 		}
 		h2{
 			font-size: 20px;
-			line-height: 1.2em;
+			line-height: 1.5em;
 			font-weight: 100;
 			color: white;
 			margin: 0;
 		}
 		h3{
 			font-size: 16px;
-			line-height: 1.2em;
+			line-height: 1.5em;
 			font-weight: 100;
 			color: white;
 			margin: 0;
@@ -824,7 +921,7 @@ $main_orange: rgb(255, 178, 35);
 		padding: 30px;
 		h1{
 			font-size: 30px;
-			line-height: 1.2em;
+			line-height: 1.5em;
 			font-weight: 100;
 			color: white;
 			margin: 0;
@@ -832,14 +929,14 @@ $main_orange: rgb(255, 178, 35);
 		}
 		h2{
 			font-size: 20px;
-			line-height: 1.2em;
+			line-height: 1.5em;
 			font-weight: 100;
 			color: white;
 			margin-bottom: 20px;
 		}
 		h3, a, a:hover, a:visited{
 			font-size: 14px;
-			line-height: 1.2em;
+			line-height: 1.5em;
 			color: white;
 			font-weight: 100;
 			text-decoration: none;

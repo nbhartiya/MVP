@@ -137,7 +137,7 @@ ul.parsley-error-list{
 				color: white;
 				.caption-text{
 					position: relative;
-					top: 50%;
+					top: 55%;
 					height: 200px;
 					margin-top: -45px;
 					text-overflow: ellipsis;
@@ -174,18 +174,22 @@ ul.parsley-error-list{
 		z-index: 50;
 	}
 	.copy{
-		margin-top: 80px;
+		margin-top: 40px;
     	-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;    
 		box-sizing: border-box;
 		.copy-content{
-			background: rgba(0, 0, 0, 0.7);
+			background: rgba(0, 0, 0, 0.6);
 	    	padding: 30px;
 	    	-webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box;
+			.logo{
+				width: 10%;
+				margin: 0 auto;
+			}
 			h1{
-				font-size: 120px;
+				font-size: 85px;
 				line-height: 1em;
 				font-weight: 400;
 				color: white;
@@ -200,6 +204,19 @@ ul.parsley-error-list{
 				margin: 0;
 				text-align: center;
 			}
+			hr{
+				width: 65%;
+				margin: 25px auto;
+				border-bottom-width: 2px;
+			}
+			h3{
+				font-size: 24px;
+				line-height: 1.3em;
+				font-weight: 100;
+				color: white;
+				margin: 10px 0;
+				text-align: center;
+			}
 			p{
 			    text-align: center;
 			    color: white;
@@ -210,38 +227,37 @@ ul.parsley-error-list{
 				color: $main_orange;
 			}
 			a.sign-in-link:hover, a.sign-out-link:hover{
-				color: white;
+				color: darken($main_orange, 10%);
 				text-decoration: none;
 			}
 		}
 		.buttons{
-			margin: 20px auto 0 auto;
+			margin: 30px auto 0 auto;
 			width: 60%;
 			padding: 0;
 		}
 		.how-it-works-button{
-			display: inline-block;
-			width: 49.25%;
-			padding: 12px 2px;
+			padding: 8px 2px;
 			font-size: 18px;
+			font-weight: 100;
+			width: 100%;
 			-webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box; 
 		}
 		.view-events-button{
-			display: inline-block;
-			width: 49.25%;
-			padding: 12px 2px;
+			padding: 8px 2px;
 			font-size: 18px;
 			font-weight: 100;
+			width: 100%;
 			-webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box; 
 		}
 		.sign-up-button{
 			display: inline-block;
-			width: 24%;
-			padding: 12px 2px;
+			width: 49%;
+			padding: 8px 2px;
 			font-size: 18px;
 			font-weight: 100;
 			-webkit-box-sizing: border-box;
@@ -250,8 +266,8 @@ ul.parsley-error-list{
 		}
 		.foodiesignup{
 			display: inline-block;
-			width: 24%;
-			padding: 12px 2px;
+			width: 49.5%;
+			padding: 8px 2px;
 			font-size: 18px;
 			font-weight: 100;
 			-webkit-box-sizing: border-box;
@@ -260,8 +276,8 @@ ul.parsley-error-list{
 		}
 		.bizsignup{
 			display: inline-block;
-			width: 24%;
-			padding: 12px 2px;
+			width: 49.5%;
+			padding: 8px 2px;
 			font-size: 18px;
 			font-weight: 100;
 			-webkit-box-sizing: border-box;
@@ -282,6 +298,26 @@ ul.parsley-error-list{
 	}
 	a{
 		text-decoration: none;
+
+	}
+	ul{
+		display: block;
+		margin: 0;
+		li{
+			float: left;
+			cursor: pointer;
+			.foodie{
+				padding-top: 33px;
+				height: 100px;
+			}
+			.chef{
+				width: 301px;
+				margin-top: 19px;
+			}
+			img{
+				width: 50%;
+			}
+		}
 	}
 }
 
@@ -297,6 +333,19 @@ ul.parsley-error-list{
 #how-it-works{
 	text-align: center;
 	margin-left: 0;
+	a{
+		display: block;
+		font-size: 14px;
+		cursor: pointer;
+	}
+	p{
+		font-size: 18px;
+	}
+	.logo img{
+		width: 10%;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
 }
 
 #how-it-works-detail{
@@ -308,23 +357,22 @@ ul.parsley-error-list{
 	}
 }
 
+.how-it-works{
+	padding-top: 30px;
+}
+
 .how-it-works-event-infographic{
 	margin: 0 auto;
 	.step{
-		height: 240px;
-		width: 240px;
-		margin-top: 20px;
-		margin-left: 10px;
 		border-radius: 50%;
-		border: 25px $main_orange solid;
-		float: left;
+		border: 25px rgb(54, 54, 54) solid;
 		h1{
+			padding-top: 10px;
 			font-size: 30px;
 			font-weight: 100;
 			text-align: center;
 		}
 		.step-description{
-			width: 220px;
 			padding: 10px;
 			p{
 				font-size: 14px;
@@ -332,6 +380,99 @@ ul.parsley-error-list{
 				font-weight: 100;
 				text-align: center;
 				vertical-align: middle;
+			}
+		}
+	}
+	.step:hover{
+		border-color: $main_orange;
+	}
+	.step.browse{
+		height: 240px;
+		width: 240px;
+		border-width: 12px;
+		.step-description{
+			width: 220px;
+			padding-top: 20px;
+		}
+	}
+	.step.register{
+		margin-top: -30px;
+		height: 300px;
+		width: 300px;
+		border-width: 26px;
+		.step-description{
+			width: 280px;
+			padding-top: 45px;
+		}
+	}
+	.step.tilt{
+		margin-top: -20px;
+		height: 200px;
+		width: 200px;
+		border-width: 18px;
+		.step-description{
+			width: 180px;
+			padding-top: 5px;
+		}
+	}
+	.step.return{
+		margin-top: -15px;
+		height: 280px;
+		width: 280px;
+		border-width: 15px;
+		.step-description{
+			width: 260px;
+			padding-top: 20px;
+		}
+	}
+	.step.attract{
+		height: 300px;
+		width: 300px;
+		border-width: 18px;
+		.step-description{
+			width: 280px;
+			padding-top: 45px;
+		}
+	}
+	.step.engage{
+		margin-top: -40px;
+		height: 220px;
+		width: 220px;
+		border-width: 25px;
+		.step-description{
+			width: 190px;
+			padding-top: 5px;
+		}
+	}
+	.step.club{
+		margin-top: -15px;
+		height: 280px;
+		width: 280px;
+		border-width: 12px;
+		.step-description{
+			width: 260px;
+			padding-top: 30px;
+		}
+	}
+	.step.get-started{
+		margin-top: 30px;
+		margin-bottom: 30px;
+		margin-left: 300px;
+		height: 150px;
+		width: 150px;
+		border-width: 20px;
+		border-color: $main_orange;
+		.step-description{
+			width: 130px;
+			text-align: center;
+			font-size: 28px;
+			line-height: 1.5em;
+			padding-top: 25px;
+			a{
+				color: $main_orange;
+			}
+			a:hover{
+				text-decoration: none;
 			}
 		}
 	}

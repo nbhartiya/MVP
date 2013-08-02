@@ -40,7 +40,7 @@
             %select#neighborhoods{'ng-model'=>'profile.location.neighborhood', :name => "profile_neighborhood", :required => "required", 'ng-class' => "{error: create_profile.profile_neighborhood.$invalid}"}
             %input#city{'ng-model' => "profile.location.city", :placeholder => "City", :type => "text", :name => "city", 'ng-class' => "{error: create_profile.city.$invalid}", :required => 'required'}
             %select#state{'ng-model' => "profile.location.state", :name => "state", 'ng-class' => "{error: create_profile.state.$invalid}", :required => 'required'}
-            %input#zipcode{'ng-model' => "profile.location.zipcode", :placeholder => "Zip Code", :type => "text", :name => "zip", :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: create_profile.zip.$invalid}", :required => 'required'}
+            %input#zipcode{'ng-model' => "profile.location.zipcode", :placeholder => "Zip Code", :type => "text", :name => "zip", :maxlength => "5", 'ng-pattern' => '/^[0-9]{5}$/', 'ng-class' => "{error: create_profile.zip.$invalid}", :required => 'required'}
 
             .clearfix
               %button.btn.btn-inverse#yelp-connect Connect Yelp
@@ -56,10 +56,10 @@
             %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: create_profile.profile_blurb.$invalid}"}
             %select#neighborhoods{'ng-model'=>'profile.neighborhood', :name => "profile_neighborhood", :required => "required", 'ng-class' => "{error: create_profile.profile_neighborhood.$invalid}"}
 
-            %input{:type => "text", :name => "home_zip", "ng-model" => "profile.home_zip", :placeholder =>"Home Zip", :required => "required", :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: create_profile.home_zip.$invalid}"}
+            %input{:type => "text", :name => "home_zip", "ng-model" => "profile.home_zip", :placeholder =>"Home Zip", :required => "required", :maxlength => "5", 'ng-pattern' => '/^[0-9]{5}$/', 'ng-class' => "{error: create_profile.home_zip.$invalid}"}
             .row
               .span6    
-                %input{:type => "text", :name => "work_zip", 'ng-model' => 'profile.work_zip', :placeholder =>"Work Zip", :required => 'required', :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: create_profile.work_zip.$invalid}"}            
+                %input{:type => "text", :name => "work_zip", 'ng-model' => 'profile.work_zip', :placeholder =>"Work Zip", :required => 'required', :maxlength => "5", 'ng-pattern' => '/^[0-9]{5}$/', 'ng-class' => "{error: create_profile.work_zip.$invalid}"}            
                 %a.why-zip{:href => "#", "data-toggle" => "tooltip", :title => "So we can better recommend lunch and dinner events near you!", "data-placement" => "right"} <sup> Why? </sup>
 
             %input#vegetarian{:type => "checkbox", :name => "vegetarian", 'ng-model' => 'profile.vegetarian'} <p id="vegetarian"> I'm a vegetarian </p>

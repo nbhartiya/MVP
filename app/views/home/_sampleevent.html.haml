@@ -5,6 +5,4 @@
 %a.caption{:href => event_path(event)}
   .caption-text
     %h4 #{event.title}
-    %p #{event.description}
-    -if event.location.present?
-      %p #{event.location.neighborhood}
+    %p #{event.host.profile.biz_name}
