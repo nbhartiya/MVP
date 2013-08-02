@@ -43,8 +43,9 @@
       .row.section-header
         .span12#how-it-works
           %h1 How It Works
-          .logo
-            =image_tag "logo_final.png"
+          -#
+            .logo
+              =image_tag "logo_final.png"
           %ul.user-type
             %li{'ng-click' => 'type = "foodie"', 'ng-hide' => "type == 'business'"}
               .foodie
@@ -95,7 +96,7 @@
                   %h1 attract
                   %p It's hard to find and attract high quality, long-term customers. Even today, most small businesses do so with discounts. We help you find quality customers who are interested in building deeper relationships. Without discounts.
             .row.how-it-works-event-infographic
-              .span4.offset3.step.engage
+              .span4.offset4.step.engage
                 .step-description
                   %h1 engage
                   %p We help you engage your customers to become more loyal by helping you track and reward them in unique, thoughtful ways. 
