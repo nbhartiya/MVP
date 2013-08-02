@@ -56,6 +56,9 @@ MVP::Application.routes.draw do
 
   resources :user_answers
   resources :survey_questions
+  
+  resources :points
+  
   get "survey" => "survey_questions#survey"
   #get "incomplete_survey" => "survey_questions#survey"
   
