@@ -387,6 +387,9 @@ $main_orange: rgb(255, 178, 35);
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box; 
 			}
+			.standalone-button:hover{
+				color: white;
+			}
 			.event-sharing{
 				margin-top: 10px;
 				color: white;

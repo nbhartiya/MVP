@@ -13,7 +13,18 @@
           %button.btn.search <i class = "icon-search"></i>
         -if user_signed_in? == false
           %li.pull-right#sign-up-header-link
-            = link_to "Sign Up", "#sign_up", :"data-toggle" => "modal"
+            %ul.user-nav-control.pull-right
+              %li.dropdown
+                %a{:href => "#", "data-toggle" => "dropdown"}
+                  Sign Up  
+                %ul.dropdown-menu{"aria-labeledby" => "dLabel", :role => "menu"}
+                  %li.dropitem
+                    = link_to "Foodie", "#sign_up_foodie", :"data-toggle" => "modal", :tabindex => "-1" 
+                  %li.dropitem
+                    = link_to "Business", "#sign_up_business", :"data-toggle" => "modal", :tabindex => "-1" 
+          -#
+            %li.pull-right#sign-up-header-link
+              = link_to "Sign Up as Business", "#sign_up_business", :"data-toggle" => "modal"
           %li.pull-right
             = link_to "Log In", "#sign_in", :"data-toggle" =>"modal"
         -if user_signed_in?
@@ -34,7 +45,22 @@
         %li.pull-right
           %a{:href =>"/events"}Browse Events
 
-  #sign_up.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  #sign_up_business.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+      %h3#myModalLabel Sign Up for simmr
+    .modal-body
+      %h3 Build your client base through memorable events.
+      %p Connect your business's facebook account. We'll never share your info or post without your permission. 
+      %p.strong.sign-up-text
+        Sign up with
+        %p
+          -@chef_info = "1"
+          = render "shared/business_signup", :chef_info => @chef_info
+    .modal-footer
+      %button.usersignup.btn.btn-warning Sign Up
+
+  #sign_up_foodie.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
     .modal-header
       %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
       %h3#myModalLabel Sign Up for simmr
@@ -44,9 +70,10 @@
       %p.strong.sign-up-text
         Sign up with
         %p
-          = render "shared/signup"
-      .modal-footer
-        %button.usersignup.btn.btn-warning{'ng-disabled' => 'new_user.$invalid'} Sign Up
+          -@chef_info = "0"
+          = render "shared/foodie_signup", :chef_info => @chef_info
+    .modal-footer
+      %button.usersignup.btn.btn-warning Sign Up
 
   #sign_in.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
     .modal-header

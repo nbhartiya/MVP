@@ -38,8 +38,26 @@ function add_fields (link, association, content) {
 	$(link).before(content.replace(regexp, new_id));
 }
 
-  $("input").attr("autocomplete", "off");
-  $("select").attr("autocomplete", "off");
+$("#sign_up_business").on("show", function () {
+  $("body").addClass("modal-open");
+}).on("hidden", function () {
+  $("body").removeClass("modal-open")
+});
+
+$("#sign_up_foodie").on("show", function () {
+  $("body").addClass("modal-open");
+}).on("hidden", function () {
+  $("body").removeClass("modal-open")
+});
+
+$("#sign_in").on("show", function () {
+  $("body").addClass("modal-open");
+}).on("hidden", function () {
+  $("body").removeClass("modal-open")
+});
+
+$("input").attr("autocomplete", "off");
+$("select").attr("autocomplete", "off");
 
 
 // bootstrap tooltips 
