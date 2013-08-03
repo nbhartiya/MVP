@@ -11,7 +11,7 @@
               = image_tag i.image
     -if @event.images.count > 1
       %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#event-carousel"} ‹
-      %a.carousel-control.appear.hidden-phone{"data-slide" => "next", :href => "#event-carousel"} ›
+      %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#event-carousel"} ›
 
     .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}'"}
       .event-registration.row

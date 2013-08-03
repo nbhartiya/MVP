@@ -13,112 +13,68 @@
                   = image_tag i.image
           -else
             =image_tag "Food 9.jpg"
-    -#
-      %ol.carousel-indicators.hidden-phone
-        -@campaign.images.each_with_index do |i, index|     
-          - if index == 0
-            %li.active{"data-target" => "#campaign-carousel", "data-slide-to" => index}
-          - else
-            %li{"data-target" => "#campaign-carousel", "data-slide-to" => index}
+    -if @campaign.images.count > 1
+      %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#campaign-carousel"} ‹
+      %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#campaign-carousel"} ›
         
-    .container
+    .container{'ng-controller' => 'CampaignJoinCtrl', 'ng-init' => "endDate='#{@campaign.expires}';successful='#{@campaign.successful}'"}
       .row.campaign-registration
-        .span1
-        .span4
+        .span5
+          #ribbon
+            .container
+              .base
+                %h3
+                  {{daysLeft()}}
+                -#%p days left
+              .left_corner
+              .right_corner
           .campaign-summary.clearfix
-            %h1
-              #{@campaign.biz_name}
-            %h2 
-              #{@campaign.blurb}
-            %h2
-              by #{@campaign.campaign_starter.first_name} #{@campaign.campaign_starter.last_name}
-            %hr
-            %h3
-              Campaign End Date #{@campaign.expires.strftime("%B %d, %Y")}
+            .campaign-summary-top
+              %h1
+                #{@campaign.biz_name}
+              %h3
+                #{@campaign.blurb}
+            
+            .campaign-summary-logistics-container
+              .campaign-summary-logistics
+                %h3
+                  Started by #{@campaign.campaign_starter.first_name} #{@campaign.campaign_starter.last_name}
+                %ul.nav.campaign-button-group
+                  %li
+                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "why_join"'} Why Join
+
             %p 
               #{@campaign.follows_needed} more needed to tilt this campaign
-            -if user_signed_in? == false
-              .progress.progress-warning.clearfix.signed-out
+              .progress.progress-warning.clearfix
                 .bar{:style => "width: 80%"}
+            -if user_signed_in? == false
               %a.btn.btn-warning.standalone-button.clearfix{:"data-toggle" => "modal", :href=>"#sign_up"} Sign Up
               .btn.btn-warning.standalone-button.clearfix{:"data-toggle" =>"modal", :href=>"#sign_in"} Sign In
-              %table.campaign-social-stats.clearfix.signed-out
-                %tr
-                  %td
-                    %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
-                  %td
-                    %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
-                  %td
-                    %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
-                %tr.campaign-target-stats 
-                  %td #{@campaign.follows.count}
-                  %td 190
-                  %td{:rowspan => "2"} share
-                %tr.campaign-target-stat-labels
-                  %td followers
-                  %td reviews
             -if user_signed_in?
-              .progress.progress-warning.clearfix.signed-in
-                .bar{:style => "width: 80%"}
-              .btn.btn-warning.campaign-join-button.clearfix Join
-              %table.campaign-social-stats.clearfix.signed-in
-                %tr
-                  %td
-                    %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
-                  %td
-                    %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
-                  %td
-                    %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
-                %tr.campaign-target-stats
-                  %td #{@campaign.follows.count}
-                  %td 190
-                  %td{:rowspan => "2"} share
-                %tr.campaign-target-stat-labels
-                  %td followers
-                  %td reviews
-        .span1.heart_this
-          %a.sb.heart.circle.no-border.no-shadow.gray{title: 'Heart This'}
+              .btn.btn-warning.campaign-join-button.clearfix{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'} Join
+            %table.campaign-social-stats.clearfix
+              %tr
+                %td{'ng-click'=>'appear = "followers"'}
+                  %a.sb.heart.circle.no-border.no-shadow.campaign-follow.black{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'} #follow
+                %td
+                  %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"} #yelp
+                %td
+                  %a.sb.facebook.circle.no-border.no-shadow.black{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
+              %tr.campaign-target-stats 
+                %td #{@campaign.follows.count}
+                %td 190
+                %td{:rowspan => "2"} share
+              %tr.campaign-target-stat-labels
+                %td followers
+                %td reviews
         .span1
-        .span4 
-        .span1
-  .container  
-    .row.section-header#why
-      .span12#why-join
-        %a{:href => "#why-join", 'data-target'=>"#why-join-detail", 'data-toggle'=>"collapse"} Why Join? <span class="caret"></span>
-  .why-join
-    .container
-      .row
-        .span12
-          #why-join-accordion.accordion
-            #why-join-detail.accordion-body.collapse.in
-              .accordion-inner
-                %p
-                  #{@campaign.why_join}
--#
-  %p#notice= notice
-
-  %p
-    %b Biz name:
-    = @campaign.biz_name
-  %p
-    %b Blurb:
-    = @campaign.blurb
-  %p
-    %b About:
-    = @campaign.about
-  %p
-    %b Why join:
-    = @campaign.why_join
-  %p
-    %b Location:
-    = @campaign.location_id
-  %p
-    %b Foodie:
-    = @campaign.campaign_starter_id
-  %p
-    %b Host:
-    = @campaign.host_id
-
-  = link_to 'Edit', edit_campaign_path(@campaign)
-  \|
-  = link_to 'Back', campaigns_path
+        .span6
+          .campaign-why-join{'ng-show' => 'appear=="why_join"'}
+            %h3 Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait
+          .host-followers{'ng-show' => 'appear == "followers"'}
+            .followers
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Christine Lee", "class" => "one-attendee", "data-placement" => "bottom"
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Michael Makarov", "class" => "one-attendee", "data-placement" => "bottom"

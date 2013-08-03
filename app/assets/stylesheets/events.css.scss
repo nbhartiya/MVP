@@ -126,6 +126,14 @@ $main_orange: rgb(255, 178, 35);
 		border: none;
 		line-height: 33px;
 		margin-top: 0;
+		border-radius: 0;
+		width: 30px;
+	}
+	.carousel-control.left{
+		left: 0;
+	}
+	.carousel-control.right{
+		right: 0;
 	}
 	.event-registration {
 	    margin-top: 25px;
