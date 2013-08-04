@@ -21,6 +21,7 @@ Simmr.directive "heart", ->
 
 Simmr.controller "HeartCtrl", ["$scope",  "$routeParams", "Follow", ($scope, $routeParams, Follow) ->
   $scope.follow = ->
+    $('.heart.campaign-follow').toggleClass("orange").toggleClass("black")
     $('.heart.follow').toggleClass("orange")
     $scope.appear = "followers"
     console.log($scope)
@@ -241,6 +242,24 @@ Simmr.factory "Campaign", ["railsResourceFactory", (railsResourceFactory) ->
   railsResourceFactory
     url: "/api/campaigns"
     name: "campaign"
+]
+
+Simmr.controller "CampaignJoinCtrl", ["$scope", "$window", "$routeParams", "$location", "Campaign", ($scope, $window, $routeParams, $location, Campaign) ->
+
+  $scope.daysLeft = ->
+    today = moment()
+    endDate = moment($scope.endDate)
+    daysLeft = endDate.diff(today, 'days')
+    if daysLeft <= 0
+      if $scope.successful
+        "success!"
+      else
+        "try again"
+    else
+      daysLeft + " days left"
+
+
+
 ]
 
 Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$location", "Campaign", ($scope, $window, $routeParams, $location, Campaign) ->

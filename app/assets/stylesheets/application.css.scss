@@ -67,6 +67,10 @@ a:active{
 	background: darken($main_orange, 5%);
 }
 
+body.modal-open {
+    overflow: hidden;
+}
+
 
 // general purpose classes
 
@@ -264,8 +268,22 @@ input.error-true  {
 		.nav-right{
 			margin-right: -50px;
 			#sign-up-header-link{
-				a{
+				background: $main_orange;
+				color: white;
+				a, a:hover, a:visited{
+					color: white;
+				}
+				.dropdown .dropitem a{
+					color: rgb(130, 130, 130);
+				}
+				.dropdown .dropitem a:hover{
+					color: white;
 					background: $main_orange;
+				}
+				.dropdown .dropitem a:active{
+					outline: none;
+				}
+				.dropdown .dropitem a:visited{
 					color: white;
 				}
 			}
@@ -311,9 +329,12 @@ input.error-true  {
 	z-index: 1020;
 }
 .modal{
-	width: 350px;
+	width: 650px;
+	margin-left: -320px;
 	background-color: rgba(255, 255, 255, 0.9);
-	left: 60%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;    
+	box-sizing: border-box; 
 	#myModalLabel{
 		font-size: 15px;
 		text-align: left;
@@ -334,7 +355,7 @@ input.error-true  {
          -webkit-background-clip: padding-box; background-clip: padding-box;
 	}
 	.modal-body{
-		padding: 0;
+		padding: 0 10px;
 		text-align: left;
 		margin: 10px 0 0 15px;
 		h3{
@@ -346,28 +367,46 @@ input.error-true  {
 			line-height: 1.5em;
 		}
 	}
-	input{
-		font-size: 16px;
-		height: 24px;
-		margin-bottom: 8px;
-	}
 	label{
 		line-height: 32px;
 		margin-left: 5px;
 		font-size: 13px;
 		display: inline-block;
 	}
+	input{
+		font-size: 16px;
+		height: 36px;
+		margin-bottom: 8px;
+		margin-right: 2px;
+		display: inline-block;
+		width: 48.5%;	
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;    
+		box-sizing: border-box; 
+	}
+	#user_remember_me{
+		width: auto;
+	}
+	#user_email{
+		width: 98%;
+	}
 	a.sb{
 		text-align: center;
 	}
 
 	a.sb.text{
-		width: 32%;
+		width: 48.5%;
+		margin-right: 2px;
+		height: 36px;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;    
+		box-sizing: border-box; 
 	}
 }
 
 .sign-up-text{
-	margin-top: 15px;
+	margin-top: 10px;
+	margin-bottom: 15px;
 }
 
 .login_form{
@@ -376,9 +415,10 @@ input.error-true  {
 }
 
 .or-line{
+	margin: 8px 0;
 	height: 1px;
 	background: gray;
-	width: 95%;
+	width: 99%;
 	margin-right: auto;
 	border: 0;
 }

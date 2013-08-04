@@ -29,7 +29,7 @@
               %br
               -if user_signed_in? == false
                 %a.btn.btn-warning.foodiesignup{:href => "#sign_up_foodie", :"data-toggle" =>"modal"} Sign Up as a Foodie
-                %a.btn.btn-warning.bizsignup{:href => "#sign_up_chef", :"data-toggle" =>"modal"} Sign Up as a Business
+                %a.btn.btn-warning.bizsignup{:href => "#sign_up_business", :"data-toggle" =>"modal"} Sign Up as a Business
                 %p Already a member? &nbsp <a href = "#sign_in" class = "sign-in-link" data-toggle = "modal"> Sign In </a>
               -if user_signed_in?
                 %a.btn.btn-warning.view-events-button{:href => "/events"} Upcoming Events
@@ -64,7 +64,7 @@
           .span2
           .span8.how-it-works{'ng-show' => 'type == "foodie"'}
             .row.how-it-works-event-infographic
-              .span4.step.browse
+              .span4.offset1.step.browse
                 .step-description
                   %h1 browse
                   %p We work with new and established food businesses to bring you experiences that are different from the typical restaurant visit. 
@@ -112,35 +112,37 @@
 
   = render 'layouts/footer'
 
-  #sign_up_foodie.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-    .modal-header
-      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-      %h3#myModalLabel Sign Up for simmr
-    .modal-body
-      %h3 Experiences recommended by your friends.
-      %p See what events friends have attended and their thoughts. We'll never share your info or post without your permission. 
-      %p.strong.sign-up-text
-        Sign up with
-        %p
-          -@chef_info = "0"
-          = render "shared/signup", :chef_info => @chef_info
-    .modal-footer
-      %button.usersignup.btn.btn-warning Sign Up
+  #sign_up_business.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+    .signup
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h3#myModalLabel Sign Up for simmr
+      .modal-body
+        %h3 Expand your client base through memorable events.
+        %p Leverage your existing fanbase and allow new customers to easily find you on Facebook / Twitter. We'll never share your info or post without your permission. 
+        %p.strong.sign-up-text
+          Sign up with
+          %p
+            -@chef_info = "1"
+            = render "shared/business_signup", :chef_info => @chef_info
+      .modal-footer
+        %button.usersignup.btn.btn-warning Sign Up
 
-  #sign_up_chef.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-    .modal-header
-      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-      %h3#myModalLabel Sign Up for simmr
-    .modal-body
-      %h3 Build your client base through memorable events.
-      %p Connect your business' facebook account. We'll never share your info or post without your permission. 
-      %p.strong.sign-up-text
-        Sign up with
-        %p
-          -@chef_info = "1"
-          = render "shared/signup", :chef_info => @chef_info
-    .modal-footer
-      %button.usersignup.btn.btn-warning Sign Up
+  #sign_up_foodie.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+    .signup
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h3#myModalLabel Sign Up for simmr
+      .modal-body
+        %h3 Experiences recommended by your friends.
+        %p See what events friends have attended and their thoughts. We'll never share your info or post without your permission. 
+        %p.strong.sign-up-text
+          Sign up with
+          %p
+            -@chef_info = "0"
+            = render "shared/foodie_signup", :chef_info => @chef_info
+      .modal-footer
+        %button.usersignup.btn.btn-warning Sign Up
 
   #sign_in.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
     .modal-header

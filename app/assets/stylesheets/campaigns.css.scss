@@ -72,7 +72,7 @@ $main_orange: rgb(255, 178, 35);
 
 // campaign profile styling
 .campaign-profile{
-	height: 580px;
+	height: 600px;
 	.btn#remove-image{
     	right: 5px;
 		position: absolute;
@@ -86,7 +86,7 @@ $main_orange: rgb(255, 178, 35);
 	    width: 100%;
 	    z-index: -1;
 		.carousel-inner{
-			height: 580px;
+			height: 600px;
 			width: auto;
 			img{
 				width: 100%;
@@ -110,14 +110,143 @@ $main_orange: rgb(255, 178, 35);
 		z-index: 50;
 		background: rgba(0, 0, 0, 0.7);
 		border: none;
-		line-height: 35px;
+		line-height: 33px;
 		margin-top: 0;
+		border-radius: 0;
+		width: 30px;
+	}
+	.carousel-control.left{
+		left: 0;
+	}
+	.carousel-control.right{
+		right: 0;
 	}
 	.campaign-registration {
 	    margin-top: 25px;
 	    -webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;    
 		box-sizing: border-box;
+		#ribbon {
+			width: 180px;
+			height: 110px;
+			margin: 50px auto 0;
+			position: absolute;
+			left: 350px;
+			top: 65px;
+			overflow: hidden;
+		}
+		#ribbon.preview{
+			right: -380px;
+			top: 5px;
+		}
+		#ribbon .inset {
+			width: 150px;
+			height: 55px;
+			position: absolute;
+			top: -50px;
+			left: 15px;
+			z-index: 5;
+			
+			-webkit-border-radius: 50%;
+			-moz-border-radius: 50%;
+			border-radius: 50%;
+			
+			background: rgba(0,0,0,0.3);
+			
+			box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.3);
+			-moz-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.3);
+			-webkit-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.3);
+		}
+
+		#ribbon .container {
+			position: relative;
+			width: 100px;
+			height: 110px;
+			overflow: hidden;
+			margin: 0 auto;
+		}
+
+		#ribbon .base {
+			height: 55px;
+			width: 100px;
+			background: url(/assets/linen_@2X.png);
+			//background: rgba(80, 80, 80, 1);
+			position: relative;
+			z-index: 2;
+			h3{
+				margin: 0;
+				color: rgb(54, 54, 54);
+				font-size: 18px;
+				padding-top: 20px;
+				line-height: 1.5em;
+				font-weight: 100;
+				text-align: center;
+			}
+			p{
+				margin: 0;
+				color: rgb(130, 130, 130);
+				font-size: 12px;
+				font-weight: 100;
+				line-height: 1.5em;
+				text-align: center;
+			}
+		}
+
+		#ribbon .base:after {
+			content: '';
+			position: absolute;
+			top: 0;
+			width: 86px;
+			left: 6px;
+			height: 92px;
+			//border-left: 1px dashed rgba(0, 0, 0, 1);
+			//border-right: 1px dashed rgba(0, 0, 0, 1);
+		}
+
+		#ribbon .base:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			width: 86px;
+			left: 7px;
+			height: 92px;
+			border-left: 1px rgba(0, 0, 0, 1);
+			border-right: 1px rgba(0, 0, 0, 1);
+		}
+
+		#ribbon .left_corner {
+			width: 100px;
+			height: 100px;
+			background: url(/assets/linen_@2X.png);
+			//background: rgba(80, 80, 80, 1);
+			position: absolute;
+			bottom: 20px;
+			left: -50px;
+			z-index: 1;
+			
+			-webkit-transform: rotate(60deg);
+			-moz-transform: rotate(60deg);
+			-ms-transform: rotate(60deg);
+			-o-transform: rotate(60deg);
+			transform: rotate(60deg);
+		}
+
+		#ribbon .right_corner {
+			width: 100px;
+			height: 100px;
+			background: url(/assets/linen_@2X.png);
+			//background: rgba(80, 80, 80, 1);
+			position: absolute;
+			bottom: 20px;
+			right: -50px;
+			z-index: 1;
+			
+			-webkit-transform: rotate(30deg);
+			-moz-transform: rotate(30deg);
+			-ms-transform: rotate(30deg);
+			-o-transform: rotate(30deg);
+			transform: rotate(30deg);
+		}
 		.preview-label{
 			background: $main_orange;
 			margin-top: -10px;
@@ -132,6 +261,54 @@ $main_orange: rgb(255, 178, 35);
 		    -webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box;
+			.campaign-summary-logistics-container{
+				padding: 5px 0;
+				margin: 15px -37px 25px -37px;
+				background: url(/assets/linen_@2X.png);
+			}
+			.campaign-summary-logistics{
+				//border-top: 1px dashed rgb(100, 100, 100);
+				//border-bottom: 1px dashed rgb(100, 100, 100);
+				background: url(/assets/linen_@2X.png);
+				//background: rgb(80, 80, 80);
+				padding: 10px 30px;
+				margin: 0px;
+			}
+			.campaign-button-group{
+				margin: 20px auto 10px auto;
+				display: table;
+				width: 100%;
+				li{
+					float: left;
+					display: table-cell;
+					width: 24%;
+					margin: 0 0.5%;
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+				}
+				button{
+					margin: 0;
+				}
+				.btn{
+					width: 100%;
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;
+				}
+				.active .btn{
+					background: $main_orange;
+					color: white;
+					border-color: $main_orange;
+				}
+			}
+			.progress, .bar{
+				height: 10px;
+				border-radius: 0;
+			}
+			.campaign-summary-top{
+				width: 310px;
+			}
 			h1{
 				font-size: 30px;
 				line-height: 1.2em;
@@ -158,26 +335,16 @@ $main_orange: rgb(255, 178, 35);
 				border-bottom: none;
 				border-top: 1px solid black;
 			}
-			.progress{
-				float: left;
-				margin-top: 10px;
-				-webkit-box-sizing: border-box;
-				-moz-box-sizing: border-box;    
-				box-sizing: border-box; 
-			}
-			.progress.signed-in{
-				width: 75%;
-			}
-			.progress.signed-out{
-				width: 100%;
-			}
 			.campaign-join-button{
-				width: 23%;
+				width: 100%;
+				padding: 7px 0;
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box; 
-				padding-left: 10px;
-				float: right;
+				margin-top: -5px;
+				margin-bottom: 15px;
+				font-size: 20px;
+				font-weight: 300;
 			}
 			.standalone-button{
 				width: 49%;
@@ -186,6 +353,7 @@ $main_orange: rgb(255, 178, 35);
 				box-sizing: border-box; 
 			}
 			.campaign-social-stats{
+				margin-top: 10px;
 				color: black;
 				width: 100%;
 				margin-left: auto;
@@ -193,21 +361,18 @@ $main_orange: rgb(255, 178, 35);
 				td{
 					text-align: center;
 					width: 33%;
+					font-weight: 100;
+					line-height: 15px;
 					a, a:hover, a:visited{
 						color: black;
 						text-decoration: none;
 					}
 				}
 			}
-			.campaign-social-stats.signed-out{
-				margin-top: 20px;
-			}
-			.campaign-social-stats.signed-in{
-				margin-top: 60px;
-			}
 			p{
+				text-align: right;
 			    color: black;
-			    margin-top: 20px;
+			    margin-top: 0px;
 			    margin-bottom: 0px;
 			    font-size: 12px;
 			}
@@ -219,9 +384,22 @@ $main_orange: rgb(255, 178, 35);
 			width: 33px;
 			height: 33px;
 		}
-		.campaign-create-form, .campaign-edit-form, .campaign-create-confirmation{
+
+		.campaign-why-join, .host-followers{
+			overflow-y: auto;
+			height: 490px;
+		}
+		.campaign-create-form, .campaign-edit-form, .campaign-create-confirmation, .campaign-why-join, .host-followers{
 			background: rgba(255,255,255,0.8);
 			padding: 30px;
+			.followers{
+				margin-left: 0;
+				img{
+					width: 50px;
+					height: auto;
+					margin: 0 5px;
+				}
+			}
 			h1{
 				font-size: 30px;
 				line-height: 1.2em;
