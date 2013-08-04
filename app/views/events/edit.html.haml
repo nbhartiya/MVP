@@ -1,86 +1,18 @@
 .events{'ng-controller' => 'EventEditCtrl', 'ng-init' => "getEvent(#{@event.id})"}
   .event-profile
-    #event-carousel.carousel.slide.hidden-phone        
+    #event-carousel.carousel.slide.hidden-phone           
       .carousel-inner
         .active.item
-          .active.item
-          %p this is a stock image <br> (replace with your own!)
+          %p This is a default cover photo. <br> Replace by uploading images!
           =image_tag "Food 26.jpg"
-    .btn#remove-image x
     .container
       .event-registration.row
-        .span1
-        .span4
-          .event-summary
-            %h1#default-text{'ng-show'=>'event.title=="" || event.title==nil'}
-              Event Title
-            %h1 
-              {{event.title}}
-            %h2#default-text{'ng-show'=>'event.description=="" || event.description==nil'}
-              Event Description
-            %h2 
-              {{event.description}}
-            -#TODO CHANGE to current.user.profile.biz_name != nil once we require everyone to fill profile
-            -if current_user.profile != nil
-              %h2
-                =current_user.profile.biz_name
-            -else
-              %h2#default-text{'ng-show'=>'event.host.profile.bizName=="" || event.host.profile.bizName==nil'}
-                Input Business Name on Profile
-              %h2
-                {{event.host.profile.bizName}}
-            %hr
-            %h3#default-text{'ng-show'=>'event.date=="" || event.date==nil'}
-              =Time.now().strftime("%A, %B %d, %l:%M%p")
-              to 
-              =Time.now().strftime("%l:%M%p")
-            %h3{'ng-hide'=>'event.time=="" || event.time==nil'}
-              {{eventDate()}} at {{eventTime()}}
-            %h3#default-text{'ng-show'=>'event.location.neighborhood=="" || event.location.neighborhood==nil'}
-              Neighborhood
-            %h3
-              {{event.location.neighborhood}}
-            %p#default-text{'ng-show'=>'event.peopleLimit=="" || event.peopleLimit==nil'}
-              0 seats left
-            %p{'ng-hide'=>'event.peopleLimit=="" || event.peopleLimit==nil'}
-              {{event.peopleLimit}}
-              seats left
-            .progress.progress-warning
-              .bar{:style => "width: 0%"}
-            %select.number-of-seats
-              %option{:disabled => "disabled", :selected => "selected", :value => ""} Number of Seats
-              -#{{event.min-seats}}.times do |s|
-                -#%option{:value => s+1} #{s+1} seats
-            %button.btn.btn-warning.event-go-button Go
-            %table.event-sharing
-              %tr
-                %td
-                  %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
-                %td
-                  %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
-                %td
-                  %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#"}
-                %td
-                  %a.addthisevent{:href => "#", :title => "Add to Calendar"}
-                    Add
-              %tr.host-stats
-                %td 190
-                %td 190
-                %td{:rowspan => "2"} share
-                %td to
-              %tr.host-stat-labels
-                %td followers
-                %td reviews
-                %td calendar
-        .span1.heart_this
-          %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
-        .span1
-        .span4 
+        .span5.event-create
           %form.event-create-form.clearfix{'ng-init'=> "event.host_id=#{current_user.id}", :name => "event_edit"}
-            
+
             %input#event-title{'ng-model' => 'event.title', :type=>"text", :placeholder =>"Event Title", :name => "event_title", :required => "required", 'ng-class' => "{error: event_edit.event_title.$invalid}", :maxlength => "60"}
-            
-            %textarea#event-blurb{:rows => "2", 'ng-model' => 'event.description', :type=>"text", :placeholder =>"Event Blurb - you get the length of a tweet. Make it sexy ;)", :name => "event_blurb", :maxlength => "140", :required => "required", 'ng-class' => "{error: event_edit.event_blurb.$invalid}"}
+
+            %textarea#event-blurb{:rows => "2", 'ng-model' => 'event.blurb', :type=>"text", :placeholder =>"Event Blurb - you get the length of a tweet. Make it sexy ;)", :name => "event_blurb", :maxlength => "140", :required => "required", 'ng-class' => "{error: event_edit.event_blurb.$invalid}"}
 
             #event-ticket-details
               .input-prepend
@@ -92,19 +24,20 @@
               .help-block-white{'ng-show' => 'event_edit.event_cost.$error.pattern'} Please enter a valid event cost
               .help-block-white{'ng-show' => 'event_edit.event_limit.$error.pattern'} Please enter a valid number of seats
 
-            %button.GetFilepicker.clearfix.btn#event-images-button{'ng-click'=> 'uploadImages()'} Upload Images
+            %button.clearfix.btn#event-images-button{'ng-click'=> 'uploadImages()'} Upload Images
+
             %button.clearfix.btn#event-menu-button Upload Menu
             
             %hr
 
-            #event-date-time
+            #event-date-time 
               %p Date and Time
-              %input#event-date{'ng-model' => 'event.date', :type=>"date", :name => "event_date", :required => "required", :min => '{{today}}', 'ng-class' => "{error: event_create.event_date.$invalid}"}
+              %input#event-date{'ng-model' => 'event.date', :type=>"date", :name => "event_date", :required => "required", :min => '{{today}}', 'ng-class' => "{error: event_edit.event_date.$invalid}"}
 
-              %select#times{'ng-model' => 'event.time', :name => "event_time", :required => "required", 'ng-class' => "{error: event_create.event_time.$invalid}"}
+              %select#times{'ng-model' => 'event.time', :name => "event_time", :required => "required", 'ng-class' => "{error: event_edit.event_time.$invalid}"}
 
-              %select#duration{'ng-model' => 'event.length', :name => "event_duration", :required => "required", 'ng-class' => "{error: event_create.event_duration.$invalid}"}
-                %option{:value => 0, :disabled => "disabled"} Length
+              %select#duration{'ng-model' => 'event.length', :name => "event_duration", :required => "required", 'ng-class' => "{error: event_edit.event_duration.$invalid}"}
+                %option{:value => ''} Length
                 %option{:value => 30} 30 min
                 %option{:value => 60} 1 hr
                 %option{:value => 90} 1.5 hrs
@@ -131,37 +64,56 @@
 
               .help-block-white{'ng-show' => 'event_edit.event_zip.$error.pattern'} Please enter a valid zip code
 
-            .help-block-white{'ng-show' => 'event_create.event_title.$error.required || event_create.event_blurb.$error.required || event_create.event_date.$error.required || event_create.event_time.$error.required || event_create.event_duration.$error.required || event_create.event_neighborhood.$error.required || event_create.event_address.$error.required || event_create.event_city.$error.required || event_create.event_state.$error.required || event_create.event_zip.$error.required || event_create.event_cost.$error.required || event_create.event_limit.$error.required'} All fields are required
+            .help-block-white{'ng-show' => 'event_edit.event_title.$error.required || event_edit.event_blurb.$error.required || event_edit.event_date.$error.required || event_edit.event_time.$error.required || event_edit.event_duration.$error.required || event_edit.event_neighborhood.$error.required || event_edit.event_address.$error.required || event_edit.event_city.$error.required || event_edit.event_state.$error.required || event_edit.event_zip.$error.required || event_edit.event_cost.$error.required || event_edit.event_limit.$error.required'} All fields are required
 
             %button.btn.btn-warning.standalone-button#submit{'ng-disabled' => 'event_edit.$invalid', 'ng-click' => 'editEvent(event)'} Update
 
-  .container
-    .row
-      .span2.scroll-menu.event
-        %ul.nav.nav-list.scroll-menu-items{"data-spy" => "affix", "data-offset-top" => "800", "data-offset-bottom"=> "150"}
-          %li 
-            %a{:href=>"#about"} Host Story
-          %li 
-            %a{:href=>"#menu"} Menu
-      .span10
-        .row.section-header#about
-          .span10#host-story
-            %a{:href => "#host-story", 'data-target'=>"#host-story-detail", 'data-toggle'=>"collapse"} Our Story <span class="caret collapsed"></span>
-        .row.host-story
-          .span10
-            #host-story-accordion.accordion
-              #host-story-detail.accordion-body.collapse.in
-                .accordion-inner
-                  %p
-                    {{event.host.profile.story}}
-      .row
-        .span10.offset2
-          .row.section-header#menu
-            .span10#event-menu
-              %a{:href => "#event-menu", 'data-target'=>"#event-menu-detail", 'data-toggle'=>"collapse"} The Menu <span class="caret collapsed"></span>
-          .row.event-menu
-            .span10
-              #event-menu-accordion.accordion
-                #event-menu-detail.accordion-body.collapse.in
-                  .accordion-inner
-                    {{event.menuPdf}}
+        .span5
+          #ribbon.preview
+            .container
+              .base
+                %h3#default-text{'ng-show'=>'event.cost=="" || event.cost==nil'}
+                  $ Price
+                %h3{'ng-hide' => 'event.cost=="" || event.cost==nil'}
+                  ${{event.cost}}
+              .left_corner
+              .right_corner
+          .event-summary.preview-box
+            .preview-label{'ng-click' => 'removeImages()'} this is a preview
+            .event-summary-top
+              %h1#default-text{'ng-show'=>'event.title=="" || event.title==nil'}
+                Event Title
+              %h1 
+                {{event.title}}
+              -#TODO CHANGE to current.user.profile.biz_name != nil once we require everyone to fill profile
+              -if current_user.profile != nil
+                %h2
+                  ='Hosted by ' + current_user.profile.biz_name
+              -else
+                %h2#default-text
+                  Hosted by: Please input business name in your profile!
+            %h3#default-text{'ng-show'=>'event.blurb=="" || event.blurb==nil'}
+              Event Blurb
+            %h3
+              {{event.blurb}}
+            
+            .event-summary-logistics-container
+              .event-summary-logistics
+                %h3#default-text{'ng-show'=>'event.time=="" || event.time==nil'}
+                  =Time.now().strftime("%A, %B %d, %l:%M%p") 
+                  to 
+                  =Time.now().strftime("%l:%M%p")
+                %h3{'ng-hide'=>'event.time=="" || event.time==nil || event.length=="" || event.length==nil || event.date=="" || event.date==nil'}
+                  {{eventDate()}}, from #{@event.time.strftime("%l:%M%p")} to {{eventEndTime()}}
+                %h3#default-text{'ng-show'=>'event.location.neighborhood=="" || event.location.neighborhood==nil'}
+                  Neighborhood
+                %h3
+                  {{event.location.neighborhood}}
+
+            %p#default-text{'ng-show'=>'event.peopleLimit=="" || event.peopleLimit==nil'}
+              0 seats until the event tilts!
+            %p{'ng-hide'=>'event.peopleLimit=="" || event.peopleLimit==nil'}
+              {{event.peopleLimit}}
+              seats until the event tilts!
+            .progress.progress-warning
+              .bar{:style => "width: 0%"}

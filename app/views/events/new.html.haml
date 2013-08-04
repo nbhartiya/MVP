@@ -31,7 +31,7 @@
             %hr
 
             #event-date-time 
-              %p When and Where
+              %p Date and Time
               %input#event-date{'ng-model' => 'event.date', :type=>"date", :name => "event_date", :required => "required", :min => '{{today}}', 'ng-class' => "{error: event_create.event_date.$invalid}"}
 
               %select#times{'ng-model' => 'event.time', :name => "event_time", :required => "required", 'ng-class' => "{error: event_create.event_time.$invalid}"}
@@ -50,6 +50,7 @@
                 %option{:value => 300} 5 hrs
 
             #event-location
+              %p Location (guests see full address after purchase)
 
               %select#neighborhoods{'ng-model' => 'event.location.neighborhood', :required => "required", :name => "event_neighborhood", 'ng-class' => "{error: event_create.event_neighborhood.$invalid}"}
 
@@ -68,7 +69,7 @@
             %button.btn.btn-warning.standalone-button#submit{'ng-click' => 'createEvent(event)', 'ng-disabled' => 'event_create.$invalid'} Create Event
 
           .event-create-confirmation{'ng-show' => 'created'}
-            %h2 Thanks! You'll get an email time your event is approved and public. While you're waiting, make a video or upload more pictures? Or <a href = "/events"> browse </a> other events for cool ideas!
+            %h2 Thanks! You'll get an email when your event is approved and public. While you're waiting, make a video or upload more pictures? Or <a href = "/events"> browse </a> other events for cool ideas!
         .span5
           #ribbon.preview
             .container

@@ -40,7 +40,7 @@
               .event-summary-logistics
 
                 %h3#event-date
-                  {{eventDate()}}, from #{@event.time.strftime("%l:%M%p")} to {{eventEndTime()}}
+                  {{eventDate()}}, from {{eventTime()}} to {{eventEndTime()}}
                 %h3 Mission
                 -# upon registration show
                   %a{:href => "{{mapUrl()}}"} 123 Mission Street <br> San Francisco, CA 94107

@@ -613,9 +613,6 @@ $main_orange: rgb(255, 178, 35);
 					font-weight: 100;
 				}
 			}
-			#submit{
-				margin-top: 10px;
-			}
 			#submit, #ticket-purchase, #previous-button, #enter-payment-info, #ok-button{
 				float: right;
 			}
@@ -627,6 +624,9 @@ $main_orange: rgb(255, 178, 35);
 			}
 			#submit, #enter-payment-info, #ok-button{
 				margin: 0;
+			}
+			#submit{
+				margin-top: 10px;
 			}
 			.btn{
 				margin: 5px 0 5px 0;
