@@ -9,6 +9,23 @@ Simmr.factory "Follow", ["railsResourceFactory", (railsResourceFactory) ->
     name: "follow"
 ]
 
+Simmr.factory "Event", ["railsResourceFactory", (railsResourceFactory) -> railsResourceFactory
+    url: "/api/events"
+    name: "event"
+]
+
+Simmr.factory "Charge", ["railsResourceFactory", (railsResourceFactory) ->
+  railsResourceFactory
+    url: "/api/charges"
+    name: "charge"
+]
+
+Simmr.factory "User", ["railsResourceFactory", (railsResourceFactory) ->
+  railsResourceFactory
+    url: "/api/user"
+    name: "user"
+]
+
 Simmr.directive "heart", ->
   {
   restrict: 'E'
@@ -30,17 +47,6 @@ Simmr.controller "HeartCtrl", ["$scope",  "$routeParams", "Follow", ($scope, $ro
 
 Simmr.controller "HomeIndexCtrl", ["$scope",  "$routeParams", ($scope, $routeParams) ->
   
-]
-
-Simmr.factory "Event", ["railsResourceFactory", (railsResourceFactory) -> railsResourceFactory
-    url: "/api/events"
-    name: "event"
-]
-
-Simmr.factory "Charge", ["railsResourceFactory", (railsResourceFactory) ->
-  railsResourceFactory
-    url: "/api/charges"
-    name: "charge"
 ]
 
 Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "Charge", "Event", ($scope, $routeParams, $location, Charge, Event) ->
@@ -111,6 +117,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
 Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
   $scope.created = false
   $scope.eventImageUrls = []
+  $scope.eventMenu = []
   $scope.today = moment().format("YYYY-MM-DD")
 
   $scope.eventDate = ->
@@ -157,6 +164,22 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
     eventImageUrl = eventImageUrl.substring(0, eventImageUrl.length-7)
     #.substring(37)
     console.log eventImageUrl
+
+  $scope.uploadMenu = ->
+    filepicker.pickAndStore
+      mimetypes: ["image/*", "text/plain"]
+      services: ["COMPUTER", "FACEBOOK", "GMAIL", "INSTAGRAM"]
+    ,
+      location: "S3"
+      access: "public"
+    , (InkBlob) ->
+      console.log JSON.stringify(InkBlob)
+
+      $scope.image="https://s3-us-west-1.amazonaws.com/simmrimages/#{InkBlob.key}"
+
+      console.log $scope.image
+      $scope.eventMenu.push($scope.image)
+      $('.events .accordion-inner').append("<div class = 'item active'><img src = #{$scope.eventMenu}></div>")
     
   $scope.createEvent = (event) ->
     console.log($scope.eventImageUrls)

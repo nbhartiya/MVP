@@ -34,14 +34,16 @@
                 #{current_user.first_name} #{current_user.last_name}
                 %span.caret.header-caret
               %ul.dropdown-menu{"aria-labeledby" => "dLabel", :role => "menu"}
-                %li.dropitem
-                  %a{:href => "#", :tabindex => "-1"} Dashboard
+                -if current_user.profile.present?
+                  %li.dropitem
+                    %a{:href => "/profiles/#{current_user.profile.id}", :tabindex => "-1"} Dashboard
                 %li.dropitem
                   = link_to "Sign Out", destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?", :tabindex => "-1"
         %li.pull-right
-          %a{:href =>"/campaigns/new"}Request an Event
-        %li.pull-right
-          =link_to "Create an Event", new_event_path
+          %a{:href =>"/campaigns/new"}Start a Campaign
+        -if user_signed_in? && current_user.chef?
+          %li.pull-right
+            =link_to "Create an Event", new_event_path
         %li.pull-right
           %a{:href =>"/events"}Browse Events
 

@@ -13,6 +13,13 @@ $(document).on "click", ".usersignup", ->
   #      window.location='/events'
   #)
 
+$(document).on "click", ".newpass", ->
+  $("#new_pass").submit()
+
+angular.module('Simmr').controller "UserRegisterCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
+
+]
+
 $(document).on "click", ".foodiesignup", ->
   date = new Date()
   minutes = 5
@@ -27,11 +34,3 @@ $(document).on "click", ".bizsignup", ->
   date.setTime date.getTime() + (minutes * 60 * 1000)
   $.cookie "chef", true,
     expires: date,
-
-
-$(document).on "click", ".newpass", ->
-  $("#new_pass").submit()
-
-angular.module('Simmr').controller "UserRegisterCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
-
-]

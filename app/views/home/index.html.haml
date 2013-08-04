@@ -67,7 +67,7 @@
               .span4.offset1.step.browse
                 .step-description
                   %h1 browse
-                  %p We work with new and established food businesses to bring you experiences that are different from the typical restaurant visit. 
+                  %p We work with new and established food businesses to bring you events and experiences that are different from the typical restaurant visit. 
             .row.how-it-works-event-infographic
               .span4.offset3.step.register
                 .step-description
@@ -77,7 +77,7 @@
               .span4.offset1.step.tilt
                 .step-description
                   %h1 tilt
-                  %p Woohoo, party time! At this point, we charge your card, so all you have to show up and enjoy.
+                  %p Woohoo, party time! At this point, we charge your card, so all you have to do is show up and enjoy.
             .row.how-it-works-event-infographic
               .span4.offset2.step.return
                 .step-description
@@ -124,6 +124,9 @@
           Sign up with
           %p
             -@chef_info = "1"
+            -if cookies[:chef_info].present?
+              -cookies.delete :chef_info
+            -cookies[:chef_info] = "1"
             = render "shared/business_signup", :chef_info => @chef_info
       .modal-footer
         %button.usersignup.btn.btn-warning Sign Up
@@ -140,6 +143,10 @@
           Sign up with
           %p
             -@chef_info = "0"
+            -if cookies[:chef_info].present?
+              -binding.pry
+              -cookies.delete :chef_info
+            -cookies[:chef_info] = "0"
             = render "shared/foodie_signup", :chef_info => @chef_info
       .modal-footer
         %button.usersignup.btn.btn-warning Sign Up

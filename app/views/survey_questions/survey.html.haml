@@ -32,7 +32,7 @@
         %form.create-profile{:name => "create_profile"}
           -if current_user.chef?
             -if current_user.email == ""
-              %input#user_email{:required => "required", :placeholder => "email", :name => "email", :size => "30", :type => "email", 'ng-model' => 'email'}
+              %input#user_email{:required => "required", :placeholder => "email", :name => "email", :size => "30", :type => "email", 'ng-model' => 'email', 'ng-class' => "{error: create_profile.email.$invalid}"}
             %input#biz_name{'ng-model' => "profile.biz_name", :placeholder => "Business Name", :type => "text", :name => "biz_name", 'ng-class' => "{error: create_profile.biz_name.$invalid}", :required => "required"}
             %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: create_profile.profile_blurb.$invalid}"}
             %textarea#profile-story{:rows => "6", 'ng-model'=>'profile.story', :type=>"text", :placeholder =>"Your story - you can write a lot more here. People love to hear how you got to where you are now!", :name => "profile_story", 'ng-class' => "{error: create_profile.profile_story.$invalid}"}
@@ -46,13 +46,13 @@
               %button.btn.btn-inverse#yelp-connect Connect Yelp
               %a#yelp-explanation{:href => "#", "data-toggle" => "tooltip", :title => "So guests know how great you already are and can easily leave you reviews!", "data-placement" => "right"} <sup> Why? </sup>
 
-            .help-block{'ng-show' => 'create_profile.biz_name.$error.required || create_profile.profile_blurb.$error.required || create_profile.address1.$error.required  || create_profile.profile_neighborhood.$error.required || create_profile.city.$error.required || create_profile.state.$error.required || create_profile.zip.$error.required'} All fields are required
+            .help-block{'ng-show' => 'create_profile.email.$error.required || create_profile.biz_name.$error.required || create_profile.profile_blurb.$error.required || create_profile.address1.$error.required  || create_profile.profile_neighborhood.$error.required || create_profile.city.$error.required || create_profile.state.$error.required || create_profile.zip.$error.required'} All fields are required
             .help-block{"ng-show" => "create_profile.email.$error.email"} Please enter a valid email
             .help-block{'ng-show' => 'create_profile.zip.$error.pattern'} Please enter a valid zip code
 
           -else
             -if current_user.email == ""
-              %input#user_email{:required => "required", :placeholder => "email", :name => "email", :size => "30", :type => "email", 'ng-model' => 'email'}
+              %input#user_email{:required => "required", :placeholder => "email", :name => "email", :size => "30", :type => "email", 'ng-model' => 'email', 'ng-class' => "{error: create_profile.email.$invalid}"}
             %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: create_profile.profile_blurb.$invalid}"}
             %select#neighborhoods{'ng-model'=>'profile.neighborhood', :name => "profile_neighborhood", :required => "required", 'ng-class' => "{error: create_profile.profile_neighborhood.$invalid}"}
 
@@ -68,7 +68,9 @@
 
             .help-block{'ng-show' => 'create_profile.work_zip.$error.pattern'} Please enter a valid work zip code
 
-            .help-block{'ng-show' => 'create_profile.profile_blurb.$error.required || create_profile.profile_neighborhood.$error.required || create_profile.home_zip.$error.required || create_profile.work_zip.$error.required'} All fields are required
+            .help-block{"ng-show" => "create_profile.email.$error.email"} Please enter a valid email
+
+            .help-block{'ng-show' => 'create_profile.email.$error.required || create_profile.profile_blurb.$error.required || create_profile.profile_neighborhood.$error.required || create_profile.home_zip.$error.required || create_profile.work_zip.$error.required'} All fields are required
     .row
       -if !current_user.chef
         -for q in @questions

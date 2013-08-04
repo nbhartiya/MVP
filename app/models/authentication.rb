@@ -14,5 +14,6 @@ class Authentication < ActiveRecord::Base
   belongs_to :user
   
   attr_accessible :user_id, :provider, :uid
+  cattr_accessor :chef_info
   
 end
