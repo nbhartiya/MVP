@@ -126,9 +126,12 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
 
   $scope.eventDate = ->
     moment($scope.event.date).format("dddd, MMMM D")
+
+  $scope.eventTime = ->
+    moment($scope.event.time, "YYYY-MM-DD H:mm:ss").format("h:mm A")
   
   $scope.eventEndTime = ->
-    datetime = moment($scope.event.time,  "h:mm A")
+    datetime = moment($scope.event.time,  "YYYY-MM-DD H:mm:ss")
     datetime.add('minutes', $scope.event.length).format('h:mm A')
 
   $scope.uploadImages = ->

@@ -14,6 +14,8 @@
 
             %textarea#event-blurb{:rows => "2", 'ng-model' => 'event.blurb', :type=>"text", :placeholder =>"Event Blurb - you get the length of a tweet. Make it sexy ;)", :name => "event_blurb", :maxlength => "140", :required => "required", 'ng-class' => "{error: event_edit.event_blurb.$invalid}"}
 
+            %textarea#event-blurb{:rows => "3", 'ng-model' => 'event.description', :type=>"text", :placeholder =>"Event Details - a longer description of your event", :name => "event_details", :required => "required", 'ng-class' => "{error: event_edit.event_details.$invalid}"}
+
             #event-ticket-details
               .input-prepend
                 %span.add-on $
@@ -64,7 +66,7 @@
 
               .help-block-white{'ng-show' => 'event_edit.event_zip.$error.pattern'} Please enter a valid zip code
 
-            .help-block-white{'ng-show' => 'event_edit.event_title.$error.required || event_edit.event_blurb.$error.required || event_edit.event_date.$error.required || event_edit.event_time.$error.required || event_edit.event_duration.$error.required || event_edit.event_neighborhood.$error.required || event_edit.event_address.$error.required || event_edit.event_city.$error.required || event_edit.event_state.$error.required || event_edit.event_zip.$error.required || event_edit.event_cost.$error.required || event_edit.event_limit.$error.required'} All fields are required
+            .help-block-white{'ng-show' => 'event_edit.event_title.$error.required || event_edit.event_blurb.$error.required || event_edit.event_date.$error.required || event_edit.event_time.$error.required || event_edit.event_duration.$error.required || event_edit.event_neighborhood.$error.required || event_edit.event_address.$error.required || event_edit.event_city.$error.required || event_edit.event_state.$error.required || event_edit.event_zip.$error.required || event_edit.event_cost.$error.required || event_edit.event_limit.$error.required || event_edit.event_details.$error.required'} All fields are required
 
             %button.btn.btn-warning.standalone-button#submit{'ng-disabled' => 'event_edit.$invalid', 'ng-click' => 'editEvent(event)'} Update
 
@@ -88,7 +90,8 @@
               -#TODO CHANGE to current.user.profile.biz_name != nil once we require everyone to fill profile
               -if current_user.profile != nil
                 %h2
-                  ='Hosted by ' + current_user.profile.biz_name
+                  Hosted by:
+                  =current_user.profile.biz_name
               -else
                 %h2#default-text
                   Hosted by: Please input business name in your profile!
@@ -104,7 +107,7 @@
                   to 
                   =Time.now().strftime("%l:%M%p")
                 %h3{'ng-hide'=>'event.time=="" || event.time==nil || event.length=="" || event.length==nil || event.date=="" || event.date==nil'}
-                  {{eventDate()}}, from #{@event.time.strftime("%l:%M%p")} to {{eventEndTime()}}
+                  {{eventDate()}}, from {{eventTime()}} to {{eventEndTime()}}
                 %h3#default-text{'ng-show'=>'event.location.neighborhood=="" || event.location.neighborhood==nil'}
                   Neighborhood
                 %h3

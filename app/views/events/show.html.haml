@@ -46,13 +46,13 @@
                   %a{:href => "{{mapUrl()}}"} 123 Mission Street <br> San Francisco, CA 94107
                 %ul.nav.event-button-group
                   %li
-                    %button.btn{'data-toggle' => 'pill'} Details
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "details"'} Details
                   %li
-                    %button.btn{'data-toggle' => 'pill'} Menu
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "menu"'} Menu
                   %li
-                    %button.btn{'data-toggle' => 'pill'} Attendees
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "chatter"'} Attendees
                   %li
-                    %button.btn{'data-toggle' => 'pill'} Host Story
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "story"'} Host Story
 
             %p 
               =@event.seats_left
@@ -106,7 +106,9 @@
         .span1
         .span6
           .event-details#details{'ng-show' => 'appear=="details"'}
-            %h3 Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait
+            %h3 Event Description
+            %h3
+              =@event.description
           .event-menu#menu{'ng-show' => 'appear=="menu"'}
             %h3 Event Menu
             %p

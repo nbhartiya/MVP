@@ -93,13 +93,19 @@ $main_orange: rgb(255, 178, 35);
 				background: no-repeat;
 			}
 			p{
-				right: 50px;
+				background: $main_orange;
+				margin-top: 10px;
+				margin-bottom: 10px;
+				color: white;
+				padding: 5px;
+				display: inline-block;
+				right: 10px;
 				text-align: right;
 				z-index: 5;
-				font-weight: 100;
-				font-size: 12px;
 				top: 10px;
 				position: absolute;
+				line-height: 1.2em;
+				font-size: 12px;
 			}
 		}
 	}
@@ -126,6 +132,9 @@ $main_orange: rgb(255, 178, 35);
 	    -webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;    
 		box-sizing: border-box;
+		a:hover{
+			text-decoration: none;
+		}
 		#ribbon {
 			width: 180px;
 			height: 110px;
@@ -136,8 +145,7 @@ $main_orange: rgb(255, 178, 35);
 			overflow: hidden;
 		}
 		#ribbon.preview{
-			right: -380px;
-			top: 5px;
+			left: 855px;
 		}
 		#ribbon .inset {
 			width: 150px;
@@ -369,12 +377,16 @@ $main_orange: rgb(255, 178, 35);
 					}
 				}
 			}
-			p{
+			p, a{
 				text-align: right;
 			    color: black;
 			    margin-top: 0px;
 			    margin-bottom: 0px;
 			    font-size: 12px;
+			}
+			a, a:hover, a:visited{
+				text-decoration: none;
+				display: block;
 			}
 		}
 		.heart_this{
@@ -475,7 +487,7 @@ $main_orange: rgb(255, 178, 35);
 
 //campaign editing
 
-.campaign-blurb{
+.campaign-blurb, .campaign-why{
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;    
 	box-sizing: border-box; 

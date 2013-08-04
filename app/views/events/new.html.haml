@@ -14,6 +14,8 @@
             
             %textarea#event-blurb{:rows => "2", 'ng-model' => 'event.blurb', :type=>"text", :placeholder =>"Event Blurb - you get the length of a tweet. Make it sexy ;)", :name => "event_blurb", :maxlength => "140", :required => "required", 'ng-class' => "{error: event_create.event_blurb.$invalid}"}
 
+            %textarea#event-blurb{:rows => "3", 'ng-model' => 'event.description', :type=>"text", :placeholder =>"Event Details - a longer description of your event", :name => "event_details", :required => "required", 'ng-class' => "{error: event_create.event_details.$invalid}"}
+
             #event-ticket-details
               .input-prepend
                 %span.add-on $
@@ -64,12 +66,13 @@
 
               .help-block-white{'ng-show' => 'event_create.event_zip.$error.pattern'} Please enter a valid zip code
 
-            .help-block-white{'ng-show' => 'event_create.event_title.$error.required || event_create.event_blurb.$error.required || event_create.event_date.$error.required || event_create.event_time.$error.required || event_create.event_duration.$error.required || event_create.event_neighborhood.$error.required || event_create.event_address.$error.required || event_create.event_city.$error.required || event_create.event_state.$error.required || event_create.event_zip.$error.required || event_create.event_cost.$error.required || event_create.event_limit.$error.required'} All fields are required
+            .help-block-white{'ng-show' => 'event_create.event_title.$error.required || event_create.event_blurb.$error.required || event_create.event_date.$error.required || event_create.event_time.$error.required || event_create.event_duration.$error.required || event_create.event_neighborhood.$error.required || event_create.event_address.$error.required || event_create.event_city.$error.required || event_create.event_state.$error.required || event_create.event_zip.$error.required || event_create.event_cost.$error.required || event_create.event_limit.$error.required || event_create.event_details.$error.required'} All fields are required
 
             %button.btn.btn-warning.standalone-button#submit{'ng-click' => 'createEvent(event)', 'ng-disabled' => 'event_create.$invalid'} Create Event
 
           .event-create-confirmation{'ng-show' => 'created'}
-            %h2 Thanks! You'll get an email when your event is approved and public. While you're waiting, make a video or upload more pictures? Or <a href = "/events"> browse </a> other events for cool ideas!
+            %h2 Thanks! You'll get an email when your event is approved and public. 
+            %a.btn.btn-warning#ok-button{:href => "/events"} Check Out More Cool Events!
         .span5
           #ribbon.preview
             .container
@@ -90,7 +93,8 @@
               -#TODO CHANGE to current.user.profile.biz_name != nil once we require everyone to fill profile
               -if current_user.profile != nil
                 %h2
-                  ='Hosted by ' + current_user.profile.biz_name
+                  Hosted by: 
+                  =current_user.profile.biz_name
               -else
                 %h2#default-text
                   Hosted by: Please input business name in your profile!
@@ -101,12 +105,12 @@
             
             .event-summary-logistics-container
               .event-summary-logistics
-                %h3#default-text{'ng-show'=>'event.time=="" || event.time==nil'}
+                %h3#default-text{'ng-show'=>'event.time=="" || event.time==nil || event.length=="" || event.length==nil || event.date=="" || event.date==nil'}
                   =Time.now().strftime("%A, %B %d, %l:%M%p") 
                   to 
                   =Time.now().strftime("%l:%M%p")
                 %h3{'ng-hide'=>'event.time=="" || event.time==nil || event.length=="" || event.length==nil || event.date=="" || event.date==nil'}
-                  {{eventDate()}}, from {{event.time}} to {{eventEndTime()}}
+                  {{eventDate()}}, from {{eventTime()}} to {{eventEndTime()}}
                 %h3#default-text{'ng-show'=>'event.location.neighborhood=="" || event.location.neighborhood==nil'}
                   Neighborhood
                 %h3

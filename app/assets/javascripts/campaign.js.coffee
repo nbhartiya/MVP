@@ -5,3 +5,6 @@ $(".campaigns .heart_this a").click ->
   else
     $(this).removeClass "orange"
     $(this).addClass "gray"
+
+$(".campaign-days").tooltip()
+$(".campaign-tilt").tooltip()
