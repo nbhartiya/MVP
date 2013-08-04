@@ -5,7 +5,6 @@
         .active.item
           %p This is a default cover photo. <br> Replace by uploading images!
           =image_tag "Food 26.jpg"
-    -#.btn#remove-image x
     .container
       .event-registration.row
         .span5.event-create
@@ -111,16 +110,6 @@
                   Neighborhood
                 %h3
                   {{event.location.neighborhood}}
-                %ul.nav.event-button-group
-                  %p#default-text (these are preview buttons)
-                  %li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "details"'} Details
-                  %li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "menu"'} Menu
-                  %li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "chatter"'} Attendees
-                  %li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "story"'} Host Story
                   
             
 
@@ -131,5 +120,4 @@
               seats until the event tilts!
             .progress.progress-warning
               .bar{:style => "width: 0%"}
-            .btn.btn-warning.grab-seats-button Grab Seats
 

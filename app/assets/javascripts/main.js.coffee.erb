@@ -154,9 +154,9 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
           console.log('else')
           $('.events .carousel-inner').append("<div class = 'item'><img src = #{$scope.eventImageUrls[i]}></div>")
         i++
-      $('.event-profile').append("<div class ='btn' id = 'remove-image'>x</div>")
+      $('.event-profile').append("<div class ='btn' id = 'remove-image'>remove image</div>")
       if Object.keys(InkBlobs).length>1
-        $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> > </a>")
+        $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> › </a>")
 
 
   $scope.removeImages = ->

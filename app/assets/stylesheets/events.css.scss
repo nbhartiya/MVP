@@ -79,9 +79,10 @@ $main_orange: rgb(255, 178, 35);
     	right: 5px;
 		position: absolute;
 		z-index: 50;
-		background: rgba(0, 0, 0, 0.8);
+		background: $main_orange;
 		border: none;
 		color: white;
+		top: 5px;
     }
 	#event-carousel {
 		position: absolute;
@@ -165,7 +166,7 @@ $main_orange: rgb(255, 178, 35);
 			overflow: hidden;
 		}
 		#ribbon.preview{
-			right: -270px;
+			right: -260px;
 		}
 		#ribbon .inset {
 			width: 150px;
@@ -486,7 +487,7 @@ $main_orange: rgb(255, 178, 35);
 		}
 		.event-create-form{
 			height: 490px;
-			margin-top: -20px;
+			overflow-y: auto;
 		}
 		.event-purchase, .event-purchase-confirmation, .event-create-confirmation, .event-guests, .event-details, .event-menu, .event-attendees-and-chatter, .event-host-story, .host-followers, .event-create-form, .event-edit-form{
 			background: rgba(0,0,0,0.8);
@@ -611,6 +612,9 @@ $main_orange: rgb(255, 178, 35);
 					font-size: 12px;
 					font-weight: 100;
 				}
+			}
+			#submit{
+				margin-top: 10px;
 			}
 			#submit, #ticket-purchase, #previous-button, #enter-payment-info, #ok-button{
 				float: right;
