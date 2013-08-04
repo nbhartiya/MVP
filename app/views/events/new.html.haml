@@ -6,15 +6,14 @@
           %p this is a stock image <br> (replace with your own!)
           =image_tag "Food 26.jpg"
     .btn#remove-image x
-    .container
-      .event-registration.row{'ng-controller' => 'EventCreateCtrl'}
-        .span1
+    .container{'ng-controller' => 'EventCreateCtrl'}
+      .event-registration.row
         .span5.event-create
           %form.event-create-form.clearfix{'ng-init'=> "event.host_id=#{current_user.id}", :name => "event_create"}
             
             %input#event-title{'ng-model' => 'event.title', :type=>"text", :placeholder =>"Event Title", :name => "event_title", :required => "required", 'ng-class' => "{error: event_create.event_title.$invalid}", :maxlength => "60"}
             
-            %textarea#event-blurb{:rows => "2", 'ng-model' => 'event.description', :type=>"text", :placeholder =>"Event Blurb - you get the length of a tweet. Make it sexy ;)", :name => "event_blurb", :maxlength => "140", :required => "required", 'ng-class' => "{error: event_create.event_blurb.$invalid}"}
+            %textarea#event-blurb{:rows => "2", 'ng-model' => 'event.blurb', :type=>"text", :placeholder =>"Event Blurb - you get the length of a tweet. Make it sexy ;)", :name => "event_blurb", :maxlength => "140", :required => "required", 'ng-class' => "{error: event_create.event_blurb.$invalid}"}
 
             #event-ticket-details
               .input-prepend
@@ -39,7 +38,7 @@
               %select#times{'ng-model' => 'event.time', :name => "event_time", :required => "required", 'ng-class' => "{error: event_create.event_time.$invalid}"}
 
               %select#duration{'ng-model' => 'event.length', :name => "event_duration", :required => "required", 'ng-class' => "{error: event_create.event_duration.$invalid}"}
-                %option{:value => 0, :disabled => "disabled"} Length
+                %option{:value => ''} Length
                 %option{:value => 30} 30 min
                 %option{:value => 60} 1 hr
                 %option{:value => 90} 1.5 hrs
@@ -73,10 +72,11 @@
             %h2 Thanks! You'll get an email time your event is approved and public. While you're waiting, make a video or upload more pictures? Or <a href = "/events"> browse </a> other events for cool ideas!
         .span5
           #ribbon.preview
-            .inset
             .container
               .base
-                %h3
+                %h3#default-text{'ng-show'=>'event.cost=="" || event.cost==nil'}
+                  $ Price
+                %h3{'ng-hide' => 'event.cost=="" || event.cost==nil'}
                   ${{event.cost}}
               .left_corner
               .right_corner
@@ -87,121 +87,50 @@
                 Event Title
               %h1 
                 {{event.title}}
-              %h2#default-text{'ng-show'=>'event.description=="" || event.description==nil'}
-                Event Description
-              %h2 
-                {{event.description}}
-            -#TODO CHANGE to current.user.profile.biz_name != nil once we require everyone to fill profile
-            -if current_user.profile != nil
-              %h2
-                =current_user.profile.biz_name
-            -else
-              %h2#default-text
-                Input Business Name on Profile
-            %hr
-            %h3#default-text{'ng-show'=>'event.time=="" || event.time==nil'}
-              =Time.now().strftime("%A, %B %d, %l:%M%p") 
-              to 
-              =Time.now().strftime("%l:%M%p")
-            %h3{'ng-hide'=>'event.time=="" || event.time==nil'}
-              {{eventDate()}} {{event.time}} to {{eventEndTime()}}
-            %h3#default-text{'ng-show'=>'event.location.neighborhood=="" || event.location.neighborhood==nil'}
-              Neighborhood
+              -#TODO CHANGE to current.user.profile.biz_name != nil once we require everyone to fill profile
+              -if current_user.profile != nil
+                %h2
+                  ='Hosted by ' + current_user.profile.biz_name
+              -else
+                %h2#default-text
+                  Hosted by: Please input business name in your profile!
+            %h3#default-text{'ng-show'=>'event.blurb=="" || event.blurb==nil'}
+              Event Blurb
             %h3
-              {{event.location.neighborhood}}
+              {{event.blurb}}
+            
+            .event-summary-logistics-container
+              .event-summary-logistics
+                %h3#default-text{'ng-show'=>'event.time=="" || event.time==nil'}
+                  =Time.now().strftime("%A, %B %d, %l:%M%p") 
+                  to 
+                  =Time.now().strftime("%l:%M%p")
+                %h3{'ng-hide'=>'event.time=="" || event.time==nil'}
+                  {{eventDate()}} {{event.time}} to {{eventEndTime()}}
+                %h3#default-text{'ng-show'=>'event.location.neighborhood=="" || event.location.neighborhood==nil'}
+                  Neighborhood
+                %h3
+                  {{event.location.neighborhood}}
+                %ul.nav.event-button-group
+                  %p (these are preview buttons)
+                  %li
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "details"'} Details
+                  %li
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "menu"'} Menu
+                  %li
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "chatter"'} Attendees
+                  %li
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "story"'} Host Story
+                  
+            
+
             %p#default-text{'ng-show'=>'event.people_limit=="" || event.people_limit==nil'}
-              0 seats left
+              0 seats until the event tilts!
             %p{'ng-hide'=>'event.people_limit=="" || event.people_limit==nil'}
               {{event.people_limit}}
-              seats left
+              seats until the event tilts!
             .progress.progress-warning
               .bar{:style => "width: 0%"}
-            %select.number-of-seats
-              %option{:disabled => "disabled", :selected => "selected", :value => ""} Number of Seats
-              -#{{event.min-seats}}.times do |s|
-                -#%option{:value => s+1} #{s+1} seats
-            %button.btn.btn-warning.event-go-button Go
-            %table.event-sharing
-              %tr
-                %td
-                  %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
-                %td
-                  %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
-                %td
-                  %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#"}
-                %td
-                  %a.addthisevent{:href => "#", :title => "Add to Calendar"}
-                    Add
-              %tr.host-stats
-                %td 190
-                %td 190
-                %td{:rowspan => "2"} share
-                %td to
-              %tr.host-stat-labels
-                %td followers
-                %td reviews
-                %td calendar
-        -#
-          .span1.heart_this
-            %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
+            .btn.btn-warning.grab-seats-button Grab Seats
 
-  .container
-    .row
-      .span2.scroll-menu.event
-        %ul.nav.nav-list.scroll-menu-items{"data-spy" => "affix", "data-offset-top" => "800", "data-offset-bottom"=> "150"}
-          %li 
-            %a{:href=>"#about"} Host Story
-          %li 
-            %a{:href=>"#menu"} Menu
-          %li   
-            %a{:href=>"#chatter"} Chatter
-      .span10
-        .row.section-header#about
-          .span10#host-story
-            %a{:href => "#host-story", 'data-target'=>"#host-story-detail", 'data-toggle'=>"collapse"} Our Story <span class="caret collapsed"></span>
-        .row.host-story
-          .span10
-            #host-story-accordion.accordion
-              #host-story-detail.accordion-body.collapse.in
-                .accordion-inner
-                  %p
-                    Host Story
-      .row
-        .span10.offset2
-          .row.section-header#menu
-            .span10#event-menu
-              %a{:href => "#event-menu", 'data-target'=>"#event-menu-detail", 'data-toggle'=>"collapse"} The Menu <span class="caret collapsed"></span>
-          .row.event-menu
-            .span10
-              #event-menu-accordion.accordion
-                #event-menu-detail.accordion-body.collapse.in
-                  .accordion-inner
-                    Uploaded Menu
-          .row.section-header#chatter
-            .span10#event-chatter
-              %a{:href => "#event-chatter", 'data-target'=>"#event-chatter-detail", 'data-toggle'=>"collapse"} Sample Chatter <span class="caret collapsed"></span>
-              %ul
-                %li 
-                  %a{:href=>"#"} Hide Participants
-                %li 
-                  %a{:href=>"#"} Turn Off Chatter
-          .row.event-chatter
-            .span10
-              #event-chatter-accordion.accordion
-                #event-chatter-detail.accordion-body.collapse.in
-                  .accordion-inner
-                    .row
-                      .span10.attendees
-                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
-                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
-                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
-                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Christine Lee", "class" => "one-attendee", "data-placement" => "bottom"
-                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Michael Makarov", "class" => "one-attendee", "data-placement" => "bottom"
-                        -#
-                          %p 
-                            -for guest in @event.guests
-                              = guest.first_name + " " + guest.last_name
-                              %p
-                    .row
-                      .span10.comments
-                        .fb-comments{"data-href" => "http://www.example.com", "data-num-posts" => "10", "data-width" => "910"}
+            

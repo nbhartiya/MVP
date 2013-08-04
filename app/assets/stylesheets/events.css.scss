@@ -97,14 +97,17 @@ $main_orange: rgb(255, 178, 35);
 				background: no-repeat;
 			}
 			p{
+				background: $main_orange;
+				margin-top: 10px;
+				margin-bottom: 10px;
+				color: white;
+				padding: 5px;
+				display: inline-block;
 				right: 50px;
 				text-align: right;
 				z-index: 5;
-				font-weight: 100;
-				font-size: 12px;
 				top: 10px;
 				position: absolute;
-				color: white;
 			}
 		}
 		.carousel-indicators{
@@ -159,8 +162,7 @@ $main_orange: rgb(255, 178, 35);
 			overflow: hidden;
 		}
 		#ribbon.preview{
-			right: -380px;
-			top: 5px;
+			right: -270px;
 		}
 		#ribbon .inset {
 			width: 150px;
@@ -292,6 +294,10 @@ $main_orange: rgb(255, 178, 35);
 				margin: 20px auto 10px auto;
 				display: table;
 				width: 100%;
+				p{
+					text-align: left;
+					margin-top: 2px;
+				}
 				li{
 					float: left;
 					display: table-cell;
@@ -461,9 +467,9 @@ $main_orange: rgb(255, 178, 35);
 			    font-size: 12px;
 			}
 		}
-		.event-summary.preview-box{
+		/*.event-summary.preview-box{
 			margin-top: 35px;
-		}
+		}*/
 		.heart_this{
 			margin: 0 auto;
 			padding: 10px;
@@ -642,7 +648,7 @@ $main_orange: rgb(255, 178, 35);
 					width: 24%;
 				}
 				#duration{
-					width: 24.5%;
+					width: 25.5%;
 				}
 			}
 			#event-location{
@@ -705,7 +711,7 @@ $main_orange: rgb(255, 178, 35);
 					color: rgb(54, 54, 54);
 				}
 				#ticket-cost{
-					width: 83%;
+					width: 86%;
 					-webkit-box-sizing: border-box;
 					-moz-box-sizing: border-box;    
 					box-sizing: border-box;
