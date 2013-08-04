@@ -45,7 +45,7 @@
                 {{campaign.blurb}}
             .campaign-summary-logistics-container
               .campaign-summary-logistics
-                %h2 By #{current_user.first_name} #{current_user.last_name}
+                %h2 Created by #{current_user.first_name} #{current_user.last_name}
             %a.campaign-tilt{:href => "#", "data-toggle" => "tooltip", :title => "All campaigns need at least 100 people to join to succeed!", "data-placement" => "right"} 100 more needed to tilt this campaign
             .progress.signed-in.progress-warning
               .bar{:style => "width: 0%"}

@@ -333,6 +333,18 @@ Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "C
       $scope.campaign=data
       window.location.href = '/campaigns/'+data.id
 
+  $scope.daysLeft = ->
+    today = moment()
+    endDate = moment($scope.endDate)
+    daysLeft = endDate.diff(today, 'days')
+    if daysLeft <= 0
+      if $scope.successful
+        "success!"
+      else
+        "try again?"
+    else
+      daysLeft + " days left"
+
   $scope.imageUrls = []
 
   $scope.uploadImages = ->
