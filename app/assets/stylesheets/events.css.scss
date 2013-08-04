@@ -103,11 +103,13 @@ $main_orange: rgb(255, 178, 35);
 				color: white;
 				padding: 5px;
 				display: inline-block;
-				right: 50px;
+				right: 10px;
 				text-align: right;
 				z-index: 5;
 				top: 10px;
 				position: absolute;
+				line-height: 1.2em;
+				font-size: 12px;
 			}
 		}
 		.carousel-indicators{
@@ -131,6 +133,7 @@ $main_orange: rgb(255, 178, 35);
 		margin-top: 0;
 		border-radius: 0;
 		width: 30px;
+		cursor: pointer;
 	}
 	.carousel-control.left{
 		left: 0;
@@ -194,7 +197,7 @@ $main_orange: rgb(255, 178, 35);
 		#ribbon .base {
 			height: 55px;
 			width: 100px;
-			background: url(/assets/black-Linen_@2X.png);
+			background: black;
 			//background: rgba(80, 80, 80, 1);
 			position: relative;
 			z-index: 2;
@@ -234,7 +237,7 @@ $main_orange: rgb(255, 178, 35);
 		#ribbon .left_corner {
 			width: 100px;
 			height: 100px;
-			background: url(/assets/black-Linen_@2X.png);
+			background: black;
 			//background: rgba(80, 80, 80, 1);
 			position: absolute;
 			bottom: 20px;
@@ -251,7 +254,7 @@ $main_orange: rgb(255, 178, 35);
 		#ribbon .right_corner {
 			width: 100px;
 			height: 100px;
-			background: url(/assets/black-Linen_@2X.png);
+			background: black;
 			//background: rgba(80, 80, 80, 1);
 			position: absolute;
 			bottom: 20px;
@@ -273,12 +276,12 @@ $main_orange: rgb(255, 178, 35);
 			.event-summary-logistics-container{
 				padding: 5px 0;
 				margin: 15px -37px 25px -37px;
-				background: url(/assets/black-Linen_@2X.png);
+				background: black;
 			}
 			.event-summary-logistics{
 				//border-top: 1px dashed rgb(100, 100, 100);
 				//border-bottom: 1px dashed rgb(100, 100, 100);
-				background: url(/assets/black-Linen_@2X.png);
+				background: black;
 				//background: rgb(80, 80, 80);
 				padding: 10px 30px;
 				margin: 0px;

@@ -45,11 +45,19 @@ Simmr.factory "Charge", ["railsResourceFactory", (railsResourceFactory) ->
 
 Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "Charge", "Event", ($scope, $routeParams, $location, Charge, Event) ->
   $scope.guests = []
+  $scope.event = []
 
   $scope.guest = {}
   $scope.guest.name = ''
   $scope.guest.email = ''
   $scope.buyer = {}
+
+  $scope.eventDate = ->
+    moment($scope.event.date).format("dddd, MMMM D")
+  
+  $scope.eventEndTime = ->
+    datetime = moment($scope.event.time,  "YYYY-MM-DD H:mm:ss")
+    datetime.add('minutes', $scope.event.length).format('h:mm A')
 
   $scope.mapUrl = ->
     mapUrl = "http://maps.google.com/?q=#{$scope.address1},#{$scope.city}, #{$scope.state},#{$scope.zipcode}"
@@ -117,10 +125,8 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
     moment($scope.event.date).format("dddd, MMMM D")
   
   $scope.eventEndTime = ->
-    $scope.datetime = moment($scope.event.date, "DDDD, MMM D")
-    $scope.datetime = moment($scope.event.time,  "h:mm A")
-    console.log($scope.datetime)
-    $scope.datetime.add(moment.duration($scope.event.length, 'minutes')).format('h:mm A')
+    datetime = moment($scope.event.time,  "h:mm A")
+    datetime.add('minutes', $scope.event.length).format('h:mm A')
 
   $scope.uploadImages = ->
     filepicker.pickAndStore
@@ -148,7 +154,10 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
           console.log('else')
           $('.events .carousel-inner').append("<div class = 'item'><img src = #{$scope.eventImageUrls[i]}></div>")
         i++
-      $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> < </a><a class = 'carousel-control appear hidden-phone' data-slide = 'next' href = '#event-carousel'> > </a>")
+      $('.event-profile').append("<div class ='btn' id = 'remove-image'>x</div>")
+      if Object.keys(InkBlobs).length>1
+        $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> > </a>")
+
 
   $scope.removeImages = ->
     eventImageUrl = document.getElementsByClassName("active")[0]
@@ -254,7 +263,7 @@ Simmr.controller "CampaignJoinCtrl", ["$scope", "$window", "$routeParams", "$loc
       if $scope.successful
         "success!"
       else
-        "try again"
+        "try again?"
     else
       daysLeft + " days left"
 

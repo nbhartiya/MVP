@@ -1,12 +1,12 @@
-.events
+.events{'ng-controller' => 'EventCreateCtrl'}
   .event-profile
     #event-carousel.carousel.slide.hidden-phone           
       .carousel-inner
         .active.item
-          %p this is a stock image <br> (replace with your own!)
+          %p This is a default cover photo. <br> Replace by uploading images!
           =image_tag "Food 26.jpg"
-    .btn#remove-image x
-    .container{'ng-controller' => 'EventCreateCtrl'}
+    -#.btn#remove-image x
+    .container
       .event-registration.row
         .span5.event-create
           %form.event-create-form.clearfix{'ng-init'=> "event.host_id=#{current_user.id}", :name => "event_create"}
@@ -105,14 +105,14 @@
                   =Time.now().strftime("%A, %B %d, %l:%M%p") 
                   to 
                   =Time.now().strftime("%l:%M%p")
-                %h3{'ng-hide'=>'event.time=="" || event.time==nil'}
-                  {{eventDate()}} {{event.time}} to {{eventEndTime()}}
+                %h3{'ng-hide'=>'event.time=="" || event.time==nil || event.length=="" || event.length==nil || event.date=="" || event.date==nil'}
+                  {{eventDate()}}, from {{event.time}} to {{eventEndTime()}}
                 %h3#default-text{'ng-show'=>'event.location.neighborhood=="" || event.location.neighborhood==nil'}
                   Neighborhood
                 %h3
                   {{event.location.neighborhood}}
                 %ul.nav.event-button-group
-                  %p (these are preview buttons)
+                  %p#default-text (these are preview buttons)
                   %li
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "details"'} Details
                   %li
@@ -133,4 +133,3 @@
               .bar{:style => "width: 0%"}
             .btn.btn-warning.grab-seats-button Grab Seats
 
-            

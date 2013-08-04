@@ -48,21 +48,23 @@
               =image_tag "logo_final.png"
           %ul.user-type
             %li{'ng-click' => 'type = "foodie"', 'ng-hide' => "type == 'business'"}
-              .foodie
-                =image_tag "Foodie-Default-Profile-Image.png"
-              %p I'm a Foodie
+              %a{:href => '#how'}
+                .foodie
+                  =image_tag "Foodie-Default-Profile-Image.png"
+                %p I'm a Foodie
 
             %li{'ng-click' => 'type="business"', 'ng-hide' => 'type == "foodie"'}
-              .chef
-                =image_tag "Chef-Default-Profile-Image.png"
-              %p I'm a Business
+              %a{:href => '#how-chef'}
+                .chef
+                  =image_tag "Chef-Default-Profile-Image.png"
+                %p I'm a Business
             %a{'ng-click' => 'type = ""', 'ng-show' => "type == 'foodie' || type == 'business'"} I changed my mind!
               
     .section
       .container
         .row
           .span2
-          .span8.how-it-works{'ng-show' => 'type == "foodie"'}
+          .span8.how-it-works#how{'ng-show' => 'type == "foodie"'}
             .row.how-it-works-event-infographic
               .span4.offset1.step.browse
                 .step-description
@@ -89,7 +91,7 @@
                   %a{:href => "#sign_up_foodie", :"data-toggle" =>"modal"} get started
           
 
-          .span8.how-it-works{'ng-show' => 'type == "business"'}
+          .span8.how-it-works#how-chef{'ng-show' => 'type == "business"'}
             .row.how-it-works-event-infographic
               .span4.step.attract
                 .step-description
