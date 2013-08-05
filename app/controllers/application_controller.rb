@@ -26,5 +26,10 @@ class ApplicationController < ActionController::Base
     end
     #redirect_to "/users/#{current_user.id}/edit" if !current_user.completed
   end
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to events_url, :notice => "You cannot edit an event or campaign you have not created."
+    #TODO Why doesn't this notice work?
+  end
   
 end
