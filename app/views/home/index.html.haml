@@ -124,9 +124,6 @@
           Sign up with
           %p
             -@chef_info = "1"
-            -if cookies[:chef_info].present?
-              -cookies.delete :chef_info
-            -cookies[:chef_info] = "1"
             = render "shared/business_signup", :chef_info => @chef_info
       .modal-footer
         %button.usersignup.btn.btn-warning Sign Up
@@ -143,10 +140,6 @@
           Sign up with
           %p
             -@chef_info = "0"
-            -if cookies[:chef_info].present?
-              -binding.pry
-              -cookies.delete :chef_info
-            -cookies[:chef_info] = "0"
             = render "shared/foodie_signup", :chef_info => @chef_info
       .modal-footer
         %button.usersignup.btn.btn-warning Sign Up

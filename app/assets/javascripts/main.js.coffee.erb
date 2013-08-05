@@ -45,8 +45,17 @@ Simmr.controller "HeartCtrl", ["$scope",  "$routeParams", "Follow", ($scope, $ro
     console.log($scope.wah)
 ]
 
+Simmr.controller "HeaderCtrl", ["$scope",  "$routeParams", ($scope, $routeParams) ->
+  $scope.search = (searchQuery) ->
+    window.location= "/events?s=#{searchQuery}"
+
+]
+
 Simmr.controller "HomeIndexCtrl", ["$scope",  "$routeParams", ($scope, $routeParams) ->
-  
+  if location.search == '?foodie=true'
+    $(".foodiesignup").click()
+  if location.search == '?business=true'
+    $(".bizsignup").click()
 ]
 
 Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "Charge", "Event", ($scope, $routeParams, $location, Charge, Event) ->

@@ -1,5 +1,5 @@
 class AuthenticationsController < Devise::OmniauthCallbacksController
-  
+
   def provider
     omni = request.env["omniauth.auth"]
     #raise omni.to_yaml
@@ -14,8 +14,6 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
       sign_in_and_redirect current_user
     else
       user = User.new
-      user.chef = cookies[:chef_info]
-      binding.pry
       user.apply_omniauth(omni)
       #user.save!
       if user.save

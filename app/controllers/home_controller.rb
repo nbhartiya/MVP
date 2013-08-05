@@ -21,4 +21,8 @@ class HomeController < ApplicationController
   def teamandjobsREAL
   end
 
+  def meow
+    binding.pry
+  end
+
 end

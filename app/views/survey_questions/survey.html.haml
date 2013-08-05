@@ -2,6 +2,7 @@
   .container.foodie-quiz{'ng-controller' => "SurveyCtrl"}
     .row
       .span12.title
+        %h1 {{chef}}
         -if current_user.chef?
           %h1 Give Simmr guests a sense of <br> what you're all about. 
         -else

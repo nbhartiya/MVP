@@ -24,7 +24,7 @@ $(document).on "click", ".foodiesignup", ->
   date = new Date()
   minutes = 5
   date.setTime date.getTime() + (minutes * 60 * 1000)
-  $.cookie "chef", false,
+  $.cookie 'chef', false,
     expires: date,
     path: '/'
 
@@ -32,5 +32,6 @@ $(document).on "click", ".bizsignup", ->
   date = new Date()
   minutes = 5
   date.setTime date.getTime() + (minutes * 60 * 1000)
-  $.cookie "chef", true,
-    expires: date,
+  $.cookie 'chef', true,
+    expires: date
+    path: '/'

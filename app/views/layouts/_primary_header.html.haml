@@ -1,4 +1,4 @@
-.container.nav-container
+.container.nav-container{ng: {controller: 'HeaderCtrl'}}
   .row.nav
     .span4.logo-and-location
       = link_to image_tag("logo_final.png", :border=>0), '/events', :class => "logo"
@@ -9,8 +9,8 @@
     .span8.nav-right
       %ul
         %li.pull-right.input-append
-          %input#appendedInputButton{:type => 'text', :placeholder => "Search Events or Businesses"}
-          %button.btn.search <i class = "icon-search"></i>
+          %input#appendedInputButton{:type => 'text', :placeholder => "Search Events or Businesses", 'ng-model'=>'searchQuery'}
+          %button.btn.search{'ng-click'=>'search(searchQuery)'} <i class = "icon-search"></i>
         -if user_signed_in? == false
           %li.pull-right#sign-up-header-link
             %ul.user-nav-control.pull-right

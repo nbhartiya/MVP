@@ -5,7 +5,10 @@ class EventsController < ApplicationController
   
   def index
     @events = Event.all
-
+    if params[:s].present?
+      @events.select! {|e| e.title.include? params[:s]}
+    else      
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @events }
