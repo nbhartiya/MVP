@@ -20,18 +20,17 @@ angular.module('Simmr').controller "UserRegisterCtrl", ["$scope",  "$routeParams
 
 ]
 
+
 $(document).on "click", ".foodiesignup", ->
   date = new Date()
   minutes = 5
   date.setTime date.getTime() + (minutes * 60 * 1000)
-  $.cookie 'chef', false,
-    expires: date,
-    path: '/'
+  #setting session cookie because of oAuth redirect
+  $.cookie 'chef', false, { path: '/' }
 
 $(document).on "click", ".bizsignup", ->
   date = new Date()
   minutes = 5
   date.setTime date.getTime() + (minutes * 60 * 1000)
-  $.cookie 'chef', true,
-    expires: date
-    path: '/'
+  #setting session cookie because of oAuth redirect
+  $.cookie 'chef', true, { path: '/' }

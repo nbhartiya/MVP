@@ -32,11 +32,19 @@ class Event < ActiveRecord::Base
 
   accepts_nested_attributes_for :images, :reject_if => lambda { |a| a[:image].blank? }, :allow_destroy => true
 
-  def seats_left()
-    return self.people_limit - self.guests.count
+  def seats_left
+    people_limit - guests_count
   end
 
-  def percent_full()
-    return (self.guests.count/self.people_limit.to_f)*100
+  def percent_full
+    (guests_count/people_limit.to_f)*100
+  end
+
+  def guests_count
+    if guests.loaded?
+      guests.size
+    else
+      guests.count
+    end
   end
 end

@@ -4,9 +4,9 @@ class EventsController < ApplicationController
   skip_before_filter :authenticate_user!, :only => [:index, :show]
   
   def index
-    @events = Event.all
-    if params[:s].present?
-      @events.select! {|e| e.title.include? params[:s]}
+    @events = Event.includes(:images, :guests)
+    if params[:q].present?
+      @events = @events.where("title ilike ?", "%#{params[:q]}%") 
     else      
     end
     respond_to do |format|
