@@ -1,4 +1,4 @@
-.container{'ng-controller' => 'UserRegisterCtrl'}
+.container{'ng-controller' => 'UserRegisterCtrl', 'ng-init' => "user=#{resource.to_json}"}
   .row.devisecontainer
     .span12
       %h1 Sign up
