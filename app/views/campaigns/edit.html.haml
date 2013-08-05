@@ -3,81 +3,64 @@
     #campaign-carousel.carousel.slide.hidden-phone 
       .carousel-inner
         .active.item
-          =image_tag "Food 9.jpg"
+          -if @campaign.images.present?
+            -@campaign.images.each_with_index do |i, index|
+              -if index == 0
+                .item.active
+                  = image_tag i.image
+              -else
+                .item
+                  = image_tag i.image
+          -else
+            %p This is a default cover photo. <br> Replace by uploading images!
+            =image_tag "Food 9.jpg"
+
+
     .container
       .campaign-registration.row
-        .span1
-        .span4
-          .campaign-summary
-            %h1#default-text{'ng-show'=>'campaign.bizName=="" || campaign.bizName==nil'}
-              Business Name
-            %h1
-              {{campaign.bizName}}
-            %h2#default-text{'ng-show'=>'"#{@campaign.blurb}"=="" || "#{@campaign.blurb}"==nil'}
-              Business Description
-            %h2#default-text{'ng-show'=>'campaign.blurb=="" || campaign.blurb==nil'}
-              #{@campaign.blurb}
-            %h2
-              {{campaign.blurb}}
-            %h2 By #{current_user.first_name} #{current_user.last_name}
-            %hr
-            %h3 
-              -if @campaign.expired?
-                Expired #{@campaign.expires.strftime("%B %d, %Y")}
-              -else
-                Expires #{@campaign.expires.strftime("%B %d, %Y")}
-            %p 
-              #{@campaign.follows_needed} more needed to tilt this campaign
-            .progress.signed-in.progress-warning
-              .bar{:style => "width: #{@campaign.percent_follows}%"}
-            %button.btn.btn-warning.campaign-join-button Join
-            %table.campaign-social-stats
-              %tr
-                %td
-                  %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
-                %td
-                  %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
-                %td
-                  %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#"}
-              %tr.campaign-target-stats
-                %td #{@campaign.follows.count}
-                %td 190
-                %td{:rowspan => "2"} share
-              %tr.campaign-target-stat-labels
-                %td followers
-                %td reviews
-        .span1.heart_this
-          %a.sb.heart.circle.no-border.no-shadow.gray{title: 'Heart This'}
-        .span1
-        .span4 
-          %form.campaign-create-form.clearfix{:name => "campaign_create", 'ng-hide' => "campaign==1"}
-            %input{'ng-model' => 'campaign.bizName', :type=>"text", :placeholder =>"#{@campaign.biz_name}", :name => "campaign_name", :required => "required", 'ng-class' => "{error: campaign_create.campaign_name.$invalid}"}
-            %textarea.campaign-blurb{:rows => "4", 'ng-model' => 'campaign.blurb', :type=>"text", :placeholder =>"#{@campaign.blurb}", :name => "campaign_description", :maxlength => "140", :required => "required",'ng-class' => "{error: campaign_create.campaign_description.$invalid}"}
+        .span5
+          %form.campaign-create-form.clearfix{:name => "campaign_edit", 'ng-hide' => "campaign==1"}
+            %input{'ng-model' => 'campaign.bizName', :type=>"text", :placeholder =>"Business Name - who is this campaign for?", :name => "campaign_name", :required => "required", 'ng-class' => "{error: campaign_edit.campaign_name.$invalid}"}
+            
+            %textarea.campaign-blurb{:rows => "4", 'ng-model' => 'campaign.blurb', :type=>"text", :placeholder =>"Business Description - you get the length of a tweet to describe this business - what is its tagline?", :name => "campaign_description", :maxlength => "140", :required => "required",'ng-class' => "{error: campaign_edit.campaign_description.$invalid}"}
+
+            %textarea.campaign-why{:rows => "3", 'ng-model' => 'campaign.why_join', :type=>"text", :placeholder =>"Optional: Why should others join your campaign?", :name => "campaign_why_join", 'ng-class' => "{error: campaign_edit.campaign_why_join.$invalid}"}
+
+            .help-block{'ng-show' => "campaign_create.campaign_description.$error.required || campaign_create.campaign_name.$error.required"} Both fields are required!
             
             .clearfix
               %button.btn#campaign-upload-images{'ng-click'=> 'uploadImages()'} Upload Images
             
-            %button.btn.btn-warning.standalone-button#submit{'ng-click' => 'editCampaign(campaign)', 'ng-disabled'=> 'campaign_create.$invalid'} Update
+            %button.btn.btn-warning.standalone-button#submit{'ng-click' => 'editCampaign(campaign)', 'ng-disabled'=> 'campaign_edit.$invalid'} Update
 
           .campaign-create-confirmation.clearfix{'ng-show'=>"campaign==1"}
-            %h2 Thanks! You'll get an email when your campaign is approved and public. While you're waiting, fill out the 'why join' field below so others are more likely to join your campaign and make it happen!  
+            %h2 Thanks! You'll get an email when your campaign is re-approved and public.
+            %a.btn.btn-warning#ok-button{:href => "/events"} Check Out More Cool Events!
+            %a.btn.btn-warning#ok-button{:href => "/campaigns"} Check Out Other Campaigns!
+        .span5
+          %a.campaign-days#ribbon.preview{:href => "#", "data-toggle" => "tooltip", :title => "All campaigns last a total of 30 days, so get people to join quickly!", "data-placement" => "right"}
+            .container
+              .base
+                %h3 30 days left
+              .left_corner
+              .right_corner
+          .campaign-summary
+            .preview-label this is a preview
+            .campaign-summary-top
+              %h1#default-text{'ng-show'=>'campaign.bizName=="" || campaign.bizName==nil'}
+                Business Name
+              %h1
+                {{campaign.bizName}}
+              %h2#default-text{'ng-show'=>'campaign.blurb=="" || campaign.blurb==nil'}
+                Business Description
+              %h2 
+                {{campaign.blurb}}
+            .campaign-summary-logistics-container
+              .campaign-summary-logistics
+                %h2 Created by #{current_user.first_name} #{current_user.last_name}
+            %a.campaign-tilt{:href => "#", "data-toggle" => "tooltip", :title => "All campaigns need at least 100 people to join to succeed!", "data-placement" => "right"} #{@campaign.follows_needed} more needed to tilt this campaign
+            .progress.signed-in.progress-warning
+              .bar{:style => "width: #{@campaign.percent_follows}%"}
 
-  .container
-    .row
-      .span12
-        .row.section-header#why
-          .span12#why-join
-            %a{:href => "#why-join", 'data-target'=>"#why-join-detail", 'data-toggle'=>"collapse"} Why Join? <span class="caret"></span>
-  .why-join
-    .container
-      .row
-        .span12
-          #why-join-accordion.accordion
-            #why-join-detail.accordion-body.collapse.in
-              .accordion-inner
-                %textarea.textarea-section{:placeholder => "#{@campaign.why_join}", "rows"=>'3', 'ng-model' => "campaign.whyJoin"}
-                %button.btn.btn-warning{'ng-disabled'=> 'campaign.whyJoin == "" || campaign.whyJoin == nil'} Update
 
--#
-  = render 'form'
-  = link_to 'Back', campaigns_path
+

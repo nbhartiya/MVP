@@ -167,6 +167,17 @@ ul.parsley-error-list{
 		z-index: 50;
 		background: rgba(0, 0, 0, 0.7);
 		border: none;
+		line-height: 33px;
+		margin-top: 0;
+		border-radius: 0;
+		width: 30px;
+		cursor: pointer;
+	}
+	.carousel-control.left{
+		left: 0;
+	}
+	.carousel-control.right{
+		right: 0;
 	}
 	.carousel-indicators{
 		float: right;
@@ -589,10 +600,10 @@ ul.parsley-error-list{
 /* Portrait tablet to landscape and desktop */
 @media (min-width: 768px) and (max-width: 979px) { 
 	.attention-getter{
-  		height: 600px;
+  		height: 625px;
   		#home-carousel{
   			.carousel-inner{
-  				height: 600px;
+  				height: 625px;
   			}
   		}
  	}

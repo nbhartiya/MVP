@@ -293,11 +293,16 @@ input.error-true  {
 
 // footer styling
 
+.nav-container-footer{
+	border-top: 1px solid rgb(150, 150, 150);
+	display: block;
+	width: 1170px;
+	margin: 20px auto 10px auto;
+	font-size: 12px;
+}
+
 .footer{
-	padding: 20px 0 10px 0;
 	.footer-content{
-		border-top: 1px solid rgb(150, 150, 150);
-		margin: 0;
 		padding: 5px 0 0 0;
 	}
 	ul{
@@ -311,6 +316,7 @@ input.error-true  {
 		}
 		li.social{
 			padding: 0 5px;
+			width: auto !important;
 		}
 	}
 	a:link, a:visited{

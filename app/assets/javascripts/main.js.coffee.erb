@@ -61,11 +61,22 @@ Simmr.controller "HomeIndexCtrl", ["$scope",  "$routeParams", ($scope, $routePar
 
 Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "Charge", "Event", ($scope, $routeParams, $location, Charge, Event) ->
   $scope.guests = []
+  $scope.event = []
 
   $scope.guest = {}
   $scope.guest.name = ''
   $scope.guest.email = ''
   $scope.buyer = {}
+
+  $scope.eventDate = ->
+    moment($scope.event.date).format("dddd, MMMM D")
+
+  $scope.eventTime = ->
+    moment($scope.event.time, "YYYY-MM-DD H:mm:ss").format("h:mm A")
+  
+  $scope.eventEndTime = ->
+    datetime = moment($scope.event.time,  "YYYY-MM-DD H:mm:ss")
+    datetime.add('minutes', $scope.event.length).format('h:mm A')
 
   $scope.mapUrl = ->
     mapUrl = "http://maps.google.com/?q=#{$scope.address1},#{$scope.city}, #{$scope.state},#{$scope.zipcode}"
@@ -132,12 +143,13 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
 
   $scope.eventDate = ->
     moment($scope.event.date).format("dddd, MMMM D")
+
+  $scope.eventTime = ->
+    moment($scope.event.time, "YYYY-MM-DD H:mm:ss").format("h:mm A")
   
   $scope.eventEndTime = ->
-    $scope.datetime = moment($scope.event.date, "DDDD, MMM D")
-    $scope.datetime = moment($scope.event.time,  "h:mm A")
-    console.log($scope.datetime)
-    $scope.datetime.add(moment.duration($scope.event.length, 'minutes')).format('h:mm A')
+    datetime = moment($scope.event.time,  "YYYY-MM-DD H:mm:ss")
+    datetime.add('minutes', $scope.event.length).format('h:mm A')
 
   $scope.uploadImages = ->
     filepicker.pickAndStore
@@ -165,7 +177,10 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
           console.log('else')
           $('.events .carousel-inner').append("<div class = 'item'><img src = #{$scope.eventImageUrls[i]}></div>")
         i++
-      $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> < </a><a class = 'carousel-control appear hidden-phone' data-slide = 'next' href = '#event-carousel'> > </a>")
+      $('.event-profile').append("<div class ='btn' id = 'remove-image'>remove image</div>")
+      if Object.keys(InkBlobs).length>1
+        $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> › </a>")
+
 
   $scope.removeImages = ->
     eventImageUrl = document.getElementsByClassName("active")[0]
@@ -205,6 +220,9 @@ Simmr.controller "EventIndexCtrl", ["$scope",  "$routeParams", "$location", "Eve
 ]
 
 Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
+  $scope.eventImageUrls = []
+
+
   $scope.getEvent = (eventId) ->
     console.log Event
     Event.get(id: eventId).then (result) ->
@@ -218,14 +236,12 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
     moment($scope.event.date).format("dddd, MMMM D")
 
   $scope.eventTime = ->
-    moment($scope.event.time).format("h:mm A")
+    moment($scope.event.time, "YYYY-MM-DD H:mm:ss").format("h:mm A")
   
   $scope.eventEndTime = ->
-    $scope.datetime = moment($scope.event.date, "DDDD, MMM D")
-    $scope.datetime = moment($scope.event.time,  "h:mm A")
-    console.log($scope.datetime)
-    $scope.datetime.add(moment.duration($scope.event.length, 'minutes')).format('h:mm A')
-    
+    datetime = moment($scope.event.time,  "YYYY-MM-DD H:mm:ss")
+    datetime.add('minutes', $scope.event.length).format('h:mm A')
+
   $scope.uploadImages = ->
     filepicker.pickAndStore
       mimetypes: ["image/*", "text/plain"]
@@ -237,25 +253,24 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
     , (InkBlobs) ->
       console.log JSON.stringify(InkBlobs)
 
+      $('.active.item').remove()
+      $('.carousel-inner').empty()
+
       i=0
       while i< Object.keys(InkBlobs).length
         $scope.image="https://s3-us-west-1.amazonaws.com/simmrimages/#{InkBlobs[i].key}"
         console.log $scope.image
-        $scope.imageUrls.push($scope.image)
-        $('.active.item').remove()
-        $('.carousel-inner').empty()
+        $scope.eventImageUrls.push($scope.image)
         if i == 0
-          filepicker.read InkBlobs[i].url,
-            base64encode: true
-          , (imgdata) ->
-            $('.events .carousel-inner').append("<div class = 'item active'><img src = 'data:image/*;base64,#{imgdata}'></div>")
-        else
-          filepicker.read InkBlobs[i].url,
-            base64encode: true
-          , (imgdata) ->
-            $('.events .carousel-inner').append("<div class = 'item'><img src = 'data:image/*;base64,#{imgdata}'></div>")
+          console.log($scope.eventImageUrls[i])
+          $('.events .carousel-inner').append("<div class = 'item active'><img src = #{$scope.eventImageUrls[i]}></div>")
+        else 
+          console.log('else')
+          $('.events .carousel-inner').append("<div class = 'item'><img src = #{$scope.eventImageUrls[i]}></div>")
         i++
-        $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> < </a><a class = 'carousel-control appear hidden-phone' data-slide = 'next' href = '#event-carousel'> > </a>")
+        $('.event-profile').append("<div class ='btn' id = 'remove-image'>remove image</div>")
+      if Object.keys(InkBlobs).length>1
+        $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> › </a>")
 
   $scope.editEvent = (event) ->
     new Event(event).update().then (data) =>
@@ -287,11 +302,9 @@ Simmr.controller "CampaignJoinCtrl", ["$scope", "$window", "$routeParams", "$loc
       if $scope.successful
         "success!"
       else
-        "try again"
+        "try again?"
     else
       daysLeft + " days left"
-
-
 
 ]
 
@@ -310,26 +323,23 @@ Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$l
     , (InkBlobs) ->
       console.log JSON.stringify(InkBlobs)
 
+      $('.active.item').remove()
+      $('.carousel-inner').empty()
+
       i=0
       while i< Object.keys(InkBlobs).length
         $scope.image="https://s3-us-west-1.amazonaws.com/simmrimages/#{InkBlobs[i].key}"
         console.log $scope.image
         $scope.campaignImageUrls.push($scope.image)
-        $('.active.item').remove()
-        $('.carousel-inner').empty()
         if i == 0
-          filepicker.read InkBlobs[i].url,
-            base64encode: true
-          , (imgdata) ->
-            $('.campaigns .carousel-inner').append("<div class = 'item active'><img src = 'data:image/*;base64,#{imgdata}'></div>")
-        else
-          filepicker.read InkBlobs[i].url,
-            base64encode: true
-          , (imgdata) ->
-            $('.campaigns .carousel-inner').append("<div class = 'item'><img src = 'data:image/*;base64,#{imgdata}'></div>")
+          $('.campaigns .carousel-inner').append("<div class = 'item active'><img src = #{$scope.campaignImageUrls[i]}></div>")
+        else 
+          $('.campaigns .carousel-inner').append("<div class = 'item'><img src = #{$scope.campaignImageUrls[i]}></div>")
         i++
-        $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> < </a><a class = 'carousel-control appear hidden-phone' data-slide = 'next' href = '#campaign-carousel'> > </a>")
-  
+        $('.campaign-profile').append("<div class ='btn' id = 'remove-image'>remove image</div>")
+      if Object.keys(InkBlobs).length>1
+        $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#campaign-carousel'> › </a>")
+
   $scope.createCampaign = (campaign) ->
     if $scope.campaignImageUrls?
       campaign.campaignImageUrls=$scope.campaignImageUrls
@@ -351,7 +361,19 @@ Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "C
       $scope.campaign=data
       window.location.href = '/campaigns/'+data.id
 
-  $scope.imageUrls = []
+  $scope.daysLeft = ->
+    today = moment()
+    endDate = moment($scope.endDate)
+    daysLeft = endDate.diff(today, 'days')
+    if daysLeft <= 0
+      if $scope.successful
+        "success!"
+      else
+        "try again?"
+    else
+      daysLeft + " days left"
+
+  $scope.campaignImageUrls = []
 
   $scope.uploadImages = ->
     filepicker.pickAndStore
@@ -364,24 +386,22 @@ Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "C
     , (InkBlobs) ->
       console.log JSON.stringify(InkBlobs)
 
+      $('.active.item').remove()
+      $('.carousel-inner').empty()
+
       i=0
       while i< Object.keys(InkBlobs).length
         $scope.image="https://s3-us-west-1.amazonaws.com/simmrimages/#{InkBlobs[i].key}"
         console.log $scope.image
-        $scope.imageUrls.push($scope.image)
-        $('.active.item').remove()
-        $('.carousel-inner').empty()
+        $scope.campaignImageUrls.push($scope.image)
         if i == 0
-          filepicker.read InkBlobs[i].url,
-            base64encode: true
-          , (imgdata) ->
-            $('.campaigns .carousel-inner').append("<div class = 'item active'><img src = 'data:image/*;base64,#{imgdata}'></div>")
-        else
-          filepicker.read InkBlobs[i].url,
-            base64encode: true
-          , (imgdata) ->
-            $('.campaigns .carousel-inner').append("<div class = 'item'><img src = 'data:image/*;base64,#{imgdata}'></div>")
+          $('.campaigns .carousel-inner').append("<div class = 'item active'><img src = #{$scope.campaignImageUrls[i]}></div>")
+        else 
+          $('.campaigns .carousel-inner').append("<div class = 'item'><img src = #{$scope.campaignImageUrls[i]}></div>")
         i++
-        $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> < </a><a class = 'carousel-control appear hidden-phone' data-slide = 'next' href = '#campaign-carousel'> > </a>")
+        $('.campaign-profile').append("<div class ='btn' id = 'remove-image'>remove image</div>")
+      if Object.keys(InkBlobs).length>1
+        $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#campaign-carousel'> › </a>")
+
 ]
 

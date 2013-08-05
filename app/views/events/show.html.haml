@@ -1,19 +1,23 @@
 .events
   .event-profile
-    #event-carousel.carousel.slide.hidden-phone       
+    #event-carousel.carousel.slide.hidden-phone    
       .carousel-inner
-        -@event.images.each_with_index do |i, index|
-          -if index == 0
-            .item.active
-              = image_tag i.image
+        .active.item
+          -if @event.images.present?
+            -@event.images.each_with_index do |i, index|
+              -if index == 0
+                .item.active
+                  = image_tag i.image
+              -else
+                .item
+                  = image_tag i.image
           -else
-            .item
-              = image_tag i.image
+            =image_tag "Food 26.jpg"
     -if @event.images.count > 1
       %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#event-carousel"} ‹
-      %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#event-carousel"} ›
+      %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#event-carousel"} ›   
 
-    .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}'"}
+    .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}'"}
       .event-registration.row
         .span5
           #ribbon
@@ -40,7 +44,7 @@
               .event-summary-logistics
 
                 %h3#event-date
-                  #{@event.date.strftime("%A, %B %d")} at #{@event.time.strftime("%l:%M%p")}
+                  {{eventDate()}}, from {{eventTime()}} to {{eventEndTime()}}
                 %h3 Mission
                 -# upon registration show
                   %a{:href => "{{mapUrl()}}"} 123 Mission Street <br> San Francisco, CA 94107
@@ -81,7 +85,7 @@
                 %td
                   %a.sb.facebook.circle.no-border.no-shadow{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
                 %td
-                  %a.addthisevent{:href => "http://example.com/link-to-your-event", :title => "Add to Calendar"}
+                  %a.addthisevent{:href => "#{request.url}", :title => "Add to Calendar"}
                     +
                     %span._start 10-05-2012 11:38:46
                     %span._end 11-05-2012 11:38:46
@@ -106,7 +110,9 @@
         .span1
         .span6
           .event-details#details{'ng-show' => 'appear=="details"'}
-            %h3 Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait
+            %h3 Event Description
+            %h3
+              =@event.description
           .event-menu#menu{'ng-show' => 'appear=="menu"'}
             %h3 Event Menu
             %p
