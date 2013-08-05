@@ -26,7 +26,7 @@
       .row.user-overview
         .span1
         -if @profile.user.chef == false       
-          .span4.user-profile-overview{'ng-controller' => 'ProfileShowCtrl', 'ng-init' => "address1='#{@profile.location.address1}'; address2='#{@profile.location.address2}'; city = '#{@profile.location.city}'; state = '#{@profile.location.state}'; zipcode = '#{@profile.location.zipcode}'"}
+          .span4.user-profile-overview{'ng-controller' => 'ProfileShowCtrl'}
             %table
               %tr
                 -if @profile.avatar.present?
@@ -47,12 +47,13 @@
                     %h3 
                       =@profile.neighborhood
                   %h3
-                    -if @profile.location.city.present?
-                      =@profile.location.city + ', '
-                    -if @profile.location.state.present?
-                      =@profile.location.state 
-                    -if @profile.location.zipcode.present?
-                      =@profile.location.zipcode
+                    -if @profile.location.present?
+                      -if @profile.location.city.present?
+                        =@profile.location.city + ', '
+                      -if @profile.location.state.present?
+                        =@profile.location.state 
+                      -if @profile.location.zipcode.present?
+                        =@profile.location.zipcode
         -else
           .span4.user-profile-overview{'ng-controller' => 'ProfileShowCtrl', 'ng-init' => "address1='#{@profile.location.address1}'; address2='#{@profile.location.address2}'; city = '#{@profile.location.city}'; state = '#{@profile.location.state}'; zipcode = '#{@profile.location.zipcode}'"}
             %table
