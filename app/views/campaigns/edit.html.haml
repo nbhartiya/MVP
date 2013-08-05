@@ -3,8 +3,17 @@
     #campaign-carousel.carousel.slide.hidden-phone 
       .carousel-inner
         .active.item
-          %p This is a default cover photo. <br> Replace by uploading images!
-          =image_tag "Food 9.jpg"
+          -if @campaign.images.present?
+            -@campaign.images.each_with_index do |i, index|
+              -if index == 0
+                .item.active
+                  = image_tag i.image
+              -else
+                .item
+                  = image_tag i.image
+          -else
+            %p This is a default cover photo. <br> Replace by uploading images!
+            =image_tag "Food 9.jpg"
 
 
     .container
@@ -38,10 +47,10 @@
           .campaign-summary
             .preview-label this is a preview
             .campaign-summary-top
-              %h1#default-text{'ng-show'=>'campaign.biz_name=="" || campaign.biz_name==nil'}
+              %h1#default-text{'ng-show'=>'campaign.bizName=="" || campaign.bizName==nil'}
                 Business Name
               %h1
-                {{campaign.biz_name}}
+                {{campaign.bizName}}
               %h2#default-text{'ng-show'=>'campaign.blurb=="" || campaign.blurb==nil'}
                 Business Description
               %h2 

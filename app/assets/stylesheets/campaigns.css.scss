@@ -72,21 +72,22 @@ $main_orange: rgb(255, 178, 35);
 
 // campaign profile styling
 .campaign-profile{
-	height: 600px;
+	height: 625px;
 	.btn#remove-image{
     	right: 5px;
 		position: absolute;
 		z-index: 50;
-		background: rgba(0, 0, 0, 0.8);
+		background: $main_orange;
 		border: none;
 		color: white;
+		top: 105px;
     }
 	#campaign-carousel {
 		position: absolute;
 	    width: 100%;
 	    z-index: -1;
 		.carousel-inner{
-			height: 600px;
+			height: 625px;
 			width: auto;
 			img{
 				width: 100%;

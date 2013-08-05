@@ -1,17 +1,21 @@
 .events
   .event-profile
-    #event-carousel.carousel.slide.hidden-phone       
+    #event-carousel.carousel.slide.hidden-phone    
       .carousel-inner
-        -@event.images.each_with_index do |i, index|
-          -if index == 0
-            .item.active
-              = image_tag i.image
+        .active.item
+          -if @event.images.present?
+            -@event.images.each_with_index do |i, index|
+              -if index == 0
+                .item.active
+                  = image_tag i.image
+              -else
+                .item
+                  = image_tag i.image
           -else
-            .item
-              = image_tag i.image
+            =image_tag "Food 26.jpg"
     -if @event.images.count > 1
       %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#event-carousel"} ‹
-      %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#event-carousel"} ›
+      %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#event-carousel"} ›   
 
     .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}'"}
       .event-registration.row
