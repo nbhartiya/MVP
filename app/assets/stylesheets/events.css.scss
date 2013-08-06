@@ -142,7 +142,7 @@ $main_orange: rgb(255, 178, 35);
 	.carousel-control.right{
 		right: 0;
 	}
-	.event-registration {
+	.event-registration, .event-feedback {
 	    margin-top: 25px;
 	    -webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;    
@@ -1003,12 +1003,15 @@ $main_orange: rgb(255, 178, 35);
 			color: white;
 			margin-bottom: 20px;
 		}
-		h3, a, a:hover, a:visited{
-			font-size: 14px;
+		h3, a, a:visited{
+			font-size: 16px;
 			line-height: 1.5em;
 			color: white;
 			font-weight: 100;
 			text-decoration: none;
+		}
+		a:hover{
+			color: rgb(200, 200, 200);
 		}
 		hr{
 			margin: 10px 0;

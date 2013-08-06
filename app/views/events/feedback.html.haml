@@ -18,7 +18,7 @@
       %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#event-carousel"} ›  
 
     .container
-      .event-feedback.row{'ng-controller' => 'EventFeedbackCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}'"}
+      .event-feedback.row{'ng-controller' => 'EventFeedbackCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='survey'"}
         .span5
           .event-summary.clearfix
             %h1
@@ -35,23 +35,23 @@
             %table.feedback-actions
               %tr
                 %td
-                  %a.point-action{'ng-click' => 'feedback=0'} Thank you for attending! Claim your points
+                  %a.point-action{'ng-click' => 'appear="points"'} Claim your points for attending!
                 %td.points
                   +
-                  =link_to image_tag 'Ten_Point.png', 'ng-click' => 'feedback=0', :href => ""
+                  =link_to image_tag 'Ten_Point.png', 'ng-click' => 'appear="points"', :href => ""
             %table.feedback-actions
               %tr
                 %td
-                  %a.point-action{'ng-click' => 'feedback=1'} Fill out a quick survey
+                  %a.point-action{'ng-click' => 'appear="survey"'} Fill out a quick survey
                 %td.points
                   +
-                  =link_to image_tag 'Fifteen_Point.png', 'ng-click' => 'feedback=1', :href => ""
+                  =link_to image_tag 'Fifteen_Point.png', 'ng-click' => 'appear="survey"', :href => ""
               %tr
                 %td
-                  %a.point-action{'ng-click' => 'feedback=2'} Write a Yelp Review
+                  %a.point-action{'ng-click' => 'appear="yelp"'} Write a Yelp Review
                 %td.points
                   +
-                  =link_to image_tag 'Twenty_Point.png', 'ng-click' => 'feedback=2', :href => ""
+                  =link_to image_tag 'Twenty_Point.png', 'ng-click' => 'appear="yelp"', :href => ""
 
             .event-summary-logistics-container
               .event-summary-logistics
@@ -87,23 +87,54 @@
                 %td reviews
         .span1
         .span6 
-          %form.event-survey.clearfix{'ng-hide' => 'feedback!=1', :name => "feedback_survey"}
+          .event-details#details{'ng-show' => 'appear=="details"'}
+            %h3 Event Description
+            %h3
+              =@event.description
+          .event-menu#menu{'ng-show' => 'appear=="menu"'}
+            %h3 Event Menu
+            %p
+              =@event.menu_text
+          .event-attendees-and-chatter{'ng-show' => 'appear=="chatter"'}
+            .attendees
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Christine Lee", "class" => "one-attendee", "data-placement" => "bottom"
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Michael Makarov", "class" => "one-attendee", "data-placement" => "bottom"
+              %p 
+                -for guest in @event.guests
+                  = guest.first_name + " " + guest.last_name
+            .row.comments
+              .fb-comments{"data-colorscheme" => "dark", "data-href" => "#{request.url[0..-10]}", "data-num-posts" => "5", "data-width" => "500"}
+          .event-host-story{'ng-show' => 'appear=="story"'}
+            %h3
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait
+              =@event.host.profile.story
+          .host-followers{'ng-show' => 'appear == "followers"'}
+            .followers
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Christine Lee", "class" => "one-attendee", "data-placement" => "bottom"
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Michael Makarov", "class" => "one-attendee", "data-placement" => "bottom"
+
+          %form.event-survey.clearfix{'ng-show' => 'appear=="survey"', :name => "feedback_survey"}
             %h1 Survey
             %input.survey-question-1{:type=>'text', :placeholder =>"Custom Survey Question 1", :name => "question_1", :required => "required", 'ng-model' => 'survey.question1', 'ng-class' => "{error: feedback_survey.question_1.$invalid}"}
             .help-block-white{'ng-show' => 'feedback_survey.question_1.$error.required'} Required
-            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3', 'ng-disabled' => 'feedback_survey.$invalid'} Get Points!
-            %button.btn.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Never Mind
+            %button.btn.btn-warning.standalone-button{'ng-click' => 'appear="points"', 'ng-disabled' => 'feedback_survey.$invalid'} Get Points!
 
-          .event-yelp.clearfix{'ng-show' => 'feedback==2'}
+          .event-yelp.clearfix{'ng-show' => 'appear=="yelp"'}
             %h1 Yelp Review
             %form{:name => "yelp_review"}
               %input.yelp-review-link{:type=>'url', :required => "required", :placeholder =>"Paste Yelp Review Link Here", :name => "yelp_link", 'ng-model' => "yelplink", 'ng-class' => "{error: yelp_review.yelp_link.$invalid}"}
               .help-block-white{'ng-show' => 'yelp_review.yelp_link.$error.required'} Required
               .help-block-white{'ng-show' => 'yelp_review.yelp_link.$error.url'} Please enter a valid URL
-              %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3', 'ng-disabled' => 'yelp_review.$invalid'} Get Points!
-              %button.btn.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Never Mind
+              %button.btn.btn-warning.standalone-button{'ng-click' => 'appear="points"', 'ng-disabled' => 'yelp_review.$invalid'} Get Points!
 
-          .point-ranking.clearfix{'ng-show' => 'feedback==3'}
+
+          .point-ranking.clearfix{'ng-show' => 'appear=="points"'}
             %h1 Leader Boards
             %ul.nav.nav-tabs
               %li.active
@@ -173,9 +204,9 @@
                       =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
                     %td Random Guy
                     %td 3000
-            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=4'} Get More Points
+            %button.btn.btn-warning.standalone-button{'ng-click' => 'appear="more_points"'} Get More Points
               
-          .more-points.clearfix{'ng-show' => 'feedback==4'}
+          .more-points.clearfix{'ng-show' => 'appear=="more_points"'}
             %h1 Get More Points
             %table.feedback-actions.clearfix
               %tr
@@ -192,13 +223,11 @@
                   =link_to image_tag('Ten_Point.png'), "/events"
               %tr
                 %td.point-action-cell
-                  %a.point-action{:href => '/campaigns/new'} Start a Campaign
+                  %a.point-action{:href => '/campaigns/new'} Don't see your favorite business? Start a campaign to get them on Simmr! 
                 %td.points
                   +
                   =link_to image_tag('Ten_Point.png'), "/campaigns/new"
             .clearfix
-              %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Back to Leader Boards
+              %button.btn.btn-warning.standalone-button{'ng-click' => 'appear="points"'} Back to Leader Boards
 
 
--#
-  .fb-comments{"data-href" => "#{request.url[0..-10]}", "data-num-posts" => "10", "data-width" => "910"}
