@@ -2,16 +2,16 @@
   .campaign-profile
     #campaign-carousel.carousel.slide.hidden-phone 
       .carousel-inner
-        .active.item
-          -if @campaign.images.present?
-            -@campaign.images.each_with_index do |i, index|
-              -if index == 0
-                .item.active
-                  = image_tag i.image
-              -else
-                .item
-                  = image_tag i.image
-          -else
+        -if @campaign.images.present?
+          -@campaign.images.each_with_index do |i, index|
+            -if index == 0
+              .item.active
+                = image_tag i.image
+            -else
+              .item
+                = image_tag i.image
+        -else
+          .item.active
             %p This is a default cover photo. <br> Replace by uploading images!
             =image_tag "Food 9.jpg"
 

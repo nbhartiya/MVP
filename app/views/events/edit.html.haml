@@ -2,16 +2,16 @@
   .event-profile
     #event-carousel.carousel.slide.hidden-phone       
       .carousel-inner
-        .active.item
-          -if @event.images.present?
-            -@event.images.each_with_index do |i, index|
-              -if index == 0
-                .item.active
-                  = image_tag i.image
-              -else
-                .item
-                  = image_tag i.image
-          -else
+        -if @event.images.present?
+          -@event.images.each_with_index do |i, index|
+            -if index == 0
+              .item.active
+                = image_tag i.image
+            -else
+              .item
+                = image_tag i.image
+        -else
+          .item.active
             %p This is a default cover photo. <br> Replace by uploading images!
             =image_tag "Food 26.jpg"
     -if @event.images.count > 1
