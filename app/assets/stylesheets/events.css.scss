@@ -40,6 +40,11 @@ $main_orange: rgb(255, 178, 35);
 		.single-event{
 			height: 310px;
 			z-index: 500;
+			opacity: 1;
+			-webkit-transition-property:opacity;
+			-webkit-transition-duration:100ms;
+			-webkit-transition-timing-function:linear;
+			-webkit-transition-delay:100ms;
 			.event-image{
 				background: black;
 				height: 310px;
@@ -51,6 +56,9 @@ $main_orange: rgb(255, 178, 35);
 					height: auto;
 				}
 			}
+		}
+		.single-event:hover{
+			opacity: 0.9;
 		}
 		.event-info{
 			position: relative;
