@@ -174,7 +174,6 @@
                     %td Random Guy
                     %td 3000
             %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=4'} Get More Points
-            %button.btn.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Done
               
           .more-points.clearfix{'ng-show' => 'feedback==4'}
             %h1 Get More Points
@@ -198,7 +197,6 @@
                   +
                   =link_to image_tag('Ten_Point.png'), "/campaigns/new"
             .clearfix
-              %button.btn.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Done
               %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Back to Leader Boards
 
 
