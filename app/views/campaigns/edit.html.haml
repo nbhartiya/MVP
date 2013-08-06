@@ -38,13 +38,13 @@
             %a.btn.btn-warning#ok-button{:href => "/events"} Check Out More Cool Events!
             %a.btn.btn-warning#ok-button{:href => "/campaigns"} Check Out Other Campaigns!
         .span5
-          %a.campaign-days#ribbon.preview{:href => "#", "data-toggle" => "tooltip", :title => "All campaigns last a total of 30 days, so get people to join quickly!", "data-placement" => "right"}
-            .container
-              .base
-                %h3 30 days left
-              .left_corner
-              .right_corner
           .campaign-summary
+            %a.campaign-days#ribbon.preview{:href => "#", "data-toggle" => "tooltip", :title => "All campaigns last a total of 30 days, so get people to join quickly!", "data-placement" => "right"}
+              .container
+                .base
+                  %h3 30 days left
+                .left_corner
+                .right_corner
             .preview-label this is a preview
             .campaign-summary-top
               %h1#default-text{'ng-show'=>'campaign.bizName=="" || campaign.bizName==nil'}

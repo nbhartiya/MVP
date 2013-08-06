@@ -20,14 +20,14 @@
     .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}'"}
       .event-registration.row
         .span5
-          #ribbon
-            .container
-              .base
-                %h3
-                  =number_to_currency(@event.cost, :unit => "$", :precision => 0)
-              .left_corner
-              .right_corner
           .event-summary
+            #ribbon
+              .container
+                .base
+                  %h3
+                    =number_to_currency(@event.cost, :unit => "$", :precision => 0)
+                .left_corner
+                .right_corner
             .event-summary-top
               %h1
                 =@event.title

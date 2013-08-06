@@ -35,10 +35,10 @@
             %table.feedback-actions
               %tr
                 %td
-                  %h3 Thank you for attending!
+                  %a.point-action{'ng-click' => 'feedback=0'} Thank you for attending! Claim your points
                 %td.points
                   +
-                  =image_tag 'Ten_Point.png'
+                  =link_to image_tag 'Ten_Point.png', 'ng-click' => 'feedback=0', :href => ""
             %table.feedback-actions
               %tr
                 %td
@@ -71,32 +71,22 @@
 
 
             %table.event-sharing
-              %tr
+              %tr.icons
+                %td{'ng-click'=>'appear = "followers"'}
+                  %a.sb.heart.circle.no-border.no-shadow.follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'} #follow
                 %td
-                  %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
+                  %a.sb.star.circle.no-border.no-shadow{:href=>"#"} #yelp
                 %td
-                  %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
-                %td
-                  %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
-                %td
-                  %a.addthisevent{:href => "#", :title => "Add to Calendar"}
-                    Add
+                  %a.sb.facebook.circle.no-border.no-shadow{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
               %tr.host-stats
                 %td 190
                 %td 190
                 %td{:rowspan => "2"} share
-                %td to
               %tr.host-stat-labels
                 %td followers
                 %td reviews
-                %td calendar
-        .span1.heart_this
-          -# Fix 
-          -# %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
-          %heart{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'"}
         .span1
-        .span4 
-          -#this needs to happen only when tickets >1
+        .span6 
           %form.event-survey.clearfix{'ng-hide' => 'feedback!=1', :name => "feedback_survey"}
             %h1 Survey
             %input.survey-question-1{:type=>'text', :placeholder =>"Custom Survey Question 1", :name => "question_1", :required => "required", 'ng-model' => 'survey.question1', 'ng-class' => "{error: feedback_survey.question_1.$invalid}"}
