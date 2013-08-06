@@ -2,27 +2,36 @@
   .event-profile
     #event-carousel.carousel.slide         
       .carousel-inner
-        -@event.images.each_with_index do |i, index|
-          -if index == 0
-            .item.active
-              = image_tag i.image
+        .active.item
+          -if @event.images.present?
+            -@event.images.each_with_index do |i, index|
+              -if index == 0
+                .item.active
+                  = image_tag i.image
+              -else
+                .item
+                  = image_tag i.image
           -else
-            .item
-              = image_tag i.image
-    %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#event-carousel"} ‹
-    %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#event-carousel"} ›
+            =image_tag "Food 26.jpg"
+    -if @event.images.count > 1
+      %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#event-carousel"} ‹
+      %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#event-carousel"} ›  
+
     .container
-      .event-feedback.row{'ng-controller' => 'EventFeedbackCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}'"}
-        .span1
-        .span4
+      .event-feedback.row{'ng-controller' => 'EventFeedbackCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}'"}
+        .span5
           .event-summary.clearfix
             %h1
               =@event.title
-            %h2
-              =@event.description
-            %h3#event-date
-              #{@event.date.strftime("%A, %B %d")} at #{@event.time.strftime("%l:%M%p")}
-            %a{:href => "{{mapUrl()}}"} 123 Mission Street <br> San Francisco, CA 94107
+            -if @event.host.profile.biz_name != nil
+              %h2.host Hosted by 
+              %a.host{:href => 'http://www.simmr.co/profiles/host_id'}
+                =' ' + @event.host.profile.biz_name
+                -#TODO: use titleize
+                -#TODO: FIX
+            %h3 
+              =@event.blurb
+            %hr
             %table.feedback-actions
               %tr
                 %td
@@ -30,7 +39,6 @@
                 %td.points
                   +
                   =image_tag 'Ten_Point.png'
-            %hr
             %table.feedback-actions
               %tr
                 %td
@@ -44,6 +52,23 @@
                 %td.points
                   +
                   =link_to image_tag 'Twenty_Point.png', 'ng-click' => 'feedback=2', :href => ""
+
+            .event-summary-logistics-container
+              .event-summary-logistics
+
+                %h3#event-date
+                  {{eventDate()}}, from {{eventTime()}} to {{eventEndTime()}}
+                %a{:href => "{{mapUrl()}}"} 123 Mission Street <br> San Francisco, CA 94107
+                %ul.nav.event-button-group
+                  %li
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "details"'} Details
+                  %li
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "menu"'} Menu
+                  %li
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "chatter"'} Attendees
+                  %li
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "story"'} Host Story
+
 
             %table.event-sharing
               %tr
@@ -187,64 +212,5 @@
               %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Back to Leader Boards
 
 
-
-        .span1
-  .container
-    .row
-      .span2.scroll-menu.event
-        %ul.nav.nav-list.scroll-menu-items{"data-spy" => "affix", "data-offset-top" => "800", "data-offset-bottom"=> "300"}
-          %li 
-            %a{:href=>"#about"} Host Story
-          %li 
-            %a{:href=>"#menu"} Menu
-          %li   
-            %a{:href=>"#chatter"} Chatter
-      .span10
-        .row.section-header#about
-          .span10#host-story
-            %a{:href => "#host-story", 'data-target'=>"#host-story-detail", 'data-toggle'=>"collapse"} Our Story <span class="caret"></span>
-        .row.host-story
-          .span10
-            #host-story-accordion.accordion
-              #host-story-detail.accordion-body.collapse
-                .accordion-inner
-                  %p
-                    -#=@event.host.profile.story
-              -#=@event.host.profile.story
-              -# Need to make sure a host story exists for that host before they can create the event...
-      .row
-        .span10.offset2
-          .row.section-header#menu
-            .span10#event-menu
-              %a{:href => "#event-menu", 'data-target'=>"#event-menu-detail", 'data-toggle'=>"collapse"} The Menu <span class="caret"></span>
-          .row.event-menu
-            .span10
-              #event-menu-accordion.accordion
-                #event-menu-detail.accordion-body.collapse
-                  .accordion-inner
-                    %p
-                      =@event.menu_text
-          .row.section-header#chatter
-            .span10#event-chatter
-              %a{:href => "#event-chatter", 'data-target'=>"#event-chatter-detail", 'data-toggle'=>"collapse"} Chatter <span class="caret"></span>
-          .row.event-chatter
-            .span10
-              #event-chatter-accordion.accordion
-                #event-chatter-detail.accordion-body.collapse.in
-                  .accordion-inner
-                    .row
-                      .span10.attendees
-                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
-                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
-                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
-                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Christine Lee", "class" => "one-attendee", "data-placement" => "bottom"
-                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Michael Makarov", "class" => "one-attendee", "data-placement" => "bottom"
-                        -#
-                          %p 
-                            -for guest in @event.guests
-                              = guest.first_name + " " + guest.last_name
-                              %p
-                    .row
-                      .span10.comments
-                        .fb-comments{"data-href" => "#{request.url[0..-10]}", "data-num-posts" => "10", "data-width" => "910"}
-        .span1
+-#
+  .fb-comments{"data-href" => "#{request.url[0..-10]}", "data-num-posts" => "10", "data-width" => "910"}
