@@ -13,7 +13,7 @@ $main_orange: rgb(255, 178, 35);
 			margin: 0;
 		}
 		.events-index-content{
-			margin: 30px 0;
+			margin: 10px 0;
 		}
 		.events-index-header, .events-index-content{
 			a:hover{
@@ -23,13 +23,68 @@ $main_orange: rgb(255, 178, 35);
 				color: $main_orange;
 			}
 		}
+		.events-index-bottom-content{
+			margin-top: 40px;
+		}
 		.events-index-content{
 			font-size: 20px;
 			font-weight: 100;
 			text-align: center;
 		}
+		.events-row-content{
+			margin: 10px 0;
+		}
 		.events-row{
-			margin: -10px 0 50px 0;
+			margin: 0;
+		}
+		.single-event{
+			height: 310px;
+			z-index: 500;
+			.event-image{
+				background: black;
+				height: 310px;
+				overflow: hidden;
+				img{
+					min-height: 100%;
+					min-width: 470px;
+					width: 100%;
+					height: auto;
+				}
+			}
+		}
+		.event-info{
+			position: relative;
+			margin: 0;
+			color: white;
+			background: rgba(0, 0, 0, 0.8);
+			bottom: 60px;
+			table{
+				background: rgba(0, 0, 0, 0.8);
+				width: 100%;
+				td{
+					padding: 10px;
+				}
+			}
+			h1{
+				font-size: 17px;
+				color: white;
+				font-weight: 100;
+				line-height: 1.5em;
+				margin: 0;
+			}
+			h2{
+				font-size: 12px;
+				color: white;
+				font-weight: 100;
+				line-height: 1.5em;
+				margin: 0;
+			}
+			.go-button{
+
+			}
+		}
+		.events-section{
+			margin: 0 0 50px 0;
 		}
 	}
 }

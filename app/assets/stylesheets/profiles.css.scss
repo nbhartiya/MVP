@@ -6,83 +6,21 @@ $main_orange: rgb(255, 178, 35);
 
 .campaign-first-row{
 	bottom: 79px;
-	-webkit-transition-property:bottom;
-	-webkit-transition-duration:250ms;
-	-webkit-transition-timing-function:linear;
-	-webkit-transition-delay:250ms;
 }	
 .campaign-second-row{
 	opacity: 0;
-	-webkit-transition-property:opacity;
-	-webkit-transition-duration:250ms;
-	-webkit-transition-timing-function:linear;
-	-webkit-transition-delay:250ms;
 }
 
 .user-first-row{
 	bottom: 80px;
-	-webkit-transition-property:bottom;
-	-webkit-transition-duration:250ms;
-	-webkit-transition-timing-function:linear;
-	-webkit-transition-delay:250ms;
 }	
-.user-second-row{
-	opacity: 0;
-	-webkit-transition-property:opacity;
-	-webkit-transition-duration:250ms;
-	-webkit-transition-timing-function:linear;
-	-webkit-transition-delay:250ms;
-}
-
-.single-following:hover .user-first-row{
-	bottom: 183px;
-}
-
-.single-following:hover .user-second-row{
-	opacity: 1;
-}
-
-.single-campaign:hover .campaign-first-row{
-	bottom: 183px;
-}
-
-.single-campaign:hover .campaign-second-row{
-	opacity: 1;
-}
 
 .event-first-row{
 	bottom: 80px;
-	-webkit-transition-property:bottom;
-	-webkit-transition-duration:250ms;
-	-webkit-transition-timing-function:linear;
-	-webkit-transition-delay:250ms;
 }	
-.event-second-row{
-	opacity: 0;
-	-webkit-transition-property:opacity;
-	-webkit-transition-duration:250ms;
-	-webkit-transition-timing-function:linear;
-	-webkit-transition-delay:250ms;
-}
-
-.single-event:hover .event-first-row{
-	bottom: 161px;
-}
-
-.single-event:hover .event-second-row{
-	opacity: 1;
-}
 
 .single-event-actions{
 	background: rgba(0, 0, 0, 0.8);
-	-webkit-transition-property:background;
-	-webkit-transition-duration:250ms;
-	-webkit-transition-timing-function:linear;
-	-webkit-transition-delay:0ms;
-}
-
-.single-event-actions:hover{
-	background: $main_orange;
 }
 
 .event-second-row{
@@ -92,7 +30,11 @@ $main_orange: rgb(255, 178, 35);
 		padding: 15px 20px 5px 20px;
 		font-size: 10px;
 		text-align: right;
+		.progress, .bar{
+			height: 10px;
+			border-radius: 0;
 		}
+	}
 	table{
 		width: 100%;
 	}
@@ -111,12 +53,9 @@ $main_orange: rgb(255, 178, 35);
 	margin: -30px 7px 50px 7px;
 }
 
-.single-event, .single-following, .single-campaign, .single-event-profile{
+.single-following, .single-campaign, .single-event-profile{
 	height: 280px;
 	z-index: 500;
-	.event-image{
-		background: black;
-	}
 	.campaign-image, .user-image{
 		background: white;
 	}
@@ -130,12 +69,6 @@ $main_orange: rgb(255, 178, 35);
 			height: auto;
 		}
 	}
-
-.event-first-row, .event-second-row{
-	position: relative;
-	margin: 0;
-	color: white;
-}
 
 .campaign-first-row, .campaign-second-row, .user-first-row, .user-second-row{
 	position: relative;
@@ -169,8 +102,8 @@ $main_orange: rgb(255, 178, 35);
 	margin: 0;
 	width: 100px;
 	height: 20px;
-	left: 30px;
-	top: 50px;
+	left: 0;
+	top: 200px;
 	color: white;
 	font-size: 20px;
 	text-align: center;
@@ -192,10 +125,6 @@ $main_orange: rgb(255, 178, 35);
 
 .campaign-first-row, .user-first-row{
 	background: rgba(255, 255, 255, 0.9);
-}
-
-.event-first-row{
-	background: rgba(0,0,0,0.8);
 }
 
 .event-first-row, .user-first-row, .campaign-first-row{
