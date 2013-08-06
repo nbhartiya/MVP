@@ -2,93 +2,139 @@
   .event-profile
     #event-carousel.carousel.slide         
       .carousel-inner
-        -@event.images.each_with_index do |i, index|
-          -if index == 0
-            .item.active
-              = image_tag i.image
-          -else
-            .item
-              = image_tag i.image
-    %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#event-carousel"} ‹
-    %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#event-carousel"} ›
+        -if @event.images.present?
+          -@event.images.each_with_index do |i, index|
+            -if index == 0
+              .item.active
+                = image_tag i.image
+            -else
+              .item
+                = image_tag i.image
+        -else
+          .item.active
+            =image_tag "Food 26.jpg"
+    -if @event.images.count > 1
+      %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#event-carousel"} ‹
+      %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#event-carousel"} ›  
+
     .container
-      .event-feedback.row{'ng-controller' => 'EventFeedbackCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}'"}
-        .span1
-        .span4
+      .event-feedback.row{'ng-controller' => 'EventFeedbackCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='survey'"}
+        .span5
           .event-summary.clearfix
             %h1
               =@event.title
-            %h2
-              =@event.description
-            %h3#event-date
-              #{@event.date.strftime("%A, %B %d")} at #{@event.time.strftime("%l:%M%p")}
-            %a{:href => "{{mapUrl()}}"} 123 Mission Street <br> San Francisco, CA 94107
-            %table.feedback-actions
-              %tr
-                %td
-                  %h3 Thank you for attending!
-                %td.points
-                  +
-                  =image_tag 'Ten_Point.png'
+            -if @event.host.profile.biz_name != nil
+              %h2.host Hosted by 
+              %a.host{:href => 'http://www.simmr.co/profiles/host_id'}
+                =' ' + @event.host.profile.biz_name
+                -#TODO: use titleize
+                -#TODO: FIX
+            %h3 
+              =@event.blurb
             %hr
             %table.feedback-actions
               %tr
                 %td
-                  %a.point-action{'ng-click' => 'feedback=1'} Fill out a quick survey
+                  %a.point-action{'ng-click' => 'appear="points"'} Claim your points for attending!
                 %td.points
                   +
-                  =link_to image_tag 'Fifteen_Point.png', 'ng-click' => 'feedback=1', :href => ""
+                  =link_to image_tag 'Ten_Point.png', 'ng-click' => 'appear="points"', :href => ""
+            %table.feedback-actions
               %tr
                 %td
-                  %a.point-action{'ng-click' => 'feedback=2'} Write a Yelp Review
+                  %a.point-action{'ng-click' => 'appear="survey"'} Fill out a quick survey
                 %td.points
                   +
-                  =link_to image_tag 'Twenty_Point.png', 'ng-click' => 'feedback=2', :href => ""
+                  =link_to image_tag 'Fifteen_Point.png', 'ng-click' => 'appear="survey"', :href => ""
+              %tr
+                %td
+                  %a.point-action{'ng-click' => 'appear="yelp"'} Write a Yelp Review
+                %td.points
+                  +
+                  =link_to image_tag 'Twenty_Point.png', 'ng-click' => 'appear="yelp"', :href => ""
+
+            .event-summary-logistics-container
+              .event-summary-logistics
+
+                %h3#event-date
+                  {{eventDate()}}, from {{eventTime()}} to {{eventEndTime()}}
+                %a{:href => "{{mapUrl()}}"} 123 Mission Street <br> San Francisco, CA 94107
+                %ul.nav.event-button-group
+                  %li
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "details"'} Details
+                  %li
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "menu"'} Menu
+                  %li
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "chatter"'} Attendees
+                  %li
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "story"'} Host Story
+
 
             %table.event-sharing
-              %tr
+              %tr.icons
+                %td{'ng-click'=>'appear = "followers"'}
+                  %a.sb.heart.circle.no-border.no-shadow.follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'} #follow
                 %td
-                  %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
+                  %a.sb.star.circle.no-border.no-shadow{:href=>"#"} #yelp
                 %td
-                  %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
-                %td
-                  %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
-                %td
-                  %a.addthisevent{:href => "#", :title => "Add to Calendar"}
-                    Add
+                  %a.sb.facebook.circle.no-border.no-shadow{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
               %tr.host-stats
                 %td 190
                 %td 190
                 %td{:rowspan => "2"} share
-                %td to
               %tr.host-stat-labels
                 %td followers
                 %td reviews
-                %td calendar
-        .span1.heart_this
-          -# Fix 
-          -# %a.sb.heart.circle.no-border.no-shadow.black{title: 'Heart This'}
-          %heart{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'"}
         .span1
-        .span4 
-          -#this needs to happen only when tickets >1
-          %form.event-survey.clearfix{'ng-hide' => 'feedback!=1', :name => "feedback_survey"}
+        .span6 
+          .event-details#details{'ng-show' => 'appear=="details"'}
+            %h3 Event Description
+            %h3
+              =@event.description
+          .event-menu#menu{'ng-show' => 'appear=="menu"'}
+            %h3 Event Menu
+            %p
+              =@event.menu_text
+          .event-attendees-and-chatter{'ng-show' => 'appear=="chatter"'}
+            .attendees
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Christine Lee", "class" => "one-attendee", "data-placement" => "bottom"
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Michael Makarov", "class" => "one-attendee", "data-placement" => "bottom"
+              %p 
+                -for guest in @event.guests
+                  = guest.first_name + " " + guest.last_name
+            .row.comments
+              .fb-comments{"data-colorscheme" => "dark", "data-href" => "#{request.url[0..-10]}", "data-num-posts" => "5", "data-width" => "500"}
+          .event-host-story{'ng-show' => 'appear=="story"'}
+            %h3
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait
+              =@event.host.profile.story
+          .host-followers{'ng-show' => 'appear == "followers"'}
+            .followers
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Christine Lee", "class" => "one-attendee", "data-placement" => "bottom"
+              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Michael Makarov", "class" => "one-attendee", "data-placement" => "bottom"
+
+          %form.event-survey.clearfix{'ng-show' => 'appear=="survey"', :name => "feedback_survey"}
             %h1 Survey
             %input.survey-question-1{:type=>'text', :placeholder =>"Custom Survey Question 1", :name => "question_1", :required => "required", 'ng-model' => 'survey.question1', 'ng-class' => "{error: feedback_survey.question_1.$invalid}"}
             .help-block-white{'ng-show' => 'feedback_survey.question_1.$error.required'} Required
-            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3', 'ng-disabled' => 'feedback_survey.$invalid'} Get Points!
-            %button.btn.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Never Mind
+            %button.btn.btn-warning.standalone-button{'ng-click' => 'appear="points"', 'ng-disabled' => 'feedback_survey.$invalid'} Get Points!
 
-          .event-yelp.clearfix{'ng-show' => 'feedback==2'}
+          .event-yelp.clearfix{'ng-show' => 'appear=="yelp"'}
             %h1 Yelp Review
             %form{:name => "yelp_review"}
               %input.yelp-review-link{:type=>'url', :required => "required", :placeholder =>"Paste Yelp Review Link Here", :name => "yelp_link", 'ng-model' => "yelplink", 'ng-class' => "{error: yelp_review.yelp_link.$invalid}"}
               .help-block-white{'ng-show' => 'yelp_review.yelp_link.$error.required'} Required
               .help-block-white{'ng-show' => 'yelp_review.yelp_link.$error.url'} Please enter a valid URL
-              %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3', 'ng-disabled' => 'yelp_review.$invalid'} Get Points!
-              %button.btn.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Never Mind
+              %button.btn.btn-warning.standalone-button{'ng-click' => 'appear="points"', 'ng-disabled' => 'yelp_review.$invalid'} Get Points!
 
-          .point-ranking.clearfix{'ng-show' => 'feedback==3'}
+
+          .point-ranking.clearfix{'ng-show' => 'appear=="points"'}
             %h1 Leader Boards
             %ul.nav.nav-tabs
               %li.active
@@ -158,10 +204,9 @@
                       =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
                     %td Random Guy
                     %td 3000
-            %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=4'} Get More Points
-            %button.btn.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Done
+            %button.btn.btn-warning.standalone-button{'ng-click' => 'appear="more_points"'} Get More Points
               
-          .more-points.clearfix{'ng-show' => 'feedback==4'}
+          .more-points.clearfix{'ng-show' => 'appear=="more_points"'}
             %h1 Get More Points
             %table.feedback-actions.clearfix
               %tr
@@ -178,73 +223,11 @@
                   =link_to image_tag('Ten_Point.png'), "/events"
               %tr
                 %td.point-action-cell
-                  %a.point-action{:href => '/campaigns/new'} Start a Campaign
+                  %a.point-action{:href => '/campaigns/new'} Don't see your favorite business? Start a campaign to get them on Simmr! 
                 %td.points
                   +
                   =link_to image_tag('Ten_Point.png'), "/campaigns/new"
             .clearfix
-              %button.btn.standalone-button{'ng-click' => 'feedback=0', 'ng-hide' => 'feedback==0'} Done
-              %button.btn.btn-warning.standalone-button{'ng-click' => 'feedback=3'} Back to Leader Boards
+              %button.btn.btn-warning.standalone-button{'ng-click' => 'appear="points"'} Back to Leader Boards
 
 
-
-        .span1
-  .container
-    .row
-      .span2.scroll-menu.event
-        %ul.nav.nav-list.scroll-menu-items{"data-spy" => "affix", "data-offset-top" => "800", "data-offset-bottom"=> "300"}
-          %li 
-            %a{:href=>"#about"} Host Story
-          %li 
-            %a{:href=>"#menu"} Menu
-          %li   
-            %a{:href=>"#chatter"} Chatter
-      .span10
-        .row.section-header#about
-          .span10#host-story
-            %a{:href => "#host-story", 'data-target'=>"#host-story-detail", 'data-toggle'=>"collapse"} Our Story <span class="caret"></span>
-        .row.host-story
-          .span10
-            #host-story-accordion.accordion
-              #host-story-detail.accordion-body.collapse
-                .accordion-inner
-                  %p
-                    -#=@event.host.profile.story
-              -#=@event.host.profile.story
-              -# Need to make sure a host story exists for that host before they can create the event...
-      .row
-        .span10.offset2
-          .row.section-header#menu
-            .span10#event-menu
-              %a{:href => "#event-menu", 'data-target'=>"#event-menu-detail", 'data-toggle'=>"collapse"} The Menu <span class="caret"></span>
-          .row.event-menu
-            .span10
-              #event-menu-accordion.accordion
-                #event-menu-detail.accordion-body.collapse
-                  .accordion-inner
-                    %p
-                      =@event.menu_text
-          .row.section-header#chatter
-            .span10#event-chatter
-              %a{:href => "#event-chatter", 'data-target'=>"#event-chatter-detail", 'data-toggle'=>"collapse"} Chatter <span class="caret"></span>
-          .row.event-chatter
-            .span10
-              #event-chatter-accordion.accordion
-                #event-chatter-detail.accordion-body.collapse.in
-                  .accordion-inner
-                    .row
-                      .span10.attendees
-                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
-                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
-                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
-                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Christine Lee", "class" => "one-attendee", "data-placement" => "bottom"
-                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Michael Makarov", "class" => "one-attendee", "data-placement" => "bottom"
-                        -#
-                          %p 
-                            -for guest in @event.guests
-                              = guest.first_name + " " + guest.last_name
-                              %p
-                    .row
-                      .span10.comments
-                        .fb-comments{"data-href" => "#{request.url[0..-10]}", "data-num-posts" => "10", "data-width" => "910"}
-        .span1

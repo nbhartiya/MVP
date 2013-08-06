@@ -2,16 +2,16 @@
   .event-profile
     #event-carousel.carousel.slide.hidden-phone       
       .carousel-inner
-        .active.item
-          -if @event.images.present?
-            -@event.images.each_with_index do |i, index|
-              -if index == 0
-                .item.active
-                  = image_tag i.image
-              -else
-                .item
-                  = image_tag i.image
-          -else
+        -if @event.images.present?
+          -@event.images.each_with_index do |i, index|
+            -if index == 0
+              .item.active
+                = image_tag i.image
+            -else
+              .item
+                = image_tag i.image
+        -else
+          .item.active
             %p This is a default cover photo. <br> Replace by uploading images!
             =image_tag "Food 26.jpg"
     -if @event.images.count > 1
@@ -85,16 +85,16 @@
             -# should redirect to updated event page
 
         .span5
-          #ribbon.preview
-            .container
-              .base
-                %h3#default-text{'ng-show'=>'event.cost=="" || event.cost==nil'}
-                  $ Price
-                %h3{'ng-hide' => 'event.cost=="" || event.cost==nil'}
-                  ${{event.cost}}
-              .left_corner
-              .right_corner
           .event-summary.preview-box
+            #ribbon.preview
+              .container
+                .base
+                  %h3#default-text{'ng-show'=>'event.cost=="" || event.cost==nil'}
+                    $ Price
+                  %h3{'ng-hide' => 'event.cost=="" || event.cost==nil'}
+                    ${{event.cost}}
+                .left_corner
+                .right_corner
             .preview-label{'ng-click' => 'removeImages()'} this is a preview
             .event-summary-top
               %h1#default-text{'ng-show'=>'event.title=="" || event.title==nil'}

@@ -281,9 +281,19 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
 
 Simmr.controller "EventFeedbackCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
 
-  $scope.feedback=1
   $scope.mapUrl = ->
     mapUrl = "http://maps.google.com/?q=#{$scope.address1},#{$scope.city}, #{$scope.state},#{$scope.zipcode}"
+
+  $scope.eventDate = ->
+    moment($scope.event.date).format("dddd, MMMM D")
+
+  $scope.eventTime = ->
+    moment($scope.event.time, "YYYY-MM-DD H:mm:ss").format("h:mm A")
+  
+  $scope.eventEndTime = ->
+    datetime = moment($scope.event.time,  "YYYY-MM-DD H:mm:ss")
+    datetime.add('minutes', $scope.event.length).format('h:mm A')
+
 ]
 
 Simmr.factory "Campaign", ["railsResourceFactory", (railsResourceFactory) ->

@@ -142,7 +142,7 @@ $main_orange: rgb(255, 178, 35);
 	.carousel-control.right{
 		right: 0;
 	}
-	.event-registration {
+	.event-registration, .event-feedback {
 	    margin-top: 25px;
 	    -webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;    
@@ -160,13 +160,11 @@ $main_orange: rgb(255, 178, 35);
 			width: 180px;
 			height: 110px;
 			margin: 50px auto 0;
-			position: absolute;
-			left: 350px;
-			top: -32px;
+			position: relative;
+			float: right;
+			right: -50px;
+			top: -92px;
 			overflow: hidden;
-		}
-		#ribbon.preview{
-			right: -260px;
 		}
 		#ribbon .inset {
 			width: 150px;
@@ -814,15 +812,71 @@ $main_orange: rgb(255, 178, 35);
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;    
 		box-sizing: border-box;
+		.event-summary-logistics-container{
+			padding: 5px 0;
+			margin: 15px -37px 25px -37px;
+			background: black;
+		}
+		.event-summary-logistics{
+			//border-top: 1px dashed rgb(100, 100, 100);
+			//border-bottom: 1px dashed rgb(100, 100, 100);
+			background: black;
+			//background: rgb(80, 80, 80);
+			padding: 10px 30px;
+			margin: 0px;
+		}
+		.event-button-group{
+			margin: 20px auto 10px auto;
+			display: table;
+			width: 100%;
+			p{
+				text-align: left;
+				margin-top: 2px;
+			}
+			li{
+				float: left;
+				display: table-cell;
+				width: 24%;
+				margin: 0 0.5%;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+			}
+			button{
+				margin: 0;
+			}
+			.btn{
+				width: 100%;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+			}
+			.active .btn{
+				background: $main_orange;
+				color: white;
+				border-color: $main_orange;
+			}
+		}
 		a, a:visited, a:active{
-			font-size: 16px;
+		font-size: 16px;
+		font-weight: 100;
+		color: white;
+		margin: 0;
+		text-decoration: none;
+		}
+
+		a.host{
+			font-size: 20px;
+			line-height: 1.5em;
 			font-weight: 100;
 			color: white;
 			margin: 0;
-			text-decoration: none;
 		}
 		a:hover{
 			color: rgb(200, 200, 200);
+		}
+		.host{
+			display: inline;
 		}
 		h1{
 			font-size: 30px;
@@ -850,13 +904,25 @@ $main_orange: rgb(255, 178, 35);
 			border-bottom: none;
 		}
 		.event-sharing{
-			margin-top: 25px;
+			margin-top: 10px;
 			color: white;
 			width: 100%;
 			margin-left: auto;
 			margin-right: auto;
+			tr.icons{
+				line-height: 50px;
+				td{
+					line-height: 50px;
+					a{
+						cursor: pointer;
+					}
+				}
+			}
 			td{
 				text-align: center;
+				width: 25%;
+				font-weight: 100;
+				line-height: 15px;
 				.btn{
 					width: 32px;
 					height: 32px;
@@ -865,31 +931,10 @@ $main_orange: rgb(255, 178, 35);
 					padding: 0;
 					text-align: center;
 					line-height: 32px;
-					font-weight: 900;
+					font-weight: 400;
+					}
 				}
 			}
-			.addthisevent-drop{
-				width: 32px;
-				height: 32px;
-				border-radius: 50%;
-				font-size: 12px;
-				padding: 0;
-				text-align: center;
-				line-height: 32px;
-				background: rgb(255, 150, 0);
-				color: white !important;
-				border: none;
-				font-weight: 600;
-				font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; 
-			}
-			#atedrop1-drop{
-				font-weight: 500;
-				font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; 
-			}
-			.addthisevent_dropdown span{
-				color: black;
-			}
-		}
 		p{
 		    text-align: right;
 		    color: white;
@@ -958,12 +1003,15 @@ $main_orange: rgb(255, 178, 35);
 			color: white;
 			margin-bottom: 20px;
 		}
-		h3, a, a:hover, a:visited{
-			font-size: 14px;
+		h3, a, a:visited{
+			font-size: 16px;
 			line-height: 1.5em;
 			color: white;
 			font-weight: 100;
 			text-decoration: none;
+		}
+		a:hover{
+			color: rgb(200, 200, 200);
 		}
 		hr{
 			margin: 10px 0;

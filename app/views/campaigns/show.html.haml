@@ -2,16 +2,16 @@
   .campaign-profile
     #campaign-carousel.carousel.slide.hidden-phone       
       .carousel-inner
-        .active.item
-          -if @campaign.images.present?
-            -@campaign.images.each_with_index do |i, index|
-              -if index == 0
-                .item.active
-                  = image_tag i.image
-              -else
-                .item
-                  = image_tag i.image
-          -else
+        -if @campaign.images.present?
+          -@campaign.images.each_with_index do |i, index|
+            -if index == 0
+              .item.active
+                = image_tag i.image
+            -else
+              .item
+                = image_tag i.image
+        -else
+          .item.active
             =image_tag "Food 9.jpg"
     -if @campaign.images.count > 1
       %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#campaign-carousel"} ‹
@@ -20,15 +20,15 @@
     .container{'ng-controller' => 'CampaignJoinCtrl', 'ng-init' => "endDate='#{@campaign.expires}';successful='#{@campaign.successful}'"}
       .row.campaign-registration
         .span5
-          #ribbon
-            .container
-              .base
-                %h3
-                  {{daysLeft()}}
-                -#%p days left
-              .left_corner
-              .right_corner
           .campaign-summary.clearfix
+            #ribbon
+              .container
+                .base
+                  %h3
+                    {{daysLeft()}}
+                  -#%p days left
+                .left_corner
+                .right_corner
             .campaign-summary-top
               %h1
                 #{@campaign.biz_name}
