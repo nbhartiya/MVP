@@ -1,3 +1,6 @@
+$(".heart").click ->
+  $(this).toggleClass "orange" 
+
 # states and neighborhood and time jsons
 
 states = Table: [

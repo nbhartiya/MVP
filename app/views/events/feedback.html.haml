@@ -115,12 +115,59 @@
               =@event.host.profile.story
           .host-followers{'ng-show' => 'appear == "followers"'}
             %h1 Followers
-            .followers
-              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
-              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
-              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
-              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Christine Lee", "class" => "one-attendee", "data-placement" => "bottom"
-              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Michael Makarov", "class" => "one-attendee", "data-placement" => "bottom"
+            %ul.nav.nav-tabs
+              %li.active
+                %a{"data-toggle" => "tab", :href => "#business-following"} Businesses
+              %li
+                %a{"data-toggle" => "tab", :href => "#foodie-following"} Foodies
+            #myTabContent.tab-content
+              #business-following.tab-pane.fade.active.in
+                %table.following-table
+                  %tr 
+                    %td 
+                      =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                    %td Name
+                    %td Number of Followers
+                    %td
+                      %a.sb.heart.circle.no-border.no-shadow.event-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                  %tr.current-user-rank
+                    %td 
+                      =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                    %td Name
+                    %td Number of Followers
+                    %td
+                      %a.sb.heart.circle.no-border.no-shadow.event-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                  %tr 
+                    %td 
+                      =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                    %td Name
+                    %td Number of Followers
+                    %td
+                      %a.sb.heart.circle.no-border.no-shadow.event-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+              #foodie-following.tab-pane.fade
+                %table.following-table
+                  %tr 
+                    %td 
+                      =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                    %td Name
+                    %td Number of Followers
+                    %td
+                      %a.sb.heart.circle.no-border.no-shadow.event-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                  %tr 
+                    %td 
+                      =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                    %td Name
+                    %td Number of Followers
+                    %td
+                      %a.sb.heart.circle.no-border.no-shadow.event-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                  %tr 
+                    %td 
+                      =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                    %td Name
+                    %td Number of Followers
+                    %td
+                      %a.sb.heart.circle.no-border.no-shadow.event-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+
 
           %form.event-survey.clearfix{'ng-show' => 'appear=="survey"', :name => "feedback_survey"}
             %h1 Survey

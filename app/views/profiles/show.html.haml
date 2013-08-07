@@ -64,7 +64,7 @@
                 %td
                   %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"}
                 %td{'ng-click'=>'appear = "followers"'}
-                  %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'} 
+                  %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'} 
               %tr.user-stats
                 %td 190
                 %td 190
@@ -217,21 +217,21 @@
                       %td Name
                       %td Number of Followers
                       %td
-                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                        %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
                     %tr.current-user-rank
                       %td 
                         =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
                       %td Name
                       %td Number of Followers
                       %td
-                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                        %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
                     %tr 
                       %td 
                         =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
                       %td Name
                       %td Number of Followers
                       %td
-                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                        %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
                 #foodie-following.tab-pane.fade
                   %table.following-table
                     %tr 
@@ -240,31 +240,31 @@
                       %td Name
                       %td Number of Followers
                       %td
-                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                        %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
                     %tr 
                       %td 
                         =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
                       %td Name
                       %td Number of Followers
                       %td
-                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                        %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
                     %tr 
                       %td 
                         =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
                       %td Name
                       %td Number of Followers
                       %td
-                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                        %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
 
             .user-followers{'ng-show' => 'appear == "followers"'}
               %h1 Followers
               %ul.nav.nav-tabs
                 %li.active
-                  %a{"data-toggle" => "tab", :href => "#business-following"} Businesses
+                  %a{"data-toggle" => "tab", :href => "#business-followers"} Businesses
                 %li
-                  %a{"data-toggle" => "tab", :href => "#foodie-following"} Foodies
+                  %a{"data-toggle" => "tab", :href => "#foodie-followers"} Foodies
               #myTabContent.tab-content
-                #business-following.tab-pane.fade.active.in
+                #business-followers.tab-pane.fade.active.in
                   %table.following-table
                     %tr 
                       %td 
@@ -272,22 +272,22 @@
                       %td Name
                       %td Number of Followers
                       %td
-                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                        %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
                     %tr.current-user-rank
                       %td 
                         =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
                       %td Name
                       %td Number of Followers
                       %td
-                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                        %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
                     %tr 
                       %td 
                         =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
                       %td Name
                       %td Number of Followers
                       %td
-                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
-                #foodie-following.tab-pane.fade
+                        %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                #foodie-followers.tab-pane.fade
                   %table.following-table
                     %tr 
                       %td 
@@ -295,21 +295,21 @@
                       %td Name
                       %td Number of Followers
                       %td
-                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                        %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
                     %tr 
                       %td 
                         =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
                       %td Name
                       %td Number of Followers
                       %td
-                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                        %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
                     %tr 
                       %td 
                         =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
                       %td Name
                       %td Number of Followers
                       %td
-                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                        %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
 
 
 
@@ -347,7 +347,7 @@
             %table.user-social-stats
               %tr.icons
                 %td{'ng-click'=>'appear = "followers"'}
-                  %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'} 
+                  %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'} 
                 %td
                   %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"} 
                 %td
@@ -432,21 +432,21 @@
                       %td Name
                       %td Number of Followers
                       %td
-                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                        %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
                     %tr.current-user-rank
                       %td 
                         =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
                       %td Name
                       %td Number of Followers
                       %td
-                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                        %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
                     %tr 
                       %td 
                         =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
                       %td Name
                       %td Number of Followers
                       %td
-                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                        %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
                 #foodie-following.tab-pane.fade
                   %table.following-table
                     %tr 
@@ -455,21 +455,21 @@
                       %td Name
                       %td Number of Followers
                       %td
-                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                        %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
                     %tr 
                       %td 
                         =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
                       %td Name
                       %td Number of Followers
                       %td
-                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                        %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
                     %tr 
                       %td 
                         =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
                       %td Name
                       %td Number of Followers
                       %td
-                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                        %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
 
             .user-followers{'ng-show' => 'appear == "followers"'}
               %h1 Followers
@@ -487,21 +487,21 @@
                       %td Name
                       %td Number of Followers
                       %td
-                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                        %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
                     %tr.current-user-rank
                       %td 
                         =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
                       %td Name
                       %td Number of Followers
                       %td
-                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                        %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
                     %tr 
                       %td 
                         =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
                       %td Name
                       %td Number of Followers
                       %td
-                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                        %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
                 #foodie-following.tab-pane.fade
                   %table.following-table
                     %tr 
@@ -510,18 +510,18 @@
                       %td Name
                       %td Number of Followers
                       %td
-                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                        %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
                     %tr 
                       %td 
                         =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
                       %td Name
                       %td Number of Followers
                       %td
-                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                        %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
                     %tr 
                       %td 
                         =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
                       %td Name
                       %td Number of Followers
                       %td
-                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                        %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}

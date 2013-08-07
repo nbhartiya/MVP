@@ -18,7 +18,7 @@ $(".answer-image").click ->
     console.log($(this))
 
 $(".heart").click ->
-  $(this).toggleClass("black").toggleClass "orange"  if $(this).hasClass("profile-follow")
+  $(this).toggleClass("black").toggleClass("orange")  if $(this).hasClass("profile-follow")
 
 
 angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams", "$location", "Profile", ($scope, $routeParams, $location, Profile) ->

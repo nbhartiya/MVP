@@ -562,6 +562,59 @@ $main_orange: rgb(255, 178, 35);
 			height: 490px;
 			overflow-y: auto;
 		}
+		.host-followers{
+			.nav{
+				li{
+					font-size: 16px;
+					a, a:hover, a:active{
+						-webkit-border-radius: 0px;
+						border-radius: 0px;
+						background-clip: padding-box;
+						padding: 4px 15px;
+						border: none;
+						margin-right: 5px;
+					}
+					a:hover, a:active{
+						background: $main_orange;
+						border: none;
+						color: white;
+					}
+				}
+				li.active{
+					a{
+						background: $main_orange;
+					}
+				}
+			}
+			.nav-tabs{
+				border-bottom: none;
+				margin-top: 15px;
+				margin-bottom: 10px;
+			}
+			table{
+				margin-bottom: 10px;
+				width: 100%;
+				font-size: 14px;
+				color: white;
+			}
+			tr:first-child{
+				border-top: none;
+			}
+			tr{
+				border-top: 1px solid white;
+				height: 40px;
+			}
+			td{
+				vertical-align: middle;
+				a{
+					display: table-cell;
+				}
+				img{
+					width: 50px;
+					height: auto;
+				}
+			}
+		}
 		.event-purchase, .event-purchase-confirmation, .event-create-confirmation, .event-guests, .event-details, .event-menu, .event-attendees-and-chatter, .event-host-story, .host-followers, .event-create-form, .event-edit-form{
 			background: rgba(0,0,0,0.8);
 			padding: 30px;

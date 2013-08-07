@@ -466,6 +466,62 @@ $main_orange: rgb(255, 178, 35);
 			overflow-y: auto;
 			height: 490px;
 		}
+		.host-followers{
+			.nav{
+				li{
+					font-size: 16px;
+					a, a:hover, a:active{
+						-webkit-border-radius: 0px;
+						border-radius: 0px;
+						background-clip: padding-box;
+						padding: 4px 15px;
+						border: none;
+						margin-right: 5px;
+					}
+					a{
+						color: black;
+					}
+					a:hover, a:active{
+						background: $main_orange;
+						border: none;
+						color: white;
+					}
+				}
+				li.active{
+					a{
+						background: $main_orange;
+						color: white;
+					}
+				}
+			}
+			.nav-tabs{
+				border-bottom: none;
+				margin-top: 15px;
+				margin-bottom: 10px;
+			}
+			table{
+				margin-bottom: 10px;
+				width: 100%;
+				font-size: 14px;
+			}
+			tr:first-child{
+				border-top: none;
+			}
+			tr{
+				border-top: 1px solid black;
+				height: 40px;
+			}
+			td{
+				vertical-align: middle;
+				a{
+					display: table-cell;
+				}
+				img{
+					width: 50px;
+					height: auto;
+				}
+			}
+		}
 		.campaign-create-form, .campaign-edit-form, .campaign-create-confirmation, .campaign-why-join, .host-followers{
 			background: rgba(255,255,255,0.8);
 			padding: 30px;
