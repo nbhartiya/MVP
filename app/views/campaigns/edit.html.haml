@@ -14,6 +14,9 @@
           .item.active
             %p This is a default cover photo. <br> Replace by uploading images!
             =image_tag "Food 9.jpg"
+    -if @campaign.images.count > 1
+      %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#campaign-carousel"} ‹
+      %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#campaign-carousel"} ›
 
 
     .container
