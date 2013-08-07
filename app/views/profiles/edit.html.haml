@@ -75,57 +75,63 @@
                       %td name
                       %td host
                       %td date/time
-                      %td seats left
-                      %td price
+                      %td location
+                      %td # friends going
+                      %td # seats left @ $price
                     %tr.current-user-rank
                       %td name
                       %td host
                       %td date/time
-                      %td seats left
-                      %td price
+                      %td location
+                      %td # friends going
+                      %td # seats left @ $price
                     %tr 
                       %td name
                       %td host
                       %td date/time
-                      %td seats left
-                      %td price
+                      %td location
+                      %td # friends going
+                      %td # seats left @ $price
                 #past-events.tab-pane.fade
                   %table.events-table
                     %tr 
                       %td name
                       %td host
                       %td date/time
-                      %td price
+                      %td event feedback link
+                      %td next event link
                     %tr 
                       %td name
                       %td host
                       %td date/time
-                      %td price
+                      %td event feedback link
+                      %td next event link
                     %tr 
                       %td name
                       %td host
                       %td date/time
-                      %td price
+                      %td event feedback link
+                      %td next event link
                 #followed-events.tab-pane.fade
                   %table.events-table
                     %tr 
                       %td name
                       %td host
                       %td date/time
-                      %td seats left
-                      %td price
+                      %td # friends going
+                      %td # seats left @ $price
                     %tr 
                       %td name
                       %td host
                       %td date/time
-                      %td seats left
-                      %td price
+                      %td # friends going
+                      %td # seats left @ $price
                     %tr 
                       %td name
                       %td host
                       %td date/time
-                      %td seats left
-                      %td price
+                      %td # friends going
+                      %td # seats left @ $price
             .user-campaigns{'ng-show' => 'appear == "campaigns"'}
               %h1 Campaigns
               %ul.nav.nav-tabs
@@ -285,11 +291,20 @@
             .user-news{'ng-show' => 'appear == "news"'}
               %h1 News
               %h3 Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait
+              %button.btn.btn-inverse.edit{'ng-click' => 'edit = "news"'} Edit
+              .edit-form
+                %textarea.clearfix{:rows => 2, :placeholder => 'news', 'ng-show' => 'edit == "news"'}
+                %button.btn.btn-warning.edit{'ng-disabled' => 'profile_edit.$invalid'} Save Changes
 
             .user-story{'ng-show' => 'appear == "story"'}
               %h1 Host Story
               %h3 
                 =@profile.story
+              %button.btn.btn-inverse.edit{'ng-click' => 'edit = "story"'} Edit
+              .edit-form
+                %textarea.clearfix{:rows => 2, :placeholder => 'story', 'ng-show' => 'edit == "story"'}
+                %button.btn.btn-warning.edit{'ng-disabled' => 'profile_edit.$invalid'} Save Changes
+
 
             .user-events{'ng-show' => 'appear == "events"'}
               %h1 Events
@@ -303,39 +318,45 @@
                   %table.events-table
                     %tr 
                       %td name
-                      %td host
                       %td date/time
-                      %td seats left
-                      %td price
+                      %td # of total seats filled @ $price
+                      %td total revenue
+                      %td # following
+                      %td # shared
                     %tr.current-user-rank
                       %td name
-                      %td host
                       %td date/time
-                      %td seats left
-                      %td price
+                      %td # of total seats filled @ $price
+                      %td total revenue
+                      %td # following
+                      %td # shared
                     %tr 
                       %td name
-                      %td host
                       %td date/time
-                      %td seats left
-                      %td price
+                      %td # of total seats filled @ $price
+                      %td total revenue
+                      %td # following
+                      %td # shared
                 #past-events.tab-pane.fade
                   %table.events-table
                     %tr 
                       %td name
-                      %td host
                       %td date/time
-                      %td price
+                      %td # of total seats filled @ $price
+                      %td total revenue
+                      %td event feedback stats(?)
                     %tr 
                       %td name
-                      %td host
                       %td date/time
-                      %td price
+                      %td # of total seats filled @ $price
+                      %td total revenue
+                      %td event feedback stats(?)
                     %tr 
                       %td name
-                      %td host
                       %td date/time
-                      %td price
+                      %td # of total seats filled @ $price
+                      %td total revenue
+                      %td event feedback stats(?)
 
             .user-following{'ng-show' => 'appear == "following"'}
               %h1 Following

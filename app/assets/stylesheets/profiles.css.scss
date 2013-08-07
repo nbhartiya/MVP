@@ -152,6 +152,13 @@ $main_orange: rgb(255, 178, 35);
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box;
 		}
+		.edit{
+			float: right;
+		}
+		textarea{
+			width: 95%;
+			margin-top: 10px;
+		}
 		.badges-table{
 			width: 100%;
 			border: none;
