@@ -1,78 +1,43 @@
-.campaigns-index
+.campaigns-index{'ng-controller' => 'CampaignIndexCtrl'}
   .campaigns
     .container
       .row.section-header
-        .span12.campaigns-index-header
+        .span12.campaign-index-header
           %h1 Campaigns in San Francisco
-    .section
+    .section.campaign-section
       .container
-        .row.campaign-how-it-works
-          .span1
-          .span10.campaigns-index-content
-            .row.how-it-works-campaign-infographic 
-              %p How does it work?
-              .step
-                %h1 launch
-                .step-description
-                  %p Don't see a favorite food business or chef? Launch a campaign to get 'em on Simmr! It takes just a couple of minutes.
-              .step
-                %h1 promote
-                .step-description
-                  %p Once your campaign is approved, spread the word and start recruiting people to join!
-              .step
-                %h1 tilt
-                .step-description
-                  %p Once you have 100 people, we will contact the restaurant or chef and bring them on!
-          .span1
+        .row.campaign-row-content
+          .span12.campaign-index-content
+            .row
+              .how-it-works-campaign-infographic 
+                %h1 How does it work?
+                .step
+                  %h2 launch
+                  .step-description
+                    %p Don't see a favorite food business or chef? Launch a campaign to get 'em on Simmr! It takes under a minute.
+                .step
+                  %h2 promote
+                  .step-description
+                    %p Once a campaign is approved, spread the word and start recruiting others to join! You have 30 days to get 100 people.
+                .step
+                  %h2 tilt
+                  .step-description
+                    %p Once you have 100 people, we will contact the business and bring them on to a warm welcome from their fans!
     .container
       -all_campaigns = @campaigns
       -while all_campaigns.length > 1
         -campaign = all_campaigns.pop
         .row.campaigns-row
-          .span1
-          .span5.single-campaign
+          .span6.single-campaign
             =render "campaigns/singlecampaign", :campaign => campaign
           -campaign = all_campaigns.pop
-          .span5.single-campaign
+          .span6.single-campaign
             =render "campaigns/singlecampaign", :campaign => campaign
-          .span1
       -if all_campaigns.length == 1
         -campaign = all_campaigns.pop
         .row.campaigns-row
-          .span1
-          .span5.single-campaign
+          .span6.single-campaign
             =render "campaigns/singlecampaign", :campaign => campaign
           .span6
 
--#
-  %h1 Listing campaigns
 
-  %table
-    %tr
-      %th Biz name
-      %th Blurb
-      %th About
-      %th Why join
-      %th Location
-      %th Foodie
-      %th Host
-      %th
-      %th
-      %th
-
-    - @campaigns.each do |campaign|
-      %tr
-        %td= campaign.biz_name
-        %td= campaign.blurb
-        %td= campaign.about
-        %td= campaign.why_join
-        %td= campaign.location_id
-        %td= campaign.campaign_starter_id
-        %td= campaign.host_id
-        %td= link_to 'Show', campaign
-        %td= link_to 'Edit', edit_campaign_path(campaign)
-        %td= link_to 'Destroy', campaign, method: :delete, data: { confirm: 'Are you sure?' }
-
-  %br
-
-  = link_to 'New Campaign', new_campaign_path

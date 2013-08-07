@@ -1,35 +1,14 @@
-.row
-  .campaign-status
-    Status
-  .span5.campaign-image
+.row{'ng-init' => "endDate='#{campaign.expires}';successful='#{campaign.successful}'"}
+  .span6.campaign-image
     -if campaign.images.present?
       =link_to (image_tag campaign.images.first.image), campaign_path(campaign)
     -else
       =link_to image_tag("Food 9.jpg"), campaign_path(campaign)
-.row.campaign-first-row
+%a.row.campaign-info{:href => campaign_path(campaign)}
   %table
     %tr
-      %td.span1.campaign-lead-image
-        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Campaign Lead Name", "class" => "campaign-card-lead-name"
-      %td.span3.campaign-title-and-blurb
-        #{campaign.biz_name}
-        %p #{campaign.blurb}
-      %td.span1.join-button
-        %a.btn.btn-warning{:href => campaign_path(campaign)} Join
-.row.campaign-second-row
-  .span5.social-stats
-    %table
-      %tr
-        %td
-          %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
-        %td
-          %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
-        %td
-          %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
-      %tr.social-stats-numbers
-        %td 190
-        %td 190
-        %td{:rowspan => "2"} share
-      %tr.social-stats-labels
-        %td followers
-        %td reviews
+      %td.campaign-title-progress.span3
+        %h1 #{campaign.biz_name}
+        %h2 #{campaign.follows_needed} more people to tilt | {{daysLeft()}}
+      %td.campaign-desc.span3
+        %h2 #{campaign.blurb} 
