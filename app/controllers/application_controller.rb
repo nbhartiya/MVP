@@ -9,7 +9,13 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if current_user.profile == nil
-      survey_path
+      current_user.profile=Profile.new
+    end
+    if current_user.chef == nil
+      current_user.chef = cookies[:chef]
+    end
+    if current_user.chef == false
+      events_path
     else
       edit_profile_path(current_user.profile)
     end

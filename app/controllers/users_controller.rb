@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def show
   end
 
-# TODO: come back to this
+  # TODO: come back to this
   def incomplete
     current_user.complete!(params[:kind])
   end

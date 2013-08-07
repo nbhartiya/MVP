@@ -6,7 +6,6 @@
   %hr.or-line
   %p.strong.sign-up-text
     Sign up with email 
-  %input#user_chef{:name=>"user[chef]", :type=>"hidden", :value => @chef_info}
   %input#user_first_name{:required => "required", :placeholder => "first name", :autofocus => "autofocus", :name => "user[first_name]", :size => "30", :type => "text", 'ng-model' => 'user.first_name', 'ng-class' => "{error: new_business['user[first_name]'].$invalid}"}
   %input#user_last_name{:required => "required", :placeholder => "last name", :name => "user[last_name]", :size => "30", :type => "text", 'ng-model' => 'user.last_name', 'ng-class' => "{error: new_business['user[last_name]'].$invalid}"}
   %input#user_email{:required => "required", :placeholder => "email", :name => "user[email]", :size => "30", :type => "email", 'ng-model' => 'user.email', 'ng-class' => "{error: new_business['user[email]'].$invalid}"}

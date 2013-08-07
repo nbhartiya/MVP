@@ -125,8 +125,7 @@
         %p.strong.sign-up-text
           Sign up with
           %p
-            -@chef_info = "1"
-            = render "shared/business_signup", :chef_info => @chef_info
+            = render "shared/business_signup"
       .modal-footer
         %button.usersignup.btn.btn-warning Sign Up
 
@@ -141,8 +140,7 @@
         %p.strong.sign-up-text
           Sign up with
           %p
-            -@chef_info = "0"
-            = render "shared/foodie_signup", :chef_info => @chef_info
+            = render "shared/foodie_signup"
       .modal-footer
         %button.usersignup.btn.btn-warning Sign Up
 

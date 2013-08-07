@@ -44,14 +44,8 @@ class User < ActiveRecord::Base
   has_many :follows, :as => :followable, :dependent => :destroy
   
   before_create :confirmation_email
-  before_save :default_values
   
   serialize :points, Array
-
-  def default_values
-    self.chef ||= false
-    true
-  end
   
   def confirmation_email
     NotificationMailer.signup_email(self).deliver
@@ -76,7 +70,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :approved, :first_name, :last_name, :chef, :work_zip, :points
   
-  def apply_omniauth(omni)
+  def apply_omniauth(omni, user_type)
     if omni['provider'] == 'facebook'
       self.email = omni['info']['email']
       self.first_name = omni['info']['first_name']
@@ -94,9 +88,11 @@ class User < ActiveRecord::Base
       fullname = omni['info']['name'].split(' ')
       self.first_name, self.last_name = fullname[0], fullname[1]
     end
+    self.chef = user_type
     authentications.build(:provider => omni['provider'],
                           :uid => omni['uid'])
   end
+
   
   def self.new_with_session(params, session)
     if session["devise.user_attributes"]

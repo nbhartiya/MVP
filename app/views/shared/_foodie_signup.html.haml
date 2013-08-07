@@ -5,8 +5,7 @@
   = link_to "Twitter", user_omniauth_authorize_path(:twitter), :class => "sb twitter text black"
   %hr.or-line
   %p.strong.sign-up-text
-    Sign up with email 
-  %input#user_chef{:name=>"user[chef]", :type=>"hidden", :value => @chef_info}
+    Sign up with email
   %input#user_first_name{:required => "required", :placeholder => "first name", :autofocus => "autofocus", :name => "user[first_name]", :size => "30", :type => "text", 'ng-model' => 'user.first_name', 'ng-class' => "{error: new_foodie['user[first_name]'].$invalid}"}
   %input#user_last_name{:required => "required", :placeholder => "last name", :name => "user[last_name]", :size => "30", :type => "text", 'ng-model' => 'user.last_name', 'ng-class' => "{error: new_foodie['user[last_name]'].$invalid}"}
 
