@@ -56,189 +56,189 @@
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "campaigns"'} Campaigns
                   %li
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "following"'} Following
-        .span1
-        .span6
-          .user-events{'ng-show' => 'appear == "events"'}
-            %h1 Events
-            %ul.nav.nav-tabs
-              %li.active
-                %a{"data-toggle" => "tab", :href => "#upcoming-events"} Upcoming
-              %li
-                %a{"data-toggle" => "tab", :href => "#past-events"} Past
-              %li
-                %a{"data-toggle" => "tab", :href => "#followed-events"} Following
-            #myTabContent.tab-content
-              #upcoming-events.tab-pane.fade.active.in
-                %table.events-table
-                  %tr 
-                    %td name
-                    %td host
-                    %td date/time
-                    %td seats left
-                    %td price
-                  %tr.current-user-rank
-                    %td name
-                    %td host
-                    %td date/time
-                    %td seats left
-                    %td price
-                  %tr 
-                    %td name
-                    %td host
-                    %td date/time
-                    %td seats left
-                    %td price
-              #past-events.tab-pane.fade
-                %table.events-table
-                  %tr 
-                    %td name
-                    %td host
-                    %td date/time
-                    %td price
-                  %tr 
-                    %td name
-                    %td host
-                    %td date/time
-                    %td price
-                  %tr 
-                    %td name
-                    %td host
-                    %td date/time
-                    %td price
-              #followed-events.tab-pane.fade
-                %table.events-table
-                  %tr 
-                    %td name
-                    %td host
-                    %td date/time
-                    %td seats left
-                    %td price
-                  %tr 
-                    %td name
-                    %td host
-                    %td date/time
-                    %td seats left
-                    %td price
-                  %tr 
-                    %td name
-                    %td host
-                    %td date/time
-                    %td seats left
-                    %td price
-          .user-campaigns{'ng-show' => 'appear == "campaigns"'}
-            %h1 Campaigns
-            %ul.nav.nav-tabs
-              %li.active
-                %a{"data-toggle" => "tab", :href => "#joined-campaigns"} Joined
-              %li
-                %a{"data-toggle" => "tab", :href => "#started-campaigns"} Started
-            #myTabContent.tab-content
-              #joined-campaigns.tab-pane.fade.active.in
-                %table.campaigns-table
-                  %tr 
-                    %td host
-                    %td X people to tilt
-                    %td status/days left
-                  %tr.current-user-rank
-                    %td host
-                    %td X people to tilt
-                    %td status/days left
-                  %tr 
-                    %td host
-                    %td X people to tilt
-                    %td status/days left
-              #started-campaigns.tab-pane.fade
-                %table.campaigns-table
-                  %tr 
-                    %td host
-                    %td X people to tilt
-                    %td status/days left
-                  %tr 
-                    %td host
-                    %td X people to tilt
-                    %td status/days left
-                  %tr 
-                    %td host
-                    %td X people to tilt
-                    %td status/days left
+          .span1
+          .span6
+            .user-events{'ng-show' => 'appear == "events"'}
+              %h1 Events
+              %ul.nav.nav-tabs
+                %li.active
+                  %a{"data-toggle" => "tab", :href => "#upcoming-events"} Upcoming
+                %li
+                  %a{"data-toggle" => "tab", :href => "#past-events"} Past
+                %li
+                  %a{"data-toggle" => "tab", :href => "#followed-events"} Following
+              #myTabContent.tab-content
+                #upcoming-events.tab-pane.fade.active.in
+                  %table.events-table
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td seats left
+                      %td price
+                    %tr.current-user-rank
+                      %td name
+                      %td host
+                      %td date/time
+                      %td seats left
+                      %td price
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td seats left
+                      %td price
+                #past-events.tab-pane.fade
+                  %table.events-table
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td price
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td price
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td price
+                #followed-events.tab-pane.fade
+                  %table.events-table
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td seats left
+                      %td price
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td seats left
+                      %td price
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td seats left
+                      %td price
+            .user-campaigns{'ng-show' => 'appear == "campaigns"'}
+              %h1 Campaigns
+              %ul.nav.nav-tabs
+                %li.active
+                  %a{"data-toggle" => "tab", :href => "#joined-campaigns"} Joined
+                %li
+                  %a{"data-toggle" => "tab", :href => "#started-campaigns"} Started
+              #myTabContent.tab-content
+                #joined-campaigns.tab-pane.fade.active.in
+                  %table.campaigns-table
+                    %tr 
+                      %td host
+                      %td X people to tilt
+                      %td status/days left
+                    %tr.current-user-rank
+                      %td host
+                      %td X people to tilt
+                      %td status/days left
+                    %tr 
+                      %td host
+                      %td X people to tilt
+                      %td status/days left
+                #started-campaigns.tab-pane.fade
+                  %table.campaigns-table
+                    %tr 
+                      %td host
+                      %td X people to tilt
+                      %td status/days left
+                    %tr 
+                      %td host
+                      %td X people to tilt
+                      %td status/days left
+                    %tr 
+                      %td host
+                      %td X people to tilt
+                      %td status/days left
 
-          .user-following{'ng-show' => 'appear == "following"'}
-            %h1 Following
-            %ul.nav.nav-tabs
-              %li.active
-                %a{"data-toggle" => "tab", :href => "#business-following"} Businesses
-              %li
-                %a{"data-toggle" => "tab", :href => "#foodie-following"} Foodies
-            #myTabContent.tab-content
-              #business-following.tab-pane.fade.active.in
-                %table.following-table
-                  %tr 
-                    %td 
-                      =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
-                    %td Name
-                    %td Number of Followers
-                    %td
-                      %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
-                  %tr.current-user-rank
-                    %td 
-                      =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
-                    %td Name
-                    %td Number of Followers
-                    %td
-                      %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
-                  %tr 
-                    %td 
-                      =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
-                    %td Name
-                    %td Number of Followers
-                    %td
-                      %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
-              #foodie-following.tab-pane.fade
-                %table.following-table
-                  %tr 
-                    %td 
-                      =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
-                    %td Name
-                    %td Number of Followers
-                    %td
-                      %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
-                  %tr 
-                    %td 
-                      =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
-                    %td Name
-                    %td Number of Followers
-                    %td
-                      %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
-                  %tr 
-                    %td 
-                      =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
-                    %td Name
-                    %td Number of Followers
-                    %td
-                      %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+            .user-following{'ng-show' => 'appear == "following"'}
+              %h1 Following
+              %ul.nav.nav-tabs
+                %li.active
+                  %a{"data-toggle" => "tab", :href => "#business-following"} Businesses
+                %li
+                  %a{"data-toggle" => "tab", :href => "#foodie-following"} Foodies
+              #myTabContent.tab-content
+                #business-following.tab-pane.fade.active.in
+                  %table.following-table
+                    %tr 
+                      %td 
+                        =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                    %tr.current-user-rank
+                      %td 
+                        =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                    %tr 
+                      %td 
+                        =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                #foodie-following.tab-pane.fade
+                  %table.following-table
+                    %tr 
+                      %td 
+                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                    %tr 
+                      %td 
+                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                    %tr 
+                      %td 
+                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
 
-          %form.user-summary-edit.clearfix{'ng-show' => "edit==1", 'ng-hide' => "edit==0", :name => 'profile_edit'}
-            %button.close{"ng-click" => "edit=0", :type => "button"} close
-            
-            %input#profile-name{'ng-model'=>'profile.name', :type=>"text", :placeholder =>"Your Name", :required => "required", :name => "profile_name", 'ng-class' => "{error: profile_edit.profile_name.$invalid}"}
+            %form.user-summary-edit.clearfix{'ng-show' => "appear=='edit'", :name => 'profile_edit'}
+              %button.close{"ng-click" => "appear=''", :type => "button"} close
+              
+              %input#profile-name{'ng-model'=>'profile.name', :type=>"text", :placeholder =>"Your Name", :required => "required", :name => "profile_name", 'ng-class' => "{error: profile_edit.profile_name.$invalid}"}
 
-            %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: profile_edit.profile_blurb.$invalid}"}
+              %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: profile_edit.profile_blurb.$invalid}"}
 
-            %select#neighborhoods{'ng-model'=>'profile.neighborhood', :name => "profile_neighborhood", :required => "required", 'ng-class' => "{error: profile_edit.profile_neighborhood.$invalid}"}
+              %select#neighborhoods{'ng-model'=>'profile.neighborhood', :name => "profile_neighborhood", :required => "required", 'ng-class' => "{error: profile_edit.profile_neighborhood.$invalid}"}
 
-            %input#profile-city{'ng-model'=>'profile.city', :type=>"text", :placeholder =>"Your City", :required => "required", :name => "profile_city", 'ng-class' => "{error: profile_edit.profile_city.$invalid}"}
+              %input#profile-city{'ng-model'=>'profile.city', :type=>"text", :placeholder =>"Your City", :required => "required", :name => "profile_city", 'ng-class' => "{error: profile_edit.profile_city.$invalid}"}
 
-            %select#state{'ng-model'=>'profile.state', :required => "required", :name => "profile_state", 'ng-class' => "{error: profile_edit.profile_state.$invalid}"}
+              %select#state{'ng-model'=>'profile.state', :required => "required", :name => "profile_state", 'ng-class' => "{error: profile_edit.profile_state.$invalid}"}
 
-            %input#profile-zip{'ng-model' => 'profile.zip', :type=>"text", :placeholder =>"Your Zip", :required => "required", :name => "profile_zip", :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: profile_edit.profile_zip.$invalid}"}
-            
-            .help-block{'ng-show' => 'profile_edit.profile_zip.$error.pattern'} Please enter a valid zip code
+              %input#profile-zip{'ng-model' => 'profile.zip', :type=>"text", :placeholder =>"Your Zip", :required => "required", :name => "profile_zip", :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: profile_edit.profile_zip.$invalid}"}
+              
+              .help-block{'ng-show' => 'profile_edit.profile_zip.$error.pattern'} Please enter a valid zip code
 
-            .help-block{'ng-show' => 'profile_edit.profile_name.$error.required || profile_edit.profile_blurb.$error.required || profile_edit.profile_neighborhood.$error.required || profile_edit.profile_city.$error.required || profile_edit.profile_state.$error.required || profile_edit.profile_zip.$error.required'} All fields are required
+              .help-block{'ng-show' => 'profile_edit.profile_name.$error.required || profile_edit.profile_blurb.$error.required || profile_edit.profile_neighborhood.$error.required || profile_edit.profile_city.$error.required || profile_edit.profile_state.$error.required || profile_edit.profile_zip.$error.required'} All fields are required
 
-            .clearfix
-              %button.btn#profile-images-button{'ng-click'=> 'uploadProfileImage()'} Change Profile Picture
-            %button.btn.btn-warning#submit{'ng-click' => 'edit=2', 'ng-disabled' => 'profile_edit.$invalid'} Save Changes
+              .clearfix
+                %button.btn#profile-images-button{'ng-click'=> 'uploadProfileImage()'} Change Profile Picture
+              %button.btn.btn-warning#submit{'ng-disabled' => 'profile_edit.$invalid'} Save Changes
 
       -else
         .row.user-overview
@@ -278,144 +278,144 @@
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "events"'} Events
                   %li
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "following"'} Following
-        .span1
-        .span6
-          .user-news{'ng-show' => 'appear == "news"'}
-            %h1 News
-            %h3 Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait
+          .span1
+          .span6
+            .user-news{'ng-show' => 'appear == "news"'}
+              %h1 News
+              %h3 Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait
 
-          .user-story{'ng-show' => 'appear == "story"'}
-            %h1 Host Story
-            %h3 
-              =@profile.story
+            .user-story{'ng-show' => 'appear == "story"'}
+              %h1 Host Story
+              %h3 
+                =@profile.story
 
-          .user-events{'ng-show' => 'appear == "events"'}
-            %h1 Events
-            %ul.nav.nav-tabs
-              %li.active
-                %a{"data-toggle" => "tab", :href => "#upcoming-events"} Upcoming
-              %li
-                %a{"data-toggle" => "tab", :href => "#past-events"} Past
-            #myTabContent.tab-content
-              #upcoming-events.tab-pane.fade.active.in
-                %table.events-table
-                  %tr 
-                    %td name
-                    %td host
-                    %td date/time
-                    %td seats left
-                    %td price
-                  %tr.current-user-rank
-                    %td name
-                    %td host
-                    %td date/time
-                    %td seats left
-                    %td price
-                  %tr 
-                    %td name
-                    %td host
-                    %td date/time
-                    %td seats left
-                    %td price
-              #past-events.tab-pane.fade
-                %table.events-table
-                  %tr 
-                    %td name
-                    %td host
-                    %td date/time
-                    %td price
-                  %tr 
-                    %td name
-                    %td host
-                    %td date/time
-                    %td price
-                  %tr 
-                    %td name
-                    %td host
-                    %td date/time
-                    %td price
+            .user-events{'ng-show' => 'appear == "events"'}
+              %h1 Events
+              %ul.nav.nav-tabs
+                %li.active
+                  %a{"data-toggle" => "tab", :href => "#upcoming-events"} Upcoming
+                %li
+                  %a{"data-toggle" => "tab", :href => "#past-events"} Past
+              #myTabContent.tab-content
+                #upcoming-events.tab-pane.fade.active.in
+                  %table.events-table
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td seats left
+                      %td price
+                    %tr.current-user-rank
+                      %td name
+                      %td host
+                      %td date/time
+                      %td seats left
+                      %td price
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td seats left
+                      %td price
+                #past-events.tab-pane.fade
+                  %table.events-table
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td price
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td price
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td price
 
-          .user-following{'ng-show' => 'appear == "following"'}
-            %h1 Following
-            %ul.nav.nav-tabs
-              %li.active
-                %a{"data-toggle" => "tab", :href => "#business-following"} Businesses
-              %li
-                %a{"data-toggle" => "tab", :href => "#foodie-following"} Foodies
-            #myTabContent.tab-content
-              #business-following.tab-pane.fade.active.in
-                %table.following-table
-                  %tr 
-                    %td 
-                      =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
-                    %td Name
-                    %td Number of Followers
-                    %td
-                      %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
-                  %tr.current-user-rank
-                    %td 
-                      =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
-                    %td Name
-                    %td Number of Followers
-                    %td
-                      %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
-                  %tr 
-                    %td 
-                      =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
-                    %td Name
-                    %td Number of Followers
-                    %td
-                      %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
-              #foodie-following.tab-pane.fade
-                %table.following-table
-                  %tr 
-                    %td 
-                      =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
-                    %td Name
-                    %td Number of Followers
-                    %td
-                      %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
-                  %tr 
-                    %td 
-                      =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
-                    %td Name
-                    %td Number of Followers
-                    %td
-                      %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
-                  %tr 
-                    %td 
-                      =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
-                    %td Name
-                    %td Number of Followers
-                    %td
-                      %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+            .user-following{'ng-show' => 'appear == "following"'}
+              %h1 Following
+              %ul.nav.nav-tabs
+                %li.active
+                  %a{"data-toggle" => "tab", :href => "#business-following"} Businesses
+                %li
+                  %a{"data-toggle" => "tab", :href => "#foodie-following"} Foodies
+              #myTabContent.tab-content
+                #business-following.tab-pane.fade.active.in
+                  %table.following-table
+                    %tr 
+                      %td 
+                        =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                    %tr.current-user-rank
+                      %td 
+                        =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                    %tr 
+                      %td 
+                        =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                #foodie-following.tab-pane.fade
+                  %table.following-table
+                    %tr 
+                      %td 
+                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                    %tr 
+                      %td 
+                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                    %tr 
+                      %td 
+                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
 
-          %form.user-summary-edit.clearfix{:name => "profile_edit", 'ng-show' => "edit==1", 'ng-hide' => "edit==0"}
-            %button.close{"ng-click" => "edit=0", :type => "button"} close
+            %form.user-summary-edit.clearfix{:name => "profile_edit", 'ng-show' => "appear=='edit'"}
+              %button.close{"ng-click" => "appear=''", :type => "button"} close
 
-            %input#profile-name{'ng-model'=>'profile.name', :type=>"text", :placeholder =>"Your Name", :required => "required", :name => "profile_name", 'ng-class' => "{error: profile_edit.profile_name.$invalid}"}
+              %input#profile-name{'ng-model'=>'profile.name', :type=>"text", :placeholder =>"Your Name", :required => "required", :name => "profile_name", 'ng-class' => "{error: profile_edit.profile_name.$invalid}"}
 
-            %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet (you can add more below under 'Our Story')", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: profile_edit.profile_blurb.$invalid}"}
+              %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet (you can add more below under 'Our Story')", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: profile_edit.profile_blurb.$invalid}"}
 
-            %input#profile-address{'ng-model'=>'profile.address', :type=>"text", :placeholder =>"Your Business Address", :required => "required", :name => "profile_address", 'ng-class' => "{error: profile_edit.profile_address.$invalid}"}
+              %input#profile-address{'ng-model'=>'profile.address', :type=>"text", :placeholder =>"Your Business Address", :required => "required", :name => "profile_address", 'ng-class' => "{error: profile_edit.profile_address.$invalid}"}
 
-            %input#profile-city{'ng-model'=>'profile.city', :type=>"text", :placeholder =>"Your City", :required => "required", :name => "profile_city", 'ng-class' => "{error: profile_edit.profile_city.$invalid}"}
+              %input#profile-city{'ng-model'=>'profile.city', :type=>"text", :placeholder =>"Your City", :required => "required", :name => "profile_city", 'ng-class' => "{error: profile_edit.profile_city.$invalid}"}
 
-            %select#state{'ng-model'=>'profile.state', :required => "required", :name => "profile_state", 'ng-class' => "{error: profile_edit.profile_state.$invalid}"}
+              %select#state{'ng-model'=>'profile.state', :required => "required", :name => "profile_state", 'ng-class' => "{error: profile_edit.profile_state.$invalid}"}
 
-            %input#profile-zip{'ng-model' => 'profile.zip', :type=>"text", :placeholder =>"Your Zip", :required => "required", :name => "profile_zip", :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: profile_edit.profile_zip.$invalid}"}
+              %input#profile-zip{'ng-model' => 'profile.zip', :type=>"text", :placeholder =>"Your Zip", :required => "required", :name => "profile_zip", :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: profile_edit.profile_zip.$invalid}"}
 
-            %select#neighborhoods{'ng-model'=>'profile.neighborhood', :name => "profile_neighborhood", :required => "required", 'ng-class' => "{error: profile_edit.profile_neighborhood.$invalid}"}
-            
-            .help-block{'ng-show' => 'profile_edit.profile_zip.$error.pattern'} Please enter a valid zip code
-
-            .help-block{'ng-show' => 'profile_edit.profile_name.$error.required || profile_edit.profile_blurb.$error.required || profile_edit.profile_address.$error.required || profile_edit.profile_city.$error.required || profile_edit.profile_state.$error.required || profile_edit.profile_zip.$error.required || profile_edit.profile_neighborhood.$error.required'} All fields are required
-
-            .clearfix
-              %button.btn#profile-images-button{'ng-click'=> 'uploadProfileImage()'} Change Profile Picture
-              %button.btn#cover-images-button{'ng-click'=> 'uploadImages()'} Change Cover Image
-              %button.btn#yelp-connect Connect Yelp
-              %span#yelp-explanation <a data-toggle = "tooltip" id = "why-yelp" title = "So guests know how great you already are and can easily leave you reviews!">Why?</a>
-            %button.btn.btn-warning#submit{'ng-click' => 'edit=2', 'ng-disabled' => 'profile_edit.$invalid'} Save Changes
-
+              %select#neighborhoods{'ng-model'=>'profile.neighborhood', :name => "profile_neighborhood", :required => "required", 'ng-class' => "{error: profile_edit.profile_neighborhood.$invalid}"}
               
+              .help-block{'ng-show' => 'profile_edit.profile_zip.$error.pattern'} Please enter a valid zip code
+
+              .help-block{'ng-show' => 'profile_edit.profile_name.$error.required || profile_edit.profile_blurb.$error.required || profile_edit.profile_address.$error.required || profile_edit.profile_city.$error.required || profile_edit.profile_state.$error.required || profile_edit.profile_zip.$error.required || profile_edit.profile_neighborhood.$error.required'} All fields are required
+
+              .clearfix
+                %button.btn#profile-images-button{'ng-click'=> 'uploadProfileImage()'} Change Profile Picture
+                %button.btn#cover-images-button{'ng-click'=> 'uploadImages()'} Change Cover Image
+                %button.btn#yelp-connect Connect Yelp
+                %span#yelp-explanation <a data-toggle = "tooltip" id = "why-yelp" title = "So guests know how great you already are and can easily leave you reviews!">Why?</a>
+              %button.btn.btn-warning#submit{'ng-disabled' => 'profile_edit.$invalid'} Save Changes
+
+                
