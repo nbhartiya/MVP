@@ -2,255 +2,10 @@
 
 $main_orange: rgb(255, 178, 35);
 
-// CSS animations and single event/profile/campaign cards
+// user card styling
 
-.campaign-first-row{
-	bottom: 79px;
-}	
-.campaign-second-row{
-	opacity: 0;
-}
-
-.user-first-row{
-	bottom: 80px;
-}	
-
-.event-first-row{
-	bottom: 80px;
-}	
-
-.single-event-actions{
-	background: rgba(0, 0, 0, 0.8);
-}
-
-.event-second-row{
-	bottom: 161px;
-	background: rgba(0,0,0,0.5);
-	.event-progress{
-		padding: 15px 20px 5px 20px;
-		font-size: 10px;
-		text-align: right;
-		.progress, .bar{
-			height: 10px;
-			border-radius: 0;
-		}
-	}
-	table{
-		width: 100%;
-	}
-	.go-button{
-		padding: 10px 10px 0 10px;
-		.btn{
-			width: 30px;
-		}
-		a:visited{
-			color: white;
-		}
-	}
-}
-
-.single-following, .single-campaign, .single-event{
+.single-following{
 	margin: -30px 7px 50px 7px;
-}
-
-.single-following, .single-campaign, .single-event-profile{
-	height: 280px;
-	z-index: 500;
-	.campaign-image, .user-image{
-		background: white;
-	}
-	.event-image, .user-image, .campaign-image{
-		height: 280px;
-		overflow: hidden;
-		img{
-			min-height: 100%;
-			min-width: 470px;
-			width: 100%;
-			height: auto;
-		}
-	}
-
-.campaign-first-row, .campaign-second-row, .user-first-row, .user-second-row{
-	position: relative;
-	margin: 0;
-	color: black;
-}
-
-.unfollow-button{
-	margin-left: 0;
-	.btn{
-		margin: 10px 0;
-		float: right;
-	}
-}
-
-.join-button, .promote-button{
-	margin-left: 0;
-	.btn{
-		margin: 10px 0;
-		float: right;
-	}
-	a:visited{
-		color: white;
-	}
-}
-
-.event-time-and-date{
-	position: relative;
-	background: rgba(0,0,0,0.8);
-	padding: 10px 5px;
-	margin: 0;
-	width: 100px;
-	height: 20px;
-	left: 0;
-	top: 200px;
-	color: white;
-	font-size: 20px;
-	text-align: center;
-}
-
-.campaign-status, .user-kind{
-	position: relative;
-	background: rgba(255,255,255,0.8);
-	padding: 10px 5px;
-	margin: 0;
-	width: 100px;
-	height: 20px;
-	left: 30px;
-	top: 50px;
-	color: rgb(54, 54, 54);
-	font-size: 20px;
-	text-align: center;
-}
-
-.campaign-first-row, .user-first-row{
-	background: rgba(255, 255, 255, 0.9);
-}
-
-.event-first-row, .user-first-row, .campaign-first-row{
-	padding: 10px;
-	position: relative;
-	.event-host-image, .user-profile-image, .campaign-lead-image{
-		width: 50px;
-		-webkit-border-radius: 50%;
-  		border-radius: 50%;
-  		background-clip: padding-box;
-	}
-	.event-host-image, .event-title, .event-price, .event-progress, .event-go, .user-profile-image, .user-name-and-blurb, .campaign-lead-image, .campaign-title-and-blurb, .join-button{
-		padding: 0 10px;
-	}
-	.user-name-and-blurb, .campaign-title-and-blurb{
-		a{ color: black;}
-	}
-	.event-title{
-		a{ color: white;}
-	}
-	.event-title, .user-name-and-blurb, .campaign-title-and-blurb{
-		font-size: 16px;
-		line-height: 1.2em;
-		position: relative;
-		height: 60px;
-		a{
-			top: 10%;
-		}
-		a:hover{
-			text-decoration: none;
-		}
-		p{
-			font-size: 12px;
-		}
-	}
-		.event-price p{
-			font-size: 24px;
-			font-weight: 500;
-			line-height: 2em;
-			height: 2em;
-		}
-	}
-}
-
-.single-event-dashboard{
-	.single-event-stats{
-		margin-top: 20px;
-		width: 100%;
-		.single-event-numbers{
-			font-size: 34px;
-			line-height: 1.5em;
-			font-weight: 100;
-			text-align: center;
-			td{
-				border-right: 1px solid gray;
-			}
-			td:last-child{
-				border-right: none;
-			}
-			a, a:visited{
-				color: black;
-			}
-			a:hover{
-				color: $main_orange;
-				text-decoration: none;
-			}
-		}
-		.single-event-labels{
-			text-align: center;
-			font-size: 20px;
-			line-height: 1.5em;
-			font-weight: 100;
-			td{
-				border-right: 1px solid gray;
-			}
-			td:last-child{
-				border-right: none;
-			}
-		}
-	}
-	.single-event-actions{
-		height: 140px;
-		margin-top: 39px;
-		font-size: 20px;
-		font-weight: 100;
-		text-align: left;
-		line-height: 1.5em;
-		position: relative;
-		a, a:visited, a:hover{
-			color: white;
-			text-decoration: none;	
-			height: 40px;
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			padding: 30px 10px;
-		}
-	}
-}
-
-// user and campaign second row
-.user-second-row{
-	bottom: 183px;
-}
-
-.campaign-second-row{
-	bottom: 183px;
-}
-
-.user-second-row, .campaign-second-row{
-	background: rgba(255,255,255,0.8);
-	padding: 10px 0;
-	.social-stats{
-		margin-left: 0;
-	}
-	table{
-		width: 100%;
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;    
-		box-sizing: border-box;
-		td{
-			width: 25%;
-			text-align: center;
-			font-size: 12px;
-		}
-	}
 }
 
 
@@ -272,6 +27,25 @@ $main_orange: rgb(255, 178, 35);
 		position: absolute;
 	    width: 100%;
 	    z-index: -1;
+	    .carousel-control{
+		font-size: 40px;
+		color: white;
+		top: 40%;
+		z-index: 50;
+		background: rgba(0, 0, 0, 0.7);
+		border: none;
+		line-height: 33px;
+		margin-top: 0;
+		border-radius: 0;
+		width: 30px;
+		cursor: pointer;
+		}
+		.carousel-control.left{
+			left: 0;
+		}
+		.carousel-control.right{
+			right: 0;
+		}
 	    .carousel-control{
 	    	font-size: 40px;
 	    	line-height: 35px;
@@ -308,8 +82,50 @@ $main_orange: rgb(255, 178, 35);
 			margin: 0;
 			img{
 				height: auto;
-				width: 100px;
+				width: 180px;
 				min-width: 100px;
+			}
+		}
+		.profile-summary-logistics-container{
+			padding: 5px 0;
+			margin: 15px -37px 25px -37px;
+			background: white;
+		}
+		.profile-summary-logistics{
+			background: white;
+			padding: 10px 30px;
+			margin: 0px;
+		}
+		.profile-button-group{
+			margin: 20px auto 10px auto;
+			display: table;
+			width: 100%;
+			p{
+				text-align: left;
+				margin-top: 2px;
+			}
+			li{
+				float: left;
+				display: table-cell;
+				width: 24%;
+				margin: 0 0.5%;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+			}
+			button{
+				margin: 0;
+			}
+			.btn{
+				width: 100%;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+			}
+			.active .btn{
+				background: $main_orange;
+				color: white;
+				border-color: $main_orange;
 			}
 		}
 		.user-profile-overview{
@@ -329,64 +145,80 @@ $main_orange: rgb(255, 178, 35);
 			font-size: 16px;
 		}
 		.user-title{
-			padding: 10px 0 0 30px;
+			padding: 0 0 0 30px;
 			vertical-align: top;
 		}
 		.user-summary{
 			padding-top: 10px;
 		}
-		.user-summary, .user-title, .user-summary-edit {
-		    -webkit-box-sizing: border-box;
-			-moz-box-sizing: border-box;    
-			box-sizing: border-box;
-		    .read-more{
-		    	font-size: 10px;
-		    }
-		    a, a:visited, a:hover{
-		    	color: black;
-		    	text-decoration: none;
-		    }
-			h1{
-				font-size: 30px;
-				line-height: 1.2em;
-				font-weight: 100;
-				color: black;
-				margin: 0;
-			}
-			h2{
-				font-size: 20px;
-				line-height: 1.5em;
-				font-weight: 100;
-				color: black;
-				margin: 0;
-			}
-			h3{
-				font-size: 16px;
-				line-height: 1.5em;
-				font-weight: 100;
-				color: black;
-				margin: 0;
-			}
-			hr{
-				margin: 10px 0;
-				border-bottom: none;
-			}
-			
-			p{
-			    text-align: right;
-			    color: black;
-			    margin-top: 10px;
-			    font-size: 12px;
-			}
+	    .read-more{
+	    	font-size: 10px;
+	    }
+	    a, a:visited, a:hover{
+	    	color: black;
+	    	text-decoration: none;
+	    }
+		h1{
+			font-size: 30px;
+			line-height: 1.2em;
+			font-weight: 100;
+			color: black;
+			margin: 0;
+		}
+		h2{
+			font-size: 20px;
+			line-height: 1.5em;
+			font-weight: 100;
+			color: black;
+			margin: 0;
+		}
+		h3{
+			font-size: 16px;
+			line-height: 1.5em;
+			font-weight: 100;
+			color: black;
+			margin: 0;
+		}
+		hr{
+			margin: 10px 0;
+			border-bottom: none;
+		}
+		
+		p{
+		    text-align: right;
+		    color: black;
+		    margin-top: 10px;
+		    font-size: 12px;
 		}
 		.user-social-stats{
-			margin-top: 25px;
-			color: black;
+			margin-top: 10px;
 			width: 100%;
 			margin-left: auto;
 			margin-right: auto;
+			tr.icons{
+				line-height: 50px;
+				td{
+					line-height: 50px;
+					a{
+						cursor: pointer;
+					}
+				}
+			}
 			td{
 				text-align: center;
+				width: 25%;
+				font-weight: 100;
+				line-height: 15px;
+				.btn{
+					width: 32px;
+					height: 32px;
+					border-radius: 50%;
+					font-size: 12px;
+					padding: 0;
+					text-align: center;
+					line-height: 32px;
+					font-weight: 400;
+				}
 			}
 		}
 		.heart_this{
@@ -579,32 +411,6 @@ $main_orange: rgb(255, 178, 35);
 	.btn{
 		margin: 10px;
 	}
-}
-
-.scroll-menu{
-	margin-top: 50px;
-	margin-right: 35px;
-	width: 105px;
-	.active a{
-		background: $main_orange;
-	}
-	a{
-		color: rgb(54, 54, 54);
-		font-size: 16px;
-		font-weight: 100;
-	}
-	.active a:hover{
-		background: $main_orange;
-	}
-}
-
-.scroll-menu.chef{
-	margin-top: 85px;
-}
-
-.affix{
-	top: 50px;
-	width: 75px;
 }
 
 .badges-row{

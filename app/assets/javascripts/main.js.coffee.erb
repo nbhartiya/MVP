@@ -22,6 +22,7 @@ Simmr.directive "heart", ->
 Simmr.controller "HeartCtrl", ["$scope",  "$routeParams", "Follow", ($scope, $routeParams, Follow) ->
   $scope.follow = ->
     $('.heart.campaign-follow').toggleClass("orange").toggleClass("black")
+    $('.heart.profile-follow').toggleClass("orange").toggleClass("black")
     $('.heart.follow').toggleClass("orange")
     $scope.appear = "followers"
     console.log($scope)

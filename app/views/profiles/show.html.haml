@@ -15,18 +15,13 @@
           .active.item
             =image_tag "Food 6.jpg"
         -if @profile.user.chef == true
-          %ol.carousel-indicators.hidden-phone
-            -if @profile.covers.present?
-              -@profile.covers.each_with_index do |i, index|     
-                - if index == 0
-                  %li.active{"data-target" => "#profile-carousel", "data-slide-to" => index}
-                - else
-                  %li{"data-target" => "#profile-carousel", "data-slide-to" => index}
+          -if @profile.covers.count > 1
+            %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#profile-carousel"} ‹
+            %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#profile-carousel"} ›   
     .container
       .row.user-overview
-        .span1
         -if @profile.user.chef == false       
-          .span4.user-profile-overview{'ng-controller' => 'ProfileShowCtrl', 'ng-init' => "address1='#{@profile.location.address1}'; address2='#{@profile.location.address2}'; city = '#{@profile.location.city}'; state = '#{@profile.location.state}'; zipcode = '#{@profile.location.zipcode}'"}
+          .span5.user-profile-overview{'ng-controller' => 'ProfileShowCtrl', 'ng-init' => "address1='#{@profile.location.address1}'; address2='#{@profile.location.address2}'; city = '#{@profile.location.city}'; state = '#{@profile.location.state}'; zipcode = '#{@profile.location.zipcode}'"}
             %table
               %tr
                 -if @profile.avatar.present?
@@ -38,14 +33,14 @@
                 %td.user-title
                   %h1
                     #{@profile.user.first_name} #{@profile.user.last_name}
-              %tr
-                %td.user-summary{:colspan => '2'}
                   -if @profile.blurb.present?
                     %h2 
                       =@profile.blurb 
-                  -if @profile.neighborhood.present?
-                    %h3 
-                      =@profile.neighborhood
+            .profile-summary-logistics-container
+              .profile-summary-logistics
+                -if @profile.neighborhood.present?
+                  %h3 
+                    =@profile.neighborhood
                   %h3
                     -if @profile.location.city.present?
                       =@profile.location.city + ', '
@@ -53,8 +48,63 @@
                       =@profile.location.state 
                     -if @profile.location.zipcode.present?
                       =@profile.location.zipcode
+
+                %ul.nav.profile-button-group
+                  %li
+                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "badges"'} Badges
+                  %li
+                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "events"'} Events
+                  %li
+                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "campaigns"'} Campaigns
+                  %li
+                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "following"'} Following
+                  
+                  
+            %table.user-social-stats
+              %tr.icons
+                %td{'ng-click'=>'appear = "followers"'}
+                  %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'} 
+                %td
+                  %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"} 
+                %td
+                  %a.sb.facebook.circle.no-border.no-shadow.black{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
+              %tr.user-stats
+                %td 190
+                %td 190
+                %td{:rowspan => "2"} share
+              %tr.user-stat-labels
+                %td followers
+                %td reviews
+
+          .span6
+            .badges{'ng-show' => 'appear=="badges"'}
+              .row
+                .span1.single-badge
+                  =image_tag "Favicon.png"
+                .span1.single-badge
+                  =image_tag "Favicon.png"
+                .span1.single-badge
+                  =image_tag "Favicon.png"
+                .span1.single-badge
+                  =image_tag "Favicon.png"
+                .span1.single-badge
+                  =image_tag "Favicon.png"
+                .span1.single-badge
+                  =image_tag "Favicon.png"
+              .row
+                .span1.single-badge
+                  =image_tag "Favicon.png"
+                .span1.single-badge
+                  =image_tag "Favicon.png"
+                .span1.single-badge
+                  =image_tag "Favicon.png"
+
+
+
+
+
         -else
-          .span4.user-profile-overview{'ng-controller' => 'ProfileShowCtrl', 'ng-init' => "address1='#{@profile.location.address1}'; address2='#{@profile.location.address2}'; city = '#{@profile.location.city}'; state = '#{@profile.location.state}'; zipcode = '#{@profile.location.zipcode}'"}
+          .span5.user-profile-overview{'ng-controller' => 'ProfileShowCtrl', 'ng-init' => "address1='#{@profile.location.address1}'; address2='#{@profile.location.address2}'; city = '#{@profile.location.city}'; state = '#{@profile.location.state}'; zipcode = '#{@profile.location.zipcode}'"}
             %table
               %tr
                 -if @profile.avatar.present?
@@ -66,273 +116,56 @@
                 %td.user-title
                   %h1
                     =@profile.biz_name 
-              %tr
-                %td.user-summary{:colspan => '2'}
                   %h2 
                     =@profile.blurb 
-                  %h3
-                    -if @profile.user.chef == true
-                      %a{:href => "{{mapUrl()}}"} #{@profile.location.address1} <br> #{@profile.location.city}, #{@profile.location.state} #{@profile.location.zipcode}
-                    -else
-                      =@profile.neighborhood
-                -if @profile.user.chef == true
-                  %table.user-social-stats
-                    %tr
-                      %td
-                        %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
-                      %td
-                        %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
-                      %td
-                        %a.sb.facebook.circle.no-border.no-shadow.orange{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
-                    %tr.user-stats
-                      %td 190
-                      %td 190
-                      %td{:rowspan => "2"} share
-                    %tr.user-stat-labels
-                      %td followers
-                      %td reviews
-                -else
-                  %table.user-social-stats
-                    %tr
-                      %td
-                        %a.sb.star.circle.no-border.no-shadow.orange{:href=>"#"}
-                      %td
-                        %a.sb.heart.circle.no-border.no-shadow.orange{:href=>"#"}
-                      %td
-                        %a.sb.heart.circle.no-border.no-shadow.green{:href=>"#"}
-                    %tr.user-stats
-                      %td 190
-                      %td 190
-                      %td 190
-                    %tr.user-stat-labels
-                      %td points
-                      %td followers
-                      %td following
-        .span1.heart_this
-          %a.sb.heart.circle.no-border.no-shadow.gray
-        .span1
-        .span4 
-        .span1
-  -if @profile.user.chef == true
-    .container
-      .row
-        .span2.scroll-menu.chef
-          %ul.nav.nav-list.scroll-menu-items{"data-spy" => "affix", "data-offset-top" => "700", "data-offset-bottom"=> "150"}
-            %li 
-              %a{:href=>"#news"} News
-            %li 
-              %a{:href=>"#about"} Our Story
-            %li 
-              %a{:href=>"#events"} Events
-            %li   
-              %a{:href=>"#following"} Following
-            %li 
-              %a{:href=>"#chatter"} Chatter
-        .span10
-          .row.section-header#news
-            .span10#user-news
-              %a{:href => "#user-news", 'data-target'=>"#user-news-detail", 'data-toggle'=>"collapse"} News <span class="caret"></span>
-          .row.user-news
-            .span10
-              #user-news-accordion.accordion
-                #user-news-detail.accordion-body.collapse.in
-                  .accordion-inner
-                    %p
-                      News
-        .row
-          .span10.offset2
-            .row.section-header#about
-              .span10#user-about
-                %a.collapsed{:href => "#user-about", 'data-target'=>"#user-about-detail", 'data-toggle'=>"collapse"} Our Story <span class="caret"></span>
-            .row.user-about
-              .span10
-                #user-about-accordion.accordion
-                  #user-about-detail.accordion-body.collapse
-                    .accordion-inner
-                      %p
-                        =@profile.story
-            .row.section-header#events
-              .span10
-                %h1 Events
-                %ul
-                  %li 
-                    %a{:href=>"#"} Upcoming
-                  %li 
-                    %a{:href=>"#"} Past
-                  %li 
-                    %a{:href=>"#"} Hearted
-            -#        
-              .row.user-events
-                .span10
-                  .row.events-row
-                    .span5.single-event
-                      =render "events/singleevent"
-                    .span5.single-event
-                      =render "events/singleevent"
-                  .row.events-row
-                    .span5.single-event
-                      =render "events/singleevent"
-                    .span5.single-event
-                      =render "events/singleevent"
-            .row.section-header#following
-              .span10
-                %h1 Following
-                %ul
-                  %li 
-                    %a{:href=>"#"} Restaurants
-                  %li 
-                    %a{:href=>"#"} Foodies
-            .row.user-following
-              .span10
-                .row
-                  .span5.single-following
-                    =render "profiles/singleuser"
-                  .span5.single-following
-                    =render "profiles/singleuser"
-                .row
-                  .span5.single-following
-                    =render "profiles/singleuser"
-                  .span5.single-following
-                    =render "profiles/singleuser"
-            .row.section-header#chatter
-              .span10#user-chatter
-                %a{:href => "#user-chatter", 'data-target'=>"#user-chatter-detail", 'data-toggle'=>"collapse"} Chatter <span class="caret"></span>
-            .row.user-chatter
-              .span10
-                #user-chatter-accordion.accordion
-                  #user-chatter-detail.accordion-body.collapse.in
-                    .accordion-inner
-                      .row
-                        .span10.conversants
-                          =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
-                          =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
-                          =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
-                          =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Christine Lee", "class" => "one-attendee", "data-placement" => "bottom"
-                          =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Michael Makarov", "class" => "one-attendee", "data-placement" => "bottom"
-                      .row
-                        .span10.comments
-                          .fb-comments{"data-href" => "#{request.url}", "data-num-posts" => "10", "data-width" => "910"}
-  -else
-    .container
-      .row
-        .span2.scroll-menu
-          %ul.nav.nav-list.scroll-menu-items{"data-spy" => "affix", "data-offset-top" => "720", "data-offset-bottom"=> "150"}
-            -# %li 
-              %a{:href=>"#badges"} Badges
-            %li 
-              %a{:href=>"#events"} Events
-            %li 
-              %a{:href=>"#campaigns"} Campaigns
-            %li 
-              %a{:href=>"#following"} Following
-        .span10
-          -# .row.section-header#badges
-            .span10
-              %h1 Badges
-          -# .row.badges
-            .span10
-              .row.badges-row
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-              .row.badges-row
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-          .span10
-            .row.section-header#events
-              .span10
-                %h1 Events
-                %ul
-                  %li 
-                    %a{:href=>"#"} Upcoming
-                  %li 
-                    %a{:href=>"#"} Past
-                  %li 
-                    %a{:href=>"#"} Hearted
-            -#
-              -all_events = @events
-              -while all_events.length > 1
-                -event = all_events.pop
-                .row.events-row
-                  .span1
-                  .span5.single-event
-                    =render "events/singleevent", :event => event
-                  -event = all_events.pop
-                  .span5.single-event
-                    =render "events/singleevent", :event => event
-                  .span1
-              -if all_events.length == 1
-                -event = all_events.pop
-                .row.events-row
-                  .span1
-                  .span5.single-event
-                    =render "events/singleevent", :event => event
-                  .span6
-            .row.section-header#campaigns
-              .span10
-                %h1 Campaigns
-                %ul
-                  %li 
-                    %a{:href=>"#"} Ongoing
-                  %li 
-                    %a{:href=>"#"} Successful
-            .row.user-campaigns
-              .span10
-                -user_campaigns = @profile.user.campaigns
-                -while user_campaigns.length > 1
-                  -campaign = user_campaigns.pop
-                  .row
-                    .span5.single-campaign
-                      =render "campaigns/singlecampaign", :campaign => campaign
-                    -campaign = user_campaigns.pop
-                    .span5.single-campaign
-                      =render "campaigns/singlecampaign", :campaign => campaign
-                -if user_campaigns.length == 1
-                  -campaign = user_campaigns.pop
-                  .row.user-campaigns
-                    .span5.single-campaign
-                      =render "campaigns/singlecampaign", :campaign => campaign
-                    .span5
-            .row.section-header#following
-              .span10
-                %h1 Following
-                %ul
-                  %li 
-                    %a{:href=>"#"} Restaurants
-                  %li 
-                    %a{:href=>"#"} Foodies
-            .row.user-following
-              .span10
-                .row
-                  .span5.single-following
-                    =render "profiles/singleuser"
-                  .span5.single-following
-                    =render "profiles/singleuser"
-                .row
-                  .span5.single-following
-                    =render "profiles/singleuser"
-                  .span5.single-following
-                    =render "profiles/singleuser"
+            .profile-summary-logistics-container
+              .profile-summary-logistics
+                -if @profile.neighborhood.present?
+                  %h3 
+                    %a{:href => "{{mapUrl()}}"} #{@profile.location.address1} <br> #{@profile.location.city}, #{@profile.location.state} #{@profile.location.zipcode}
+
+                %ul.nav.profile-button-group
+                  %li
+                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "badges"'} Badges
+                  %li
+                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "events"'} Events
+                  %li
+                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "campaigns"'} Campaigns
+                  %li
+                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "following"'} Following
+            %table.user-social-stats
+              %tr.icons
+                %td
+                  %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"}
+                %td{'ng-click'=>'appear = "followers"'}
+                  %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'} 
+                %td
+                  %a.sb.heart.circle.no-border.no-shadow{:href=>"#"}
+              %tr.user-stats
+                %td 190
+                %td 190
+                %td 190
+              %tr.user-stat-labels
+                %td points
+                %td followers
+                %td following
+
+          .span6
+
+-#
+  =@profile.story
+          
+  %h1 Events
+  %ul
+    %li 
+      %a{:href=>"#"} Upcoming
+    %li 
+      %a{:href=>"#"} Past
+    %li 
+      %a{:href=>"#"} Hearted
+  %h1 Following
+  %ul
+    %li 
+      %a{:href=>"#"} Restaurants
+    %li 
+      %a{:href=>"#"} Foodies
