@@ -47,10 +47,10 @@
                 %h3#default-text{'ng-show'=>'profile.neighborhood=="" || profile.neighborhood==nil'} Your Neighborhood
                 %h3
                   {{profile.neighborhood}}
-                %h3#default-text{'ng-show'=>'profile.city=="" || profile.city==nil || profile.state=="" || profile.state==nil || rofile.zip=="" || profile.zip==nil'} Your City, State and Zipcode       
+                %h3#default-text{'ng-show'=>'profile.city=="" || profile.city==nil || profile.state=="" || profile.state==nil || profile.zip=="" || profile.zip==nil'} Your City, State and Zipcode       
                 %h3{'ng-hide' => 'profile.zip=="" || profile.zip==nil'} {{profile.city + ','}} {{profile.state}} {{profile.zip}}
                 %ul.nav.profile-button-group
-                  %li.active
+                  %li
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "events"'} Events
                   %li
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "campaigns"'} Campaigns
@@ -231,7 +231,7 @@
 
               %select#state{'ng-model'=>'profile.state', :required => "required", :name => "profile_state", 'ng-class' => "{error: profile_edit.profile_state.$invalid}"}
 
-              %input#profile-zip{'ng-model' => 'profile.zip', :type=>"text", :placeholder =>"Your Zip", :required => "required", :name => "profile_zip", :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: profile_edit.profile_zip.$invalid}"}
+              %input#profile-zip{'ng-model' => 'profile.zip', :type=>"text", :placeholder =>"Your Zip", :required => "required", :name => "profile_zip", :maxlength => "5", 'ng-pattern' => '/^[0-9]{5}$/', 'ng-class' => "{error: profile_edit.profile_zip.$invalid}"}
               
               .help-block{'ng-show' => 'profile_edit.profile_zip.$error.pattern'} Please enter a valid zip code
 
@@ -271,7 +271,7 @@
                 %h3#default-text{'ng-show'=>'profile.city=="" || profile.city==nil || profile.state=="" || profile.state==nil || rofile.zip=="" || profile.zip==nil'} Your City, State and Zipcode       
                 %h3{'ng-hide' => 'profile.zip=="" || profile.zip==nil'} {{profile.city + ','}} {{profile.state}} {{profile.zip}}
                 %ul.nav.profile-button-group
-                  %li.active
+                  %li
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "news"'} News
                   %li
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "story"'} Story
@@ -397,7 +397,9 @@
 
               %input#profile-name{'ng-model'=>'profile.name', :type=>"text", :placeholder =>"Your Name", :required => "required", :name => "profile_name", 'ng-class' => "{error: profile_edit.profile_name.$invalid}"}
 
-              %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet (you can add more below under 'Our Story')", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: profile_edit.profile_blurb.$invalid}"}
+              %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet (you can add more under 'Our Story')", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: profile_edit.profile_blurb.$invalid}"}
+
+              %select#neighborhoods{'ng-model'=>'profile.neighborhood', :name => "profile_neighborhood", :required => "required", 'ng-class' => "{error: profile_edit.profile_neighborhood.$invalid}"}
 
               %input#profile-address{'ng-model'=>'profile.address', :type=>"text", :placeholder =>"Your Business Address", :required => "required", :name => "profile_address", 'ng-class' => "{error: profile_edit.profile_address.$invalid}"}
 
@@ -405,9 +407,7 @@
 
               %select#state{'ng-model'=>'profile.state', :required => "required", :name => "profile_state", 'ng-class' => "{error: profile_edit.profile_state.$invalid}"}
 
-              %input#profile-zip{'ng-model' => 'profile.zip', :type=>"text", :placeholder =>"Your Zip", :required => "required", :name => "profile_zip", :maxlength => "5", 'ng-pattern' => '/^[0-9]+$/', 'ng-class' => "{error: profile_edit.profile_zip.$invalid}"}
-
-              %select#neighborhoods{'ng-model'=>'profile.neighborhood', :name => "profile_neighborhood", :required => "required", 'ng-class' => "{error: profile_edit.profile_neighborhood.$invalid}"}
+              %input#profile-zip{'ng-model' => 'profile.zip', :type=>"text", :placeholder =>"Your Zip", :required => "required", :name => "profile_zip", :maxlength => "5", 'ng-pattern' => '/^[0-9]{5}$/', 'ng-class' => "{error: profile_edit.profile_zip.$invalid}"}
               
               .help-block{'ng-show' => 'profile_edit.profile_zip.$error.pattern'} Please enter a valid zip code
 
