@@ -74,6 +74,42 @@ body.modal-open {
 	color: gray !important;
 }
 
+.container{
+	.section-header{
+		text-align: center;
+		margin-left: 0;
+		h1{
+			font-size: 30px;
+			color: black;
+			line-height: 1.5em;
+			font-weight: 100;
+		}
+		ul{
+			list-style: none;
+			display: inline-block;
+			vertical-align: middle;
+			li{
+				float: left;
+				margin: 0 10px;
+				a, a:visited{
+					font-size: 16px;
+					text-decoration: none;
+					padding: 10px;
+					color: black;
+				}
+				a:hover, a:active{
+					background: $main_orange;
+					text-decoration: none;
+					color: white;
+				}
+			}
+		}
+		a:visited{
+			color: black;
+		}
+	}
+}
+
 
 // general purpose classes
 
@@ -122,38 +158,6 @@ input.error-true  {
 	font-size: 12px;
 	margin-bottom: 0;
 }
-
-.textarea-section{
-	width: 100%;
-}
-
-// site wide styling
-.section-header{
-	margin: 10px 0;
-	.collapsed .caret	{
-		display: inline-block;
-		vertical-align: middle;
-		border-top: 6px solid $main_orange;
-		border-right: 6px solid transparent;
-		border-left: 6px solid transparent;
-		font-size: 60px;
-	}
-	.caret{
-		border-top: 6px solid gray;
-		border-right: 6px solid transparent;
-		border-left: 6px solid transparent;
-		display: inline-block;
-		vertical-align: middle;
-		font-size: 60px;
-	}
-	h1{
-			font-size: 30px;
-			color: black;
-			line-height: 1.5em;
-			font-weight: 100;
-		}
-}
-
 
 // header styling
 

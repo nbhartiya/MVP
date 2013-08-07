@@ -17,13 +17,9 @@ $(".answer-image").click ->
   if $(this).hasClass "highlight"
     console.log($(this))
 
-$(".profiles .heart_this a").click ->
-  if $(this).hasClass("gray")
-    $(this).removeClass "gray"
-    $(this).addClass "orange"
-  else
-    $(this).removeClass "orange"
-    $(this).addClass "gray"
+$(".heart").click ->
+  $(this).toggleClass("black").toggleClass "orange"  if $(this).hasClass("profile-follow")
+
 
 angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams", "$location", "Profile", ($scope, $routeParams, $location, Profile) ->
   $scope.edit = 1
@@ -91,6 +87,7 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
 
 
 angular.module('Simmr').controller "ProfileShowCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
+
   $scope.mapUrl = ->
     mapUrl = "http://maps.google.com/?q=#{$scope.address1},#{$scope.city}, #{$scope.state},#{$scope.zipcode}"
 ]

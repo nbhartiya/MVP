@@ -144,7 +144,7 @@ $main_orange: rgb(255, 178, 35);
 
 // campaign profile styling
 .campaign-profile{
-	height: 625px;
+	height: 700px;
 	.btn#remove-image{
     	right: 5px;
 		position: absolute;
@@ -159,7 +159,7 @@ $main_orange: rgb(255, 178, 35);
 	    width: 100%;
 	    z-index: -1;
 		.carousel-inner{
-			height: 625px;
+			height: 700px;
 			width: auto;
 			img{
 				width: 100%;
@@ -461,13 +461,6 @@ $main_orange: rgb(255, 178, 35);
 				display: block;
 			}
 		}
-		.heart_this{
-			margin: 0 auto;
-			padding: 10px;
-			background: rgba(255,255,255,0.8);
-			width: 33px;
-			height: 33px;
-		}
 
 		.campaign-why-join, .host-followers{
 			overflow-y: auto;
@@ -591,9 +584,6 @@ $main_orange: rgb(255, 178, 35);
  
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) { 
-	.campaign-profile .campaign-registration .heart_this {
-		padding: 0;
-	}
 
 	.campaign-profile{
 		height: 500px;

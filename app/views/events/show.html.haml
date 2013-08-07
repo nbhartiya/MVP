@@ -110,14 +110,15 @@
         .span1
         .span6
           .event-details#details{'ng-show' => 'appear=="details"'}
-            %h3 Event Description
+            %h1 Details
             %h3
               =@event.description
           .event-menu#menu{'ng-show' => 'appear=="menu"'}
-            %h3 Event Menu
+            %h1 Menu
             %p
               =@event.menu_text
           .event-attendees-and-chatter{'ng-show' => 'appear=="chatter"'}
+            %h1 Attendees
             .attendees
               =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
               =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
@@ -130,10 +131,12 @@
             .row.comments
               .fb-comments{"data-colorscheme" => "dark", "data-href" => "#{request.url}", "data-num-posts" => "5", "data-width" => "500"}
           .event-host-story{'ng-show' => 'appear=="story"'}
+            %h1 Host Story
             %h3
               Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait
               =@event.host.profile.story
           .host-followers{'ng-show' => 'appear == "followers"'}
+            %h1 Followers
             .followers
               =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
               =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"

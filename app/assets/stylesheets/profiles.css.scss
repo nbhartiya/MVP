@@ -14,7 +14,7 @@ $main_orange: rgb(255, 178, 35);
 .user-profile{
 	position: relative;
 	z-index: 0;
-	height: 625px;
+	height: 700px;
 	.btn#remove-image{
     	right: 5px;
 		position: absolute;
@@ -54,7 +54,7 @@ $main_orange: rgb(255, 178, 35);
 		.carousel-inner{
 			position: relative;
 			z-index: 1;
-			height: 625px;
+			height: 700px;
 			width: auto;
 			img{
 				width: 100%;
@@ -88,7 +88,7 @@ $main_orange: rgb(255, 178, 35);
 		}
 		.profile-summary-logistics-container{
 			padding: 5px 0;
-			margin: 15px -37px 25px -37px;
+			margin: 40px -37px 40px -37px;
 			background: white;
 		}
 		.profile-summary-logistics{
@@ -135,15 +135,6 @@ $main_orange: rgb(255, 178, 35);
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box;
 		}
-		.user-summary-edit{
-			padding: 30px;
-			background: rgba(255, 255, 255, 0.8);
-		}
-		.close{
-			margin-top: -10px;
-			margin-bottom: 10px;
-			font-size: 16px;
-		}
 		.user-title{
 			padding: 0 0 0 30px;
 			vertical-align: top;
@@ -151,9 +142,85 @@ $main_orange: rgb(255, 178, 35);
 		.user-summary{
 			padding-top: 10px;
 		}
-	    .read-more{
-	    	font-size: 10px;
-	    }
+		.user-news, .user-story, .badges, .user-events, .user-campaigns, .user-following{
+			height: 480px;
+			overflow-y: auto;
+			background: rgba(255, 255, 255, 0.8);
+			padding: 30px;
+			margin: 0;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;    
+			box-sizing: border-box;
+		}
+		.badges-table{
+			width: 100%;
+			border: none;
+			tr{
+				border-top: none;
+			}
+		}
+		.single-badge{
+			padding-top: 15px;
+			img{
+				width: 80px;
+			}
+		}
+		.user-events, .user-campaigns, .user-following{
+			.nav{
+				li{
+					font-size: 16px;
+					a, a:hover, a:active{
+						-webkit-border-radius: 0px;
+						border-radius: 0px;
+						background-clip: padding-box;
+						padding: 4px 15px;
+						border: none;
+						margin-right: 5px;
+					}
+					a{
+						color: black;
+					}
+					a:hover, a:active{
+						background: $main_orange;
+						border: none;
+						color: white;
+					}
+				}
+				li.active{
+					a{
+						background: $main_orange;
+						color: white;
+					}
+				}
+			}
+			.nav-tabs{
+				border-bottom: none;
+				margin-top: 15px;
+				margin-bottom: 10px;
+			}
+			table{
+				margin-bottom: 10px;
+				width: 100%;
+				font-size: 14px;
+			}
+			tr:first-child{
+				border-top: none;
+			}
+			tr{
+				border-top: 1px solid black;
+				height: 40px;
+			}
+			td{
+				vertical-align: middle;
+				a{
+					display: table-cell;
+				}
+				img{
+					width: 50px;
+					height: auto;
+				}
+			}
+		}
 	    a, a:visited, a:hover{
 	    	color: black;
 	    	text-decoration: none;
@@ -183,7 +250,6 @@ $main_orange: rgb(255, 178, 35);
 			margin: 10px 0;
 			border-bottom: none;
 		}
-		
 		p{
 		    text-align: right;
 		    color: black;
@@ -221,27 +287,6 @@ $main_orange: rgb(255, 178, 35);
 				}
 			}
 		}
-		.heart_this{
-			margin: 0 auto;
-			padding: 10px;
-			background: rgba(255,255,255,0.8);
-			width: 33px;
-			height: 33px;
-		}
-	}
-}
-
-.badges .span10{
-	margin: 0;
-}
-
-.user-summary, .user-title{
-	.btn{
-		width: 23%;
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;    
-		box-sizing: border-box; 
-		padding-left: 10px;
 	}
 }
 
@@ -249,6 +294,13 @@ $main_orange: rgb(255, 178, 35);
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;    
 	box-sizing: border-box;
+	padding: 30px;
+	background: rgba(255, 255, 255, 0.8);
+	.close{
+		margin-top: -10px;
+		margin-bottom: 10px;
+		font-size: 16px;
+	}
 	#profile-name{
 		-webkit-box-sizing: border-box;
 	    -moz-box-sizing: border-box;    
@@ -312,94 +364,6 @@ $main_orange: rgb(255, 178, 35);
 	    -moz-box-sizing: border-box;    
 	    box-sizing: border-box;
 	}
-	#profile-news{
-		width: 100%;
-	}
-}
-
-.container{
-	.section-header{
-		text-align: center;
-		margin-left: 0;
-/*		margin: 20px 0 20px -15px;*/
-		h1{
-			font-size: 30px;
-			color: black;
-			line-height: 1.5em;
-			font-weight: 100;
-		}
-		ul{
-			list-style: none;
-			display: inline-block;
-			vertical-align: middle;
-			li{
-				float: left;
-				margin: 0 10px;
-				a, a:visited{
-					font-size: 16px;
-					text-decoration: none;
-					padding: 10px;
-					color: black;
-				}
-				a:hover, a:active{
-					background: $main_orange;
-					text-decoration: none;
-					color: white;
-				}
-			}
-		}
-		a:visited{
-			color: black;
-		}
-	}
-}
-
-.user-news, .user-about, .badges, .user-events, .user-campaigns, .user-following, .user-chatter{
-	background: rgb(230,230,230);
-	padding: 0;
-	margin: 0;
-	.accordion{
-		margin: 0;
-		.accordion-inner{
-			margin: 20px 0;
-			padding: 4px 7px;
-		}
-	}
-	p{
-		font-size: 14px;
-		line-height: 1em;
-	}
-	.conversants, .comments{
-		img{
-			width: 50px;
-			height: auto;
-			margin: 0 5px;
-		}
-	}
-	.comments{
-		margin-top: 10px;
-		padding-top: 10px;
-		img{
-			margin-right: 10px;
-		}
-	}
-}
-
-
-#user-news, #user-about, #user-events, #user-campaigns, #user-following, #user-chatter{
-	.caret{
-		display: inline-block;
-		vertical-align: middle;
-		border-top: 6px solid gray;
-		border-right: 6px solid transparent;
-		border-left: 6px solid transparent;
-		font-size: 60px;
-	}
-	.collapsed .caret{
-		border-top: 6px solid $main_orange;
-		border-right: 6px solid transparent;
-		border-left: 6px solid transparent;
-	}
 }
 
 // dashboard stuff
@@ -413,15 +377,6 @@ $main_orange: rgb(255, 178, 35);
 	}
 }
 
-.badges-row{
-	margin: 10px 0;
-}
-
-.single-badge{
-	img{
-		width: 80px;
-	}
-}
 
 /* Portrait tablet to landscape and desktop */
 @media (min-width: 980px) and (max-width: 1199px) { 

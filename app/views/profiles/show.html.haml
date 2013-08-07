@@ -19,9 +19,9 @@
             %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#profile-carousel"} ‹
             %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#profile-carousel"} ›   
     .container
-      .row.user-overview
-        -if @profile.user.chef == false       
-          .span5.user-profile-overview{'ng-controller' => 'ProfileShowCtrl', 'ng-init' => "address1='#{@profile.location.address1}'; address2='#{@profile.location.address2}'; city = '#{@profile.location.city}'; state = '#{@profile.location.state}'; zipcode = '#{@profile.location.zipcode}'"}
+      -if @profile.user.chef == false 
+        .row.user-overview{'ng-controller' => 'ProfileShowCtrl', 'ng-init' => "address1='#{@profile.location.address1}'; address2='#{@profile.location.address2}'; city = '#{@profile.location.city}'; state = '#{@profile.location.state}'; zipcode = '#{@profile.location.zipcode}'; appear='badges'"}
+          .span5.user-profile-overview
             %table
               %tr
                 -if @profile.avatar.present?
@@ -50,7 +50,7 @@
                       =@profile.location.zipcode
 
                 %ul.nav.profile-button-group
-                  %li
+                  %li.active
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "badges"'} Badges
                   %li
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "events"'} Events
@@ -59,52 +59,263 @@
                   %li
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "following"'} Following
                   
-                  
             %table.user-social-stats
               %tr.icons
+                %td
+                  %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"}
                 %td{'ng-click'=>'appear = "followers"'}
                   %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'} 
-                %td
-                  %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"} 
-                %td
-                  %a.sb.facebook.circle.no-border.no-shadow.black{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
               %tr.user-stats
                 %td 190
                 %td 190
-                %td{:rowspan => "2"} share
               %tr.user-stat-labels
+                %td points
                 %td followers
-                %td reviews
-
+            
+          .span1
           .span6
-            .badges{'ng-show' => 'appear=="badges"'}
-              .row
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-              .row
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
-                .span1.single-badge
-                  =image_tag "Favicon.png"
+            .badges{'ng-show' => 'appear == "badges"'}
+              %h1 Badges
+              %table.badges-table
+                %tr
+                  %td.single-badge
+                    =image_tag "Favicon.png"
+                  %td.single-badge
+                    =image_tag "Favicon.png"
+                  %td.single-badge
+                    =image_tag "Favicon.png"
+                  %td.single-badge
+                    =image_tag "Favicon.png"
+                  %td.single-badge
+                    =image_tag "Favicon.png"
+                %tr
+                  %td.single-badge
+                    =image_tag "Favicon.png"
+                  %td.single-badge
+                    =image_tag "Favicon.png"
+                  %td.single-badge
+                    =image_tag "Favicon.png"
+
+            .user-events{'ng-show' => 'appear == "events"'}
+              %h1 Events
+              %ul.nav.nav-tabs
+                %li.active
+                  %a{"data-toggle" => "tab", :href => "#upcoming-events"} Upcoming
+                %li
+                  %a{"data-toggle" => "tab", :href => "#past-events"} Past
+                %li
+                  %a{"data-toggle" => "tab", :href => "#followed-events"} Following
+              #myTabContent.tab-content
+                #upcoming-events.tab-pane.fade.active.in
+                  %table.events-table
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td seats left
+                      %td price
+                    %tr.current-user-rank
+                      %td name
+                      %td host
+                      %td date/time
+                      %td seats left
+                      %td price
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td seats left
+                      %td price
+                #past-events.tab-pane.fade
+                  %table.events-table
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td price
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td price
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td price
+                #followed-events.tab-pane.fade
+                  %table.events-table
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td seats left
+                      %td price
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td seats left
+                      %td price
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td seats left
+                      %td price
+
+            .user-campaigns{'ng-show' => 'appear == "campaigns"'}
+              %h1 Campaigns
+              %ul.nav.nav-tabs
+                %li.active
+                  %a{"data-toggle" => "tab", :href => "#joined-campaigns"} Joined
+                %li
+                  %a{"data-toggle" => "tab", :href => "#started-campaigns"} Started
+              #myTabContent.tab-content
+                #joined-campaigns.tab-pane.fade.active.in
+                  %table.campaigns-table
+                    %tr 
+                      %td host
+                      %td X people to tilt
+                      %td status/days left
+                    %tr.current-user-rank
+                      %td host
+                      %td X people to tilt
+                      %td status/days left
+                    %tr 
+                      %td host
+                      %td X people to tilt
+                      %td status/days left
+                #started-campaigns.tab-pane.fade
+                  %table.campaigns-table
+                    %tr 
+                      %td host
+                      %td X people to tilt
+                      %td status/days left
+                    %tr 
+                      %td host
+                      %td X people to tilt
+                      %td status/days left
+                    %tr 
+                      %td host
+                      %td X people to tilt
+                      %td status/days left
+
+            .user-following{'ng-show' => 'appear == "following"'}
+              %h1 Following
+              %ul.nav.nav-tabs
+                %li.active
+                  %a{"data-toggle" => "tab", :href => "#business-following"} Businesses
+                %li
+                  %a{"data-toggle" => "tab", :href => "#foodie-following"} Foodies
+              #myTabContent.tab-content
+                #business-following.tab-pane.fade.active.in
+                  %table.following-table
+                    %tr 
+                      %td 
+                        =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                    %tr.current-user-rank
+                      %td 
+                        =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                    %tr 
+                      %td 
+                        =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                #foodie-following.tab-pane.fade
+                  %table.following-table
+                    %tr 
+                      %td 
+                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                    %tr 
+                      %td 
+                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                    %tr 
+                      %td 
+                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+
+            .user-followers{'ng-show' => 'appear == "followers"'}
+              %h1 Followers
+              %ul.nav.nav-tabs
+                %li.active
+                  %a{"data-toggle" => "tab", :href => "#business-following"} Businesses
+                %li
+                  %a{"data-toggle" => "tab", :href => "#foodie-following"} Foodies
+              #myTabContent.tab-content
+                #business-following.tab-pane.fade.active.in
+                  %table.following-table
+                    %tr 
+                      %td 
+                        =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                    %tr.current-user-rank
+                      %td 
+                        =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                    %tr 
+                      %td 
+                        =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                #foodie-following.tab-pane.fade
+                  %table.following-table
+                    %tr 
+                      %td 
+                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                    %tr 
+                      %td 
+                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                    %tr 
+                      %td 
+                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
 
 
 
-
-
-        -else
-          .span5.user-profile-overview{'ng-controller' => 'ProfileShowCtrl', 'ng-init' => "address1='#{@profile.location.address1}'; address2='#{@profile.location.address2}'; city = '#{@profile.location.city}'; state = '#{@profile.location.state}'; zipcode = '#{@profile.location.zipcode}'"}
+      -else
+        .row.user-overview{'ng-controller' => 'ProfileShowCtrl', 'ng-init' => "address1='#{@profile.location.address1}'; address2='#{@profile.location.address2}'; city = '#{@profile.location.city}'; state = '#{@profile.location.state}'; zipcode = '#{@profile.location.zipcode}'; appear='news'"}
+          .span5.user-profile-overview
             %table
               %tr
                 -if @profile.avatar.present?
@@ -125,47 +336,192 @@
                     %a{:href => "{{mapUrl()}}"} #{@profile.location.address1} <br> #{@profile.location.city}, #{@profile.location.state} #{@profile.location.zipcode}
 
                 %ul.nav.profile-button-group
+                  %li.active
+                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "news"'} News
                   %li
-                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "badges"'} Badges
+                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "story"'} Story
                   %li
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "events"'} Events
-                  %li
-                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "campaigns"'} Campaigns
                   %li
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "following"'} Following
             %table.user-social-stats
               %tr.icons
-                %td
-                  %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"}
                 %td{'ng-click'=>'appear = "followers"'}
                   %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'} 
                 %td
-                  %a.sb.heart.circle.no-border.no-shadow{:href=>"#"}
+                  %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"} 
+                %td
+                  %a.sb.facebook.circle.no-border.no-shadow.black{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
               %tr.user-stats
                 %td 190
                 %td 190
-                %td 190
+                %td{:rowspan => "2"} share
               %tr.user-stat-labels
-                %td points
                 %td followers
-                %td following
-
+                %td reviews
+          .span1
           .span6
+            .user-news{'ng-show' => 'appear == "news"'}
+              %h1 News
+              %h3 Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait
 
--#
-  =@profile.story
-          
-  %h1 Events
-  %ul
-    %li 
-      %a{:href=>"#"} Upcoming
-    %li 
-      %a{:href=>"#"} Past
-    %li 
-      %a{:href=>"#"} Hearted
-  %h1 Following
-  %ul
-    %li 
-      %a{:href=>"#"} Restaurants
-    %li 
-      %a{:href=>"#"} Foodies
+            .user-story{'ng-show' => 'appear == "story"'}
+              %h1 Host Story
+              %h3 
+                =@profile.story
+
+            .user-events{'ng-show' => 'appear == "events"'}
+              %h1 Events
+              %ul.nav.nav-tabs
+                %li.active
+                  %a{"data-toggle" => "tab", :href => "#upcoming-events"} Upcoming
+                %li
+                  %a{"data-toggle" => "tab", :href => "#past-events"} Past
+              #myTabContent.tab-content
+                #upcoming-events.tab-pane.fade.active.in
+                  %table.events-table
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td seats left
+                      %td price
+                    %tr.current-user-rank
+                      %td name
+                      %td host
+                      %td date/time
+                      %td seats left
+                      %td price
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td seats left
+                      %td price
+                #past-events.tab-pane.fade
+                  %table.events-table
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td price
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td price
+                    %tr 
+                      %td name
+                      %td host
+                      %td date/time
+                      %td price
+
+            .user-following{'ng-show' => 'appear == "following"'}
+              %h1 Following
+              %ul.nav.nav-tabs
+                %li.active
+                  %a{"data-toggle" => "tab", :href => "#business-following"} Businesses
+                %li
+                  %a{"data-toggle" => "tab", :href => "#foodie-following"} Foodies
+              #myTabContent.tab-content
+                #business-following.tab-pane.fade.active.in
+                  %table.following-table
+                    %tr 
+                      %td 
+                        =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                    %tr.current-user-rank
+                      %td 
+                        =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                    %tr 
+                      %td 
+                        =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                #foodie-following.tab-pane.fade
+                  %table.following-table
+                    %tr 
+                      %td 
+                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                    %tr 
+                      %td 
+                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                    %tr 
+                      %td 
+                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+
+            .user-followers{'ng-show' => 'appear == "followers"'}
+              %h1 Followers
+              %ul.nav.nav-tabs
+                %li.active
+                  %a{"data-toggle" => "tab", :href => "#business-following"} Businesses
+                %li
+                  %a{"data-toggle" => "tab", :href => "#foodie-following"} Foodies
+              #myTabContent.tab-content
+                #business-following.tab-pane.fade.active.in
+                  %table.following-table
+                    %tr 
+                      %td 
+                        =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                    %tr.current-user-rank
+                      %td 
+                        =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                    %tr 
+                      %td 
+                        =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                #foodie-following.tab-pane.fade
+                  %table.following-table
+                    %tr 
+                      %td 
+                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                    %tr 
+                      %td 
+                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                    %tr 
+                      %td 
+                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                      %td Name
+                      %td Number of Followers
+                      %td
+                        %a.sb.heart.circle.no-border.no-shadow.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
