@@ -290,20 +290,26 @@
           .span6
             .user-news{'ng-show' => 'appear == "news"'}
               %h1 News
-              %h3 Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait
-              %button.btn.btn-inverse.edit{'ng-click' => 'edit = "news"'} Edit
-              .edit-form
-                %textarea.clearfix{:rows => 2, :placeholder => 'news', 'ng-show' => 'edit == "news"'}
-                %button.btn.btn-warning.edit{'ng-disabled' => 'profile_edit.$invalid'} Save Changes
+              .pre-edit{'ng-hide' => 'edit == "news"'}
+                %h3 Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait
+                %button.btn.btn-inverse.edit{'ng-click' => 'edit = "news"'} Edit
+              .edit-form{'ng-show' => 'edit == "news"'}
+                %form{:name => 'edit_news'}
+                  %textarea.clearfix{:rows => 3, :placeholder => 'News', :name => 'news', :required => "required", 'ng-model' => 'profile.news', 'ng-class' => "{error: edit_news.news.$invalid}"}
+                  .help-block{'ng-show' => 'edit_news.news.$error.required'} Required
+                  %button.btn.btn-warning.edit{'ng-disabled' => 'edit_news.$invalid'} Save Changes
 
             .user-story{'ng-show' => 'appear == "story"'}
               %h1 Host Story
-              %h3 
-                =@profile.story
-              %button.btn.btn-inverse.edit{'ng-click' => 'edit = "story"'} Edit
-              .edit-form
-                %textarea.clearfix{:rows => 2, :placeholder => 'story', 'ng-show' => 'edit == "story"'}
-                %button.btn.btn-warning.edit{'ng-disabled' => 'profile_edit.$invalid'} Save Changes
+              .pre-edit{'ng-hide' => 'edit == "story"'}
+                %h3 
+                  =@profile.story
+                %button.btn.btn-inverse.edit{'ng-click' => 'edit = "story"'} Edit              
+              .edit-form{'ng-show' => 'edit == "story"'}
+                %form{:name => 'edit_story'}
+                  %textarea.clearfix{:rows => 3, :placeholder => 'Story', :name => 'story', :required => "required", 'ng-model' => 'profile.story', 'ng-class' => "{error: edit_story.story.$invalid}"}
+                  .help-block{'ng-show' => 'edit_story.story.$error.required'} Required
+                  %button.btn.btn-warning.edit{'ng-disabled' => 'edit_story.$invalid'} Save Changes
 
 
             .user-events{'ng-show' => 'appear == "events"'}
