@@ -548,3 +548,10 @@ $("#remove-image").click ->
 
 $(document).on 'click', '.points', (e) ->
   e.preventDefault()
+
+img = '<img src="/assets/CVC.jpeg" />';
+
+$(".cvc-explanation").popover
+  title: "What is CVC?"
+  content: img
+  html: true

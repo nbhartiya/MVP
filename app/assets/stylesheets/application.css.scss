@@ -74,6 +74,14 @@ body.modal-open {
 	color: gray !important;
 }
 
+.popover.bottom .arrow{
+	left: 15%;
+}
+
+.popover.bottom .popover-title{
+	display: none;
+}
+
 .container{
 	.section-header{
 		text-align: center;

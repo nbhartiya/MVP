@@ -64,6 +64,8 @@ $("select").attr("autocomplete", "off");
 
 $('.city').tooltip();
 
+$('.campaign').tooltip();
+
 $('.why-zip').tooltip();
 
 $('#yelp-explanation').tooltip();
