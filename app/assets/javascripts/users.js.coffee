@@ -1,8 +1,8 @@
 $(document).on "click", ".userlogin", ->
   $("#new_user_session").submit()
 
-$(document).on "click", ".usersignup", ->
-  $("#new_user").submit()
+$(document).on "click", ".usersignup.bizbutton", ->
+  $("#new_user_biz").submit()
   #$.post('/users', $('#new_user').serialize(),
   #	(data, status) ->
   #    if data.match('Uh-oh, there was')
@@ -12,6 +12,9 @@ $(document).on "click", ".usersignup", ->
   #    else
   #      window.location='/events'
   #)
+
+$(document).on "click", ".usersignup.foodiebutton", ->
+  $("#new_user_foodie").submit()
 
 $(document).on "click", ".newpass", ->
   $("#new_pass").submit()

@@ -21,6 +21,7 @@
 #  completed              :boolean          default(FALSE)
 #  chef                   :boolean
 #  points                 :text
+#  phone                  :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -45,12 +46,20 @@ class User < ActiveRecord::Base
   has_many :follows, :as => :followable, :dependent => :destroy
   
   before_create :confirmation_email
+  #before_create :chef_me
   
   serialize :points, Array
   
   def confirmation_email
     NotificationMailer.signup_email(self).deliver
   end
+
+  #def chef_me
+  #  binding.pry
+  #  if self.chef == nil
+  #    self.chef = cookies[:chef]
+  #  end
+  #end
   
   #ADD after_create thingie here! and the method to send email
   
@@ -69,7 +78,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :approved, :first_name, :last_name, :chef, :work_zip, :points
+  attr_accessible :approved, :first_name, :last_name, :chef, :work_zip, :points, :phone
   
   def apply_omniauth(omni, user_type)
     if omni['provider'] == 'facebook'

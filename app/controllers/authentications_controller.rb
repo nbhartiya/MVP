@@ -24,7 +24,11 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
         if user.chef?
           redirect_to edit_profile_path(current_user.profile)
         else
-          redirect_to events_path
+          if user.email == ""
+            redirect_to edit_profile_path(current_user.profile)
+          else
+            redirect_to events_path
+          end
         end
       else
         session["omni"] = omni.except("extra")

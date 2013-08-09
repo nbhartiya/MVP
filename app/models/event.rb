@@ -17,6 +17,9 @@
 #  host_id      :integer
 #  blurb        :text
 #  time         :time
+#  vegan        :boolean
+#  vegetarian   :boolean
+#  gluten_free  :boolean
 #
 
 class Event < ActiveRecord::Base
@@ -28,7 +31,8 @@ class Event < ActiveRecord::Base
   has_many :guests, :through => :tickets
   has_many :follows, :as => :followable, :dependent => :destroy
   
-  attr_accessible :other_info, :length, :cost, :date, :description, :menu_pdf, :menu_text, :people_limit, :title, :host_id, :images_attributes, :time, :neighborhood, :blurb
+  attr_accessible :other_info, :length, :cost, :date, :description, :menu_pdf, :menu_text, :people_limit, :title
+  attr_accessible :host_id, :images_attributes, :time, :neighborhood, :blurb, :vegan, :vegetarian, :gluten_free
 
   accepts_nested_attributes_for :images, :reject_if => lambda { |a| a[:image].blank? }, :allow_destroy => true
 

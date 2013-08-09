@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130807234942) do
+ActiveRecord::Schema.define(:version => 20130809194818) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -80,6 +80,9 @@ ActiveRecord::Schema.define(:version => 20130807234942) do
     t.integer  "host_id"
     t.text     "blurb"
     t.time     "time"
+    t.boolean  "vegan"
+    t.boolean  "vegetarian"
+    t.boolean  "gluten_free"
   end
 
   create_table "follows", :force => true do |t|
@@ -233,6 +236,7 @@ ActiveRecord::Schema.define(:version => 20130807234942) do
     t.boolean  "completed",              :default => false
     t.boolean  "chef"
     t.text     "points"
+    t.string   "phone"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

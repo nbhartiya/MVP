@@ -66,13 +66,13 @@
             #event-accommodations
               %p I can accommodate
 
-              %input{:name => "vegetarians", :type => "checkbox", :value => "vegetarians", :id => "vegetarians"}
+              %input{'ng-model' => 'event.vegetarian',:name => "vegetarian", :type => "checkbox", :value => "1", :id => "vegetarians"}
               %label{:for => "vegetarians"} Vegetarians
 
-              %input{:name => "vegans", :type => "checkbox", :value => "vegans", :id => "vegans"}
+              %input{'ng-model' => 'event.vegan',:name => "vegan", :type => "checkbox", :value => "1", :id => "vegans"}
               %label{:for => "vegans"} Vegans
 
-              %input{:name => "gluten_free", :type => "checkbox", :value => "gluten-free", :id => "gluten_free"}
+              %input{'ng-model' => 'event.gluten_free',:name => "gluten_free", :type => "checkbox", :value => "1", :id => "gluten_free"}
               %label{:for => "gluten_free"} Gluten-Free
 
               .help-block-white{'ng-show' => 'event_create.event_zip.$error.pattern'} Please enter a valid zip code
