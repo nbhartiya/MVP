@@ -401,7 +401,6 @@ neighborhoodsSF = Table: [
 , 
     name: "Other"
     value: "Other"
-,
 ]
 
 neighborhoodNames = ""
