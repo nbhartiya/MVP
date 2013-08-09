@@ -5,17 +5,18 @@
   = link_to "Facebook", user_omniauth_authorize_path(:facebook), :class => "sb facebook text black"
   = link_to "Twitter", user_omniauth_authorize_path(:twitter), :class => "sb twitter text black"
   %hr.or-line
-  %p.strong.sign-up-text
-    Log in with email
-  %input#user_login_email{:autofocus => "autofocus", :required => "required", :name => "user[email]", :size => "30", :type => "email", :placeholder => "email", 'ng-model' => 'user.email'}
-  
-  %input#user_password{:required => "required", :placeholder => "password", :name => "user[password]", :size => "30", :type => "password", 'ng-model' => 'user.password'}
-  
-  .help-block{"ng-show" => "new_session['user[email]'].$error.email"} Please enter a valid email
-  .help-block{"ng-show" => "new_session['user[password]'].$error.required || new_session['user[email]'].$error.required"} Both fields are required!
-  %input#user_remember_me{:name => "user[remember_me]", :type => "hidden", :value => "0"}
-  %input#user_remember_me{:name => "user[remember_me]", :type => "checkbox", :value => "1"}
-  %label{:for => "user_remember_me"} Remember me
+  %p.sign-up-text
+    or you can <a href = "" ng-click = 'appear = "emailLogin"'>log in with email</a> 
+  .email-login-form{'ng-show'=>'appear=="emailLogin"'}
+    %input#user_login_email{:autofocus => "autofocus", :required => "required", :name => "user[email]", :size => "30", :type => "email", :placeholder => "email", 'ng-model' => 'user.email', 'ng-class' => "{error: new_session['user[email]'].$invalid}"}
+    
+    %input#user_password{:required => "required", :placeholder => "password", :name => "user[password]", :size => "30", :type => "password", 'ng-model' => 'user.password', 'ng-class' => "{error: new_session['user[password]'].$invalid}"}
+    
+    .help-block{"ng-show" => "new_session['user[email]'].$error.email"} Please enter a valid email
+    .help-block{"ng-show" => "new_session['user[password]'].$error.required || new_session['user[email]'].$error.required"} Both fields are required!
+    %input#user_remember_me{:name => "user[remember_me]", :type => "hidden", :value => "0"}
+    %input#user_remember_me{:name => "user[remember_me]", :type => "checkbox", :value => "1"}
+    %label{:for => "user_remember_me"} Remember me
 -#  %div
 -#    %a{"data-toggle" => "modal", :href => "#sign_up", :role=>"button"} Sign Up
 

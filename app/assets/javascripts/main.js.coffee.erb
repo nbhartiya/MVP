@@ -26,7 +26,7 @@ Simmr.controller "HeartCtrl", ["$scope",  "$routeParams", "Follow", ($scope, $ro
 ]
 
 Simmr.controller "HomeIndexCtrl", ["$scope",  "$routeParams", ($scope, $routeParams) ->
-  
+  $scope.appear = ''
 ]
 
 Simmr.factory "Event", ["railsResourceFactory", (railsResourceFactory) -> railsResourceFactory

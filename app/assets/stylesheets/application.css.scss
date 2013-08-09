@@ -417,10 +417,22 @@ input.error-true  {
 	}
 }
 
-.sign-up-text{
+.modal .modal-body p.sign-up-text, .modal .modal-body .sign-up-text a, .modal .modal-body .sign-up-text a:hover, .modal .modal-body .sign-up-text a:visited{
 	margin-top: 10px;
 	margin-bottom: 15px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 400;
 }
+.modal .modal-body .sign-up-text a, .modal .modal-body .sign-up-text a:visited{
+	color: rgb(51, 51, 51);
+	text-decoration: underline;
+}
+
+.modal .modal-body .sign-up-text a:hover{
+	color: black;
+}
+
 
 .login_form{
 	margin-top: 20px;
