@@ -77,6 +77,18 @@
 
               %input#event-zipcode{'ng-model' => 'event.location.zipcode',:type=>"text", :maxlength => "5", :required => "required", 'ng-pattern' => '/^[0-9]+$/', :name => "event_zip", 'ng-class' => "{error: event_edit.event_zip.$invalid}", :placeholder => "Zipcode"}
 
+            #event-accommodations
+              %p I can accommodate
+
+              %input{:name => "vegetarians", :type => "checkbox", :value => "vegetarians", :id => "vegetarians"}
+              %label{:for => "vegetarians"} Vegetarians
+
+              %input{:name => "vegans", :type => "checkbox", :value => "vegans", :id => "vegans"}
+              %label{:for => "vegans"} Vegans
+
+              %input{:name => "gluten_free", :type => "checkbox", :value => "gluten-free", :id => "gluten_free"}
+              %label{:for => "gluten_free"} Gluten-Free
+
               .help-block-white{'ng-show' => 'event_edit.event_zip.$error.pattern'} Please enter a valid zip code
 
             .help-block-white{'ng-show' => 'event_edit.event_title.$error.required || event_edit.event_blurb.$error.required || event_edit.event_date.$error.required || event_edit.event_time.$error.required || event_edit.event_duration.$error.required || event_edit.event_neighborhood.$error.required || event_edit.event_address.$error.required || event_edit.event_city.$error.required || event_edit.event_state.$error.required || event_edit.event_zip.$error.required || event_edit.event_cost.$error.required || event_edit.event_limit.$error.required || event_edit.event_details.$error.required'} All fields are required

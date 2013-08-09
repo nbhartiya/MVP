@@ -14,7 +14,7 @@
     
     .help-block{"ng-show" => "new_session['user[email]'].$error.email"} Please enter a valid email
     .help-block{"ng-show" => "new_session['user[password]'].$error.required || new_session['user[email]'].$error.required"} Both fields are required!
-    %input#user_remember_me{:name => "user[remember_me]", :type => "hidden", :value => "0"}
+    -#%input#user_remember_me{:name => "user[remember_me]", :type => "hidden", :value => "0"}
     %input#user_remember_me{:name => "user[remember_me]", :type => "checkbox", :value => "1"}
     %label{:for => "user_remember_me"} Remember me
 -#  %div
