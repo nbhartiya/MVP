@@ -4,29 +4,32 @@
       .row.section-header
         .span12.events-index-header
           %h1 Featured Events in San Francisco
+    .section.events-section
+      .container
+        .row.events-row-content
+          .span12.events-index-content
+            -if current_user.chef == true
+              %p Check out other businesses we're hosting events with to get some ideas!
+            - if current_user.chef == false
+              %p Pick an event to go to!
     .container
       -all_events = @events
       -while all_events.length > 1
         -event = all_events.pop
         .row.events-row
-          .span1
-          .span5.single-event
+          .span6.single-event
             =render "events/singleevent", :event => event
           -event = all_events.pop
-          .span5.single-event
+          .span6.single-event
             =render "events/singleevent", :event => event
-          .span1
       -if all_events.length == 1
         -event = all_events.pop
         .row.events-row
-          .span1
-          .span5.single-event
+          .span6.single-event
             =render "events/singleevent", :event => event
           .span6
-    .section
+    .section.events-section
       .container
-        .row.featured-events
-          .span1
-          .span10.events-index-content
-            %p Don’t see your favorite? <a href = "/campaigns/new">Start a campaign (for an event)</a> or <a href = "/campaigns">join a campaign</a>
-          .span1
+        .row.events-row-content
+          .span12.events-index-content
+            %p Don’t see your favorite business? <a href = "/campaigns/new">Start a campaign</a> or <a href = "/campaigns">join a campaign</a> to get them to host events on Simmr!

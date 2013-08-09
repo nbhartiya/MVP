@@ -7,15 +7,15 @@ $main_orange: rgb(255, 178, 35);
 	.campaigns{ 
 		margin: 0;
 		.section-header{
-			margin-top: 0;
+			margin-top: 10px;
 		}
-		.campaigns-index-header{
+		.campaign-index-header{
 			margin: 0;
 		}
-		.campaigns-index-content{
-			margin: 30px 0;
+		.campaign-index-content{
+			margin: 10px 0;
 		}
-		.campaigns-index-header, .campaigns-index-content{
+		.campaign-index-header, .campaign-index-content{
 			a:hover{
 				color: $main_orange;
 			}
@@ -23,13 +23,74 @@ $main_orange: rgb(255, 178, 35);
 				color: $main_orange;
 			}
 		}
-		.campaigns-index-content{
+		.campaign-index-content{
 			font-size: 20px;
 			font-weight: 100;
 			text-align: center;
 		}
+		.campaign-row-content{
+			margin: 10px 0;
+		}
 		.campaigns-row{
-			margin: 30px 0;
+			margin: 0;
+		}
+		.single-campaign{
+		    margin: -30px 7px 50px 7px;
+			height: 310px;
+			z-index: 500;
+			opacity: 1;
+			-webkit-transition-property:opacity;
+			-webkit-transition-duration:100ms;
+			-webkit-transition-timing-function:linear;
+			-webkit-transition-delay:100ms;
+			.campaign-image{
+				background: black;
+				height: 310px;
+				overflow: hidden;
+				img{
+					min-height: 100%;
+					min-width: 470px;
+					width: 100%;
+					height: auto;
+				}
+			}
+		}
+		.single-campaign:hover{
+			opacity: 0.9;
+		}
+		.campaign-info{
+			position: relative;
+			margin: 0;
+			color: black;
+			background: rgba(255, 255, 255, 0.8);
+			bottom: 80px;
+			height: 100px;
+			table{
+				background: rgba(255, 255, 255, 0.8);
+				width: 100%;
+				height: 80px;
+				overflow: hidden;
+				td{
+					padding: 10px;
+				}
+			}
+			h1{
+				font-size: 17px;
+				color: black;
+				font-weight: 400;
+				line-height: 1.5em;
+				margin: 0;
+			}
+			h2{
+				font-size: 12px;
+				color: black;
+				font-weight: 400;
+				line-height: 1.5em;
+				margin: 0;
+			}
+		}
+		.campaign-section{
+			margin: 0 0 60px 0;
 		}
 	}
 }
@@ -39,8 +100,17 @@ $main_orange: rgb(255, 178, 35);
 
 .how-it-works-campaign-infographic{
 	margin: 0 auto;
-	p{
+	width: 99%;
+	h1{
 		text-align: center;
+		font-size: 30px;
+		line-height: 1.2em;
+		font-weight: 100;
+		color: black;
+		margin: 0;
+	}
+	.step:hover{
+		border-color: $main_orange;
 	}
 	.step{
 		height: 240px;
@@ -48,9 +118,9 @@ $main_orange: rgb(255, 178, 35);
 		margin-top: 20px;
 		margin-left: 25px;
 		border-radius: 50%;
-		border: 25px rgb(54, 54, 54) solid;
-		float: left;
-		h1{
+		border: 15px rgb(54, 54, 54) solid;
+		display: inline-block;
+		h2{
 			font-size: 30px;
 			font-weight: 100;
 			text-align: center;
@@ -58,7 +128,9 @@ $main_orange: rgb(255, 178, 35);
 		}
 		.step-description{
 			width: 200px;
+			height: 200px;
 			padding: 20px;
+			overflow: hidden;
 			p{
 				font-size: 14px;
 				line-height: 1.5em;
@@ -72,7 +144,7 @@ $main_orange: rgb(255, 178, 35);
 
 // campaign profile styling
 .campaign-profile{
-	height: 625px;
+	height: 700px;
 	.btn#remove-image{
     	right: 5px;
 		position: absolute;
@@ -87,7 +159,7 @@ $main_orange: rgb(255, 178, 35);
 	    width: 100%;
 	    z-index: -1;
 		.carousel-inner{
-			height: 625px;
+			height: 700px;
 			width: auto;
 			img{
 				width: 100%;
@@ -373,6 +445,7 @@ $main_orange: rgb(255, 178, 35);
 					a, a:hover, a:visited{
 						color: black;
 						text-decoration: none;
+						margin: 10px auto;
 					}
 				}
 			}
@@ -388,17 +461,66 @@ $main_orange: rgb(255, 178, 35);
 				display: block;
 			}
 		}
-		.heart_this{
-			margin: 0 auto;
-			padding: 10px;
-			background: rgba(255,255,255,0.8);
-			width: 33px;
-			height: 33px;
-		}
 
 		.campaign-why-join, .host-followers{
 			overflow-y: auto;
 			height: 490px;
+		}
+		.host-followers{
+			.nav{
+				li{
+					font-size: 16px;
+					a, a:hover, a:active{
+						-webkit-border-radius: 0px;
+						border-radius: 0px;
+						background-clip: padding-box;
+						padding: 4px 15px;
+						border: none;
+						margin-right: 5px;
+					}
+					a{
+						color: black;
+					}
+					a:hover, a:active{
+						background: $main_orange;
+						border: none;
+						color: white;
+					}
+				}
+				li.active{
+					a{
+						background: $main_orange;
+						color: white;
+					}
+				}
+			}
+			.nav-tabs{
+				border-bottom: none;
+				margin-top: 15px;
+				margin-bottom: 10px;
+			}
+			table{
+				margin-bottom: 10px;
+				width: 100%;
+				font-size: 14px;
+			}
+			tr:first-child{
+				border-top: none;
+			}
+			tr{
+				border-top: 1px solid black;
+				height: 40px;
+			}
+			td{
+				vertical-align: middle;
+				a{
+					display: table-cell;
+				}
+				img{
+					width: 50px;
+					height: auto;
+				}
+			}
 		}
 		.campaign-create-form, .campaign-edit-form, .campaign-create-confirmation, .campaign-why-join, .host-followers{
 			background: rgba(255,255,255,0.8);
@@ -518,9 +640,6 @@ $main_orange: rgb(255, 178, 35);
  
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) { 
-	.campaign-profile .campaign-registration .heart_this {
-		padding: 0;
-	}
 
 	.campaign-profile{
 		height: 500px;

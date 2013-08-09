@@ -1,28 +1,19 @@
 .row
-  .event-time-and-date
-    #{event.date.strftime("%b %e")}
-  .span5.event-image
+  .span6.event-image
     -if event.images.present?
       =link_to (image_tag event.images.first.image), event_path(event)
     -else
       =link_to image_tag("Food 26.jpg"), event_path(event)
-.row.event-first-row
+%a.row.event-info{:href => event_path(event)}
   %table
     %tr
-      %td.span1.event-host-image
-        =link_to image_tag("Chef-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Host Name", "class" => "event-card-host-name"
-      %td.event-title.span3
-        %a{:href => event_path(event)} #{event.title} 
-      %td.event-price.span1
-        %p $#{"%.2f" % event.cost}
-.row.event-second-row
-  %table
-    %tr
-      %td.span4.event-progress
-        #{event.seats_left} seats left
-        .progress.progress-warning
-          .bar{:style => "width: #{event.percent_full}%;"}
-      %td.span1.go-button
-        %a.btn.btn-warning{:href => event_path(event)} Go
+      %td.event-title-host.span4
+        %h1 #{event.title} 
+        -# get host name here
+        %h2 Hosted by: Host
+      %td.event-date-price.span2
+        %h2 #{event.date.strftime("%b %e")}, #{event.time.strftime("%l:%M %p")}
+        %h2 #{event.seats_left} seats left at $#{"%.0f" % event.cost} / seat
+
     -# TODO: How to make this go directly to that view with 'payment=1' (angular thingie)
     

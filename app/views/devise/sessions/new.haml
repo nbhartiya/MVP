@@ -15,8 +15,8 @@
           %input#user_password{:name => "user[password]", :placeholder => "password", :size => "30", :type => "password", :required => "required", 'ng-model' => "user.password"}
           %span.help-inline{"ng-show" => "new_session['user[password]'].$error.required"} Required
         %div
-          %input{:name => "user[remember_me]", :type => "hidden", :value => "0"}
-          %input#user_remember_me{:name => "user[remember_me]", :type => "checkbox", :value => "1"}
+          -#%input{:name => "user[remember_me]", :type => "hidden", :value => "0"}
+          %input#user_remember_me{:name => "user[remember_me]", :type => "checkbox", :value => "1", :id => 'user_remember_me'}
           %label{:for => "user_remember_me"} Remember me
         %button#login.userlogin.btn.btn-warning{'ng-disabled' => 'new_session.$invalid'} Log In
       = render "devise/shared/links"

@@ -1,3 +1,6 @@
+$(".heart").click ->
+  $(this).toggleClass "orange" 
+
 # states and neighborhood and time jsons
 
 states = Table: [
@@ -398,7 +401,6 @@ neighborhoodsSF = Table: [
 , 
     name: "Other"
     value: "Other"
-,
 ]
 
 neighborhoodNames = ""
@@ -546,3 +548,10 @@ $("#remove-image").click ->
 
 $(document).on 'click', '.points', (e) ->
   e.preventDefault()
+
+img = '<img src="/assets/CVC.jpeg" />';
+
+$(".cvc-explanation").popover
+  title: "What is CVC?"
+  content: img
+  html: true

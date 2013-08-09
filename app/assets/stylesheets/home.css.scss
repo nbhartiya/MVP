@@ -190,7 +190,7 @@ ul.parsley-error-list{
 		-moz-box-sizing: border-box;    
 		box-sizing: border-box;
 		.copy-content{
-			background: rgba(0, 0, 0, 0.6);
+			background: rgba(0, 0, 0, 0.3);
 	    	padding: 30px;
 	    	-webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;    
@@ -206,6 +206,8 @@ ul.parsley-error-list{
 				color: white;
 				margin: 0;
 				text-align: center;
+  				text-shadow: 0.1em 0.1em 0.2em black;
+
 			}
 			h2{
 				font-size: 50px;
@@ -214,6 +216,7 @@ ul.parsley-error-list{
 				color: white;
 				margin: 0;
 				text-align: center;
+  				text-shadow: 0.1em 0.1em 0.2em black;
 			}
 			hr{
 				width: 65%;
@@ -227,19 +230,23 @@ ul.parsley-error-list{
 				color: white;
 				margin: 10px 0;
 				text-align: center;
+  				text-shadow: 0.1em 0.1em 0.2em black;
 			}
 			p{
 			    text-align: center;
 			    color: white;
 			    margin-top: 10px;
 			    font-size: 12px;
+			    text-shadow: 0.1em 0.1em 0.2em black;
 			}
 			a.sign-in-link, a.sign-out-link{
 				color: $main_orange;
+				text-shadow: 0.1em 0.1em 0.2em black;
 			}
 			a.sign-in-link:hover, a.sign-out-link:hover{
 				color: darken($main_orange, 10%);
 				text-decoration: none;
+				text-shadow: 0.1em 0.1em 0.2em black;
 			}
 		}
 		.buttons{
@@ -461,7 +468,7 @@ ul.parsley-error-list{
 		width: 280px;
 		border-width: 12px;
 		.step-description{
-			width: 260px;
+			width: 255px;
 			padding-top: 30px;
 		}
 	}

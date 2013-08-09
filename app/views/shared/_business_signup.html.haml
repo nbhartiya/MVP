@@ -4,19 +4,21 @@
   = link_to "Facebook", user_omniauth_authorize_path(:facebook), :class => "sb facebook text black"
   = link_to "Twitter", user_omniauth_authorize_path(:twitter), :class => "sb twitter text black"
   %hr.or-line
-  %p.strong.sign-up-text
-    Sign up with email 
-  %input#user_first_name{:required => "required", :placeholder => "first name", :autofocus => "autofocus", :name => "user[first_name]", :size => "30", :type => "text", 'ng-model' => 'user.first_name', 'ng-class' => "{error: new_business['user[first_name]'].$invalid}"}
-  %input#user_last_name{:required => "required", :placeholder => "last name", :name => "user[last_name]", :size => "30", :type => "text", 'ng-model' => 'user.last_name', 'ng-class' => "{error: new_business['user[last_name]'].$invalid}"}
-  %input#user_email{:required => "required", :placeholder => "email", :name => "user[email]", :size => "30", :type => "email", 'ng-model' => 'user.email', 'ng-class' => "{error: new_business['user[email]'].$invalid}"}
-  %input#user_password.clearfix{:required => "required", :placeholder => "password", :name => "user[password]", :size => "30", :type => "password", 'ng-pattern' => '/^[a-zA-Z0-9@&#$.\s]{8,30}$/', 'ng-model' => 'user.password', 'ng-class' => "{error: new_business['user[password]'].$invalid}"}
-
-  %input#user_password_confirmation.clearfix{:required => "required", :placeholder => "retype password",:name => "user[password_confirmation]", :size => "30", :type => "password", 'ui-validate' => "'$value==user.password'", 'ui-validate-watch' => '"user.password"', 'ng-model' => 'user.password_confirmation', 'ng-class' => "{error: new_business['user[password_confirmation]'].$invalid}"}
-  
-  .help-block.clearfix{"ng-show" => "new_business['user[email]'].$error.email"} Please enter a valid email
-  .help-block.clearfix{'ng-show' => 'new_business["user[password]"].$error.pattern'} Please enter password with min 8 characters
-  .help-block.clearfix{'ng-show' => 'new_business["user[password_confirmation]"].$error.validator'} Passwords must match
-  .help-block.clearfix{'ng-show' => 'new_business["user[password_confirmation]"].$error.required || new_business["user[first_name]"].$error.required || new_business["user[last_name]"].$error.required || new_business["user[email]"].$error.required || new_business["user[password]"].$error.required'} All fields are required!
+  %p.sign-up-text
+    or you can <a href = "" ng-click = 'appear = "bizSignup"'>sign up with email</a> 
+  .email-login-form{'ng-show'=>'appear=="bizSignup"'}
+    %input#user_first_name{:required => "required", :placeholder => "first name", :autofocus => "autofocus", :name => "user[first_name]", :size => "30", :type => "text", 'ng-model' => 'user.first_name', 'ng-class' => "{error: new_business['user[first_name]'].$invalid}"}
+    %input#user_last_name{:required => "required", :placeholder => "last name", :name => "user[last_name]", :size => "30", :type => "text", 'ng-model' => 'user.last_name', 'ng-class' => "{error: new_business['user[last_name]'].$invalid}"}
+    %input#user_email{:required => "required", :placeholder => "email", :name => "user[email]", :size => "30", :type => "email", 'ng-model' => 'user.email', 'ng-class' => "{error: new_business['user[email]'].$invalid}"}
+    %input#user_tel{:required => "required", :placeholder => "phone number", :name => "user[phone]", :size => "10", :type => "tel", 'ng-model' => 'user.phone', 'ng-class' => "{error: new_business['user[phone]'].$invalid}", 'ng-pattern' => '/^[0-9]{10}$/'}
+    %input#user_password.clearfix{:required => "required", :placeholder => "password", :name => "user[password]", :size => "30", :type => "password", 'ng-pattern' => '/^[a-zA-Z0-9@&#$.\s]{8,30}$/', 'ng-model' => 'user.password', 'ng-class' => "{error: new_business['user[password]'].$invalid}"}
+    %input#user_password_confirmation.clearfix{:required => "required", :placeholder => "retype password",:name => "user[password_confirmation]", :size => "30", :type => "password", 'ui-validate' => "'$value==user.password'", 'ui-validate-watch' => '"user.password"', 'ng-model' => 'user.password_confirmation', 'ng-class' => "{error: new_business['user[password_confirmation]'].$invalid}"}
+    
+    .help-block.clearfix{"ng-show" => "new_business['user[email]'].$error.email"} Please enter a valid email
+    .help-block.clearfix{"ng-show" => "new_business['user[phone]'].$error.pattern"} Please enter a valid phone number
+    .help-block.clearfix{'ng-show' => 'new_business["user[password]"].$error.pattern'} Please enter password with min 8 characters
+    .help-block.clearfix{'ng-show' => 'new_business["user[password_confirmation]"].$error.validator'} Passwords must match
+    .help-block.clearfix{'ng-show' => 'new_business["user[password_confirmation]"].$error.required || new_business["user[first_name]"].$error.required || new_business["user[last_name]"].$error.required || new_business["user[email]"].$error.required || new_business["user[password]"].$error.required'} All fields are required!
 -#
   %div
     %label.radio.inline

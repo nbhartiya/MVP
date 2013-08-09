@@ -38,9 +38,6 @@ Simmr.directive "heart", ->
 
 Simmr.controller "HeartCtrl", ["$scope",  "$routeParams", "Follow", ($scope, $routeParams, Follow) ->
   $scope.follow = ->
-    $('.heart.campaign-follow').toggleClass("orange").toggleClass("black")
-    $('.heart.follow').toggleClass("orange")
-    $scope.appear = "followers"
     console.log($scope)
     console.log($scope.wah)
 ]
@@ -48,15 +45,14 @@ Simmr.controller "HeartCtrl", ["$scope",  "$routeParams", "Follow", ($scope, $ro
 Simmr.controller "HeaderCtrl", ["$scope",  "$routeParams", ($scope, $routeParams) ->
   $scope.search = (searchQuery) ->
     window.location= "/events?q=#{searchQuery}"
-
 ]
 
 Simmr.controller "HomeIndexCtrl", ["$scope",  "$routeParams", ($scope, $routeParams) ->
+  $scope.appear = ''
   if location.search == '?foodie=true'
     $(".foodiesignup").click()
   if location.search == '?foodie=false'
     $(".bizsignup").click()
-
 ]
 
 Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "Charge", "Event", ($scope, $routeParams, $location, Charge, Event) ->
@@ -151,6 +147,20 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
     datetime = moment($scope.event.time,  "YYYY-MM-DD H:mm:ss")
     datetime.add('minutes', $scope.event.length).format('h:mm A')
 
+  $scope.uploadMenu = ->
+    filepicker.pickAndStore
+      extention: '.pdf'
+      services: ["COMPUTER", "GMAIL"]
+      multiple: false
+    ,
+      location: "S3"
+      access: "public"
+    , (InkBlob) ->
+      console.log JSON.stringify(InkBlob)
+      $scope.menu="https://s3-us-west-1.amazonaws.com/simmrimages/#{InkBlob[0].key}"
+      console.log $scope.menu
+      $('.events .menu').append("<a href =#{$scope.menu}> Menu.pdf </a>")
+
   $scope.uploadImages = ->
     filepicker.pickAndStore
       mimetypes: ["image/*", "text/plain"]
@@ -242,6 +252,20 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
     datetime = moment($scope.event.time,  "YYYY-MM-DD H:mm:ss")
     datetime.add('minutes', $scope.event.length).format('h:mm A')
 
+  $scope.uploadMenu = ->
+    filepicker.pickAndStore
+      extention: '.pdf'
+      services: ["COMPUTER", "GMAIL"]
+      multiple: false
+    ,
+      location: "S3"
+      access: "public"
+    , (InkBlob) ->
+      console.log JSON.stringify(InkBlob)
+      $scope.menu="https://s3-us-west-1.amazonaws.com/simmrimages/#{InkBlob[0].key}"
+      console.log $scope.menu
+      $('.events .menu').append("<a href =#{$scope.menu}> Menu.pdf </a>")
+
   $scope.uploadImages = ->
     filepicker.pickAndStore
       mimetypes: ["image/*", "text/plain"]
@@ -303,6 +327,22 @@ Simmr.factory "Campaign", ["railsResourceFactory", (railsResourceFactory) ->
 ]
 
 Simmr.controller "CampaignJoinCtrl", ["$scope", "$window", "$routeParams", "$location", "Campaign", ($scope, $window, $routeParams, $location, Campaign) ->
+
+  $scope.daysLeft = ->
+    today = moment()
+    endDate = moment($scope.endDate)
+    daysLeft = endDate.diff(today, 'days')
+    if daysLeft <= 0
+      if $scope.successful
+        "success!"
+      else
+        "try again?"
+    else
+      daysLeft + " days left"
+
+]
+
+Simmr.controller "CampaignIndexCtrl", ["$scope", "$window", "$routeParams", "$location", "Campaign", ($scope, $window, $routeParams, $location, Campaign) ->
 
   $scope.daysLeft = ->
     today = moment()

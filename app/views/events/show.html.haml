@@ -17,7 +17,7 @@
       %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#event-carousel"} ‹
       %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#event-carousel"} ›   
 
-    .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}'"}
+    .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='details'"}
       .event-registration.row
         .span5
           .event-summary
@@ -63,7 +63,7 @@
               seats left until the event tilts!
             .progress.progress-warning
               .bar{:style => "width: #{@event.percent_full}%"}
-            .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Grab Seats
+            .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Book It
             .seats{'ng-show'=> 'showSeats'}
               -if user_signed_in? == false
                 %a.btn.btn-warning.standalone-button{:"data-toggle" => "modal", :href=>"#sign_up"} Sign Up
@@ -79,9 +79,9 @@
             %table.event-sharing
               %tr.icons
                 %td{'ng-click'=>'appear = "followers"'}
-                  %a.sb.heart.circle.no-border.no-shadow.follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'} #follow
+                  %a.sb.heart.circle.no-border.no-shadow.follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'} 
                 %td
-                  %a.sb.star.circle.no-border.no-shadow{:href=>"#"} #yelp
+                  %a.sb.star.circle.no-border.no-shadow{:href=>"#"} 
                 %td
                   %a.sb.facebook.circle.no-border.no-shadow{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
                 %td
@@ -110,14 +110,15 @@
         .span1
         .span6
           .event-details#details{'ng-show' => 'appear=="details"'}
-            %h3 Event Description
+            %h1 Details
             %h3
               =@event.description
           .event-menu#menu{'ng-show' => 'appear=="menu"'}
-            %h3 Event Menu
+            %h1 Menu
             %p
               =@event.menu_text
           .event-attendees-and-chatter{'ng-show' => 'appear=="chatter"'}
+            %h1 Attendees
             .attendees
               =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
               =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
@@ -130,16 +131,64 @@
             .row.comments
               .fb-comments{"data-colorscheme" => "dark", "data-href" => "#{request.url}", "data-num-posts" => "5", "data-width" => "500"}
           .event-host-story{'ng-show' => 'appear=="story"'}
+            %h1 Host Story
             %h3
               Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait
               =@event.host.profile.story
           .host-followers{'ng-show' => 'appear == "followers"'}
-            .followers
-              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
-              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
-              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
-              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Christine Lee", "class" => "one-attendee", "data-placement" => "bottom"
-              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Michael Makarov", "class" => "one-attendee", "data-placement" => "bottom"
+            %h1 Followers
+            %ul.nav.nav-tabs
+              %li.active
+                %a{"data-toggle" => "tab", :href => "#business-following"} Businesses
+              %li
+                %a{"data-toggle" => "tab", :href => "#foodie-following"} Foodies
+            #myTabContent.tab-content
+              #business-following.tab-pane.fade.active.in
+                %table.following-table
+                  %tr 
+                    %td 
+                      =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                    %td Name
+                    %td Number of Followers
+                    %td
+                      %a.sb.heart.circle.no-border.no-shadow.event-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                  %tr.current-user-rank
+                    %td 
+                      =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                    %td Name
+                    %td Number of Followers
+                    %td
+                      %a.sb.heart.circle.no-border.no-shadow.event-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                  %tr 
+                    %td 
+                      =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                    %td Name
+                    %td Number of Followers
+                    %td
+                      %a.sb.heart.circle.no-border.no-shadow.event-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+              #foodie-following.tab-pane.fade
+                %table.following-table
+                  %tr 
+                    %td 
+                      =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                    %td Name
+                    %td Number of Followers
+                    %td
+                      %a.sb.heart.circle.no-border.no-shadow.event-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                  %tr 
+                    %td 
+                      =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                    %td Name
+                    %td Number of Followers
+                    %td
+                      %a.sb.heart.circle.no-border.no-shadow.event-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                  %tr 
+                    %td 
+                      =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                    %td Name
+                    %td Number of Followers
+                    %td
+                      %a.sb.heart.circle.no-border.no-shadow.event-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
 
 
           .event-guests.clearfix{'ng-show' => 'appear=="payment1"', 'ng-init'=> "cost='#{@event.cost}'"}

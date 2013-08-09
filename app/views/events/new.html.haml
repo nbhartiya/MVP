@@ -27,9 +27,8 @@
               .help-block-white{'ng-show' => 'event_create.event_limit.$error.pattern'} Please enter a valid number of seats
 
             %button.clearfix.btn#event-images-button{'ng-click'=> 'uploadImages()'} Upload Images
-
-            %button.clearfix.btn#event-menu-button{'ng-click'=> 'uploadMenu()'} Upload Menu
-            
+            %button.clearfix.btn#event-menu-button{'ng-click' => 'uploadMenu()'} Upload Menu
+            .menu 
             %hr
 
             #event-date-time 
@@ -63,6 +62,18 @@
               %select#state{'ng-model' => 'event.location.state', :required => "required", :name => "event_state", 'ng-class' => "{error: event_create.event_state.$invalid}"}
 
               %input#event-zipcode{'ng-model' => 'event.location.zipcode',:type=>"text", :maxlength => "5", :required => "required", 'ng-pattern' => '/^[0-9]{5}$/', :name => "event_zip", 'ng-class' => "{error: event_create.event_zip.$invalid}", :placeholder => "Zipcode"}
+
+            #event-accommodations
+              %p I can accommodate
+
+              %input{:name => "vegetarians", :type => "checkbox", :value => "vegetarians", :id => "vegetarians"}
+              %label{:for => "vegetarians"} Vegetarians
+
+              %input{:name => "vegans", :type => "checkbox", :value => "vegans", :id => "vegans"}
+              %label{:for => "vegans"} Vegans
+
+              %input{:name => "gluten_free", :type => "checkbox", :value => "gluten-free", :id => "gluten_free"}
+              %label{:for => "gluten_free"} Gluten-Free
 
               .help-block-white{'ng-show' => 'event_create.event_zip.$error.pattern'} Please enter a valid zip code
 
