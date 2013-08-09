@@ -216,7 +216,11 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
 
   if Rails.env.production?
-    config.omniauth :facebook, ENV["FACEBOOK_APP_ID"], ENV["FACEBOOK_APP_SECRET"]
+    if ENV['STAGING'] == 'YES'
+      config.omniauth :facebook, ENV["FACEBOOK_APP_ID_STAGING"], ENV["FACEBOOK_APP_SECRET_STAGING"]
+    else
+      config.omniauth :facebook, ENV["FACEBOOK_APP_ID"], ENV["FACEBOOK_APP_SECRET"]
+    end 
   else
     config.omniauth :facebook, ENV["FACEBOOK_APP_ID_DEV"], ENV["FACEBOOK_APP_SECRET_DEV"]
   end

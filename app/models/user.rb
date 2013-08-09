@@ -5,7 +5,6 @@
 #  id                     :integer          not null, primary key
 #  first_name             :string(255)
 #  last_name              :string(255)
-#  chef                   :boolean
 #  approved               :boolean          default(FALSE)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -20,6 +19,8 @@
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
 #  completed              :boolean          default(FALSE)
+#  chef                   :boolean
+#  points                 :text
 #
 
 class User < ActiveRecord::Base
@@ -90,7 +91,8 @@ class User < ActiveRecord::Base
     end
     self.chef = user_type
     authentications.build(:provider => omni['provider'],
-                          :uid => omni['uid'])
+                          :uid => omni['uid'],
+                          :token => omni['credentials']['token'])
   end
 
   
@@ -105,6 +107,10 @@ class User < ActiveRecord::Base
       super
     end
   end
+
+  #def facebook
+  #  @graph = Koala::Facebook::API.new(self.authentications.find_by_provider('facebook').token)
+  #end
   
   def password_required?
     #false

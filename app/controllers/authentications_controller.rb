@@ -8,7 +8,7 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
       flash[:notice] = "Logged in Successfully"
       sign_in_and_redirect User.find(authentication.user_id)
     elsif current_user
-      current_user.authentications.create!(:provider => omni['provider'], :uid => omni['uid'])
+      current_user.authentications.create!(:provider => omni['provider'], :uid => omni['uid'], :token => omni['credentials']['token'])
       flash[:notice] = "We successfully connected your social account!"
       sign_in_and_redirect current_user
     else
