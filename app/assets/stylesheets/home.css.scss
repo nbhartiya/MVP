@@ -190,7 +190,7 @@ ul.parsley-error-list{
 		-moz-box-sizing: border-box;    
 		box-sizing: border-box;
 		.copy-content{
-			background: rgba(0, 0, 0, 0.6);
+			background: rgba(0, 0, 0, 0.3);
 	    	padding: 30px;
 	    	-webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;    
@@ -206,6 +206,8 @@ ul.parsley-error-list{
 				color: white;
 				margin: 0;
 				text-align: center;
+  				text-shadow: 2px 2px 7px #777;
+
 			}
 			h2{
 				font-size: 50px;
@@ -214,6 +216,7 @@ ul.parsley-error-list{
 				color: white;
 				margin: 0;
 				text-align: center;
+  				text-shadow: 2px 2px 7px #777;
 			}
 			hr{
 				width: 65%;
@@ -227,6 +230,7 @@ ul.parsley-error-list{
 				color: white;
 				margin: 10px 0;
 				text-align: center;
+  				text-shadow: 2px 2px 7px #777;
 			}
 			p{
 			    text-align: center;

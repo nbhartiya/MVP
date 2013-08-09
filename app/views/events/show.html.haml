@@ -17,7 +17,7 @@
       %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#event-carousel"} ‹
       %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#event-carousel"} ›   
 
-    .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}'"}
+    .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='details'"}
       .event-registration.row
         .span5
           .event-summary
@@ -63,7 +63,7 @@
               seats left until the event tilts!
             .progress.progress-warning
               .bar{:style => "width: #{@event.percent_full}%"}
-            .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Grab Seats
+            .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Book It
             .seats{'ng-show'=> 'showSeats'}
               -if user_signed_in? == false
                 %a.btn.btn-warning.standalone-button{:"data-toggle" => "modal", :href=>"#sign_up"} Sign Up
