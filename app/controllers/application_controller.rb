@@ -4,15 +4,12 @@ class ApplicationController < ActionController::Base
   helper_method :completed_user?
 
   def after_sign_out_path_for(resource)
-    home_index_path
+    events_path
   end
 
   def after_sign_in_path_for(resource)
     if current_user.profile == nil
       current_user.profile=Profile.new
-    end
-    if current_user.chef == nil
-      current_user.chef = cookies[:chef]
     end
     if current_user.chef == false
       events_path
