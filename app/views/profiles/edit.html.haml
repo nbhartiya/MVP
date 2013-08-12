@@ -1,5 +1,8 @@
 .profiles{'ng-controller' => 'ProfileEditCtrl', 'ng-init' => "getProfile(#{@profile.id})"}
   .user-profile
+    -if @profile.covers.present? && @profile.user.chef == true
+      #remove-image.btn.edit{"ng-click" => "removeImages()"} remove image
+    #remove-image.btn{"ng-click" => "removeImages()"} remove image
     #profile-carousel.carousel.slide.hidden-phone
       .carousel-inner
         -if @profile.user.chef == true
@@ -13,10 +16,10 @@
                   = image_tag i.image
           -else
             %p This is a default cover photo. <br> Replace by uploading cover images!
-            .item.active
+            .item.active.default
               =image_tag "Food 9.jpg"
         -else
-          .item.active
+          .item.active.default
             =image_tag "Food 9.jpg"
     -if @profile.covers.count > 1
       %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#profile-carousel"} ‹

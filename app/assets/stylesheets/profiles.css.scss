@@ -19,9 +19,14 @@ $main_orange: rgb(255, 178, 35);
     	right: 5px;
 		position: absolute;
 		z-index: 50;
-		background: rgba(0, 0, 0, 0.8);
+		background: $main_orange;
 		border: none;
 		color: white;
+		top: 5px;
+		display: none;
+    }
+    .btn#remove-image.edit{
+    	display: inherit;
     }
 	#profile-carousel {
 		position: absolute;

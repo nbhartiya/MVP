@@ -153,6 +153,10 @@ $main_orange: rgb(255, 178, 35);
 		border: none;
 		color: white;
 		top: 105px;
+		display: none;
+    }
+    .btn#remove-image.edit{
+    	display: inherit;
     }
 	#campaign-carousel {
 		position: absolute;

@@ -1,8 +1,9 @@
 .campaigns{'ng-controller' => 'CampaignCreateCtrl'}
   .campaign-profile
+    #remove-image.btn{"ng-click" => "removeImages()"} remove image
     #campaign-carousel.carousel.slide.hidden-phone 
       .carousel-inner
-        .active.item
+        .active.item.default
           %p This is a default cover photo. <br> Replace by uploading images!
           =image_tag "Food 9.jpg"
     -#.btn#remove-image x
