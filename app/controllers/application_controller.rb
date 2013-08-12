@@ -9,7 +9,13 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if current_user.profile == nil
-      survey_path
+      current_user.profile=Profile.new
+    end
+    if current_user.chef == nil
+      current_user.chef = cookies[:chef]
+    end
+    if current_user.chef == false
+      events_path
     else
       edit_profile_path(current_user.profile)
     end
@@ -25,6 +31,11 @@ class ApplicationController < ActionController::Base
       current_user.completed = 'true'
     end
     #redirect_to "/users/#{current_user.id}/edit" if !current_user.completed
+  end
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to events_url, :notice => "You cannot edit an event or campaign you have not created."
+    #TODO Why doesn't this notice work?
   end
   
 end

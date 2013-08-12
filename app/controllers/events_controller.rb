@@ -1,11 +1,19 @@
 class EventsController < ApplicationController
   # GET /events
   # GET /events.json
+  load_and_authorize_resource
   skip_before_filter :authenticate_user!, :only => [:index, :show]
   
   def index
-    @events = Event.all
-
+    @events = Event.includes(:images, :guests)
+    #Shows only events in the future for now!
+    @events = @events.where("date > ?", Time.now)
+    if params[:q].present?
+      #.map(&:user_id) is a shortcut for .map{|u| u.user_id}
+      host_ids = Profile.includes(:user).where("biz_name iLike ?", "%#{params[:q]}%").map(&:user_id)
+      @events = @events.where("title ilike ? OR blurb iLike ? OR description iLike ? OR host_id in (?)", "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%", host_ids)   
+    end
+    @events = @events.order("date desc")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @events }

@@ -1,6 +1,9 @@
 class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
+
+  load_and_authorize_resource
+  
   def index
     @profiles = Profile.all
 

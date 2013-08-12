@@ -96,6 +96,7 @@ angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$l
 
   $scope.currentQuestion = 0
   $scope.answers = []
+  $scope.chef = $.cookie('chef')
 
   question = [
     text: "What type of event would you be most excited about?"

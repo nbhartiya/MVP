@@ -17,6 +17,9 @@
 #  host_id      :integer
 #  blurb        :text
 #  time         :time
+#  vegan        :boolean
+#  vegetarian   :boolean
+#  gluten_free  :boolean
 #
 
 class Event < ActiveRecord::Base
@@ -28,15 +31,24 @@ class Event < ActiveRecord::Base
   has_many :guests, :through => :tickets
   has_many :follows, :as => :followable, :dependent => :destroy
   
-  attr_accessible :other_info, :length, :cost, :date, :description, :menu_pdf, :menu_text, :people_limit, :title, :host_id, :images_attributes, :time, :neighborhood, :blurb
+  attr_accessible :other_info, :length, :cost, :date, :description, :menu_pdf, :menu_text, :people_limit, :title
+  attr_accessible :host_id, :images_attributes, :time, :neighborhood, :blurb, :vegan, :vegetarian, :gluten_free
 
   accepts_nested_attributes_for :images, :reject_if => lambda { |a| a[:image].blank? }, :allow_destroy => true
 
-  def seats_left()
-    return self.people_limit - self.guests.count
+  def seats_left
+    people_limit - guests_count
   end
 
-  def percent_full()
-    return (self.guests.count/self.people_limit.to_f)*100
+  def percent_full
+    (guests_count/people_limit.to_f)*100
+  end
+
+  def guests_count
+    if guests.loaded?
+      guests.size
+    else
+      guests.count
+    end
   end
 end

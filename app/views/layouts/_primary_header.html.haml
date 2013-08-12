@@ -1,4 +1,4 @@
-.container.nav-container
+.container.nav-container{ng: {controller: 'HeaderCtrl'}}
   .row.nav
     .span4.logo-and-location
       = link_to image_tag("logo_final.png", :border=>0), '/events', :class => "logo"
@@ -9,8 +9,8 @@
     .span8.nav-right
       %ul
         %li.pull-right.input-append
-          %input#appendedInputButton{:type => 'text', :placeholder => "Search Events or Businesses"}
-          %button.btn.search <i class = "icon-search"></i>
+          %input#appendedInputButton{:type => 'text', :placeholder => "Search Events or Businesses", 'ng-model'=>'searchQuery'}
+          %button.btn.search{'ng-click'=>'search(searchQuery)'} <i class = "icon-search"></i>
         -if user_signed_in? == false
           %li.pull-right#sign-up-header-link
             %ul.user-nav-control.pull-right
@@ -34,14 +34,16 @@
                 #{current_user.first_name} #{current_user.last_name}
                 %span.caret.header-caret
               %ul.dropdown-menu{"aria-labeledby" => "dLabel", :role => "menu"}
-                %li.dropitem
-                  %a{:href => "#", :tabindex => "-1"} Dashboard
+                -if current_user.profile.present?
+                  %li.dropitem
+                    %a{:href => "/profiles/#{current_user.profile.id}", :tabindex => "-1"} Dashboard
                 %li.dropitem
                   = link_to "Sign Out", destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?", :tabindex => "-1"
         %li.pull-right
           %a.campaign{:href =>"/campaigns/new", "data-toggle" => 'tooltip', :title => "Don't see your favorite business? Start a campaign to get them to host events on Simmr!", "data-placement"=>'right'}Start a Campaign
-        %li.pull-right
-          =link_to "Create an Event", new_event_path
+        -if user_signed_in? && current_user.chef?
+          %li.pull-right
+            =link_to "Create an Event", new_event_path
         %li.pull-right
           %a{:href =>"/events"}Browse Events
 

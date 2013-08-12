@@ -69,7 +69,7 @@
               .span4.offset1.step.browse
                 .step-description
                   %h1 browse
-                  %p We work with new and established food businesses to bring you experiences that are different from the typical restaurant visit. 
+                  %p We work with new and established food businesses to bring you events and experiences that are different from the typical restaurant visit. 
             .row.how-it-works-event-infographic
               .span4.offset3.step.register
                 .step-description
@@ -79,7 +79,7 @@
               .span4.offset1.step.tilt
                 .step-description
                   %h1 tilt
-                  %p Woohoo, party time! At this point, we charge your card, so all you have to show up and enjoy.
+                  %p Woohoo, party time! At this point, we charge your card, so all you have to do is show up and enjoy.
             .row.how-it-works-event-infographic
               .span4.offset2.step.return
                 .step-description
@@ -125,10 +125,9 @@
         %p.strong.sign-up-text
           Sign up with
           %p
-            -@chef_info = "1"
-            = render "shared/business_signup", :chef_info => @chef_info
+            = render "shared/business_signup"
       .modal-footer
-        %button.usersignup.btn.btn-warning Sign Up
+        %button.usersignup.bizbutton.btn.btn-warning Sign Up
 
   #sign_up_foodie.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
     .signup
@@ -141,10 +140,9 @@
         %p.strong.sign-up-text
           Sign up with
           %p
-            -@chef_info = "0"
-            = render "shared/foodie_signup", :chef_info => @chef_info
+            = render "shared/foodie_signup"
       .modal-footer
-        %button.usersignup.btn.btn-warning Sign Up
+        %button.usersignup.foodiebutton.btn.btn-warning Sign Up
 
   #sign_in.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
     .modal-header

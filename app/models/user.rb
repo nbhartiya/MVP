@@ -5,7 +5,6 @@
 #  id                     :integer          not null, primary key
 #  first_name             :string(255)
 #  last_name              :string(255)
-#  chef                   :boolean
 #  approved               :boolean          default(FALSE)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -20,6 +19,9 @@
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
 #  completed              :boolean          default(FALSE)
+#  chef                   :boolean
+#  points                 :text
+#  phone                  :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -44,18 +46,20 @@ class User < ActiveRecord::Base
   has_many :follows, :as => :followable, :dependent => :destroy
   
   before_create :confirmation_email
-  before_save :default_values
+  #before_create :chef_me
   
   serialize :points, Array
-
-  def default_values
-    self.chef ||= false
-    true
-  end
   
   def confirmation_email
     NotificationMailer.signup_email(self).deliver
   end
+
+  #def chef_me
+  #  binding.pry
+  #  if self.chef == nil
+  #    self.chef = cookies[:chef]
+  #  end
+  #end
   
   #ADD after_create thingie here! and the method to send email
   
@@ -74,9 +78,9 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :approved, :first_name, :last_name, :chef, :work_zip, :points
+  attr_accessible :approved, :first_name, :last_name, :chef, :work_zip, :points, :phone
   
-  def apply_omniauth(omni)
+  def apply_omniauth(omni, user_type)
     if omni['provider'] == 'facebook'
       self.email = omni['info']['email']
       self.first_name = omni['info']['first_name']
@@ -94,9 +98,12 @@ class User < ActiveRecord::Base
       fullname = omni['info']['name'].split(' ')
       self.first_name, self.last_name = fullname[0], fullname[1]
     end
+    self.chef = user_type
     authentications.build(:provider => omni['provider'],
-                          :uid => omni['uid'])
+                          :uid => omni['uid'],
+                          :token => omni['credentials']['token'])
   end
+
   
   def self.new_with_session(params, session)
     if session["devise.user_attributes"]
@@ -109,6 +116,10 @@ class User < ActiveRecord::Base
       super
     end
   end
+
+  #def facebook
+  #  @graph = Koala::Facebook::API.new(self.authentications.find_by_provider('facebook').token)
+  #end
   
   def password_required?
     #false

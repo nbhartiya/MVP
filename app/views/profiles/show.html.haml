@@ -20,7 +20,7 @@
             %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#profile-carousel"} ›   
     .container
       -if @profile.user.chef == false 
-        .row.user-overview{'ng-controller' => 'ProfileShowCtrl', 'ng-init' => "address1='#{@profile.location.address1}'; address2='#{@profile.location.address2}'; city = '#{@profile.location.city}'; state = '#{@profile.location.state}'; zipcode = '#{@profile.location.zipcode}'; appear='badges'"}
+        .row.user-overview{'ng-controller' => 'ProfileShowCtrl', 'ng-init' => "appear='badges'"}
           .span5.user-profile-overview
             %table
               %tr
