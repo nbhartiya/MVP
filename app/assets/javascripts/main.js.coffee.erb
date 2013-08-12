@@ -21,6 +21,8 @@ Simmr.directive "heart", ->
 
 Simmr.controller "HeartCtrl", ["$scope",  "$routeParams", "Follow", ($scope, $routeParams, Follow) ->
   $scope.follow = ->
+    $scope.follow=true
+    console.log($scope.follow)
     console.log($scope)
     console.log($scope.wah)
 ]
@@ -181,6 +183,8 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
     console.log eventImageUrl
     eventImageUrl = eventImageUrl.innerHTML
     eventImageUrl = eventImageUrl.substring(0, eventImageUrl.length-7)
+
+    #img.active -- getAttribute [src]
     #.substring(37)
     console.log eventImageUrl
     
