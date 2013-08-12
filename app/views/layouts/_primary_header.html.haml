@@ -18,9 +18,9 @@
                 %a{:href => "#", "data-toggle" => "dropdown"}
                   Sign Up  
                 %ul.dropdown-menu{"aria-labeledby" => "dLabel", :role => "menu"}
-                  %li.dropitem
+                  %li.dropitem.foodiesignup
                     = link_to "Foodie", "#sign_up_foodie", :"data-toggle" => "modal", :tabindex => "-1" 
-                  %li.dropitem
+                  %li.dropitem.bizsignup
                     = link_to "Business", "#sign_up_business", :"data-toggle" => "modal", :tabindex => "-1" 
           -#
             %li.pull-right#sign-up-header-link
@@ -47,6 +47,7 @@
         %li.pull-right
           %a{:href =>"/events"}Browse Events
 
+  -#SAME CODE IN HOME#INDEX, be sure to copy edits!
   #sign_up_business.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
     .modal-header
       %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
@@ -57,11 +58,11 @@
       %p.strong.sign-up-text
         Sign up with
         %p
-          -@chef_info = "1"
-          = render "shared/business_signup", :chef_info => @chef_info
+          = render "shared/business_signup"
     .modal-footer
-      %button.usersignup.btn.btn-warning Sign Up
+      %button.usersignup.bizbutton.btn.btn-warning Sign Up
 
+  -#SAME CODE IN HOME#INDEX, be sure to copy edits!
   #sign_up_foodie.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
     .modal-header
       %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
@@ -72,10 +73,9 @@
       %p.strong.sign-up-text
         Sign up with
         %p
-          -@chef_info = "0"
-          = render "shared/foodie_signup", :chef_info => @chef_info
+          = render "shared/foodie_signup"
     .modal-footer
-      %button.usersignup.btn.btn-warning Sign Up
+      %button.usersignup.foodiebutton.btn.btn-warning Sign Up
 
   #sign_in.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
     .modal-header

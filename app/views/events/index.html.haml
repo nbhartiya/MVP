@@ -8,9 +8,12 @@
       .container
         .row.events-row-content
           .span12.events-index-content
-            -if current_user.chef == true
-              %p Check out other businesses we're hosting events with to get some ideas!
-            - if current_user.chef == false
+            -if current_user
+              -if current_user.chef == true
+                %p Check out other businesses we're hosting events with to get some ideas!
+              - if current_user.chef == false
+                %p Pick an event to go to!
+            -else
               %p Pick an event to go to!
     .container
       -all_events = @events

@@ -59,7 +59,6 @@ $("#sign_in").on("show", function () {
 $("input").attr("autocomplete", "off");
 $("select").attr("autocomplete", "off");
 
-
 // bootstrap tooltips 
 
 $('.city').tooltip();

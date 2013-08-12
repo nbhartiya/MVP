@@ -1,5 +1,5 @@
 $(".heart").click ->
-  $(this).toggleClass "orange" 
+  $(this).toggleClass "orange"
 
 # states and neighborhood and time jsons
 
