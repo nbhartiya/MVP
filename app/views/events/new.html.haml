@@ -1,13 +1,14 @@
 .events{'ng-controller' => 'EventCreateCtrl'}
   .event-profile
+    #remove-image.btn{"ng-click" => "removeImages()"} remove image
     #event-carousel.carousel.slide.hidden-phone           
       .carousel-inner
-        .active.item
+        .active.item.default
           %p This is a default cover photo. <br> Replace by uploading images!
           =image_tag "Food 26.jpg"
     .container
       .event-registration.row
-        .span5.event-create
+        .span5.event-create{'ng-hide' => 'created'}
           %form.event-create-form.clearfix{'ng-init'=> "event.host_id=#{current_user.id}", :name => "event_create"}
             
             %input#event-title{'ng-model' => 'event.title', :type=>"text", :placeholder =>"Event Title", :name => "event_title", :required => "required", 'ng-class' => "{error: event_create.event_title.$invalid}", :maxlength => "60"}
@@ -29,6 +30,7 @@
             %button.clearfix.btn#event-images-button{'ng-click'=> 'uploadImages()'} Upload Images
             %button.clearfix.btn#event-menu-button{'ng-click' => 'uploadMenu()'} Upload Menu
             .menu 
+            %a#remove{'ng-click' => 'removeMenu()'} delete
             %hr
 
             #event-date-time 
@@ -95,7 +97,7 @@
                     ${{event.cost}}
                 .left_corner
                 .right_corner
-            .preview-label{'ng-click' => 'removeImages()'} this is a preview
+            .preview-label this is a preview
             .event-summary-top
               %h1#default-text{'ng-show'=>'event.title=="" || event.title==nil'}
                 Event Title

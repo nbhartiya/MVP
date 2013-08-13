@@ -1,5 +1,8 @@
 .campaigns{'ng-controller' => 'CampaignEditCtrl', 'ng-init' => "getCampaign(#{@campaign.id})"}
   .campaign-profile
+    -if @campaign.images.present?
+      #remove-image.btn.edit{"ng-click" => "removeImages()"} remove image
+    #remove-image.btn{"ng-click" => "removeImages()"} remove image
     #campaign-carousel.carousel.slide.hidden-phone 
       .carousel-inner
         -if @campaign.images.present?
@@ -17,7 +20,6 @@
     -if @campaign.images.count > 1
       %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#campaign-carousel"} ‹
       %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#campaign-carousel"} ›
-
 
     .container
       .campaign-registration.row

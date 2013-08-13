@@ -168,6 +168,10 @@ $main_orange: rgb(255, 178, 35);
 		border: none;
 		color: white;
 		top: 5px;
+		display: none;
+    }
+    .btn#remove-image.edit{
+    	display: inherit;
     }
 	#event-carousel {
 		position: absolute;
@@ -483,7 +487,7 @@ $main_orange: rgb(255, 178, 35);
 				font-weight: 300;
 			}
 			.standalone-button{
-				width: 49%;
+				width: 49.5%;
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box; 
@@ -565,6 +569,18 @@ $main_orange: rgb(255, 178, 35);
 		.menu{
 			font-weight: 100;
 			margin: 5px 0;
+			display: inline;
+		}
+		a#remove{
+			text-decoration: none;
+			display: none;
+			padding-left: 10px;
+			cursor: select;
+			color: $main_orange;
+			font-weight: 100;
+		}
+		a#remove.edit{
+			display: inherit;
 		}
 		.host-followers{
 			.nav{

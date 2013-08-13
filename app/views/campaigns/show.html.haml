@@ -48,10 +48,11 @@
               .progress.progress-warning.clearfix
                 .bar{:style => "width: 80%"}
             -if user_signed_in? == false
-              %a.btn.btn-warning.standalone-button.clearfix{:"data-toggle" => "modal", :href=>"#sign_up"} Sign Up
-              .btn.btn-warning.standalone-button.clearfix{:"data-toggle" =>"modal", :href=>"#sign_in"} Sign In
+              .btn.btn-warning.standalone-button{:"data-toggle" => "modal", :href=>"#sign_up_foodie"} Sign Up
+              .btn.btn-warning.standalone-button{:"data-toggle" =>"modal", :href=>"#sign_in"} Sign In
             -if user_signed_in?
               .btn.btn-warning.campaign-join-button.clearfix{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'} Join
+              .btn.campaign-join-button.clearfix{'ng-controller'=>'HeartCtrl', 'ng-show' => 'follow'} Undo
             %table.campaign-social-stats.clearfix
               %tr
                 %td{'ng-click'=>'appear = "followers"'}

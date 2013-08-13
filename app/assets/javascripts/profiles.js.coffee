@@ -6,6 +6,12 @@ angular.module('Simmr').factory "Profile", ["railsResourceFactory", (railsResour
 
 $(".campaign-card-lead-name").tooltip()
 
+$("#profile-images-button").mouseenter ->
+  $("td.profile-photo").addClass('highlight')
+
+$("#profile-images-button").mouseleave ->
+  $("td.profile-photo").removeClass('highlight')
+
 $(".user-card-name").tooltip()
 
 $("#why-yelp").tooltip()
@@ -44,26 +50,53 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
     , (InkBlobs) ->
       console.log JSON.stringify(InkBlobs)
 
+      $('.default').remove()
+      $('.carousel-inner').empty()
+      $scope.eventImageUrls = []
+
       i=0
       while i< Object.keys(InkBlobs).length
-        $scope.image="https://s3-us-west-1.amazonaws.com/simmrimages/#{InkBlobs[i].key}"
+        $scope.image="#{InkBlobs[i].url}"
+        console.log $scope.image
+        $scope.campaignImageUrls.push($scope.image)
+        if i == 0
+          $('.campaigns .carousel-inner').append("<div class = 'item active'><img src = #{$scope.campaignImageUrls[i]}></div>")
+        else 
+          $('.campaigns .carousel-inner').append("<div class = 'item'><img src = #{$scope.campaignImageUrls[i]}></div>")
+        i++
+      $('#remove-image').css('display', 'inherit')
+      if Object.keys(InkBlobs).length>1
+        $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#campaign-carousel'> › </a>")
+
+
+  $scope.uploadImages = ->
+    filepicker.pickAndStore
+      mimetypes: ["image/*", "text/plain"]
+      services: ["COMPUTER", "FACEBOOK", "GMAIL", "INSTAGRAM"]
+      multiple: true
+    ,
+      location: "S3"
+      access: "public"
+    , (InkBlobs) ->
+      console.log JSON.stringify(InkBlobs)
+
+      $('.default').remove()
+      $('.carousel-inner').empty()
+      $scope.imageUrls = []
+
+      i=0
+      while i< Object.keys(InkBlobs).length
+        $scope.image="#{InkBlobs[i].url}"
         console.log $scope.image
         $scope.imageUrls.push($scope.image)
-        $('.active.item').remove()
-        $('.carousel-inner').empty()
+
         if i == 0
-          filepicker.read InkBlobs[i].url,
-            base64encode: true
-          , (imgdata) ->
-            $('.profiles .carousel-inner').append("<div class = 'item active'><img src = 'data:image/*;base64,#{imgdata}'></div>")
-            $('.profiles .user-profile .carousel-indicators').append("<li class = 'active' data-slide-to '0' data-target = 'profile-carousel'></li>")
+          $('.profiles .carousel-inner').append("<div class = 'item active'><img src = #{$scope.imageUrls[i]}></div>")
         else
-          filepicker.read InkBlobs[i].url,
-            base64encode: true
-          , (imgdata) ->
-            $('.profiles .carousel-inner').append("<div class = 'item'><img src = 'data:image/*;base64,#{imgdata}'></div>")
-            $('.profiles .user-profile .carousel-indicators').append("<li data-slide-to '0' data-target = 'profile-carousel'></li>")
+          $('.profiles .carousel-inner').append("<div class = 'item'><img src = #{$scope.imageUrls[i]}></div>")
         i++
+      $('#remove-image').css('display', 'inherit')
+      if Object.keys(InkBlobs).length>1
         $('.carousel-inner').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#profile-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#profile-carousel'> > </a>")
   
   $scope.uploadProfileImage = ->
@@ -77,12 +110,23 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
     , (InkBlob) ->
       console.log JSON.stringify(InkBlob)
 
-      $scope.image="https://s3-us-west-1.amazonaws.com/simmrimages/#{InkBlob[0].key}"
+      $scope.image="#{InkBlob[0].url}"
       console.log $scope.image
       $scope.avatar.push($scope.image)
       $('td.profile-photo').empty()
-      filepicker.read InkBlob[0].url, base64encode: true, (imgdata) ->
-        $('td.profile-photo').append("<img src = 'data:image/*;base64,#{imgdata}'></div>")
+      $('td.profile-photo').append("<img src = '#{$scope.avatar}'></div>")
+
+  $scope.removeImages = ->
+    currentImage = $(".active img").attr('src')
+    $('.item').remove(":contains('#{currentImage}')")
+    $('.carousel-inner div:first-child').append('.active')
+    i = 0
+    while i < $scope.imageUrls.length
+      if currentImage == $scope.imageUrls[i]
+        $scope.imageUrls.splice(i, 1)
+      i++
+    if $scope.imageUrls.length <= 1
+      $('.carousel-control').remove()
 ]
 
 
@@ -243,7 +287,7 @@ angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$l
     , (InkBlob) ->
       console.log JSON.stringify(InkBlob)
 
-      $scope.image="https://s3-us-west-1.amazonaws.com/simmrimages/#{InkBlob[0].key}"
+      $scope.image="#{InkBlob[0].url}"
       console.log $scope.image
       $scope.coverImageUrl.push($scope.image)
       $('.cover-image-row .default').remove()

@@ -1,5 +1,8 @@
 .events{'ng-controller' => 'EventEditCtrl', 'ng-init' => "getEvent(#{@event.id})"}
-  .event-profile
+  .event-profile{'ng-init' => 'eventMenu = #{@event.menu_pdf}; eventImages = #{@event.eventImageUrls}'}
+    -if @event.images.present?
+      #remove-image.btn.edit{"ng-click" => "removeImages()"} remove image
+    #remove-image.btn{"ng-click" => "removeImages()"} remove image
     #event-carousel.carousel.slide.hidden-phone       
       .carousel-inner
         -if @event.images.present?
@@ -43,7 +46,9 @@
 
             %button.clearfix.btn#event-menu-button{'ng-click' => 'uploadMenu()'} Upload Menu
             .menu
-            
+            -if @event.menu_pdf.present?
+              %a#remove.edit{'ng-click' => 'removeMenu()'} delete
+            %a#remove{'ng-click' => 'removeMenu()'} delete
             %hr
 
             #event-date-time 
