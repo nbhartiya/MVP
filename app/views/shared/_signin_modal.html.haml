@@ -1,0 +1,13 @@
+#sign_in.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h3#myModalLabel Log In
+  .modal-body
+    %h3 Experiences recommended by your friends.
+    %p See what events friends have attended and their thoughts. We'll never share your info or post without your permission. 
+    %p.strong.sign-up-text
+      Log in with
+      %p
+        = render "shared/login"
+  .modal-footer
+    %button.userlogin.btn.btn-warning{'ng-disabled' => 'new_session.$invalid'} Log In

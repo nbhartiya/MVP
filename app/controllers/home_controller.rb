@@ -22,7 +22,6 @@ class HomeController < ApplicationController
   end
 
   def meow
-    binding.pry
   end
 
 end

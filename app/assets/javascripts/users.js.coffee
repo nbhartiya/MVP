@@ -22,20 +22,38 @@ angular.module('Simmr').controller "UserRegisterCtrl", ["$scope",  "$routeParams
 ]
 
 $(document).on "click", ".foodiesignup", ->
-  date = new Date()
-  minutes = 5
-  date.setTime date.getTime() + (minutes * 60 * 1000)
   #setting session cookie because of oAuth redirect
   $.cookie 'chef', false, { path: '/' }
   console.log("saved foodie cookie")
+  if Simmr.scopes
+    if Simmr.scopes.home
+      console.log("In Home")
+      console.log Simmr.scopes.home
+      $.cookie 'after_sign_in_path_foodie', '/events', { path: '/' }
+    if Simmr.scopes.event
+      console.log("In Event")
+      console.log Simmr.scopes.event.eventId
+      console.log "event_path(#{Simmr.scopes.event.eventId})"
+      $.cookie 'after_sign_in_path_foodie', "/events/#{Simmr.scopes.event.eventId}/?grabSeats", { path: '/' }
+  else
+    $.cookie 'after_sign_in_path_foodie', nil, { path: '/' }
 
 $(document).on "click", ".bizsignup", ->
-  date = new Date()
-  minutes = 5
-  date.setTime date.getTime() + (minutes * 60 * 1000)
   #setting session cookie because of oAuth redirect
   $.cookie 'chef', true, { path: '/' }
   console.log("saved business cookie")
+  if Simmr.scopes
+    if Simmr.scopes.home
+      console.log("In Home")
+      console.log Simmr.scopes.home
+      $.cookie 'after_sign_in_path_biz', "/edit_my_profile", { path: '/' }
+    if Simmr.scopes.event
+      console.log("In Event")
+      console.log Simmr.scopes.event.eventId
+      $.cookie 'after_sign_in_path_biz', "/events/#{Simmr.scopes.event.eventId}", { path: '/' }
+  else
+    $.cookie 'after_sign_in_path_biz', nil, { path: '/' }
+
 
 $(document).on "click", ".usersignup.bizbutton", ->
   $("#new_user_biz").submit()

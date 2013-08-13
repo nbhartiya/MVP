@@ -43,6 +43,9 @@ MVP::Application.routes.draw do
   resources :campaigns
   resources :profiles
 
+  match 'my_profile' => 'profiles#show'
+  match 'edit_my_profile' => 'profiles#edit'
+
   resources :events do
     resources :tickets do
       resources :guests

@@ -64,6 +64,7 @@
             .progress.progress-warning
               .bar{:style => "width: #{@event.percent_full}%"}
             .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Book It
+            -#=render 'shared/signup_modals', :modal_class => '.eventshowsignup'
             .seats{'ng-show'=> 'showSeats'}
               -if user_signed_in? == false
                 %a.btn.btn-warning.standalone-button.foodiesignup{:"data-toggle" => "modal", :href=>"#sign_up_foodie"} Sign Up
@@ -194,6 +195,7 @@
             %hr
             %h2 Who all are coming?
             %form.guests{:name => "guest_registration", 'ng-repeat' => 'guest in guests'}
+              -#Make first email say "YOUR EMAIL" not guest email, send confirmation email, have note on every event someone has registered for that they've registered and should have gotten an email.
               %input.guest-name{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.name', :type=>'text', :placeholder =>"Guest Full Name", :required => "required", :name => "guest", 'ng-class' => "{error: guest_registration.guest.$invalid}"}
               %input.guest-email{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :required => "required", :name => "guest_email", 'ng-class' => "{error: guest_registration.guest_email.$invalid}"}
               .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.email'} Please enter a valid email

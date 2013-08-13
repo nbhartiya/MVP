@@ -23,6 +23,7 @@ $(".heart").click ->
 
 angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams", "$location", "Profile", ($scope, $routeParams, $location, Profile) ->
   $scope.edit = 1
+  $scope.appear = 'edit'
 
   $scope.getProfile = (profileId) ->
     console.log Profile

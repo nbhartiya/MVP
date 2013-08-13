@@ -1,5 +1,3 @@
-Simmr = angular.module('Simmr', ['uiSlider', 'ngResource', 'rails', 'ui', 'ui.bootstrap'])
-
 window.WAH ||= {}
 WAH.controllers ||= {}
 
@@ -47,7 +45,9 @@ Simmr.controller "HeaderCtrl", ["$scope",  "$routeParams", ($scope, $routeParams
     window.location= "/events?q=#{searchQuery}"
 ]
 
-Simmr.controller "HomeIndexCtrl", ["$scope",  "$routeParams", ($scope, $routeParams) ->
+Simmr.controller "HomeIndexCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
+  Simmr.scopes ||= {}  
+  Simmr.scopes.home = $scope
   $scope.appear = ''
   if location.search == '?foodie=true'
     $(".foodiesignup").click()
@@ -56,6 +56,12 @@ Simmr.controller "HomeIndexCtrl", ["$scope",  "$routeParams", ($scope, $routePar
 ]
 
 Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "Charge", "Event", ($scope, $routeParams, $location, Charge, Event) ->
+  Simmr.scopes ||= {}  
+  Simmr.scopes.event = $scope
+
+  if location.search == '?grabSeats'
+    $scope.showSeats = true
+
   $scope.guests = []
   $scope.event = []
 

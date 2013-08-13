@@ -16,8 +16,11 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
-    @profile = Profile.find(params[:id])
-
+    if params[:id].present?
+      @profile = Profile.find(params[:id])
+    else
+      @profile = Profile.find(current_user.profile.id)
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @profile }
@@ -37,7 +40,11 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1/edit
   def edit
-    @profile = Profile.find(params[:id])
+    if params[:id].present?
+      @profile = Profile.find(params[:id])
+    else
+      @profile = Profile.find(current_user.profile.id)
+    end
   end
 
   # POST /profiles

@@ -311,10 +311,8 @@
                       %td
                         %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
 
-
-
       -else
-        .row.user-overview{'ng-controller' => 'ProfileShowCtrl', 'ng-init' => "address1='#{@profile.location.address1}'; address2='#{@profile.location.address2}'; city = '#{@profile.location.city}'; state = '#{@profile.location.state}'; zipcode = '#{@profile.location.zipcode}'; appear='news'"}
+        .row.user-overview{'ng-controller' => 'ProfileShowCtrl', 'ng-init' => "appear='news'"}
           .span5.user-profile-overview
             %table
               %tr

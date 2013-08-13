@@ -46,50 +46,9 @@
             =link_to "Create an Event", new_event_path
         %li.pull-right
           %a{:href =>"/events"}Browse Events
-
-  -#SAME CODE IN HOME#INDEX, be sure to copy edits!
-  #sign_up_business.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-    .modal-header
-      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-      %h3#myModalLabel Sign Up for simmr
-    .modal-body
-      %h3 Build your client base through memorable events.
-      %p Connect your business's facebook account. We'll never share your info or post without your permission. 
-      %p.strong.sign-up-text
-        Sign up with
-        %p
-          = render "shared/business_signup"
-    .modal-footer
-      %button.usersignup.bizbutton.btn.btn-warning Sign Up
-
-  -#SAME CODE IN HOME#INDEX, be sure to copy edits!
-  #sign_up_foodie.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-    .modal-header
-      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-      %h3#myModalLabel Sign Up for simmr
-    .modal-body
-      %h3 Experiences recommended by your friends.
-      %p See what events friends have attended and their thoughts. We'll never share your info or post without your permission. 
-      %p.strong.sign-up-text
-        Sign up with
-        %p
-          = render "shared/foodie_signup"
-    .modal-footer
-      %button.usersignup.foodiebutton.btn.btn-warning Sign Up
-
-  #sign_in.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-    .modal-header
-      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-      %h3#myModalLabel Log In
-    .modal-body
-      %h3 Experiences recommended by your friends.
-      %p See what events friends have attended and their thoughts. We'll never share your info or post without your permission. 
-      %p.strong.sign-up-text
-        Log in with
-        %p
-          = render "shared/login"
-    .modal-footer
-      %button.userlogin.btn.btn-warning{'ng-disabled' => 'new_session.$invalid'} Log In
+          
+  = render 'shared/signup_modals'
+  = render 'shared/signin_modal'
 
 -#
   %a{:href => "#", "data-toggle" => "dropdown"}

@@ -22,10 +22,10 @@ class AuthenticationsController < Devise::OmniauthCallbacksController
         user.profile=Profile.new
         sign_in User.find(user.id)
         if user.chef?
-          redirect_to edit_profile_path(current_user.profile)
+          redirect_to '/edit_my_profile'
         else
           if user.email == ""
-            redirect_to edit_profile_path(current_user.profile)
+            redirect_to '/edit_my_profile'
           else
             redirect_to events_path
           end
