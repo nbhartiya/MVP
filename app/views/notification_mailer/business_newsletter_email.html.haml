@@ -7,17 +7,14 @@
   %table.welcome
     %tr
       %td.welcome-copy
-        %p <em> Psst, you're in! </em>
-        %p
-          Life is too short to not make every day amazing. We curate unique experiences at the restaurants and bars you love, so you can be more than a customer.
-
-        %p Come right this way.
+        %p intro copy/update for the week (2-3 sentences) - can be article or tip
+        %p there are more relevant stats we can put here - new followers? money made on simmr so far? number of other engagement metrics so far?
     %tr
       %td.upcoming-events{:align => 'center'}
-        %button.btn.btn-warning See Upcoming Events
+        %button.btn.btn-warning Check Your Events
   %table.single-event
     %tr
-      %td{:align => 'center'}
+      %td{:align => 'center', :colspan => '3'}
         -#
           -if event.images.present?
             =link_to (image_tag event.images.first.image), event_path(event)
@@ -26,28 +23,40 @@
     %tr.event-info
       %td
         Event Title
+      %td
+        XX seats sold
+      %td
+        $XX in revenue
   %table.single-event
     %tr
-      %td{:align => 'center'}
+      %td{:align => 'center', :colspan => '3'}
         -#
           -if event.images.present?
             =link_to (image_tag event.images.first.image), event_path(event)
           -else
-        =link_to image_tag("Food 1.jpg")
+        =link_to image_tag("Food 26.jpg")
     %tr.event-info
       %td
         Event Title
+      %td
+        XX seats sold
+      %td
+        $XX in revenue
   %table.single-event
     %tr
-      %td{:align => 'center'}
+      %td{:align => 'center', :colspan => '3'}
         -#
           -if event.images.present?
             =link_to (image_tag event.images.first.image), event_path(event)
           -else
-        =link_to image_tag("Food 4.jpg")
+        =link_to image_tag("Food 26.jpg")
     %tr.event-info
       %td
         Event Title
+      %td
+        XX seats sold
+      %td
+        $XX in revenue
   %table.footer
     %tr.social-media
       %td{:align => 'center'}

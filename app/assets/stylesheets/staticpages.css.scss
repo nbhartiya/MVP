@@ -279,13 +279,14 @@ body.staticpages {
 	}
 	.welcome-copy{
 		padding: 1em 6em;
+		text-align: center;
 	}
 	p{
 		line-height: 1.5em;
 		color: white;
 		font-weight: 100;
 	}
-	.upcoming-events{
+	.upcoming-events, .business-actions, .change-pass{
 		padding: 1em 0;
 		button{
 			width: 35%;
@@ -294,7 +295,7 @@ body.staticpages {
 			font-weight: 100;
 		}
 	}
-	.event-info{
+	.event-info, .campaign-info{
 		color: white;
 		height: 5em;
 		background: black;
@@ -329,5 +330,16 @@ body.staticpages {
 	.teaser{
 		text-align: center;
 		padding-top: 3em;
+	}
+	.testimonial blockquote, .case-study blockquote{
+		font-size: 14px;
+		font-weight: 100;
+		line-height: 1.5em;
+		color: white;
+		padding: 1em 6em;
+		border-left: none;
+	}
+	.social-media{
+		height: 6em;
 	}
 }

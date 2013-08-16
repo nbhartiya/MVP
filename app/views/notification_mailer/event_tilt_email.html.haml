@@ -1,0 +1,32 @@
+.email
+  %table
+    %tr
+      %td.logo{:align => 'center'}
+        %a{:href => 'http://www.simmr.co'}
+          =image_tag "beta_logo_final.png"
+  %table.welcome
+    %tr
+      %td.welcome-copy
+        %p Your event is on! You and XX others are going to have the time of your lives at NAME OF EVENT. 
+        %p We'll charge your credit card now. Just show up at the door day of and give your name!
+    %tr
+      %td.business-actions{:align => 'center'}
+        %button.btn.btn-warning View Event Details
+  %table.single-event
+    %tr
+      %td{:align => 'center'}
+        -#
+          -if event.images.present?
+            =link_to (image_tag event.images.first.image), event_path(event)
+          -else
+        =link_to image_tag("Food 26.jpg")
+    %tr.event-info
+      %td
+        Event Title
+
+  %table.footer
+    %tr.social-media
+      %td{:align => 'center'}
+        %a.sb.facebook.circle.no-border.no-shadow{:href => "http://www.facebook.com/simmrco"}
+      %td{:align => 'center'}
+        %a.sb.twitter.circle.no-border.no-shadow{:href => "http://www.twitter.com/simmrco"}
