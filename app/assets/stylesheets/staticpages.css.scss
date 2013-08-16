@@ -314,10 +314,16 @@ body.staticpages {
 		margin: 0 auto;
 	}
 	.unsubscribe{
-		td{
+		td, a, a:visited, a:active{
 			padding-top: 1em;
 			text-align: center;
 			font-size: 12px;
+			color: white;
+		}
+		a:hover{
+			text-decoration: none;
+			color: darken(white, 10%);
+			cursor: pointer;
 		}
 	}
 	.teaser{
