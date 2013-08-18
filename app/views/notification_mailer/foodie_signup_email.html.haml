@@ -1,0 +1,56 @@
+.email
+  %table
+    %tr
+      %td.logo{:align => 'center'}
+        %a{:href => 'http://www.simmr.co'}
+          =image_tag "beta_logo_final.png"
+  %table.welcome
+    %tr
+      %td.welcome-copy
+        %p <em> Psst, you're in! </em>
+        %p
+          Life is too short to not make every day amazing. We curate unique experiences at the restaurants and bars you love, so you can be more than a customer.
+
+        %p Come right this way.
+    %tr
+      %td.upcoming-events{:align => 'center'}
+        %button.btn.btn-warning See Upcoming Events
+  %table.single-event
+    %tr
+      %td{:align => 'center'}
+        -#
+          -if event.images.present?
+            =link_to (image_tag event.images.first.image), event_path(event)
+          -else
+        =link_to image_tag("Food 26.jpg")
+    %tr.event-info
+      %td
+        Event Title
+  %table.single-event
+    %tr
+      %td{:align => 'center'}
+        -#
+          -if event.images.present?
+            =link_to (image_tag event.images.first.image), event_path(event)
+          -else
+        =link_to image_tag("Food 1.jpg")
+    %tr.event-info
+      %td
+        Event Title
+  %table.single-event
+    %tr
+      %td{:align => 'center'}
+        -#
+          -if event.images.present?
+            =link_to (image_tag event.images.first.image), event_path(event)
+          -else
+        =link_to image_tag("Food 4.jpg")
+    %tr.event-info
+      %td
+        Event Title
+  %table.footer
+    %tr.social-media
+      %td{:align => 'center'}
+        %a.sb.facebook.circle.no-border.no-shadow{:href => "http://www.facebook.com/simmrco"}
+      %td{:align => 'center'}
+        %a.sb.twitter.circle.no-border.no-shadow{:href => "http://www.twitter.com/simmrco"}

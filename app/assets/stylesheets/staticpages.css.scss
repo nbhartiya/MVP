@@ -245,3 +245,118 @@ body.staticpages {
 		transform: rotate(30deg);
 	}
 }
+
+// email styling
+
+.display{
+		text-align: center;
+	}
+
+.beta{
+	width: 100%;
+	margin: 0;
+	.single-event{
+		width: 55%;
+	}
+	.teaser{
+		font-size: 16px;
+	}
+}
+
+.email{
+	-webkit-box-shadow: 0px 0px 4px 0px #000;
+    box-shadow: 0px 0px 4px 0px #000;
+	width: 70%;
+	margin: 10px auto;
+	.single-event{
+		width: 70%;
+	}
+}
+
+.email, .beta{
+	background-image: url(dark_wood.png);
+	table{
+		width: 100%;
+	}
+	a, a:visited, a:active{
+		color: $main_orange;
+		text-decoration: none;
+	}
+	a:hover{
+		color: darken($main_orange, 10%);
+		text-decoration: none;
+	}
+	.logo{
+		padding: 3em 0;
+		img{
+			width: 25%;
+		}
+	}
+	.welcome-copy, .copy{
+		padding: 1em 6em;
+		text-align: center;
+	}
+	p{
+		line-height: 1.5em;
+		color: white;
+		font-weight: 100;
+	}
+	.upcoming-events, .business-actions, .change-pass{
+		padding: 1em 0;
+		button{
+			width: 35%;
+			height: 2.5em;
+			font-size: 24px;
+			font-weight: 100;
+		}
+	}
+	.event-info, .campaign-info{
+		color: white;
+		height: 5em;
+		background: black;
+		
+		td{
+			font-size: 20px;
+			font-weight: 100;
+			padding-left: 2em;
+		}
+	}
+	.single-event{
+		margin: 3em auto;
+	}
+	.footer{
+		width: 10%;
+		margin: 0 auto;
+	}
+	.unsubscribe{
+		td, a, a:visited, a:active{
+			padding-top: 1em;
+			text-align: center;
+			font-size: 12px;
+			color: white;
+		}
+		a:hover{
+			text-decoration: none;
+			color: darken(white, 10%);
+			cursor: pointer;
+		}
+	}
+	.teaser{
+		text-align: center;
+		padding-top: 3em;
+	}
+	.testimonial blockquote, .case-study blockquote{
+		font-size: 14px;
+		font-weight: 100;
+		line-height: 1.5em;
+		color: white;
+		padding: 1em 6em;
+		border-left: none;
+	}
+	.social-media{
+		height: 6em;
+	}
+	.copy{
+		font-size: 16px;
+	}
+}
