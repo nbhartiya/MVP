@@ -24,7 +24,7 @@
 
 class Event < ActiveRecord::Base
   
-  has_one :location
+  has_one :location, :dependent => :destroy
   has_many :images, :as => :imageable, :dependent => :destroy
   belongs_to :host, :class_name => "User", :foreign_key => "host_id"
   has_many :tickets

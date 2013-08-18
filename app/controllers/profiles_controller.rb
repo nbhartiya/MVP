@@ -41,6 +41,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1/edit
   def edit
     if params[:id].present?
+      #how to add includes here?
       @profile = Profile.find(params[:id])
     else
       @profile = Profile.find(current_user.profile.id)

@@ -542,9 +542,9 @@ $(".event-card-host-name").tooltip()
 
 $("#event-carousel").carousel interval: false
 
-$("#remove-image").click ->
-  $(".active.item").remove()
-  $(".item:first-child").addClass "active"
+#$("#remove-image").click ->
+#  $(".active.item").remove()
+#  $(".item:first-child").addClass "active"
 
 $(document).on 'click', '.points', (e) ->
   e.preventDefault()

@@ -32,14 +32,23 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
   $scope.appear = 'edit'
 
   $scope.getProfile = (profileId) ->
-    console.log Profile
     Profile.get(id: profileId).then (result) ->
       $scope.profile = result
 
-  $scope.imageUrls = []
+  $scope.editProfile = (profile) ->
+    console.log "Editing Profile"
+    if $scope.profileImageUrls?
+      profile.profileImageUrls=$scope.profileImageUrls
+    if $scope.avatar?
+      profile.avatar=$scope.avatar
+    new Profile(profile).update().then (data) =>
+      window.a=data
+      $scope.event=data
+
+  $scope.profileimageUrls = []
   $scope.avatar = []
 
-  $scope.uploadImages = ->
+  $scope.uploadProfileImages = ->
     filepicker.pickAndStore
       mimetypes: ["image/*", "text/plain"]
       services: ["COMPUTER", "FACEBOOK", "GMAIL", "INSTAGRAM"]
@@ -52,54 +61,23 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
 
       $('.default').remove()
       $('.carousel-inner').empty()
-      $scope.eventImageUrls = []
+      $scope.profileImageUrls = []
 
       i=0
       while i< Object.keys(InkBlobs).length
         $scope.image="#{InkBlobs[i].url}"
         console.log $scope.image
-        $scope.campaignImageUrls.push($scope.image)
+        $scope.profileImageUrls.push($scope.image)
         if i == 0
-          $('.campaigns .carousel-inner').append("<div class = 'item active'><img src = #{$scope.campaignImageUrls[i]}></div>")
+          $('.profiles .carousel-inner').append("<div class = 'item active'><img src = #{$scope.profileImageUrls[i]}></div>")
         else 
-          $('.campaigns .carousel-inner').append("<div class = 'item'><img src = #{$scope.campaignImageUrls[i]}></div>")
+          $('.profiles .carousel-inner').append("<div class = 'item'><img src = #{$scope.profileImageUrls[i]}></div>")
         i++
       $('#remove-image').css('display', 'inherit')
       if Object.keys(InkBlobs).length>1
-        $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#campaign-carousel'> › </a>")
-
-
-  $scope.uploadImages = ->
-    filepicker.pickAndStore
-      mimetypes: ["image/*", "text/plain"]
-      services: ["COMPUTER", "FACEBOOK", "GMAIL", "INSTAGRAM"]
-      multiple: true
-    ,
-      location: "S3"
-      access: "public"
-    , (InkBlobs) ->
-      console.log JSON.stringify(InkBlobs)
-
-      $('.default').remove()
-      $('.carousel-inner').empty()
-      $scope.imageUrls = []
-
-      i=0
-      while i< Object.keys(InkBlobs).length
-        $scope.image="#{InkBlobs[i].url}"
-        console.log $scope.image
-        $scope.imageUrls.push($scope.image)
-
-        if i == 0
-          $('.profiles .carousel-inner').append("<div class = 'item active'><img src = #{$scope.imageUrls[i]}></div>")
-        else
-          $('.profiles .carousel-inner').append("<div class = 'item'><img src = #{$scope.imageUrls[i]}></div>")
-        i++
-      $('#remove-image').css('display', 'inherit')
-      if Object.keys(InkBlobs).length>1
-        $('.carousel-inner').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#profile-carousel'> < </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#profile-carousel'> > </a>")
+        $('.user-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#profile-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#profile-carousel'> › </a>")
   
-  $scope.uploadProfileImage = ->
+  $scope.uploadAvatarImage = ->
     filepicker.pickAndStore
       mimetypes: ["image/*", "text/plain"]
       services: ["COMPUTER", "FACEBOOK", "GMAIL", "INSTAGRAM"]
@@ -116,20 +94,22 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
       $('td.profile-photo').empty()
       $('td.profile-photo').append("<img src = '#{$scope.avatar}'></div>")
 
-  $scope.removeImages = ->
+  $scope.removeProfileImages = ->
     currentImage = $(".active img").attr('src')
-    $('.item').remove(":contains('#{currentImage}')")
-    $('.carousel-inner div:first-child').append('.active')
+    $('.item.active').remove()
+    $('.item:first-child').addClass('active')
     i = 0
-    while i < $scope.imageUrls.length
-      if currentImage == $scope.imageUrls[i]
-        $scope.imageUrls.splice(i, 1)
+    while i < $scope.profileImageUrls.length
+      if currentImage == $scope.profileImageUrls[i]
+        $scope.profileImageUrls.splice(i, 1)
+      console.log $scope.profileImageUrls
       i++
-    if $scope.imageUrls.length <= 1
+    if $scope.profileImageUrls.length <= 1
       $('.carousel-control').remove()
+      if $scope.profileImageUrls.length == 0
+        $('#remove-image').css('display', 'none')
+        $('.profiles .carousel-inner').append("<p>This is a default cover photo. <br> Replace by uploading cover images!</p><div class = 'item active default'><img alt='Food 9' src='/assets/Food 9.jpg'></div>")
 ]
-
-
 
 angular.module('Simmr').controller "ProfileShowCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
 

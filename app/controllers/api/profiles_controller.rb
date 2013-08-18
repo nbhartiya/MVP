@@ -13,10 +13,49 @@ class Api::ProfilesController < ApplicationController
     render json: @profile.to_json(include_hash)
   end
 
-  # GET /profiles/1/edit
   def update
     @profile = Profile.find(params[:id])
-    @profile.update_attributes(params[:profile])
+    profile_params=params[:profile]
+    profile_images=params[:profile][:profile_image_urls]
+    profile_params.delete("profile_image_urls")
+    location_params = params[:profile][:location]
+    location_params.delete("created_at")
+    location_params.delete("updated_at")
+    profile_params.delete("location")
+    profile_params.delete("covers")
+    profile_params.delete("follows")
+    profile_params.delete("created_at")
+    profile_params.delete("updated_at")
+    if params[:profile][:avatar].present?
+      avatar_params=params[:profile][:avatar][0]
+      if @profile.avatar.present?
+        @profile.avatar.image=avatar_params
+        @profile.avatar.save!
+      else
+        @profile.create_avatar(:image=>avatar_params)
+      end
+    end
+    profile_params.delete("avatar")
+    @profile.update_attributes(profile_params)
+
+    if @profile.location.present?
+      @profile.location.update_attributes(location_params)
+    else
+      @location=@profile.create_location(location_params)
+      @location.save!
+      @profile.location_id=@location.id
+      @profile.save!
+    end
+    if profile_images.present?
+      #if @profile.covers.present?
+      #  #need to figure out how to delete all of them or update all of them individually
+      #else
+      for i in profile_images
+        @profile.covers.create(:image=>i)
+        @profile.save!
+      end
+      #end
+    end
     render json: @profile.to_json(include_hash)
   end
 
@@ -34,7 +73,7 @@ class Api::ProfilesController < ApplicationController
     profile_params.delete("avatar")
     @profile = Profile.new(profile_params)
     @profile.user_id = current_user.id
-    @profile.avatar=Image.new(:image=>avatar_params)
+    @profile.create_avatar(:image=>avatar_params)
     if current_user.chef?
       @profile.save!
       @profile.covers.create(:image=>cover_params)
@@ -51,22 +90,6 @@ class Api::ProfilesController < ApplicationController
     end
   end
 
-  # PUT /profiles/1
-  # PUT /profiles/1.json
-  def update
-    @profile = Profile.find(params[:id])
-
-    respond_to do |format|
-      if @profile.update_attributes(params[:profile])
-        format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @profile.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # DELETE /profiles/1
   # DELETE /profiles/1.json
   def destroy
@@ -76,7 +99,7 @@ class Api::ProfilesController < ApplicationController
 
   private
   def include_hash
-    {:include => [:covers, :avatar]}
+    {:include => [:covers, :avatar, :location, :follows]}
     #{:methods => :display_name, :include => [{:venue => {:include => :place}}, :users]}
     #=> {:only => :hi}
   end

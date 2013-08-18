@@ -19,8 +19,30 @@
 class Profile < ActiveRecord::Base
 
   belongs_to :user
+  #should this maybe be has one location?
   belongs_to :location
-  has_many :covers, :as => :imageable, :class_name =>"Image"
-  has_one :avatar, :as => :imageable, :class_name =>"Image"
-  attr_accessible :blurb, :home_zip, :location_id, :story, :work_zip, :user_id, :biz_name, :yelp_id, :neighborhood
+  has_many :covers, :as => :imageable, :class_name =>"Image", :conditions => {:secondary_imageable_type => "cover"}, :dependent => :destroy
+  has_one :avatar, :as => :imageable, :class_name =>"Image", :conditions => {:secondary_imageable_type => "avatar"}, :dependent => :destroy
+  attr_accessible :blurb, :home_zip, :location_id, :story, :work_zip, :user_id, :biz_name, :yelp_id, :neighborhood, :news
+
+  has_many :follows, :as => :followable, :dependent => :destroy
+
+  def host_events
+  	Event.where("host_id in (?)", self.user_id)
+  end
+
+  def past_host_events
+  	self.host_events.where("date < ?", Date.today)
+  end
+
+  def future_host_events
+  	self.host_events.where("date > ?", Date.today)
+  end
+
+  def foodie_host_followers
+  	#AskGabe: code here to determine the follows that have user type foodie
+  end
+
+  def business_host_followers
+  end
 end

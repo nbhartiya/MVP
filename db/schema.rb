@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130809194818) do
+ActiveRecord::Schema.define(:version => 20130815201300) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -110,12 +110,13 @@ ActiveRecord::Schema.define(:version => 20130809194818) do
 
   create_table "images", :force => true do |t|
     t.string   "image"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
     t.string   "title"
     t.text     "description"
     t.integer  "imageable_id"
     t.string   "imageable_type"
+    t.string   "secondary_imageable_type"
   end
 
   add_index "images", ["imageable_id", "imageable_type"], :name => "index_images_on_imageable_id_and_imageable_type"
@@ -154,6 +155,7 @@ ActiveRecord::Schema.define(:version => 20130809194818) do
     t.string   "biz_name"
     t.string   "yelp_id"
     t.string   "neighborhood"
+    t.text     "news"
   end
 
   create_table "projects", :force => true do |t|

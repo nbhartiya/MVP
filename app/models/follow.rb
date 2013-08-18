@@ -14,4 +14,5 @@ class Follow < ActiveRecord::Base
   attr_accessible :user_id
 
   belongs_to :followable, polymorphic: true
+  belongs_to :user
 end
