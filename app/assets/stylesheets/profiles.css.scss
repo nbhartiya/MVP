@@ -385,8 +385,7 @@ $main_orange: rgb(255, 178, 35);
 	}
 }
 
-.edit-button{
-	background: rgba(255,255,255,0.8);
+.edit-button, .edit-button-event{
 	margin-left: 0;
 	width: auto;
 	.btn{
@@ -394,6 +393,13 @@ $main_orange: rgb(255, 178, 35);
 	}
 }
 
+.edit-button{
+	background: rgba(255, 255, 255, 0.8);
+}
+
+.edit-button-event{
+	background: rgba(0,0,0,0.8);
+}
 
 /* Portrait tablet to landscape and desktop */
 @media (min-width: 980px) and (max-width: 1199px) { 

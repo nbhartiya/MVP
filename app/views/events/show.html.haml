@@ -17,7 +17,7 @@
       %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#event-carousel"} ‹
       %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#event-carousel"} ›   
 
-    .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='details'"}
+    .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}'"}
       .event-registration.row
         .span5
           .event-summary
@@ -49,7 +49,7 @@
                 -# upon registration show
                   %a{:href => "{{mapUrl()}}"} 123 Mission Street <br> San Francisco, CA 94107
                 %ul.nav.event-button-group
-                  %li.active
+                  %li
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "details"'} Details
                   %li
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "menu"'} Menu
@@ -108,7 +108,8 @@
                 %td followers
                 %td reviews
                 %td calendar
-        .span1
+        .span1.edit-button-event
+          %button.btn{'ng-click' => 'appear="edit"'} Edit
         .span6
           .event-details#details{'ng-show' => 'appear=="details"'}
             %h1 Details
