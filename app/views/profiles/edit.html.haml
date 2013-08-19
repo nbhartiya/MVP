@@ -248,7 +248,8 @@
 
               .clearfix
                 %button.btn#profile-images-button{'ng-click'=> 'uploadProfileImage()'} Change Profile Picture
-              %button.btn.btn-warning#submit{'ng-disabled' => 'profile_edit.$invalid'} Save Changes
+              %button.btn.btn-warning#submit{'ng-disabled' => 'profile_edit.$invalid', 'ng-click' => 'saved = true'} Save Changes
+              .help-block{'ng-show' => "saved"} Saved! (feel free to continue to make edits and save again)
 
       -else
         .row.user-overview
@@ -422,7 +423,7 @@
                       %td
                         %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
 
-            %form.user-summary-edit.clearfix{:name => "profile_edit", 'ng-show' => "appear=='edit'"}
+            %form.user-summary-edit.clearfix{:name => "profile_edit", 'ng-show' => "appear=='edit'", :id => "profile_edit"}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
 
               %input#profile-name{'ng-model'=>'profile.name', :type=>"text", :placeholder =>"Your Name", :required => "required", :name => "profile_name", 'ng-class' => "{error: profile_edit.profile_name.$invalid}"}
@@ -446,8 +447,11 @@
               .clearfix
                 %button.btn#profile-images-button{'ng-click'=> 'uploadProfileImage()'} Change Profile Picture
                 %button.btn#cover-images-button{'ng-click'=> 'uploadImages()'} Change Cover Image
-                %button.btn#yelp-connect Connect Yelp
+                %button.btn#yelp-connect{'ng-click' => 'yelp=true'} Connect Yelp
+                %input#yelp{'ng-model'=>'profile.yelp', :name => "profile_yelp", 'ng-class' => "{error: profile_edit.profile_yelp.$invalid}", :form => "profile_edit", 'ng-show' => 'yelp', :type => "url", :placeholder => 'Please enter your Yelp URL'}
+                .help-block{'ng-show' => 'profile_edit.profile_yelp.$error.url'} Please enter a valid Yelp URL
                 %span#yelp-explanation <a data-toggle = "tooltip" id = "why-yelp" title = "So guests know how great you already are and can easily leave you reviews!">Why?</a>
-              %button.btn.btn-warning#submit{'ng-disabled' => 'profile_edit.$invalid'} Save Changes
+              %button.btn.btn-warning#submit{'ng-disabled' => 'profile_edit.$invalid', 'ng-click' => 'saved = true'} Save Changes
+              .help-block{'ng-show' => "saved"} Saved! (feel free to continue to make edits and save again)
 
                 
