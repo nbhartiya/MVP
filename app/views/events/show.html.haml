@@ -134,15 +134,14 @@
                   -for guest in @event.guests
                     %tr 
                       %td
-                        -#
-                          -if follow.user.profile.avatar.present?
-                            =image_tag(follow.user.profile.avatar)
-                          -else
-                            =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                        -if follow.user.profile.avatar.present?
+                          =image_tag(follow.user.profile.avatar)
+                        -else
+                          =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
                       %td
-                        -#
-                          %a{:href=>"/profiles/#{follow.user.profile.id}"}
-                            ="#{follow.user.first_name} #{follow.user.last_name}"
+                        
+                        %a{:href=>"/profiles/#{follow.user.profile.id}"}
+                          ="#{follow.user.first_name} #{follow.user.last_name}"
                       -#%td Number of Followers
                       -#%td
                         %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
