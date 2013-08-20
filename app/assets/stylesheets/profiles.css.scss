@@ -66,19 +66,24 @@ $main_orange: rgb(255, 178, 35);
 				background: no-repeat;
 			}
 			p{
-				right: 50px;
+				background: $main_orange;
+				margin-top: 16px;
+				margin-bottom: 10px;
+				color: white;
+				padding: 5px;
+				display: inline-block;
+				right: 10px;
 				text-align: right;
 				z-index: 5;
-				font-weight: 100;
-				font-size: 12px;
 				top: 10px;
 				position: absolute;
-				color: white;
+				line-height: 1.2em;
+				font-size: 12px;
 			}
 		}
 	}
 	.user-overview{
-		margin-top: 25px;
+		margin-top: 70px;
 	    -webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;    
 		box-sizing: border-box;
