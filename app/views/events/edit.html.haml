@@ -15,7 +15,7 @@
                 = image_tag i.image
         -else
           .item.active
-            %p This is a default cover photo. <br> Replace by uploading images!
+            %p This is a default background photo. <br> Replace by uploading images!
             =image_tag "Food 26.jpg"
     -if @event.images.count > 1
       %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#event-carousel"} ‹

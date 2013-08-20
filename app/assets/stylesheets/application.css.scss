@@ -331,8 +331,13 @@ input.error-true  {
 		}
 		li.social{
 			padding: 0 5px;
-			width: auto !important;
 		}
+		#twitter-share iframe{
+			width: 60px !important;
+		}
+     	#twitter-follow iframe{
+     		width: 120px !important;
+     	}
 	}
 	a:link, a:visited{
 		color: rgb(150, 150, 150);
