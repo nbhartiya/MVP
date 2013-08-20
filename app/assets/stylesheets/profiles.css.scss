@@ -274,6 +274,15 @@ $main_orange: rgb(255, 178, 35);
 		    margin-top: 10px;
 		    font-size: 12px;
 		}
+		.link{
+            a, a:visited{
+	    	    color: blue;
+	    	    text-decoration: none;
+	        }
+	        a:hover{
+	            text-decoration: underline;
+	        }
+		}
 		.user-social-stats{
 			margin-top: 10px;
 			width: 100%;

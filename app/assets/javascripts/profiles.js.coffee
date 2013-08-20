@@ -30,6 +30,8 @@ $(".heart").click ->
 angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams", "$location", "Profile", ($scope, $routeParams, $location, Profile) ->
   $scope.edit = 1
   $scope.appear = 'edit'
+  if location.search == '?events'
+    $scope.appear = "events"
 
   $scope.getProfile = (profileId) ->
     Profile.get(id: profileId).then (result) ->

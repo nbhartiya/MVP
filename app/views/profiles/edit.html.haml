@@ -338,6 +338,7 @@
                         %td Status
                         %td Total
                         %td Follows
+                        %td 
                         -#%td Shares  
                       -for event in @profile.future_host_events
                         %tr
@@ -352,6 +353,9 @@
                             ="$#{"%g" % (event.guests_count*event.cost)}"
                           %td 
                             =event.follows.count
+                          %td.link
+                            %a{:href => edit_event_path(event)}
+                              Edit
                           -#%td 
                             =# shared
                   -else

@@ -112,8 +112,9 @@
                 %td followers
                 %td reviews
                 %td calendar
-        .span1.edit-button-event
-          %button.btn{'ng-click' => 'appear="edit"'} Edit
+        -if current_user.id == @event.host_id
+          .span1.edit-button-event
+            %button.btn{'ng-click' => 'appear="edit"'} Edit
         .span6
           .event-details#details{'ng-show' => 'appear=="details"'}
             %h1 Details
