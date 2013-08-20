@@ -17,7 +17,7 @@
       %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#event-carousel"} ‹
       %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#event-carousel"} ›   
 
-    .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear=''"}
+    .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='';event.menupdf='#{@event.menu_pdf}'"}
       .event-registration.row
         .span5
           .event-summary
@@ -123,7 +123,7 @@
           .event-menu#menu{'ng-show' => 'appear=="menu"'}
             %h1 Menu
             -if @event.menu_pdf.present?
-              =image_tag @event.menu_pdf
+              %iframe.menu{:src => '{{event.menupdf}}', :width => '510px', :height => '420px'}
             -else
               %h3 Coming Soon!
           .event-attendees-and-chatter{'ng-show' => 'appear=="chatter"'}
@@ -134,13 +134,15 @@
                   -for guest in @event.guests
                     %tr 
                       %td
-                        -if follow.user.profile.avatar.present?
-                          =image_tag(follow.user.profile.avatar)
-                        -else
-                          =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                        -#
+                          -if follow.user.profile.avatar.present?
+                            =image_tag(follow.user.profile.avatar)
+                          -else
+                            =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
                       %td
-                        %a{:href=>"/profiles/#{follow.user.profile.id}"}
-                          ="#{follow.user.first_name} #{follow.user.last_name}"
+                        -#
+                          %a{:href=>"/profiles/#{follow.user.profile.id}"}
+                            ="#{follow.user.first_name} #{follow.user.last_name}"
                       -#%td Number of Followers
                       -#%td
                         %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
