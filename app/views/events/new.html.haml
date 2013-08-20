@@ -119,9 +119,7 @@
             .event-summary-logistics-container
               .event-summary-logistics
                 %h3#default-text{'ng-show'=>'event.time=="" || event.time==nil || event.length=="" || event.length==nil || event.date=="" || event.date==nil'}
-                  =Time.now().strftime("%A, %B %d, %l:%M%p") 
-                  to 
-                  =Time.now().strftime("%l:%M%p")
+                  ="#{Time.now().strftime("%A, %B %d")}, from 7:00 to 8:30 PM"
                 %h3{'ng-hide'=>'event.time=="" || event.time==nil || event.length=="" || event.length==nil || event.date=="" || event.date==nil'}
                   {{eventDate()}}, from {{eventTime()}} to {{eventEndTime()}}
                 %h3#default-text{'ng-show'=>'event.location.neighborhood=="" || event.location.neighborhood==nil'}
