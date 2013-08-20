@@ -111,13 +111,21 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
         $('.profiles .carousel-inner').append("<p>This is a default cover photo. <br> Replace by uploading cover images!</p><div class = 'item active default'><img alt='Food 9' src='/assets/Food 9.jpg'></div>")
 ]
 
-angular.module('Simmr').controller "ProfileShowCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
-
-  $scope.mapUrl = ->
-    mapUrl = "http://maps.google.com/?q=#{$scope.address1},#{$scope.city}, #{$scope.state},#{$scope.zipcode}"
+angular.module('Simmr').controller "ProfileShowCtrl", ["$scope",  "$routeParams", "$location", "Profile", ($scope, $routeParams, $location, Profile) ->
+  
+  #doesnt work
+  #$scope.getProfile2 = (thing) ->
+  #  alert(thing)
+  #  Profile.get(thing).then (result) ->
+  #    $scope.profile = result
+  #    alert("got profile")
+  
+  #doesnt work
+  #$scope.mapUrl = ->
+  #  mapUrl = "http://maps.google.com/?q=#{$scope.profile.location.address1},#{$scope.profile.location.city}, #{$scope.profile.location.state},#{$scope.profile.location.zipcode}"
 ]
 
-angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$location", "Profile", "$window", ($scope, $routeParams, $location, Profile, $window) ->
+angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$location", "Profile", ($scope, $routeParams, $location, Profile) ->
 
   $scope.currentQuestion = 0
   $scope.answers = []
@@ -310,6 +318,6 @@ angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$l
     new Profile(profile).create().then (data) =>
       console.log data, "~~~~~~~~~~"
       $scope.created = true
-    $window.location.href='/events'
+    window.location.href='/events'
   
 ]

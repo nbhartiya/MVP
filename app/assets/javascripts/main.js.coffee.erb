@@ -227,6 +227,7 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
     new Event(event).create().then (data) =>
       console.log data, "~~~~~~~~~~"
       $scope.created = true
+      window.location.href = '/events/'+data.id
 ]
 
 Simmr.controller "EventIndexCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->

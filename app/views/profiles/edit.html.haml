@@ -303,7 +303,7 @@
                 %form{:name => 'edit_news'}
                   %textarea.clearfix{:rows => 3, :placeholder => 'Write the latest news on your business here!', :name => 'news', :required => "required", 'ng-model' => 'profile.news', 'ng-class' => "{error: edit_news.news.$invalid}"}
                   .help-block{'ng-show' => 'edit_news.news.$error.required'} Required
-                  %button.btn.btn-warning.edit{'ng-disabled' => 'edit_news.$invalid', 'ng-click' => 'editProfile(profile)'} Save Changes
+                  %button.btn.btn-warning.edit{'ng-disabled' => 'edit_news.$invalid', 'ng-click' => "editProfile(profile);edit='';appear='news'"} Save Changes
 
             .user-story{'ng-show' => 'appear == "story"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
@@ -311,13 +311,13 @@
               .pre-edit{'ng-hide' => 'edit == "story"'}
                 %h3#default-text{'ng-show'=>'profile.story=="" || profile.story==nil'} Oops, you've yet to tell everyone your story! Hit the edit button to write up an interesting story on your business!
                 %h3
-                  =@profile.story
+                  {{profile.story}}
                 %button.btn.btn-inverse.edit{'ng-click' => 'edit = "story"'} Update Story              
               .edit-form{'ng-show' => 'edit == "story"'}
                 %form{:name => 'edit_story'}
                   %textarea.clearfix{:rows => 3, :placeholder => 'Write up an interesting story on your business!', :name => 'story', :required => "required", 'ng-model' => 'profile.story', 'ng-class' => "{error: edit_story.story.$invalid}"}
                   .help-block{'ng-show' => 'edit_story.story.$error.required'} Required
-                  %button.btn.btn-warning.edit{'ng-disabled' => 'edit_story.$invalid', 'ng-click' => 'editProfile(profile)'} Save Changes
+                  %button.btn.btn-warning.edit{'ng-disabled' => 'edit_story.$invalid', 'ng-click' => 'editProfile(profile);edit="";appear="story"'} Save Changes
 
             .user-events{'ng-show' => 'appear == "events"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
