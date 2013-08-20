@@ -209,21 +209,24 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
       access: "public"
     , (InkBlob) ->
       console.log JSON.stringify(InkBlob)
-      $scope.menu="#{InkBlob[0].url}"
-      console.log $scope.menu
-      $('.events .menu').append("<a href =#{$scope.menu}> Menu.pdf </a>")
+      $scope.menuPdf="#{InkBlob[0].url}"
+      console.log $scope.menuPdf
+      $('.events .menu').append("<a href =#{$scope.menuPdf}> Menu.pdf </a>")
       $('a#remove').css('display', 'inline')
 
 
   $scope.removeMenu = ->
-    $scope.menu = []
-    $('.menu').empty()
+    $scope.menuPdf = []
+    $('.menuPdf').empty()
     $('a#remove').css('display', 'none')
 
   $scope.createEvent = (event) ->
     console.log($scope.eventImageUrls)
+    console.log($scope.menuPdf)
     if $scope.eventImageUrls?
       event.eventImageUrls=$scope.eventImageUrls
+    if $scope.menuPdf?
+      event.menuPdf=$scope.menuPdf
     new Event(event).create().then (data) =>
       console.log data, "~~~~~~~~~~"
       $scope.created = true

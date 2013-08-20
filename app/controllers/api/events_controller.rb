@@ -13,8 +13,10 @@ class Api::EventsController < ApplicationController
 
   def create
     event_images=params[:event][:event_image_urls]
+    menu_pdf=params[:event][:menu_pdf]
     event_params=params[:event]
     event_params.delete("event_image_urls")
+    event_params.delete("menu_pdf")
     location_params = params[:event][:location]
     event_params.delete("location")
     @event = Event.create(event_params)
@@ -26,6 +28,10 @@ class Api::EventsController < ApplicationController
         @event.images.new(:image=>i)
         @event.save!
       end
+    end
+    if menu_pdf.present?
+      @event.menu_pdf=menu_pdf
+      @event.save!
     end
     render json: @event.to_json(include_hash)
   end
