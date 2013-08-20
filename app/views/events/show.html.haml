@@ -114,7 +114,7 @@
                 %td calendar
         -if current_user.id == @event.host_id
           .span1.edit-button-event
-            %button.btn{'ng-click' => 'window.location.href="/events/#{event.id}/edit"'} Edit
+            %a.button.btn{:href=>"/events/#{@event.id}/edit"} Edit
         .span6
           .event-details#details{'ng-show' => 'appear=="details"'}
             %h1 Details
