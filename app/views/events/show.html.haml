@@ -112,7 +112,8 @@
                 %td followers
                 %td reviews
                 %td calendar
-        .span1
+        .span1.edit-button-event
+          %button.btn{'ng-click' => 'appear="edit"'} Edit
         .span6
           .event-details#details{'ng-show' => 'appear=="details"'}
             %h1 Details

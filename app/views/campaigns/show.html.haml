@@ -68,7 +68,8 @@
               %tr.campaign-target-stat-labels
                 %td followers
                 %td reviews
-        .span1
+        .span1.edit-button
+          %button.btn.btn-inverse{'ng-click' => 'appear="edit"'} Edit
         .span6
           .campaign-why-join{'ng-show' => 'appear=="why_join"'}
             %h1 Why Join
