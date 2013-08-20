@@ -129,19 +129,21 @@
           .event-attendees-and-chatter{'ng-show' => 'appear=="chatter"'}
             %h1 Attendees
             .attendees
-              -if @event.guests_count > 0
+              %h3 Coming Soon!
+              -#if @event.guests_count > 0
                 %table.following-table
                   -for guest in @event.guests
                     %tr 
                       %td
-                        -if follow.user.profile.avatar.present?
-                          =image_tag(follow.user.profile.avatar)
-                        -else
-                          =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                        -if guest.profile.present?
+                          -if guest.profile.avatar.present?
+                            =image_tag(guest.profile.avatar)
+                          -else
+                            =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
                       %td
                         
-                        %a{:href=>"/profiles/#{follow.user.profile.id}"}
-                          ="#{follow.user.first_name} #{follow.user.last_name}"
+                        %a{:href=>"/profiles/#{guest.profile.id}"}
+                          ="#{guest.first_name} #{guest.last_name}"
                       -#%td Number of Followers
                       -#%td
                         %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
