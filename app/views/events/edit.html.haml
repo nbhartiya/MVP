@@ -42,11 +42,11 @@
               .help-block-white{'ng-show' => 'event_edit.event_cost.$error.pattern'} Please enter a valid event cost
               .help-block-white{'ng-show' => 'event_edit.event_limit.$error.pattern'} Please enter a valid number of seats
 
-            %button.clearfix.btn#event-images-button{'ng-click'=> 'uploadImages()'} Upload Images
+            %button.clearfix.btn#event-images-button{'ng-click'=> 'uploadImages()'} Update Images
 
-            %button.clearfix.btn#event-menu-button{'ng-click' => 'uploadMenu()'} Upload Menu
+            %button.clearfix.btn#event-menu-button{'ng-click' => 'uploadMenu()'} Update Menu
             .menu
-            -if @event.menu_pdf.present?
+            -#if @event.menu_pdf.present?
               %a#remove.edit{'ng-click' => 'removeMenu()'} delete
             %a#remove{'ng-click' => 'removeMenu()'} delete
             %hr
