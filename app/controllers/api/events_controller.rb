@@ -13,10 +13,8 @@ class Api::EventsController < ApplicationController
 
   def create
     event_images=params[:event][:event_image_urls]
-    menu_pdf=params[:event][:menu_pdf]
     event_params=params[:event]
     event_params.delete("event_image_urls")
-    event_params.delete("menu_pdf")
     location_params = params[:event][:location]
     event_params.delete("location")
     @event = Event.create(event_params)
@@ -29,24 +27,42 @@ class Api::EventsController < ApplicationController
         @event.save!
       end
     end
-    if menu_pdf.present?
-      @event.menu_pdf=menu_pdf
-      @event.save!
-    end
     render json: @event.to_json(include_hash)
   end
 
   def update
     @event = Event.find(params[:id])
-    params[:event].delete("id")
-    params[:event].delete("guests")
-    params[:event].delete("tickets")
-    params[:event].delete("follows")
-    params[:event].delete("location")
-    params[:event].delete("host")
-    params[:event].delete("created_at")
-    params[:event].delete("updated_at")
-    @event.update_attributes(params[:event])
+    event_params=params[:event]
+    event_params.delete("id")
+    event_params.delete("guests")
+    event_params.delete("tickets")
+    event_params.delete("follows")
+    location_params=params[:event][:location]
+    event_images=params[:event][:event_image_urls]
+    event_params.delete("event_image_urls")
+    event_params.delete("location")
+    event_params.delete("host")
+    event_params.delete("created_at")
+    event_params.delete("updated_at")
+    @event.update_attributes(event_params)
+    if @event.location.present?
+      location_params.delete("created_at")
+      location_params.delete("updated_at")
+      @event.location.update_attributes(location_params)
+    else
+      @location=@event.create_location(location_params)
+      @location.save!
+    end
+    binding.pry
+    if event_images.present?
+      for i in @event.images
+        i.delete
+      end
+      for i in event_images
+        @event.images.new(:image=>i)
+        @event.save!
+      end
+    end
     render json: @event.to_json(include_hash)
   end
 

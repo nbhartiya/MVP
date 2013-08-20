@@ -153,6 +153,8 @@
             %h1 Host Story
             %h3
               =@event.host.profile.story
+              -if (current_user.id == @event.host_id) && @event.host.profile.story == nil
+                ="Hey #{@event.host.profile.biz_name}, looks like you didn't add a 'story' in your profile. Be sure to add a story by clicking on 'Edit Profile' above!"
           .host-followers{'ng-show' => 'appear == "followers"'}
             %h1 Followers
             %ul.nav.nav-tabs

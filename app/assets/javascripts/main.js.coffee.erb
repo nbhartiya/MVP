@@ -189,8 +189,8 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
 
   $scope.removeImages = ->
     currentImage = $(".active img").attr('src')
-    $('.item').remove(":contains('#{currentImage}')")
-    $('.carousel-inner div:first-child').append('.active')
+    $('.item.active').remove()
+    $('.item:first-child').addClass('active')
     i = 0
     while i < $scope.eventImageUrls.length
       if currentImage == $scope.eventImageUrls[i]
@@ -198,6 +198,9 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
       i++
     if $scope.eventImageUrls.length <= 1
       $('.carousel-control').remove()
+    if $scope.eventImageUrls.length == 0
+        $('#remove-image').css('display', 'none')
+        $('.events .carousel-inner').append("<p>This is a default cover photo. <br> Replace by uploading cover images!</p><div class = 'item active default'><img alt='Food 26' src='/assets/Food 26.jpg'></div>")
 
   $scope.uploadMenu = ->
     filepicker.pickAndStore
@@ -217,7 +220,7 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
 
   $scope.removeMenu = ->
     $scope.menuPdf = []
-    $('.menuPdf').empty()
+    $('.menu').empty()
     $('a#remove').css('display', 'none')
 
   $scope.createEvent = (event) ->
@@ -271,13 +274,13 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
       access: "public"
     , (InkBlob) ->
       console.log JSON.stringify(InkBlob)
-      $scope.menu="#{InkBlob[0].url}"
-      console.log $scope.menu
-      $('.events .menu').append("<a href =#{$scope.menu}> Menu.pdf </a>")
+      $scope.menuPdf="#{InkBlob[0].url}"
+      console.log $scope.menuPdf
+      $('.events .menu').append("<a href =#{$scope.menuPdf}> Menu.pdf </a>")
       $('a#remove').css('display', 'inline')
 
   $scope.removeMenu = ->
-    $scope.menu = []
+    $scope.menuPdf = []
     $('.menu').empty()
     $('a#remove').css('display', 'none')
 
@@ -294,6 +297,8 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
     , (InkBlobs) ->
       console.log JSON.stringify(InkBlobs)
 
+      $('.default').remove()
+      $('.carousel-inner').empty()
       $scope.eventImageUrls = []
 
       i=0
@@ -301,15 +306,21 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
         $scope.image="#{InkBlobs[i].url}"
         console.log $scope.image
         $scope.eventImageUrls.push($scope.image)
-        $('.events .carousel-inner').append("<div class = 'item'><img src = #{$scope.eventImageUrls[i]}></div>")
+        if i == 0
+          console.log($scope.eventImageUrls[i])
+          $('.events .carousel-inner').append("<div class = 'item active'><img src = #{$scope.eventImageUrls[i]}></div>")
+        else 
+          console.log('else')
+          $('.events .carousel-inner').append("<div class = 'item'><img src = #{$scope.eventImageUrls[i]}></div>")
         i++
-        $('#remove-image').css('display', 'inherit')
-      $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> › </a>")
+      $('#remove-image').css('display', 'inherit')
+      if Object.keys(InkBlobs).length>1
+        $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> › </a>")
 
   $scope.removeImages = ->
     currentImage = $(".active img").attr('src')
-    $('.item').remove(":contains('#{currentImage}')")
-    $('.carousel-inner div:first-child').append('.active')
+    $('.item.active').remove()
+    $('.item:first-child').addClass('active')
     i = 0
     while i < $scope.eventImageUrls.length
       if currentImage == $scope.eventImageUrls[i]
@@ -317,9 +328,13 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
       i++
     if $scope.eventImageUrls.length <= 1
       $('.carousel-control').remove()
-
+    if $scope.eventImageUrls.length == 0
+        $('#remove-image').css('display', 'none')
+        $('.events .carousel-inner').append("<p>This is a default cover photo. <br> Replace by uploading cover images!</p><div class = 'item active default'><img alt='Food 26' src='/assets/Food 26.jpg'></div>")
 
   $scope.editEvent = (event) ->
+    event.eventImageUrls=$scope.eventImageUrls
+    event.menuPdf=$scope.menuPdf
     new Event(event).update().then (data) =>
       window.a=data
       $scope.event=data
