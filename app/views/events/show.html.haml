@@ -85,7 +85,7 @@
                 %td{'ng-click'=>'appear = "followers"'}
                   %a.sb.heart.circle.no-border.no-shadow.follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'} 
                 %td
-                  %a.sb.star.circle.no-border.no-shadow{:href=>"#"} 
+                  %a.sb.star.circle.no-border.no-shadow{:href=>"#{@event.host.profile.yelp_id}",:target=>"_blank"} 
                 %td
                   %a.sb.facebook.circle.no-border.no-shadow{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
                 %td
@@ -105,7 +105,7 @@
               %tr.host-stats
                 %td 
                   =@event.follows.count
-                %td 190
+                %td 120
                 %td{:rowspan => "2"} share
                 %td to
               %tr.host-stat-labels
@@ -114,7 +114,7 @@
                 %td calendar
         -if current_user.id == @event.host_id
           .span1.edit-button-event
-            %button.btn{'ng-click' => 'appear="edit"'} Edit
+            %button.btn{'ng-click' => 'window.location.href="/events/#{event.id}/edit"'} Edit
         .span6
           .event-details#details{'ng-show' => 'appear=="details"'}
             %h1 Details
