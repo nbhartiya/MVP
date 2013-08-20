@@ -45,13 +45,17 @@ class User < ActiveRecord::Base
   # TODO:this below relationship will be complicated, come back to this...
   has_many :follows, :as => :followable, :dependent => :destroy
   
-  before_create :confirmation_email
+  after_create :confirmation_email
   #before_create :chef_me
   
   serialize :points, Array
   
   def confirmation_email
-    NotificationMailer.signup_email(self).deliver
+    if self.chef?
+      NotificationMailer.signup_chef_email(self).deliver
+    else
+      NotificationMailer.signup_foodie_email(self).deliver
+    end
   end
 
   #def chef_me

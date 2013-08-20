@@ -4,10 +4,16 @@ class NotificationMailer < ActionMailer::Base
   
   default :from => "neeharika@simmr.co"
 
-  def signup_email(user)
+  def signup_foodie_email(user)
     @user = user
     mail( :to => user.email,
-    :subject => "Welcome #{user.email}!")
+    :subject => "Welcome #{user.first_name} #{user.last_name}!")
+  end
+
+  def signup_chef_email(user)
+    @user = user
+    mail( :to => user.email,
+    :subject => "Welcome #{user.first_name} #{user.last_name}!")
   end
   
   def waitlist_email(signup)
