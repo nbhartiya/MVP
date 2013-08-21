@@ -32,5 +32,5 @@
           %br
           %input{:name => "user[chef]", :type => "radio", :value => "1"}
           Food Business
-        %button.usersignup.btn.btn-warning{'ng-disabled' => 'new_registration.$invalid'} Sign Up
+        %button.usersignup.btn.btn-warning{'ng-disabled' => 'new_registration.$invalid', :type => "submit"} Sign Up
       = render "devise/shared/links"

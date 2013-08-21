@@ -18,6 +18,6 @@
           -#%input{:name => "user[remember_me]", :type => "hidden", :value => "0"}
           %input#user_remember_me{:name => "user[remember_me]", :type => "checkbox", :value => "1", :id => 'user_remember_me'}
           %label{:for => "user_remember_me"} Remember me
-        %button#login.userlogin.btn.btn-warning{'ng-disabled' => 'new_session.$invalid'} Log In
+        %button#login.userlogin.btn.btn-warning{'ng-disabled' => 'new_session.$invalid', :type => "submit"} Log In
       = render "devise/shared/links"
    
