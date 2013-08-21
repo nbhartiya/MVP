@@ -68,7 +68,8 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
   $scope.event = []
 
   $scope.guest = {}
-  $scope.guest.name = ''
+  $scope.guest.first_name = ''
+  $scope.guest.last_name = ''
   $scope.guest.email = ''
   $scope.buyer = {}
 
@@ -93,7 +94,6 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
     $scope.guests = []
     $scope.guest_no_pages = 0
     if $scope.num_guests > 0
-      $scope.currentUser.name = $scope.currentUser.first_name + ' ' + $scope.currentUser.last_name
       $scope.guests.push($scope.currentUser)
       i = 0
       
