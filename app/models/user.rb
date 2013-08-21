@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
   has_many :campaigns, :foreign_key => "host_id"
   # TODO:this below relationship will be complicated, come back to this...
   has_many :follows, :as => :followable, :dependent => :destroy
+  has_many :guests
   
   after_create :confirmation_email
   #before_create :chef_me

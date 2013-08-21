@@ -20,4 +20,5 @@ class Guest < ActiveRecord::Base
 
   belongs_to :ticket, :dependent => :destroy
   belongs_to :charge
+  belongs_to :user
 end
