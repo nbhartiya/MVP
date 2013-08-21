@@ -35,13 +35,13 @@ class User < ActiveRecord::Base
   # always do User.first.create_image instead of User.first.images.create!, but to destroy do User.first.image.destroy
   has_many :tickets
   # TODO: below relationship doesn't work...need to fix, do with the secondary field
-  has_many :events_attended, :class_name => "Event", :through => :guests
+  #has_many :events_attended, :class_name => "Event", :through => :guests
   has_many :events_hosted, :class_name => "Event", :foreign_key => "host_id"
   has_many :charges
   has_one :profile
-  has_many :campaigns, :foreign_key => "campaign_starter_id"
+  has_many :campaigns_started, :class_name => "Campaign", :foreign_key => "campaign_starter_id"
   # TODO:fixTHISMAYBEHASMANY
-  has_many :campaigns, :foreign_key => "host_id"
+  has_many :host_to_campaigns, :class_name => "Campaign", :foreign_key => "host_id"
   # TODO:this below relationship will be complicated, come back to this...
   has_many :follows, :as => :followable, :dependent => :destroy
   has_many :guests
@@ -57,6 +57,43 @@ class User < ActiveRecord::Base
     else
       NotificationMailer.signup_foodie_email(self).deliver
     end
+  end
+
+  def events_attended
+    attended_event_ids = self.guests.map(&:event_id)
+    Event.where("id in (?)", attended_event_ids)
+  end
+
+  def future_events
+    self.events_attended.where("date >= ?", Date.today())
+  end
+
+  def past_events
+    self.events_attended.where("date < ?", Date.today())
+  end
+
+  def events_followed
+    followed_event_ids = Follow.where("followable_type = ? AND user_id = ?","Event",self.id).map(&:followable_id)
+    Event.where("id in (?)",followed_event_ids)
+  end
+
+  def campaigns_followed
+    followed_campaign_ids = Follow.where("followable_type = ? AND user_id = ?","Campaign",self.id).map(&:followable_id)
+    Campaign.where("id in (?)",followed_campaign_ids)
+  end
+
+  def users_followed
+    followed_profile_ids = Follow.where("followable_type = ? AND user_id = ?","Profile",self.id).map(&:followable_id)
+    followed_profile_user_ids = Profile.where("id in (?)",followed_profile_ids).map(&:user_id)
+    User.where("id in (?)",followed_profile_user_ids)
+  end
+
+  def foodies_followed
+    self.users_followed.where("chef in (?)","false")
+  end
+
+  def businesses_followed
+    self.users_followed.where("chef in (?)","true")
   end
 
   #def chef_me
