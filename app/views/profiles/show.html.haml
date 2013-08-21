@@ -53,16 +53,16 @@
                   
             %table.user-social-stats
               %tr.icons
-                %td
+                -#%td
                   %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"}
                 %td{'ng-click'=>'appear = "followers"'}
                   %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'} 
               %tr.user-stats
-                %td 190
+                -#%td 190
                 %td
                   =@profile.follows.count
               %tr.user-stat-labels
-                %td points
+                -#%td points
                 %td followers
             
           .span1
