@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
   # TODO:fixTHISMAYBEHASMANY
   has_many :host_to_campaigns, :class_name => "Campaign", :foreign_key => "host_id"
   # TODO:this below relationship will be complicated, come back to this...
-  has_many :follows, :as => :followable, :dependent => :destroy
+  has_many :follows
   has_many :guests
   
   after_create :confirmation_email
@@ -73,17 +73,17 @@ class User < ActiveRecord::Base
   end
 
   def events_followed
-    followed_event_ids = Follow.where("followable_type = ? AND user_id = ?","Event",self.id).map(&:followable_id)
+    followed_event_ids = self.follows.where("followable_type = ?","Event").map(&:followable_id)
     Event.where("id in (?)",followed_event_ids)
   end
 
   def campaigns_followed
-    followed_campaign_ids = Follow.where("followable_type = ? AND user_id = ?","Campaign",self.id).map(&:followable_id)
+    followed_campaign_ids = self.follows.where("followable_type = ?","Campaign").map(&:followable_id)
     Campaign.where("id in (?)",followed_campaign_ids)
   end
 
   def users_followed
-    followed_profile_ids = Follow.where("followable_type = ? AND user_id = ?","Profile",self.id).map(&:followable_id)
+    followed_profile_ids = self.follows.where("followable_type = ?","Profile").map(&:followable_id)
     followed_profile_user_ids = Profile.where("id in (?)",followed_profile_ids).map(&:user_id)
     User.where("id in (?)",followed_profile_user_ids)
   end
