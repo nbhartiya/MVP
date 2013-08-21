@@ -36,19 +36,11 @@
                   -if @profile.blurb.present?
                     %h2 
                       =@profile.blurb 
+                  -if @profile.neighborhood.present?
+                    %h3 
+                      =@profile.neighborhood
             .profile-summary-logistics-container
               .profile-summary-logistics
-                -if @profile.neighborhood.present?
-                  %h3 
-                    =@profile.neighborhood
-                  %h3
-                    -if @profile.location.city.present?
-                      =@profile.location.city + ', '
-                    -if @profile.location.state.present?
-                      =@profile.location.state 
-                    -if @profile.location.zipcode.present?
-                      =@profile.location.zipcode
-
                 %ul.nav.profile-button-group
                   %li.active
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "badges"'} Badges

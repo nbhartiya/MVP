@@ -117,9 +117,10 @@
                 %td followers
                 %td reviews
                 %td calendar
-        -if current_user.id == @event.host_id
-          .span1.edit-button-event
-            %a.button.btn{:href=>"/events/#{@event.id}/edit"} Edit
+        -if current_user
+          -if current_user.id == @event.host_id
+            .span1.edit-button-event
+              %a.button.btn{:href=>"/events/#{@event.id}/edit"} Edit
         .span6
           .event-details#details{'ng-show' => 'appear=="details"'}
             %h1 Details
@@ -134,21 +135,23 @@
           .event-attendees-and-chatter{'ng-show' => 'appear=="chatter"'}
             %h1 Attendees
             .attendees
-              %h3 Coming Soon!
-              -#if @event.guests_count > 0
+              -if @event.guests_count > 0
                 %table.following-table
                   -for guest in @event.guests
                     %tr 
                       %td
-                        -if guest.profile.present?
-                          -if guest.profile.avatar.present?
-                            =image_tag(guest.profile.avatar)
-                          -else
-                            =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                        -if guest.user.present?
+                          -if guest.user.profile.avatar.present?
+                            =link_to image_tag(guest.user.profile.avatar.image), "/profiles/#{guest.user.profile.id}"
+                        -else
+                          =image_tag("Foodie-Default-Profile-Image.png")
                       %td
-                        
-                        %a{:href=>"/profiles/#{guest.profile.id}"}
-                          ="#{guest.first_name} #{guest.last_name}"
+                        -if guest.user.present?
+                          %a{:href=>"/profiles/#{guest.user.profile.id}"}
+                            ="#{guest.first_name} #{guest.last_name}"
+                        -else
+                          %h3
+                            ="#{guest.first_name} #{guest.last_name}"
                       -#%td Number of Followers
                       -#%td
                         %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
@@ -160,8 +163,9 @@
             %h1 Host Story
             %h3
               =@event.host.profile.story
-              -if (current_user.id == @event.host_id) && @event.host.profile.story == nil
-                ="Hey #{@event.host.profile.biz_name}, looks like you didn't add a 'story' in your profile. Be sure to add a story by clicking on 'Edit Profile' above!"
+              -if current_user
+                -if (current_user.id == @event.host_id) && @event.host.profile.story == nil
+                  ="Hey #{@event.host.profile.biz_name}, looks like you didn't add a 'story' in your profile. Be sure to add a story by clicking on 'Edit Profile' above!"
           .host-followers{'ng-show' => 'appear == "followers"'}
             %h1 Followers
             %ul.nav.nav-tabs
