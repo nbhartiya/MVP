@@ -106,7 +106,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
   $scope.gotoPayment = ->
     error = 0
     angular.forEach($scope.guests, (guest) =>
-      if typeof guest.name is 'undefined' || typeof guest.email is 'undefined'
+      if typeof guest.first_name is 'undefined' || typeof guest.email is 'undefined' || guest.last_name is 'undefined'
         error = 1
     )
     if error == 0

@@ -17,7 +17,7 @@
       %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#event-carousel"} ‹
       %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#event-carousel"} ›   
 
-    .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='';event.menupdf='#{@event.menu_pdf}'"}
+    .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='';event.menuPdf='#{@event.menu_pdf}';userId='#{current_user.id}'"}
       .event-registration.row
         .span5
           .event-summary
@@ -129,7 +129,7 @@
           .event-menu#menu{'ng-show' => 'appear=="menu"'}
             %h1 Menu
             -if @event.menu_pdf.present?
-              %iframe.menu{:src => '{{event.menupdf}}', :width => '510px', :height => '420px'}
+              %iframe.menu{:src => '{{event.menuPdf}}', :width => '510px', :height => '420px'}
             -else
               %h3 Coming Soon!
           .event-attendees-and-chatter{'ng-show' => 'appear=="chatter"'}
