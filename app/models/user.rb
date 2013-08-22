@@ -96,6 +96,19 @@ class User < ActiveRecord::Base
     self.users_followed.where("chef in (?)","true")
   end
 
+  def followers
+    following_user_ids=self.profile.follows.map(&:user_id)
+    User.where("id in (?)",following_user_ids)
+  end
+
+  def business_followers
+    self.followers.where("chef in (?)","true")
+  end
+
+  def foodie_followers
+    self.followers.where("chef in (?)","false")
+  end
+
   #def chef_me
   #  binding.pry
   #  if self.chef == nil

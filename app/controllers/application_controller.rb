@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
         cookies[:after_sign_in_path_biz] = nil
         path.to_s
       else
-        edit_profile_path(current_user.profile)
+        "/edit_my_profile"
       end
     end
   end
