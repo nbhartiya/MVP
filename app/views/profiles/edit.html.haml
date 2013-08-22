@@ -252,19 +252,22 @@
               
               -#%input#profile-name{'ng-model'=>'profile.name', :type=>"text", :placeholder =>"Your Name", :required => "required", :name => "profile_name", 'ng-class' => "{error: profile_edit.profile_name.$invalid}"}
 
-              %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: profile_edit.profile_blurb.$invalid}"}
+              %input#email{'ng-model'=>'profile.email', :name => "profile_email", 'ng-class' => "{error: profile_edit.profile_email.$invalid}", :type => "email", :required => 'required', :placeholder => "complete sign up process by providing your email"}
 
-              %select#neighborhoods{'ng-model'=>'profile.neighborhood', :name => "profile_neighborhood", :required => "required", 'ng-class' => "{error: profile_edit.profile_neighborhood.$invalid}"}
+              %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet", :maxlength => "140", :name => "profile_blurb", 'ng-class' => "{error: profile_edit.profile_blurb.$invalid}"}
 
-              %input#profile-city{'ng-model'=>'profile.city', :type=>"text", :placeholder =>"Your City", :required => "required", :name => "profile_city", 'ng-class' => "{error: profile_edit.profile_city.$invalid}"}
+              %select#neighborhoods{'ng-model'=>'profile.neighborhood', :name => "profile_neighborhood", 'ng-class' => "{error: profile_edit.profile_neighborhood.$invalid}"}
 
-              %select#state{'ng-model'=>'profile.state', :required => "required", :name => "profile_state", 'ng-class' => "{error: profile_edit.profile_state.$invalid}"}
+              %input#profile-city{'ng-model'=>'profile.city', :type=>"text", :placeholder =>"Your City", :name => "profile_city", 'ng-class' => "{error: profile_edit.profile_city.$invalid}"}
 
-              %input#profile-zip{'ng-model' => 'profile.zip', :type=>"text", :placeholder =>"Your Zip", :required => "required", :name => "profile_zip", :maxlength => "5", 'ng-pattern' => '/^[0-9]{5}$/', 'ng-class' => "{error: profile_edit.profile_zip.$invalid}"}
+              %select#state{'ng-model'=>'profile.state', :name => "profile_state", 'ng-class' => "{error: profile_edit.profile_state.$invalid}"}
+
+              %input#profile-zip{'ng-model' => 'profile.zip', :type=>"text", :placeholder =>"Your Zip", :name => "profile_zip", :maxlength => "5", 'ng-pattern' => '/^[0-9]{5}$/', 'ng-class' => "{error: profile_edit.profile_zip.$invalid}"}
               
               .help-block{'ng-show' => 'profile_edit.profile_zip.$error.pattern'} Please enter a valid zip code
+              .help-block{'ng-show' => 'profile_edit.profile_email.$error.email'} Please enter a valid email
 
-              .help-block{'ng-show' => 'profile_edit.profile_name.$error.required || profile_edit.profile_blurb.$error.required || profile_edit.profile_neighborhood.$error.required || profile_edit.profile_city.$error.required || profile_edit.profile_state.$error.required || profile_edit.profile_zip.$error.required'} All fields are required
+              .help-block{'ng-show' => 'profile_edit.profile_email.$error.required'} All fields are required
 
               .clearfix
                 %button.btn#profile-images-button{'ng-click'=> 'uploadAvatarImage()'} Change Profile Picture
@@ -521,6 +524,8 @@
             %form.user-summary-edit.clearfix{:name => "profile_edit", 'ng-show' => "appear=='edit'", :id => "profile_edit"}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
 
+              %input#email{'ng-model'=>'profile.email', :name => "profile_email", 'ng-class' => "{error: profile_edit.profile_email.$invalid}", :type => "email", :required => 'required', :placeholder => "email"}
+
               %input#profile-name{'ng-model'=>'profile.bizName', :type=>"text", :placeholder =>"Your Business's Name", :required => "required", :name => "profile_bizName", 'ng-class' => "{error: profile_edit.profile_bizName.$invalid}"}
 
               %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet (you can add more under 'Our Story')", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: profile_edit.profile_blurb.$invalid}"}
@@ -536,8 +541,9 @@
               %input#profile-zip{'ng-model' => 'profile.location.zipcode', :type=>"text", :placeholder =>"Your Zip", :required => "required", :name => "profile_zip", :maxlength => "5", 'ng-pattern' => '/^[0-9]{5}$/', 'ng-class' => "{error: profile_edit.profile_zip.$invalid}"}
               
               .help-block{'ng-show' => 'profile_edit.profile_zip.$error.pattern'} Please enter a valid zip code
+              .help-block{'ng-show' => 'profile_edit.profile_email.$error.email'} Please enter a valid email
 
-              .help-block{'ng-show' => 'profile_edit.profile_bizName.$error.required || profile_edit.profile_blurb.$error.required || profile_edit.profile_address.$error.required || profile_edit.profile_city.$error.required || profile_edit.profile_state.$error.required || profile_edit.profile_zip.$error.required || profile_edit.profile_neighborhood.$error.required'} All fields are required
+              .help-block{'ng-show' => 'profile_edit.profile_bizName.$error.required || profile_edit.profile_blurb.$error.required || profile_edit.profile_address.$error.required || profile_edit.profile_city.$error.required || profile_edit.profile_state.$error.required || profile_edit.profile_zip.$error.required || profile_edit.profile_neighborhood.$error.required || profile_edit.profile_email.$error.required'} All fields are required
 
               .clearfix
                 %button.btn#profile-images-button{'ng-click'=> 'uploadAvatarImage()'} Add Logo

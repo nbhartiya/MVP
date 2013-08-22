@@ -237,10 +237,11 @@
             %h2 Who all are coming?
             %form.guests{:name => "guest_registration", 'ng-repeat' => 'guest in guests'}
               -#Make first email say "YOUR EMAIL" not guest email, send confirmation email, have note on every event someone has registered for that they've registered and should have gotten an email.
-              %input.guest-name{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.name', :type=>'text', :placeholder =>"Guest Full Name", :required => "required", :name => "guest", 'ng-class' => "{error: guest_registration.guest.$invalid}"}
+              %input.guest-name{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.first_name', :type=>'text', :placeholder =>"Guest First Name", :required => "required", :name => "guest_first", 'ng-class' => "{error: guest_registration.guest_first.$invalid}"}
+              %input.guest-name{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.last_name', :type=>'text', :placeholder =>"Guest Last Name", :required => "required", :name => "guest_last", 'ng-class' => "{error: guest_registration.guest_last.$invalid}"}
               %input.guest-email{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :required => "required", :name => "guest_email", 'ng-class' => "{error: guest_registration.guest_email.$invalid}"}
               .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.email'} Please enter a valid email
-              .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.required || guest_registration.guest.$error.required'} All fields are required
+              .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.required || guest_registration.guest_first.$error.required || guest_registration.guest_last.$error.required'} All fields are required
             %button.btn.btn-warning.standalone-button#enter-payment-info{'ng-click' => 'gotoPayment()', 'ng-disabled' => "error=0"} Enter Payment Info
 
           .event-purchase.clearfix{'ng-show' => 'appear=="payment2"', 'ng-init'=> "cost=#{@event.cost};currentUser=#{current_user.to_json}"}
