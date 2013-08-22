@@ -143,6 +143,8 @@
                         -if guest.user.present?
                           -if guest.user.profile.avatar.present?
                             =link_to image_tag(guest.user.profile.avatar.image), "/profiles/#{guest.user.profile.id}"
+                          -else
+                            =image_tag("Foodie-Default-Profile-Image.png")
                         -else
                           =image_tag("Foodie-Default-Profile-Image.png")
                       %td
