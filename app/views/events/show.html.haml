@@ -96,26 +96,36 @@
                 %td
                   %a.addthisevent{:href => "#{request.url}", :title => "Add to Calendar"}
                     +
-                    %span._start 10-05-2012 11:38:46
-                    %span._end 11-05-2012 11:38:46
+                    %span._start
+                      =DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec).strftime('%m-%d-%Y %H:%M:%S')
+                    %span._end
+                      =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+@event.length.minutes).strftime('%m-%d-%Y %H:%M:%S')
                     %span._zonecode 6
-                    %span._summary Summary of the event
-                    %span._description Description of the event
-                    %span._location Location of the event
-                    %span._organizer Organizer
-                    %span._organizer_email Organizer e-mail
-                    %span._facebook_event http://www.facebook.com/events/160427380695693
+                    %span._summary
+                      ="Simmr Event: #{@event.title}"
+                    %span._description
+                      =@event.blurb
+                    %span._location
+                      ="#{@event.location.address1}, #{@event.location.neighborhood}, #{@event.location.city}, #{@event.location.zipcode}"
+                    %span._organizer Simmr
+                    %span._organizer_email
+                      -#Add email to link here
+                      hello@simmr.co
+                    -#not sure what fb event this is
+                    -#%span._facebook_event http://www.facebook.com/events/160427380695693
                     %span._all_day_event false
                     %span._date_format DD/MM/YYYY
               %tr.host-stats
                 %td 
                   =@event.follows.count
-                %td 120
+                %td
+                  %a{:href=>"#{@event.host.profile.yelp_id}"} 120
                 %td{:rowspan => "2"} share
                 %td to
               %tr.host-stat-labels
                 %td followers
-                %td reviews
+                %td 
+                  %a{:href=>"#{@event.host.profile.yelp_id}"} reviews
                 %td calendar
         -if current_user
           -if current_user.id == @event.host_id
