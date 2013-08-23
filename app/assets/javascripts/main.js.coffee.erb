@@ -45,6 +45,9 @@ Simmr.controller "HeartCtrl", ["$scope",  "$routeParams", "Follow", ($scope, $ro
 Simmr.controller "HeaderCtrl", ["$scope",  "$routeParams", ($scope, $routeParams) ->
   $scope.search = (searchQuery) ->
     window.location= "/events?q=#{searchQuery}"
+  $scope.keypressCallback = ($event) ->
+    $scope.search($scope.searchQuery)
+    $event.preventDefault()
 ]
 
 Simmr.controller "HomeIndexCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->

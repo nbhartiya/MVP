@@ -9,7 +9,7 @@
     .span8.nav-right
       %ul
         %li.pull-right.input-append
-          %input#appendedInputButton{:type => 'text', :placeholder => "Search Events or Businesses", 'ng-model'=>'searchQuery'}
+          %input#appendedInputButton{:type => 'text', :placeholder => "Search Events or Businesses", 'ng-model'=>'searchQuery', 'ui-keypress'=>"{13:'keypressCallback($event)'}"}
           %button.btn.search{'ng-click'=>'search(searchQuery)'} <i class = "icon-search"></i>
         -if user_signed_in? == false
           %li.pull-right#sign-up-header-link
