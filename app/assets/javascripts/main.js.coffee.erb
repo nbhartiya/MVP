@@ -93,6 +93,10 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
     total = $scope.num_guests * $scope.cost
     total = total.toFixed(2)
 
+  $scope.eventRevenue = ->
+    total = $scope.guestsCount * $scope.cost
+    total = total.toFixed(0)
+
   $scope.showPayment = ->
     $scope.guests = []
     $scope.guest_no_pages = 0

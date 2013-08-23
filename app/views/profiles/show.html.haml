@@ -110,7 +110,7 @@
                 #upcoming-events.tab-pane.fade.active.in
                   -if @profile.user.future_events.count > 0
                     %table.events-table
-                      %tr 
+                      %tr.heading
                         %td Name
                         %td Host
                         %td When
@@ -133,7 +133,7 @@
                 #past-events.tab-pane.fade
                   -if @profile.user.past_events.count > 0
                     %table.events-table
-                      %tr 
+                      %tr.heading
                         %td Name
                         %td Host
                         %td When
@@ -153,7 +153,7 @@
                 #followed-events.tab-pane.fade
                   -if @profile.user.events_followed.count > 0
                     %table.events-table
-                      %tr 
+                      %tr.heading 
                         %td Name
                         %td Host
                         %td When
@@ -232,7 +232,7 @@
                 #events-following.tab-pane.fade.active.in
                   -if @profile.user.events_followed.count > 0
                     %table.events-table
-                      %tr 
+                      %tr.heading 
                         %td Name
                         %td Host
                         %td When
@@ -429,7 +429,7 @@
                 #upcoming-events.tab-pane.fade.active.in
                   -if @profile.future_host_events.count > 0
                     %table.events-table
-                      %tr
+                      %tr.heading
                         %td Name
                         %td When
                         %td Status
@@ -443,7 +443,7 @@
                           %td 
                             =event.date.strftime("%b %e")
                           %td 
-                            ="#{event.guests_count} of #{event.people_limit} filled @ $#{"%g" % (event.cost)}"
+                            ="#{event.guests_count} of #{event.people_limit} filled"
                           %td 
                             ="$#{"%g" % event.cost}"
                           -#%td 
@@ -453,7 +453,7 @@
                 #past-events.tab-pane.fade
                   -if @profile.past_host_events.count > 0
                     %table.events-table
-                      %tr
+                      %tr.heading
                         %td Name
                         %td When
                         %td Price

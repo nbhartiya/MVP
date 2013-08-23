@@ -105,10 +105,8 @@
                     %span._end
                       =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+@event.length.minutes).strftime('%m-%d-%Y %H:%M:%S')
                     %span._zonecode 6
-                    %span._summary
-                      ="Simmr Event: #{@event.title}"
-                    %span._description
-                      =@event.blurb
+                    %span._summary="Simmr Event: #{@event.title}"
+                    %span._description=@event.blurb
                     %span._location
                       ="#{@event.location.address1}, #{@event.location.neighborhood}, #{@event.location.city}, #{@event.location.zipcode}"
                     %span._organizer Simmr

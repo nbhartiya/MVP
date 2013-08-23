@@ -165,7 +165,10 @@ $main_orange: rgb(255, 178, 35);
 			    a, a:visited, a:hover{
 	    	        color: white;
 	    	        text-decoration: none;
-	    }
+	    		}
+			}
+			.events-table .heading{
+				font-weight: 600;				
 			}
 		}
 		.edit{
