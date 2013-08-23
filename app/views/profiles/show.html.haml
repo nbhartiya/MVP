@@ -65,7 +65,10 @@
                 -#%td points
                 %td followers
             
-          .span1
+          -if current_user
+            -if current_user.id == @profile.user_id
+              .span1.edit-button
+                %a.btn.btn-inverse{:href=>"/profiles/#{@profile.user_id}/edit"} Edit
           .span6
             -#.badges{'ng-show' => 'appear == "badges"'}
               %h1 Badges
@@ -370,7 +373,10 @@
               %tr.user-stat-labels
                 %td followers
                 %td reviews
-          .span1
+          -if current_user
+            -if current_user.id == @profile.user_id
+              .span1.edit-button
+                %a.btn.btn-inverse{:href=>"/profiles/#{@profile.user_id}/edit"} Edit
           .span6
             .user-news{'ng-show' => 'appear == "news"'}
               %h1 News

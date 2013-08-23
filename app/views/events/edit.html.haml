@@ -93,8 +93,8 @@
               %input{'ng-model' => 'event.vegan',:name => "vegan", :type => "checkbox", :value => "1", :id => "vegans"}
               %label{:for => "vegans"} Vegans
 
-              %input{'ng-model' => 'event.gluten_free',:name => "gluten_free", :type => "checkbox", :value => "1", :id => "gluten_free"}
-              %label{:for => "gluten_free"} Gluten-Free
+              %input{'ng-model' => 'event.gluten_free',:name => "gluten_free", :type => "checkbox", :value => "1", :id => "gluten-free"}
+              %label{:for => "gluten-free"} Gluten-Free
 
               .help-block-white{'ng-show' => 'event_edit.event_zip.$error.pattern'} Please enter a valid zip code
 
@@ -145,6 +145,14 @@
                   Neighborhood
                 %h3
                   {{event.location.neighborhood}}
+                %table.accommodations
+                  %tr
+                    %td{'ng-hide'=>'event.vegetarian==false || event.vegetarian==nil'}
+                      Vegetarian-friendly
+                    %td{'ng-hide'=>'event.vegan==false || event.vegan==nil'}
+                      Vegan-friendly
+                    %td{'ng-hide'=>'event.gluten_free==false || event.gluten_free==nil'}
+                      Gluten Free-friendly
 
             %p#default-text{'ng-show'=>'event.peopleLimit=="" || event.peopleLimit==nil'}
               0 seats until the event tilts!
