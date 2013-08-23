@@ -74,7 +74,7 @@
               %input{'ng-model' => 'event.vegan',:name => "vegan", :type => "checkbox", :value => "1", :id => "vegans"}
               %label{:for => "vegans"} Vegans
 
-              %input{'ng-model' => 'event.gluten_free',:name => "gluten_free", :type => "checkbox", :value => "1", :id => "gluten_free"}
+              %input{'ng-model' => 'event.glutenFree',:name => "gluten_free", :type => "checkbox", :value => "1", :id => "gluten_free"}
               %label{:for => "gluten_free"} Gluten-Free
 
               .help-block-white{'ng-show' => 'event_create.event_zip.$error.pattern'} Please enter a valid zip code
@@ -132,7 +132,7 @@
                       Vegetarian-friendly
                     %td{'ng-hide'=>'event.vegan==false || event.vegan==nil'}
                       Vegan-friendly
-                    %td{'ng-hide'=>'event.gluten_free==false || event.gluten_free==nil'}
+                    %td{'ng-hide'=>'event.glutenFree==false || event.gluten_free==nil'}
                       Gluten Free-friendly            
 
             %p#default-text{'ng-show'=>'event.people_limit=="" || event.people_limit==nil'}

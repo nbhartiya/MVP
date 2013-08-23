@@ -383,18 +383,16 @@ $main_orange: rgb(255, 178, 35);
 			}
 			table.accommodations td{
 				color: white;
-				border-right: 1px solid white;
+				border-left: 1px solid white;
 				font-size: 12px;
 				line-height: 1.5em;
 				font-weight: 100;
 				color: white;
 				padding: 0 5px;
 			}
-			table.accommodations td:last-child{
-				border-right: none;
-			}
 			table.accommodations td:first-child{
 				padding-left: 0;
+				border-left: none;
 			}
 			.event-button-group{
 				margin: 20px auto 10px auto;
