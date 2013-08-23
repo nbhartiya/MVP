@@ -32,12 +32,27 @@ class Campaign < ActiveRecord::Base
   	return (self.follows.count/100)*100
   end
 
-  def expired?()
+  def expired?
   	if Date.today() > self.expires
   		return true
   	else
   		return false
   	end
   end
-  
+
+  def status
+    if self.expired?
+      if self.follows.count>100
+        return "Successful"
+      else
+        return "Expired"
+      end
+    else
+      return "Ongoing, #{self.follows_needed} people to tilt"
+    end
+  end
+
+  def days_left
+    (self.expires - Date.today()).to_i
+  end
 end

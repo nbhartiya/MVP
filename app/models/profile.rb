@@ -29,6 +29,7 @@ class Profile < ActiveRecord::Base
 
   def host_events
   	Event.where("host_id in (?)", self.user_id)
+    #is self.user.events_hosted better?
   end
 
   def past_host_events
@@ -36,7 +37,7 @@ class Profile < ActiveRecord::Base
   end
 
   def future_host_events
-  	self.host_events.where("date > ?", Date.today)
+  	self.host_events.where("date >= ?", Date.today)
   end
 
   def foodie_host_followers

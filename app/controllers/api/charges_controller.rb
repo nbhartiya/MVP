@@ -19,10 +19,11 @@ class Api::ChargesController < ApplicationController
     @ticket.save!
     params[:charge][:guests].each do |g|
     	@guest = @charge.guests.new
-    	@guest.first_name = g[:name]
-    	@guest.last_name = g[:name]
+    	@guest.first_name = g[:first_name]
+    	@guest.last_name = g[:last_name]
     	@guest.user_id = g[:id]
     	@guest.email = g[:email]
+      @guest.event_id = @ticket.event_id
       @guest.ticket_id = @ticket.id
     	@guest.save!
     end
