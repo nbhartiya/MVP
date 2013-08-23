@@ -167,8 +167,16 @@ $main_orange: rgb(255, 178, 35);
 	    	        text-decoration: none;
 	    		}
 			}
-			.events-table .heading{
-				font-weight: 600;				
+			.events-table, .campaigns-table, .following-table{
+				.heading{
+					font-weight: 600;				
+				}
+				td a, td a:visited{
+					display:block;					
+				}
+				a:hover{
+					color: rgb(130, 130, 130);
+				}
 			}
 		}
 		.edit{
