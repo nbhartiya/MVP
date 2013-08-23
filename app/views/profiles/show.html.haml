@@ -55,14 +55,19 @@
               %tr.icons
                 -#%td
                   %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"}
+                %td{'ng-click'=>'appear = "following"'}
+                  %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow
                 %td{'ng-click'=>'appear = "followers"'}
-                  %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'} 
+                  %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
               %tr.user-stats
                 -#%td 190
+                %td
+                  =@profile.user.events_followed.count+@profile.user.users_followed.count
                 %td
                   =@profile.follows.count
               %tr.user-stat-labels
                 -#%td points
+                %td following
                 %td followers
             
           .span1
@@ -215,11 +220,36 @@
               %h1 Following
               %ul.nav.nav-tabs
                 %li.active
+                  %a{"data-toggle" => "tab", :href => "#events-following"} Events
+                %li
                   %a{"data-toggle" => "tab", :href => "#business-following"} Businesses
                 %li
                   %a{"data-toggle" => "tab", :href => "#foodie-following"} Foodies
               #myTabContent.tab-content
-                #business-following.tab-pane.fade.active.in
+                #events-following.tab-pane.fade.active.in
+                  -if @profile.user.events_followed.count > 0
+                    %table.events-table
+                      %tr 
+                        %td Name
+                        %td Host
+                        %td When
+                        %td Status
+                        %td Price
+                      -for event in @profile.user.events_followed
+                        %tr 
+                          %td 
+                            =event.title
+                          %td
+                            =event.host.profile.biz_name
+                          %td
+                            =event.date.strftime("%b %e")
+                          %td 
+                            ="#{event.seats_left} seats left"
+                          %td
+                            ="$#{"%g" % event.cost}"
+                  -else
+                    No events followed.
+                #business-following.tab-pane.fade
                   -if @profile.user.businesses_followed.count > 0
                     %table.following-table
                       %tr 
@@ -235,7 +265,7 @@
                             -else
                               =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
                           %td
-                            %a{:href=>"/profiles/#{follow.user.profile.id}"}
+                            %a{:href=>"/profiles/#{business.profile.id}"}
                               =business.profile.biz_name
                           %td 
                             =business.profile.follows.count
@@ -259,7 +289,7 @@
                             -else
                               =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
                           %td
-                            %a{:href=>"/profiles/#{follow.user.profile.id}"}
+                            %a{:href=>"/profiles/#{foodie.profile.id}"}
                               ="#{foodie.first_name} #{foodie.last_name}"
                           %td
                             =foodie.profile.follows.count
