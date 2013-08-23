@@ -55,20 +55,20 @@
               %tr.icons
                 -#%td
                   %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"}
-                %td{'ng-click'=>'appear = "following"'}
-                  %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow
                 %td{'ng-click'=>'appear = "followers"'}
                   %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                %td{'ng-click'=>'appear = "following"'}
+                  %a.sb.heart.circle.no-border.no-shadow.gray.profile-follow
               %tr.user-stats
                 -#%td 190
                 %td
-                  =@profile.user.events_followed.count+@profile.user.users_followed.count
-                %td
                   =@profile.follows.count
+                %td
+                  =@profile.user.events_followed.count+@profile.user.users_followed.count
               %tr.user-stat-labels
                 -#%td points
-                %td following
                 %td followers
+                %td following
             
           -if current_user
             -if current_user.id == @profile.user_id
