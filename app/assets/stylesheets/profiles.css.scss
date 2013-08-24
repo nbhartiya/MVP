@@ -165,7 +165,18 @@ $main_orange: rgb(255, 178, 35);
 			    a, a:visited, a:hover{
 	    	        color: white;
 	    	        text-decoration: none;
-	    }
+	    		}
+			}
+			.events-table, .campaigns-table, .following-table{
+				.heading{
+					font-weight: 600;				
+				}
+				td a, td a:visited{
+					display:block;					
+				}
+				a:hover{
+					color: rgb(130, 130, 130);
+				}
 			}
 		}
 		.edit{
@@ -419,6 +430,11 @@ $main_orange: rgb(255, 178, 35);
 		margin: 10px;
 	}
 }
+
+.user-profile .user-overview a.btn-inverse{
+	color: white;
+}
+
 
 .edit-button{
 	background: rgba(255, 255, 255, 0.8);

@@ -49,13 +49,17 @@
                   =@event.location.neighborhood
                 %a{:href => "{{mapUrl()}}"} 
                   ="#{@event.location.address1}, #{@event.location.city}, #{@event.location.state} #{@event.location.zipcode}"
-                %h4
-                  -if @event.vegan
-                    Vegan-friendly
-                  -if @event.vegetarian
-                    Vegetarian-friendly
-                  -if @event.gluten_free
-                    Gluten Free-friendly
+                %table.accommodations
+                  %tr
+                    -if @event.vegetarian
+                      %td
+                        Vegetarian-friendly
+                    - if @event.vegan
+                      %td
+                        Vegan-friendly
+                    - if @event.gluten_free
+                      %td
+                        Gluten Free-friendly
                 %ul.nav.event-button-group
                   %li
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "details"'} Details
@@ -101,10 +105,8 @@
                     %span._end
                       =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+@event.length.minutes).strftime('%m-%d-%Y %H:%M:%S')
                     %span._zonecode 6
-                    %span._summary
-                      ="Simmr Event: #{@event.title}"
-                    %span._description
-                      =@event.blurb
+                    %span._summary="Simmr Event: #{@event.title}"
+                    %span._description=@event.blurb
                     %span._location
                       ="#{@event.location.address1}, #{@event.location.neighborhood}, #{@event.location.city}, #{@event.location.zipcode}"
                     %span._organizer Simmr

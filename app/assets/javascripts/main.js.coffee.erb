@@ -45,6 +45,9 @@ Simmr.controller "HeartCtrl", ["$scope",  "$routeParams", "Follow", ($scope, $ro
 Simmr.controller "HeaderCtrl", ["$scope",  "$routeParams", ($scope, $routeParams) ->
   $scope.search = (searchQuery) ->
     window.location= "/events?q=#{searchQuery}"
+  $scope.keypressCallback = ($event) ->
+    $scope.search($scope.searchQuery)
+    $event.preventDefault()
 ]
 
 Simmr.controller "HomeIndexCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
@@ -89,6 +92,10 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
   $scope.total = ->
     total = $scope.num_guests * $scope.cost
     total = total.toFixed(2)
+
+  $scope.eventRevenue = ->
+    total = $scope.guestsCount * $scope.cost
+    total = total.toFixed(0)
 
   $scope.showPayment = ->
     $scope.guests = []

@@ -381,6 +381,19 @@ $main_orange: rgb(255, 178, 35);
 			.event-summary-top{
 				width: 310px;
 			}
+			table.accommodations td{
+				color: white;
+				border-left: 1px solid white;
+				font-size: 12px;
+				line-height: 1.5em;
+				font-weight: 100;
+				color: white;
+				padding: 0 5px;
+			}
+			table.accommodations td:first-child{
+				padding-left: 0;
+				border-left: none;
+			}
 			.event-button-group{
 				margin: 20px auto 10px auto;
 				display: table;
@@ -915,7 +928,12 @@ $main_orange: rgb(255, 178, 35);
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
-				width: 32.8%;
+			}
+			.guest-name{
+				width: 25%;
+			}
+			.guest-email{
+				width: 48.4%;
 			}
 			.guests{
 				margin: 0;

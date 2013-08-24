@@ -55,22 +55,25 @@
               %tr.icons
                 -#%td
                   %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"}
-                %td{'ng-click'=>'appear = "following"'}
-                  %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow
                 %td{'ng-click'=>'appear = "followers"'}
                   %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                %td{'ng-click'=>'appear = "following"'}
+                  %a.sb.heart.circle.no-border.no-shadow.gray.profile-follow
               %tr.user-stats
                 -#%td 190
                 %td
-                  =@profile.user.events_followed.count+@profile.user.users_followed.count
-                %td
                   =@profile.follows.count
+                %td
+                  =@profile.user.events_followed.count+@profile.user.users_followed.count
               %tr.user-stat-labels
                 -#%td points
-                %td following
                 %td followers
+                %td following
             
-          .span1
+          -if current_user
+            -if current_user.id == @profile.user_id
+              .span1.edit-button
+                %a.btn.btn-inverse{:href=>"/profiles/#{@profile.user_id}/edit"} Edit
           .span6
             -#.badges{'ng-show' => 'appear == "badges"'}
               %h1 Badges
@@ -107,16 +110,17 @@
                 #upcoming-events.tab-pane.fade.active.in
                   -if @profile.user.future_events.count > 0
                     %table.events-table
-                      %tr 
+                      %tr.heading
                         %td Name
                         %td Host
                         %td When
                         %td Status
                         %td Price
                       -for event in @profile.user.future_events
-                        %tr.current-user-rank
+                        %tr
                           %td 
-                            =event.title
+                            %a{:href => event_path(event)} 
+                              =event.title
                           %td
                             =event.host.profile.biz_name
                           %td
@@ -130,15 +134,16 @@
                 #past-events.tab-pane.fade
                   -if @profile.user.past_events.count > 0
                     %table.events-table
-                      %tr 
+                      %tr.heading
                         %td Name
                         %td Host
                         %td When
                         %td Price
                       -for event in @profile.user.past_events
-                        %tr.current-user-rank
+                        %tr
                           %td 
-                            =event.title
+                            %a{:href => event_path(event)} 
+                              =event.title
                           %td
                             =event.host.profile.biz_name
                           %td
@@ -150,7 +155,7 @@
                 #followed-events.tab-pane.fade
                   -if @profile.user.events_followed.count > 0
                     %table.events-table
-                      %tr 
+                      %tr.heading 
                         %td Name
                         %td Host
                         %td When
@@ -159,7 +164,8 @@
                       -for event in @profile.user.events_followed
                         %tr 
                           %td 
-                            =event.title
+                            %a{:href => event_path(event)} 
+                              =event.title
                           %td
                             =event.host.profile.biz_name
                           %td
@@ -182,14 +188,15 @@
                 #joined-campaigns.tab-pane.fade.active.in
                   -if @profile.user.campaigns_followed.count > 0
                     %table.campaigns-table
-                      %tr 
+                      %tr.heading
                         %td Business
                         %td Status
                         %td Days Left
                       -for campaign in @profile.user.campaigns_followed
                         %tr
                           %td 
-                            =campaign.biz_name
+                            %a{:href => campaign_path(campaign)} 
+                              =campaign.biz_name
                           %td
                             =campaign.status
                           -if !campaign.expired?
@@ -200,14 +207,15 @@
                 #started-campaigns.tab-pane.fade
                   -if @profile.user.campaigns_started
                     %table.campaigns-table
-                      %tr 
+                      %tr.heading
                         %td Business
                         %td Status
                         %td Days Left
                       -for campaign in @profile.user.campaigns_started
                         %tr 
                           %td
-                            =campaign.biz_name
+                            %a{:href => campaign_path(campaign)} 
+                              =campaign.biz_name
                           %td
                             =campaign.status
                           -if !campaign.expired?
@@ -229,7 +237,7 @@
                 #events-following.tab-pane.fade.active.in
                   -if @profile.user.events_followed.count > 0
                     %table.events-table
-                      %tr 
+                      %tr.heading 
                         %td Name
                         %td Host
                         %td When
@@ -238,7 +246,8 @@
                       -for event in @profile.user.events_followed
                         %tr 
                           %td 
-                            =event.title
+                            %a{:href => event_path(event)} 
+                              =event.title
                           %td
                             =event.host.profile.biz_name
                           %td
@@ -252,7 +261,7 @@
                 #business-following.tab-pane.fade
                   -if @profile.user.businesses_followed.count > 0
                     %table.following-table
-                      %tr 
+                      %tr.heading
                         %td 
                         %td Name
                         %td Number of Followers
@@ -263,7 +272,7 @@
                             -if business.profile.avatar.present?
                               =image_tag business.profile.avatar.image
                             -else
-                              =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                              =image_tag("Chef-Default-Profile-Image.png")
                           %td
                             %a{:href=>"/profiles/#{business.profile.id}"}
                               =business.profile.biz_name
@@ -276,7 +285,7 @@
                 #foodie-following.tab-pane.fade
                   -if @profile.user.foodies_followed.count > 0
                     %table.following-table
-                      %tr 
+                      %tr.heading
                         %td 
                         %td Name
                         %td Number of Followers
@@ -287,7 +296,7 @@
                             -if foodie.profile.avatar.present?
                               =image_tag foodie.profile.avatar.image
                             -else
-                              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                              =image_tag("Foodie-Default-Profile-Image.png")
                           %td
                             %a{:href=>"/profiles/#{foodie.profile.id}"}
                               ="#{foodie.first_name} #{foodie.last_name}"
@@ -308,7 +317,7 @@
                 #business-followers.tab-pane.fade.active.in
                   -if @profile.user.business_followers.count > 0
                     %table.following-table
-                      %tr 
+                      %tr.heading
                         %td 
                         %td Name
                         %td Number of Followers
@@ -319,9 +328,10 @@
                             -if business.profile.avatar.present?
                               =image_tag business.profile.avatar.image
                             -else
-                              =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                              =image_tag("Chef-Default-Profile-Image.png")
                           %td
-                            =business.profile.biz_name
+                            %a{:href=>"/profiles/#{business.profile.id}"}
+                              =business.profile.biz_name
                           %td
                             =business.profile.follows.count
                           %td
@@ -331,7 +341,7 @@
                 #foodie-followers.tab-pane.fade
                   -if @profile.user.foodie_followers.count > 0
                     %table.following-table
-                      %tr 
+                      %tr.heading
                         %td 
                         %td Name
                         %td Number of Followers
@@ -342,9 +352,10 @@
                             -if foodie.profile.avatar.present?
                               =image_tag foodie.profile.avatar.image
                             -else
-                              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                              =image_tag("Foodie-Default-Profile-Image.png")
                           %td 
-                            ="#{foodie.first_name} #{foodie.last_name}"
+                            %a{:href=>"/profiles/#{foodie.profile.id}"}
+                              ="#{foodie.first_name} #{foodie.last_name}"
                           %td
                             =foodie.profile.follows.count
                           %td
@@ -400,7 +411,10 @@
               %tr.user-stat-labels
                 %td followers
                 %td reviews
-          .span1
+          -if current_user
+            -if current_user.id == @profile.user_id
+              .span1.edit-button
+                %a.btn.btn-inverse{:href=>"/profiles/#{@profile.user_id}/edit"} Edit
           .span6
             .user-news{'ng-show' => 'appear == "news"'}
               %h1 News
@@ -423,7 +437,7 @@
                 #upcoming-events.tab-pane.fade.active.in
                   -if @profile.future_host_events.count > 0
                     %table.events-table
-                      %tr
+                      %tr.heading
                         %td Name
                         %td When
                         %td Status
@@ -437,7 +451,7 @@
                           %td 
                             =event.date.strftime("%b %e")
                           %td 
-                            ="#{event.guests_count} of #{event.people_limit} filled @ $#{"%g" % (event.cost)}"
+                            ="#{event.guests_count} of #{event.people_limit} filled"
                           %td 
                             ="$#{"%g" % event.cost}"
                           -#%td 
@@ -447,7 +461,7 @@
                 #past-events.tab-pane.fade
                   -if @profile.past_host_events.count > 0
                     %table.events-table
-                      %tr
+                      %tr.heading
                         %td Name
                         %td When
                         %td Price
@@ -478,7 +492,7 @@
                 #foodie-followers.tab-pane.fade
                   -if @profile.user.foodie_followers.count > 0
                     %table.following-table
-                      %tr 
+                      %tr.heading
                         %td 
                         %td Name
                         %td Number of Followers
@@ -489,10 +503,10 @@
                             -if foodie.profile.avatar.present?
                               =image_tag foodie.profile.avatar.image
                             -else
-                              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                              =image_tag("Foodie-Default-Profile-Image.png")
                           %td
                             %a{:href=>"/profiles/#{foodie.profile.id}"}
-                            ="#{foodie.first_name} #{foodie.last_name}"
+                              ="#{foodie.first_name} #{foodie.last_name}"
                           %td
                             =foodie.profile.follows.count
                           %td
@@ -502,7 +516,7 @@
                 #business-following.tab-pane.fade
                   -if @profile.user.business_followers.count > 0
                     %table.following-table
-                      %tr 
+                      %tr.heading
                         %td 
                         %td Name
                         %td Number of Followers
@@ -513,10 +527,10 @@
                             -if business.profile.avatar.present?
                               =image_tag business.profile.avatar.image
                             -else
-                              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                              =image_tag("Foodie-Default-Profile-Image.png")
                           %td
                             %a{:href=>"/profiles/#{business.profile.id}"}
-                            =business.profile.biz_name
+                              =business.profile.biz_name
                           %td
                             =business.profile.follows.count
                           %td
@@ -535,7 +549,7 @@
                 #business-following.tab-pane.fade.active.in
                   -if @profile.user.businesses_followed.count > 0
                     %table.following-table
-                      %tr 
+                      %tr.heading
                         %td 
                         %td Name
                         %td Number of Followers
@@ -546,9 +560,10 @@
                             -if business.profile.avatar.present?
                               =image_tag business.profile.avatar.image
                             -else
-                              =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                              =image_tag("Chef-Default-Profile-Image.png")
                           %td 
-                            =business.profile.biz_name
+                            %a{:href=>"/profiles/#{business.profile.id}"}
+                              =business.profile.biz_name
                           %td 
                             =business.profile.follows.count
                           %td
@@ -558,7 +573,7 @@
                 #foodie-following.tab-pane.fade
                   -if @profile.user.foodies_followed.count > 0
                     %table.following-table
-                      %tr 
+                      %tr.heading
                         %td 
                         %td Name
                         %td Number of Followers
@@ -569,9 +584,10 @@
                             -if foodie.profile.avatar.present?
                               =image_tag foodie.profile.avatar.image
                             -else
-                              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                              =image_tag("Foodie-Default-Profile-Image.png")
                           %td
-                            ="#{foodie.first_name} #{foodie.last_name}"
+                            %a{:href=>"/profiles/#{foodie.profile.id}"}
+                              ="#{foodie.first_name} #{foodie.last_name}"
                           %td
                             =foodie.profile.follows.count
                           %td
