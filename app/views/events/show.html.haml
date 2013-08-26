@@ -134,16 +134,19 @@
               %a.button.btn{:href=>"/events/#{@event.id}/edit"} Edit
         .span6
           .event-details#details{'ng-show' => 'appear=="details"'}
+            %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Details
             %h3
               =@event.description
           .event-menu#menu{'ng-show' => 'appear=="menu"'}
+            %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Menu
             -if @event.menu_pdf.present?
               %iframe.menu{:src => "#{@event.menu_pdf}", :width => '510px', :height => '420px'}
             -else
               %h3 Coming Soon!
           .event-attendees-and-chatter{'ng-show' => 'appear=="chatter"'}
+            %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Attendees
             .attendees
               -if @event.guests_count > 0
@@ -174,6 +177,7 @@
             .row.comments
               .fb-comments{"data-colorscheme" => "dark", "data-href" => "#{request.url}", "data-num-posts" => "5", "data-width" => "500"}
           .event-host-story{'ng-show' => 'appear=="story"'}
+            %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Host Story
             %h3
               =@event.host.profile.story
@@ -181,6 +185,7 @@
                 -if (current_user.id == @event.host_id) && @event.host.profile.story == nil
                   ="Hey #{@event.host.profile.biz_name}, looks like you didn't add a 'story' in your profile. Be sure to add a story by clicking on 'Edit Profile' above!"
           .host-followers{'ng-show' => 'appear == "followers"'}
+            %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Followers
             %ul.nav.nav-tabs
               %li.active

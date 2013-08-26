@@ -45,17 +45,6 @@ $main_orange: rgb(255, 178, 35);
 		width: 30px;
 		cursor: pointer;
 		}
-		.carousel-control.left{
-			left: 0;
-		}
-		.carousel-control.right{
-			right: 0;
-		}
-	    .carousel-control{
-	    	font-size: 40px;
-	    	line-height: 35px;
-	    	z-index: 2;
-	    }
 		.carousel-inner{
 			position: relative;
 			z-index: 1;
@@ -82,6 +71,7 @@ $main_orange: rgb(255, 178, 35);
 			}
 		}
 	}
+
 	.user-overview{
 		margin-top: 70px;
 	    -webkit-box-sizing: border-box;

@@ -98,6 +98,7 @@
                     =image_tag "Favicon.png"
 
             .user-events{'ng-show' => 'appear == "events"'}
+              %button.close{"ng-click" => "appear=''", :type => "button"} close
               %h1 Events
               %ul.nav.nav-tabs
                 %li.active
@@ -178,6 +179,7 @@
                     No events followed.
 
             .user-campaigns{'ng-show' => 'appear == "campaigns"'}
+              %button.close{"ng-click" => "appear=''", :type => "button"} close
               %h1 Campaigns
               %ul.nav.nav-tabs
                 %li.active
@@ -225,6 +227,7 @@
                     No campaigns started.
 
             .user-following{'ng-show' => 'appear == "following"'}
+              %button.close{"ng-click" => "appear=''", :type => "button"} close
               %h1 Following
               %ul.nav.nav-tabs
                 %li.active
@@ -307,6 +310,7 @@
                   -else
                     No foodies followed.
             .user-followers{'ng-show' => 'appear == "followers"'}
+              %button.close{"ng-click" => "appear=''", :type => "button"} close
               %h1 Followers
               %ul.nav.nav-tabs
                 %li.active
@@ -417,16 +421,19 @@
                 %a.btn.btn-inverse{:href=>"/profiles/#{@profile.user_id}/edit"} Edit
           .span6
             .user-news{'ng-show' => 'appear == "news"'}
+              %button.close{"ng-click" => "appear=''", :type => "button"} close
               %h1 News
               %h3 
                 =@profile.news
 
             .user-story{'ng-show' => 'appear == "story"'}
+              %button.close{"ng-click" => "appear=''", :type => "button"} close
               %h1 Host Story
               %h3 
                 =@profile.story
 
             .user-events{'ng-show' => 'appear == "events"'}
+              %button.close{"ng-click" => "appear=''", :type => "button"} close
               %h1 Events
               %ul.nav.nav-tabs
                 %li.active
@@ -481,6 +488,7 @@
                     ="Looks like #{@profile.biz_name} has no past events."
 
             .user-followers{'ng-show' => 'appear == "followers"'}
+              %button.close{"ng-click" => "appear=''", :type => "button"} close
               %h1 Followers
               %ul.nav.nav-tabs
                 %li.active
@@ -539,6 +547,7 @@
                     No business followers.
 
             .user-following{'ng-show' => 'appear == "following"'}
+              %button.close{"ng-click" => "appear=''", :type => "button"} close
               %h1 Following
               %ul.nav.nav-tabs
                 %li.active

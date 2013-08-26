@@ -75,10 +75,12 @@
               %button.btn.btn-inverse{'ng-click' => 'appear="edit"'} Edit
         .span6
           .campaign-why-join{'ng-show' => 'appear=="why_join"'}
+            %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Why Join
             %h3
               =@campaign.why_join
           .host-followers{'ng-show' => 'appear == "followers"'}
+            %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Followers
             %ul.nav.nav-tabs
               %li.active
