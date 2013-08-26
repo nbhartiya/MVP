@@ -7,7 +7,6 @@ class Api::FollowsController < ApplicationController
   end
   
   def show
-    binding.pry
   	@followable = find_followable
   	@follow = @followable.follow
   	# TODO Check this

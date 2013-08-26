@@ -56,7 +56,7 @@
                 -#%td
                   %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"}
                 %td{'ng-click'=>'appear = "followers"'}
-                  %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{@profile.id})"}
+                  %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{@profile.id},#{user_signed_in?})"}
                 %td{'ng-click'=>'appear = "following"'}
                   %a.sb.heart.circle.no-border.no-shadow.gray.profile-follow
               %tr.user-stats
@@ -282,7 +282,7 @@
                           %td 
                             =business.profile.follows.count
                           %td
-                            %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{business.profile.id})"}
+                            %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{business.profile.id},#{user_signed_in?})"}
                   -else
                     No businesses followed.
                 #foodie-following.tab-pane.fade
@@ -306,7 +306,7 @@
                           %td
                             =foodie.profile.follows.count
                           %td
-                            %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{foodie.profile.id})"}
+                            %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{foodie.profile.id},#{user_signed_in?})"}
                   -else
                     No foodies followed.
             .user-followers{'ng-show' => 'appear == "followers"'}
@@ -339,7 +339,7 @@
                           %td
                             =business.profile.follows.count
                           %td
-                            %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{business.profile.id})"}
+                            %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{business.profile.id},#{user_signed_in?})"}
                   -else
                     No business followers.
                 #foodie-followers.tab-pane.fade
@@ -363,7 +363,7 @@
                           %td
                             =foodie.profile.follows.count
                           %td
-                            %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{foodie.profile.id})"}
+                            %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{foodie.profile.id},#{user_signed_in?})"}
                   -else
                     No foodie followers.
 
@@ -402,7 +402,7 @@
             %table.user-social-stats
               %tr.icons
                 %td{'ng-click'=>'appear = "followers"'}
-                  %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{@profile.id})"} 
+                  %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{@profile.id},#{user_signed_in?})"} 
                 %td
                   %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"} 
                 %td
@@ -518,7 +518,7 @@
                           %td
                             =foodie.profile.follows.count
                           %td
-                            %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{foodie.profile.id})"}
+                            %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{foodie.profile.id},#{user_signed_in?})"}
                   -else
                     No foodie followers.
                 #business-following.tab-pane.fade
@@ -542,7 +542,7 @@
                           %td
                             =business.profile.follows.count
                           %td
-                            %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{business.profile.id})"}
+                            %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{business.profile.id},#{user_signed_in?})"}
                   -else
                     No business followers.
 
@@ -576,7 +576,7 @@
                           %td 
                             =business.profile.follows.count
                           %td
-                            %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{business.profile.id})"}
+                            %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{business.profile.id},#{user_signed_in?})"}
                   -else
                     No businesses followed.
                 #foodie-following.tab-pane.fade
@@ -600,6 +600,6 @@
                           %td
                             =foodie.profile.follows.count
                           %td
-                            %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{foodie.profile.id})"}
+                            %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{foodie.profile.id},#{user_signed_in?})"}
                   -else
                     No foodies followed.

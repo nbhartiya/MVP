@@ -35,21 +35,22 @@ Simmr.directive "heart", ->
   }
 
 Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($scope,$http, $routeParams, Follow) ->
-  $scope.follow = (followable_type_val, followable_id_val)->
-    $scope.follow=true
-    console.log "Follow Information:*******"
-    console.log followable_type_val
-    console.log followable_id_val
-    $http({method:'GET',url:'/api/follows',params:{followable_id:followable_id_val,followable_type:followable_type_val}}).success (result) ->
-      #Follow.get(params:[followable_id:followable_id_val,followable_type:followable_type_val]).then (result) ->
-      console.log result, "++++++++"
-      if result.length > 0
-        $http({method:'DELETE',url:"/api/follows/#{result[0].id}"})
-        #destroy follow with confirmation
-        console.log "Destroyed Follow"
-      else
-        $http({method:'POST',url:'/api/follows',params:{followable_id:followable_id_val,followable_type:followable_type_val}}).success (result) ->
-          console.log "Created Follow"
+  $scope.follow = (followable_type_val, followable_id_val,user_signed_in)->
+    if user_signed_in
+      alert("inside")
+      console.log "Follow Information:*******"
+      console.log followable_type_val
+      console.log followable_id_val
+      $http({method:'GET',url:'/api/follows',params:{followable_id:followable_id_val,followable_type:followable_type_val}}).success (result) ->
+        #Follow.get(params:[followable_id:followable_id_val,followable_type:followable_type_val]).then (result) ->
+        console.log result, "++++++++"
+        if result.length > 0
+          $http({method:'DELETE',url:"/api/follows/#{result[0].id}"})
+          #destroy follow with confirmation
+          console.log "Destroyed Follow"
+        else
+          $http({method:'POST',url:'/api/follows',params:{followable_id:followable_id_val,followable_type:followable_type_val}}).success (result) ->
+            console.log "Created Follow"
 ]
 
 Simmr.controller "HeaderCtrl", ["$scope",  "$routeParams", ($scope, $routeParams) ->
