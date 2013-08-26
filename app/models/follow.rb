@@ -11,7 +11,8 @@
 #
 
 class Follow < ActiveRecord::Base
-  attr_accessible :user_id
+  #TODO: need to make followable_id and followable_type accessible just to the follow create controller..
+  attr_accessible :user_id, :followable_id, :followable_type
 
   belongs_to :followable, polymorphic: true
   belongs_to :user

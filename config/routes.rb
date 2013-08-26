@@ -38,6 +38,7 @@ MVP::Application.routes.draw do
     resources :events
     resources :locations
     resources :profiles
+    resources :follows
   end
 
   resources :campaigns

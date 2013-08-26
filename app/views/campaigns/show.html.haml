@@ -51,11 +51,12 @@
               .btn.btn-warning.standalone-button{:"data-toggle" => "modal", :href=>"#sign_up_foodie"} Sign Up
               .btn.btn-warning.standalone-button{:"data-toggle" =>"modal", :href=>"#sign_in"} Sign In
             -if user_signed_in?
-              .btn.btn-warning.campaign-join-button.clearfix{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'} Join
-              .btn.campaign-join-button.clearfix{'ng-controller'=>'HeartCtrl', 'ng-show' => 'follow'} Undo
+              .btn.btn-warning.campaign-join-button.clearfix{'ng-controller'=>'HeartCtrl','ng-click' => "follow('Campaign',#{@campaign.id})"} Join
+              .btn.campaign-join-button.clearfix{'ng-controller'=>'HeartCtrl','ng-click' => "follow('Campaign',#{@campaign.id})",'ng-show' => 'follow'} Undo
             %table.campaign-social-stats.clearfix
               %tr
                 %td{'ng-click'=>'appear = "followers"'}
+                  -# Make this such that it doesn't seem like clicking means joining...because there's a big seprate join button for that.
                   %a.sb.heart.circle.no-border.no-shadow.campaign-follow.black.orange{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
                 %td
                   %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"} 
@@ -66,14 +67,17 @@
                 %td 190
                 %td{:rowspan => "2"} share
               %tr.campaign-target-stat-labels
-                %td followers
+                %td supporters
                 %td reviews
-        .span1.edit-button
-          %button.btn.btn-inverse{'ng-click' => 'appear="edit"'} Edit
+        -if user_signed_in?
+          -if current_user.id == @campaign.campaign_starter_id
+            .span1.edit-button
+              %button.btn.btn-inverse{'ng-click' => 'appear="edit"'} Edit
         .span6
           .campaign-why-join{'ng-show' => 'appear=="why_join"'}
             %h1 Why Join
-            %h3 Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait
+            %h3
+              =@campaign.why_join
           .host-followers{'ng-show' => 'appear == "followers"'}
             %h1 Followers
             %ul.nav.nav-tabs

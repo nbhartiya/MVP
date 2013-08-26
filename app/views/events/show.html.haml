@@ -16,7 +16,6 @@
     -if @event.images.count > 1
       %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#event-carousel"} ‹
       %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#event-carousel"} ›   
-
     .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='';event.menuPdf='#{@event.menu_pdf}'"}
       .event-registration.row
         .span5
@@ -92,7 +91,7 @@
             %table.event-sharing
               %tr.icons
                 %td{'ng-click'=>'appear = "followers"'}
-                  %a.sb.heart.circle.no-border.no-shadow.follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'} 
+                  %a.sb.heart.circle.no-border.no-shadow.follow{'ng-controller'=>'HeartCtrl','ng-click' => "follow('Event',#{@event.id})"}
                 %td
                   %a.sb.star.circle.no-border.no-shadow{:href=>"#{@event.host.profile.yelp_id}",:target=>"_blank"} 
                 %td
@@ -141,7 +140,7 @@
           .event-menu#menu{'ng-show' => 'appear=="menu"'}
             %h1 Menu
             -if @event.menu_pdf.present?
-              %iframe.menu{:src => '{{event.menuPdf}}', :width => '510px', :height => '420px'}
+              %iframe.menu{:src => "#{@event.menu_pdf}", :width => '510px', :height => '420px'}
             -else
               %h3 Coming Soon!
           .event-attendees-and-chatter{'ng-show' => 'appear=="chatter"'}
@@ -168,7 +167,8 @@
                             ="#{guest.first_name} #{guest.last_name}"
                       -#%td Number of Followers
                       -#%td
-                        %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                        -if guest.user.present?
+                          %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{guest.user.profile.id})"}
               -else
                 %h3 There are currently no attendees. Be the first to grab a spot!
             .row.comments
@@ -192,34 +192,6 @@
                 -if @event.follows.count > 0
                   %table.following-table
                     -for follow in @event.follows
-                      -if follow.user.chef == true
-                        %tr 
-                          %td
-                            -if follow.user.profile.avatar.present?
-                              =image_tag(follow.user.profile.avatar)
-                            -else
-                              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
-                          %td
-                            %a{:href=>"/profiles/#{follow.user.profile.id}"}
-                              ="#{follow.user.first_name} #{follow.user.last_name}"
-                          -#%td Number of Followers
-                          -#%td
-                            %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
-                -else
-                  %h3 No current followers. Click the heart to stay updated about this event!
-                -#
-                  %table.following-table
-                    %tr 
-                      %td 
-                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
-                      %td Name
-                      %td Number of Followers
-                      %td
-                        %a.sb.heart.circle.no-border.no-shadow.event-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
-              #business-following.tab-pane.fade
-                -if @event.follows.count > 0
-                  %table.following-table
-                    -for follow in @event.follows
                       -if follow.user.chef == false
                         %tr 
                           %td
@@ -230,20 +202,30 @@
                           %td
                             %a{:href=>"/profiles/#{follow.user.profile.id}"}
                               ="#{follow.user.first_name} #{follow.user.last_name}"
-                          -#%td Number of Followers
+                          -#%td Number of Followers..may want to add later
                           -#%td
-                            %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                            %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id})"}
                 -else
                   %h3 No current followers. Click the heart to stay updated about this event!
-                -#
+              #business-following.tab-pane.fade
+                -if @event.follows.count > 0
                   %table.following-table
-                    %tr 
-                      %td 
-                        =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
-                      %td Name
-                      %td Number of Followers
-                      %td
-                        %a.sb.heart.circle.no-border.no-shadow.event-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                    -for follow in @event.follows
+                      -if follow.user.chef == true
+                        %tr 
+                          %td
+                            -if follow.user.profile.avatar.present?
+                              =image_tag(follow.user.profile.avatar)
+                            -else
+                              =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                          %td
+                            %a{:href=>"/profiles/#{follow.user.profile.id}"}
+                              ="#{follow.user.profile.biz_name}"
+                          -#%td Number of Followers..may want to add later
+                          -#%td
+                            %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id})"}
+                -else
+                  %h3 No current followers. Click the heart to stay updated about this event!
 
           .event-guests.clearfix{'ng-show' => 'appear=="payment1"', 'ng-init'=> "cost='#{@event.cost}'"}
             %h1 Total: ${{total()}}
