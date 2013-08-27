@@ -1,8 +1,9 @@
-class FollowsController < ApplicationController
+class Api::FollowsController < ApplicationController
 
   def index
-  	@followable = find_followable
-  	@follows = @followable.follows
+    @follow = Follow.where("followable_id = ? AND followable_type = ? AND user_id = ?",params[:followable_id],params[:followable_type],current_user.id)
+    render json: @follow.to_json
+    #redirect_to "/#{params[:followable_type].downcase.pluralize}/#{params[:followable_id]}"
   end
   
   def show
@@ -16,14 +17,19 @@ class FollowsController < ApplicationController
   end
 
   def create
-  	@followable = find_followable
-  	@follow = @followable.follows.build(params[:follow])
-  	if @follow.save
-  	  flash[notice] = "successfully followed."
-  	  redirect_to follows_url, notice: "Follow created."
-  	else
-  	  render :action => 'new'
-  	end
+  	follow_params=params
+    follow_params.delete("action")
+    follow_params.delete("controller")
+    follow_params[:user_id]=current_user.id
+  	@follow = Follow.create(follow_params)
+  	@follow.save
+    render json: @follow.to_json
+  end
+
+  def destroy
+    @follow = Follow.find(params[:id])
+    @follow.destroy
+    render json:{}
   end
 
   # TODO: Need to add correct versions of edit, update, destroy

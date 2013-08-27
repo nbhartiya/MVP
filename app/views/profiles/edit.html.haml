@@ -220,7 +220,7 @@
                           %td 
                             =business.profile.follows.count
                           %td
-                            %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                            %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{business.profile.id},#{user_signed_in?})"}
                   -else
                     No businesses followed.
                 #foodie-following.tab-pane.fade
@@ -243,7 +243,7 @@
                           %td
                             =foodie.profile.follows.count
                           %td
-                            %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                            %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{foodie.profile.id},#{user_signed_in?})"}
                   -else
                     No foodies followed.
 
@@ -252,7 +252,7 @@
               
               -#%input#profile-name{'ng-model'=>'profile.name', :type=>"text", :placeholder =>"Your Name", :required => "required", :name => "profile_name", 'ng-class' => "{error: profile_edit.profile_name.$invalid}"}
 
-              %input#email{'ng-model'=>'profile.email', :name => "profile_email", 'ng-class' => "{error: profile_edit.profile_email.$invalid}", :type => "email", :required => 'required', :placeholder => "complete sign up process by providing your email"}
+              %input#email{'ng-model'=>'profile.user.email', :name => "profile_email", 'ng-class' => "{error: profile_edit.profile_email.$invalid}", :type => "email", :required => 'required', :placeholder => "complete sign up process by providing your email"}
 
               %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet", :maxlength => "140", :name => "profile_blurb", 'ng-class' => "{error: profile_edit.profile_blurb.$invalid}"}
 
@@ -434,12 +434,12 @@
                             -else
                               =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
                           %td
-                            %a{:href=>"/profiles/#{follow.user.profile.id}"}
+                            %a{:href=>"/profiles/#{foodie.profile.id}"}
                               ="#{foodie.first_name} #{foodie.last_name}"
                           %td
                             =foodie.profile.follows.count
                           %td
-                            %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                            %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{foodie.profile.id},#{user_signed_in?})"}
                   -else
                     No foodies followed.
                 #business-following.tab-pane.fade
@@ -463,7 +463,7 @@
                           %td 
                             =business.profile.follows.count
                           %td
-                            %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                            %a.sb.heart.circle.no-border.no-shadow.orange.black.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{business.profile.id},#{user_signed_in?})"}
                   -else
                     No businesses followed.
             .user-followers{'ng-show' => 'appear == "followers"'}
@@ -494,7 +494,7 @@
                           %td
                             =foodie.profile.follows.count
                           %td
-                            %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                            %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{foodie.profile.id},#{user_signed_in?})"}
                   -else
                     No foodie followers.
                 #business-followers.tab-pane.fade
@@ -517,14 +517,14 @@
                           %td
                             =business.profile.follows.count
                           %td
-                            %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                            %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{business.profile.id},#{user_signed_in?})"}
                   -else
                     No business followers.
 
             %form.user-summary-edit.clearfix{:name => "profile_edit", 'ng-show' => "appear=='edit'", :id => "profile_edit"}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
 
-              %input#email{'ng-model'=>'profile.email', :name => "profile_email", 'ng-class' => "{error: profile_edit.profile_email.$invalid}", :type => "email", :required => 'required', :placeholder => "email"}
+              %input#email{'ng-model'=>'profile.user.email', :name => "profile_email", 'ng-class' => "{error: profile_edit.profile_email.$invalid}", :type => "email", :required => 'required', :placeholder => "email"}
 
               %input#profile-name{'ng-model'=>'profile.bizName', :type=>"text", :placeholder =>"Your Business's Name", :required => "required", :name => "profile_bizName", 'ng-class' => "{error: profile_edit.profile_bizName.$invalid}"}
 

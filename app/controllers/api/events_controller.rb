@@ -53,7 +53,6 @@ class Api::EventsController < ApplicationController
       @location=@event.create_location(location_params)
       @location.save!
     end
-    binding.pry
     if event_images.present?
       for i in @event.images
         i.delete

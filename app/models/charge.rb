@@ -13,10 +13,10 @@
 #
 
 class Charge < ActiveRecord::Base
-  attr_accessible :full_name, :last4, :location_id, :token, :user_id
+  attr_accessible :full_name, :last4, :location_id, :stripe_token, :user_id, :amount, :stripe_charge_id, :amount_refunded, :currency, :card_type, :status
 
   belongs_to :user
-  has_many :guests
-  has_many :tickets
-  belongs_to :billing_address, :class_name => "Location", :foreign_key => "billing_address_id"
+  has_many :guests, :dependent => :destroy
+  has_many :tickets, :dependent => :destroy
+  belongs_to :location
 end

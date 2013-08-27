@@ -19,9 +19,14 @@ class Api::ProfilesController < ApplicationController
     profile_images=params[:profile][:profile_image_urls]
     profile_params.delete("profile_image_urls")
     location_params = params[:profile][:location]
+    user_params = params[:profile][:user]
     location_params.delete("created_at")
     location_params.delete("updated_at")
+    user_params.delete("created_at")
+    user_params.delete("updated_at")
+    user_params.delete("completed")
     profile_params.delete("location")
+    profile_params.delete("user")
     profile_params.delete("covers")
     profile_params.delete("follows")
     profile_params.delete("created_at")
@@ -46,6 +51,8 @@ class Api::ProfilesController < ApplicationController
       @profile.location_id=@location.id
       @profile.save!
     end
+    # may want to only update the email....
+    @profile.user.update_attributes(user_params)
     if profile_images.present?
       #if @profile.covers.present?
       #  #need to figure out how to delete all of them or update all of them individually
@@ -99,7 +106,7 @@ class Api::ProfilesController < ApplicationController
 
   private
   def include_hash
-    {:include => [:covers, :avatar, :location, :follows]}
+    {:include => [:covers, :avatar, :location, :follows, :user]}
     #{:methods => :display_name, :include => [{:venue => {:include => :place}}, :users]}
     #=> {:only => :hi}
   end
