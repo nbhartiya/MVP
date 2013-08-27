@@ -394,7 +394,7 @@ Simmr.controller "CampaignIndexCtrl", ["$scope", "$window", "$routeParams", "$lo
     endDate = moment($scope.endDate)
     daysLeft = endDate.diff(today, 'days')
     if daysLeft <= 0
-      if $scope.successful
+      if $scope.successful == true
         "success!"
       else
         "try again?"
@@ -474,7 +474,7 @@ Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "C
     endDate = moment($scope.endDate)
     daysLeft = endDate.diff(today, 'days')
     if daysLeft <= 0
-      if $scope.successful
+      if $scope.successful == true
         "success!"
       else
         "try again?"
