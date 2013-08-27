@@ -2,7 +2,7 @@
   %div{:style => "margin:0;padding:0;display:inline"}
     %input{:name => "utf8", :type => "hidden", :value => "✓"}
     %input{:name => "authenticity_token", :type => "hidden", :value => "AOfcJWtiQMtPYck5bWTV5mlMRUf/q11ktoJXs5942to="}
-  %h2 You will <strong>not</strong> be charged until the event tilts
+  -#%h2 You will <strong>not</strong> be charged until the event tilts
   %h3 Credit Card Information
   
   %input#full_name{'ng-model' => "buyer.name", :placeholder => "Full Name", :type => "string", :required => "required", :name => "name", 'ng-class' => "{error: stripe.name.$invalid}"}
