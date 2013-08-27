@@ -1,6 +1,6 @@
-.events
+.events{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='';event.menuPdf='#{@event.menu_pdf}'"}
   .event-profile
-    #event-carousel.carousel.slide.hidden-phone    
+    #event-carousel.carousel.slide.hidden-phone 
       .carousel-inner
         -if @event.images.present?
           -@event.images.each_with_index do |i, index|
@@ -16,7 +16,7 @@
     -if @event.images.count > 1
       %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#event-carousel"} ‹
       %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#event-carousel"} ›   
-    .container{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='';event.menuPdf='#{@event.menu_pdf}'"}
+    .container
       .event-registration.row
         .span5
           .event-summary
@@ -90,12 +90,12 @@
             
             %table.event-sharing
               %tr.icons
-                %td{'ng-click'=>'appear = "followers"'}
-                  %a.sb.heart.circle.no-border.no-shadow.follow{'ng-controller'=>'HeartCtrl','ng-click' => "follow('Event',#{@event.id},#{user_signed_in?})"}
+                %td
+                  %a.sb.heart.circle.no-border.no-shadow.follow{'ng-controller'=>'HeartCtrl','ng-click' => "follow('Event',#{@event.id},#{user_signed_in?})", :href => "#", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date!", "data-placement" => "right"}
                 %td
                   %a.sb.star.circle.no-border.no-shadow{:href=>"#{@event.host.profile.yelp_id}",:target=>"_blank"} 
                 %td
-                  %a.sb.facebook.circle.no-border.no-shadow{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
+                  %a.sb.facebook.circle.no-border.no-shadow{:href => "#", :onclick => "\r\n    window.open(\r\n      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), \r\n      'facebook-share-dialog', \r\n      'width=626,height=436'); \r\n    return false;"}
                 %td
                   %a.addthisevent{:href => "#{request.url}", :title => "Add to Calendar"}
                     +
@@ -117,14 +117,16 @@
                     %span._all_day_event false
                     %span._date_format DD/MM/YYYY
               %tr.host-stats
-                %td 
-                  =@event.follows.count
+                %td{'ng-click'=>'appear = "followers"'}
+                  %a.followers{:href => "#", "data-toggle" => "tooltip", :title => "Check out who's following this!", "data-placement" => "right"}
+                    =@event.follows.count
                 %td
                   %a{:href=>"#{@event.host.profile.yelp_id}",:target=>"_blank"} 125
                 %td{:rowspan => "2"} share
                 %td to
               %tr.host-stat-labels
-                %td followers
+                %td{'ng-click'=>'appear = "followers"'}
+                  %a.followers{:href => "#", "data-toggle" => "tooltip", :title => "Check out who's following this!", "data-placement" => "right"} followers
                 %td 
                   %a{:href=>"#{@event.host.profile.yelp_id}",:target=>"_blank"} reviews
                 %td calendar

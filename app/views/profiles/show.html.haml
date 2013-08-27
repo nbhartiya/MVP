@@ -55,19 +55,21 @@
               %tr.icons
                 -#%td
                   %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"}
-                %td{'ng-click'=>'appear = "followers"'}
-                  %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{@profile.id},#{user_signed_in?})"}
+                %td
+                  %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{@profile.id},#{user_signed_in?})", :href => "#", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date!", "data-placement" => "right"}
                 %td{'ng-click'=>'appear = "following"'}
                   %a.sb.heart.circle.no-border.no-shadow.gray.profile-follow
               %tr.user-stats
                 -#%td 190
-                %td
-                  =@profile.follows.count
+                %td{'ng-click'=>'appear = "followers"'}
+                  %a.followers{:href => "#", "data-toggle" => "tooltip", :title => "Check out who's following this person!", "data-placement" => "right"}
+                    =@profile.follows.count
                 %td
                   =@profile.user.events_followed.count+@profile.user.users_followed.count
               %tr.user-stat-labels
                 -#%td points
-                %td followers
+                %td{'ng-click'=>'appear = "followers"'}
+                  %a.followers{:href => "#", "data-toggle" => "tooltip", :title => "Check out who's following this person!", "data-placement" => "right"} followers
                 %td following
             
           -if current_user
@@ -401,20 +403,22 @@
                       %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "following"'} Following
             %table.user-social-stats
               %tr.icons
-                %td{'ng-click'=>'appear = "followers"'}
-                  %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{@profile.id},#{user_signed_in?})"} 
+                %td
+                  %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{@profile.id},#{user_signed_in?})", :href => "#", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date!", "data-placement" => "right"}
                 %td
                   %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"} 
                 %td
-                  %a.sb.facebook.circle.no-border.no-shadow.black{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
+                  %a.sb.facebook.circle.no-border.no-shadow.black{:href => "#", :onclick => "\r\n    window.open(\r\n      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), \r\n      'facebook-share-dialog', \r\n      'width=626,height=436'); \r\n    return false;"}
               %tr.user-stats
-                %td 
-                  =@profile.follows.count
+                %td{'ng-click'=>'appear = "followers"'}
+                  %a.followers{:href => "#", "data-toggle" => "tooltip", :title => "Check out who's following this business!", "data-placement" => "right"}
+                    =@profile.follows.count
                 %td
                   %a{:href=>"#{@event.host.profile.yelp_id}",:target=>"_blank"} 125
                 %td{:rowspan => "2"} share
               %tr.user-stat-labels
-                %td followers
+                %td{'ng-click'=>'appear = "followers"'} 
+                  %a.followers{:href => "#", "data-toggle" => "tooltip", :title => "Check out who's following this business!", "data-placement" => "right"} followers
                 %td
                   %a{:href=>"#{@event.host.profile.yelp_id}",:target=>"_blank"} reviews
           -if current_user

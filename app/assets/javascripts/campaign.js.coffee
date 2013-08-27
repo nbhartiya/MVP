@@ -1,5 +1,6 @@
 $(".campaign-days").tooltip()
 $(".campaign-tilt").tooltip()
+$(".campaign-follow").tooltip()
 
 $(".heart").click ->
   if $(this).hasClass("campaign-follow")

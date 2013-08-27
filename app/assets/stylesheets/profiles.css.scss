@@ -162,7 +162,9 @@ $main_orange: rgb(255, 178, 35);
 					font-weight: 600;				
 				}
 				td a, td a:visited{
-					display:block;					
+					display: block;	
+					color: black;
+					text-decoration: none;				
 				}
 				a:hover{
 					color: rgb(130, 130, 130);
@@ -294,6 +296,12 @@ $main_orange: rgb(255, 178, 35);
 			width: 100%;
 			margin-left: auto;
 			margin-right: auto;
+			.user-stats, .user-stat-labels{
+				a, a:hover{
+					font-size: 14px;
+					margin: 0;
+				}
+			}
 			tr.icons{
 				line-height: 50px;
 				td{

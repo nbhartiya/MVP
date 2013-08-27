@@ -1,4 +1,4 @@
-.events
+.events{'ng-controller' => 'EventFeedbackCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='survey'"}
   .event-profile
     #event-carousel.carousel.slide         
       .carousel-inner
@@ -18,7 +18,7 @@
       %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#event-carousel"} ›  
 
     .container
-      .event-feedback.row{'ng-controller' => 'EventFeedbackCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='survey'"}
+      .event-feedback.row
         .span5
           .event-summary.clearfix
             %h1
@@ -77,7 +77,7 @@
                 %td
                   %a.sb.star.circle.no-border.no-shadow{:href=>"#"} #yelp
                 %td
-                  %a.sb.facebook.circle.no-border.no-shadow{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
+                  %a.sb.facebook.circle.no-border.no-shadow.black{:href => "#", :onclick => "\r\n    window.open(\r\n      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), \r\n      'facebook-share-dialog', \r\n      'width=626,height=436'); \r\n    return false;"}
               %tr.host-stats
                 %td 190
                 %td 190

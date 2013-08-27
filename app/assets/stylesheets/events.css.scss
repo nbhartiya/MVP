@@ -536,6 +536,12 @@ $main_orange: rgb(255, 178, 35);
 						}
 					}
 				}
+				.host-stat-labels, .host-stats{
+					a, a:hover	{
+						color: white;
+						font-size: 14px;
+					}
+				}
 				td{
 					text-align: center;
 					width: 25%;

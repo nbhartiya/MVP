@@ -1,4 +1,4 @@
-.campaigns
+.campaigns{'ng-controller' => 'CampaignJoinCtrl', 'ng-init' => "endDate='#{@campaign.expires}';successful='#{@campaign.successful}'"}
   .campaign-profile
     #campaign-carousel.carousel.slide.hidden-phone       
       .carousel-inner
@@ -17,7 +17,8 @@
       %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#campaign-carousel"} ‹
       %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#campaign-carousel"} ›
         
-    .container{'ng-controller' => 'CampaignJoinCtrl', 'ng-init' => "endDate='#{@campaign.expires}';successful='#{@campaign.successful}'"}
+    .container
+      
       .row.campaign-registration
         .span5
           .campaign-summary.clearfix
@@ -44,7 +45,7 @@
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "why_join"'} Why Join
 
             %p 
-              #{@campaign.follows_needed} more needed to tilt this campaign
+              #{@campaign.follows_needed} more supporters needed to tilt this campaign
               .progress.progress-warning.clearfix
                 .bar{:style => "width: 80%"}
             -if user_signed_in? == false
@@ -55,19 +56,22 @@
               .btn.campaign-join-button.clearfix{'ng-controller'=>'HeartCtrl','ng-click' => "follow('Campaign',#{@campaign.id},#{user_signed_in?})",'ng-show' => 'follow'} Undo
             %table.campaign-social-stats.clearfix
               %tr
-                %td{'ng-click'=>'appear = "followers"'}
+                %td
                   -# Make this such that it doesn't seem like clicking means joining...because there's a big seprate join button for that.
-                  %a.sb.heart.circle.no-border.no-shadow.campaign-follow.black.orange{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+                  %a.sb.heart.circle.no-border.no-shadow.campaign-follow.black.orange{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()', :href => "#", "data-toggle" => "tooltip", :title => "Click to support and stay up to date!", "data-placement" => "right"}
                 %td
                   %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"} 
                 %td
-                  %a.sb.facebook.circle.no-border.no-shadow.black{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
+                  %a.sb.facebook.circle.no-border.no-shadow.black{:href => "#", :onclick => "\r\n    window.open(\r\n      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), \r\n      'facebook-share-dialog', \r\n      'width=626,height=436'); \r\n    return false;"}
               %tr.campaign-target-stats 
-                %td #{@campaign.follows.count}
+                %td{'ng-click'=>'appear = "followers"'}
+                  %a.followers{:href => "#", "data-toggle" => "tooltip", :title => "Check out who's supporting this!", "data-placement" => "right"} 
+                    #{@campaign.follows.count}
                 %td 190
                 %td{:rowspan => "2"} share
               %tr.campaign-target-stat-labels
-                %td supporters
+                %td{'ng-click'=>'appear = "followers"'} 
+                  %a.followers{:href => "#", "data-toggle" => "tooltip", :title => "Check out who's supporting this!", "data-placement" => "right"} supporters
                 %td reviews
         -if user_signed_in?
           -if current_user.id == @campaign.campaign_starter_id
@@ -81,7 +85,7 @@
               =@campaign.why_join
           .host-followers{'ng-show' => 'appear == "followers"'}
             %button.close{"ng-click" => "appear=''", :type => "button"} close
-            %h1 Followers
+            %h1 Supporters
             %ul.nav.nav-tabs
               %li.active
                 %a{"data-toggle" => "tab", :href => "#business-following"} Businesses
