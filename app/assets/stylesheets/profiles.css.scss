@@ -162,7 +162,9 @@ $main_orange: rgb(255, 178, 35);
 					font-weight: 600;				
 				}
 				td a, td a:visited{
-					display:block;					
+					display: block;	
+					color: black;
+					text-decoration: none;				
 				}
 				a:hover{
 					color: rgb(130, 130, 130);

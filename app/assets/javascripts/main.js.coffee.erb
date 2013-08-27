@@ -45,9 +45,11 @@ Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($sc
         #Follow.get(params:[followable_id:followable_id_val,followable_type:followable_type_val]).then (result) ->
         console.log result, "++++++++"
         if result.length > 0
-          $http({method:'DELETE',url:"/api/follows/#{result[0].id}"})
-          #destroy follow with confirmation
-          console.log "Destroyed Follow"
+          $scope.confirm = confirm("Are you sure you want to unfollow?")
+          if ($scope.confirm == true) 
+            $http({method:'DELETE',url:"/api/follows/#{result[0].id}"})
+            #destroy follow with confirmation
+            console.log "Destroyed Follow"
         else
           $http({method:'POST',url:'/api/follows',params:{followable_id:followable_id_val,followable_type:followable_type_val}}).success (result) ->
             console.log "Created Follow"
