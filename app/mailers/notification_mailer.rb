@@ -4,7 +4,7 @@ class NotificationMailer < ActionMailer::Base
   
   default :from => "neeharika@simmr.co"
 
-  def signup_foodie_email_test(user)
+  def signup_foodie_email(user)
     @user = user
     mail( :to => user.email,
     :subject => "Welcome to Simmr, #{user.first_name} #{user.last_name}!")

@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
     if self.chef?
       NotificationMailer.signup_chef_email(self).deliver
     else
-      NotificationMailer.signup_foodie_email_test(self).deliver
+      NotificationMailer.signup_foodie_email(self).deliver
     end
   end
 
