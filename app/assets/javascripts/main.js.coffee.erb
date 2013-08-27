@@ -378,7 +378,7 @@ Simmr.controller "CampaignJoinCtrl", ["$scope", "$window", "$routeParams", "$loc
     endDate = moment($scope.endDate)
     daysLeft = endDate.diff(today, 'days')
     if daysLeft <= 0
-      if $scope.successful
+      if $scope.successful == true
         "success!"
       else
         "try again?"

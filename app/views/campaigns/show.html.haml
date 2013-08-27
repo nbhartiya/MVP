@@ -18,6 +18,7 @@
       %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#campaign-carousel"} ›
         
     .container{'ng-controller' => 'CampaignJoinCtrl', 'ng-init' => "endDate='#{@campaign.expires}';successful='#{@campaign.successful}'"}
+      
       .row.campaign-registration
         .span5
           .campaign-summary.clearfix
@@ -60,14 +61,7 @@
                 %td
                   %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"} 
                 %td
-                  <a class = "sb facebook circle no-border no-shadow, href="#" 
-                    onclick="
-                      window.open(
-                        'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 
-                        'facebook-share-dialog', 
-                        'width=626,height=436'); 
-                      return false;">
-                  </a>
+                  %a.sb.facebook.circle.no-border.no-shadow.black{:href => "#", :onclick => "\r\n    window.open(\r\n      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), \r\n      'facebook-share-dialog', \r\n      'width=626,height=436'); \r\n    return false;"}
               %tr.campaign-target-stats 
                 %td #{@campaign.follows.count}
                 %td 190
