@@ -410,11 +410,13 @@
               %tr.user-stats
                 %td 
                   =@profile.follows.count
-                %td 190
+                %td
+                  %a{:href=>"#{@event.host.profile.yelp_id}",:target=>"_blank"} 125
                 %td{:rowspan => "2"} share
               %tr.user-stat-labels
                 %td followers
-                %td reviews
+                %td
+                  %a{:href=>"#{@event.host.profile.yelp_id}",:target=>"_blank"} reviews
           -if current_user
             -if current_user.id == @profile.user_id
               .span1.edit-button

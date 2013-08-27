@@ -120,13 +120,13 @@
                 %td 
                   =@event.follows.count
                 %td
-                  %a{:href=>"#{@event.host.profile.yelp_id}"} 125
+                  %a{:href=>"#{@event.host.profile.yelp_id}",:target=>"_blank"} 125
                 %td{:rowspan => "2"} share
                 %td to
               %tr.host-stat-labels
                 %td followers
                 %td 
-                  %a{:href=>"#{@event.host.profile.yelp_id}"} reviews
+                  %a{:href=>"#{@event.host.profile.yelp_id}",:target=>"_blank"} reviews
                 %td calendar
         -if current_user
           -if current_user.id == @event.host_id
