@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130815201300) do
+ActiveRecord::Schema.define(:version => 20130826203410) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -50,10 +50,16 @@ ActiveRecord::Schema.define(:version => 20130815201300) do
     t.string   "full_name"
     t.string   "last4"
     t.integer  "user_id"
-    t.string   "token"
+    t.string   "stripe_token"
     t.integer  "location_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.integer  "amount"
+    t.string   "stripe_charge_id"
+    t.integer  "amount_refunded"
+    t.string   "currency",         :default => "usd"
+    t.string   "card_type"
+    t.string   "status"
   end
 
   create_table "comments", :force => true do |t|

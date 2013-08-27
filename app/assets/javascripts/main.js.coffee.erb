@@ -149,6 +149,8 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
         $scope.data.guests = $scope.guests
         $scope.data.buyer = $scope.buyer
         $scope.data.eventId = $scope.eventId
+        $scope.data.amount = $scope.total()
+
         new Charge($scope.data).create().then (data) =>
           console.log data, "~~~~~~~~~~"
           if data.status == "Success"
