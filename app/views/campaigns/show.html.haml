@@ -45,7 +45,7 @@
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "why_join"'} Why Join
 
             %p 
-              #{@campaign.follows_needed} more needed to tilt this campaign
+              #{@campaign.follows_needed} more supporters needed to tilt this campaign
               .progress.progress-warning.clearfix
                 .bar{:style => "width: 80%"}
             -if user_signed_in? == false
@@ -67,7 +67,7 @@
                 %td 190
                 %td{:rowspan => "2"} share
               %tr.campaign-target-stat-labels
-                %td followers
+                %td supporters
                 %td reviews
         .span1.edit-button
           %button.btn.btn-inverse{'ng-click' => 'appear="edit"'} Edit
@@ -78,7 +78,7 @@
             %h3 Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait
           .host-followers{'ng-show' => 'appear == "followers"'}
             %button.close{"ng-click" => "appear=''", :type => "button"} close
-            %h1 Followers
+            %h1 Supporters
             %ul.nav.nav-tabs
               %li.active
                 %a{"data-toggle" => "tab", :href => "#business-following"} Businesses
