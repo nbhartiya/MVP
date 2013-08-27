@@ -84,7 +84,7 @@
                 %select.number-of-seats{'ng-model' => 'num_guests'}
                   %option{:value => ''} Number of Seats
                   %option{:value => 1} 1 seat
-                  - (@event.seats_left).times do |s|
+                  -# (@event.seats_left).times do |s|
                     %option{:value => s+2} #{s+2} seats
                 .btn.btn-warning.event-go-button{'ng-click' => 'showPayment()', 'ng-disabled' => "num_guests==nil || num_guests == 0"} Go
             
