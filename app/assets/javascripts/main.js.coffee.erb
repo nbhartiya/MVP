@@ -157,7 +157,8 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
           if data.status == "Success"
             $scope.appear = "payment3"
           if data.status == "Failure"
-            alert(data.messages)
+            $scope.cardErrorMessages=data.messages
+
       else
         console.log response
 ]
