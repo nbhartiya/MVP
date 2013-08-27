@@ -1,4 +1,4 @@
-.events
+.events{'ng-controller' => 'EventFeedbackCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='survey'"}
   .event-profile
     #event-carousel.carousel.slide         
       .carousel-inner
@@ -18,7 +18,7 @@
       %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#event-carousel"} ›  
 
     .container
-      .event-feedback.row{'ng-controller' => 'EventFeedbackCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='survey'"}
+      .event-feedback.row
         .span5
           .event-summary.clearfix
             %h1

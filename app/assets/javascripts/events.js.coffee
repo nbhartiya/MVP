@@ -538,6 +538,10 @@ $(".one-attendee").tooltip()
 
 $(".cvc-explanation").tooltip()
 
+$(".followers").tooltip()
+
+$(".follow").tooltip()
+
 $(".event-card-host-name").tooltip()
 
 $("#event-carousel").carousel interval: false

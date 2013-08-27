@@ -441,6 +441,13 @@ $main_orange: rgb(255, 178, 35);
 				width: 100%;
 				margin-left: auto;
 				margin-right: auto;
+				.campaign-target-stats, .campaign-target-stat-labels{
+					a, a:hover{
+						margin: 0;
+						text-align: center;
+						font-size: 14px;
+					}
+				}
 				td{
 					text-align: center;
 					width: 33%;

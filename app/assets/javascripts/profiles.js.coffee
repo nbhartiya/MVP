@@ -13,6 +13,7 @@ $("#profile-images-button").mouseleave ->
   $("td.profile-photo").removeClass('highlight')
 
 $(".user-card-name").tooltip()
+$(".profile-follow").tooltip()
 
 $("#why-yelp").tooltip()
 
