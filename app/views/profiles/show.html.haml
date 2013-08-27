@@ -406,7 +406,14 @@
                 %td
                   %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"} 
                 %td
-                  %a.sb.facebook.circle.no-border.no-shadow.black{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"}
+                  <a class = "sb facebook circle no-border no-shadow, href="#" 
+                    onclick="
+                      window.open(
+                        'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 
+                        'facebook-share-dialog', 
+                        'width=626,height=436'); 
+                      return false;">
+                  </a>
               %tr.user-stats
                 %td 
                   =@profile.follows.count
