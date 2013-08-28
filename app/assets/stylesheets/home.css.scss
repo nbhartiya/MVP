@@ -254,7 +254,7 @@ ul.parsley-error-list{
 			width: 60%;
 			padding: 0;
 		}
-		.how-it-works-button{
+		a.how-it-works-button{
 			padding: 8px 2px;
 			font-size: 18px;
 			font-weight: 100;
@@ -263,7 +263,10 @@ ul.parsley-error-list{
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box; 
 		}
-		.view-events-button{
+		a.how-it-works-button:visited{
+			color: black;
+		}
+		a.view-events-button{
 			padding: 8px 2px;
 			font-size: 18px;
 			font-weight: 100;
@@ -271,6 +274,9 @@ ul.parsley-error-list{
 			-webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box; 
+		}
+		a.view-events-button:visited{
+			color: white;
 		}
 		.sign-up-button{
 			display: inline-block;

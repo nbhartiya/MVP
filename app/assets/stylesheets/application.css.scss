@@ -209,7 +209,7 @@ input.error-true  {
 			.logo{
 			  	margin-top: -5px;
 			  	margin-bottom: 5px;
-				width: 30%;
+				width: 30%;	
 			}
 			.logo, ul{
 				float: left;
@@ -219,6 +219,9 @@ input.error-true  {
 				padding: 0;
 				list-style: none;
 				float: left;
+			}
+			a.city:visited{
+				color: rgb(150, 150, 150);
 			}
 			.tooltip-inner{
 				background: none;
@@ -301,6 +304,9 @@ input.error-true  {
 			}
 		}
 		.nav-right{
+			a, a:visited{
+				color: rgb(150, 150, 150);
+			}
 			margin-right: -50px;
 			#sign-up-header-link{
 				background: $main_orange;
