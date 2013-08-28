@@ -301,6 +301,9 @@ input.error-true  {
 			}
 		}
 		.nav-right{
+			a, a:visited{
+				color: rgb(150, 150, 150);
+			}
 			margin-right: -50px;
 			#sign-up-header-link{
 				background: $main_orange;
