@@ -1,13 +1,15 @@
 !!!
 %html{'ng-app' => 'Simmr'}
   %head
-    %title simmr
+    %title simmr | unique experiences
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
     = stylesheet_link_tag    "application", :media => "all"
     = filepicker_js_include_tag
     = csrf_meta_tags
     = render 'layouts/google_analytics'
     %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans", :rel => "stylesheet", :type => "text/css"}
+    %link{:href => "http://www.simmr.co/assets/logo_final.png", :rel => "image_src"}
+    %meta{:content => "Life is too short to not make every day amazing. We curate unique experiences at the restaurants and bars you love, so you can experience them as no customer has ever before.", :name => "description"}
   %body.ng-cloak{"data-spy"=>"scroll", "data-target" => ".scroll-menu"}
     = render 'layouts/primary_header'
     .main
