@@ -17,6 +17,9 @@ $main_orange: rgb(255, 178, 35);
 			a, a:visited{
 				color: $main_orange;
 			}
+			a:hover{
+				text-decoration: none;
+			}
 		}
 		.events-index-header, .events-index-content{
 			a:hover{
