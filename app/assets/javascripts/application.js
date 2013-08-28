@@ -19,8 +19,8 @@
 //= require angular-resource
 //= require angularjs/rails/resource
 //= require angular-ui
-//= require angular-bootstrap
-//= require angular-ui-bootstrap-tpls
+//- require angular-bootstrap
+//- require angular-ui-bootstrap-tpls
 //= require angular-slider.js
 //= require jquery.cookie
 //= require_tree .

@@ -1,1 +1,1 @@
-window.Simmr = angular.module('Simmr', ['uiSlider', 'ngResource', 'rails', 'ui', 'ui.bootstrap'])
+window.Simmr = angular.module('Simmr', ['uiSlider', 'ngResource', 'rails', 'ui'])
