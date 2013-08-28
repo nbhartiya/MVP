@@ -76,9 +76,9 @@
               seats left until the event tilts!
             .progress.progress-warning
               .bar{:style => "width: #{@event.percent_full}%"}
-            - if @events.seats_left > 0
+            - if @event.seats_left > 0
               .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Book It
-            - if @events.seats_left == 0
+            - if @event.seats_left == 0
               .btn.grab-seats-button Sold Out!
             -#=render 'shared/signup_modals', :modal_class => '.eventshowsignup'
             .seats{'ng-show'=> 'showSeats'}
