@@ -42,13 +42,12 @@ Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($sc
       $http({method:'GET', url:'/events/ID/followers/add'}).success(result) ->
       console.log result
 
-  $scope.follow = (followable_type_val, followable_id_val, user_signed_in, follow_count)->
+  $scope.follow = (followable_type_val, followable_id_val, user_signed_in)->
     if user_signed_in
       alert("inside")
       console.log "Follow Information:*******"
       console.log followable_type_val
       console.log followable_id_val
-      console.log follow_count
       $http({method:'GET',url:'/api/follows',params:{followable_id:followable_id_val,followable_type:followable_type_val}}).success (result) ->
         #Follow.get(params:[followable_id:followable_id_val,followable_type:followable_type_val]).then (result) ->
         console.log result, "++++++++"

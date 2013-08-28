@@ -1,4 +1,4 @@
-=content_for :title, "simmer | user profile"
+=content_for :title, "simmr | user profile"
 
 .profiles{'ng-controller' => 'ProfileShowCtrl'}
   .user-profile
@@ -58,7 +58,7 @@
                 -#%td
                   %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"}
                 %td
-                  %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{@profile.id},#{user_signed_in?},#{@profile.follows.count})", :href => "#", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date!", "data-placement" => "right"}
+                  %a.sb.heart.circle.no-border.no-shadow.black.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{@profile.id},#{user_signed_in?})", :href => "#", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date!", "data-placement" => "right"}
                 %td{'ng-click'=>'appear = "following"'}
                   %a.sb.heart.circle.no-border.no-shadow.gray.profile-follow
               %tr.user-stats

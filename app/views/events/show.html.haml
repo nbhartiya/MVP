@@ -1,4 +1,4 @@
-=content_for :title, "simmer | #{@event.title}"
+=content_for :title, "simmr | #{@event.title}"
 
 .events{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='';event.menuPdf='#{@event.menu_pdf}'"}
   .event-profile
