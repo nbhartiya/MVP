@@ -95,9 +95,9 @@
                 %td
                   %a.sb.star.circle.no-border.no-shadow{:href=>"#{@event.host.profile.yelp_id}",:target=>"_blank"} 
                 %td
-                  %a.sb.facebook.circle.no-border.no-shadow{:href => "#"}
+                  %a.sb.facebook.circle.no-border.no-shadow{:href => "https://www.facebook.com/sharer/sharer.php?u=#{request.url}", :target => "_blank"} Share on Facebook
                 %td
-                  %a.addthisevent{:href => "#{request.url}", :title => "Add to Calendar"}
+                  %a.addthisevent{:href => "", :title => "Add to Calendar"}
                     +
                     %span._start
                       =DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec).strftime('%m-%d-%Y %H:%M:%S')
