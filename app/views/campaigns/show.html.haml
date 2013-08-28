@@ -52,7 +52,7 @@
               .btn.btn-warning.standalone-button{:"data-toggle" => "modal", :href=>"#sign_up_foodie"} Sign Up
               .btn.btn-warning.standalone-button{:"data-toggle" =>"modal", :href=>"#sign_in"} Sign In
             -if user_signed_in?
-              .btn.btn-warning.campaign-join-button.clearfix{'ng-controller'=>'HeartCtrl','ng-click' => "follow('Campaign',#{@campaign.id},#{user_signed_in?})", 'ng-hide'=>'!join'} Join
+              .btn.btn-warning.campaign-join-button.clearfix{'ng-controller'=>'HeartCtrl','ng-click' => "follow('Campaign',#{@campaign.id},#{user_signed_in?})", 'ng-show'=>'!join'} Join
               .btn.campaign-join-button.clearfix{'ng-controller'=>'HeartCtrl','ng-click' => "follow('Campaign',#{@campaign.id},#{user_signed_in?})",'ng-show' => 'join'} Undo
             %table.campaign-social-stats.clearfix
               %tr
