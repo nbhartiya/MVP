@@ -414,13 +414,13 @@
                   %a.followers{:href => "#", "data-toggle" => "tooltip", :title => "Check out who's following this business!", "data-placement" => "right"}
                     =@profile.follows.count
                 %td
-                  %a{:href=>"#{@event.host.profile.yelp_id}",:target=>"_blank"} 125
+                  %a{:href=>"#{@profile.yelp_id}",:target=>"_blank"} 125
                 %td{:rowspan => "2"} share
               %tr.user-stat-labels
                 %td{'ng-click'=>'appear = "followers"'} 
                   %a.followers{:href => "#", "data-toggle" => "tooltip", :title => "Check out who's following this business!", "data-placement" => "right"} followers
                 %td
-                  %a{:href=>"#{@event.host.profile.yelp_id}",:target=>"_blank"} reviews
+                  %a{:href=>"#{@profile.yelp_id}",:target=>"_blank"} reviews
           -if current_user
             -if current_user.id == @profile.user_id
               .span1.edit-button
