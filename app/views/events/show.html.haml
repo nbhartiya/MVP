@@ -71,7 +71,7 @@
 
             %p 
               =@event.seats_left
-              seats left until the event tilts!
+              seats left!
             .progress.progress-warning
               .bar{:style => "width: #{@event.percent_full}%"}
             .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Book It
