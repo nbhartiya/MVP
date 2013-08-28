@@ -1,3 +1,5 @@
+=content_for :title, "simmr | user profile"
+
 .profiles{'ng-controller' => 'ProfileShowCtrl'}
   .user-profile
     #profile-carousel.carousel.slide.hidden-phone
@@ -185,7 +187,7 @@
               %h1 Campaigns
               %ul.nav.nav-tabs
                 %li.active
-                  %a{"data-toggle" => "tab", :href => "#joined-campaigns"} Joined
+                  %a{"data-toggle" => "tab", :href => "#joined-campaigns"} Supporting
                 %li
                   %a{"data-toggle" => "tab", :href => "#started-campaigns"} Started
               #myTabContent.tab-content
@@ -207,7 +209,7 @@
                             %td
                               =campaign.days_left
                   -else
-                    No campaigns followed.
+                    No campaigns supported.
                 #started-campaigns.tab-pane.fade
                   -if @profile.user.campaigns_started
                     %table.campaigns-table

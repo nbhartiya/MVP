@@ -36,7 +36,13 @@ Simmr.directive "heart", ->
 
 Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($scope,$http, $routeParams, Follow) ->
   $scope.join = false
-  $scope.follow = (followable_type_val, followable_id_val,user_signed_in)->
+  $scope.addFollower = (followable_type_val, followable_id_val, user_signed_in) ->
+    if user_signed_in
+
+      $http({method:'GET', url:'/events/ID/followers/add'}).success(result) ->
+      console.log result
+
+  $scope.follow = (followable_type_val, followable_id_val, user_signed_in)->
     if user_signed_in
       console.log "Follow Information:*******"
       console.log followable_type_val

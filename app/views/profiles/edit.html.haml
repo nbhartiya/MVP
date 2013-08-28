@@ -1,3 +1,5 @@
+=content_for :title, "simmr | dashboard"
+
 .profiles{'ng-controller' => 'ProfileEditCtrl', 'ng-init' => "getProfile(#{@profile.id})"}
   .user-profile
     -if @profile.covers.present? && @profile.user.chef == true
