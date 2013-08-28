@@ -251,7 +251,7 @@
             %h1 Total: ${{total()}}
             %hr
             = render 'charges/stripe'
-            %h2{'ng-hide' => 'cardErrorMessages=="" || cardErrorMessages==nil'} {{cardErrorMessages[0]}} Try again!
+            %h2{'ng-hide' => 'cardErrorMessages[0]=="" || cardErrorMessages[0]==nil'} {{cardErrorMessages[0]}} Try again!
 
             %button.btn.btn-warning#ticket-purchase{'ng-click' => 'submitPayment()', 'ng-disabled'=> 'stripe.$invalid'} Purchase
             %button.btn#previous-button{'ng-click' => 'appear="payment1"'} Previous

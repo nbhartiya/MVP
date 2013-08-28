@@ -141,7 +141,9 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
     cvc: ""
 
   $scope.data = {}
+  $scope.cardErrorMessages={}
   $scope.submitCard = (card) ->
+    card.name=$scope.buyer.name
     Stripe.createToken card, (status, response) ->
       if status is 200
         console.log response

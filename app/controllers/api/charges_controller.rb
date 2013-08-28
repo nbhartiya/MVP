@@ -12,7 +12,7 @@ class Api::ChargesController < ApplicationController
     }
     @charge=Charge.create(parameters)
     charge_info =  {
-      :amount => (params[:charge][:amount]).to_i*100,
+      :amount => ((params[:charge][:amount]).to_f*100).to_i,
       :currency => @charge.currency,
       :card => @charge.stripe_token, # obtained with Stripe.js
       :description => "Ticket Purchase for Event: #{params[:charge][:event_id]}"
