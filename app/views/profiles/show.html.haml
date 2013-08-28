@@ -14,10 +14,10 @@
         -else
           .active.item
             =image_tag "Food 6.jpg"
-        -if @profile.user.chef == true
-          -if @profile.covers.count > 1
-            %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#profile-carousel"} ‹
-            %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#profile-carousel"} ›   
+    -if @profile.user.chef == true
+      -if @profile.covers.count > 1
+        %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#profile-carousel"} ‹
+        %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#profile-carousel"} ›   
     .container
       -if @profile.user.chef == false 
         .row.user-overview{'ng-init' => "appear='events'"}
