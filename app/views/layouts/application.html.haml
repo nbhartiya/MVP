@@ -1,7 +1,9 @@
 !!!
 %html{'ng-app' => 'Simmr'}
   %head
-    %title simmr | unique experiences
+    
+    %title
+      =yield(:title)
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
     = stylesheet_link_tag    "application", :media => "all"
     = filepicker_js_include_tag

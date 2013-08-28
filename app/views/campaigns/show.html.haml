@@ -1,3 +1,5 @@
+=content_for :title, "simmer | #{@campaign.biz_name} campaign"
+
 .campaigns{'ng-controller' => 'CampaignJoinCtrl', 'ng-init' => "endDate='#{@campaign.expires}';successful='#{@campaign.successful}'"}
   .campaign-profile
     #campaign-carousel.carousel.slide.hidden-phone       
