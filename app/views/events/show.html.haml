@@ -67,9 +67,11 @@
                   %li
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "menu"'} Menu
                   %li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "chatter"'} Attendees
+                    %button.btn.attendees{'data-toggle' => 'pill', 'ng-click' => 'appear = "chatter"'} Attendees & Chatter
                   %li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "story"'} Host Story
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "followers"'} Followers
+                  %li
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "story"'} Story
 
             %p 
               =@event.seats_left
@@ -96,7 +98,7 @@
             %table.event-sharing{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@event.follows.count};followable_type_val='Event';followable_id_val=#{@event.id}"}
               %tr.icons
                 %td
-                  %a.sb.heart.circle.no-border.no-shadow.follow{'ng-click' => "follow('Event',#{@event.id},#{user_signed_in?})", :href => "#", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date!", "data-placement" => "right"}
+                  %a.sb.heart.circle.no-border.no-shadow.follow{'ng-click' => "addFollower('Event',#{@event.id},#{user_signed_in?},follows)", :href => "#", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date!", "data-placement" => "right"}
                 %td
                   %a.sb.star.circle.no-border.no-shadow{:href=>"#{@event.host.profile.yelp_id}",:target=>"_blank"} 
                 %td
@@ -123,14 +125,14 @@
                     %span._date_format DD/MM/YYYY
               %tr.host-stats
                 %td
-                  %a.followers{:href => "#", "data-toggle" => "tooltip", :title => "Check out who's following this!", "data-placement" => "right"} {{follows}}
+                  %a.followers {{follows}}
                 %td
                   %a{:href=>"#{@event.host.profile.yelp_id}"} 125
                 %td{:rowspan => "2"} share
                 %td to
               %tr.host-stat-labels
                 %td
-                  %a.followers{:href => "#", "data-toggle" => "tooltip", :title => "Check out who's following this!", "data-placement" => "right"} followers
+                  %a.followers followers
                 %td 
                   %a{:href=>"#{@event.host.profile.yelp_id}"} reviews
                 %td calendar
