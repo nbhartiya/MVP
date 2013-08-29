@@ -1105,9 +1105,10 @@ $main_orange: rgb(255, 178, 35);
 		}
 		.feedback-actions{
 			width: 100%;
-			.point-action{
+			a.point-action{
 				cursor: pointer;
 				padding: 0;
+				font-size: 14px;
 			}
 			.event-attending-points{
 				margin: 20px 0;

@@ -36,34 +36,56 @@ Simmr.directive "heart", ->
 
 Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($scope,$http, $routeParams, Follow) ->
   $scope.join = false
-  $scope.addFollower = (followable_type_val, followable_id_val, user_signed_in) ->
-    if user_signed_in
 
-      $http({method:'GET', url:'/events/ID/followers/add'}).success(result) ->
-      console.log result
+  $http({method:'GET',url:'/api/follows',params:{followable_id:$scope.followable_id_val,followable_type:$scope.followable_type_val}}).success (result) ->
+    console.log result
+    if result.length > 0
+      $('.heart.follow').addClass("orange")
 
-  $scope.follow = (followable_type_val, followable_id_val, user_signed_in)->
+  $scope.addFollower = (followable_type_val, followable_id_val, user_signed_in, number_followers) ->
     if user_signed_in
-      alert("inside")
       console.log "Follow Information:*******"
       console.log followable_type_val
       console.log followable_id_val
+      console.log number_followers
+      $scope.follows = number_followers
       $http({method:'GET',url:'/api/follows',params:{followable_id:followable_id_val,followable_type:followable_type_val}}).success (result) ->
         #Follow.get(params:[followable_id:followable_id_val,followable_type:followable_type_val]).then (result) ->
-        console.log result, "++++++++"
         if result.length > 0
           $scope.confirm = confirm("Are you sure you want to unfollow?")
           if ($scope.confirm == true) 
-            $http({method:'DELETE',url:"/api/follows/#{result[0].id}"})
-            #destroy follow with confirmation
-            $scope.join = false
-            console.log "Destroyed Follow"
+            $http({method:'DELETE',url:"/api/follows/#{result[0].id}"}).success (result) ->
+              #destroy follow with confirmation
+              $scope.join = false
+              console.log "Destroyed Follow"
+              $scope.follows--
             
         else
           $http({method:'POST',url:'/api/follows',params:{followable_id:followable_id_val,followable_type:followable_type_val}}).success (result) ->
             $scope.join = true
             console.log "Created Follow"
+            $scope.follows++
+
+  $scope.follow = (followable_type_val, followable_id_val, user_signed_in)->
+    if user_signed_in
+      console.log "Follow Information:*******"
+      console.log followable_type_val
+      console.log followable_id_val
+      $http({method:'GET',url:'/api/follows',params:{followable_id:followable_id_val,followable_type:followable_type_val}}).success (result) ->
+        #Follow.get(params:[followable_id:followable_id_val,followable_type:followable_type_val]).then (result) ->
+        if result.length > 0
+          $scope.confirm = confirm("Are you sure you want to unfollow?")
+          if ($scope.confirm == true) 
+            $http({method:'DELETE',url:"/api/follows/#{result[0].id}"}).success (result) ->
+              #destroy follow with confirmation
+              $scope.join = false
+              console.log "Destroyed Follow"
             
+        else
+          $http({method:'POST',url:'/api/follows',params:{followable_id:followable_id_val,followable_type:followable_type_val}}).success (result) ->
+            $scope.join = true
+            console.log "Created Follow"
+
 ]
 
 Simmr.controller "HeaderCtrl", ["$scope",  "$routeParams", ($scope, $routeParams) ->
