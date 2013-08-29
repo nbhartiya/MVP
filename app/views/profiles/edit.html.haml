@@ -258,13 +258,13 @@
 
               %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet", :maxlength => "140", :name => "profile_blurb", 'ng-class' => "{error: profile_edit.profile_blurb.$invalid}"}
 
-              %select#neighborhoods{'ng-model'=>'profile.neighborhood', :name => "profile_neighborhood", 'ng-class' => "{error: profile_edit.profile_neighborhood.$invalid}"}
+              %select#neighborhoods{'ng-model'=>'profile.location.neighborhood', :name => "profile_neighborhood", 'ng-class' => "{error: profile_edit.profile_neighborhood.$invalid}"}
 
-              %input#profile-city{'ng-model'=>'profile.city', :type=>"text", :placeholder =>"Your City", :name => "profile_city", 'ng-class' => "{error: profile_edit.profile_city.$invalid}"}
+              %input#profile-city{'ng-model'=>'profile.location.city', :type=>"text", :placeholder =>"Your City", :name => "profile_city", 'ng-class' => "{error: profile_edit.profile_city.$invalid}"}
 
-              %select#state{'ng-model'=>'profile.state', :name => "profile_state", 'ng-class' => "{error: profile_edit.profile_state.$invalid}"}
+              %select#state{'ng-model'=>'profile.location.state', :name => "profile_state", 'ng-class' => "{error: profile_edit.profile_state.$invalid}"}
 
-              %input#profile-zip{'ng-model' => 'profile.zip', :type=>"text", :placeholder =>"Your Zip", :name => "profile_zip", :maxlength => "5", 'ng-pattern' => '/^[0-9]{5}$/', 'ng-class' => "{error: profile_edit.profile_zip.$invalid}"}
+              %input#profile-zip{'ng-model' => 'profile.location.zipcode', :type=>"text", :placeholder =>"Your Zip", :name => "profile_zip", :maxlength => "5", 'ng-pattern' => '/^[0-9]{5}$/', 'ng-class' => "{error: profile_edit.profile_zip.$invalid}"}
               
               .help-block{'ng-show' => 'profile_edit.profile_zip.$error.pattern'} Please enter a valid zip code
               .help-block{'ng-show' => 'profile_edit.profile_email.$error.email'} Please enter a valid email
@@ -273,7 +273,7 @@
 
               .clearfix
                 %button.btn#profile-images-button{'ng-click'=> 'uploadAvatarImage()'} Change Profile Picture
-              %button.btn.btn-warning#submit{'ng-disabled' => 'profile_edit.$invalid', 'ng-click' => 'saved = true'} Save Changes
+              %button.btn.btn-warning#submit{'ng-disabled' => 'profile_edit.$invalid', 'ng-click' => "editProfile(profile);saved = true"} Save Changes
               .help-block{'ng-show' => "saved"} Saved! (feel free to continue to make edits and save again)
 
       -else

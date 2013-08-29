@@ -109,6 +109,15 @@ class User < ActiveRecord::Base
     self.followers.where("chef in (?)","false")
   end
 
+  def follows_this?(type, fol_id)
+    follow = Follow.where("followable_id = ? AND followable_type = ? AND user_id = ?",fol_id,type,self.id)
+    if follow.present?
+      return true
+    else
+      return false
+    end
+  end
+
   #def chef_me
   #  binding.pry
   #  if self.chef == nil

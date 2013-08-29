@@ -75,7 +75,7 @@
 
             %p 
               =@event.seats_left
-              seats left until the event tilts!
+              seats left!
             .progress.progress-warning
               .bar{:style => "width: #{@event.percent_full}%"}
             - if @event.seats_left > 0
@@ -91,7 +91,7 @@
                 %select.number-of-seats{'ng-model' => 'num_guests'}
                   %option{:value => ''} Number of Seats
                   %option{:value => 1} 1 seat
-                  - (@event.seats_left).times do |s|
+                  -# (@event.seats_left).times do |s|
                     %option{:value => s+2} #{s+2} seats
                 .btn.btn-warning.event-go-button{'ng-click' => 'showPayment()', 'ng-disabled' => "num_guests==nil || num_guests == 0"} Go
             
@@ -127,14 +127,14 @@
                 %td
                   %a.followers {{follows}}
                 %td
-                  %a{:href=>"#{@event.host.profile.yelp_id}"} 125
+                  %a{:href=>"#{@event.host.profile.yelp_id}",:target=>"_blank"} 125
                 %td{:rowspan => "2"} share
                 %td to
               %tr.host-stat-labels
                 %td
                   %a.followers followers
                 %td 
-                  %a{:href=>"#{@event.host.profile.yelp_id}"} reviews
+                  %a{:href=>"#{@event.host.profile.yelp_id}",:target=>"_blank"} reviews
                 %td calendar
         -if current_user
           -if current_user.id == @event.host_id
@@ -257,6 +257,8 @@
             %h1 Total: ${{total()}}
             %hr
             = render 'charges/stripe'
+            %h2{'ng-hide' => 'cardErrorMessages[0]=="" || cardErrorMessages[0]==nil'} {{cardErrorMessages[0]}} Try again!
+
             %button.btn.btn-warning#ticket-purchase{'ng-click' => 'submitPayment()', 'ng-disabled'=> 'stripe.$invalid'} Purchase
             %button.btn#previous-button{'ng-click' => 'appear="payment1"'} Previous
 

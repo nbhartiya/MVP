@@ -122,6 +122,34 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
   $scope.guest.email = ''
   $scope.buyer = {}
 
+  $scope.expirationMonths = [
+    '01',
+    '02',
+    '03',
+    '04',
+    '05',
+    '06',
+    '07',
+    '08',
+    '09',
+    '10',
+    '11',
+    '12' ]
+
+  $scope.expirationYears = [
+    '2013',
+    '2014',
+    '2015',
+    '2016',
+    '2017',
+    '2018',
+    '2019',
+    '2020',
+    '2021',
+    '2022',
+    '2023',
+    '2024' ]
+
   $scope.eventDate = ->
     moment($scope.event.date).format("dddd, MMMM D")
 
@@ -175,7 +203,9 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
     cvc: ""
 
   $scope.data = {}
+  $scope.cardErrorMessages={}
   $scope.submitCard = (card) ->
+    card.name=$scope.buyer.name
     Stripe.createToken card, (status, response) ->
       if status is 200
         console.log response
@@ -191,7 +221,10 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
           if data.status == "Success"
             $scope.appear = "payment3"
           if data.status == "Failure"
-            alert(data.messages)
+            $scope.cardErrorMessages=data.messages
+            $scope.card.expYear = $scope.card.exp_year
+            $scope.card.expMonth = $scope.card.exp_month
+
       else
         console.log response
 ]

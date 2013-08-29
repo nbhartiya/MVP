@@ -20,11 +20,26 @@ class Api::ProfilesController < ApplicationController
     profile_params.delete("profile_image_urls")
     location_params = params[:profile][:location]
     user_params = params[:profile][:user]
-    location_params.delete("created_at")
-    location_params.delete("updated_at")
-    user_params.delete("created_at")
-    user_params.delete("updated_at")
-    user_params.delete("completed")
+    if location_params.present?
+      location_params.delete("created_at")
+      location_params.delete("updated_at")
+      if @profile.location.present?
+        @profile.location.update_attributes(location_params)
+      else
+        @location=@profile.create_location(location_params)
+        @location.save!
+        @profile.location_id=@location.id
+        @profile.save!
+      end
+    end
+    if user_params.present?
+      user_params.delete("created_at")
+      user_params.delete("updated_at")
+      user_params.delete("completed")
+      # may want to only update the email....
+      @profile.user.update_attributes(user_params)
+      @profile.user.save!
+    end
     profile_params.delete("location")
     profile_params.delete("user")
     profile_params.delete("covers")
@@ -42,17 +57,6 @@ class Api::ProfilesController < ApplicationController
     end
     profile_params.delete("avatar")
     @profile.update_attributes(profile_params)
-
-    if @profile.location.present?
-      @profile.location.update_attributes(location_params)
-    else
-      @location=@profile.create_location(location_params)
-      @location.save!
-      @profile.location_id=@location.id
-      @profile.save!
-    end
-    # may want to only update the email....
-    @profile.user.update_attributes(user_params)
     if profile_images.present?
       #if @profile.covers.present?
       #  #need to figure out how to delete all of them or update all of them individually
