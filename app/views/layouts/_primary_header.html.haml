@@ -36,7 +36,7 @@
               %ul.dropdown-menu{"aria-labeledby" => "dLabel", :role => "menu"}
                 -if current_user.profile.present?
                   %li.dropitem
-                    %a{:href => "/edit_my_profile", :tabindex => "-1"} Edit Profile
+                    %a{:href => "/edit_my_profile", :tabindex => "-1"} Dashboard
                 -if current_user.chef?
                   %li.dropitem
                     %a{:href=>"/edit_my_profile?events", :tabindex => "-1"} My Events

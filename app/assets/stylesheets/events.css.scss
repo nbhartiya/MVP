@@ -606,6 +606,15 @@ $main_orange: rgb(255, 178, 35);
 		.event-guests, .event-purchase, .event-details, .event-menu, .event-attendees-and-chatter, .event-host-story, .host-followers{
 			overflow-y: auto;
 			height: 490px;
+			p{
+				color: white;
+				margin: 0;
+				font-weight: 100;
+				a{
+					margin: 0;
+					font-weight: 100;
+				}
+			}
 		}
 		.event-create-form{
 			height: 490px;

@@ -392,6 +392,7 @@
                 -if @profile.location.present?
                   %h3 
                     #{@profile.location.address1} <br> #{@profile.location.city}, #{@profile.location.state} #{@profile.location.zipcode}
+                  %a{:href => "www.google.com"} Business Website
 
                 %ul.nav.profile-button-group
                   %li

@@ -305,6 +305,8 @@
                   {{profile.location.address1}}
                 %h3#default-text{'ng-show'=>'profile.location.city=="" || profile.location.city==nil || profile.state=="" || profile.location.state==nil || profile.location.zipcode=="" || profile.location.zipcode==nil'} Your City, State and Zipcode       
                 %h3{'ng-hide' => 'profile.location.zipcode=="" || profile.location.zipcode==nil'} {{profile.location.city + ','}} {{profile.location.state}} {{profile.location.zipcode}}
+                %h3#default-text{'ng-show'=>'profile.website=="" || profile.website==nil'} Your Website       
+                %h3{'ng-hide' => 'profile.website=="" || profile.website==nil'} {{profile.website}}
                 %ul.nav.profile-button-group
                   %li
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "news"'} News
@@ -541,9 +543,12 @@
               %select#state{'ng-model'=>'profile.location.state', :required => "required", :name => "profile_state", 'ng-class' => "{error: profile_edit.profile_state.$invalid}"}
 
               %input#profile-zip{'ng-model' => 'profile.location.zipcode', :type=>"text", :placeholder =>"Your Zip", :required => "required", :name => "profile_zip", :maxlength => "5", 'ng-pattern' => '/^[0-9]{5}$/', 'ng-class' => "{error: profile_edit.profile_zip.$invalid}"}
+
+              %input#profile-site{'ng-model' => 'profile.website', :type=>"url", :placeholder =>"Your Website", :name => "profile_site", 'ng-class' => "{error: profile_edit.profile_site.$invalid}"}
               
               .help-block{'ng-show' => 'profile_edit.profile_zip.$error.pattern'} Please enter a valid zip code
               .help-block{'ng-show' => 'profile_edit.profile_email.$error.email'} Please enter a valid email
+              .help-block{'ng-show' => 'profile_edit.profile_site.$error.url'} Please enter a valid url
 
               .help-block{'ng-show' => 'profile_edit.profile_bizName.$error.required || profile_edit.profile_blurb.$error.required || profile_edit.profile_address.$error.required || profile_edit.profile_city.$error.required || profile_edit.profile_state.$error.required || profile_edit.profile_zip.$error.required || profile_edit.profile_neighborhood.$error.required || profile_edit.profile_email.$error.required'} All fields are required
 

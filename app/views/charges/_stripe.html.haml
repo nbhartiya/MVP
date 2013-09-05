@@ -9,11 +9,6 @@
 
   %input#credit_card_number{'ng-model' => "card.number", :placeholder => "CC Number", :type => "text", :required => "required", :name => "card_number", :autofocus => "", 'ng-pattern' => '/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/', 'ng-class' => "{error: stripe.card_number.$invalid}"}
   
-  #security_code
-    %p.cvc-explanation{:rel => 'popover', :"data-trigger" => 'hover', :"data-placement" => 'bottom'} What is?
-    %input{'ng-model' => "card.cvc", :placeholder => "CVC", :type => "text", :required => "required", :name => "card_cvc", 'ng-pattern' => '/^[0-9]{3,4}$/', :maxlength => "4", 'ng-class' => "{error: stripe.card_cvc.$invalid}"}
-
-  
   #expiration
     %p Expiration
     %select#expiration_month{'ng-model' => "card.expMonth", 'ng-options'=>"expmo for expmo in expirationMonths",:required => "required", :name => "card_expMonth"}
@@ -21,6 +16,11 @@
 
     %select#expiration_year{'ng-model' => "card.expYear", 'ng-options'=>"expyr for expyr in expirationYears",:required => "required", :name => "card_expYear"}
       %option{:value => ""} Y
+
+  #security_code
+    %p.cvc-explanation{:rel => 'popover', :"data-trigger" => 'hover', :"data-placement" => 'bottom'} What is?
+    %input{'ng-model' => "card.cvc", :placeholder => "CVC", :type => "text", :required => "required", :name => "card_cvc", 'ng-pattern' => '/^[0-9]{3,4}$/', :maxlength => "4", 'ng-class' => "{error: stripe.card_cvc.$invalid}"}
+
 
   .help-block-white{'ng-show' => 'stripe.card_number.$error.pattern'} Please enter a valid credit card number
   .help-block-white{'ng-show' => 'stripe.card_cvc.$error.pattern'} Please enter a valid credit card security code
@@ -38,6 +38,7 @@
 
   .help-block-white{'ng-show' => 'stripe.name.$error.required || stripe.card_number.$error.required || stripe.card_cvc.$error.required || stripe.billing_address.$error.required || stripe.billing_city.$error.required || stripe.billing_state.$error.required || stripe.billing_zip.$error.required'} All fields are required
   .help-block-white{'ng-show' => 'stripe.billing_zip.$error.pattern'} Please enter a valid zip code
+  .help-block-white *Payments powered and secured by <a href = "http://www.stripe.com"> Stripe </a>
     
   %input#charge_last4{:name => "charge[last4]", :type => "hidden"}
     
