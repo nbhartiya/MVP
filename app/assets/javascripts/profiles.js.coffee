@@ -24,10 +24,6 @@ $(".answer-image").click ->
   if $(this).hasClass "highlight"
     console.log($(this))
 
-$(".heart").click ->
-  $(this).toggleClass("black").toggleClass("orange")  if $(this).hasClass("profile-follow")
-
-
 angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams", "$location", "Profile", ($scope, $routeParams, $location, Profile) ->
   $scope.edit = 1
   if location.search == '?events'
