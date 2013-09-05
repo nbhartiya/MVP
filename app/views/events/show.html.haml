@@ -209,7 +209,7 @@
                         %tr 
                           %td
                             -if follow.user.profile.avatar.present?
-                              =image_tag(follow.user.profile.avatar)
+                              =link_to image_tag(follow.user.profile.avatar.image), "#"
                             -else
                               =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
                           %td
@@ -228,7 +228,7 @@
                         %tr 
                           %td
                             -if follow.user.profile.avatar.present?
-                              =image_tag(follow.user.profile.avatar)
+                              =image_tag(follow.user.profile.avatar.image)
                             -else
                               =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
                           %td

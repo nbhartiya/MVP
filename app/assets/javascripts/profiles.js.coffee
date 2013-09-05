@@ -36,9 +36,11 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
   $scope.getProfile = (profileId) ->
     Profile.get(id: profileId).then (result) ->
       $scope.profile = result
-      console.log $scope.profile
-      if $scope.profile.bizName == null || $scope.profile.blurb == null || $scope.profile.locationId == null || $scope.profile.neighborhood == null
-        $scope.appear = "edit"
+      if $scope.profile.user.chef==true
+        if $scope.profile.bizName == null || $scope.profile.blurb == null || $scope.profile.locationId == null || $scope.profile.neighborhood == null
+          $scope.appear = "edit"
+        else $scope.appear = ''
+      else $scope.appear = ''
 
   $scope.editProfile = (profile) ->
     console.log "Editing Profile"

@@ -208,6 +208,8 @@
                           -if !campaign.expired?
                             %td
                               =campaign.days_left
+                          -else
+                            %td
                   -else
                     No campaigns supported.
                 #started-campaigns.tab-pane.fade
@@ -227,6 +229,8 @@
                           -if !campaign.expired?
                             %td
                               =campaign.days_left
+                          -else
+                            %td
                   -else
                     No campaigns started.
 
