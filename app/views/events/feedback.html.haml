@@ -1,6 +1,6 @@
 =content_for :title, "simmr | #{@event.title} feedback"
 
-.events{'ng-controller' => 'EventFeedbackCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='survey'"}
+.events{'ng-controller' => 'EventFeedbackCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='survey';event.menuPdf='#{@event.menu_pdf}'"}
   .event-profile
     #event-carousel.carousel.slide         
       .carousel-inner
@@ -60,124 +60,168 @@
 
                 %h3#event-date
                   {{eventDate()}}, from {{eventTime()}} to {{eventEndTime()}}
-                %a{:href => "{{mapUrl()}}"} 123 Mission Street <br> San Francisco, CA 94107
+                %a{:href => "{{mapUrl()}}", :target=>"_blank"}
+                  ="#{@event.location.address1}, #{@event.location.city}, #{@event.location.state} #{@event.location.zipcode}"
                 %ul.nav.event-button-group
                   %li
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "details"'} Details
                   %li
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "menu"'} Menu
                   %li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "chatter"'} Attendees
+                    %button.btn.attendees{'data-toggle' => 'pill', 'ng-click' => 'appear = "chatter"'} Attendees & Chatter
                   %li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "story"'} Host Story
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "followers"'} Followers
+                  %li
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "story"'} Story
 
 
-            %table.event-sharing
+            %table.event-sharing{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@event.follows.count}"}
               %tr.icons
-                %td{'ng-click'=>'appear = "followers"'}
-                  %a.sb.heart.circle.no-border.no-shadow.follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'} #follow
                 %td
-                  %a.sb.star.circle.no-border.no-shadow{:href=>"#"} #yelp
+                  -if @current_user.follows_this?('Event', @event.id) == true
+                    %a.sb.heart.circle.no-border.no-shadow.orange{'ng-click' => "addFollower('Event',#{@event.id},#{user_signed_in?},follows)", :href => "#", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date!", "data-placement" => "right"}
+                  -else
+                    %a.sb.heart.circle.no-border.no-shadow{'ng-click' => "addFollower('Event',#{@event.id},#{user_signed_in?},follows)", :href => "#", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date!", "data-placement" => "right"}
                 %td
-                  %a.sb.facebook.circle.no-border.no-shadow{:href => "#", :onclick => "\r\n    window.open(\r\n      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), \r\n      'facebook-share-dialog', \r\n      'width=626,height=436'); \r\n    return false;"}
+                  %a.sb.star.circle.no-border.no-shadow{:href=>"#{@event.host.profile.yelp_id}",:target=>"_blank"} 
+                %td
+                  %a.sb.facebook.circle.no-border.no-shadow{:href => "#"}
               %tr.host-stats
-                %td 190
-                %td 190
+                %td
+                  %a.followers {{follows}}
+                %td
+                  %a{:href=>"#{@event.host.profile.yelp_id}",:target=>"_blank"} 125
                 %td{:rowspan => "2"} share
               %tr.host-stat-labels
-                %td followers
-                %td reviews
-        .span1
+                %td
+                  %a.followers followers
+                %td
+                  %a{:href=>"#{@event.host.profile.yelp_id}",:target=>"_blank"} reviews
+        -if current_user
+          -if current_user.id == @event.host_id
+            .span1.edit-button-event
+              %a.button.btn{:href=>"/events/#{@event.id}/edit"} Edit
+          -else
+            .span1
         .span6 
           .event-details#details{'ng-show' => 'appear=="details"'}
+            %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Details
             %h3
               =@event.description
           .event-menu#menu{'ng-show' => 'appear=="menu"'}
+            %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Menu
-            %p
-              =@event.menu_text
+            -if @event.menu_pdf.present?
+              %iframe.menu{:src => "#{@event.menu_pdf}", :width => '510px', :height => '420px'}
+            -else
+              %h3 Coming Soon!
           .event-attendees-and-chatter{'ng-show' => 'appear=="chatter"'}
+            %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Attendees
             .attendees
-              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Wendy Lin", "class" => "one-attendee", "data-placement" => "bottom"
-              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Neeharika Bharitya", "class" => "one-attendee", "data-placement" => "bottom"
-              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Ziyan Chu", "class" => "one-attendee", "data-placement" => "bottom"
-              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Christine Lee", "class" => "one-attendee", "data-placement" => "bottom"
-              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "Michael Makarov", "class" => "one-attendee", "data-placement" => "bottom"
-              %p 
-                -for guest in @event.guests
-                  = guest.first_name + " " + guest.last_name
+              -if @event.guests_count > 0
+                %table.following-table
+                  -for guest in @event.guests
+                    %tr 
+                      %td
+                        -if guest.user.present?
+                          -if guest.user.profile.avatar.present?
+                            =link_to image_tag(guest.user.profile.avatar.image), "/profiles/#{guest.user.profile.id}"
+                          -else
+                            =image_tag("Foodie-Default-Profile-Image.png")
+                        -else
+                          =image_tag("Foodie-Default-Profile-Image.png")
+                      %td
+                        -if guest.user.present?
+                          %a{:href=>"/profiles/#{guest.user.profile.id}"}
+                            ="#{guest.first_name} #{guest.last_name}"
+                        -else
+                          %h3
+                            ="#{guest.first_name} #{guest.last_name}"
+                      -#%td Number of Followers
+                      %td
+                        -if guest.user.present?
+                          -if @current_user.follows_this?('Profile', guest.user.profile.id) == true
+                            %a.sb.heart.circle.no-border.no-shadow.orange{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{guest.user.profile.id},#{user_signed_in?})"}
+                          -else
+                            %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{guest.user.profile.id},#{user_signed_in?})"}
+              -else
+                %h3 There are currently no attendees. Be the first to grab a spot!
             .row.comments
               .fb-comments{"data-colorscheme" => "dark", "data-href" => "#{request.url[0..-10]}", "data-num-posts" => "5", "data-width" => "500"}
           .event-host-story{'ng-show' => 'appear=="story"'}
+            %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Host Story
             %h3
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait
               =@event.host.profile.story
+              -if current_user
+                -if (current_user.id == @event.host_id) && @event.host.profile.story == nil
+                  ="Hey #{@event.host.profile.biz_name}, looks like you didn't add a 'story' in your profile. Be sure to add a story by clicking on 'Dashboard' above!"
           .host-followers{'ng-show' => 'appear == "followers"'}
+            %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Followers
             %ul.nav.nav-tabs
               %li.active
-                %a{"data-toggle" => "tab", :href => "#business-following"} Businesses
-              %li
                 %a{"data-toggle" => "tab", :href => "#foodie-following"} Foodies
+              %li
+                %a{"data-toggle" => "tab", :href => "#business-following"} Businesses
             #myTabContent.tab-content
-              #business-following.tab-pane.fade.active.in
-                %table.following-table
-                  %tr 
-                    %td 
-                      =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
-                    %td Name
-                    %td Number of Followers
-                    %td
-                      %a.sb.heart.circle.no-border.no-shadow.event-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
-                  %tr.current-user-rank
-                    %td 
-                      =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
-                    %td Name
-                    %td Number of Followers
-                    %td
-                      %a.sb.heart.circle.no-border.no-shadow.event-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
-                  %tr 
-                    %td 
-                      =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
-                    %td Name
-                    %td Number of Followers
-                    %td
-                      %a.sb.heart.circle.no-border.no-shadow.event-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
-              #foodie-following.tab-pane.fade
-                %table.following-table
-                  %tr 
-                    %td 
-                      =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
-                    %td Name
-                    %td Number of Followers
-                    %td
-                      %a.sb.heart.circle.no-border.no-shadow.event-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
-                  %tr 
-                    %td 
-                      =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
-                    %td Name
-                    %td Number of Followers
-                    %td
-                      %a.sb.heart.circle.no-border.no-shadow.event-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
-                  %tr 
-                    %td 
-                      =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
-                    %td Name
-                    %td Number of Followers
-                    %td
-                      %a.sb.heart.circle.no-border.no-shadow.event-follow{'ng-controller'=>'HeartCtrl', 'ng-init' => "wah='#{'yomomma'}'", 'ng-click' => 'follow()'}
+              #foodie-following.tab-pane.fade.active.in
+                -if @event.follows.count > 0
+                  %table.following-table
+                    -for follow in @event.follows
+                      -if follow.user.chef == false
+                        %tr 
+                          %td
+                            -if follow.user.profile.avatar.present?
+                              =link_to image_tag(follow.user.profile.avatar.image), "#"
+                            -else
+                              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                          %td
+                            %a{:href=>"/profiles/#{follow.user.profile.id}"}
+                              ="#{follow.user.first_name} #{follow.user.last_name}"
+                          -#%td Number of Followers..may want to add later
+                          %td
+                            -if @current_user.follows_this?('Profile', follow.user.profile.id) == true
+                              %a.sb.heart.circle.no-border.no-shadow.orange{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})"}
+                            -else
+                              %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})"}
+                -else
+                  %h3 No current followers. Click the heart to stay updated about this event!
+              #business-following.tab-pane.fade
+                -if @event.follows.count > 0
+                  %table.following-table
+                    -for follow in @event.follows
+                      -if follow.user.chef == true
+                        %tr 
+                          %td
+                            -if follow.user.profile.avatar.present?
+                              =image_tag(follow.user.profile.avatar.image)
+                            -else
+                              =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                          %td
+                            %a{:href=>"/profiles/#{follow.user.profile.id}"}
+                              ="#{follow.user.profile.biz_name}"
+                          -#%td Number of Followers..may want to add later
+                          %td
+                            -if @current_user.follows_this?('Profile', follow.user.profile.id) == true
+                              %a.sb.heart.circle.no-border.no-shadow.orange{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})"}
+                            -else
+                              %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})"}
+                -else
+                  %h3 No current followers. Click the heart to stay updated about this event!
 
 
           %form.event-survey.clearfix{'ng-show' => 'appear=="survey"', :name => "feedback_survey"}
+            %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Survey
             %input.survey-question-1{:type=>'text', :placeholder =>"Custom Survey Question 1", :name => "question_1", :required => "required", 'ng-model' => 'survey.question1', 'ng-class' => "{error: feedback_survey.question_1.$invalid}"}
             .help-block-white{'ng-show' => 'feedback_survey.question_1.$error.required'} Required
             %button.btn.btn-warning.standalone-button{'ng-click' => 'appear="points"', 'ng-disabled' => 'feedback_survey.$invalid'} Get Points!
 
           .event-yelp.clearfix{'ng-show' => 'appear=="yelp"'}
+            %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Yelp Review
             %form{:name => "yelp_review"}
               %input.yelp-review-link{:type=>'url', :required => "required", :placeholder =>"Paste Yelp Review Link Here", :name => "yelp_link", 'ng-model' => "yelplink", 'ng-class' => "{error: yelp_review.yelp_link.$invalid}"}
@@ -187,6 +231,7 @@
 
 
           .point-ranking.clearfix{'ng-show' => 'appear=="points"'}
+            %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Leader Boards
             %ul.nav.nav-tabs
               %li.active
@@ -259,6 +304,7 @@
             %button.btn.btn-warning.standalone-button{'ng-click' => 'appear="more_points"'} Get More Points
               
           .more-points.clearfix{'ng-show' => 'appear=="more_points"'}
+            %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Get More Points
             %table.feedback-actions.clearfix
               %tr

@@ -147,6 +147,8 @@
           -if current_user.id == @event.host_id
             .span1.edit-button-event
               %a.button.btn{:href=>"/events/#{@event.id}/edit"} Edit
+          -else
+            .span1
         .span6
           .event-details#details{'ng-show' => 'appear=="details"'}
             %button.close{"ng-click" => "appear=''", :type => "button"} close
@@ -187,9 +189,9 @@
                       %td
                         -if guest.user.present?
                           -if @current_user.follows_this?('Profile', guest.user.profile.id) == true
-                            %a.sb.heart.circle.no-border.no-shadow.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{guest.user.profile.id},#{user_signed_in?})"}
+                            %a.sb.heart.circle.no-border.no-shadow.orange{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{guest.user.profile.id},#{user_signed_in?})"}
                           -else
-                            %a.sb.heart.circle.no-border.no-shadow.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{guest.user.profile.id},#{user_signed_in?})"}
+                            %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{guest.user.profile.id},#{user_signed_in?})"}
               -else
                 %h3 There are currently no attendees. Be the first to grab a spot!
             .row.comments
@@ -201,7 +203,7 @@
               =@event.host.profile.story
               -if current_user
                 -if (current_user.id == @event.host_id) && @event.host.profile.story == nil
-                  ="Hey #{@event.host.profile.biz_name}, looks like you didn't add a 'story' in your profile. Be sure to add a story by clicking on 'Edit Profile' above!"
+                  ="Hey #{@event.host.profile.biz_name}, looks like you didn't add a 'story' in your profile. Be sure to add a story by clicking on 'Dashboard' above!"
           .host-followers{'ng-show' => 'appear == "followers"'}
             %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Followers
@@ -228,9 +230,9 @@
                           -#%td Number of Followers..may want to add later
                           %td
                             -if @current_user.follows_this?('Profile', follow.user.profile.id) == true
-                              %a.sb.heart.circle.no-border.no-shadow.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})"}
+                              %a.sb.heart.circle.no-border.no-shadow.orange{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})"}
                             -else
-                              %a.sb.heart.circle.no-border.no-shadow.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})"}
+                              %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})"}
                 -else
                   %h3 No current followers. Click the heart to stay updated about this event!
               #business-following.tab-pane.fade
@@ -250,9 +252,9 @@
                           -#%td Number of Followers..may want to add later
                           %td
                             -if @current_user.follows_this?('Profile', follow.user.profile.id) == true
-                              %a.sb.heart.circle.no-border.no-shadow.orange.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})"}
+                              %a.sb.heart.circle.no-border.no-shadow.orange{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})"}
                             -else
-                              %a.sb.heart.circle.no-border.no-shadow.profile-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})"}
+                              %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})"}
                 -else
                   %h3 No current followers. Click the heart to stay updated about this event!
 
