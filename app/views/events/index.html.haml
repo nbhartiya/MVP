@@ -10,15 +10,21 @@
       .container
         .row.events-row-content
           .span12.events-index-content
+            -all_events = @events
             -if current_user
               -if current_user.chef == true
                 %p Check out other businesses we're hosting events with to get some ideas!
               - if current_user.chef == false
-                %p Pick an event to go to!
+                -if all_events.length == 0
+                  %p Currently, there are no upcoming events. Be sure to sign up and we'll let you know as soon as we have one coming up!
+                -else
+                  %p Pick an event to go to!
             -else
-              %p Pick an event to go to!
+              -if all_events.length == 0
+                %p Currently, there are no upcoming events. Be sure to sign up and we'll let you know as soon as we have one coming up!
+              -else
+                %p Pick an event to go to!
     .container
-      -all_events = @events
       -while all_events.length > 1
         -event = all_events.pop
         .row.events-row
