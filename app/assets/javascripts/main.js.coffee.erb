@@ -37,8 +37,9 @@ Simmr.directive "heart", ->
 Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($scope,$http, $routeParams, Follow) ->
   $scope.join = false
 
-  if $scope.userFollow
+  if $scope.userFollows==true
     $('.heart.follow').addClass("orange")
+
 
   $scope.addFollower = (followable_type_val, followable_id_val, user_signed_in, number_followers) ->
     if user_signed_in
