@@ -338,9 +338,14 @@ $main_orange: rgb(255, 178, 35);
 			padding: 2px 5px;
 			display: inline-block;
 		}
-		.campaign-summary {
+		.campaign-summary{
+			padding: 30px 30px 0 30px;
+		}
+		.following{
+			padding: 0 30px 30px 30px;
+		}
+		.campaign-summary, .following {
 		    background: rgba(255, 255, 255,.8);
-		    padding: 30px;
 		    position: relative;
 		    -webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;    
