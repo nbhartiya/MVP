@@ -100,7 +100,17 @@ $main_orange: rgb(255, 178, 35);
 				font-weight: 100;
 			}
 		}
+		.profile-button-group-chef{
+			li{
+				width: 19%;
+			}
+		}
 		.profile-button-group{
+			li{
+				width: 24%;
+			}
+		}
+		.profile-button-group, .profile-button-group-chef{
 			margin: 20px auto 10px auto;
 			display: table;
 			width: 100%;
@@ -111,7 +121,6 @@ $main_orange: rgb(255, 178, 35);
 			li{
 				float: left;
 				display: table-cell;
-				width: 24%;
 				margin: 0 0.5%;
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
@@ -122,6 +131,7 @@ $main_orange: rgb(255, 178, 35);
 			}
 			.btn{
 				width: 100%;
+				padding: 4px 6px;
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
