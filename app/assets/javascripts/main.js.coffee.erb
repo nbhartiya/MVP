@@ -102,7 +102,7 @@ Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($sc
         else
           $http({method:'POST',url:'/api/follows',params:{followable_id:followable_id_val,followable_type:followable_type_val}}).success (result) ->
             $scope.join = true
-            console.log "Created Follow" 
+            console.log "Created Follow"  
 
 ]
 
