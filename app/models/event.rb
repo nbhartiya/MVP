@@ -23,6 +23,8 @@
 #
 
 class Event < ActiveRecord::Base
+
+  validates_presence_of :location
   
   has_one :location, :dependent => :destroy
   has_many :images, :as => :imageable, :dependent => :destroy
