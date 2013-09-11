@@ -55,12 +55,18 @@ Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($sc
       console.log followable_type_val
       console.log followable_id_val
       console.log number_followers
+      console.log $(this)
+      console.log $scope.this
       $scope.follows = number_followers
       $http({method:'GET',url:'/api/follows',params:{followable_id:followable_id_val,followable_type:followable_type_val}}).success (result) ->
         #Follow.get(params:[followable_id:followable_id_val,followable_type:followable_type_val]).then (result) ->
         if result.length > 0
           $scope.confirm = confirm("Are you sure you want to unfollow?")
           if ($scope.confirm == true) 
+            if $(".heart").hasClass("campaign-follow")
+              $(".heart").toggleClass("black").toggleClass "orange"
+            else
+              $(".heart").toggleClass "orange"
             $http({method:'DELETE',url:"/api/follows/#{result[0].id}"}).success (result) ->
               #destroy follow with confirmation
               $scope.join = false
@@ -68,10 +74,15 @@ Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($sc
               $scope.follows--
             
         else
+          if $(".heart").hasClass("campaign-follow")
+            $(".heart").toggleClass("black").toggleClass "orange"
+          else
+            $(".heart").toggleClass "orange"
           $http({method:'POST',url:'/api/follows',params:{followable_id:followable_id_val,followable_type:followable_type_val}}).success (result) ->
             $scope.join = true
             console.log "Created Follow"
             $scope.follows++
+
 
   $scope.follow = (followable_type_val, followable_id_val, user_signed_in)->
     if user_signed_in
@@ -91,7 +102,7 @@ Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($sc
         else
           $http({method:'POST',url:'/api/follows',params:{followable_id:followable_id_val,followable_type:followable_type_val}}).success (result) ->
             $scope.join = true
-            console.log "Created Follow"
+            console.log "Created Follow"  
 
 ]
 

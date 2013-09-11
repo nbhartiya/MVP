@@ -108,11 +108,15 @@
             %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Details
             %h3
-              =@event.description
+              - if @event.description != nil
+                - n = @event.description.split("\n")
+                -for i in 0..n.length-1
+                  = simple_format n[i]
           .event-menu#menu{'ng-show' => 'appear=="menu"'}
             %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Menu
             -if @event.menu_pdf.present?
+              %a{:href => "#{@event.menu_pdf}",:target=>"_blank"}  Open in New Tab
               %iframe.menu{:src => "#{@event.menu_pdf}", :width => '510px', :height => '420px'}
             -else
               %h3 Coming Soon!
@@ -154,7 +158,10 @@
             %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Host Story
             %h3
-              =@event.host.profile.story
+              - if @event.host.profile.story != nil
+                - n = @event.host.profile.story.split("\n")
+                -for i in 0..n.length-1
+                  = simple_format n[i]
               -if current_user
                 -if (current_user.id == @event.host_id) && @event.host.profile.story == nil
                   ="Hey #{@event.host.profile.biz_name}, looks like you didn't add a 'story' in your profile. Be sure to add a story by clicking on 'Dashboard' above!"
