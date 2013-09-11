@@ -84,9 +84,11 @@
               .btn.grab-seats-button Sold Out! 
             -#PRETTY SURE THE CODE BELOW IS RIGHT BUT NOT WORKING AS EXPECTED
             -if user_signed_in?
+              -# Create a method in your model for
               -for guest in @event.guests
-                -if current_user.id == guest.user.profile.id
-                  %a.btn.btn-warning.grab-seats-button{:href => "/feedback"} Leave Feedback!
+                -if guest.user_id.present?
+                  -if current_user.id == guest.user_id
+                    %a.btn.btn-warning.grab-seats-button{:href => "/feedback"} Leave Feedback!
             -#=render 'shared/signup_modals', :modal_class => '.eventshowsignup'
             .seats{'ng-show'=> 'showSeats'}
               -if user_signed_in? == false
