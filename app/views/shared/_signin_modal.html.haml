@@ -1,4 +1,4 @@
-#sign_in.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+#sign_in.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1", 'ng-controller' => 'UserRegisterCtrl'}
   .modal-header
     %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
     %h3#myModalLabel Log In
@@ -10,4 +10,4 @@
       %p
         = render "shared/login"
   .modal-footer
-    %button.userlogin.btn.btn-warning{'ng-disabled' => 'new_session.$invalid'} Log In
+    %button.userlogin.btn.btn-warning{'ng-disabled' => 'new_session.$invalid', 'ng-show'=>'appear=="emailLogin"'} Log In
