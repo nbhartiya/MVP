@@ -35,7 +35,6 @@
 }
 	
 .email-template a, a:visited, a:active{
-	color: rgb(255, 178, 35);
 	text-decoration: none;
 }
 .email-template a:hover{
