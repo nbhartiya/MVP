@@ -51,10 +51,6 @@ Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($sc
 
   $scope.addFollower = (followable_type_val, followable_id_val, user_signed_in, number_followers) ->
     if user_signed_in
-      $(".heart").click ->
-        if $(this).hasClass("campaign-follow")
-          $(this).toggleClass("black").toggleClass "orange"
-        else
       console.log "Follow Information:*******"
       console.log followable_type_val
       console.log followable_id_val
@@ -67,6 +63,10 @@ Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($sc
         if result.length > 0
           $scope.confirm = confirm("Are you sure you want to unfollow?")
           if ($scope.confirm == true) 
+            if $(".heart").hasClass("campaign-follow")
+              $(".heart").toggleClass("black").toggleClass "orange"
+            else
+              $(".heart").toggleClass "orange"
             $http({method:'DELETE',url:"/api/follows/#{result[0].id}"}).success (result) ->
               #destroy follow with confirmation
               $scope.join = false
@@ -74,6 +74,10 @@ Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($sc
               $scope.follows--
             
         else
+          if $(".heart").hasClass("campaign-follow")
+            $(".heart").toggleClass("black").toggleClass "orange"
+          else
+            $(".heart").toggleClass "orange"
           $http({method:'POST',url:'/api/follows',params:{followable_id:followable_id_val,followable_type:followable_type_val}}).success (result) ->
             $scope.join = true
             console.log "Created Follow"
@@ -82,11 +86,6 @@ Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($sc
 
   $scope.follow = (followable_type_val, followable_id_val, user_signed_in)->
     if user_signed_in
-      $(".heart").click ->
-        if $(this).hasClass("campaign-follow")
-          $(this).toggleClass("black").toggleClass "orange"
-        else
-      $(this).toggleClass "orange"
       console.log "Follow Information:*******"
       console.log followable_type_val
       console.log followable_id_val
@@ -103,9 +102,7 @@ Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($sc
         else
           $http({method:'POST',url:'/api/follows',params:{followable_id:followable_id_val,followable_type:followable_type_val}}).success (result) ->
             $scope.join = true
-            console.log "Created Follow"
-
-  
+            console.log "Created Follow" 
 
 ]
 
