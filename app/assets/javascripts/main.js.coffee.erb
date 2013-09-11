@@ -51,10 +51,16 @@ Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($sc
 
   $scope.addFollower = (followable_type_val, followable_id_val, user_signed_in, number_followers) ->
     if user_signed_in
+      $(".heart").click ->
+        if $(this).hasClass("campaign-follow")
+          $(this).toggleClass("black").toggleClass "orange"
+        else
       console.log "Follow Information:*******"
       console.log followable_type_val
       console.log followable_id_val
       console.log number_followers
+      console.log $(this)
+      console.log $scope.this
       $scope.follows = number_followers
       $http({method:'GET',url:'/api/follows',params:{followable_id:followable_id_val,followable_type:followable_type_val}}).success (result) ->
         #Follow.get(params:[followable_id:followable_id_val,followable_type:followable_type_val]).then (result) ->
@@ -73,8 +79,14 @@ Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($sc
             console.log "Created Follow"
             $scope.follows++
 
+
   $scope.follow = (followable_type_val, followable_id_val, user_signed_in)->
     if user_signed_in
+      $(".heart").click ->
+        if $(this).hasClass("campaign-follow")
+          $(this).toggleClass("black").toggleClass "orange"
+        else
+      $(this).toggleClass "orange"
       console.log "Follow Information:*******"
       console.log followable_type_val
       console.log followable_id_val
@@ -92,6 +104,8 @@ Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($sc
           $http({method:'POST',url:'/api/follows',params:{followable_id:followable_id_val,followable_type:followable_type_val}}).success (result) ->
             $scope.join = true
             console.log "Created Follow"
+
+  
 
 ]
 

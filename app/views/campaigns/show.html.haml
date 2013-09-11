@@ -90,7 +90,10 @@
             %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Why Join
             %h3
-              =@campaign.why_join
+              - if @campaign.why_join != nil
+                - n = @campaign.why_join.split("\n")
+                -for i in 0..n.length-1
+                  = simple_format n[i]
           .host-followers{'ng-show' => 'appear == "followers"'}
             %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Supporters

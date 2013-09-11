@@ -438,13 +438,19 @@
               %button.close{"ng-click" => "appear=''", :type => "button"} close
               %h1 News
               %h3 
-                =@profile.news
+                - if @profile.news != nil
+                  - n = @profile.news.split("\n")
+                  -for i in 0..n.length-1
+                    = simple_format n[i]
 
             .user-story{'ng-show' => 'appear == "story"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
               %h1 Host Story
               %h3 
-                =@profile.story
+                - if @profile.story !=nil
+                  - n = @profile.story.split("\n")
+                  -for i in 0..n.length-1
+                    = simple_format n[i]
 
             .user-events{'ng-show' => 'appear == "events"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
