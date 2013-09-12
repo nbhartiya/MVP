@@ -530,12 +530,11 @@
               %h1 Followers
               %ul.nav.nav-tabs
                 %li.active
-                  %a{"data-toggle" => "tab", :href => "#foodie-following"} Foodies
+                  %a{"data-toggle" => "tab", :href => "#foodie-followers"} Foodies
                 %li
-                  %a{"data-toggle" => "tab", :href => "#business-following"} Businesses
+                  %a{"data-toggle" => "tab", :href => "#business-followers"} Businesses
               #myTabContent.tab-content
-                #foodie-following.tab-pane.fade.active.in
-                #foodie-followers.tab-pane.fade
+                #foodie-followers.tab-pane.fade.active.in
                   -if @profile.user.foodie_followers.count > 0
                     %table.following-table
                       -for foodie in @profile.user.foodie_followers
@@ -560,7 +559,7 @@
                               %a.sb.heart.circle.no-border.no-shadow.orange.black.campaign-follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                   -else
                     No foodie followers.
-                #business-following.tab-pane.fade
+                #business-followers.tab-pane.fade
                   -if @profile.user.business_followers.count > 0
                     %table.following-table
                       -for business in @profile.user.business_followers
@@ -624,7 +623,7 @@
                   -if @profile.user.foodies_followed.count > 0
                     %table.following-table
                       -for foodie in @profile.user.foodies_followed
-                        %tr 
+                        %tr
                           %td
                             -if foodie.profile.avatar.present?
                               =image_tag foodie.profile.avatar.image
