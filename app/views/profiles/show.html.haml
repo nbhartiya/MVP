@@ -511,7 +511,7 @@
                         %td When
                         %td Price
                         -#%td Shares  
-                      -for event in @profile.future_host_events
+                      -for event in @profile.past_host_events
                         %tr
                           %td 
                             %a{:href => event_path(event)} 
