@@ -58,7 +58,7 @@
             %table.user-social-stats{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@profile.follows.count}"}
               %tr.icons
                 -#%td
-                  %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"}
+                  %a.sb.yelp.circle.no-border.no-shadow.black{:href=>"#"}
                 %td
                   -if @current_user.follows_this?('Profile', @profile.id) == true
                     %a.sb.heart.circle.no-border.no-shadow.orange.campaign-follow{'ng-click' => "addFollower('Profile',#{@profile.id},#{user_signed_in?},follows)", :href => "#", "data-toggle" => "tooltip", :title => "Click to follow this person!", "data-placement" => "right"}
@@ -415,7 +415,7 @@
                   -else
                     %a.sb.heart.circle.no-border.no-shadow.orange.black.campaign-follow{'ng-click' => "addFollower('Profile',#{@profile.id},#{user_signed_in?},follows)", :href => "#", "data-toggle" => "tooltip", :title => "Click to follow this business!", "data-placement" => "right"}
                 %td
-                  %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"} 
+                  %a.sb.yelp.circle.no-border.no-shadow.black{:href=>"#"} 
                 %td
                   %a.sb.facebook.circle.no-border.no-shadow.black{:href => "#"}
               %tr.user-stats
