@@ -23,7 +23,7 @@ class Profile < ActiveRecord::Base
   belongs_to :location
   has_many :covers, :as => :imageable, :class_name =>"Image", :conditions => {:secondary_imageable_type => "cover"}, :dependent => :destroy
   has_one :avatar, :as => :imageable, :class_name =>"Image", :conditions => {:secondary_imageable_type => "avatar"}, :dependent => :destroy
-  attr_accessible :blurb, :home_zip, :location_id, :story, :work_zip, :user_id, :biz_name, :yelp_id, :neighborhood, :news
+  attr_accessible :blurb, :home_zip, :location_id, :story, :work_zip, :user_id, :biz_name, :yelp_id, :neighborhood, :news, :website
 
   has_many :follows, :as => :followable, :dependent => :destroy
 
