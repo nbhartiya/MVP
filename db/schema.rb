@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130911230648) do
+ActiveRecord::Schema.define(:version => 20130912014622) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -163,6 +163,7 @@ ActiveRecord::Schema.define(:version => 20130911230648) do
     t.string   "yelp_id"
     t.string   "neighborhood"
     t.text     "news"
+    t.string   "website"
   end
 
   create_table "projects", :force => true do |t|
