@@ -3,11 +3,12 @@
 $main_orange: rgb(255, 178, 35);
 
 a.sb.yelp {
-	background-image: url(/assets/yelp.png);
+	background-image: url(/assets/white_yelp2.png);
 }
 
 a.sb.yelp.black{
-	background-image: url(/assets/white_yelp.png);
+	background-image: url(/assets/yelp2.png);
+	background-color: transparent;
 }
 
 // events index styling
