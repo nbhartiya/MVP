@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130826203410) do
+ActiveRecord::Schema.define(:version => 20130911230648) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -81,14 +81,15 @@ ActiveRecord::Schema.define(:version => 20130826203410) do
     t.float    "cost"
     t.integer  "length"
     t.text     "other_info"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.integer  "host_id"
     t.text     "blurb"
     t.time     "time"
     t.boolean  "vegan"
     t.boolean  "vegetarian"
     t.boolean  "gluten_free"
+    t.boolean  "approved",     :default => false
   end
 
   create_table "follows", :force => true do |t|

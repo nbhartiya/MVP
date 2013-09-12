@@ -7,7 +7,7 @@ class EventsController < ApplicationController
   def index
     @events = Event.includes(:images, :guests)
     #Shows only events in the future for now!
-    @events = @events
+    @events = @events.where("approved = ?", true)
     if params[:q].present?
       #.map(&:user_id) is a shortcut for .map{|u| u.user_id}
       host_ids = Profile.includes(:user).where("biz_name iLike ?", "%#{params[:q]}%").map(&:user_id)
