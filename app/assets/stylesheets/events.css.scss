@@ -1164,9 +1164,32 @@ a.sb.yelp.black{
 		}
 
 	}
-	.event-survey, .event-yelp, .point-ranking, .more-points{
+	.event-recap{
+		ul{
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			li{
+				float: left;
+				padding: 0 5px;
+				border-right: 1px white solid;
+				a{
+					font-size: 14px;
+				}
+			}
+			li:first-child{
+				padding-left: 0;
+			}
+			li:last-child{
+				border-right: none;
+			}
+		}
+	}
+	.event-survey, .event-yelp, .point-ranking, .more-points, .event-recap{
 		background: rgba(0,0,0,0.8);
 		padding: 30px;
+		height: 550px;
+		overflow: auto;
 		h1{
 			font-size: 30px;
 			line-height: 1.5em;
@@ -1191,6 +1214,24 @@ a.sb.yelp.black{
 		}
 		a:hover{
 			color: rgb(200, 200, 200);
+		}
+		table.quotes{
+			margin-top: 50px;
+			tr{
+				border-top: none;
+			}
+			td{
+				padding: 5px 0;
+				vertical-align: top;
+			}
+			img{
+				padding-top: 2px;
+				width: 70%;
+			}
+			p{
+				color: white;
+				font-weight: 100;
+			}
 		}
 		hr{
 			margin: 10px 0;

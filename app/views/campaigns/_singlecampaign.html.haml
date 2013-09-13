@@ -1,14 +1,30 @@
-.row{'ng-init' => "endDate='#{campaign.expires}';successful='#{campaign.successful}'"}
-  .span6.campaign-image
-    -if campaign.images.present?
-      =link_to (image_tag campaign.images.first.image), campaign_path(campaign)
-    -else
-      =link_to image_tag("Food 9.jpg"), campaign_path(campaign)
-%a.row.campaign-info{:href => campaign_path(campaign)}
-  %table
-    %tr
-      %td.campaign-title-progress.span3
-        %h1 #{campaign.biz_name}
-        %h2 #{campaign.follows_needed} more supporters to tilt | {{daysLeft()}}
-      %td.campaign-desc.span3
-        %h2 #{campaign.blurb} 
+-if campaign.successful == true
+  .row{'ng-init' => "endDate='#{campaign.expires}';successful='#{campaign.successful}'"}
+    .span6.campaign-image
+      -if campaign.images.present?
+        =link_to (image_tag campaign.images.first.image), campaign_path(campaign)
+      -else
+        =link_to image_tag("Food 9.jpg"), campaign_path(campaign)
+  %a.row.campaign-info{:href => campaign_path(campaign)}
+    %table
+      %tr
+        %td.campaign-title-progress.span3
+          %h1 #{campaign.biz_name}
+          %h2 #{campaign.follows_needed} more supporters to tilt | {{daysLeft()}}
+        %td.campaign-desc.span3
+          %h2 #{campaign.blurb} 
+-else
+  .row.subdued{'ng-init' => "endDate='#{campaign.expires}';successful='#{campaign.successful}'"}
+    .span6.campaign-image
+      -if campaign.images.present?
+        =link_to (image_tag campaign.images.first.image), campaign_path(campaign)
+      -else
+        =link_to image_tag("Food 9.jpg"), campaign_path(campaign)
+  %a.row.campaign-info.subdued{:href => campaign_path(campaign)}
+    %table
+      %tr
+        %td.campaign-title-progress.span3
+          %h1 #{campaign.biz_name}
+          %h2 #{campaign.follows_needed} more supporters to tilt | {{daysLeft()}}
+        %td.campaign-desc.span3
+          %h2 #{campaign.blurb} 

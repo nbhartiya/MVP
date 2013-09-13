@@ -162,7 +162,7 @@
             %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Menu
             -if @event.menu_pdf.present?
-              %a{:href => "#{@event.menu_pdf}",:target=>"_blank"}  Open in New Tab
+              %a.fancybox{:href => "#{@event.menu_pdf}", :"data-fancybox-type" => 'iframe'}  Expand
               %iframe.menu{:src => "#{@event.menu_pdf}", :width => '510px', :height => '420px'}
             -else
               %h3 Coming Soon!

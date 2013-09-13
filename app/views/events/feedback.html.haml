@@ -1,6 +1,6 @@
 =content_for :title, "simmr | #{@event.title} feedback"
 
-.events{'ng-controller' => 'EventFeedbackCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='survey';event.menuPdf='#{@event.menu_pdf}'"}
+.events{'ng-controller' => 'EventFeedbackCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='details';event.menuPdf='#{@event.menu_pdf}'"}
   .event-profile
     #event-carousel.carousel.slide         
       .carousel-inner
@@ -64,7 +64,7 @@
                   ="#{@event.location.address1}, #{@event.location.city}, #{@event.location.state} #{@event.location.zipcode}"
                 %ul.nav.event-button-group
                   %li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "details"'} Details
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "details"'} Memories
                   %li
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "menu"'} Menu
                   %li
@@ -104,19 +104,56 @@
           -else
             .span1
         .span6 
-          .event-details#details{'ng-show' => 'appear=="details"'}
+          .event-recap#details{'ng-show' => 'appear=="details"'}
             %button.close{"ng-click" => "appear=''", :type => "button"} close
-            %h1 Details
-            %h3
-              - if @event.description != nil
-                - n = @event.description.split("\n")
-                -for i in 0..n.length-1
-                  = simple_format n[i]
+            %h1 Event Memories
+            %ul
+              %li
+                %a.fancybox{:href => "/assets/Food 1.jpg", :rel => "group", :title => "title 1"} Event Photo Gallery
+                %a.fancybox{:href => "/assets/Food 2.jpg", :rel => "group", :title => "title 2"}
+                %a.fancybox{:href => "/assets/Food 4.jpg", :rel => "group", :title => "title 3"}
+              %li
+                %a Chai Recipe
+              %li
+                %a Blog Post
+              %li
+                %a Event Case Study
+            %table.quotes
+              %tr
+                %td
+                  %img{:src => "/assets/Foodie-Default-Profile-Image.png"}
+                %td
+                  %p "I was very impressed by Vijay's knowledge…The glass jar was the best thing ever. Getting a high quality, physical thing to take home meant a lot."
+              %tr
+                %td
+                  %img{:src => "/assets/Foodie-Default-Profile-Image.png"}
+                %td
+                  %p "The…demo was great. I thought the owner gave a really thorough explanation, and I was happy o learn about chai, get to try theirs, get my own JAR (I freakin' loved that jar), and then get a spiked chai. The whole progression [of the event] was the best part of the evening."
+              %tr
+                %td
+                  %img{:src => "/assets/Foodie-Default-Profile-Image.png"}
+                %td
+                  %p "[I am] more likely to go there now because I've … met the owner. [I] feel more of an emotional connection. [It was] good that Vijay was available to talk before and after. He had the right personality to be running that kind of event. He had good charisma."
+              %tr
+                %td
+                  %img{:src => "/assets/Foodie-Default-Profile-Image.png"}
+                %td
+                  %p "[The event] was a great way to get a new intro to a place I didn't know about."
+              %tr
+                %td
+                  %img{:src => "/assets/Foodie-Default-Profile-Image.png"}
+                %td
+                  %p "Dude, I don't even like hot drinks and now I love chai."
+              %tr
+                %td
+                  %img{:src => "/assets/Foodie-Default-Profile-Image.png"}
+                %td
+                  %p "After this, I fully trust Vijay can put on a great event, so I would definitely go to another Tava event."
           .event-menu#menu{'ng-show' => 'appear=="menu"'}
             %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Menu
             -if @event.menu_pdf.present?
-              %a{:href => "#{@event.menu_pdf}",:target=>"_blank"}  Open in New Tab
+              %a.fancybox{:href => "#{@event.menu_pdf}", :"data-fancybox-type" => 'iframe'}  Expand
               %iframe.menu{:src => "#{@event.menu_pdf}", :width => '510px', :height => '420px'}
             -else
               %h3 Coming Soon!
@@ -218,8 +255,7 @@
                               %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})"}
                 -else
                   %h3 No current followers. Click the heart to stay updated about this event!
-
-
+          
           %form.event-survey.clearfix{'ng-show' => 'appear=="survey"', :name => "feedback_survey"}
             %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Survey
