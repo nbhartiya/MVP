@@ -106,3 +106,5 @@ $('.why-zip').tooltip();
 $('#yelp-explanation').tooltip();
 
 $('.quoter').tooltip();
+
+$('.recipe').tooltip();
