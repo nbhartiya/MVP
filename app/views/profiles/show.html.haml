@@ -58,7 +58,7 @@
             %table.user-social-stats{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@profile.follows.count}"}
               %tr.icons
                 -#%td
-                  %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"}
+                  %a.sb.yelp.circle.no-border.no-shadow.black{:href=>"#"}
                 %td
                   -if user_signed_in?
                     -if @current_user.follows_this?('Profile', @profile.id) == true
@@ -433,7 +433,7 @@
                   -else
                     %a.sb.heart.circle.no-border.no-shadow.orange.black.campaign-follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                 %td
-                  %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"} 
+                  %a.sb.yelp.circle.no-border.no-shadow.black{:href=>"#"} 
                 %td
                   %a.sb.facebook.circle.no-border.no-shadow.black{:href => "#"}
               %tr.user-stats

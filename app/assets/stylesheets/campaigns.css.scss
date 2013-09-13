@@ -654,32 +654,4 @@ $main_orange: rgb(255, 178, 35);
 		font-size: 10px;
 	}
 }
- 
-/* Landscape phone to portrait tablet */
-@media (max-width: 767px) { 
-
-	.campaign-profile{
-		height: 500px;
-	}
-	.campaigns .container .section-header {
-		margin: 30px 10px;
-	}
-	.campaign-profile .campaign-registration{
-		.campaign-create-form, .campaign-create-confirmation{
-			position: absolute;
-			width: 92%;
-			z-index: 10;
-		}
-	}
-
-}
- 
-/* Landscape phones and down */
-@media (max-width: 480px) {
-	.campaign-profile .campaign-registration{
-		.campaign-create-form, .campaign-create-confirmation{
-			width: 85%;
-		}
-	}
-}
 

@@ -113,7 +113,7 @@
                   -else
                     %a.sb.heart.circle.no-border.no-shadow.follow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                 %td
-                  %a.sb.star.circle.no-border.no-shadow{:href=>"#{@event.host.profile.yelp_id}",:target=>"_blank"} 
+                  %a.sb.yelp.circle.no-border.no-shadow{:href=>"#{@event.host.profile.yelp_id}",:target=>"_blank"} 
                 %td
                   %a.sb.facebook.circle.no-border.no-shadow{:href => "#"}
                 %td
@@ -168,7 +168,7 @@
             %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Menu
             -if @event.menu_pdf.present?
-              %a{:href => "#{@event.menu_pdf}",:target=>"_blank"}  Open in New Tab
+              %a.fancybox{:href => "#{@event.menu_pdf}", :"data-fancybox-type" => 'iframe'}  Expand
               %iframe.menu{:src => "#{@event.menu_pdf}", :width => '510px', :height => '420px'}
             -else
               %h3 Coming Soon!

@@ -68,9 +68,8 @@
                       %a.sb.heart.circle.no-border.no-shadow.orange.black.campaign-follow{'ng-click' => "addFollower('Campaign',#{@campaign.id},#{user_signed_in?},follows)", :href => "#", "data-toggle" => "tooltip", :title => "Click to support", "data-placement" => "right"}
                   -else
                     %a.sb.heart.circle.no-border.no-shadow.orange.black.campaign-follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
-              %td
-                %a.sb.star.circle.no-border.no-shadow.black{:href=>"#"} 
-
+                %td
+                  %a.sb.yelp.circle.no-border.no-shadow.black{:href=>"#"} 
                 %td
                   %a.sb.facebook.circle.no-border.no-shadow.black{:href => "#"}
               %tr.campaign-target-stats 

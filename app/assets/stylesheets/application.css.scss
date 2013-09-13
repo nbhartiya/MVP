@@ -10,6 +10,9 @@
  *
  *= require_self
  *= require_tree .
+ *= require fancybox
+ *= require fancybox-buttons
+ *= require fancybox-thumbs
  *= require css-social-buttons2/social-buttons
  */
 
@@ -40,6 +43,11 @@ body{
 	::-webkit-scrollbar-track-piece{background-color:transparent;-webkit-border-radius:0;-webkit-border-bottom-right-radius:8px;-webkit-border-bottom-left-radius:8px;}
 	::-webkit-scrollbar-thumb:vertical{height:50px;background-color:rgb(180, 180, 180);-webkit-border-radius:8px;}
 	::-webkit-scrollbar-thumb:horizontal{width:50px;background-color:rgb(180, 180, 180);-webkit-border-radius:8px;}
+}
+
+.fancybox-title iframe {
+    min-height: 30px;
+    vertical-align: middle;
 }
 
 .carousel-control{
@@ -92,6 +100,10 @@ body.modal-open {
 
 #default-text{
 	color: gray !important;
+}
+
+.subdued{
+	opacity: 0.5;
 }
 
 .popover.bottom .arrow{
@@ -485,20 +497,4 @@ input.error-true  {
 	width: 99%;
 	margin-right: auto;
 	border: 0;
-}
-
-/* Large desktop */
-@media (min-width: 1200px) {
-}
- 
-/* Portrait tablet to landscape and desktop */
-@media (min-width: 768px) and (max-width: 979px) {
-}
- 
-/* Landscape phone to portrait tablet */
-@media (max-width: 767px) {
-}
- 
-/* Landscape phones and down */
-@media (max-width: 480px) {
 }

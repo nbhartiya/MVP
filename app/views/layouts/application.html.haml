@@ -4,7 +4,6 @@
     
     %title
       =yield(:title)
-    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
     = stylesheet_link_tag    "application", :media => "all"
     = filepicker_js_include_tag
     = csrf_meta_tags
@@ -43,6 +42,7 @@
     = javascript_include_tag "application"
     = javascript_include_tag "https://js.stripe.com/v2/"
     = javascript_tag "Stripe.publishableKey = '#{STRIPE_PUBLISHABLE_KEY}';"
+
    
 -# can add a closer alert x thingie later or tweak it later...
   -if alert

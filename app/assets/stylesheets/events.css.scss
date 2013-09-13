@@ -2,6 +2,15 @@
 
 $main_orange: rgb(255, 178, 35);
 
+a.sb.yelp {
+	background-image: url(/assets/white_yelp2.png);
+}
+
+a.sb.yelp.black{
+	background-image: url(/assets/yelp2.png);
+	background-color: transparent;
+}
+
 // events index styling
 .events-index{
 	.events{ 
@@ -1155,9 +1164,32 @@ $main_orange: rgb(255, 178, 35);
 		}
 
 	}
-	.event-survey, .event-yelp, .point-ranking, .more-points{
+	.event-recap{
+		ul{
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			li{
+				float: left;
+				padding: 0 5px;
+				border-right: 1px white solid;
+				a{
+					font-size: 14px;
+				}
+			}
+			li:first-child{
+				padding-left: 0;
+			}
+			li:last-child{
+				border-right: none;
+			}
+		}
+	}
+	.event-survey, .event-yelp, .point-ranking, .more-points, .event-recap{
 		background: rgba(0,0,0,0.8);
 		padding: 30px;
+		height: 550px;
+		overflow: auto;
 		h1{
 			font-size: 30px;
 			line-height: 1.5em;
@@ -1182,6 +1214,24 @@ $main_orange: rgb(255, 178, 35);
 		}
 		a:hover{
 			color: rgb(200, 200, 200);
+		}
+		table.quotes{
+			margin-top: 50px;
+			tr{
+				border-top: none;
+			}
+			td{
+				padding: 5px 0;
+				vertical-align: top;
+			}
+			img{
+				padding-top: 2px;
+				width: 70%;
+			}
+			p{
+				color: white;
+				font-weight: 100;
+			}
 		}
 		hr{
 			margin: 10px 0;
@@ -1290,360 +1340,4 @@ $main_orange: rgb(255, 178, 35);
 			font-weight: 800;
 		}
 	}
-}
-
-@media (min-width: 980px) and (max-width: 1200px) {
-	.nav-container .nav ul input{
-		width: 70px;
-		font-size: 11px;
-	}
-	.event-profile .event-registration .event-guests .guest-name{
-		width: 49%;
-	}
-	.event-profile .event-registration .event-guests .guest-email{
-		width: 49%;
-	}
-	.event-profile .event-registration .event-guests #enter-payment-info{
-		margin: 10px 0 0 0;
-	}
-
-	.event-profile .event-registration .event-purchase #credit_card_number{
-		width: 68%;
-	}
-
-	.event-profile .event-registration .event-purchase #security_code p{
-		margin: 0;
-		padding: 0;
-	}
-
-	.event-profile .event-registration .event-purchase #security_code{
-		width: 30%;
-	}
-
-	.event-profile .event-registration .event-purchase #expiration{
-		width: 102%;
-	}
-
-	.event-profile .event-registration .event-purchase #state{
-		width: 48%;
-	}
-
-	.event-profile .event-registration .event-purchase #city{
-		width: 50%;
-	}
-
-	.event-profile .event-registration .event-purchase #zipcode{
-		width: 50%;
-	}
-
-	.scroll-menu.event{
-		margin-left: 0px;
-	}
-
-	.event-profile .event-registration .event-create-form #event-ticket-details .input-prepend{
-		width: 98.5%;
-	}
-
-	.event-profile .event-registration .event-create-form #event-ticket-details #ticket-cost{
-		width: 90%;
-	}
-
-	.event-profile .event-registration .event-create-form #event-ticket-details #people-limit{
-		width: 100%;
-	}
-	.event-profile .event-registration .event-create-form #event-images-button{
-		width: 49%;
-		font-size: 12px;
-	}
-	.event-profile .event-registration .event-create-form #event-menu-button{
-		width: 49%;
-		font-size: 12px;
-	}
-	.event-profile .event-registration .event-create-form #event-date-time #event-date{
-		width: 49%;
-	}
-	.event-profile .event-registration .event-create-form #event-location #state{
-		width: 40%;
-	}
-	.event-profile .event-registration .event-create-form #event-location #event-city{
-		width: 58%;
-	}
-	.event-profile .event-registration .event-create-form #event-location #event-zipcode{
-		width: 58%;
-	}
-	.event-profile .event-registration .event-create-form{
-		overflow-y: auto;
-		height: 480px;
-	}
-
-}
-
-/* Portrait tablet to landscape and desktop */
-@media (min-width: 768px) and (max-width: 979px) {
-	.nav-container .nav .logo-and-location .logo{
-		width: 60%;
-	}
-	.nav-container .nav ul li{
-		margin: 5px 0;
-	}
-	.nav-container .nav ul li a:link{
-		padding: 5px;
-	}
-	.nav-container .nav ul input{
-		width: 70px;
-		font-size: 11px;
-	}
-	.event-profile .event-registration .event-summary .number-of-seats{
-		width: 74.5%;
-	}
-	.event-profile .event-registration .event-summary .btn{
-		padding: 4px 8px;
-	}
-
-	body .events .event-summary .event-sharing{
-		font-size: 10px;
-	}
-
-	.event-profile .event-registration .event-summary h3{
-		font-size: 14px;
-	}
-	.event-profile .event-registration .event-summary h2{
-		font-size: 18px;
-	}
-	.event-profile .event-registration .event-summary h1{
-		font-size: 26px;
-	}
-	.event-profile .event-registration .event-purchase h3{
-		font-size: 14px;
-	}
-	.event-profile .event-registration .event-purchase h2{
-		font-size: 18px;
-	}
-	.event-profile .event-registration .event-purchase h1{
-		font-size: 26px;
-	}
-	.event-profile .event-feedback h3{
-		font-size: 14px;
-	}
-	.event-profile .event-feedback a{
-		font-size: 14px;
-	}
-	.event-profile .event-feedback h2{
-		font-size: 18px;
-	}
-	.event-profile .event-feedback h1{
-		font-size: 26px;
-	}
-	.event-profile .event-registration .event-purchase .btn{
-		font-size: 12px;
-	}
-	.event-profile .event-registration .event-guests .guest-name{
-		width: 49%;
-	}
-	.event-profile .event-registration .event-guests .guest-email{
-		width: 49%;
-	}
-	.event-profile .event-registration .event-guests #enter-payment-info{
-		margin: 10px 0 0 0;
-	}
-	.event-profile .event-registration .event-purchase #credit_card_number{
-		width: 68%;
-	}
-	.event-profile .event-registration .event-purchase #security_code p{
-		margin: 0;
-		padding: 0;
-	}
-	.event-profile .event-registration .event-purchase #security_code{
-		width: 30%;
-	}
-	.event-profile .event-registration .event-purchase #expiration{
-		width: 102%;
-	}
-	.event-profile .event-registration .event-purchase #state{
-		width: 48%;
-	}
-	.event-profile .event-registration .event-purchase #city{
-		width: 50%;
-	}
-	.event-profile .event-registration .event-purchase #zipcode{
-		width: 50%;
-	}
-	.scroll-menu.event{
-		margin-left: -40px;
-	}
-	.event-profile .event-registration .event-create-form #event-ticket-details .input-prepend{
-		width: 98.5%;
-	}
-
-	.event-profile .event-registration .event-create-form #event-ticket-details #ticket-cost{
-		width: 84%;
-	}
-
-	.event-profile .event-registration .event-create-form #event-ticket-details #people-limit{
-		width: 100%;
-	}
-	.event-profile .event-registration .event-create-form #event-images-button{
-		width: 48%;
-		font-size: 12px;
-	}
-	.event-profile .event-registration .event-create-form #event-menu-button{
-		width: 48%;
-		font-size: 12px;
-	}
-	.event-profile .event-registration .event-create-form #event-date-time #event-date{
-		width: 48%;
-	}
-	.event-profile .event-registration .event-create-form #event-location #state{
-		width: 40%;
-	}
-	.event-profile .event-registration .event-create-form #event-location #event-city{
-		width: 57%;
-	}
-	.event-profile .event-registration .event-create-form #event-location #event-zipcode{
-		width: 57%;
-	}
-	.event-profile .event-registration .event-create-form{
-		overflow-y: auto;
-		height: 480px;
-	}
-}
- 
-/* Landscape phone to portrait tablet */
-@media (max-width: 767px) {
-	.nav-container .nav .logo-and-location .logo{
-		width: 30%;
-	}
-	.nav-container .nav ul{
-		float: left;
-	}
-	.nav-container .nav ul li{
-		margin: 5px 0;
-	}
-	.nav-container .nav ul li a:link{
-		padding: 5px;
-	}
-	.nav-container .nav ul input{
-		width: 70px;
-		font-size: 11px;
-	}
-	.nav-container .nav ul .input-append{
-		margin-top: 5px;
-	}
-	.event-profile .event-registration .event-summary .number-of-seats{
-		width: 74.5%;
-	}
-
-	.scroll-menu.event{
-		display: none;
-	}
-
-	.events .container .section-header{
-		margin: 30px 10px;
-	}
-
-	.event-profile .event-registration .event-summary .event-go-button{
-		width: 24.5%;
-	}
-	.event-profile .event-registration .event-guests{
-		position: absolute;
-		width: 92%;
-		z-index: 10;
-	}
-	.event-profile .event-registration .event-purchase{
-		position: absolute;
-		width: 92%;
-		z-index: 10;
-	}
-	.event-profile .event-registration .event-purchase-confirmation{
-		position: absolute;
-		width: 92%;
-		z-index: 10;
-	}
-	.event-profile .event-feedback{
-		.event-survey, .point-ranking, .more-points, .event-yelp{
-			position: absolute;
-			width: 92%;
-			z-index: 10;
-		}
-	}
-	.event-profile .event-registration{
-		.event-create-form, .event-create-confirmation{
-			position: absolute;
-			width: 92%;
-			z-index: 10;
-		}
-	}
-	.event-profile .event-registration .event-guests .guest-name{
-		width: 49%;
-	}
-	.event-profile .event-registration .event-guests .guest-email{
-		width: 49%;
-	}
-	.event-profile .event-registration .event-guests #enter-payment-info{
-		margin: 10px 0 0 0;
-	}
-
-	.event-profile .event-registration .event-purchase #credit_card_number{
-		width: 48.5%;
-	}
-
-	.event-profile .event-registration .event-purchase #zipcode{
-		width: 26.6%;
-	}
-
-}
- 
-/* Landscape phones and down */
-@media (max-width: 480px) {
-	.event-profile .event-registration .event-summary .event-go-button{
-		width: 24%;
-	}
-	.event-profile .event-registration .event-purchase #credit_card_number{
-		width: 68%;
-	}
-
-	.event-profile .event-registration .event-purchase #security_code p{
-		margin: 0;
-		padding: 0;
-	}
-
-	.event-profile .event-registration .event-purchase #security_code{
-		width: 30%;
-	}
-
-	.event-profile .event-registration .event-purchase #expiration{
-		width: 102%;
-	}
-
-	.event-profile .event-registration .event-purchase #state{
-		width: 48%;
-	}
-
-	.event-profile .event-registration .event-purchase #city{
-		width: 50%;
-	}
-
-	.event-profile .event-registration .event-purchase #zipcode{
-		width: 50%;
-	}
-	.event-profile .event-feedback{
-		.event-survey, .point-ranking, .more-points, .event-yelp{
-			width: 85%;
-		}
-	}
-	.event-profile .event-registration .event-guests{
-		width: 85%;
-	}
-	.event-profile .event-registration .event-purchase{
-		width: 85%;
-	}
-	.event-profile .event-registration .event-purchase-confirmation{
-		width: 85%;
-	}
-	.event-profile .event-registration{
-		.event-create-form, .event-create-confirmation{
-			width: 85%;
-		}
-	}
-
 }
