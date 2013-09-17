@@ -22,7 +22,7 @@ class EventsController < ApplicationController
 
   def post_event
     @event = Event.find(params[:id])
-    if @event.date >= Date.today()
+    if @event.happened?
       respond_to do |format|
         format.html
       end
@@ -36,9 +36,13 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @event }
+    if @event.happened?
+      redirect_to "/events/#{@event.id}/post_event"
+    else
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @event }
+      end
     end
   end
 

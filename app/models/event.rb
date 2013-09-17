@@ -40,6 +40,14 @@ class Event < ActiveRecord::Base
 
   accepts_nested_attributes_for :images, :reject_if => lambda { |a| a[:image].blank? }, :allow_destroy => true
 
+  #after_create :set_full_date
+
+  #def set_full_date
+  #  if date.present? && time.present?
+  #    full_date=DateTime.new(date.year, date.month, date.day, time.hour, time.min time.sec)
+  #  end
+  #end
+
   def seats_left
     people_limit - guests_count
   end
@@ -56,4 +64,12 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def happened?
+    dt = DateTime.new(date.year, date.month, date.day, time.hour, time.min, time.sec)
+    if dt >= DateTime.now()
+      false
+    else
+      true
+    end
+  end
 end
