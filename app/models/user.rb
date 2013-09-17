@@ -52,10 +52,12 @@ class User < ActiveRecord::Base
   serialize :points, Array
   
   def confirmation_email
-    if self.chef?
-      NotificationMailer.signup_chef_email(self).deliver
-    else
-      NotificationMailer.signup_foodie_email(self).deliver
+    unless self.email.empty?
+      if self.chef?
+        NotificationMailer.signup_chef_email(self).deliver
+      else
+        NotificationMailer.signup_foodie_email(self).deliver
+      end
     end
   end
 
