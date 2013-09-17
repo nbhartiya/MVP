@@ -114,10 +114,13 @@
             %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Event Memories
             %ul
-              %li
-                %a.fancybox{:href => "/assets/Food 1.jpg", :rel => "group", :title => "title 1"} Event Photo Gallery
-                %a.fancybox{:href => "/assets/Food 2.jpg", :rel => "group", :title => "title 2"}
-                %a.fancybox{:href => "/assets/Food 4.jpg", :rel => "group", :title => "title 3"}
+              -if @event.post_event_images.present?
+                %li
+                  -@event.post_event_images.each_with_index do |i, index|
+                    -if index == 0
+                      %a.fancybox{:href => i.image, :rel => "group", :title => i.title} Event Photo Gallery
+                    -else
+                      %a.fancybox{:href => i.image, :rel => "group", :title => i.title}
               %li
                 -if user_signed_in?
                   -for guest in @event.guests
@@ -129,8 +132,8 @@
                 - else
                   %a.recipe{"data-toggle" => "tooltip", :title => "only people who attended the event can see this!", "data-placement" => "right"} Chai Recipe
               %li
-                %a Blog Post
-              %li
+                %a{:href=>"http://simmrco.wordpress.com/2013/09/10/tava-first-event/",:target=>"_blank"} Blog Post
+              -#%li
                 %a Event Case Study
             %table.quotes
               %tr
@@ -170,7 +173,7 @@
               %a.fancybox{:href => "#{@event.menu_pdf}", :"data-fancybox-type" => 'iframe'}  Expand
               %iframe.menu{:src => "#{@event.menu_pdf}", :width => '510px', :height => '420px'}
             -else
-              %h3 Coming Soon!
+              %h3 No menu available.
           .event-attendees-and-chatter{'ng-show' => 'appear=="chatter"'}
             %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Attendees
