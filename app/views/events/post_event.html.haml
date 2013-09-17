@@ -131,8 +131,9 @@
                     %a.recipe{"data-toggle" => "tooltip", :title => "only people who attended the event can see this!", "data-placement" => "right"} Chai Recipe
                 - else
                   %a.recipe{"data-toggle" => "tooltip", :title => "only people who attended the event can see this!", "data-placement" => "right"} Chai Recipe
-              %li
-                %a{:href=>"http://simmrco.wordpress.com/2013/09/10/tava-first-event/",:target=>"_blank"} Blog Post
+              -if @event.blog_link.present?
+                %li
+                  %a{:href=>"#{@event.blog_link}",:target=>"_blank"} Blog Post
               -#%li
                 %a Event Case Study
             %table.quotes
