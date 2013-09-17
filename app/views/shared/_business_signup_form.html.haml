@@ -6,6 +6,8 @@
   %hr.or-line
   %p.sign-up-text
     or you can <a href = "" ng-click = 'appear = "bizSignup"'>sign up with email</a> 
+  %p.sign-up-text
+    Already a member? <a data-dismiss = "modal" data-toggle='modal' href= "#sign_in">sign in</a>
   .email-login-form{'ng-show'=>'appear=="bizSignup"'}
     %input#user_chef{:name=>"user[chef]", :type=>"hidden", :value => "1"}
     %input#user_first_name{:required => "required", :placeholder => "first name", :autofocus => "autofocus", :name => "user[first_name]", :size => "30", :type => "text", 'ng-model' => 'user.first_name', 'ng-class' => "{error: new_business['user[first_name]'].$invalid}"}

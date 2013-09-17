@@ -25,7 +25,7 @@ class Campaign < ActiveRecord::Base
   has_many :images, :as => :imageable, :dependent => :destroy
 
   def follows_needed()
-    return 100-self.follows.count
+    return 20-self.follows.count
   end
 
   def percent_follows()
@@ -42,7 +42,7 @@ class Campaign < ActiveRecord::Base
 
   def status
     if self.expired?
-      if self.follows.count>100
+      if self.follows.count>20
         return "Successful"
       else
         return "Expired"

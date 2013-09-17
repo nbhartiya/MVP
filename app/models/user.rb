@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   has_many :user_answers
   has_many :investments
   has_many :projects
-  has_many :authentications
+  has_many :authentications, :dependent => :destroy
   has_one :accreditation
   has_many :locations
   # always do User.first.create_image instead of User.first.images.create!, but to destroy do User.first.image.destroy
@@ -38,12 +38,12 @@ class User < ActiveRecord::Base
   #has_many :events_attended, :class_name => "Event", :through => :guests
   has_many :events_hosted, :class_name => "Event", :foreign_key => "host_id"
   has_many :charges
-  has_one :profile
+  has_one :profile, :dependent => :destroy
   has_many :campaigns_started, :class_name => "Campaign", :foreign_key => "campaign_starter_id"
   # TODO:fixTHISMAYBEHASMANY
   has_many :host_to_campaigns, :class_name => "Campaign", :foreign_key => "host_id"
   # TODO:this below relationship will be complicated, come back to this...
-  has_many :follows
+  has_many :follows, :dependent => :destroy
   has_many :guests
   
   after_create :confirmation_email
@@ -52,10 +52,12 @@ class User < ActiveRecord::Base
   serialize :points, Array
   
   def confirmation_email
-    if self.chef?
-      NotificationMailer.signup_chef_email(self).deliver
-    else
-      NotificationMailer.signup_foodie_email(self).deliver
+    unless self.email.empty?
+      if self.chef?
+        NotificationMailer.signup_chef_email(self).deliver
+      else
+        NotificationMailer.signup_foodie_email(self).deliver
+      end
     end
   end
 

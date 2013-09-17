@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130826203410) do
+ActiveRecord::Schema.define(:version => 20130912014622) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -81,14 +81,15 @@ ActiveRecord::Schema.define(:version => 20130826203410) do
     t.float    "cost"
     t.integer  "length"
     t.text     "other_info"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.integer  "host_id"
     t.text     "blurb"
     t.time     "time"
     t.boolean  "vegan"
     t.boolean  "vegetarian"
     t.boolean  "gluten_free"
+    t.boolean  "approved",     :default => false
   end
 
   create_table "follows", :force => true do |t|
@@ -162,6 +163,7 @@ ActiveRecord::Schema.define(:version => 20130826203410) do
     t.string   "yelp_id"
     t.string   "neighborhood"
     t.text     "news"
+    t.string   "website"
   end
 
   create_table "projects", :force => true do |t|

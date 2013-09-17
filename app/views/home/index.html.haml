@@ -5,7 +5,7 @@
   .home 
     .attention-getter
       #home-carousel.carousel.slide.hidden-phone
-        -all_events=Event.all
+        -all_events=Event.where("approved = ?", true)
         -i=0
         .carousel-inner
           -for event in all_events
