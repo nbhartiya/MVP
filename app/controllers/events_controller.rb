@@ -22,8 +22,12 @@ class EventsController < ApplicationController
 
   def feedback
     @event = Event.find(params[:id])
-    respond_to do |format|
-      format.html
+    if @event.date >= Date.today()
+      respond_to do |format|
+        format.html
+      end
+    else
+      redirect_to event_path(@event)
     end
   end
 

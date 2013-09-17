@@ -55,4 +55,5 @@ class Event < ActiveRecord::Base
       guests.count
     end
   end
+
 end
