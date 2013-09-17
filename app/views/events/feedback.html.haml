@@ -81,10 +81,13 @@
             %table.event-sharing{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@event.follows.count}"}
               %tr.icons
                 %td
-                  -if @current_user.follows_this?('Event', @event.id) == true
-                    %a.sb.heart.circle.no-border.no-shadow.orange{'ng-click' => "addFollower('Event',#{@event.id},#{user_signed_in?},follows)", :href => "#", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date!", "data-placement" => "right"}
+                  -if user_signed_in?
+                    -if @current_user.follows_this?('Event', @event.id) == true
+                      %a.sb.heart.circle.no-border.no-shadow.orange{'ng-click' => "addFollower('Event',#{@event.id},#{user_signed_in?},follows)", :href => "#", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date!", "data-placement" => "right"}
+                    -else
+                      %a.sb.heart.circle.no-border.no-shadow{'ng-click' => "addFollower('Event',#{@event.id},#{user_signed_in?},follows)", :href => "#", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date!", "data-placement" => "right"}
                   -else
-                    %a.sb.heart.circle.no-border.no-shadow{'ng-click' => "addFollower('Event',#{@event.id},#{user_signed_in?},follows)", :href => "#", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date!", "data-placement" => "right"}
+                    %a.sb.heart.circle.no-border.no-shadow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                 %td
                   %a.sb.yelp.circle.no-border.no-shadow{:href=>"#{@event.host.profile.yelp_id}",:target=>"_blank"} 
                 %td
@@ -238,10 +241,13 @@
                               ="#{follow.user.first_name} #{follow.user.last_name}"
                           -#%td Number of Followers..may want to add later
                           %td
-                            -if @current_user.follows_this?('Profile', follow.user.profile.id) == true
-                              %a.sb.heart.circle.no-border.no-shadow.orange{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})"}
+                            -if user_signed_in?
+                              -if @current_user.follows_this?('Profile', follow.user.profile.id) == true
+                                %a.sb.heart.circle.no-border.no-shadow.orange{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})"}
+                              -else
+                                %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})"}
                             -else
-                              %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})"}
+                              %a.sb.heart.circle.no-border.no-shadow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                 -else
                   %h3 No current followers. Click the heart to stay updated about this event!
               #business-following.tab-pane.fade
