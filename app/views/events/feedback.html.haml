@@ -73,9 +73,9 @@
                   %li
                     %button.btn.attendees{'data-toggle' => 'pill', 'ng-click' => 'appear = "chatter"'} Attendees & Chatter
                   %li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "followers"'} Followers
-                  %li
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "story"'} Story
+                  %li
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "followers"'} Followers
 
 
             %table.event-sharing{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@event.follows.count}"}
