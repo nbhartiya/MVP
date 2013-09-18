@@ -1,9 +1,7 @@
 %form#new_user_biz{"accept-charset" => "UTF-8", :action => "/users", :method => "post", :name => "new_business"}
   %div{:style => "margin:0;padding:0;display:inline"}
     %input{:name => "utf8", :type => "hidden", :value => "?"}/
-  = link_to "Facebook", user_omniauth_authorize_path(:facebook), :class => "sb facebook text black"
-  = link_to "Twitter", user_omniauth_authorize_path(:twitter), :class => "sb twitter text black"
-  %hr.or-line
+  = link_to "Sign Up with Facebook", user_omniauth_authorize_path(:facebook), :class => "sb facebook text black"
   %p.sign-up-text
     or you can <a href = "" ng-click = 'appear = "bizSignup"'>sign up with email</a> 
   %p.sign-up-text
