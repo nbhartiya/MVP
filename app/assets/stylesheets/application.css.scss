@@ -323,22 +323,9 @@ input.error-true  {
 			#sign-up-header-link{
 				background: $main_orange;
 				color: white;
-				a, a:hover, a:visited{
-					color: white;
-				}
-				.dropdown .dropitem a{
-					color: rgb(130, 130, 130);
-				}
-				.dropdown .dropitem a:hover{
-					color: white;
-					background: $main_orange;
-				}
-				.dropdown .dropitem a:active{
-					outline: none;
-				}
-				.dropdown .dropitem a:visited{
-					color: white;
-				}
+			}
+			a#sign-up-header-link{
+				color: white;
 			}
 		}		
 	}
