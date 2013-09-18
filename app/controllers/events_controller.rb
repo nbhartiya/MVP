@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   load_and_authorize_resource
-  skip_before_filter :authenticate_user!, :only => [:index, :show, :feedback]
+  skip_before_filter :authenticate_user!, :only => [:index, :show, :post_event]
   
   def index
     @events = Event.includes(:images, :guests)
@@ -20,10 +20,14 @@ class EventsController < ApplicationController
     end
   end
 
-  def feedback
+  def post_event
     @event = Event.find(params[:id])
-    respond_to do |format|
-      format.html
+    if @event.happened?
+      respond_to do |format|
+        format.html
+      end
+    else
+      redirect_to event_path(@event)
     end
   end
 
@@ -32,9 +36,13 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @event }
+    if @event.happened?
+      redirect_to "/events/#{@event.id}/post_event"
+    else
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @event }
+      end
     end
   end
 

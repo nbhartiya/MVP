@@ -8,12 +8,13 @@
       .carousel-inner
         -if @event.images.present?
           -@event.images.each_with_index do |i, index|
-            -if index == 0
-              .item.active
-                = image_tag i.image
-            -else
-              .item
-                = image_tag i.image
+            -if i.secondary_imageable_type=="cover"
+              -if index == 0
+                .item.active
+                  = image_tag i.image
+              -else
+                .item
+                  = image_tag i.image
         -else
           .item.active
             %p This is a default background photo. <br> Replace by uploading images!

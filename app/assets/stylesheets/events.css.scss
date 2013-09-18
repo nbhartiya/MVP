@@ -1237,16 +1237,22 @@ a.sb.yelp.black{
 				border-top: none;
 			}
 			td{
-				padding: 5px 0;
+				padding: 5px;
 				vertical-align: top;
 			}
 			img{
 				padding-top: 2px;
-				width: 70%;
+				width: 100%;
 			}
 			p{
 				color: white;
 				font-weight: 100;
+			}
+			.quoter-image{
+			    width: 20%;
+			}
+			.quoter-quote{
+			    width: 80%;
 			}
 		}
 		hr{

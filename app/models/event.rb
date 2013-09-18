@@ -34,11 +34,23 @@ class Event < ActiveRecord::Base
   has_many :tickets
   has_many :guests, :through => :tickets
   has_many :follows, :as => :followable, :dependent => :destroy
+  has_many :post_event_comments, :as => :commentable, :class_name =>"Comment", :conditions => {:secondary_commentable_type => "post_event_comment"}, :dependent => :destroy
+  has_many :post_event_media, :as => :imageable, :class_name =>"Image", :conditions => {:secondary_imageable_type => "post_event_media"}, :dependent => :destroy
   
   attr_accessible :other_info, :length, :cost, :date, :description, :menu_pdf, :menu_text, :people_limit, :title
-  attr_accessible :host_id, :images_attributes, :time, :neighborhood, :blurb, :vegan, :vegetarian, :gluten_free
+  attr_accessible :host_id, :images_attributes, :time, :neighborhood, :blurb, :vegan, :vegetarian, :gluten_free, :blog_link
 
   accepts_nested_attributes_for :images, :reject_if => lambda { |a| a[:image].blank? }, :allow_destroy => true
+
+  #after_create :set_full_date
+
+  #THIS WONT WORK BECAUSE WHAT IF EVENT DATE IS UPDATED!?
+  
+  #def set_full_date
+  #  if date.present? && time.present?
+  #    full_date=DateTime.new(date.year, date.month, date.day, time.hour, time.min time.sec)
+  #  end
+  #end
 
   def seats_left
     people_limit - guests_count
@@ -53,6 +65,15 @@ class Event < ActiveRecord::Base
       guests.size
     else
       guests.count
+    end
+  end
+
+  def happened?
+    dt = DateTime.new(date.year, date.month, date.day, time.hour, time.min, time.sec)
+    if dt >= DateTime.now()
+      false
+    else
+      true
     end
   end
 end

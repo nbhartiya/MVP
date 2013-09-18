@@ -6,12 +6,13 @@
       .carousel-inner
         -if @event.images.present?
           -@event.images.each_with_index do |i, index|
-            -if index == 0
-              .item.active
-                = image_tag i.image
-            -else
-              .item
-                = image_tag i.image
+            -if i.secondary_imageable_type == "cover"
+              -if index == 0
+                .item.active
+                  = image_tag i.image
+              -else
+                .item
+                  = image_tag i.image
         -else
           .item.active
             =image_tag "Food 26.jpg"
@@ -121,58 +122,59 @@
                       %a.fancybox{:href => i.image, :rel => "group", :title => i.title} Event Photo Gallery
                     -else
                       %a.fancybox{:href => i.image, :rel => "group", :title => i.title}
-              %li
-                -if user_signed_in?
-                  -for guest in @event.guests
-                    -if guest.user_id == @current_user.id
-                      %a.fancybox{:href => "#", :"data-fancybox-type" => 'iframe'} Chai Recipe
-                      -$match = true
-                  - if $match != true
-                    %a.recipe{"data-toggle" => "tooltip", :title => "only people who attended the event can see this!", "data-placement" => "right"} Chai Recipe
-                - else
-                  %a.recipe{"data-toggle" => "tooltip", :title => "only people who attended the event can see this!", "data-placement" => "right"} Chai Recipe
-              %li
-                %a{:href=>"http://simmrco.wordpress.com/2013/09/10/tava-first-event/",:target=>"_blank"} Blog Post
+              -if @event.post_event_media.present?
+                %li
+                  -for media in @event.post_event_media
+                    -if user_signed_in?
+                      -if current_user.attending?(@event.id)
+                        %a{:href => media.image} #{media.title}
+                      -else
+                        %a.recipe{"data-toggle" => "tooltip", :title => "only people who attended the event can see this!", "data-placement" => "right"} #{media.title}
+                    - else
+                      %a.recipe{"data-toggle" => "tooltip", :title => "only people who attended the event can see this! if you attended the event, log in to see!", "data-placement" => "right"} #{media.title}
+              -if @event.blog_link.present?
+                %li
+                  %a{:href=>"#{@event.blog_link}",:target=>"_blank"} Blog Post
               -#%li
                 %a Event Case Study
-            %br
-            %button.btn.btn-warning.add-quote{'ng-click' => 'edit = "quote"', 'ng-hide' => 'edit == "quote"'} Add Comment              
-            .edit-form{'ng-show' => 'edit == "quote"'}
-              %form{:name => 'add_quote'}
-                %textarea.clearfix{:rows => 3, :placeholder => 'Leave a comment about the event!', :name => 'quote', :required => "required", 'ng-model' => 'event.quote', 'ng-class' => "{error: add_quote.quote.$invalid}"}
-                .help-block-white{'ng-show' => 'add_quote.quote.$error.required'} Required
-                %button.btn.btn-warning.edit{'ng-disabled' => 'add_quote.$invalid'} Add!
-            %table.quotes
-              %tr
-                %td
-                  %img.quoter{:src => "/assets/Foodie-Default-Profile-Image.png", "data-toggle" => "tooltip", :title => "name", "data-placement" => "right"}
-                %td
-                  %p "I was very impressed by Vijay's knowledge…The glass jar was the best thing ever. Getting a high quality, physical thing to take home meant a lot."
-              %tr
-                %td
-                  %img.quoter{:src => "/assets/Foodie-Default-Profile-Image.png", "data-toggle" => "tooltip", :title => "name", "data-placement" => "right"}
-                %td
-                  %p "The…demo was great. I thought the owner gave a really thorough explanation, and I was happy o learn about chai, get to try theirs, get my own JAR (I freakin' loved that jar), and then get a spiked chai. The whole progression [of the event] was the best part of the evening."
-              %tr
-                %td
-                  %img.quoter{:src => "/assets/Foodie-Default-Profile-Image.png", "data-toggle" => "tooltip", :title => "name", "data-placement" => "right"}
-                %td
-                  %p "[I am] more likely to go there now because I've … met the owner. [I] feel more of an emotional connection. [It was] good that Vijay was available to talk before and after. He had the right personality to be running that kind of event. He had good charisma."
-              %tr
-                %td
-                  %img.quoter{:src => "/assets/Foodie-Default-Profile-Image.png", "data-toggle" => "tooltip", :title => "name", "data-placement" => "right"}
-                %td
-                  %p "[The event] was a great way to get a new intro to a place I didn't know about."
-              %tr
-                %td
-                  %img.quoter{:src => "/assets/Foodie-Default-Profile-Image.png", "data-toggle" => "tooltip", :title => "name", "data-placement" => "right"}
-                %td
-                  %p "Dude, I don't even like hot drinks and now I love chai."
-              %tr
-                %td
-                  %img.quoter{:src => "/assets/Foodie-Default-Profile-Image.png", "data-toggle" => "tooltip", :title => "name", "data-placement" => "right"}
-                %td
-                  %p "After this, I fully trust Vijay can put on a great event, so I would definitely go to another Tava event."
+            -if @event.post_event_comments.present?
+              %table.quotes
+                -for comment in @event.post_event_comments
+                  %tr
+                    %td.quoter-image
+                      -if comment.user.profile.avatar.present?
+                        %img.quoter{:src => comment.user.profile.avatar.image, "data-toggle" => "tooltip", :title => "#{comment.user.first_name} #{comment.user.last_name}", "data-placement" => "right"}
+                      -else
+                        %img.quoter{:src => "/assets/Foodie-Default-Profile-Image.png", "data-toggle" => "tooltip", :title => "#{comment.user.first_name} #{comment.user.last_name}", "data-placement" => "right"}
+                    %td.quoter-quote
+                      %p "#{comment.content}"
+                -#
+                      %p "I was very impressed by Vijay's knowledge…The glass jar was the best thing ever. Getting a high quality, physical thing to take home meant a lot."
+                  %tr
+                    %td
+                      %img.quoter{:src => "/assets/Foodie-Default-Profile-Image.png", "data-toggle" => "tooltip", :title => "name", "data-placement" => "right"}
+                    %td
+                      %p "The…demo was great. I thought the owner gave a really thorough explanation, and I was happy o learn about chai, get to try theirs, get my own JAR (I freakin' loved that jar), and then get a spiked chai. The whole progression [of the event] was the best part of the evening."
+                  %tr
+                    %td
+                      %img.quoter{:src => "/assets/Foodie-Default-Profile-Image.png", "data-toggle" => "tooltip", :title => "name", "data-placement" => "right"}
+                    %td
+                      %p "[I am] more likely to go there now because I've … met the owner. [I] feel more of an emotional connection. [It was] good that Vijay was available to talk before and after. He had the right personality to be running that kind of event. He had good charisma."
+                  %tr
+                    %td
+                      %img.quoter{:src => "/assets/Foodie-Default-Profile-Image.png", "data-toggle" => "tooltip", :title => "name", "data-placement" => "right"}
+                    %td
+                      %p "[The event] was a great way to get a new intro to a place I didn't know about."
+                  %tr
+                    %td
+                      %img.quoter{:src => "/assets/Foodie-Default-Profile-Image.png", "data-toggle" => "tooltip", :title => "name", "data-placement" => "right"}
+                    %td
+                      %p "Dude, I don't even like hot drinks and now I love chai."
+                  %tr
+                    %td
+                      %img.quoter{:src => "/assets/Foodie-Default-Profile-Image.png", "data-toggle" => "tooltip", :title => "name", "data-placement" => "right"}
+                    %td
+                      %p "After this, I fully trust Vijay can put on a great event, so I would definitely go to another Tava event."
           .event-menu#menu{'ng-show' => 'appear=="menu"'}
             %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Menu

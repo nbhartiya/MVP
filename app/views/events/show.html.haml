@@ -6,12 +6,13 @@
       .carousel-inner
         -if @event.images.present?
           -@event.images.each_with_index do |i, index|
-            -if index == 0
-              .item.active
-                = image_tag i.image
-            -else
-              .item
-                = image_tag i.image
+            -if i.secondary_imageable_type=="cover"
+              -if index == 0
+                .item.active
+                  = image_tag i.image
+              -else
+                .item
+                  = image_tag i.image
         -else
           .item.active
             =image_tag "Food 26.jpg"
@@ -88,7 +89,7 @@
               -for guest in @event.guests
                 -if guest.user_id.present?
                   -if current_user.id == guest.user_id
-                    %a.btn.btn-warning.grab-seats-button{:href => "/feedback"} Leave Feedback!
+                    %a.btn.btn-warning.grab-seats-button{:href => "/events/#{@event.id}/post_event"} Leave Feedback!
             -#=render 'shared/signup_modals', :modal_class => '.eventshowsignup'
             .seats{'ng-show'=> 'showSeats'}
               -if user_signed_in? == false

@@ -45,6 +45,7 @@ class User < ActiveRecord::Base
   # TODO:this below relationship will be complicated, come back to this...
   has_many :follows, :dependent => :destroy
   has_many :guests
+  has_many :comments
   
   after_create :confirmation_email
   #before_create :chef_me
@@ -119,6 +120,12 @@ class User < ActiveRecord::Base
       return false
     end
   end
+
+  def attending?(event_id)
+    attended_event_ids = self.guests.map(&:event_id)
+    return attended_event_ids.include? event_id
+  end
+
 
   #def chef_me
   #  binding.pry

@@ -8,7 +8,7 @@ class Ability
 
       can :manage, Event, :host_id => user.id
       can :read, Event
-      can :feedback, Event
+      can :post_event, Event
       if user.chef?
         can :create, Event
       end

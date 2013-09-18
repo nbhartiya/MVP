@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130912014622) do
+ActiveRecord::Schema.define(:version => 20130917224415) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -65,10 +65,11 @@ ActiveRecord::Schema.define(:version => 20130912014622) do
   create_table "comments", :force => true do |t|
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
     t.integer  "commentable_id"
     t.string   "commentable_type"
+    t.string   "secondary_commentable_type"
   end
 
   create_table "events", :force => true do |t|
@@ -90,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20130912014622) do
     t.boolean  "vegetarian"
     t.boolean  "gluten_free"
     t.boolean  "approved",     :default => false
+    t.string   "blog_link"
   end
 
   create_table "follows", :force => true do |t|

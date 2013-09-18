@@ -67,5 +67,7 @@ module MVP
     
     #For filepicker
     config.filepicker_rails.api_key = ENV["FILEPICKER_API_KEY"]
+
+    config.time_zone = 'Pacific Time (US & Canada)'
   end
 end
