@@ -125,7 +125,7 @@
                 -if user_signed_in?
                   -for guest in @event.guests
                     -if guest.user_id == @current_user.id
-                      %a{:href => "#"} Chai Recipe
+                      %a.fancybox{:href => "#", :"data-fancybox-type" => 'iframe'} Chai Recipe
                       -$match = true
                   - if $match != true
                     %a.recipe{"data-toggle" => "tooltip", :title => "only people who attended the event can see this!", "data-placement" => "right"} Chai Recipe
@@ -135,6 +135,13 @@
                 %a{:href=>"http://simmrco.wordpress.com/2013/09/10/tava-first-event/",:target=>"_blank"} Blog Post
               -#%li
                 %a Event Case Study
+            %br
+            %button.btn.btn-warning.add-quote{'ng-click' => 'edit = "quote"', 'ng-hide' => 'edit == "quote"'} Add Comment              
+            .edit-form{'ng-show' => 'edit == "quote"'}
+              %form{:name => 'add_quote'}
+                %textarea.clearfix{:rows => 3, :placeholder => 'Leave a comment about the event!', :name => 'quote', :required => "required", 'ng-model' => 'event.quote', 'ng-class' => "{error: add_quote.quote.$invalid}"}
+                .help-block-white{'ng-show' => 'add_quote.quote.$error.required'} Required
+                %button.btn.btn-warning.edit{'ng-disabled' => 'add_quote.$invalid'} Add!
             %table.quotes
               %tr
                 %td
