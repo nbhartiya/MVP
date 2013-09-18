@@ -1184,6 +1184,23 @@ a.sb.yelp.black{
 				border-right: none;
 			}
 		}
+		button.add-quote{
+			float: none;
+			display: block;
+			margin-left: 0;
+			margin-top: 15px;
+			margin-bottom: 15px;
+		}
+		.edit-form textarea{
+			width: 100%;
+			margin-top: 15px;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;    
+			box-sizing: border-box; 
+		}
+		.edit-form .btn.edit{
+			margin-top: 0px;
+		}
 	}
 	.event-survey, .event-yelp, .point-ranking, .more-points, .event-recap{
 		background: rgba(0,0,0,0.8);
@@ -1216,7 +1233,6 @@ a.sb.yelp.black{
 			color: rgb(200, 200, 200);
 		}
 		table.quotes{
-			margin-top: 50px;
 			tr{
 				border-top: none;
 			}

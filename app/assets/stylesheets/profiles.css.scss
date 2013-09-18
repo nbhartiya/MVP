@@ -165,6 +165,18 @@ $main_orange: rgb(255, 178, 35);
 			-webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box;
+			p{
+				margin: 0;
+				font-weight: 100;
+				text-align: left;
+				font-size: 16px;
+				line-height: 1.5em;
+				padding: 2px 0;
+				a{
+					margin: 0;
+					font-weight: 100;
+				}
+			}
 			.user-events-button{
 			    a, a:visited, a:hover{
 	    	        color: white;
