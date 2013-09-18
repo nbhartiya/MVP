@@ -217,10 +217,13 @@
                       -#%td Number of Followers
                       %td
                         -if guest.user.present?
-                          -if @current_user.follows_this?('Profile', guest.user.profile.id) == true
-                            %a.sb.heart.circle.no-border.no-shadow.orange{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{guest.user.profile.id},#{user_signed_in?})"}
+                          -if user_signed_in?
+                            -if @current_user.follows_this?('Profile', guest.user.profile.id) == true
+                              %a.sb.heart.circle.no-border.no-shadow.orange{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{guest.user.profile.id},#{user_signed_in?})"}
+                            -else
+                              %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{guest.user.profile.id},#{user_signed_in?})"}
                           -else
-                            %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{guest.user.profile.id},#{user_signed_in?})"}
+                            %a.sb.heart.circle.no-border.no-shadow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
               -else
                 %h3 There are currently no attendees. Be the first to grab a spot!
             .row.comments
@@ -286,10 +289,13 @@
                               ="#{follow.user.profile.biz_name}"
                           -#%td Number of Followers..may want to add later
                           %td
-                            -if @current_user.follows_this?('Profile', follow.user.profile.id) == true
-                              %a.sb.heart.circle.no-border.no-shadow.orange{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})"}
+                            -if user_signed_in?
+                              -if @current_user.follows_this?('Profile', follow.user.profile.id) == true
+                                %a.sb.heart.circle.no-border.no-shadow.orange{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})"}
+                              -else
+                                %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})"}
                             -else
-                              %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})"}
+                              %a.sb.heart.circle.no-border.no-shadow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                 -else
                   %h3 No current followers. Click the heart to stay updated about this event!
           
