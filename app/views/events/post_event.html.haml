@@ -127,7 +127,7 @@
                   -for media in @event.post_event_media
                     -if user_signed_in?
                       -if current_user.attending?(@event.id)
-                        %a{:href => media.image} #{media.title}
+                        %a.fancybox{:href => media.image, :"data-fancybox-type" => 'iframe'} #{media.title}
                       -else
                         %a.recipe{"data-toggle" => "tooltip", :title => "only people who attended the event can see this!", "data-placement" => "right"} #{media.title}
                     - else
@@ -137,6 +137,15 @@
                   %a{:href=>"#{@event.blog_link}",:target=>"_blank"} Blog Post
               -#%li
                 %a Event Case Study
+            -#if user_signed_in?
+              -if current_user.attending?(@event.id)
+                %br
+                  %button.btn.btn-warning.add-quote{'ng-click' => 'edit = "quote"', 'ng-hide' => 'edit == "quote"'} Add Comment              
+                  .edit-form{'ng-show' => 'edit == "quote"'}
+                    %form{:name => 'add_quote'}
+                      %textarea.clearfix{:rows => 3, :placeholder => 'Leave a comment about the event!', :name => 'quote', :required => "required", 'ng-model' => 'event.post_event_comment', 'ng-class' => "{error: add_quote.quote.$invalid}"}
+                      .help-block-white{'ng-show' => 'add_quote.quote.$error.required'} Required
+                      %button.btn.btn-warning.edit{'ng-disabled' => 'add_quote.$invalid'} Add!
             -if @event.post_event_comments.present?
               %table.quotes
                 -for comment in @event.post_event_comments
