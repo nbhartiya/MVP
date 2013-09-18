@@ -25,8 +25,8 @@
     %tr
       %td{:align => 'center'}
         -#
-          -if event.images.present?
-            =link_to (image_tag event.images.first.image), event_path(event)
+          -if event.covers.present?
+            =link_to (image_tag event.covers.first.image), event_path(event)
           -else
         =link_to image_tag("Food 26.jpg")
     %tr.event-info

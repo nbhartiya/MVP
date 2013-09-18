@@ -1,25 +1,24 @@
 =content_for :title, "simmr | edit event"
 .events{'ng-controller' => 'EventEditCtrl', 'ng-init' => "getEvent(#{@event.id})"}
   .event-profile{'ng-init' => 'eventMenu = #{@event.menu_pdf}; eventImages = #{@event.eventImageUrls}'}
-    -if @event.images.present?
+    -if @event.covers.present?
       #remove-image.btn.edit{"ng-click" => "removeImages()"} remove image
     #remove-image.btn{"ng-click" => "removeImages()"} remove image
     #event-carousel.carousel.slide.hidden-phone       
       .carousel-inner
-        -if @event.images.present?
-          -@event.images.each_with_index do |i, index|
-            -if i.secondary_imageable_type=="cover"
-              -if index == 0
-                .item.active
-                  = image_tag i.image
-              -else
-                .item
-                  = image_tag i.image
+        -if @event.covers.present?
+          -@event.covers.each_with_index do |i, index|
+            -if index == 0
+              .item.active
+                = image_tag i.image
+            -else
+              .item
+                = image_tag i.image
         -else
           .item.active
             %p This is a default background photo. <br> Replace by uploading images!
             =image_tag "Food 26.jpg"
-    -if @event.images.count > 1
+    -if @event.covers.count > 1
       %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#event-carousel"} ‹
       %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#event-carousel"} ›  
 

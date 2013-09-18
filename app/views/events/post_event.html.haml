@@ -4,19 +4,18 @@
   .event-profile
     #event-carousel.carousel.slide         
       .carousel-inner
-        -if @event.images.present?
-          -@event.images.each_with_index do |i, index|
-            -if i.secondary_imageable_type == "cover"
-              -if index == 0
-                .item.active
-                  = image_tag i.image
-              -else
-                .item
-                  = image_tag i.image
+        -if @event.covers.present?
+          -@event.covers.each_with_index do |i, index|
+            -if index == 0
+              .item.active
+                = image_tag i.image
+            -else
+              .item
+                = image_tag i.image
         -else
           .item.active
             =image_tag "Food 26.jpg"
-    -if @event.images.count > 1
+    -if @event.covers.count > 1
       %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#event-carousel"} ‹
       %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#event-carousel"} ›  
 

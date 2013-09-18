@@ -23,7 +23,7 @@ class Api::EventsController < ApplicationController
     @location = Location.create(location_params)
     if event_images.present?
       for i in event_images
-        @event.images.new(:image=>i)
+        @event.covers.new(:image=>i)
         @event.save!
       end
     end
@@ -54,11 +54,11 @@ class Api::EventsController < ApplicationController
       @location.save!
     end
     if event_images.present?
-      for i in @event.images
+      for i in @event.covers
         i.delete
       end
       for i in event_images
-        @event.images.new(:image=>i)
+        @event.covers.new(:image=>i)
         @event.save!
       end
     end
