@@ -5,9 +5,7 @@
   .modal-body
     %h3 Experiences recommended by your friends.
     %p See what events friends have attended and their thoughts. We'll never share your info or post without your permission. 
-    %p.strong.sign-up-text
-      Log in with
-      %p
-        = render "shared/login"
-  .modal-footer
-    %button.userlogin.btn.btn-warning{'ng-disabled' => 'new_session.$invalid', 'ng-show'=>'appear=="emailLogin"'} Log In
+    %p
+      = render "shared/login"
+  .modal-footer{'ng-show'=>'appear=="emailLogin"'}
+    %button.userlogin.btn.btn-warning{'ng-disabled' => 'new_session.$invalid'} Log In

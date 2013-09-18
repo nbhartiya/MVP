@@ -6,10 +6,8 @@
     %h3 Expand your client base through memorable events.
     %p Leverage your existing fanbase and allow new customers to easily find you on Facebook / Twitter. We'll never share your info or post without your permission. 
     %p By signing up, you are agreeing to our<a href = "/home/tos"> Terms of Service </a>
-    %p.strong.sign-up-text
-      Sign up with
-      %p
-        = render "shared/business_signup_form"
+    %p
+      = render "shared/business_signup_form"
   .modal-footer
     %button.usersignup.bizbutton.btn.btn-warning{'ng-show'=>'appear=="bizSignup"'} Sign Up
 
@@ -21,9 +19,7 @@
     %h3 Experiences recommended by your friends.
     %p See what events friends have attended and their thoughts. We'll never share your info or post without your permission. 
     %p By signing up, you are agreeing to our<a href = "/home/tos"> Terms of Service </a>
-    %p.strong.sign-up-text
-      Sign up with
-      %p
-        = render "shared/foodie_signup_form"
-  .modal-footer
-    %button.usersignup.foodiebutton.btn.btn-warning{'ng-show'=>'appear=="foodieSignup"'} Sign Up
+    %p
+      = render "shared/foodie_signup_form"
+  .modal-footer{'ng-show'=>'appear=="foodieSignup"'}
+    %button.usersignup.foodiebutton.btn.btn-warning Sign Up

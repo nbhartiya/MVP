@@ -226,11 +226,11 @@ Devise.setup do |config|
     config.omniauth :facebook, ENV["FACEBOOK_APP_ID_DEV"], ENV["FACEBOOK_APP_SECRET_DEV"]
   end
   # config.omniauth :linkedin, ENV["LINKEDIN_API_KEY"], ENV["LINKEDIN_SECRET_KEY"]
-  if Rails.env.production?
-    config.omniauth :twitter, ENV["TWITTER_CONSUMER_KEY"], ENV["TWITTER_CONSUMER_SECRET"]
-  else
-    config.omniauth :twitter, ENV["TWITTER_CONSUMER_KEY_DEV"], ENV["TWITTER_CONSUMER_SECRET_DEV"]
-  end
+  # if Rails.env.production?
+  #   config.omniauth :twitter, ENV["TWITTER_CONSUMER_KEY"], ENV["TWITTER_CONSUMER_SECRET"]
+  # else
+  #   config.omniauth :twitter, ENV["TWITTER_CONSUMER_KEY_DEV"], ENV["TWITTER_CONSUMER_SECRET_DEV"]
+  # end
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

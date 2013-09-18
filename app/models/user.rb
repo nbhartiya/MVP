@@ -169,11 +169,11 @@ class User < ActiveRecord::Base
     #   self.last_name = omni['info']['last_name']
     #   #self.location = omni['info']['location']
     # end
-    if omni['provider'] == 'twitter'
+    # if omni['provider'] == 'twitter'
       # wahh twitter doesn't give you email address, so have to make sure my log in doesn't require that
-      fullname = omni['info']['name'].split(' ')
-      self.first_name, self.last_name = fullname[0], fullname[1]
-    end
+    #   fullname = omni['info']['name'].split(' ')
+    #   self.first_name, self.last_name = fullname[0], fullname[1]
+    # end
     self.chef = user_type
     authentications.build(:provider => omni['provider'],
                           :uid => omni['uid'],
