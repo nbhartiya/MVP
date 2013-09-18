@@ -433,8 +433,8 @@ input.error-true  {
 	}
 	label{
 		line-height: 32px;
-		margin-left: 5px;
-		font-size: 13px;
+		margin-left: 0;
+		font-size: 12px;
 		display: inline-block;
 	}
 	input{
@@ -449,10 +449,13 @@ input.error-true  {
 		box-sizing: border-box; 
 	}
 	#user_remember_me{
-		width: 5%;
+		width: 2%;
 	}
-	#user_email, #user_phone{
-		width: 48.5%%;
+	#foodie_first_name, #foodie_last_name{
+		width: 23.9%;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;    
+		box-sizing: border-box; 
 	}
 	a.sb{
 		text-align: center;
