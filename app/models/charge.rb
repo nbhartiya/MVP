@@ -19,4 +19,13 @@ class Charge < ActiveRecord::Base
   has_many :guests, :dependent => :destroy
   has_many :tickets, :dependent => :destroy
   belongs_to :location
+
+  #after_save :purchase_confirmation_email
+
+  #def purchase_confirmation_email
+  #	binding.pry
+  #	if status='paid'
+  #	  NotificationMailer.event_purchase_email(self.tickets.first.event).deliver
+  #	end
+  #end
 end
