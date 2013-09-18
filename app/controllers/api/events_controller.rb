@@ -18,9 +18,8 @@ class Api::EventsController < ApplicationController
     location_params = params[:event][:location]
     event_params.delete("location")
     @event = Event.create(event_params)
-    #there is an error here if one of the below is nil...check out later
-    location_params.merge!("event_id"=>@event.id)
-    @location = Location.create(location_params)
+    @event.build_location(location_params)
+    @event.save!
     if event_images.present?
       for i in event_images
         @event.covers.new(:image=>i)
