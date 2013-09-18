@@ -12,7 +12,8 @@
 #
 
 class Comment < ActiveRecord::Base
-  attr_accessible :content, :user_id
+  attr_accessible :content, :user_id, :secondary_commentable_type
   
   belongs_to :commentable, :polymorphic => true
+  belongs_to :user
 end
