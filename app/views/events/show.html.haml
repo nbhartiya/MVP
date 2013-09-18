@@ -93,7 +93,7 @@
             .seats{'ng-show'=> 'showSeats'}
               -if user_signed_in? == false
                 %a.btn.btn-warning.standalone-button.foodiesignup{:"data-toggle" => "modal", :href=>"#sign_up_foodie"} Sign Up
-                %a.btn.btn-warning.standalone-button{:"data-toggle" =>"modal", :href=>"#sign_in"} Sign In
+                %a.btn.btn-warning.standalone-button.foodiesignup{:"data-toggle" =>"modal", :href=>"#sign_in"} Sign In
               -if user_signed_in?
                 %select.number-of-seats{'ng-model' => 'num_guests'}
                   %option{:value => ''} Number of Seats
