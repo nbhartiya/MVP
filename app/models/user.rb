@@ -54,6 +54,9 @@ class User < ActiveRecord::Base
   
   def confirmation_email
     unless self.email.empty?
+      if Rails.env.production?
+        NotificationMailer.notify_us_of_user_signup(self).deliver
+      end
       if self.chef?
         NotificationMailer.signup_chef_email(self).deliver
       else

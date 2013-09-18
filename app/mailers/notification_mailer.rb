@@ -27,5 +27,23 @@ class NotificationMailer < ActionMailer::Base
     mail( :to => signup.email,
     :subject => "You're on Your Way to Sharing Your Food with the World")
   end
-  
+
+  def notify_us_of_user_signup(user)
+    @user = user
+    if !user.chef.nil?
+      if user.chef=true
+        @type="CHEF"
+      else
+        @type="FOODIE"
+      end
+    else
+      @type="USER (cant tell chef or foodie)"
+    end
+    if user.first_name.present? && user.last_name.present?
+      binding.pry
+      mail(:to=>"neeharika.b@gmail.com", :subject=>"NEW SIMMR #{@type}: #{user.first_name} #{user.last_name}")
+    else
+      mail(:to=>"neeharika.b@gmail.com", :subject=>"NEW SIMMR #{@type}, id: #{user.id}, but didnt catch name")
+    end
+  end
 end
