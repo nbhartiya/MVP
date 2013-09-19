@@ -67,7 +67,7 @@
                   ="#{@event.location.address1}, #{@event.location.city}, #{@event.location.state} #{@event.location.zipcode}"
                 %ul.nav.event-button-group
                   %li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "details"'} Memories
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "details"'} Recap
                   %li
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "menu"'} Menu
                   %li
@@ -112,7 +112,7 @@
         .span6 
           .event-recap#details{'ng-show' => 'appear=="details"'}
             %button.close{"ng-click" => "appear=''", :type => "button"} close
-            %h1 Event Memories
+            %h1 Event Recap
             %ul
               -if @event.post_event_images.present?
                 %li
@@ -230,7 +230,7 @@
               .fb-comments{"data-colorscheme" => "dark", "data-href" => "#{request.url[0..-10]}", "data-num-posts" => "5", "data-width" => "500"}
           .event-host-story{'ng-show' => 'appear=="story"'}
             %button.close{"ng-click" => "appear=''", :type => "button"} close
-            %h1 Host Story
+            %h1 #{@event.host.profile.biz_name}'s Story
             %h3
               - if @event.host.profile.story != nil
                 - n = @event.host.profile.story.split("\n")
