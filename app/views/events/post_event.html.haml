@@ -33,9 +33,8 @@
                 -#TODO: FIX
             %h3 
               =@event.blurb
-            -if user_signed_in?
-              -for guest in @event.guests
-                - if guest.user_id == @current_user.id
+              -if user_signed_in?
+                -if current_user.attending?(@event.id)
                   %hr
                   %table.feedback-actions
                     %tr
