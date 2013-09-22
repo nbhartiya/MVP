@@ -628,6 +628,11 @@ a.sb.yelp.black{
 		.event-create-form{
 			height: 490px;
 			overflow-y: auto;
+			#event-accommodations{
+				p{
+					margin: 0;
+				}
+			}
 		}
 		.menu{
 			font-weight: 100;

@@ -226,7 +226,7 @@
               -else
                 %h3 There are currently no attendees. Be the first to grab a spot!
             .row.comments
-              .fb-comments{"data-colorscheme" => "dark", "data-href" => "#{request.url[0..-10]}", "data-num-posts" => "5", "data-width" => "500"}
+              .fb-comments{"data-colorscheme" => "dark", "data-href" => "/events/#{@event.id}", "data-num-posts" => "5", "data-width" => "500"}
           .event-host-story{'ng-show' => 'appear=="story"'}
             %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 #{@event.host.profile.biz_name}'s Story
