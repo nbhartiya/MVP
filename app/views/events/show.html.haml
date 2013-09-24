@@ -82,13 +82,9 @@
               .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Book It
             -else
               .btn.grab-seats-button Sold Out! 
-            -#PRETTY SURE THE CODE BELOW IS RIGHT BUT NOT WORKING AS EXPECTED
             -if user_signed_in?
-              -# Create a method in your model for
-              -for guest in @event.guests
-                -if guest.user_id.present?
-                  -if current_user.id == guest.user_id
-                    %a.btn.btn-warning.grab-seats-button{:href => "/events/#{@event.id}/post_event"} Leave Feedback!
+              -if current_user.attending?(@event.id)
+                %a.btn.btn-warning.grab-seats-button{:href => "/events/#{@event.id}/post_event"} Leave Feedback!
             -#=render 'shared/signup_modals', :modal_class => '.eventshowsignup'
             .seats{'ng-show'=> 'showSeats'}
               -if user_signed_in? == false
@@ -178,7 +174,7 @@
             .attendees
               -if @event.guests_count > 0
                 %table.following-table
-                  -for guest in @event.guests
+                  -for guest in @event.guests_going
                     %tr 
                       %td
                         -if guest.user.present?

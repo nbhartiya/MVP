@@ -16,7 +16,7 @@
 #
 
 class Guest < ActiveRecord::Base
-  attr_accessible :email, :event_id, :first_name, :user_id, :last_name, :ticket_id, :token, :charge_id
+  attr_accessible :email, :event_id, :first_name, :user_id, :last_name, :ticket_id, :token, :charge_id, :waiting
 
   belongs_to :ticket
   belongs_to :charge

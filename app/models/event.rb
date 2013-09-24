@@ -62,11 +62,36 @@ class Event < ActiveRecord::Base
 
   def guests_count
     if guests.loaded?
-      guests.size
+      guests.where(:waiting=>false).size
     else
-      guests.count
+      guests.where(:waiting=>false).count
     end
   end
+
+  def guests_going
+    if guests.loaded?
+      guests.where(:waiting=>false)
+    else
+      guests.where(:waiting=>false)
+    end
+  end
+  
+  def waitlist
+    if guests.loaded?
+      guests.where(:waiting=>true)
+    else
+      guests.where(:waiting=>true)
+    end
+  end
+
+  def waitlist_count
+    if guests.loaded?
+      guests.where(:waiting=>true).size
+    else
+      guests.where(:waiting=>true).count
+    end
+  end
+
 
   def happened?
     dt = DateTime.new(date.year, date.month, date.day, time.hour, time.min, time.sec)

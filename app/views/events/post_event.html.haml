@@ -196,7 +196,7 @@
             .attendees
               -if @event.guests_count > 0
                 %table.following-table
-                  -for guest in @event.guests
+                  -for guest in @event.guests_going
                     %tr 
                       %td
                         -if guest.user.present?

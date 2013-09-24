@@ -55,7 +55,7 @@
                 %option{:value => 300} 5 hrs
 
             #event-location
-              %p Location (guests see full address after purchase)
+              %p Location
 
               %select#neighborhoods{'ng-model' => 'event.location.neighborhood', :required => "required", :name => "event_neighborhood", 'ng-class' => "{error: event_create.event_neighborhood.$invalid}"}
 

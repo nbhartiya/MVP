@@ -66,7 +66,7 @@ class User < ActiveRecord::Base
   end
 
   def events_attended
-    attended_event_ids = self.guests.map(&:event_id)
+    attended_event_ids = self.guests.where(:waiting=>false).map(&:event_id)
     Event.where("id in (?)", attended_event_ids)
   end
 
@@ -125,7 +125,7 @@ class User < ActiveRecord::Base
   end
 
   def attending?(event_id)
-    attended_event_ids = self.guests.map(&:event_id)
+    attended_event_ids = self.events_attended
     return attended_event_ids.include? event_id
   end
 
