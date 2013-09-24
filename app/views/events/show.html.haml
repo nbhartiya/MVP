@@ -113,7 +113,7 @@
                   -else
                     %a.sb.heart.circle.no-border.no-shadow.follow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                 %td
-                  %a.sb.yelp.circle.no-border.no-shadow{:href=>"#{get_yelp_link(@event.host.profile)}",:target=>"_blank"} 
+                  %a.sb.yelp.circle.no-border.no-shadow{:href=>"#{get_yelp_link(@event.host.profile)}",:target=>"_blank", :rel => "popover", :'data-trigger' => "hover", :'data-placement' => "right"} 
                 %td
                   %a.sb.facebook.circle.no-border.no-shadow{:href => "#"}
                 %td
@@ -140,6 +140,7 @@
                 %td
                   %a.followers {{follows}}
                 %td
+                  %img.yelp-rating{:src => "#{get_yelp_rating_img_url(@event.host.profile)}"}
                   %a{:href=>"#{get_yelp_link(@event.host.profile)}",:target=>"_blank"} #{get_review_count(@event.host.profile)}
                 %td{:rowspan => "2"} share 
                 %td to
