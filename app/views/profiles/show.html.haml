@@ -440,7 +440,7 @@
                 %td{'ng-click'=>'appear = "followers"'}
                   %a.followers {{follows}}
                 %td
-                  %a{:href=>"#{@profile.yelp_id}",:target=>"_blank"} #{get_review_count(@profile)}
+                  %a{:href=>"#{get_yelp_link(@profile)}",:target=>"_blank"} #{get_review_count(@profile)}
                 %td{:rowspan => "2"} share
               %tr.user-stat-labels
                 %td
