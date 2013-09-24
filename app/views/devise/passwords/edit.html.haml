@@ -2,12 +2,14 @@
   .row.devisecontainer
     .span12
       %h1 Change your password
+      = devise_error_messages!
+      - token = @user.reset_password_token
       %form#new_user.new_user.ng-pristine.ng-valid{"accept-charset" => "UTF-8", :action => "/users/password", :method => "post", :name => "new_pass"}
         %div{:style => "margin:0;padding:0;display:inline"}
         %input{:autocomplete => "off", :name => "utf8", :type => "hidden", :value => "✓"}/
         %input{:autocomplete => "off", :name => "_method", :type => "hidden", :value => "put"}/
-        %input{:autocomplete => "off", :name => "authenticity_token", :type => "hidden", :value => "jtBlHgK/vCbelKMel6n5RgliL41uj7mYSlbbNOZYY2Q="}/
-        %input#user_reset_password_token{:autocomplete => "off", :name => "user[reset_password_token]", :type => "hidden", :value => "mT1YykzEabHQP4pjWz1J"}/
+        %input{:autocomplete => "off", :name => "authenticity_token", :type => "hidden", :value => "#{form_authenticity_token}"}/
+        %input#user_reset_password_token{:autocomplete => "off", :name => "user[reset_password_token]", :type => "hidden", :value => "#{token}"}/
         %div
           %input#user_password{:autofocus => "autofocus", :name => "user[password]", :size => "30", :type => "password", :placeholder => "password", :required => "required", 'ng-pattern' => '/^[a-zA-Z0-9@&#$.\s]{8,30}$/', 'ng-model' => 'user.password'}
           %span.help-inline{'ng-show' => 'new_pass["user[password]"].$error.required'} Required
