@@ -24,6 +24,12 @@ Simmr.factory "User", ["railsResourceFactory", (railsResourceFactory) ->
     name: "user"
 ]
 
+Simmr.factory "Guest", ["railsResourceFactory", (railsResourceFactory) ->
+  railsResourceFactory
+    url: "/api/guests"
+    name: "guest"
+]
+
 Simmr.directive "heart", ->
   {
   restrict: 'E'
@@ -124,7 +130,7 @@ Simmr.controller "HomeIndexCtrl", ["$scope",  "$routeParams", "$location", ($sco
     $(".bizsignup").click()
 ]
 
-Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "Charge", "Event", ($scope, $routeParams, $location, Charge, Event) ->
+Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "Charge", "Event", "Guest", ($scope, $routeParams, $location, Charge, Event, Guest) ->
   Simmr.scopes ||= {}  
   Simmr.scopes.event = $scope
 
@@ -189,18 +195,37 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
     total = $scope.guestsCount * $scope.cost
     total = total.toFixed(0)
 
-  $scope.showPayment = ->
+  $scope.showPayment = (wait) ->
     $scope.guests = []
     $scope.guest_no_pages = 0
     if $scope.num_guests > 0
-      $scope.guests.push($scope.currentUser)
+      homie=$scope.currentUser
+      currentGuy={}
+      currentGuy.first_name=homie.first_name
+      currentGuy.last_name=homie.last_name
+      currentGuy.email=homie.email
+      currentGuy.userId=homie.id
+      currentGuy.eventId=$scope.eventId
+      currentGuy.waiting=true
+      $scope.guests.push(currentGuy)
       i = 0
       
       while i < $scope.num_guests - 1
         $scope.guests.push({})
         i++
+    if wait
+      $scope.appear = "waitlist1"
+    else
+      $scope.appear = "payment1"
 
-    $scope.appear = "payment1"
+  $scope.addtoWaitlist = ->
+    angular.forEach($scope.guests, (guest) =>
+      guest.eventId=$scope.eventId
+      guest.waiting=true
+      new Guest(guest).create().then (data) =>
+        console.log data, "~~~~~~~~~~~"
+    )
+    $scope.appear = "waitlist2"
 
   $scope.gotoPayment = ->
     error = 0

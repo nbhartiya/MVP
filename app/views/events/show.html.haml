@@ -81,7 +81,7 @@
             - if @event.seats_left > 0
               .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Book It
             -else
-              .btn.grab-seats-button Sold Out! 
+              .btn.grab-seats-button{'ng-click' => 'waitlist=true', 'ng-hide' => 'waitlist'} Join Waitling List!
             -if user_signed_in?
               -if current_user.attending?(@event.id)
                 %a.btn.btn-warning.grab-seats-button{:href => "/events/#{@event.id}/post_event"} Leave Feedback!
@@ -97,6 +97,22 @@
                   -# (@event.seats_left).times do |s|
                     %option{:value => s+2} #{s+2} seats
                 .btn.btn-warning.event-go-button{'ng-click' => 'showPayment()', 'ng-disabled' => "num_guests==nil || num_guests == 0"} Go
+
+            .seats{'ng-show'=> 'waitlist'}
+              -if user_signed_in? == false
+                -#fix where this redirects to!
+                %a.btn.btn-warning.standalone-button.foodiesignup{:"data-toggle" => "modal", :href=>"#sign_up_foodie"} Sign Up
+                %a.btn.btn-warning.standalone-button.foodiesignup{:"data-toggle" =>"modal", :href=>"#sign_in"} Sign In
+              -if user_signed_in?
+                %select.number-of-seats{'ng-model' => 'num_guests'}
+                  %option{:value => ''} Number of Seats
+                  %option{:value => 1} 1 seat
+                  %option{:value => 2} 2 seats
+                  %option{:value => 3} 3 seats
+                  %option{:value => 4} 4 seats
+                  -# (@event.seats_left).times do |s|
+                    %option{:value => s+2} #{s+2} seats
+                .btn.btn-warning.event-go-button{'ng-click' => 'showPayment(true)', 'ng-disabled' => "num_guests==nil || num_guests == 0"} Go
             
             %table.event-sharing{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@event.follows.count}"}
               %tr.icons
@@ -290,6 +306,18 @@
               .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.required || guest_registration.guest_first.$error.required || guest_registration.guest_last.$error.required'} All fields are required
             %button.btn.btn-warning.standalone-button#enter-payment-info{'ng-click' => 'gotoPayment()', 'ng-disabled' => "error=0"} Enter Payment Info
 
+          .event-guests.clearfix{'ng-show' => 'appear=="waitlist1"'}
+            %h1 Who all want to go to #{@event.title}?
+            %hr
+            %form.guests{:name => "guest_registration", 'ng-repeat' => 'guest in guests'}
+              -#Make first email say "YOUR EMAIL" not guest email, send confirmation email, have note on every event someone has registered for that they've registered and should have gotten an email.
+              %input.guest-name{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.first_name', :type=>'text', :placeholder =>"Guest First Name", :required => "required", :name => "guest_first", 'ng-class' => "{error: guest_registration.guest_first.$invalid}"}
+              %input.guest-name{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.last_name', :type=>'text', :placeholder =>"Guest Last Name", :required => "required", :name => "guest_last", 'ng-class' => "{error: guest_registration.guest_last.$invalid}"}
+              %input.guest-email{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :required => "required", :name => "guest_email", 'ng-class' => "{error: guest_registration.guest_email.$invalid}"}
+              .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.email'} Please enter a valid email
+              .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.required || guest_registration.guest_first.$error.required || guest_registration.guest_last.$error.required'} All fields are required
+            %button.btn.btn-warning.standalone-button#enter-payment-info{'ng-click' => 'addtoWaitlist()', 'ng-disabled' => "error=0"} Join the Waitlist
+
           .event-purchase.clearfix{'ng-show' => 'appear=="payment2"', 'ng-init'=> "cost=#{@event.cost};currentUser=#{current_user.to_json}"}
             %h1 Total: ${{total()}}
             %hr
@@ -301,5 +329,10 @@
 
           .event-purchase-confirmation.clearfix{'ng-show' => 'appear=="payment3"'}
             %h2 Thank you for your reservation! You will receive an email confirmation in the next day.
+
+            %a.btn.btn-warning#ok-button{:href => "/events"} Check Out More Cool Events!
+          
+          .event-purchase-confirmation.clearfix{'ng-show' => 'appear=="waitlist2"'}
+            %h2 Thank you for your adding yourself to the waitlist! You will receive an email if we can squeeze you in!
 
             %a.btn.btn-warning#ok-button{:href => "/events"} Check Out More Cool Events!

@@ -39,6 +39,7 @@ MVP::Application.routes.draw do
     resources :locations
     resources :profiles
     resources :follows
+    resources :guests
   end
 
   resources :campaigns
