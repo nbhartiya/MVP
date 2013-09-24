@@ -54,6 +54,7 @@ a.sb.yelp.black{
 		}
 		.single-event{
 			margin: -30px 7px 50px 7px;
+			position: relative;
 			height: 310px;
 			z-index: 500;
 			opacity: 1;
@@ -61,6 +62,126 @@ a.sb.yelp.black{
 			-webkit-transition-duration:100ms;
 			-webkit-transition-timing-function:linear;
 			-webkit-transition-delay:100ms;
+			#ribbon {
+			width: 180px;
+			height: 110px;
+			margin: 50px auto 0;
+			position: absolute;
+			float: right;
+			right: -20px;
+			top: -60px;
+			overflow: hidden;
+			}
+			#ribbon .inset {
+				width: 150px;
+				height: 55px;
+				position: absolute;
+				top: -50px;
+				left: 15px;
+				z-index: 5;
+				
+				-webkit-border-radius: 50%;
+				-moz-border-radius: 50%;
+				border-radius: 50%;
+				
+				background: rgba(0,0,0,0.3);
+				
+				box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.3);
+				-moz-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.3);
+				-webkit-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.3);
+			}
+
+			#ribbon .container {
+				position: relative;
+				width: 100px;
+				height: 110px;
+				overflow: hidden;
+				margin: 0 auto;
+			}
+
+			#ribbon.future .base{
+				background: $main_orange;
+			}
+
+			#ribbon .base {
+				height: 55px;
+				width: 100px;
+				background: rgb(60, 60, 60);
+				position: relative;
+				z-index: 2;
+				h3{
+					margin: 0;
+					color: white;
+					font-size: 20px;
+					padding-top: 20px;
+					line-height: 1.5em;
+					font-weight: 100;
+					text-align: center;
+				}
+			}
+
+			#ribbon .base:after {
+				content: '';
+				position: absolute;
+				top: 0;
+				width: 86px;
+				left: 6px;
+				height: 92px;
+				//border-left: 1px dashed rgba(0, 0, 0, 1);
+				//border-right: 1px dashed rgba(0, 0, 0, 1);
+			}
+
+			#ribbon .base:before {
+				content: '';
+				position: absolute;
+				top: 0;
+				width: 86px;
+				left: 7px;
+				height: 92px;
+				border-left: 1px rgba(0, 0, 0, 1);
+				border-right: 1px rgba(0, 0, 0, 1);
+			}
+
+			#ribbon .left_corner {
+				width: 100px;
+				height: 100px;
+				background: rgb(60, 60, 60);
+				position: absolute;
+				bottom: 20px;
+				left: -50px;
+				z-index: 1;
+				
+				-webkit-transform: rotate(60deg);
+				-moz-transform: rotate(60deg);
+				-ms-transform: rotate(60deg);
+				-o-transform: rotate(60deg);
+				transform: rotate(60deg);
+			}
+
+			#ribbon.future .left_corner{
+				background: $main_orange;
+			}
+
+			#ribbon .right_corner {
+				width: 100px;
+				height: 100px;
+				background: rgb(60, 60, 60);
+				position: absolute;
+				bottom: 20px;
+				right: -50px;
+				z-index: 1;
+				
+				-webkit-transform: rotate(30deg);
+				-moz-transform: rotate(30deg);
+				-ms-transform: rotate(30deg);
+				-o-transform: rotate(30deg);
+				transform: rotate(30deg);
+			}
+
+			#ribbon.future .right_corner{
+				background: $main_orange;
+			}
+			
 			.event-image{
 				background: black;
 				height: 310px;
@@ -77,11 +198,11 @@ a.sb.yelp.black{
 			opacity: 0.9;
 		}
 		.event-info{
-			position: relative;
+			position: absolute;
 			margin: 0;
 			color: white;
 			background: rgba(0, 0, 0, 0.8);
-			bottom: 60px;
+			bottom: 0px;
 			table{
 				background: rgba(0, 0, 0, 0.8);
 				width: 100%;

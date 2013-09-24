@@ -435,14 +435,20 @@ $main_orange: rgb(255, 178, 35);
 		width: 100%;
 		height: 100%;
 	}
-	#submit, #cancel{
-		float: right;
-		margin: 5px 0 0 5px;
-	}
 	#yelp-connect{
 		-webkit-box-sizing: border-box;
 	    -moz-box-sizing: border-box;    
 	    box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+	}
+	#submit, #cancel{
+		float: right;
+		margin: 5px 0 0 5px;
+	}
+	#yelp-explanation{
+		float: right;
+		display: inline-block;
 	}
 	#why-yelp{
 		font-size: 10px;
