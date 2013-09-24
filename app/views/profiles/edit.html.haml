@@ -617,8 +617,8 @@
                 %button.btn#profile-images-button{'ng-click'=> 'uploadAvatarImage()'} Add Logo
                 %button.btn#cover-images-button{'ng-click'=> 'uploadProfileImages()'} Upload Background Images
                 %button.btn#yelp-connect{'ng-click' => 'yelp=true'} Connect Yelp
-                %input#yelp{'ng-model'=>'profile.yelpId', :name => "profile_yelp", 'ng-class' => "{error: profile_edit.profile_yelp.$invalid}", :form => "profile_edit", 'ng-show' => 'yelp', :type => "url", :placeholder => 'Please enter your Yelp URL'}
-                .help-block{'ng-show' => 'profile_edit.profile_yelp.$error.url'} Please enter a valid Yelp URL
+                %input#yelp{'ng-model'=>'profile.yelpId', :name => "profile_yelp", 'ng-class' => "{error: profile_edit.profile_yelp.$invalid}", :form => "profile_edit", 'ng-show' => 'yelp', :type => "url", :placeholder => 'Please enter your Yelp ID (www.yelp.com/YOUR-YELP-ID)'}
+                .help-block{'ng-show' => 'profile_edit.profile_yelp.$error.url'} Please enter a valid Yelp ID (www.yelp.com/YOUR-YELP-ID)
                 %span#yelp-explanation <a data-toggle = "tooltip" id = "why-yelp" title = "So guests know how great you already are and can easily leave you reviews!">Why?</a>
               %button.btn.btn-warning#submit{'ng-disabled' => 'profile_edit.$invalid', 'ng-click' => 'editProfile(profile);saved=true'} Save Changes
               .help-block{'ng-show' => "saved"} Saved! (feel free to continue to make edits and save again and be sure to add news and a story (buttons are on the left)!)
