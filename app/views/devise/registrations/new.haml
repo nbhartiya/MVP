@@ -8,7 +8,7 @@
       %form#new_user.new_user{"accept-charset" => "UTF-8", :action => "/users", :method => "post", :name => "new_registration"}
         %div{:style => "margin:0;padding:0;display:inline"}
           %input{:name => "utf8", :type => "hidden", :value => "✓"}
-          %input{:name => "authenticity_token", :type => "hidden", :value => "8792VebFEYKWEUkvc3eA2+ivbuej0mznMWB+l+1w7eA="}
+          %input{:name => "authenticity_token", :type => "hidden", :value => "#{form_authenticity_token}"}
         %div
           %input#user_first_name{:autofocus => "autofocus", :name => "user[first_name]", :placeholder => "first name", :size => "30", :type => "text", :required => "required", 'ng-model' => 'user.first_name'}
           %span.help-inline{"ng-show" => "new_registration['user[first_name]'].$error.required"} Required

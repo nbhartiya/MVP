@@ -5,7 +5,7 @@
       %form#new_pass{"accept-charset" => "UTF-8", :action => "/users/password", :method => "post", :name => "new_pass"}
         %div{:style => "margin:0;padding:0;display:inline"}
           %input{:name => "utf8", :type => "hidden", :value => "✓"}/
-          %input{:name => "authenticity_token", :type => "hidden", :value => "bakqW+41reaR0EEjB0noRbFHFLFXOfC4gt6jk85LCiw="}/
+          %input{:name => "authenticity_token", :type => "hidden", :value => "#{form_authenticity_token}"}/
         %div
           %input{:autofocus => "autofocus", :name => "user[email]", :size => "30", :type => "email", :placeholder => "Email", "ng-model" => "user.email", :required => "required"}
           %span.help-inline{"ng-show" => "new_pass['user[email]'].$error.required"} Required

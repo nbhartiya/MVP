@@ -35,4 +35,18 @@ def get_yelp_link(profile)
 	return yelpUrl
 end
 
+def get_yelp_rating_img_url(profile)
+	client = Yelp::Client.new
+
+	request = Id.new(
+		:yelp_business_id => profile.yelp_id,
+		:consumer_key => ENV["YELP_CONSUMER_KEY"],
+		:consumer_secret => ENV["YELP_CONSUMER_SECRET"],
+		:token => ENV["YELP_TOKEN"],
+		:token_secret => ENV["YELP_TOKEN_SECRET"])
+	response=client.search(request)
+	yelpRatingUrl=response.fetch("rating_img_url_small")
+	return yelpRatingUrl
+end
+
 end

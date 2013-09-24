@@ -475,6 +475,7 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
 
 Simmr.controller "EventFeedbackCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
 
+
   $scope.mapUrl = ->
     mapUrl = "http://maps.google.com/?q=#{$scope.address1},#{$scope.city}, #{$scope.state},#{$scope.zipcode}"
 

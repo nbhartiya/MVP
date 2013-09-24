@@ -1,12 +1,38 @@
+-#-if event.upcoming
+  .row
+    #ribbon.future
+      .container
+        .base
+          %h3
+            up next
+        .left_corner
+        .right_corner
+    .span6.event-image
+      -if event.images.present?
+        =image_tag event.images.first.image
+      -else
+        =image_tag("Food 26.jpg")
+  .row.event-info
+    %table
+      %tr
+        %td.event-title-host.span6
+          %h1 #{event.host.profile.biz_name} 
 
 -if event.happened?
-  .row.subdued
-    .span6.event-image
+  .row
+    #ribbon
+      .container
+        .base
+          %h3
+            past
+        .left_corner
+        .right_corner
+    .span6.event-image.subdued
       -if event.images.present?
         =link_to (image_tag event.images.first.image), event_path(event)
       -else
         =link_to image_tag("Food 26.jpg"), event_path(event)
-  %a.row.event-info{:href => event_path(event)}
+  %a.row.event-info.subdued{:href => event_path(event)}
     %table
       %tr
         %td.event-title-host.span4
