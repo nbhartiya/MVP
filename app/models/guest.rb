@@ -21,4 +21,5 @@ class Guest < ActiveRecord::Base
   belongs_to :ticket
   belongs_to :charge
   belongs_to :user
+  belongs_to :event
 end

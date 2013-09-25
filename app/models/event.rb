@@ -33,6 +33,7 @@ class Event < ActiveRecord::Base
   belongs_to :host, :class_name => "User", :foreign_key => "host_id"
   has_many :tickets
   has_many :guests, :through => :tickets
+  has_many :guests_waiting, :class_name => "Guest", :conditions => {:waiting => true}, :dependent => :destroy
   has_many :follows, :as => :followable, :dependent => :destroy
   has_many :post_event_comments, :as => :commentable, :class_name =>"Comment", :conditions => {:secondary_commentable_type => "post_event_comment"}, :dependent => :destroy
   has_many :post_event_media, :as => :imageable, :class_name =>"Image", :conditions => {:secondary_imageable_type => "post_event_media"}, :dependent => :destroy
@@ -62,36 +63,31 @@ class Event < ActiveRecord::Base
 
   def guests_count
     if guests.loaded?
-      guests.where(:waiting=>false).size
+      guests.size
     else
-      guests.where(:waiting=>false).count
+      guests.count
     end
   end
 
   def guests_going
     if guests.loaded?
-      guests.where(:waiting=>false)
+      guests
     else
-      guests.where(:waiting=>false)
+      guests
     end
   end
   
   def waitlist
-    if guests.loaded?
-      guests.where(:waiting=>true)
-    else
-      guests.where(:waiting=>true)
-    end
+    guests_waiting
   end
 
   def waitlist_count
-    if guests.loaded?
-      guests.where(:waiting=>true).size
+    if guests_waiting.loaded?
+      guests_waiting.size
     else
-      guests.where(:waiting=>true).count
+      guests_waiting.count
     end
   end
-
 
   def happened?
     dt = DateTime.new(date.year, date.month, date.day, time.hour, time.min, time.sec)
