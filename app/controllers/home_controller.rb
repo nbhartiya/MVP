@@ -9,19 +9,13 @@ class HomeController < ApplicationController
   def teamandjobs
   end
 
-  def contactus
-  end
-
   def index
   end
 
   def tos
   end
 
-  def teamandjobsREAL
-  end
-
-  def meow
+  def philosophy
   end
 
 end
