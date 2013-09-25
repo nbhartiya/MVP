@@ -507,3 +507,23 @@ ul.parsley-error-list{
 	padding: 0;
 	background: rgb(240, 240, 240);
 }
+
+.philosophy{
+	background: rgba(0, 0, 0, 0.8);
+	padding: 30px;
+	margin-top: 30px;
+	color: white;
+	h3{
+		font-weight: 100;
+		font-size: 30px;
+		line-height: 1.2em;
+	}
+	p{
+		font-weight: 100;
+		font-size: 16px;
+		line-height: 1.5em;
+	}
+	a, a:visited, a:active, a:hover{
+		color: $main_orange;
+	}
+}
