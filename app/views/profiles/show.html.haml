@@ -432,30 +432,24 @@
                       %a.sb.heart.circle.no-border.no-shadow.orange.black.campaign-follow{'ng-click' => "addFollower('Profile',#{@profile.id},#{user_signed_in?},follows)", :href => "#", "data-toggle" => "tooltip", :title => "Click to follow this business!", "data-placement" => "right"}
                   -else
                     %a.sb.heart.circle.no-border.no-shadow.orange.black.campaign-follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
-                %td
-                  -if @profile.yelp_id.present?
+                -if @profile.yelp_id.present?  
+                  %td
                     %a.sb.yelp.circle.no-border.no-shadow.black{:href=>"#{get_yelp_link(@profile)}"} 
-                  -else
-                    %a.sb.yelp.circle.no-border.no-shadow.black
                 %td
                   %a.sb.facebook.circle.no-border.no-shadow.black{:href => "#"}
               %tr.user-stats
                 %td{'ng-click'=>'appear = "followers"'}
                   %a.followers {{follows}}
-                %td
-                  -if @profile.yelp_id.present?
+                -if @profile.yelp_id.present?
+                  %td
                     %img.yelp-rating{:src => "#{get_yelp_rating_img_url(@profile)}"}
-                  -else
-                    Yelp not
                 %td{:rowspan => "2"} share
               %tr.user-stat-labels
                 %td
                   %a.followers followers
-                %td
-                  -if @profile.yelp_id.present?
+                -if @profile.yelp_id.present?  
+                  %td
                     %a{:href=>"#{get_yelp_link(@profile)}",:target=>"_blank"} #{get_review_count(@profile)} reviews
-                  -else
-                    connected :(
           -if current_user
             -if current_user.id == @profile.user_id
               .span1.edit-button
