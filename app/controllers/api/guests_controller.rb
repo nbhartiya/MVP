@@ -12,6 +12,7 @@ class Api::GuestsController < ApplicationController
 
   def create
     @guest = Guest.create(params[:guest])
+    @guest.save
     render json: @guest.to_json
   end
 

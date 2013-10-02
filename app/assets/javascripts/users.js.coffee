@@ -34,7 +34,10 @@ $(document).on "click", ".foodiesignup", ->
       console.log("In Event")
       console.log Simmr.scopes.event.eventId
       console.log "event_path(#{Simmr.scopes.event.eventId})"
-      $.cookie 'after_sign_in_path_foodie', "/events/#{Simmr.scopes.event.eventId}/?grabSeats", { path: '/' }
+      if Simmr.scopes.event.showSeats
+        $.cookie 'after_sign_in_path_foodie', "/events/#{Simmr.scopes.event.eventId}/?grabSeats", { path: '/' }
+      if Simmr.scopes.event.waitlist
+        $.cookie 'after_sign_in_path_foodie', "/events/#{Simmr.scopes.event.eventId}/?waitList", { path: '/' }
   else
     $.cookie 'after_sign_in_path_foodie', nil, { path: '/' }
 

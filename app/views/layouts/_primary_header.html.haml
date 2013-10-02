@@ -1,12 +1,12 @@
 .container.nav-container{ng: {controller: 'HeaderCtrl'}}
   .row.nav
-    .span4.logo-and-location
+    .span3.logo-and-location
       = link_to image_tag("beta_logo_final.png", :border=>0), '/', :class => "logo"
       %ul
         %li
           %a.city{:href => "#", "data-toggle" => "tooltip", :title => "We're currently only in SF, but stay tuned for other cities!", "data-placement" => "right"} San Francisco
 
-    .span8.nav-right
+    .span9.nav-right
       %ul
         %li.pull-right.input-append
           %input#appendedInputButton{:type => 'text', :placeholder => "Search Events or Businesses", 'ng-model'=>'searchQuery', 'ui-keypress'=>"{13:'keypressCallback($event)'}"}

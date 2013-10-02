@@ -137,6 +137,9 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
   if location.search == '?grabSeats'
     $scope.showSeats = true
 
+  if location.search == '?waitList'
+    $scope.waitlist = true
+
   $scope.guests = []
   $scope.event = []
 
