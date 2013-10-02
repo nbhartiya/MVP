@@ -1,29 +1,52 @@
-%h1 Listing profiles
+=content_for :title, "simmr | people"
 
-%table
-  %tr
-    %th Blurb
-    %th Location
-    %th Story
-    %th Home zip
-    %th Work zip
-    %th Biz name
-    %th
-    %th
-    %th
+.events-index
+  .events
+    .container
+      .row.section-header
+        .span12.profiles-index-header
+          %h1 Featured Businesses in San Francisco  
 
-  - @profiles.each do |profile|
-    %tr
-      %td= profile.blurb
-      %td= profile.location_id
-      %td= profile.story
-      %td= profile.home_zip
-      %td= profile.work_zip
-      %td= profile.biz_name
-      %td= link_to 'Show', profile
-      %td= link_to 'Edit', edit_profile_path(profile)
-      %td= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' }
+    -# check and filter for only businesses               
+            
+    .container
+      -all_profiles = @profiles
+      -while all_profiles.length > 1
+        -profile = all_profiles.pop
+        .row.events-row
+          .span6.single-event
+            =render "profiles/singleuser", :profile => profile
+          -profile = all_profiles.pop
+          .span6.single-event
+            =render "profiles/singleuser", :profile => profile
+      -if all_profiles.length == 1
+        -profile = all_profiles.pop
+        .row.events-row
+          .span6.single-event
+            =render "profiles/singleuser", :profile => profile
+          .span6
 
-%br
 
-= link_to 'New Profile', new_profile_path
+    .container
+      .row.section-header
+        .span12.events-index-header
+          %h1 Foodies in San Francisco  
+
+    -# check and filter for only foodies               
+            
+    .container
+      -all_profiles = @profiles
+      -while all_profiles.length > 1
+        -profile = all_profiles.pop
+        .row.events-row
+          .span6.single-event
+            =render "profiles/singleuser", :profile => profile
+          -profile = all_profiles.pop
+          .span6.single-event
+            =render "profiles/singleuser", :profile => profile
+      -if all_profiles.length == 1
+        -profile = all_profiles.pop
+        .row.events-row
+          .span6.single-event
+            =render "profiles/singleuser", :profile => profile
+          .span6

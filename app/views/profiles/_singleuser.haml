@@ -1,16 +1,22 @@
 .row
-  .user-kind
-    Chef
-  .span5.user-image
-    =link_to image_tag("Food 6.jpg"), "#"
-.row.user-first-row
+  .span6.event-image
+    -if profile.covers.present?
+      =link_to (image_tag profile.covers.first.image), profile_path(profile)
+    -else
+      =link_to image_tag("Food 6.jpg"), profile_path(profile)
+%a.row.user-info{:href => profile_path(profile)}
   %table
     %tr
-      %td.span1.user-profile-image
-        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#", "data-toggle" => "tooltip", "title" => "User Name", "class" => "user-card-name"
-      %td.span3.user-name-and-blurb
-        %a{:href => "#"} Neeharika Bharitya
-        %p Gimme that recipe!
-      %td.span1.unfollow-button
-        %a.btn.btn-warning{:href => "#"} Follow
+      %td.span5
+        %h1 #{profile.user.first_name} #{profile.user.last_name}
+        -if profile.blurb.present?
+          %h2 #{profile.blurb}
+      %td.span1{'ng-controller' => 'HeartCtrl'}
+        -if user_signed_in?
+          -if @current_user.follows_this?('Profile', @profile.id) == true
+            %a.sb.heart.circle.no-border.no-shadow.orange.campaign-follow{'ng-click' => "follow('Profile',#{@profile.id},#{user_signed_in?})", :href => "#", "data-toggle" => "tooltip", :title => "Click to follow this business!", "data-placement" => "left"}
+          -else
+            %a.sb.heart.circle.no-border.no-shadow.orange.black.campaign-follow{'ng-click' => "follow('Profile',#{@profile.id},#{user_signed_in?})", :href => "#", "data-toggle" => "tooltip", :title => "Click to follow this business!", "data-placement" => "left"}
+        -else
+          %a.sb.heart.circle.no-border.no-shadow.orange.black.campaign-follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "left"}
     
