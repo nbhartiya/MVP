@@ -39,11 +39,11 @@
           .span6.single-event
             =render "events/singleevent", :event => event
           .span6
-    .section.events-section
-      .container
-        .row.events-row-content
-          .span12.events-index-content
-            -if current_user
+    -if current_user
+      .section.events-section
+        .container
+          .row.events-row-content
+            .span12.events-index-content
               -if current_user.chef == true
                 %p Get a sense? Set up your <a href = "/events/new">event</a> today!
               -else
