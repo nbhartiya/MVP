@@ -1,6 +1,6 @@
 -#-if event.upcoming
   .row
-    #ribbon.future
+    #ribbon
       .container
         .base
           %h3
@@ -20,13 +20,6 @@
 
 -if event.happened?
   .row
-    #ribbon
-      .container
-        .base
-          %h3
-            past
-        .left_corner
-        .right_corner
     .span6.event-image.subdued
       -if event.images.present?
         =link_to (image_tag event.images.first.image), event_path(event)
@@ -46,6 +39,13 @@
       -# TODO: How to make this go directly to that view with 'payment=1' (angular thingie)
 -else
   .row
+    #ribbon.current
+      .container
+        .base
+          %h3
+            live
+        .left_corner
+        .right_corner
     .span6.event-image
       -if event.images.present?
         =link_to (image_tag event.images.first.image), event_path(event)
