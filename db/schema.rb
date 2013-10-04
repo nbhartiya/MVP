@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130924152143) do
+ActiveRecord::Schema.define(:version => 20131004221051) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20130924152143) do
     t.boolean  "gluten_free"
     t.boolean  "approved",     :default => false
     t.string   "blog_link"
+    t.boolean  "upcoming",     :default => false
   end
 
   create_table "follows", :force => true do |t|

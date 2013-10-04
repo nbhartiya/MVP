@@ -1,4 +1,4 @@
--#-if event.upcoming
+-if event.upcoming?
   .row
     #ribbon
       .container
@@ -16,9 +16,8 @@
     %table
       %tr
         %td.event-title-host.span6
-          %h1 #{event.host.profile.biz_name} 
-
--if event.happened?
+          %h1 #{event.blurb} 
+-elsif event.happened?
   .row
     .span6.event-image.subdued
       -if event.images.present?
