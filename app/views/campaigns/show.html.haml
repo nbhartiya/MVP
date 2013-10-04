@@ -4,8 +4,8 @@
   .campaign-profile
     #campaign-carousel.carousel.slide.hidden-phone       
       .carousel-inner
-        -if @campaign.images.present?
-          -@campaign.images.each_with_index do |i, index|
+        -if @campaign.covers.present?
+          -@campaign.covers.each_with_index do |i, index|
             -if index == 0
               .item.active
                 = image_tag i.image
@@ -15,7 +15,7 @@
         -else
           .item.active
             =image_tag "Food 9.jpg"
-    -if @campaign.images.count > 1
+    -if @campaign.covers.count > 1
       %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#campaign-carousel"} ‹
       %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#campaign-carousel"} ›
         
