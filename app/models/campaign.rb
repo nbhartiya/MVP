@@ -52,14 +52,6 @@ class Campaign < ActiveRecord::Base
     end
   end
 
-  def successful
-    if self.follows.count>20 && !self.expired?
-      return true
-    else
-      return false
-    end
-  end
-
   def days_left
     (self.expires - Date.today()).to_i
   end

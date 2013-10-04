@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131004221051) do
+ActiveRecord::Schema.define(:version => 20131004223956) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -40,9 +40,9 @@ ActiveRecord::Schema.define(:version => 20131004221051) do
     t.integer  "location_id"
     t.integer  "campaign_starter_id"
     t.integer  "host_id"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-    t.boolean  "successful"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.boolean  "successful",          :default => false
     t.date     "expires"
   end
 
