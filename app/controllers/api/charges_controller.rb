@@ -70,7 +70,7 @@ class Api::ChargesController < ApplicationController
       	@guest = @charge.guests.new
       	@guest.first_name = g[:first_name]
       	@guest.last_name = g[:last_name]
-      	@guest.user_id = g[:id]
+      	@guest.user_id = g[:user_id]
       	@guest.email = g[:email]
         @guest.event_id = @ticket.event_id
         @guest.ticket_id = @ticket.id
