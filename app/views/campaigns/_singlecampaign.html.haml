@@ -1,4 +1,4 @@
--if campaign.successful == true
+-if campaign.expired? == false
   .row{'ng-init' => "endDate='#{campaign.expires}';successful='#{campaign.successful}'"}
     .span6.campaign-image
       -if campaign.covers.present?
@@ -10,7 +10,7 @@
       %tr
         %td.campaign-title-progress.span3
           %h1 #{campaign.biz_name}
-          %h2 #{campaign.follows_needed} more supporters to tilt | {{daysLeft()}}
+          %h2 #{campaign.follows_needed} more supporters to tilt | #{campaign.status}
         %td.campaign-desc.span3
           %h2 #{campaign.blurb} 
 -else
@@ -25,6 +25,6 @@
       %tr
         %td.campaign-title-progress.span3
           %h1 #{campaign.biz_name}
-          %h2 #{campaign.follows_needed} more supporters to tilt | {{daysLeft()}}
+          %h2 #{campaign.follows_needed} more supporters to tilt | #{campaign.status}
         %td.campaign-desc.span3
           %h2 #{campaign.blurb} 

@@ -43,12 +43,20 @@ class Campaign < ActiveRecord::Base
   def status
     if self.expired?
       if self.follows.count>20
-        return "Successful"
+        return "Success!"
       else
-        return "Expired"
+        return "Expired, try again?"
       end
     else
-      return "Ongoing, #{self.follows_needed} people to tilt"
+      return "#{days_left} days left"
+    end
+  end
+
+  def successful
+    if self.follows.count>20 && !self.expired?
+      return true
+    else
+      return false
     end
   end
 

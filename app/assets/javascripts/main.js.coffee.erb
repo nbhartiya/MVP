@@ -43,18 +43,6 @@ Simmr.directive "heart", ->
 Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($scope,$http, $routeParams, Follow) ->
   $scope.join = false
 
-  $scope.daysLeft = ->
-    today = moment()
-    endDate = moment($scope.endDate)
-    daysLeft = endDate.diff(today, 'days')
-    if daysLeft <= 0
-      if $scope.successful == true
-        "success!"
-      else
-        "try again?"
-    else
-      daysLeft + " days left"
-
   $scope.addFollower = (followable_type_val, followable_id_val, user_signed_in, number_followers) ->
     if user_signed_in
       console.log "Follow Information:*******"
@@ -502,33 +490,9 @@ Simmr.factory "Campaign", ["railsResourceFactory", (railsResourceFactory) ->
 
 Simmr.controller "CampaignJoinCtrl", ["$scope", "$window", "$routeParams", "$location", "Campaign", ($scope, $window, $routeParams, $location, Campaign) ->
 
-  $scope.daysLeft = ->
-    today = moment()
-    endDate = moment($scope.endDate)
-    daysLeft = endDate.diff(today, 'days')
-    if daysLeft <= 0
-      if $scope.successful == true
-        "success!"
-      else
-        "try again?"
-    else
-      daysLeft + " days left"
-
 ]
 
 Simmr.controller "CampaignIndexCtrl", ["$scope", "$window", "$routeParams", "$location", "Campaign", ($scope, $window, $routeParams, $location, Campaign) ->
-
-  $scope.daysLeft = ->
-    today = moment()
-    endDate = moment($scope.endDate)
-    daysLeft = endDate.diff(today, 'days')
-    if daysLeft <= 0
-      if $scope.successful == true
-        "success!"
-      else
-        "try again?"
-    else
-      daysLeft + " days left"
 
 ]
 
@@ -597,18 +561,6 @@ Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "C
       window.a=data
       $scope.campaign=data
       window.location.href = '/campaigns/'+data.id
-
-  $scope.daysLeft = ->
-    today = moment()
-    endDate = moment($scope.endDate)
-    daysLeft = endDate.diff(today, 'days')
-    if daysLeft <= 0
-      if $scope.successful == true
-        "success!"
-      else
-        "try again?"
-    else
-      daysLeft + " days left"
 
   $scope.campaignImageUrls = []
 
