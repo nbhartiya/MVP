@@ -104,7 +104,7 @@ a.sb.yelp.black{
 				margin: 0 auto;
 			}
 
-			#ribbon.future .base{
+			#ribbon.current .base{
 				background: $main_orange;
 			}
 
@@ -163,7 +163,7 @@ a.sb.yelp.black{
 				transform: rotate(60deg);
 			}
 
-			#ribbon.future .left_corner{
+			#ribbon.current .left_corner{
 				background: $main_orange;
 			}
 
@@ -183,7 +183,7 @@ a.sb.yelp.black{
 				transform: rotate(30deg);
 			}
 
-			#ribbon.future .right_corner{
+			#ribbon.current .right_corner{
 				background: $main_orange;
 			}
 			
@@ -206,7 +206,7 @@ a.sb.yelp.black{
 			position: absolute;
 			margin: 0;
 			color: white;
-			background: rgba(0, 0, 0, 0.8);
+			background: transparent;
 			bottom: 0px;
 			table{
 				background: rgba(0, 0, 0, 0.8);

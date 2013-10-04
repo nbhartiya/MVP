@@ -8,6 +8,41 @@ $main_orange: rgb(255, 178, 35);
 	margin: -30px 7px 50px 7px;
 }
 
+//profile index
+
+.profiles-index-header{
+	margin-bottom: 20px;
+}
+
+.user-info{
+	position: absolute;
+	margin: 0;
+	color: black;
+	background: transparent;
+	bottom: 0px;
+	table{
+		background: rgba(255, 255, 255, 0.8);
+		width: 100%;
+		min-height: 75px;
+		td{
+			padding: 10px;
+		}
+	}
+	h1{
+		font-size: 17px;
+		color: black;
+		font-weight: 100;
+		line-height: 1.5em;
+		margin: 0;
+	}
+	h2{
+		font-size: 12px;
+		color: black;
+		font-weight: 100;
+		line-height: 1.5em;
+		margin: 0;
+	}
+}
 
 // user profile styling
 
