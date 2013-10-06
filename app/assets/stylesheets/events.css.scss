@@ -199,8 +199,14 @@ a.sb.yelp.black{
 				}
 			}
 		}
-		.single-event:hover{
+		.event-happened:hover,.event-current:hover{
 			opacity: 0.9;
+		}
+		.event-upcoming:hover{
+			opacity: 1.0;
+		}
+		.event-happened,.event-current,.event-upcoming{
+			opacity: 1.0;
 		}
 		.event-info{
 			position: absolute;
