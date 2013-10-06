@@ -13,10 +13,10 @@
           %h2 #{profile.blurb}
       %td.span1{'ng-controller' => 'HeartCtrl'}
         -if user_signed_in?
-          -if @current_user.follows_this?('Profile', @profile.id)
+          -if @current_user.follows_this?('Profile', profile.id)
             %a.sb.heart.circle.no-border.no-shadow.orange.campaign-follow{'ng-click' => "follow('Profile',#{@profile.id},#{user_signed_in?})", :href => "#", "data-toggle" => "tooltip", :title => "Click to follow this business!", "data-placement" => "left"}
           -else
-            %a.sb.heart.circle.no-border.no-shadow.orange.black.campaign-follow{'ng-click' => "follow('Profile',#{@profile.id},#{user_signed_in?})", :href => "#", "data-toggle" => "tooltip", :title => "Click to follow this business!", "data-placement" => "left"}
+            %a.sb.heart.circle.no-border.no-shadow.orange.black.campaign-follow{'ng-click' => "follow('Profile',#{profile.id},#{user_signed_in?})", :href => "#", "data-toggle" => "tooltip", :title => "Click to follow this business!", "data-placement" => "left"}
         -else
           %a.sb.heart.circle.no-border.no-shadow.orange.black.campaign-follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "left"}
     
