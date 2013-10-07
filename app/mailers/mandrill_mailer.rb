@@ -19,7 +19,7 @@ class MandrillMailer
         #{}"global_merge_vars"=>[],
         :to=>[
           {
-            :email=> 'email.wendylin@gmail.com',
+            :email=> @user.email,
             :name=> @user.first_name
           }
       ],
@@ -36,16 +36,8 @@ class MandrillMailer
         :content => "<p>Welcome to Simmr, #{user.first_name}!</p>"
       },
       {
-        :name => "logo",
-        :content =>"<img src = 'http://simmr.co/assets/beta_logo_final.png' style = 'max-width:550px;' id = 'headerImage campaign-icon'>"
-      },
-      {
         :name => "image",
-        :content => "<img src = 'http://2.s3.envato.com/files/57402247/fap-09.jpg' style = 'max-width:550px;' id = 'headerImage campaign-icon'>"
-      },
-      {
-        :name => "city",
-        :content => "San Francisco"
+        :content => "<img src = 'http://www.simmr.co/assets/launch_page_mock_done.jpg' style = 'max-width:550px;' id = 'headerImage campaign-icon'>"
       },
       {
         :name => "content",
@@ -55,7 +47,7 @@ class MandrillMailer
       },
       {
         :name => "social",
-        :content => "<a href='http://www.facebook.com/simmrco'>like on Facebook </a> | <a href='http://www.twitter.co/simmrco'>follow on Twitter</a> | <a href = 'http://simmrco.wordpress.com'>check out our blog</a>"
+        :content => "<a href='http://www.facebook.com/simmrco'>like on Facebook </a> | <a href='https://twitter.com/simmrco'>follow on Twitter</a> | <a href = 'http://simmrco.wordpress.com'>check out our blog</a>"
       },
       {
         :name => "footer-content",
@@ -63,7 +55,67 @@ class MandrillMailer
         },
       {
         :name => "utility",
-        :content => "<a href='*|UNSUB:http://www.simmr.co|*'>unsubscribe from this list</a>"
+        :content => "<a href='*|UNSUB:http://www.simmr.co/home/unsubscribe|*'>unsubscribe from this list</a>"
+      }]
+    sending = m.messages.send_template template_name, template_content, message 
+  end
+
+  def self.signup_chef_email(user)
+    @user = user
+    require 'mandrill'
+    m = Mandrill::API.new(ENV["MANDRILL_KEY"])
+      message = {
+        :subject=> "Welcome to Simmr, #{user.first_name} #{user.last_name}!",
+        :from_name=> "Simmr Concierge",
+        :from_email => "neeharika@simmr.co",
+        :text=>"Welcome, #{user.first_name},
+        The opposite of the daily deal, we seek to work with you to create unique, chatter-worthy experiences for passionate customers who want to forge a deeper relationship with you. 
+        We'll be reaching out to you shortly to talk about your goals and answer any questions. We look forward to growing your business with you.
+        Cheers,
+        Neeharika and Wendy
+        http://www.simmr.co
+        P.S. As always, please don't hesitate to reach out to us directly by replying to this email.",
+        # below are global merge vars. the name is the *|MERGE|* tag
+        #{}"global_merge_vars"=>[],
+        :to=>[
+          {
+            :email=> 'linwendy08@gmail.com',
+            :name=> @user.first_name
+          }
+      ],
+      :from_email=>"neeharika@simmr.co"
+      }
+    template_name = "welcome-email"
+    template_content = [
+      {
+        :name => "title",
+        :content => "Welcome to Simmr"
+      },
+      {
+        :name => "std_preheader_content",
+        :content => "<p>Welcome to Simmr, #{user.first_name}!</p>"
+      },
+      {
+        :name => "image",
+        :content => "<img src = 'http://www.simmr.co/assets/launch_page_mock_done.jpg' style = 'max-width:550px;' id = 'headerImage campaign-icon'>"
+      },
+      {
+        :name => "content",
+        :content => "<h1>Welcome, #{user.first_name}!</h1><p>The opposite of the daily deal, we seek to work with you to create unique, chatter-worthy experiences for passionate customers who want to forge a deeper relationship with you. 
+        <br><p>We'll be reaching out to you shortly to talk about your goals and answer any questions. We look forward to growing your business with you.<br><br>Cheers, <br>Neeharika and Wendy<br><a href = 'http://www.simmr.co'>simmr</a>
+        <br><br>P.S. As always, please don't hesitate to reach out to us directly by replying to this email.</p>"
+      },
+      {
+        :name => "social",
+        :content => "<a href='http://www.facebook.com/simmrco'>like on Facebook </a> | <a href='https://twitter.com/simmrco'>follow on Twitter</a> | <a href = 'http://simmrco.wordpress.com'>check out our blog</a>"
+      },
+      {
+        :name => "footer-content",
+        :content => "You're receiving this because you just signed up!"
+        },
+      {
+        :name => "utility",
+        :content => "<a href='*|UNSUB:http://www.simmr.co/home/unsubscribe|*'>unsubscribe from this list</a>"
       }]
     sending = m.messages.send_template template_name, template_content, message 
   end

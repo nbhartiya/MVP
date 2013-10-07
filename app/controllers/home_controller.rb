@@ -18,4 +18,7 @@ class HomeController < ApplicationController
   def philosophy
   end
 
+  def unsubscribe
+  end
+
 end
