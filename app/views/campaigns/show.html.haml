@@ -87,6 +87,8 @@
               %button.btn.btn-inverse{'ng-click' => 'appear="edit"'} Edit
           -else
             .span1
+        -else
+          .span1
         .span6
           .campaign-why-join{'ng-show' => 'appear=="why_join"'}
             %button.close{"ng-click" => "appear=''", :type => "button"} close

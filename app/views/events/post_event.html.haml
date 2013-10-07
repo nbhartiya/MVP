@@ -112,6 +112,8 @@
               %a.button.btn{:href=>"/events/#{@event.id}/edit"} Edit
           -else
             .span1
+        -else
+          .span1
         .span6 
           .event-recap#details{'ng-show' => 'appear=="details"'}
             %button.close{"ng-click" => "appear=''", :type => "button"} close

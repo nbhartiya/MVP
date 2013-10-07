@@ -69,10 +69,7 @@ Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($sc
         if result.length > 0
           $scope.confirm = confirm("Are you sure you want to unfollow?")
           if ($scope.confirm == true) 
-            if $(".heart").hasClass("campaign-follow")
-              $(".heart").toggleClass("black").toggleClass "orange"
-            else
-              $(".heart").toggleClass "orange"
+            $scope.following = false;
             $http({method:'DELETE',url:"/api/follows/#{result[0].id}"}).success (result) ->
               #destroy follow with confirmation
               $scope.join = false
@@ -80,10 +77,7 @@ Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($sc
               $scope.follows--
             
         else
-          if $(".heart").hasClass("campaign-follow")
-            $(".heart").toggleClass("black").toggleClass "orange"
-          else
-            $(".heart").toggleClass "orange"
+          $scope.following = true;
           $http({method:'POST',url:'/api/follows',params:{followable_id:followable_id_val,followable_type:followable_type_val}}).success (result) ->
             $scope.join = true
             console.log "Created Follow"
@@ -100,12 +94,14 @@ Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($sc
         if result.length > 0
           $scope.confirm = confirm("Are you sure you want to unfollow?")
           if ($scope.confirm == true) 
+            $scope.following = false;
             $http({method:'DELETE',url:"/api/follows/#{result[0].id}"}).success (result) ->
               #destroy follow with confirmation
               $scope.join = false
               console.log "Destroyed Follow"
             
         else
+          $scope.following = true;
           $http({method:'POST',url:'/api/follows',params:{followable_id:followable_id_val,followable_type:followable_type_val}}).success (result) ->
             $scope.join = true
             console.log "Created Follow"  

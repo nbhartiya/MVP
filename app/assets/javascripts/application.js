@@ -94,7 +94,6 @@ $(".fancybox").fancybox({
 });
 
 
-
 // bootstrap tooltips 
 
 $('.city').tooltip();

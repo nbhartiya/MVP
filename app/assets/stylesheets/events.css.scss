@@ -123,6 +123,15 @@ a.sb.yelp.black{
 					font-weight: 100;
 					text-align: center;
 				}
+				h4{
+					margin: 0;
+					color: white;
+					font-size: 18px;
+					padding-top: 16px;
+					line-height: 1.2em;
+					font-weight: 100;
+					text-align: center;
+				}
 			}
 
 			#ribbon .base:after {
@@ -199,9 +208,7 @@ a.sb.yelp.black{
 				}
 			}
 		}
-		.single-event:hover{
-			opacity: 0.9;
-		}
+
 		.event-info{
 			position: absolute;
 			margin: 0;

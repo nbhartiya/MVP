@@ -365,6 +365,26 @@ a.sb.orange:hover:after,
 	background-color: #ffa500;
 }
 
+/* neutral color */
+a.sb.white,
+.sb.white a,
+a.sb.white:after,
+.sb.white a:after {
+	background-color: rgb(243, 243, 243);
+	border-color: rgb(200, 200, 200);
+	color: #000;
+}
+a.sb.white:hover:after,
+.sb.white a:hover:after {
+	background-image: none;
+}
+a.sb.white:hover,
+.sb.white a:hover,
+a.sb.white:hover:after,
+.sb.white a:hover:after {
+	background-color: rgb(235, 235, 235);
+}
+
 /* brown color */
 a.sb.brown,
 .sb.brown a,

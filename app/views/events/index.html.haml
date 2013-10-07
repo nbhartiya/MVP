@@ -18,12 +18,12 @@
                 -if all_events.length == 0
                   %p Currently, there are no upcoming events. Be sure to sign up and we'll let you know as soon as we have one coming up!
                 -else
-                  %p Pick an event to go to!
+                  %p Pick an event to go to! Upcoming events are scheduled but details are still being finalized, so follow (click on the heart) to stay posted!
             -else
               -if all_events.length == 0
                 %p Currently, there are no upcoming events. Be sure to sign up and we'll let you know as soon as we have one coming up!
               -else
-                %p Pick an event to go to!
+                %p Pick an event to go to! Upcoming events are scheduled but details are still being finalized, so follow (click on the heart) to stay posted!
     .container
       -while all_events.length > 1
         -event = all_events.pop
