@@ -53,6 +53,15 @@ class Event < ActiveRecord::Base
   #  end
   #end
 
+  def happened_events
+    Event.where( event.date < today)
+  end
+
+  def approve!
+    approved = true
+    # send e-males
+  end
+
   def seats_left
     people_limit - guests_count
   end
@@ -90,7 +99,7 @@ class Event < ActiveRecord::Base
   end
 
   def happened?
-    dt = DateTime.new(date.year, date.month, date.day, time.hour, time.min, time.sec)
+    dt = DateTime.new(date.year, date.month, date.day-2, time.hour, time.min, time.sec)
     if dt >= DateTime.now()
       false
     else
