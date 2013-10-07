@@ -79,7 +79,7 @@ class MandrillMailer
         #{}"global_merge_vars"=>[],
         :to=>[
           {
-            :email=> 'linwendy08@gmail.com',
+            :email=> @user.email,
             :name=> @user.first_name
           }
       ],

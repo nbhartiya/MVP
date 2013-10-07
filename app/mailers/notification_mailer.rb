@@ -17,7 +17,7 @@ def signup_chef_email(user)
     mail( :to => user.email,
     :subject => "Welcome to Simmr, #{user.first_name} #{user.last_name}!")
   end=end
-
+  
 
   def waitlist_email(signup)
     @signup = signup
