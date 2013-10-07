@@ -22,7 +22,7 @@ class Campaign < ActiveRecord::Base
   belongs_to :campaign_starter, :class_name => "User", :foreign_key => "campaign_starter_id"
   belongs_to :host, :class_name => "User", :foreign_key => "host_id"
   has_many :follows, :as => :followable, :dependent => :destroy
-  has_many :images, :as => :imageable, :dependent => :destroy
+  has_many :covers, :as => :imageable, :class_name => "Image", :conditions => {:secondary_imageable_type => "cover"}, :dependent => :destroy
 
   def follows_needed()
     return 20-self.follows.count
@@ -43,12 +43,12 @@ class Campaign < ActiveRecord::Base
   def status
     if self.expired?
       if self.follows.count>20
-        return "Successful"
+        return "Success!"
       else
-        return "Expired"
+        return "Expired, try again?"
       end
     else
-      return "Ongoing, #{self.follows_needed} people to tilt"
+      return "#{days_left} days left"
     end
   end
 
