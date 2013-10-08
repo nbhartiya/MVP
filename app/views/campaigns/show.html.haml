@@ -56,8 +56,7 @@
               .btn.btn-warning.standalone-button{:"data-toggle" => "modal", :href=>"#sign_up_foodie"} Sign Up
               .btn.btn-warning.standalone-button{:"data-toggle" =>"modal", :href=>"#sign_in"} Sign In
             -if user_signed_in?
-              -if @current_user.follows_this?('Campaign', @campaign.id) == false
-                .btn.btn-warning.campaign-join-button.clearfix{'ng-click' => "addFollower('Campaign',#{@campaign.id},#{user_signed_in?},follows)", 'ng-show'=>'!join'} Support
+              .btn.btn-warning.campaign-join-button.clearfix{'ng-click' => "addFollower('Campaign',#{@campaign.id},#{user_signed_in?},follows)", 'ng-class'=>'{true: "hidden", false: "show"}[following]'} Support
             %table.campaign-social-stats.clearfix
               %tr
                 %td
