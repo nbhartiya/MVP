@@ -77,6 +77,7 @@ class Api::ChargesController < ApplicationController
       	@guest.save!
       end
       render json:{status:'Success'}.to_json
+
     end
   end
 end

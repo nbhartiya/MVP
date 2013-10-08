@@ -31,6 +31,7 @@ gem 'pg'
 gem 'cancan'
 gem "koala", "~> 1.7.0rc1"
 gem 'yelpster'
+gem 'mandrill-api'
 
 # not necessary yet...will change to this when everything working...
 # gem 'linkedin'

@@ -47,7 +47,7 @@
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "why_join"'} Why Join
                   %li
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "followers"'} Supporters
-          .following{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@campaign.follows.count};endDate='#{@campaign.expires}';successful='#{@campaign.successful}'"}
+          .following{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@campaign.follows.count};endDate='#{@campaign.expires}';successful='#{@campaign.successful}'; following = '#{@current_user.follows_this?('Campaign', @campaign.id)}'"}
             %p 
               #{@campaign.follows_needed} more supporters needed to tilt this campaign
               .progress.progress-warning.clearfix
@@ -56,37 +56,35 @@
               .btn.btn-warning.standalone-button{:"data-toggle" => "modal", :href=>"#sign_up_foodie"} Sign Up
               .btn.btn-warning.standalone-button{:"data-toggle" =>"modal", :href=>"#sign_in"} Sign In
             -if user_signed_in?
-              -if @current_user.follows_this?('Campaign', @campaign.id) == false
-                .btn.btn-warning.campaign-join-button.clearfix{'ng-click' => "addFollower('Campaign',#{@campaign.id},#{user_signed_in?},follows)", 'ng-show'=>'!join'} Support
+              .btn.btn-warning.campaign-join-button.clearfix{'ng-click' => "addFollower('Campaign',#{@campaign.id},#{user_signed_in?},follows)", 'ng-class'=>'{true: "hidden", false: "show"}[following]'} Support
             %table.campaign-social-stats.clearfix
               %tr
                 %td
                   -if user_signed_in?
-                    -if @current_user.follows_this?('Campaign', @campaign.id) == true
-                      %a.sb.heart.circle.no-border.no-shadow.orange.campaign-follow{'ng-click' => "addFollower('Campaign',#{@campaign.id},#{user_signed_in?},follows)", :href => "#", "data-toggle" => "tooltip", :title => "Click to support", "data-placement" => "right"}
-                    -else
-                      %a.sb.heart.circle.no-border.no-shadow.orange.black.campaign-follow{'ng-click' => "addFollower('Campaign',#{@campaign.id},#{user_signed_in?},follows)", :href => "#", "data-toggle" => "tooltip", :title => "Click to support", "data-placement" => "right"}
+                    %a.sb.heart.circle.no-border.no-shadow{'ng-click' => "addFollower('Campaign',#{@campaign.id},#{user_signed_in?},follows)", "data-toggle" => "tooltip", :title => "Click to support", "data-placement" => "right",'ng-class' => '{true: "orange", false: "black"}[following]'}
                   -else
-                    %a.sb.heart.circle.no-border.no-shadow.orange.black.campaign-follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
-                %td
-                  %a.sb.yelp.circle.no-border.no-shadow.black{:href=>"#"} 
+                    %a.sb.heart.circle.no-border.no-shadow.black{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to support!", "data-placement" => "right"}
+                -#%td
+                  %a.sb.yelp.circle.no-border.no-shadow.black
                 %td
                   %a.sb.facebook.circle.no-border.no-shadow.black{:href => "#"}
               %tr.campaign-target-stats 
                 %td
                   {{follows}}
-                %td 190
+                -#%td 190
                 %td{:rowspan => "2"} share
               %tr.campaign-target-stat-labels
                 %td 
                   supporters
-                %td reviews
+                -#%td reviews
         -if user_signed_in?
           -if current_user.id == @campaign.campaign_starter_id
             .span1.edit-button
               %button.btn.btn-inverse{'ng-click' => 'appear="edit"'} Edit
           -else
             .span1
+        -else
+          .span1
         .span6
           .campaign-why-join{'ng-show' => 'appear=="why_join"'}
             %button.close{"ng-click" => "appear=''", :type => "button"} close
@@ -122,12 +120,9 @@
                           -#%td Number of Followers..may want to add later
                           %td
                             -if user_signed_in?
-                              -if @current_user.follows_this?('Profile', follow.user.profile.id) == true
-                                %a.sb.heart.circle.no-border.no-shadow.orange.campaign-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})"}
-                              -else
-                                %a.sb.heart.circle.no-border.no-shadow.orange.black.campaign-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})"}
+                              %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{@current_user.follows_this?('Profile', follow.user.profile.id)}'", 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "orange", false: "black"}[following]'}
                             -else
-                              %a.sb.heart.circle.no-border.no-shadow.orange.black.campaign-follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
+                              %a.sb.heart.circle.no-border.no-shadow.black{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
 
                 -else
                   %h3 No current supporters - click on the heart to get this business on Simmr!
@@ -148,12 +143,9 @@
                           -#%td Number of Followers..may want to add later
                           %td
                             -if user_signed_in?
-                              -if @current_user.follows_this?('Profile', follow.user.profile.id) == true
-                                %a.sb.heart.circle.no-border.no-shadow.orange.campaign-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})"}
-                              -else
-                                %a.sb.heart.circle.no-border.no-shadow.orange.black.campaign-follow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})"}
+                              %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{@current_user.follows_this?('Profile', follow.user.profile.id)}'", 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "orange", false: "black"}[following]'}
                             -else
-                              %a.sb.heart.circle.no-border.no-shadow.orange.black.campaign-follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
+                              %a.sb.heart.circle.no-border.no-shadow.black{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                 -else
                   %h3 No current supporters - click on the heart to get this business on Simmr!
 

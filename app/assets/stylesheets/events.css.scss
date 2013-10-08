@@ -50,6 +50,7 @@ a.sb.yelp.black{
 			font-size: 20px;
 			font-weight: 100;
 			text-align: center;
+			line-height: 1.5em;
 		}
 		.events-row-content{
 			margin: 10px 0;
@@ -120,6 +121,15 @@ a.sb.yelp.black{
 					font-size: 20px;
 					padding-top: 20px;
 					line-height: 1.5em;
+					font-weight: 100;
+					text-align: center;
+				}
+				h4{
+					margin: 0;
+					color: white;
+					font-size: 18px;
+					padding-top: 16px;
+					line-height: 1.2em;
 					font-weight: 100;
 					text-align: center;
 				}
@@ -639,6 +649,18 @@ a.sb.yelp.black{
 			hr{
 				margin: 10px 0;
 				border-bottom: none;
+			}
+			.event-follow-button{
+				width: 100%;
+				padding: 7px;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box; 
+				margin-top: -5px;
+				margin-bottom: 15px;
+				font-size: 18px;
+				font-weight: 300;
+				line-height: 1.2em;
 			}
 			.number-of-seats{
 				margin-top: 0;

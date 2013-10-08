@@ -6,6 +6,18 @@ MVP::Application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+  # setting up Mandrill for mailer
+
+  config.action_mailer.smtp_settings = {
+    :address   => "smtp.mandrillapp.com",
+    :port      => 587,
+    :enable_starttls_auto => true, # detects and uses STARTTLS
+    :user_name => "wendy@simmr.co",
+    :password  => "TBr2jWPbpMaLmFrUILs5aA", # SMTP password is any valid API key
+    :authentication => 'login', # Mandrill supports 'plain' or 'login'
+    :domain => 'simmr.co', # your domain to identify your server when connecting
+  }
+
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
 

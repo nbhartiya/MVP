@@ -1,0 +1,17 @@
+=content_for :title, "simmr | unsubscribe"
+
+= render 'layouts/primary_header'
+
+.container.unsubscribe
+  .row
+    .span10.offset1
+      %h1 Is this really the end?
+      %h2 Was it us? Did we change? 
+      %a.email{:href => "mailto:hello@simmr.co?Subject=Sorry, it's over&body=I unsubscribed because..."} Tell us how we could've done better...
+      %h3 Give us a second chance?
+      .fb-like{"data-href" => "http://www.facebook.com/simmrco", "data-layout" => "button_count", "data-show-faces" => "true", "data-width" => "100"}
+      %a.twitter-follow-button{"data-show-count" => "false", :href => "https://twitter.com/simmrco"} 
+      :javascript
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+= render 'layouts/footer'
