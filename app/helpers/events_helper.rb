@@ -6,7 +6,6 @@ include Yelp::V2::Business::Request
 def search_business_id(profile)
 end
 
-
 def get_review_count(profile)
 	client = Yelp::Client.new
 

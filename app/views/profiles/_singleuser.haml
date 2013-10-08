@@ -11,7 +11,7 @@
         %h1 #{profile.user.first_name} #{profile.user.last_name}
         -if profile.blurb.present?
           %h2 #{profile.blurb}
-      %td.span1{'ng-controller' => 'HeartCtrl', 'ng-init' => "following = '#{@current_user.follows_this?('Profile', profile.id)}'"}
+      %td.span1{'ng-controller' => 'HeartCtrl', 'ng-init' => "following = '#{is_user_there_and_following('Profile', profile.id)}'"}
         -if user_signed_in?
           %a.sb.heart.circle.no-border.no-shadow{'ng-click' => "follow('Profile',#{profile.id},#{user_signed_in?})", "data-toggle" => "tooltip", :title => "Click to follow this business!", "data-placement" => "left", 'ng-class' => '{true: "orange", false: "black"}[following]'}
         -else

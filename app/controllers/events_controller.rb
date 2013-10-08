@@ -22,7 +22,7 @@ class EventsController < ApplicationController
 
   def post_event
     @event = Event.find(params[:id])
-    if @event.happened?
+    if !@event.upcoming || @event.happened?
       respond_to do |format|
         format.html
       end
@@ -36,7 +36,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
 
-    if @event.happened?
+    if !@event.upcoming || @event.happened?
       redirect_to "/events/#{@event.id}/post_event"
     else
       respond_to do |format|
