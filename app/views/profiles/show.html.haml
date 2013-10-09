@@ -418,7 +418,7 @@
                     %a.sb.heart.circle.no-border.no-shadow.black{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                 -if @profile.yelp_id.present?  
                   %td
-                    %a.sb.yelp.circle.no-border.no-shadow.black{:href=>"#{get_yelp_link(@profile)}"} 
+                    %a.sb.yelp.circle.no-border.no-shadow.black{:href=>"#{get_yelp_link(@profile)}",:target=>"_blank"} 
                 %td
                   %a.sb.facebook.circle.no-border.no-shadow.black{:href => "#"}
               %tr.user-stats
@@ -426,7 +426,7 @@
                   %a.followers {{follows}}
                 -if @profile.yelp_id.present?
                   %td
-                    %img.yelp-rating{:src => "#{get_yelp_rating_img_url(@profile)}"}
+                    %img.yelp-rating{:src => "#{get_yelp_rating_img_url(@profile)}",:target=>"_blank"}
                 %td{:rowspan => "2"} share
               %tr.user-stat-labels
                 %td
