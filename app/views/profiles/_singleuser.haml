@@ -8,7 +8,10 @@
   %table
     %tr
       %td.span5
-        %h1 #{profile.user.first_name} #{profile.user.last_name}
+        -if profile.user.chef?
+          %h1 #{profile.user.first_name} #{profile.user.last_name} of #{profile.biz_name}
+        -else
+          %h1 #{profile.user.first_name} #{profile.user.last_name}
         -if profile.blurb.present?
           %h2 #{profile.blurb}
       %td.span1{'ng-controller' => 'HeartCtrl', 'ng-init' => "following = '#{is_user_there_and_following('Profile', profile.id)}'"}
