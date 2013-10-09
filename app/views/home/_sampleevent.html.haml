@@ -9,9 +9,9 @@
       %p #{event.host.profile.biz_name}
 -else
   -if event.covers.present?
-    =link_to (image_tag event.covers.first.image)
+    =image_tag event.covers.first.image
   -else
-    =link_to image_tag("Food 26.jpg")
+    =image_tag("Food 26.jpg")
   %a.caption
     .caption-text
       %h4 #{event.blurb}
