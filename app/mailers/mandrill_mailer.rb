@@ -172,7 +172,7 @@ class MandrillMailer
         :name => "social",
         :content => "<a href='http://www.facebook.com/simmrco'>like on Facebook </a> | <a href='https://twitter.com/simmrco'>follow on Twitter</a> | <a href = 'http://simmrco.wordpress.com'>check out our blog</a>"
       },
-      { variablevariablevariable 
+      { 
         :name => "footer-content",
         :content => "You're receiving this because you just bought a ticket to this event!"
         },

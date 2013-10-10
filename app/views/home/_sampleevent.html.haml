@@ -1,8 +1,22 @@
--if event.covers.present?
-  =link_to (image_tag event.covers.first.image), event_path(event)
--else
-  =link_to image_tag("Food 26.jpg"), event_path(event)
-%a.caption{:href => event_path(event)}
-  .caption-text
-    %h4 #{event.title}
-    %p #{event.host.profile.biz_name}
+-if event.approved
+  -if event.covers.present?
+    =link_to (image_tag event.covers.first.image), event_path(event)
+  -else
+    =link_to image_tag("Food 26.jpg"), event_path(event)
+  %a.caption{:href => event_path(event)}
+    .caption-text
+      %h4 #{event.title}
+      %p #{event.host.profile.biz_name}
+-if event.upcoming
+  -if event.covers.present?
+    =image_tag event.covers.first.image
+  -else
+    =image_tag("Food 26.jpg")
+  %a.caption
+    .caption-text
+      %h4 #{event.blurb}
+      .following{'ng-controller' => 'HeartCtrl', 'ng-init' => "following = '#{@current_user.follows_this?('Event', event.id)}'"}
+        -if user_signed_in?
+          %a.sb.heart.circle.no-border.no-shadow{'ng-click' => "follow('Event',#{event.id},#{user_signed_in?})", "data-toggle" => "tooltip", :title => "Click to stay updated on when this event becomes live!", "data-placement" => "left", 'ng-class' => '{true: "orange", false: "white"}[following]'}
+        -else
+          %a.sb.heart.circle.no-border.no-shadow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "left"}
