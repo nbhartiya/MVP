@@ -297,6 +297,9 @@
               %input.guest-email{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :required => "required", :name => "guest_email", 'ng-class' => "{error: guest_registration.guest_email.$invalid}"}
               .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.email'} Please enter a valid email
               .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.required || guest_registration.guest_first.$error.required || guest_registration.guest_last.$error.required'} All fields are required
+              %input.guest-name{:placeholder => "Referrer Name"}
+              .help-block-white Get $5 off your ticket for every friend you bring!
+              .help-block-white (ask them to enter your name above)
             %button.btn.btn-warning.standalone-button#enter-payment-info{'ng-click' => 'gotoPayment()', 'ng-disabled' => "error=0"} Enter Payment Info
 
           .event-guests.clearfix{'ng-show' => 'appear=="waitlist1"'}
