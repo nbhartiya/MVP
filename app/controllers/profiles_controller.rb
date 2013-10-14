@@ -7,7 +7,8 @@ class ProfilesController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @profiles = Profile.all
+    @biz_profiles=Profile.where("biz_name <> ?", "nil")
+    @foodie_profiles=Profile.where(:biz_name=>nil)
 
     respond_to do |format|
       format.html # index.html.erb

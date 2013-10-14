@@ -509,7 +509,7 @@ Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$l
 
       $('.default').remove()
       $('.carousel-inner').empty()
-      $scope.eventImageUrls = []
+      $scope.campaignImageUrls = []
 
       i=0
       while i< Object.keys(InkBlobs).length
@@ -571,17 +571,23 @@ Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "C
     , (InkBlobs) ->
       console.log JSON.stringify(InkBlobs)
 
-      $scope.eventImageUrls = []
+      $('.default').remove()
+      $('.carousel-inner').empty()
+      $scope.campaignImageUrls = []
 
       i=0
       while i< Object.keys(InkBlobs).length
         $scope.image="#{InkBlobs[i].url}"
         console.log $scope.image
         $scope.campaignImageUrls.push($scope.image)
-        $('.campaigns .carousel-inner').append("<div class = 'item'><img src = #{$scope.campaignImageUrls[i]}></div>")
+        if i == 0
+          $('.campaigns .carousel-inner').append("<div class = 'item active'><img src = #{$scope.campaignImageUrls[i]}></div>")
+        else 
+          $('.campaigns .carousel-inner').append("<div class = 'item'><img src = #{$scope.campaignImageUrls[i]}></div>")
         i++
-        $('#remove-image').css("display", "inherit")
-      $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#campaign-carousel'> › </a>")
+      $('#remove-image').css('display', 'inherit')
+      if Object.keys(InkBlobs).length>1
+        $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#campaign-carousel'> › </a>")
 
 
   $scope.removeImages = ->

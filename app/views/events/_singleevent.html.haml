@@ -18,13 +18,13 @@
         %tr
           %td.event-title-host.span5
             %h1  #{event.blurb} 
-          %td.span1{'ng-controller' => 'HeartCtrl', 'ng-init' => "following = '#{@current_user.follows_this?('Event', event.id)}'"}
+          %td.span1{'ng-controller' => 'HeartCtrl', 'ng-init' => "following = '#{is_user_there_and_following('Event', event.id)}'"}
             -if user_signed_in?
               %a.sb.heart.circle.no-border.no-shadow{'ng-click' => "follow('Event',#{event.id},#{user_signed_in?})", "data-toggle" => "tooltip", :title => "Click to stay updated on when this event becomes live!", "data-placement" => "left", 'ng-class' => '{true: "orange", false: "white"}[following]'}
             -else
               %a.sb.heart.circle.no-border.no-shadow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "left"}
 
--elsif event.happened?
+-elsif !event.upcoming? || event.happened?
   .event-happened
     .row
       .span6.event-image.subdued

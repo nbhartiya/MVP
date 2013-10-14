@@ -9,7 +9,8 @@
     .section.events-section
       .container
         .row.events-row-content
-          .span12.events-index-content
+          .span2
+          .span8.events-index-content
             -all_events = @events
             -if current_user
               -if current_user.chef == true
@@ -18,12 +19,15 @@
                 -if all_events.length == 0
                   %p Currently, there are no upcoming events. Be sure to sign up and we'll let you know as soon as we have one coming up!
                 -else
-                  %p Pick an event to go to! Upcoming events are scheduled but details are still being finalized, so follow (click on the heart) to stay posted!
+                  %p Pick an event to go to!
+                  %p Upcoming events are scheduled but aren't yet open for ticket sales, so follow (click on the heart) to get notified as soon as ticket sales begin!
             -else
               -if all_events.length == 0
                 %p Currently, there are no upcoming events. Be sure to sign up and we'll let you know as soon as we have one coming up!
               -else
-                %p Pick an event to go to! Upcoming events are scheduled but details are still being finalized, so follow (click on the heart) to stay posted!
+                %p Pick an event to go to! 
+                %p Upcoming events are scheduled but aren't yet open for ticket sales, so follow (click on the heart) to get notified as soon as ticket sales begin!
+          .span2
     .container
       -while all_events.length > 1
         -event = all_events.pop
@@ -47,4 +51,4 @@
               -if current_user.chef == true
                 %p Get a sense? Set up your <a href = "/events/new">event</a> today!
               -else
-                %p Don’t see your favorite business? <a href = "/campaigns/new">Start a campaign</a> or <a href = "/campaigns">join a campaign</a> to get them to host events on Simmr!
+                %p Don’t see your favorite business? <a href = "/campaigns/new">Suggest a business</a> or <a href = "/campaigns">vote up a suggested business</a> to get them to host events on Simmr!

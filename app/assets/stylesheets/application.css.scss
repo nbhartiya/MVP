@@ -213,6 +213,11 @@ input.error-true  {
 	border-top-color: black;
 }
 
+#browse-events a,#browse-events a:visited{
+	color: $main_orange !important;
+	text-decoration: bold;
+}
+
 .nav-container{
 	border-bottom: 1px solid rgb(150, 150, 150);
 	display: block;

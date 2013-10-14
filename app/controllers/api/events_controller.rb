@@ -72,6 +72,7 @@ class Api::EventsController < ApplicationController
 private
   def include_hash
     {:include => [:guests, :tickets, :location, :follows, :host => {:include => :profile}]}
+    #to optimize get only the data you need by :only=>
     #{:methods => :display_name, :include => [{:venue => {:include => :place}}, :users]}
     #=> {:only => :hi}
   end

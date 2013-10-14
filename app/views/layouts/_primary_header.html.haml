@@ -43,12 +43,14 @@
                 %li.dropitem
                   = link_to "Sign Out", destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?", :tabindex => "-1"
         %li.pull-right
-          %a.campaign{:href =>"/campaigns/new", "data-toggle" => 'tooltip', :title => "Don't see your favorite business? Start a campaign to get them to host events on Simmr!", "data-placement"=>'right'}Start a Campaign
+          %a.campaign{:href =>"/campaigns", "data-placement"=>'right'}Suggest a Host
+        %li.pull-right
+          %a.host{:href=>"/hosts","data-placement"=>'right'}Hosts
         -if user_signed_in? && current_user.chef?
           %li.pull-right
             =link_to "Create an Event", new_event_path
-        %li.pull-right
-          %a{:href =>"/events"}Browse Events
+        %li.pull-right#browse-events
+          %a{:href =>"/events"}Events
         %li.pull-right
           %a{:href => "/home/howitworks"} How It Works
           

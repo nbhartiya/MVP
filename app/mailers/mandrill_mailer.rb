@@ -55,8 +55,9 @@ class MandrillMailer
         },
       {
         :name => "utility",
-        :content => "<a href='*|UNSUB:http://www.simmr.co/home/unsubscribe|*'>unsubscribe from this list</a>"
-      }]
+        :content => ""#"<a href='*|UNSUB:http://www.simmr.co/home/unsubscribe|*'>unsubscribe from this list</a>"
+      }
+      ]
     sending = m.messages.send_template template_name, template_content, message 
   end
 
@@ -115,8 +116,9 @@ class MandrillMailer
         },
       {
         :name => "utility",
-        :content => "<a href='*|UNSUB:http://www.simmr.co/home/unsubscribe|*'>unsubscribe from this list</a>"
-      }]
+        :content => ""#"<a href='*|UNSUB:http://www.simmr.co/home/unsubscribe|*'>unsubscribe from this list</a>"
+      }
+      ]
     sending = m.messages.send_template template_name, template_content, message 
   end
 
@@ -175,11 +177,12 @@ class MandrillMailer
       { 
         :name => "footer-content",
         :content => "You're receiving this because you just bought a ticket to this event!"
-        },
+      },
       {
         :name => "utility",
-        :content => "<a href='*|UNSUB:http://www.simmr.co/home/unsubscribe|*'>unsubscribe from this list</a>"
-      }]
+        :content => ""#"<a href='*|UNSUB:http://www.simmr.co/home/unsubscribe|*'>unsubscribe from this list</a>"
+      }
+      ]
     sending = m.messages.send_template template_name, template_content, message 
   end
 

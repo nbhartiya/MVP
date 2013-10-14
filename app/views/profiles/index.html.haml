@@ -1,4 +1,4 @@
-=content_for :title, "simmr | people"
+=content_for :title, "simmr | hosts"
 
 .events-index
   .events
@@ -10,23 +10,23 @@
     -# check and filter for only businesses               
             
     .container
-      -all_profiles = @profiles
-      -while all_profiles.length > 1
-        -profile = all_profiles.pop
+      -biz_profiles = @biz_profiles
+      -while biz_profiles.length > 1
+        -profile = biz_profiles.pop
         .row.events-row
           .span6.single-event
             =render "profiles/singleuser", :profile => profile
-          -profile = all_profiles.pop
+          -profile = biz_profiles.pop
           .span6.single-event
             =render "profiles/singleuser", :profile => profile
-      -if all_profiles.length == 1
-        -profile = all_profiles.pop
+      -if biz_profiles.length == 1
+        -profile = biz_profiles.pop
         .row.events-row
           .span6.single-event
             =render "profiles/singleuser", :profile => profile
           .span6
 
-
+  -#
     .container
       .row.section-header
         .span12.events-index-header
@@ -35,17 +35,17 @@
     -# check and filter for only foodies               
             
     .container
-      -all_profiles = @profiles
-      -while all_profiles.length > 1
-        -profile = all_profiles.pop
+      -foodie_profiles = @foodie_profiles
+      -while foodie_profiles.length > 1
+        -profile = foodie_profiles.pop
         .row.events-row
           .span6.single-event
             =render "profiles/singleuser", :profile => profile
-          -profile = all_profiles.pop
+          -profile = foodie_profiles.pop
           .span6.single-event
             =render "profiles/singleuser", :profile => profile
-      -if all_profiles.length == 1
-        -profile = all_profiles.pop
+      -if foodie_profiles.length == 1
+        -profile = foodie_profiles.pop
         .row.events-row
           .span6.single-event
             =render "profiles/singleuser", :profile => profile

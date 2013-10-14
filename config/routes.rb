@@ -16,6 +16,7 @@ MVP::Application.routes.draw do
   match "/meow" => "home#meow"
   get "/done" => "signups#done"
   get "/thanks" => "signups#thanks"
+  match "/hosts" => "profiles#index"
   #get "/wireframes" => redirect {"http://mainstproject.com/wireframes"}
 
   get "home/index"

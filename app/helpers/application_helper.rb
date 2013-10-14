@@ -13,4 +13,11 @@ module ApplicationHelper
 		end
 		link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")
 	end
+	def is_user_there_and_following(followabletype, followableid)
+		if user_signed_in?
+	    	@current_user.follows_this?(followabletype, followableid)
+	    else
+	       false
+	    end	
+	end
 end
