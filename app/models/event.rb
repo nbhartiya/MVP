@@ -99,7 +99,7 @@ class Event < ActiveRecord::Base
   end
 
   def happened?
-    dt = DateTime.new(date.year, date.month, date.day+2, time.hour, time.min, time.sec)
+    dt = DateTime.new(date.year, date.month, date.day, time.hour, time.min, time.sec)+2
     if dt >= DateTime.now()
       false
     else

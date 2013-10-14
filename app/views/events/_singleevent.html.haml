@@ -24,51 +24,52 @@
             -else
               %a.sb.heart.circle.no-border.no-shadow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "left"}
 
--elsif !event.upcoming? || event.happened?
-  .event-happened
-    .row
-      .span6.event-image.subdued
-        -if event.images.present?
-          =link_to (image_tag event.images.first.image), event_path(event)
-        -else
-          =link_to image_tag("Food 26.jpg"), event_path(event)
-    %a.row.event-info.subdued{:href => event_path(event)}
-      %table
-        %tr
-          %td.event-title-host.span4
-            %h1 #{event.title} 
-            -# get host name here
-            %h2 
-              ="Hosted by #{event.host.profile.biz_name}"
-          %td.event-date-price.span2
-            %h2 #{event.date.strftime("%b %e")}, #{event.time.strftime("%l:%M %p")}
-            %h2 #{event.seats_left} seats left at $#{"%.0f" % event.cost} / seat
-        -# TODO: How to make this go directly to that view with 'payment=1' (angular thingie)
 -else
-  .event-current
-    .row
-      #ribbon.current
-        .container
-          .base
-            %h3
-              live
-          .left_corner
-          .right_corner
-      .span6.event-image
-        -if event.images.present?
-          =link_to (image_tag event.images.first.image), event_path(event)
-        -else
-          =link_to image_tag("Food 26.jpg"), event_path(event)
-    %a.row.event-info{:href => event_path(event)}
-      %table
-        %tr
-          %td.event-title-host.span4
-            %h1 #{event.title} 
-            -# get host name here
-            %h2 
-              ="Hosted by #{event.host.profile.biz_name}"
-          %td.event-date-price.span2
-            %h2 #{event.date.strftime("%b %e")}, #{event.time.strftime("%l:%M %p")}
-            %h2 #{event.seats_left} seats left at $#{"%.0f" % event.cost} / seat
+  -if event.happened?
+    .event-happened
+      .row
+        .span6.event-image.subdued
+          -if event.images.present?
+            =link_to (image_tag event.images.first.image), event_path(event)
+          -else
+            =link_to image_tag("Food 26.jpg"), event_path(event)
+      %a.row.event-info.subdued{:href => event_path(event)}
+        %table
+          %tr
+            %td.event-title-host.span4
+              %h1 #{event.title} 
+              -# get host name here
+              %h2 
+                ="Hosted by #{event.host.profile.biz_name}"
+            %td.event-date-price.span2
+              %h2 #{event.date.strftime("%b %e")}, #{event.time.strftime("%l:%M %p")}
+              %h2 #{event.seats_left} seats left at $#{"%.0f" % event.cost} / seat
+          -# TODO: How to make this go directly to that view with 'payment=1' (angular thingie)
+  -else
+    .event-current
+      .row
+        #ribbon.current
+          .container
+            .base
+              %h3
+                live
+            .left_corner
+            .right_corner
+        .span6.event-image
+          -if event.images.present?
+            =link_to (image_tag event.images.first.image), event_path(event)
+          -else
+            =link_to image_tag("Food 26.jpg"), event_path(event)
+      %a.row.event-info{:href => event_path(event)}
+        %table
+          %tr
+            %td.event-title-host.span4
+              %h1 #{event.title} 
+              -# get host name here
+              %h2 
+                ="Hosted by #{event.host.profile.biz_name}"
+            %td.event-date-price.span2
+              %h2 #{event.date.strftime("%b %e")}, #{event.time.strftime("%l:%M %p")}
+              %h2 #{event.seats_left} seats left at $#{"%.0f" % event.cost} / seat
 
-        -# TODO: How to make this go directly to that view with 'payment=1' (angular thingie)
+          -# TODO: How to make this go directly to that view with 'payment=1' (angular thingie)
