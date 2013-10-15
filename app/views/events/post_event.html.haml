@@ -1,6 +1,6 @@
 =content_for :title, "simmr | #{@event.title} post event page"
 
-.events{'ng-controller' => 'EventFeedbackCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='details';event.menuPdf='#{@event.menu_pdf}'; currentUser=#{current_user.to_json}"}
+.events{'ng-controller' => 'EventFeedbackCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='details';event.menuPdf='#{@event.menu_pdf}';eventId='#{@event.id}'"}
   .event-profile
     #event-carousel.carousel.slide         
       .carousel-inner
@@ -75,7 +75,7 @@
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "story"'} Story
                   %li
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "followers"'} Followers
-            .btn.btn-warning.join-waitlist-button{'ng-click' => 'waitlist=true', 'ng-hide' => 'waitlist', "data-toggle" => "tooltip", :title => "Add your name at the top of the invite list for the next #{@event.host.profile.biz_name} event. Your credit card will not be charged until you purchase a ticket for the next event. If a spot opens up at this one, we'll also let you know!", "data-placement" => "top"} Sign Up for the Next #{@event.host.profile.biz_name} Event
+            .btn.btn-warning.join-waitlist-button{'ng-click' => 'waitlist=true', 'ng-hide' => 'waitlist', "data-toggle" => "tooltip", :title => "Add your name at the top of the invite list for the next #{@event.host.profile.biz_name} event. If a spot opens up at this one, we'll also let you know!", "data-placement" => "top"} Sign Up for the Next #{@event.host.profile.biz_name} Event
 
             .seats{'ng-show'=> 'waitlist'}
               -if user_signed_in? == false
@@ -91,7 +91,7 @@
                   %option{:value => 4} 4 seats
                   -# (@event.seats_left).times do |s|
                     %option{:value => s+2} #{s+2} seats
-                .btn.btn-warning.event-go-button{'ng-click' => 'showPayment(true)', 'ng-disabled' => "num_guests==nil || num_guests == 0"} Go
+                .btn.btn-warning.event-go-button{'ng-click' => 'showPayment(true)', 'ng-disabled' => "num_guests==nil || num_guests == 0",'ng-init'=>"currentUser=#{current_user.to_json}"} Go
 
             .following{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@event.follows.count}; following = '#{is_user_there_and_following('Event', @event.id)}'"}
 
