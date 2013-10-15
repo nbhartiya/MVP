@@ -75,8 +75,7 @@
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "story"'} Story
                   %li
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "followers"'} Followers
-            -if user_signed_in?
-              .btn.btn-warning.join-waitlist-button{'ng-click' => 'waitlist=true', 'ng-hide' => 'waitlist', "data-toggle" => "tooltip", :title => "Add your name at the top of the invite list for the next #{@event.host.profile.biz_name} event. Your credit card will not be charged until you purchase a ticket for the next event. If a spot opens up at this one, we'll also let you know!", "data-placement" => "top"} Sign Up for the Next #{@event.host.profile.biz_name} Event
+            .btn.btn-warning.join-waitlist-button{'ng-click' => 'waitlist=true', 'ng-hide' => 'waitlist', "data-toggle" => "tooltip", :title => "Add your name at the top of the invite list for the next #{@event.host.profile.biz_name} event. Your credit card will not be charged until you purchase a ticket for the next event. If a spot opens up at this one, we'll also let you know!", "data-placement" => "top"} Sign Up for the Next #{@event.host.profile.biz_name} Event
 
             .seats{'ng-show'=> 'waitlist'}
               -if user_signed_in? == false
