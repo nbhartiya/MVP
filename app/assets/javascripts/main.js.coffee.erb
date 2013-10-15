@@ -460,7 +460,7 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
       window.location.href = '/events/'+data.id
 ]
 
-Simmr.controller "EventFeedbackCtrl", ["$scope",  "$routeParams", "$location", "Charge", "Event", "Guest", ($scope, $routeParams, $location, Charge, Event, Guest) ->
+Simmr.controller "EventFeedbackCtrl", ["$scope",  "$routeParams", "$location", "Event", "Guest", ($scope, $routeParams, $location, Event, Guest) ->
 
   $scope.guest = {}
   $scope.guest.first_name = ''
