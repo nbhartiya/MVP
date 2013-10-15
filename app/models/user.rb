@@ -132,8 +132,11 @@ class User < ActiveRecord::Base
 
   #def chef_me
   #  binding.pry
-  #  if self.chef == nil
-  #    self.chef = cookies[:chef]
+  #  if get_cookies.present?
+  #    if self.chef == nil
+  #      self.chef = get_cookies
+  #      self.save!
+  #    end
   #  end
   #end
   

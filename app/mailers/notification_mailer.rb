@@ -31,7 +31,7 @@ class NotificationMailer < ActionMailer::Base
   def notify_us_of_user_signup(user)
     @user = user
     if !user.chef.nil?
-      if user.chef=true
+      if user.chef==true
         @type="CHEF"
       else
         @type="FOODIE"
