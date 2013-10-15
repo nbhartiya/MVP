@@ -533,6 +533,8 @@ $("#times").html timeOptions
 
 $(".one-attendee").tooltip()
 
+$(".join-waitlist-button").tooltip()
+
 $(".cvc-explanation").tooltip()
 
 $(".followers").tooltip()

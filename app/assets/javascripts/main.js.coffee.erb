@@ -460,8 +460,46 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
       window.location.href = '/events/'+data.id
 ]
 
-Simmr.controller "EventFeedbackCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
+Simmr.controller "EventFeedbackCtrl", ["$scope",  "$routeParams", "$location", "Event", "Guest", ($scope, $routeParams, $location, Event, Guest) ->
 
+  $scope.guest = {}
+  $scope.guest.first_name = ''
+  $scope.guest.last_name = ''
+  $scope.guest.email = ''
+
+  $scope.showPayment = (wait) ->
+    $scope.guests = []
+    if $scope.num_guests > 0
+      homie=$scope.currentUser
+      currentGuy={}
+      currentGuy.first_name=homie.first_name
+      currentGuy.last_name=homie.last_name
+      currentGuy.email=homie.email
+      currentGuy.userId=homie.id
+      currentGuy.eventId=$scope.eventId
+      currentGuy.waiting=true
+      $scope.guests.push(currentGuy)
+      i = 0
+      
+      while i < $scope.num_guests - 1
+        $scope.guests.push({})
+        i++
+    if wait
+      $scope.appear = "waitlist1"
+    else
+      $scope.appear = "payment1"
+    
+    console.log $scope.num_guests
+    console.log $scope.guests
+
+  $scope.addtoWaitlist = ->
+    angular.forEach($scope.guests, (guest) =>
+      guest.eventId=$scope.eventId
+      guest.waiting=true
+      new Guest(guest).create().then (data) =>
+        console.log data, "~~~~~~~~~~~"
+    )
+    $scope.appear = "waitlist2"
 
   $scope.mapUrl = ->
     mapUrl = "http://maps.google.com/?q=#{$scope.address1},#{$scope.city}, #{$scope.state},#{$scope.zipcode}"
@@ -509,7 +547,7 @@ Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$l
 
       $('.default').remove()
       $('.carousel-inner').empty()
-      $scope.eventImageUrls = []
+      $scope.campaignImageUrls = []
 
       i=0
       while i< Object.keys(InkBlobs).length
@@ -571,17 +609,23 @@ Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "C
     , (InkBlobs) ->
       console.log JSON.stringify(InkBlobs)
 
-      $scope.eventImageUrls = []
+      $('.default').remove()
+      $('.carousel-inner').empty()
+      $scope.campaignImageUrls = []
 
       i=0
       while i< Object.keys(InkBlobs).length
         $scope.image="#{InkBlobs[i].url}"
         console.log $scope.image
         $scope.campaignImageUrls.push($scope.image)
-        $('.campaigns .carousel-inner').append("<div class = 'item'><img src = #{$scope.campaignImageUrls[i]}></div>")
+        if i == 0
+          $('.campaigns .carousel-inner').append("<div class = 'item active'><img src = #{$scope.campaignImageUrls[i]}></div>")
+        else 
+          $('.campaigns .carousel-inner').append("<div class = 'item'><img src = #{$scope.campaignImageUrls[i]}></div>")
         i++
-        $('#remove-image').css("display", "inherit")
-      $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#campaign-carousel'> › </a>")
+      $('#remove-image').css('display', 'inherit')
+      if Object.keys(InkBlobs).length>1
+        $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#campaign-carousel'> › </a>")
 
 
   $scope.removeImages = ->

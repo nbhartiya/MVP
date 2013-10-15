@@ -17,8 +17,8 @@
                 = image_tag i.image
         -else
           .item.active
-            %p This is a default cover photo. <br> Replace by uploading images!
-            =image_tag "Food 9.jpg"
+            %p We think this photo represents this host.<br> You can also upload your own!
+          =image_tag "Food 9.jpg"
     -if @campaign.covers.count > 1
       %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#campaign-carousel"} ‹
       %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#campaign-carousel"} ›
@@ -27,11 +27,11 @@
       .campaign-registration.row
         .span5
           %form.campaign-create-form.clearfix{:name => "campaign_edit", 'ng-hide' => "campaign==1"}
-            %input{'ng-model' => 'campaign.bizName', :type=>"text", :placeholder =>"Business Name - who is this campaign for?", :name => "campaign_name", :required => "required", 'ng-class' => "{error: campaign_edit.campaign_name.$invalid}"}
+            %input{'ng-model' => 'campaign.bizName', :type=>"text", :placeholder =>"Business Name - who is the host you're suggesting?", :name => "campaign_name", :required => "required", 'ng-class' => "{error: campaign_edit.campaign_name.$invalid}"}
             
             %textarea.campaign-blurb{:rows => "4", 'ng-model' => 'campaign.blurb', :type=>"text", :placeholder =>"Business Description - you get the length of a tweet to describe this business - what is its tagline?", :name => "campaign_description", :maxlength => "140", :required => "required",'ng-class' => "{error: campaign_edit.campaign_description.$invalid}"}
 
-            %textarea.campaign-why{:rows => "3", 'ng-model' => 'campaign.why_join', :type=>"text", :placeholder =>"Optional: Why should others join your campaign?", :name => "campaign_why_join", 'ng-class' => "{error: campaign_edit.campaign_why_join.$invalid}"}
+            %textarea.campaign-why{:rows => "3", 'ng-model' => 'campaign.why_join', :type=>"text", :placeholder =>"Optional: Why should others support getting this host on Simmr?", :name => "campaign_why_join", 'ng-class' => "{error: campaign_edit.campaign_why_join.$invalid}"}
 
             .help-block{'ng-show' => "campaign_create.campaign_description.$error.required || campaign_create.campaign_name.$error.required"} Both fields are required!
             
@@ -45,7 +45,7 @@
             %a.btn.btn-warning#ok-button{:href => "/events"} Check Out More Cool Events!
             %a.btn.btn-warning#ok-button{:href => "/campaigns"} Check Out Other Campaigns!
         .span5
-          .campaign-summary
+          .campaign-summary.prev
             %a.campaign-days#ribbon.preview{:href => "#", "data-toggle" => "tooltip", :title => "All campaigns last a total of 30 days, so get people to join quickly!", "data-placement" => "right"}
               .container
                 .base
@@ -65,7 +65,7 @@
             .campaign-summary-logistics-container
               .campaign-summary-logistics
                 %h3 Created by #{current_user.first_name} #{current_user.last_name}
-            %a.campaign-tilt{:href => "#", "data-toggle" => "tooltip", :title => "All campaigns need at least 20 people to join to succeed!", "data-placement" => "right"} #{@campaign.follows_needed} more supporters needed to tilt this campaign
+            %a.campaign-tilt{:href => "#", "data-toggle" => "tooltip", :title => "All campaigns need at least 20 people to join to succeed!", "data-placement" => "right"} #{@campaign.follows_needed} more supporters needed to get this host on Simmr
             .progress.signed-in.progress-warning
               .bar{:style => "width: #{@campaign.percent_follows}%"}
 

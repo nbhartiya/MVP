@@ -49,7 +49,7 @@
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "followers"'} Supporters
           .following{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@campaign.follows.count};endDate='#{@campaign.expires}';successful='#{@campaign.successful}'; following = '#{is_user_there_and_following('Campaign', @campaign.id)}'"}
             %p 
-              #{@campaign.follows_needed} more supporters needed to tilt this campaign
+              #{@campaign.follows_needed} more supporters needed to get this host onto Simmr
               .progress.progress-warning.clearfix
                 .bar{:style => "width: 80%"}
             -if user_signed_in? == false
@@ -125,7 +125,7 @@
                               %a.sb.heart.circle.no-border.no-shadow.black{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
 
                 -else
-                  %h3 No current supporters - click on the heart to get this business on Simmr!
+                  %h3 No current supporters - click on the heart to get this host on Simmr!
               #business-following.tab-pane.fade
                 -if @campaign.follows.count > 0
                   %table.following-table
@@ -147,5 +147,5 @@
                             -else
                               %a.sb.heart.circle.no-border.no-shadow.black{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                 -else
-                  %h3 No current supporters - click on the heart to get this business on Simmr!
+                  %h3 No current supporters - click on the heart to get this host on Simmr!
 

@@ -5,7 +5,7 @@
     .container
       .row.section-header
         .span12.campaign-index-header
-          %h1 Campaigns in San Francisco
+          %h1 Suggested Hosts in San Francisco
     .section.campaign-section
       .container
         .row.campaign-row-content
@@ -16,15 +16,15 @@
                 .step
                   %h2 launch
                   .step-description
-                    %p Don't see a favorite food business or chef? Launch a campaign to get 'em on Simmr! It takes under a minute.
+                    %p Don't see a favorite food business or chef? Suggest a host to get 'em on Simmr! It takes under a minute.
                 .step
                   %h2 promote
                   .step-description
-                    %p Once a campaign is approved, spread the word and start recruiting others to join! You have 30 days to get 100 people.
+                    %p Once a suggested host is approved, spread the word and start recruiting others to join! You have 30 days to get 100 people.
                 .step
                   %h2 tilt
                   .step-description
-                    %p Once you have 100 people, we will contact the business and bring them on to a warm welcome from their fans!
+                    %p Once you have 20 people, we will contact the host and bring them on to a warm welcome from their fans!
     .container
       -all_campaigns = @campaigns
       -while all_campaigns.length > 1
@@ -45,6 +45,6 @@
       .container
         .row.campaign-row-content
           .span12.campaign-index-content
-            %p Don’t see your favorite business? <a href = "/campaigns/new">Start a campaign</a> to get them to host events on Simmr!
+            %p Don’t see your favorite business? <a href = "/campaigns/new">Suggest a host</a> to get them to host events on Simmr!
 
 
