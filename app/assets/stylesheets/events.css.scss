@@ -16,6 +16,12 @@ a.sb.yelp.black{
 	background-color: transparent;
 }
 
+.tooltip{
+	width: auto !important;
+	z-index: 1000;
+	position: absolute;
+}
+
 // events index styling
 .events-index{
 	.events{ 
@@ -677,7 +683,7 @@ a.sb.yelp.black{
 				box-sizing: border-box; 
 				margin-top: -8.5px;
 			}
-			.grab-seats-button{
+			.grab-seats-button, .join-waitlist-button{
 				width: 100%;
 				padding: 7px 0;
 				-webkit-box-sizing: border-box;
@@ -687,6 +693,7 @@ a.sb.yelp.black{
 				margin-bottom: 15px;
 				font-size: 20px;
 				font-weight: 300;
+				line-height: 1.2em;
 			}
 			.standalone-button{
 				width: 49.5%;
