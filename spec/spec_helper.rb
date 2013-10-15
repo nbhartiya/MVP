@@ -17,7 +17,7 @@ RSpec.configure do |config|
 
   config.order = "random"
 
-  
+  # use poltergeist instead of :webkit below
   Capybara.javascript_driver = :webkit
 
   config.before(:suite) do
