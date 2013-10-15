@@ -79,7 +79,6 @@
 
             .seats{'ng-show'=> 'waitlist'}
               -if user_signed_in? == false
-                -#fix where this redirects to!
                 %a.btn.btn-warning.standalone-button.foodiesignup{:"data-toggle" => "modal", :href=>"#sign_up_foodie"} Sign Up
                 %a.btn.btn-warning.standalone-button.foodiesignup{:"data-toggle" =>"modal", :href=>"#sign_in"} Sign In
               -if user_signed_in?

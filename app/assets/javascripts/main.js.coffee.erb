@@ -461,6 +461,11 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
 ]
 
 Simmr.controller "EventFeedbackCtrl", ["$scope",  "$routeParams", "$location", "Event", "Guest", ($scope, $routeParams, $location, Event, Guest) ->
+  Simmr.scopes ||= {}  
+  Simmr.scopes.post_event = $scope
+
+  if location.search == '?waitList'
+    $scope.waitlist = true
 
   $scope.guest = {}
   $scope.guest.first_name = ''

@@ -27,8 +27,6 @@ $(document).on "click", ".foodiesignup", ->
   console.log("saved foodie cookie")
   if Simmr.scopes
     if Simmr.scopes.home
-      console.log("In Home")
-      console.log Simmr.scopes.home
       $.cookie 'after_sign_in_path_foodie', '/events', { path: '/' }
     if Simmr.scopes.event
       console.log("In Event")
@@ -38,6 +36,11 @@ $(document).on "click", ".foodiesignup", ->
         $.cookie 'after_sign_in_path_foodie', "/events/#{Simmr.scopes.event.eventId}/?grabSeats", { path: '/' }
       if Simmr.scopes.event.waitlist
         $.cookie 'after_sign_in_path_foodie', "/events/#{Simmr.scopes.event.eventId}/?waitList", { path: '/' }
+    if Simmr.scopes.post_event
+      console.log("In Post-Event")
+      console.log Simmr.scopes.post_event.eventId
+      if Simmr.scopes.post_event.waitlist
+        $.cookie 'after_sign_in_path_foodie',"/events/#{Simmr.scopes.post_event.eventId}/post_event/?waitList", { path: '/'}
   else
     $.cookie 'after_sign_in_path_foodie', nil, { path: '/' }
 
