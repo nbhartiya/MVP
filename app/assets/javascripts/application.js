@@ -73,6 +73,7 @@ $(".fancybox").fancybox({
   closeEffect : 'fade',
   nextEffect : 'fade',
   prevEffect : 'fade',
+  type: 'pdf',
   preload : 5,
   iframe : {
         preload: false
@@ -100,6 +101,7 @@ $(document).ready(function() {
         closeEffect : 'fade',
         nextEffect : 'fade',
         prevEffect : 'fade',
+        type: "image",
         preload : 5,
         iframe : {
               preload: false
