@@ -1138,6 +1138,22 @@ a.sb.yelp.black{
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
 			}
+			a#promo-code{
+				cursor: pointer;
+			}
+			a#promo-code:hover{
+				color: rgb(200, 200, 200);
+			}
+			input.promo-code{
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				width: 51%;
+				margin: 10px 0;
+			}
+			.help-block-white.promo-code{
+				margin-bottom: 10px;
+			}
 			.guest-name{
 				width: 25%;
 			}

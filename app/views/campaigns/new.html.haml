@@ -19,8 +19,8 @@
 
             .help-block{'ng-show' => "campaign_create.campaign_description.$error.required || campaign_create.campaign_name.$error.required"} Both fields are required!
             
-             .clearfix
-               %button.btn#campaign-upload-images{'ng-click'=> 'uploadImages()'} Upload Images
+            .clearfix
+              %button.btn#campaign-upload-images{'ng-click'=> 'uploadImages()'} Upload Images
             
             %button.btn.btn-warning.standalone-button#submit{'ng-click' => 'createCampaign(campaign)', 'ng-disabled'=> 'campaign_create.$invalid'} Create
 
