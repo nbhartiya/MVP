@@ -148,13 +148,15 @@
             %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Event Recap
             %ul
+              %li
+                %a.fancybox.gallery{:href => "http://simmrco.files.wordpress.com/2013/10/img_2536.jpg", :rel => "group", :title => "blah"} Event Photo Gallery
               -if @event.post_event_images.present?
                 %li
                   -@event.post_event_images.each_with_index do |i, index|
                     -if index == 0
-                      %a.fancybox{:href => i.image, :rel => "group", :title => i.title} Event Photo Gallery
+                      %a.fancybox.gallery{:href => i.image, :rel => "group", :title => i.title} Event Photo Gallery
                     -else
-                      %a.fancybox{:href => i.image, :rel => "group", :title => i.title}
+                      %a.fancybox.gallery{:href => i.image, :rel => "group", :title => i.title}
               -if @event.post_event_media.present?
                 %li
                   -for media in @event.post_event_media

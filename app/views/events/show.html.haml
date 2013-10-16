@@ -305,7 +305,7 @@
               %button.btn.promo-code{'ng-show' => 'promo', 'ng-hide' => '!promo', 'ng-click' => 'codeVerified = false'} Apply to Ticket Price
               .help-block-white.promo-code{'ng-show' => 'promo && codeVerified', 'ng-hide' => '!promo || !codeVerified'} Applied!
               .help-block-white.promo-code{'ng-show' => 'promo && (codeVerfied != nil && !codeVerified)', 'ng-hide' => '!promo || codeVerified'} This promo code doesn't work!
-              .help-block-white.promo-code{'ng-show' => 'promo', 'ng-hide' => '!promo'} Want in on this? Get $2.50 off both your and your friend's tickets for every friend you bring! (up to the price of your ticket)
+              .help-block-white.promo-code{'ng-show' => 'promo', 'ng-hide' => '!promo'} Want in on this? Get $2.50 off both your and your friend's tickets for every friend you bring to their first Simmr event! (up to the price of your ticket)
             %button.btn.btn-warning.standalone-button#enter-payment-info{'ng-click' => 'gotoPayment()', 'ng-disabled' => "error=0"} Next: Enter Payment Info
 
           .event-guests.clearfix{'ng-show' => 'appear=="waitlist1"'}
