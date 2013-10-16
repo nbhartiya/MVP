@@ -1,8 +1,45 @@
-class MandrillMailer 
+class MandrillMailer < Devise::Mailer
+
+  require 'mandrill'
+
+  helper :application
+
+  def reset_password_instructions(record, token, opts={})
+    @token = token
+    a=edit_user_password_url(record, :reset_password_token=> @token)
+    headers['X-MC-Track'] = "False, False"
+    m=Mandrill::API.new(ENV["MANDRILL_KEY"])
+      message= {
+        :subject=> "Simmr Password Reset",
+        :from_name=> "Simmr Concierge",
+        :from_email => "neeharika@simmr.co",
+        :text=>"Hello, #{record.first_name}!
+        Someone has requested a link to change your password. You can do this through the link below.
+          <a href=#{a}>Change my password </a>
+          If you didn't request this, please ignore this email.
+          Your password won't change until you access the link above and create a new one.",
+        # below are global merge vars. the name is the *|MERGE|* tag
+        #{}"global_merge_vars"=>[],
+        :to=>[
+          {
+            :email=> record.email,
+            :name=> record.first_name
+          }]
+      }
+    sending = m.messages.send message 
+    super
+  end
+
+  def confirmation_instructions(record, token, opts={})
+    super
+  end
+
+  def unlock_instructions(record, token, opts={})
+    super
+  end
 
   def self.signup_foodie_email(user)
     @user = user
-    require 'mandrill'
     m = Mandrill::API.new(ENV["MANDRILL_KEY"])
       message = {
         :subject=> "Welcome to Simmr, #{user.first_name} #{user.last_name}!",
@@ -63,7 +100,6 @@ class MandrillMailer
 
   def self.signup_chef_email(user)
     @user = user
-    require 'mandrill'
     m = Mandrill::API.new(ENV["MANDRILL_KEY"])
       message = {
         :subject=> "Welcome to Simmr, #{user.first_name} #{user.last_name}!",
@@ -126,7 +162,6 @@ class MandrillMailer
   def self.event_purchase_email(user, event)
     @user = user
     @event = event
-    require 'mandrill'
     m = Mandrill::API.new(ENV["MANDRILL_KEY"])
       message = {
         :subject=> "#{user.first_name}, you're going to #{event.title} with #{event.host}!",
