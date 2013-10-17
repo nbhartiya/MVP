@@ -102,6 +102,7 @@ $(document).ready(function() {
         nextEffect : 'fade',
         prevEffect : 'fade',
         type: "image",
+        autoplay: true,
         preload : 5,
         iframe : {
               preload: false

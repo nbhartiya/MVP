@@ -221,6 +221,26 @@ a.sb.yelp.black{
 		.event-upcoming:hover{
 			opacity: 1.0;
 		}
+		.event-upcoming .event-blurb{
+			position: absolute;
+			color: white;
+			background: rgba(0, 0, 0, 0.8);
+			top: 0;
+			opacity: 0;
+			text-align: center;
+			height: 310px;
+			table{
+				height: 310px;
+				width: 570px;
+			}
+			td{
+				vertical-align: middle;
+			}
+		}
+		.event-upcoming:hover .event-blurb{
+			display: inherit;
+			opacity: 1;
+		}
 		.event-happened,.event-current,.event-upcoming{
 			opacity: 1.0;
 		}
