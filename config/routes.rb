@@ -41,6 +41,7 @@ MVP::Application.routes.draw do
     resources :profiles
     resources :follows
     resources :guests
+    get "/referral_code_check" => "charges#referral_code_check"
   end
 
   resources :campaigns

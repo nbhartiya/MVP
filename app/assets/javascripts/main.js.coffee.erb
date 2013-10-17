@@ -114,7 +114,7 @@ Simmr.controller "HomeIndexCtrl", ["$scope",  "$routeParams", "$location", ($sco
     $(".bizsignup").click()
 ]
 
-Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "Charge", "Event", "Guest", ($scope, $routeParams, $location, Charge, Event, Guest) ->
+Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$location", "Charge", "Event", "Guest", ($scope, $http, $routeParams, $location, Charge, Event, Guest) ->
   Simmr.scopes ||= {}  
   Simmr.scopes.event = $scope
 
@@ -126,6 +126,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
 
   $scope.guests = []
   $scope.event = []
+  $scope.referee_discount=0
 
   $scope.guest = {}
   $scope.guest.first_name = ''
@@ -175,12 +176,26 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
     mapUrl = "http://maps.google.com/?q=#{$scope.address1},#{$scope.city}, #{$scope.state},#{$scope.zipcode}"
 
   $scope.total = ->
-    total = $scope.num_guests * $scope.cost
+    total = $scope.num_guests * $scope.cost - $scope.referee_discount
     total = total.toFixed(2)
+    $scope.total_val=total
 
   $scope.eventRevenue = ->
     total = $scope.guestsCount * $scope.cost
     total = total.toFixed(0)
+
+  $scope.checkReferralCode = (code) ->
+    $http(
+      method:'GET'
+      url:'/api/referral_code_check'
+      params:{referral_code:code, event_id:$scope.eventId}
+    ).success (result) ->
+      alert result
+      console.log(result)
+      $scope.discount_stuff=result
+      if $scope.discount_stuff.applied
+        $scope.referee_discount=$scope.discount_stuff.referral_code.referee_discount
+        $scope.total()
 
   $scope.showPayment = (wait) ->
     $scope.guests = []
@@ -245,10 +260,12 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$routeParams", "$location", "
         $scope.data.buyer = $scope.buyer
         $scope.data.eventId = $scope.eventId
         $scope.data.amount = $scope.total()
+        $scope.data.discount_stuff=$scope.discount_stuff
 
         new Charge($scope.data).create().then (data) =>
           console.log data, "~~~~~~~~~~"
           if data.status == "Success"
+            $scope.code=data.code
             $scope.appear = "payment3"
           if data.status == "Failure"
             $scope.cardErrorMessages=data.messages

@@ -1,6 +1,6 @@
 =content_for :title, "simmr | #{@event.title}"
 
-.events{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='';event.menuPdf='#{@event.menu_pdf}'"}
+.events{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='';event.menuPdf='#{@event.menu_pdf}';cost='#{@event.cost}'"}
   .event-profile
     #event-carousel.carousel.slide.hidden-phone 
       .carousel-inner
@@ -99,7 +99,7 @@
                   %option{:value => 1} 1 seat
                   -# (@event.seats_left).times do |s|
                     %option{:value => s+2} #{s+2} seats
-                .btn.btn-warning.event-go-button{'ng-click' => 'showPayment()', 'ng-disabled' => "num_guests==nil || num_guests == 0"} Go
+                .btn.btn-warning.event-go-button{'ng-click' => 'showPayment();total()', 'ng-disabled' => "num_guests==nil || num_guests == 0"} Go
 
             .seats{'ng-show'=> 'waitlist'}
               -if user_signed_in? == false
@@ -289,8 +289,8 @@
                 -else
                   %h3 No current followers. Click the heart to stay updated about this event!
 
-          .event-guests.clearfix{'ng-show' => 'appear=="payment1"', 'ng-init'=> "cost='#{@event.cost}'"}
-            %h1 Total: ${{total()}}
+          .event-guests.clearfix{'ng-show' => 'appear=="payment1"'}
+            %h1 Total: ${{total_val}}
             %hr
             %h2 Who all are coming?
             %form.guests{:name => "guest_registration", 'ng-repeat' => 'guest in guests'}
@@ -300,7 +300,8 @@
               %input.guest-email{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :required => "required", :name => "guest_email", 'ng-class' => "{error: guest_registration.guest_email.$invalid}"}
               .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.email'} Please enter a valid email
               .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.required || guest_registration.guest_first.$error.required || guest_registration.guest_last.$error.required'} All fields are required
-              %input.guest-name{:placeholder => "Referrer Name"}
+              %input.guest-name{:placeholder => "Referrer Code", 'ng-model'=>'referrer_code'}
+              %button.btn.btn-warming#enter-code{'ng-click'=>'checkReferralCode(referrer_code)'}
               .help-block-white Get $5 off your ticket for every friend you bring!
               .help-block-white (ask them to enter your name above)
             %button.btn.btn-warning.standalone-button#enter-payment-info{'ng-click' => 'gotoPayment()', 'ng-disabled' => "error=0"} Enter Payment Info
@@ -317,8 +318,8 @@
               .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.required || guest_registration.guest_first.$error.required || guest_registration.guest_last.$error.required'} All fields are required
             %button.btn.btn-warning.standalone-button#enter-payment-info{'ng-click' => 'addtoWaitlist()', 'ng-disabled' => "error=0"} Sign Up for the Next #{@event.host.profile.biz_name} Event
 
-          .event-purchase.clearfix{'ng-show' => 'appear=="payment2"', 'ng-init'=> "cost=#{@event.cost};currentUser=#{current_user.to_json}"}
-            %h1 Total: ${{total()}}
+          .event-purchase.clearfix{'ng-show' => 'appear=="payment2"', 'ng-init'=> "currentUser=#{current_user.to_json}"}
+            %h1 Total: ${{total_val}}
             %hr
             = render 'charges/stripe'
             %h2{'ng-hide' => 'cardErrorMessages[0]=="" || cardErrorMessages[0]==nil'} {{cardErrorMessages[0]}} Try again!
@@ -327,7 +328,7 @@
             %button.btn#previous-button{'ng-click' => 'appear="payment1"'} Previous
 
           .event-purchase-confirmation.clearfix{'ng-show' => 'appear=="payment3"'}
-            %h2 Thank you for your reservation! You will receive an email confirmation in the next day.
+            %h2 Thank you for your reservation! You will receive an email confirmation in the next day. Your referral code is {{code}}.
 
             %a.btn.btn-warning#ok-button{:href => "/events"} Check Out More Cool Events!
           

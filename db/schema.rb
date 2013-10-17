@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131014180921) do
+ActiveRecord::Schema.define(:version => 20131017003300) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20131014180921) do
     t.string   "currency",         :default => "usd"
     t.string   "card_type"
     t.string   "status"
+    t.float    "refund_due"
   end
 
   create_table "comments", :force => true do |t|
@@ -84,17 +85,19 @@ ActiveRecord::Schema.define(:version => 20131014180921) do
     t.float    "cost"
     t.integer  "length"
     t.text     "other_info"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.integer  "host_id"
     t.text     "blurb"
     t.time     "time"
     t.boolean  "vegan"
     t.boolean  "vegetarian"
     t.boolean  "gluten_free"
-    t.boolean  "approved",     :default => false
+    t.boolean  "approved",         :default => false
     t.string   "blog_link"
-    t.boolean  "upcoming",     :default => false
+    t.boolean  "upcoming",         :default => false
+    t.float    "referee_discount"
+    t.float    "referer_discount"
   end
 
   create_table "follows", :force => true do |t|
@@ -189,6 +192,18 @@ ActiveRecord::Schema.define(:version => 20131014180921) do
     t.boolean  "approved"
   end
 
+  create_table "referral_codes", :force => true do |t|
+    t.string   "code"
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.boolean  "is_valid"
+    t.float    "referee_discount"
+    t.float    "referer_discount"
+    t.integer  "redeemed_num"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
   create_table "signups", :force => true do |t|
     t.string   "email"
     t.boolean  "chef"
@@ -219,10 +234,14 @@ ActiveRecord::Schema.define(:version => 20131014180921) do
     t.integer  "user_id"
     t.integer  "event_id"
     t.integer  "num_guests"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.float    "total_paid"
     t.integer  "charge_id"
+    t.float    "discount"
+    t.integer  "giveaway_code_id"
+    t.integer  "applied_code_id"
+    t.boolean  "discount_applied"
   end
 
   create_table "user_answers", :force => true do |t|

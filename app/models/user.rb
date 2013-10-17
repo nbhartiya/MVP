@@ -46,6 +46,7 @@ class User < ActiveRecord::Base
   has_many :follows, :dependent => :destroy
   has_many :guests
   has_many :comments
+  has_many :referral_codes
   
   after_create :confirmation_email
   #before_create :chef_me
