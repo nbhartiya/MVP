@@ -330,8 +330,8 @@
             %button.btn#previous-button{'ng-click' => 'appear="payment1"'} Previous
 
           .event-purchase-confirmation.clearfix{'ng-show' => 'appear=="payment3"'}
-            %h2 Thank you for your reservation! You will receive an email confirmation in the next day.
-            %h2 Your referral code is {{code}}. Share it and get $5.00 off for every friend who buys a ticket to this event! We'll even automatically split it between you and your friend--your friend will get half of it on the spot and we'll send you all the discount you earn on the day of the event.
+            %h2 Thank you for your reservation! You're confirmed and will receive an email confirmation in the next day.
+            -#%h2 Your referral code is {{code}}. Share it and get $5.00 off for every friend who buys a ticket to this event! We'll even automatically split it between you and your friend--your friend will get half of it on the spot and we'll send you all the discount you earn on the day of the event.
 
             %a.btn.btn-warning#ok-button{:href => "/events"} Check Out More Cool Events!
           

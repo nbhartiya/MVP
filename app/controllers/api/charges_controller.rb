@@ -95,25 +95,27 @@ class Api::ChargesController < ApplicationController
       }
       @ticket = @charge.tickets.create(ticket_info)
       @ticket.save!
-      if params[:charge][:discount_stuff][:applied]
-        @ref_code=ReferralCode.find(params[:charge][:discount_stuff][:referral_code][:id])
-        @ticket.applied_code_id = @ref_code.id
-        @ticket.discount = @ref_code.referee_discount*100
-        @ticket.discount_applied = true
+      if params[:charge][:discount_stuff].present?
+        if params[:charge][:discount_stuff][:applied]
+          @ref_code=ReferralCode.find(params[:charge][:discount_stuff][:referral_code][:id])
+          @ticket.applied_code_id = @ref_code.id
+          @ticket.discount = @ref_code.referee_discount*100
+          @ticket.discount_applied = true
+          @ticket.save!
+          @ref_code.redeemed_num = @ref_code.redeemed_num + 1
+          @ref_code.save!
+          @old_ticket = @ref_code.ticket_generated_from
+          @old_ticket.discount = @old_ticket.discount + @ref_code.referer_discount*100
+          @old_ticket.discount_applied = false
+          @old_ticket.save!
+          @old_charge = @old_ticket.charge
+          @old_charge.refund_due = @old_charge.refund_due + @ref_code.referer_discount*100
+          @old_charge.save!
+        end
+        code,new_ref_code_id=ReferralCode.generate(@ticket)
+        @ticket.giveaway_code_id=new_ref_code_id
         @ticket.save!
-        @ref_code.redeemed_num = @ref_code.redeemed_num + 1
-        @ref_code.save!
-        @old_ticket = @ref_code.ticket_generated_from
-        @old_ticket.discount = @old_ticket.discount + @ref_code.referer_discount*100
-        @old_ticket.discount_applied = false
-        @old_ticket.save!
-        @old_charge = @old_ticket.charge
-        @old_charge.refund_due = @old_charge.refund_due + @ref_code.referer_discount*100
-        @old_charge.save!
       end
-      code,new_ref_code_id=ReferralCode.generate(@ticket)
-      @ticket.giveaway_code_id=new_ref_code_id
-      @ticket.save!
       location_info = {
         :address1 => params[:charge][:buyer][:billing_address],
         :city => params[:charge][:buyer][:billing_city],
