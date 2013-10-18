@@ -37,7 +37,8 @@ class Event < ActiveRecord::Base
   has_many :follows, :as => :followable, :dependent => :destroy
   has_many :post_event_comments, :as => :commentable, :class_name =>"Comment", :conditions => {:secondary_commentable_type => "post_event_comment"}, :dependent => :destroy
   has_many :post_event_media, :as => :imageable, :class_name =>"Image", :conditions => {:secondary_imageable_type => "post_event_media"}, :dependent => :destroy
-  
+  has_many :referral_codes
+
   attr_accessible :other_info, :length, :cost, :date, :description, :menu_pdf, :menu_text, :people_limit, :title
   attr_accessible :host_id, :images_attributes, :time, :neighborhood, :blurb, :vegan, :vegetarian, :gluten_free, :blog_link, :upcoming
 

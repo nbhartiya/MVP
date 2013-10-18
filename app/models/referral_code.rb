@@ -4,6 +4,7 @@ class ReferralCode < ActiveRecord::Base
   belongs_to :user
   has_one :ticket_generated_from, class_name: "Ticket", foreign_key: :giveaway_code_id
   has_one :ticket_applied_to, class_name: "Ticket", foreign_key: :applied_code_id
+  belongs_to :event
 
   def self.generate(ticket)
     new_ref_code = self.new

@@ -190,7 +190,6 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
       url:'/api/referral_code_check'
       params:{referral_code:code, event_id:$scope.eventId}
     ).success (result) ->
-      alert result
       console.log(result)
       $scope.discount_stuff=result
       if $scope.discount_stuff.applied

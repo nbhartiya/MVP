@@ -23,7 +23,7 @@ class Api::ChargesController < ApplicationController
             applied=false
           end
         else
-          details="The referral code you applied is only valid for the BLAH event"
+          details="The referral code you applied is only valid for the #{referral_code.event.title} event"
           note="wrong event"
           applied=false
         end
