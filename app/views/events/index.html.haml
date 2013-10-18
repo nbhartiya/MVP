@@ -2,6 +2,8 @@
 
 .events-index{'ng-controller' => 'EventIndexCtrl'}
   -all_events = @events
+  -upcoming_events = @events.where(:upcoming=>true).dup
+  -non_upcoming_events=@events.where(:upcoming=>false)
   .events
     .container
       .row.section-header
@@ -49,27 +51,26 @@
                 %p Live events are currently selling tickets! Buy yours today before they sell out!
             -else
               %p Live events are currently selling tickets! Buy yours today before they sell out!
-    -events = all_events.dup
     .container
-      -while events.length > 1
-        -event = events.pop
-        -if event.approved? && event.happened? == false
+      -potential_live_events=non_upcoming_events.dup
+      -while potential_live_events.length > 1
+        -event = potential_live_events.pop
+        -if !event.happened?
           .row.events-row
             .span6.single-event
               =render "events/singleevent", :event => event
-            -event = events.pop
-            -if event.approved? && event.happened?
+            -event = potential_live_events.pop
+            -if !event.happened?
               .span6.single-event
                 =render "events/singleevent", :event => event
-      -if events.length == 1
-        -event = events.pop
-        -if event.approved? && event.happened? == false
+      -if potential_live_events.length == 1
+        -event = potential_live_events.pop
+        -if !event.happened?
           .row.events-row
             .span6.single-event
               =render "events/singleevent", :event => event
             .span6
 
-    -events = all_events.dup
     .container
       .row.section-header
         .span12.events-index-section-title#new
@@ -88,25 +89,25 @@
             -else
               %p New events are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified as soon as ticket sales begin! 
     .container
-      -while events.length > 1
-        -event = events.pop
+      -while upcoming_events.length > 1
+        -event = upcoming_events.pop
         -if event.approved? && event.upcoming?
           .row.events-row
             .span6.single-event
               =render "events/singleevent", :event => event
-            -event = events.pop
+            -event = upcoming_events.pop
             -if event.approved? && event.upcoming?
               .span6.single-event
                 =render "events/singleevent", :event => event
-      -if events.length == 1
-        -event = events.pop
+      -if upcoming_events.length == 1
+        -event = upcoming_events.pop
         -if event.approved? && event.upcoming?
           .row.events-row
             .span6.single-event
               =render "events/singleevent", :event => event
             .span6
 
-    -events = all_events.dup
+    -potential_past_events = non_upcoming_events.dup
     .container
       .row.section-header
         .span12.events-index-section-title#ongoing
@@ -124,18 +125,18 @@
             -else
               %p Ongoing events have happened once or more times and have been successes! Put your name down for the next one -- the more names on the list, the sooner the event will happen. Don't worry, we won't charge your card until you buy a ticket.
     .container
-      -while events.length > 1
-        -event = events.pop
+      -while potential_past_events.length > 1
+        -event = potential_past_events.pop
         -if event.happened?
           .row.events-row
             .span6.single-event
               =render "events/singleevent", :event => event
-            -event = events.pop
+            -event = potential_past_events.pop
             -if event.happened?
               .span6.single-event
                 =render "events/singleevent", :event => event
-      -if event.length
-        -event = events.pop
+      -if potential_past_events.length == 1
+        -event = potential_past_events.pop
         -if event.happened?
           .row.events-row
             .span6.single-event

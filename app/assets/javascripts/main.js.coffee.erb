@@ -376,8 +376,8 @@ Simmr.controller "EventIndexCtrl", ["$scope",  "$routeParams", "$location", "Eve
   $scope.eventIDVar = ->
     $scope.eventID.toString()
     
-  $scope.eventMonth = ->
-    moment($scope.event.month).format("MMM")
+  $scope.eventMonth = (event)->
+    moment(event.month).format("MMM")
 
   $scope.showPayment = (wait) ->
     $scope.guests = []

@@ -1,26 +1,5 @@
 .s-events{'ng-init' => "event.month = '#{event.date.month}';currentEventID = '#{event.id}"}
-
-  -if event.approved? && event.happened? == false
-    .event-current
-      .row
-        .span6.event-image
-          -if event.images.present?
-            =link_to (image_tag event.images.first.image), event_path(event)
-          -else
-            =link_to image_tag("Food 26.jpg"), event_path(event)
-      %a.row.event-info{:href => event_path(event)}
-        %table
-          %tr
-            %td.event-title-host.span4
-              %h1 #{event.title} 
-              -# get host name here
-              %h2 
-                ="Hosted by #{event.host.profile.biz_name}"
-            %td.event-date-price.span2
-              %h2 #{event.date.strftime("%b %e")}, #{event.time.strftime("%l:%M %p")}
-              %h2 #{event.seats_left} seats left at $#{"%.0f" % event.cost} / seat
-
-  -if event.approved? && event.upcoming?
+  -if event.upcoming?
     .event-upcoming
       .row
         .span6.event-image
@@ -32,7 +11,7 @@
           %table
             %tr
               %td
-                %h4 {{eventMonth()}}
+                %h4 #{event.date.strftime("%B")}
                 %p #{event.blurb}
       .row.event-info
         %table
@@ -45,8 +24,7 @@
             -else
               %td.span1
                 %a.sb.heart.circle.no-border.no-shadow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "left"}
-
-  -if event.happened?
+  -elsif event.happened?
     .event-current
       .row
         .span6.event-image
@@ -103,3 +81,24 @@
             %td.event-date-price.span2
               %h2 #{event.date.strftime("%b %e")}, #{event.time.strftime("%l:%M %p")}
               %h2 #{event.seats_left} seats left at $#{"%.0f" % event.cost} / seat
+
+  -else !event.happened?
+    .event-current
+      .row
+        .span6.event-image
+          -if event.images.present?
+            =link_to (image_tag event.images.first.image), event_path(event)
+          -else
+            =link_to image_tag("Food 26.jpg"), event_path(event)
+      %a.row.event-info{:href => event_path(event)}
+        %table
+          %tr
+            %td.event-title-host.span4
+              %h1 #{event.title} 
+              -# get host name here
+              %h2 
+                ="Hosted by #{event.host.profile.biz_name}"
+            %td.event-date-price.span2
+              %h2 #{event.date.strftime("%b %e")}, #{event.time.strftime("%l:%M %p")}
+              %h2 #{event.seats_left} seats left at $#{"%.0f" % event.cost} / seat
+
