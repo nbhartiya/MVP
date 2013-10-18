@@ -66,7 +66,7 @@
                   ="#{@event.location.address1}, #{@event.location.city}, #{@event.location.state} #{@event.location.zipcode}"
                 %ul.nav.event-button-group
                   %li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "details"'} Recap
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "details"'} Details
                   %li
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "menu"'} Menu
                   %li
@@ -75,7 +75,7 @@
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "story"'} Story
                   %li
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "followers"'} Followers
-            .btn.btn-warning.join-waitlist-button{'ng-click' => 'waitlist=true', 'ng-hide' => 'waitlist', "data-toggle" => "tooltip", :title => "Add your name at the top of the invite list for the next #{@event.host.profile.biz_name} event. If a spot opens up at this one, we'll also let you know!", "data-placement" => "top"} Sign Up for the Next #{@event.host.profile.biz_name} Event
+            .btn.btn-warning.join-waitlist-button{'ng-click' => 'waitlist=true', 'ng-hide' => 'waitlist', "data-toggle" => "tooltip", :title => "Add your name at the top of the invite list for the next #{@event.host.profile.biz_name} event.", "data-placement" => "top"} Sign Up for the Next #{@event.host.profile.biz_name} Event
 
             .seats{'ng-show'=> 'waitlist'}
               -if user_signed_in? == false
@@ -103,7 +103,7 @@
                       %a.sb.heart.circle.no-border.no-shadow.follow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                   -if @event.host.profile.yelp_id.present?
                     %td
-                      %a.sb.yelp.circle.no-border.no-shadow{:href=>"#{get_yelp_link(@event.host.profile)}",:target=>"_blank"} 
+                      %a.sb.yelp.circle.no-border.no-shadow{:href=>"#{get_yelp_link(@event.host.profile)}",:target=>"_blank"}
                   %td
                     %a.sb.facebook.circle.no-border.no-shadow{:href => "#"}
                 %tr.host-stats
@@ -142,11 +142,10 @@
             %button.btn.btn-warning.standalone-button#enter-payment-info{'ng-click' => 'addtoWaitlist()', 'ng-disabled' => "error=0"} Sign Up for the Next #{@event.host.profile.biz_name} Event
           .event-purchase-confirmation.clearfix{'ng-show' => 'appear=="waitlist2"'}
             %h2 Thanks for signing up for the next event! We'll keep you posted when enough people sign up for the event to happen. To make sure this happens, tell all your friends to also sign up!
-
             %a.btn.btn-warning#ok-button{:href => "/events"} Check Out More Cool Events!
           .event-recap#details{'ng-show' => 'appear=="details"'}
             %button.close{"ng-click" => "appear=''", :type => "button"} close
-            %h1 Event Recap
+            %h1 Event Details
             %ul
               -if @event.post_event_images.present?
                 %li
@@ -170,6 +169,11 @@
                   %a{:href=>"#{@event.blog_link}",:target=>"_blank"} Blog Post
               -#%li
                 %a Event Case Study
+              %br
+              - if @event.description != nil
+                - n = @event.description.split("\n")
+                -for i in 0..n.length-1
+                  = simple_format n[i]
             -#if user_signed_in?
               -if current_user.attending?(@event.id)
                 %br

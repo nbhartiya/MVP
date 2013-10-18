@@ -13,11 +13,7 @@ class MandrillMailer < Devise::Mailer
         :subject=> "Simmr Password Reset",
         :from_name=> "Simmr Concierge",
         :from_email => "neeharika@simmr.co",
-        :text=>"Hello, #{record.first_name}!
-        Someone has requested a link to change your password. You can do this through the link below.
-          <a href=#{a}>Change my password </a>
-          If you didn't request this, please ignore this email.
-          Your password won't change until you access the link above and create a new one.",
+        :text=>"Hello, #{record.first_name}! Someone has requested a link to change your password. You can do this through this link: #{a}. If you didn't request this, please ignore this email. Your password won't change until you access the link above and create a new one.",
         # below are global merge vars. the name is the *|MERGE|* tag
         #{}"global_merge_vars"=>[],
         :to=>[

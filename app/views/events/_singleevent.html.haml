@@ -1,15 +1,28 @@
-.s-events{'ng-init' => "event.month = '#{event.date.month}'"}
-  -if event.upcoming?
+.s-events{'ng-init' => "event.month = '#{event.date.month}';currentEventID = '#{event.id}"}
+
+  -if event.approved? && event.happened? == false
+    .event-current
+      .row
+        .span6.event-image
+          -if event.images.present?
+            =link_to (image_tag event.images.first.image), event_path(event)
+          -else
+            =link_to image_tag("Food 26.jpg"), event_path(event)
+      %a.row.event-info{:href => event_path(event)}
+        %table
+          %tr
+            %td.event-title-host.span4
+              %h1 #{event.title} 
+              -# get host name here
+              %h2 
+                ="Hosted by #{event.host.profile.biz_name}"
+            %td.event-date-price.span2
+              %h2 #{event.date.strftime("%b %e")}, #{event.time.strftime("%l:%M %p")}
+              %h2 #{event.seats_left} seats left at $#{"%.0f" % event.cost} / seat
+
+  -if event.approved? && event.upcoming?
     .event-upcoming
       .row
-        #ribbon
-          .container
-            .base
-              %h4
-                {{eventMonth()}}
-                -#TODO change this to "nov/dec/etc"
-            .left_corner
-            .right_corner
         .span6.event-image
           -if event.images.present?
             =image_tag event.images.first.image
@@ -19,6 +32,7 @@
           %table
             %tr
               %td
+                %h4 {{eventMonth()}}
                 %p #{event.blurb}
       .row.event-info
         %table
@@ -32,52 +46,60 @@
               %td.span1
                 %a.sb.heart.circle.no-border.no-shadow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "left"}
 
-  -else
-    -if event.happened?
-      .event-happened
-        .row
-          .span6.event-image.subdued
-            -if event.images.present?
-              =link_to (image_tag event.images.first.image), event_path(event)
-            -else
-              =link_to image_tag("Food 26.jpg"), event_path(event)
-        %a.row.event-info.subdued{:href => event_path(event)}
+  -if event.happened?
+    .event-current
+      .row
+        .span6.event-image
+          -if event.images.present?
+            =link_to (image_tag event.images.first.image), event_path(event)
+          -else
+            =link_to image_tag("Food 26.jpg"), event_path(event)
+        .span6.event-blurb
           %table
             %tr
-              %td.event-title-host.span4
-                %h1 #{event.title} 
-                -# get host name here
-                %h2 
-                  ="Hosted by #{event.host.profile.biz_name}"
-              %td.event-date-price.span2
-                %h2 #{event.date.strftime("%b %e")}, #{event.time.strftime("%l:%M %p")}
-                %h2 #{event.seats_left} seats left at $#{"%.0f" % event.cost} / seat
-            -# TODO: How to make this go directly to that view with 'payment=1' (angular thingie)
-    -else
-      .event-current
-        .row
-          #ribbon.current
-            .container
-              .base
-                %h3
-                  live
-              .left_corner
-              .right_corner
-          .span6.event-image
-            -if event.images.present?
-              =link_to (image_tag event.images.first.image), event_path(event)
-            -else
-              =link_to image_tag("Food 26.jpg"), event_path(event)
-        %a.row.event-info{:href => event_path(event)}
-          %table
-            %tr
-              %td.event-title-host.span4
-                %h1 #{event.title} 
-                -# get host name here
-                %h2 
-                  ="Hosted by #{event.host.profile.biz_name}"
-              %td.event-date-price.span2
-                %h2 #{event.date.strftime("%b %e")}, #{event.time.strftime("%l:%M %p")}
-                %h2 #{event.seats_left} seats left at $#{"%.0f" % event.cost} / seat
-
-            -# TODO: How to make this go directly to that view with 'payment=1' (angular thingie)
+              %td
+                %p Wanna see this event happen again?
+                -#
+                  -#%p #{event.post_event_comments.first} -- for post event sound bytes
+                  %p{'ng-hide' => 'currentEventID == #{event.id} && appear == "waitlist2" || appear == "waitlist1" || waitlist'} Wanna see this event happen again?
+                  .btn.btn-warning.join-waitlist-button{'ng-click' => 'waitlist=true', 'ng-hide' => 'waitlist', "data-toggle" => "tooltip", :title => "Add your name at the top of the invite list for the next #{event.host.profile.biz_name} event.", "data-placement" => "top"} Sign Up for the Next #{event.host.profile.biz_name} Event
+                  %div{'ng-click' => 'waitlist=true', 'ng-hide' => 'waitlist'} or
+                  .seats{'ng-show'=> 'waitlist', 'ng-hide' => '{{eventIDVar()}} == "waitlist1" || {{eventIDVar()}} == "waitlist2"'}
+                    -if user_signed_in? == false
+                      %a.btn.btn-warning.standalone-button.foodiesignup{:"data-toggle" => "modal", :href=>"#sign_up_foodie"} Sign Up
+                      %a.btn.btn-warning.standalone-button.foodiesignup{:"data-toggle" =>"modal", :href=>"#sign_in"} Sign In
+                    -if user_signed_in?
+                      %select.number-of-seats{'ng-model' => 'num_guests'}
+                        %option{:value => ''} Number of Seats
+                        %option{:value => 1} 1 seat
+                        %option{:value => 2} 2 seats
+                        %option{:value => 3} 3 seats
+                        %option{:value => 4} 4 seats
+                        -# (@event.seats_left).times do |s|
+                          %option{:value => s+2} #{s+2} seats
+                    .btn.btn-warning.event-card-go-button{'ng-click' => 'showPayment(true)', 'ng-disabled' => "num_guests==nil || num_guests == 0",'ng-init'=>"currentUser=#{current_user.to_json}"} Go
+                  .event-card-guests.clearfix{'ng-show' => '{{eventIDVar()}}=="waitlist1"'}
+                    %h1 Who all wants to go to this event?
+                    %hr
+                    %form.guests{:name => "guest_registration", 'ng-repeat' => 'guest in guests'}
+                      -#Make first email say "YOUR EMAIL" not guest email, send confirmation email, have note on every event someone has registered for that they've registered and should have gotten an email.
+                      %input.guest-name{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.first_name', :type=>'text', :placeholder =>"Guest First Name", :required => "required", :name => "guest_first", 'ng-class' => "{error: guest_registration.guest_first.$invalid}"}
+                      %input.guest-name{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.last_name', :type=>'text', :placeholder =>"Guest Last Name", :required => "required", :name => "guest_last", 'ng-class' => "{error: guest_registration.guest_last.$invalid}"}
+                      %input.guest-email{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :required => "required", :name => "guest_email", 'ng-class' => "{error: guest_registration.guest_email.$invalid}"}
+                      .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.email'} Please enter a valid email
+                      .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.required || guest_registration.guest_first.$error.required || guest_registration.guest_last.$error.required'} All fields are required
+                    %button.btn.btn-warning.standalone-button#enter-payment-info{'ng-click' => 'addtoWaitlist()', 'ng-disabled' => "error=0"} Sign Up for the Next #{event.host.profile.biz_name} Event
+                  .event-card-purchase-confirmation.clearfix{'ng-show' => '{{eventIDVar()}}=="waitlist2"'}
+                    %h1 Thanks for signing up for the next event! We'll keep you posted when enough people sign up for the event to happen. To make sure this happens, tell all your friends to also sign up!
+                %a.btn.btn-warning.sign-up-early-button{:href => event_path(event)} Check Out What You Missed & Sign Up Early for the Next One!
+      %a.row.event-info{:href => event_path(event)}
+        %table
+          %tr
+            %td.event-title-host.span4
+              %h1 #{event.title} 
+              -# get host name here
+              %h2 
+                ="Hosted by #{event.host.profile.biz_name}"
+            %td.event-date-price.span2
+              %h2 #{event.date.strftime("%b %e")}, #{event.time.strftime("%l:%M %p")}
+              %h2 #{event.seats_left} seats left at $#{"%.0f" % event.cost} / seat
