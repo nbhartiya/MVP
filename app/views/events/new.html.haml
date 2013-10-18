@@ -6,7 +6,7 @@
     #event-carousel.carousel.slide.hidden-phone           
       .carousel-inner
         .active.item.default
-          %p This is a default cover photo. <br> Replace by uploading images!
+          %p{'ng-click'=> 'uploadImages()'} This is a default cover photo. <br> Replace by uploading images! <br> For multiple images, put all images<br> in one folder and select<br> multiple files
           =image_tag "Food 26.jpg"
     .container
       .event-registration.row

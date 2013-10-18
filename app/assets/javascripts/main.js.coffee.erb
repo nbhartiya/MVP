@@ -374,6 +374,9 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
 ]
 
 Simmr.controller "EventIndexCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
+  
+  $scope.eventMonth = ->
+    moment($scope.event.month).format("MMM")
 ]
 
 Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->

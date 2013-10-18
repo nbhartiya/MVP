@@ -152,9 +152,9 @@
                 %li
                   -@event.post_event_images.each_with_index do |i, index|
                     -if index == 0
-                      %a.fancybox{:href => i.image, :rel => "group", :title => i.title} Event Photo Gallery
+                      %a.fancybox.gallery{:href => i.image, :rel => "group", :title => i.title} Event Photo Gallery
                     -else
-                      %a.fancybox{:href => i.image, :rel => "group", :title => i.title}
+                      %a.fancybox.gallery{:href => i.image, :rel => "group", :title => i.title}
               -if @event.post_event_media.present?
                 %li
                   -for media in @event.post_event_media

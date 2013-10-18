@@ -355,6 +355,11 @@ input.error-true  {
 	font-size: 12px;
 }
 
+
+#twitter-share-button{
+			width: 65px !important;
+		}
+
 .footer{
 	.footer-content{
 		padding: 5px 0 0 0;
@@ -372,10 +377,10 @@ input.error-true  {
 			padding: 0 5px;
 		}
 		#twitter-share iframe{
-			width: 60px !important;
+			width: 65px !important;
 		}
      	#twitter-follow iframe{
-     		width: 120px !important;
+     		width: 125px !important;
      	}
      	#yelp-logo{
      		margin-top: -5px;

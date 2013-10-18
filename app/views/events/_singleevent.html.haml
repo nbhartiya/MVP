@@ -1,75 +1,83 @@
--if event.upcoming?
-  .event-upcoming
-    .row
-      #ribbon
-        .container
-          .base
-            %h4
-              coming soon
-          .left_corner
-          .right_corner
-      .span6.event-image
-        -if event.images.present?
-          =image_tag event.images.first.image
-        -else
-          =image_tag("Food 26.jpg")
-    .row.event-info
-      %table
-        %tr
-          %td.event-title-host.span5
-            %h1  #{event.blurb} 
-          %td.span1{'ng-controller' => 'HeartCtrl', 'ng-init' => "following = '#{is_user_there_and_following('Event', event.id)}'"}
-            -if user_signed_in?
-              %a.sb.heart.circle.no-border.no-shadow{'ng-click' => "follow('Event',#{event.id},#{user_signed_in?})", "data-toggle" => "tooltip", :title => "Click to stay updated on when this event becomes live!", "data-placement" => "left", 'ng-class' => '{true: "orange", false: "white"}[following]'}
-            -else
-              %a.sb.heart.circle.no-border.no-shadow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "left"}
-
--else
-  -if event.happened?
-    .event-happened
+.s-events{'ng-init' => "event.month = '#{event.date.month}'"}
+  -if event.upcoming?
+    .event-upcoming
       .row
-        .span6.event-image.subdued
-          -if event.images.present?
-            =link_to (image_tag event.images.first.image), event_path(event)
-          -else
-            =link_to image_tag("Food 26.jpg"), event_path(event)
-      %a.row.event-info.subdued{:href => event_path(event)}
-        %table
-          %tr
-            %td.event-title-host.span4
-              %h1 #{event.title} 
-              -# get host name here
-              %h2 
-                ="Hosted by #{event.host.profile.biz_name}"
-            %td.event-date-price.span2
-              %h2 #{event.date.strftime("%b %e")}, #{event.time.strftime("%l:%M %p")}
-              %h2 #{event.seats_left} seats left at $#{"%.0f" % event.cost} / seat
-          -# TODO: How to make this go directly to that view with 'payment=1' (angular thingie)
-  -else
-    .event-current
-      .row
-        #ribbon.current
+        #ribbon
           .container
             .base
-              %h3
-                live
+              %h4
+                {{eventMonth()}}
+                -#TODO change this to "nov/dec/etc"
             .left_corner
             .right_corner
         .span6.event-image
           -if event.images.present?
-            =link_to (image_tag event.images.first.image), event_path(event)
+            =image_tag event.images.first.image
           -else
-            =link_to image_tag("Food 26.jpg"), event_path(event)
-      %a.row.event-info{:href => event_path(event)}
+            =image_tag("Food 26.jpg")
+        .span6.event-blurb
+          %table
+            %tr
+              %td
+                %p #{event.blurb}
+      .row.event-info
         %table
           %tr
-            %td.event-title-host.span4
-              %h1 #{event.title} 
-              -# get host name here
-              %h2 
-                ="Hosted by #{event.host.profile.biz_name}"
-            %td.event-date-price.span2
-              %h2 #{event.date.strftime("%b %e")}, #{event.time.strftime("%l:%M %p")}
-              %h2 #{event.seats_left} seats left at $#{"%.0f" % event.cost} / seat
+            %td.event-title-host.span5
+              %h1  #{event.title} 
+            -if user_signed_in?
+              %td.span1{'ng-controller' => 'HeartCtrl', 'ng-init' => "following = '#{is_user_there_and_following('Event', event.id)}'"}          
+                %a.sb.heart.circle.no-border.no-shadow{'ng-click' => "follow('Event',#{event.id},#{user_signed_in?})", "data-toggle" => "tooltip", :title => "Click to stay updated on when this event becomes live!", "data-placement" => "left", 'ng-class' => '{true: "orange", false: "white"}[following]'}
+            -else
+              %td.span1
+                %a.sb.heart.circle.no-border.no-shadow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "left"}
 
-          -# TODO: How to make this go directly to that view with 'payment=1' (angular thingie)
+  -else
+    -if event.happened?
+      .event-happened
+        .row
+          .span6.event-image.subdued
+            -if event.images.present?
+              =link_to (image_tag event.images.first.image), event_path(event)
+            -else
+              =link_to image_tag("Food 26.jpg"), event_path(event)
+        %a.row.event-info.subdued{:href => event_path(event)}
+          %table
+            %tr
+              %td.event-title-host.span4
+                %h1 #{event.title} 
+                -# get host name here
+                %h2 
+                  ="Hosted by #{event.host.profile.biz_name}"
+              %td.event-date-price.span2
+                %h2 #{event.date.strftime("%b %e")}, #{event.time.strftime("%l:%M %p")}
+                %h2 #{event.seats_left} seats left at $#{"%.0f" % event.cost} / seat
+            -# TODO: How to make this go directly to that view with 'payment=1' (angular thingie)
+    -else
+      .event-current
+        .row
+          #ribbon.current
+            .container
+              .base
+                %h3
+                  live
+              .left_corner
+              .right_corner
+          .span6.event-image
+            -if event.images.present?
+              =link_to (image_tag event.images.first.image), event_path(event)
+            -else
+              =link_to image_tag("Food 26.jpg"), event_path(event)
+        %a.row.event-info{:href => event_path(event)}
+          %table
+            %tr
+              %td.event-title-host.span4
+                %h1 #{event.title} 
+                -# get host name here
+                %h2 
+                  ="Hosted by #{event.host.profile.biz_name}"
+              %td.event-date-price.span2
+                %h2 #{event.date.strftime("%b %e")}, #{event.time.strftime("%l:%M %p")}
+                %h2 #{event.seats_left} seats left at $#{"%.0f" % event.cost} / seat
+
+            -# TODO: How to make this go directly to that view with 'payment=1' (angular thingie)
