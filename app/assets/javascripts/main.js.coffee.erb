@@ -45,12 +45,12 @@ Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($sc
 
   $scope.addFollower = (followable_type_val, followable_id_val, user_signed_in, number_followers) ->
     if user_signed_in
-      console.log "Follow Information:*******"
-      console.log followable_type_val
-      console.log followable_id_val
-      console.log number_followers
-      console.log $(this)
-      console.log $scope.this
+      #console.log "Follow Information:*******"
+      #console.log followable_type_val
+      #console.log followable_id_val
+      #console.log number_followers
+      #console.log $(this)
+      #console.log $scope.this
       $scope.follows = number_followers
       $http({method:'GET',url:'/api/follows',params:{followable_id:followable_id_val,followable_type:followable_type_val}}).success (result) ->
         #Follow.get(params:[followable_id:followable_id_val,followable_type:followable_type_val]).then (result) ->
@@ -61,22 +61,22 @@ Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($sc
             $scope.join = false;
             $http({method:'DELETE',url:"/api/follows/#{result[0].id}"}).success (result) ->
               #destroy follow with confirmation
-              console.log "Destroyed Follow"
+              #console.log "Destroyed Follow"
               $scope.follows--
             
         else
           $scope.following = true;
           $http({method:'POST',url:'/api/follows',params:{followable_id:followable_id_val,followable_type:followable_type_val}}).success (result) ->
             $scope.join = true;
-            console.log "Created Follow"
+            #console.log "Created Follow"
             $scope.follows++
 
 
   $scope.follow = (followable_type_val, followable_id_val, user_signed_in)->
     if user_signed_in
-      console.log "Follow Information:*******"
-      console.log followable_type_val
-      console.log followable_id_val
+      #console.log "Follow Information:*******"
+      #console.log followable_type_val
+      #console.log followable_id_val
       $http({method:'GET',url:'/api/follows',params:{followable_id:followable_id_val,followable_type:followable_type_val}}).success (result) ->
         #Follow.get(params:[followable_id:followable_id_val,followable_type:followable_type_val]).then (result) ->
         if result.length > 0
@@ -86,13 +86,13 @@ Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($sc
             $http({method:'DELETE',url:"/api/follows/#{result[0].id}"}).success (result) ->
               #destroy follow with confirmation
               $scope.join = false
-              console.log "Destroyed Follow"
+              #console.log "Destroyed Follow"
             
         else
           $scope.following = true;
           $http({method:'POST',url:'/api/follows',params:{followable_id:followable_id_val,followable_type:followable_type_val}}).success (result) ->
             $scope.join = true
-            console.log "Created Follow"  
+            #console.log "Created Follow"  
 
 ]
 
@@ -190,7 +190,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
       url:'/api/referral_code_check'
       params:{referral_code:code, event_id:$scope.eventId}
     ).success (result) ->
-      console.log(result)
+      #console.log(result)
       $scope.discount_stuff=result
       if $scope.discount_stuff.applied
         $scope.referee_discount=$scope.discount_stuff.referral_code.referee_discount
@@ -224,7 +224,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
       guest.eventId=$scope.eventId
       guest.waiting=true
       new Guest(guest).create().then (data) =>
-        console.log data, "~~~~~~~~~~~"
+        #console.log data, "~~~~~~~~~~~"
     )
     $scope.appear = "waitlist2"
 
@@ -252,7 +252,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
     card.name=$scope.buyer.name
     Stripe.createToken card, (status, response) ->
       if status is 200
-        console.log response
+        #console.log response
         $scope.data.last4 = response.card.last4
         $scope.data.token = response.id
         $scope.data.guests = $scope.guests
@@ -262,7 +262,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
         $scope.data.discount_stuff=$scope.discount_stuff
 
         new Charge($scope.data).create().then (data) =>
-          console.log data, "~~~~~~~~~~"
+          #console.log data, "~~~~~~~~~~"
           if data.status == "Success"
             $scope.code=data.code
             $scope.appear = "payment3"
@@ -272,7 +272,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
             $scope.card.expMonth = $scope.card.exp_month
 
       else
-        console.log response
+        #console.log response
 ]
 
 Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
@@ -300,7 +300,7 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
       location: "S3"
       access: "public"
     , (InkBlobs) ->
-      console.log JSON.stringify(InkBlobs)
+      #console.log JSON.stringify(InkBlobs)
 
       $('.default').remove()
       $('.carousel-inner').empty()
@@ -309,13 +309,13 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
       i=0
       while i< Object.keys(InkBlobs).length
         $scope.image="#{InkBlobs[i].url}"
-        console.log $scope.image
+        #console.log $scope.image
         $scope.eventImageUrls.push($scope.image)
         if i == 0
-          console.log($scope.eventImageUrls[i])
+          #console.log($scope.eventImageUrls[i])
           $('.events .carousel-inner').append("<div class = 'item active'><img src = #{$scope.eventImageUrls[i]}></div>")
         else 
-          console.log('else')
+          #console.log('else')
           $('.events .carousel-inner').append("<div class = 'item'><img src = #{$scope.eventImageUrls[i]}></div>")
         i++
       $('#remove-image').css('display', 'inherit')
@@ -347,9 +347,9 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
       location: "S3"
       access: "public"
     , (InkBlob) ->
-      console.log JSON.stringify(InkBlob)
+      #console.log JSON.stringify(InkBlob)
       $scope.menuPdf="#{InkBlob[0].url}"
-      console.log $scope.menuPdf
+      #console.log $scope.menuPdf
       $('.events .menu').append("<a href =#{$scope.menuPdf}> Menu.pdf </a>")
       $('a#remove').css('display', 'inline')
 
@@ -360,14 +360,14 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
     $('a#remove').css('display', 'none')
 
   $scope.createEvent = (event) ->
-    console.log($scope.eventImageUrls)
-    console.log($scope.menuPdf)
+    #console.log($scope.eventImageUrls)
+    #console.log($scope.menuPdf)
     if $scope.eventImageUrls?
       event.eventImageUrls=$scope.eventImageUrls
     if $scope.menuPdf?
       event.menuPdf=$scope.menuPdf
     new Event(event).create().then (data) =>
-      console.log data, "~~~~~~~~~~"
+      #console.log data, "~~~~~~~~~~"
       $scope.created = true
       window.location.href = '/events/'+data.id
 ]
@@ -383,10 +383,10 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
 
 
   $scope.getEvent = (eventId) ->
-    console.log Event
+    #console.log Event
     Event.get(id: eventId).then (result) ->
       $scope.event = result
-      console.log $scope.event, "++++++"
+      #console.log $scope.event, "++++++"
 
   $scope.today = moment().format("YYYY-MM-DD")
   $scope.imageUrls = []
@@ -402,7 +402,7 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
     datetime.add('minutes', $scope.event.length).format('h:mm A')
 
   $scope.uploadMenu = ->
-    console.log($scope.eventMenu)
+    #console.log($scope.eventMenu)
     filepicker.pickAndStore
       extension: '.pdf'
       services: ["COMPUTER", "GMAIL"]
@@ -411,9 +411,9 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
       location: "S3"
       access: "public"
     , (InkBlob) ->
-      console.log JSON.stringify(InkBlob)
+      #console.log JSON.stringify(InkBlob)
       $scope.menuPdf="#{InkBlob[0].url}"
-      console.log $scope.menuPdf
+      #console.log $scope.menuPdf
       $('.events .menu').append("<a href =#{$scope.menuPdf}> Menu.pdf </a>")
       $('a#remove').css('display', 'inline')
 
@@ -424,7 +424,7 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
 
   $scope.uploadImages = ->
     #need to check if existing images are there to decide whether or not need an active class
-    console.log $scope.eventImages
+    #console.log $scope.eventImages
     filepicker.pickAndStore
       mimetypes: ["image/*", "text/plain"]
       services: ["COMPUTER", "FACEBOOK", "GMAIL", "INSTAGRAM"]
@@ -433,7 +433,7 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
       location: "S3"
       access: "public"
     , (InkBlobs) ->
-      console.log JSON.stringify(InkBlobs)
+      #console.log JSON.stringify(InkBlobs)
 
       $('.default').remove()
       $('.carousel-inner').empty()
@@ -442,13 +442,13 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
       i=0
       while i< Object.keys(InkBlobs).length
         $scope.image="#{InkBlobs[i].url}"
-        console.log $scope.image
+        #console.log $scope.image
         $scope.eventImageUrls.push($scope.image)
         if i == 0
-          console.log($scope.eventImageUrls[i])
+          #console.log($scope.eventImageUrls[i])
           $('.events .carousel-inner').append("<div class = 'item active'><img src = #{$scope.eventImageUrls[i]}></div>")
         else 
-          console.log('else')
+          #console.log('else')
           $('.events .carousel-inner').append("<div class = 'item'><img src = #{$scope.eventImageUrls[i]}></div>")
         i++
       $('#remove-image').css('display', 'inherit')
@@ -513,15 +513,15 @@ Simmr.controller "EventFeedbackCtrl", ["$scope",  "$routeParams", "$location", "
     else
       $scope.appear = "payment1"
     
-    console.log $scope.num_guests
-    console.log $scope.guests
+    #console.log $scope.num_guests
+    #console.log $scope.guests
 
   $scope.addtoWaitlist = ->
     angular.forEach($scope.guests, (guest) =>
       guest.eventId=$scope.eventId
       guest.waiting=true
       new Guest(guest).create().then (data) =>
-        console.log data, "~~~~~~~~~~~"
+        #console.log data, "~~~~~~~~~~~"
     )
     $scope.appear = "waitlist2"
 
@@ -567,7 +567,7 @@ Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$l
       location: "S3"
       access: "public"
     , (InkBlobs) ->
-      console.log JSON.stringify(InkBlobs)
+      #console.log JSON.stringify(InkBlobs)
 
       $('.default').remove()
       $('.carousel-inner').empty()
@@ -576,7 +576,7 @@ Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$l
       i=0
       while i< Object.keys(InkBlobs).length
         $scope.image="#{InkBlobs[i].url}"
-        console.log $scope.image
+        #console.log $scope.image
         $scope.campaignImageUrls.push($scope.image)
         if i == 0
           $('.campaigns .carousel-inner').append("<div class = 'item active'><img src = #{$scope.campaignImageUrls[i]}></div>")
@@ -603,16 +603,16 @@ Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$l
     if $scope.campaignImageUrls?
       campaign.campaignImageUrls=$scope.campaignImageUrls
     new Campaign(campaign).create().then (data) =>
-      console.log data, "~~~~~~~~~~"
+      #console.log data, "~~~~~~~~~~"
       $scope.campaign = 1
       $window.location.href='/campaigns/'
 ]
 
 Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "Campaign", ($scope, $routeParams, $location, Campaign) ->
   $scope.getCampaign = (campaignId) ->
-    console.log campaignId
+    #console.log campaignId
     Campaign.get(id: campaignId).then (result) ->
-      console.log result, "++++++++"
+      #console.log result, "++++++++"
       $scope.campaign = result
   $scope.editCampaign = (campaign) ->
     new Campaign(campaign).update().then (data) =>
@@ -631,7 +631,7 @@ Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "C
       location: "S3"
       access: "public"
     , (InkBlobs) ->
-      console.log JSON.stringify(InkBlobs)
+      #console.log JSON.stringify(InkBlobs)
 
       $('.default').remove()
       $('.carousel-inner').empty()
@@ -640,7 +640,7 @@ Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "C
       i=0
       while i< Object.keys(InkBlobs).length
         $scope.image="#{InkBlobs[i].url}"
-        console.log $scope.image
+        #console.log $scope.image
         $scope.campaignImageUrls.push($scope.image)
         if i == 0
           $('.campaigns .carousel-inner').append("<div class = 'item active'><img src = #{$scope.campaignImageUrls[i]}></div>")
