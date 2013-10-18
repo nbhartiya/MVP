@@ -33,7 +33,7 @@ class Api::ChargesController < ApplicationController
         applied=false
       end
     else
-      details="Sure you have the right code? Check with your friend to make sure you have the right one!"
+      details="Sure you have the right code? This one isn't valid. Check with your friend to make sure you have the right one!"
       note="incorrect"
       applied=false
     end
