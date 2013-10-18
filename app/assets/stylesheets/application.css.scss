@@ -26,6 +26,7 @@ $dark_gray: rgb(54, 54, 54);
 $trans_black_more: rgba(54, 54, 54, 0.7);
 $main_orange: rgb(255, 178, 35);
 
+
 html body {
 	font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;        
 }
@@ -249,15 +250,15 @@ input.error-true  {
 				color: rgb(150, 150, 150);
 			}
 			.tooltip-inner{
-				background: none;
-/*				border: 1px solid rgb(150, 150, 150);*/
-				color: rgb(130, 130, 130);
+				/*background: none;
+				border: 1px solid rgb(150, 150, 150);
+				color: rgb(130, 130, 130);*/
 			}
 			.tooltip-arrow{
-				border-right-color: white;
+				/*border-right-color: white;*/
 			}
 			a:hover{
-				color: rgb(130, 130, 130);
+				color: rgb(54, 54, 54);
 				background: none;
 			}
 			a:hover, a:visited, a:active, a:focus{
@@ -278,7 +279,7 @@ input.error-true  {
 						color: rgb(150, 150, 150);
 					}
 					a:hover{
-						color: rgb(130, 130, 130);
+						color: rgb(54, 54, 54);
 						background: none;
 					}
 					a:hover, a:visited, a:active, a:focus{
@@ -294,7 +295,7 @@ input.error-true  {
 								padding: 2px;
 							}
 							a:hover, a:active, a:focus{
-			 					color: rgb(130, 130, 130);
+			 					color: rgb(54, 54, 54);
 								background: none;
 							}
 						}
@@ -306,7 +307,7 @@ input.error-true  {
 				margin: 0 5px;
 			}
 			li a:hover, a:active{
-				color: rgb(130, 130, 130);
+				color: rgb(54, 54, 54);
 				background: none;
 				text-decoration: none;
 			}
@@ -332,6 +333,9 @@ input.error-true  {
 		.nav-right{
 			a, a:visited{
 				color: rgb(150, 150, 150);
+			}
+			a:hover{
+				color: rgb(54, 54, 54);
 			}
 			margin-right: -50px;
 			#sign-up-header-link{
@@ -372,6 +376,13 @@ input.error-true  {
 			float: left;
 			font-size: 12px;
 			padding: 0 15px;			
+		}
+		a.blog, a.blog:visited, a.blog:hover{
+			color: $main_orange;
+			font-weight: 700;
+		}
+		a.blog:hover{
+			text-decoration: underline;
 		}
 		li.social{
 			padding: 0 5px;
