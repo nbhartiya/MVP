@@ -207,7 +207,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
       currentGuy.email=homie.email
       currentGuy.userId=homie.id
       currentGuy.eventId=$scope.eventId
-      currentGuy.waiting=true
+      currentGuy.waiting=wait
       $scope.guests.push(currentGuy)
       i = 0
       
@@ -389,7 +389,7 @@ Simmr.controller "EventIndexCtrl", ["$scope",  "$routeParams", "$location", "Eve
       currentGuy.email=homie.email
       currentGuy.userId=homie.id
       currentGuy.eventId=$scope.eventId
-      currentGuy.waiting=true
+      currentGuy.waiting=wait
       $scope.guests.push(currentGuy)
       i = 0
       
@@ -538,7 +538,7 @@ Simmr.controller "EventFeedbackCtrl", ["$scope",  "$routeParams", "$location", "
       currentGuy.email=homie.email
       currentGuy.userId=homie.id
       currentGuy.eventId=$scope.eventId
-      currentGuy.waiting=true
+      currentGuy.waiting=wait
       $scope.guests.push(currentGuy)
       i = 0
       
