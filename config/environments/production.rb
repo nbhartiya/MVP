@@ -25,7 +25,7 @@ MVP::Application.configure do
   if ENV['STAGING'] == 'YES'
     config.action_mailer.default_url_options = { :host => 'mst-staging.herokuapp.com' }
   else
-    config.action_mailer.default_url_options = { :host => 'mainstreetmvp.herokuapp.com' }
+    config.action_mailer.default_url_options = { :host => 'simmr.co' }
   end
 
 
