@@ -97,7 +97,7 @@
                 %select.number-of-seats{'ng-model' => 'num_guests'}
                   %option{:value => ''} Number of Seats
                   %option{:value => 1} 1 seat
-                  -# (@event.seats_left).times do |s|
+                  -(@event.seats_left).times do |s|
                     %option{:value => s+2} #{s+2} seats
                 .btn.btn-warning.event-go-button{'ng-click' => 'showPayment();total()', 'ng-disabled' => "num_guests==nil || num_guests == 0"} Go
 
@@ -292,7 +292,7 @@
           .event-guests.clearfix{'ng-show' => 'appear=="payment1"'}
             %h1 Total: ${{total_val}}
             %hr
-            -# %h2 Who all are coming?
+            %h2 Who all are coming?
             %form.guests{:name => "guest_registration", 'ng-repeat' => 'guest in guests'}
               -#Make first email say "YOUR EMAIL" not guest email, send confirmation email, have note on every event someone has registered for that they've registered and should have gotten an email.
               %input.guest-name{'ng-disabled' => "true",'ng-model' => 'guest.first_name', :type=>'text', :placeholder =>"Guest First Name", :required => "required", :name => "guest_first", 'ng-class' => "{error: guest_registration.guest_first.$invalid}"}
@@ -300,6 +300,7 @@
               %input.guest-email{'ng-disabled' => "true",'ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :required => "required", :name => "guest_email", 'ng-class' => "{error: guest_registration.guest_email.$invalid}"}
               .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.email'} Please enter a valid email
               .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.required || guest_registration.guest_first.$error.required || guest_registration.guest_last.$error.required'} All fields are required
+            -#
               %a#promo-code{'ng-click' => 'promo = true', 'ng-show' => '!promo', 'ng-hide' => 'promo'} Have a referral code?
               %input.promo-code{:placeholder => "Referral Code", 'ng-show' => 'promo', 'ng-model'=>'referrer_code'}
               %button.btn.promo-code{'ng-show' => 'promo', 'ng-hide' => '!promo', 'ng-click'=>'checkReferralCode(referrer_code)'} Apply to Ticket Price

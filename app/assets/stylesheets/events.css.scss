@@ -23,7 +23,96 @@ a.sb.yelp.black{
 }
 
 // events index styling
+.sign-up-early-button{
+	padding: 10px;
+	font-size: 16px;
+}
+.event-card-guests, .event-card-purchase-confirmation{
+	padding: 10px;
+	h1{
+		font-size: 18px;
+		line-height: 1.5em;
+		font-weight: 100;
+		color: white;
+		margin: 0;
+	}
+	hr{
+		margin: 10px 0;
+		border-bottom: none;
+	}
+	p{
+		font-size: 14px;
+		padding: 2px 0;
+	}
+	input, input[type='string'], input[type='integer']{
+		display: inline-block;
+		height: 20px;
+		padding: 4px 6px;
+		margin-bottom: 10px;
+		font-size: 14px;
+		line-height: 20px;
+		color: #555555;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+		vertical-align: middle;
+		width: 100%;
+		min-height: 30px;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;    
+		box-sizing: border-box; 
+	}
+	.guest-name, .guest-email{
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;    
+		box-sizing: border-box;
+	}
+	.guest-name{
+		width: 24%;
+	}
+	.guest-email{
+		width: 47%;
+	}
+	.guests{
+		margin: 0;
+	}
+}
+
+.event-card-go-button{
+	width: 23%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;    
+	box-sizing: border-box; 
+	margin-top: -8.5px;
+}
 .events-index{
+	.events-index-navigation{
+		ul{
+		list-style: none;
+		width: 400px;
+		margin: 0 auto;
+		font-size: 18px;
+		}
+		li{
+			float: left;
+			margin: 0 0.5%;
+			border-right: 1px solid rgb(54, 54, 54);
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;    
+			box-sizing: border-box;
+			a{
+			color: rgb(54, 54, 54);
+			padding: 5px;
+			margin: 5px;
+			}
+			a:hover{
+				text-decoration: underline !important;
+			}
+		}
+		li:last-child{
+			border-right: none;
+		}
+	}
 	.events{ 
 		margin: 0;
 		.section-header{
@@ -31,6 +120,9 @@ a.sb.yelp.black{
 		}
 		.events-index-header{
 			margin: 0;
+		}
+		.events-index-section-title{
+			margin: -20px 0 0 0;
 		}
 		.events-index-content{
 			margin: 10px 0;
@@ -221,7 +313,7 @@ a.sb.yelp.black{
 		.event-upcoming:hover{
 			opacity: 1.0;
 		}
-		.event-upcoming .event-blurb{
+		.event-upcoming .event-blurb, .event-current .event-blurb{
 			position: absolute;
 			color: white;
 			background: rgba(0, 0, 0, 0.8);
@@ -236,8 +328,20 @@ a.sb.yelp.black{
 			td{
 				vertical-align: middle;
 			}
+			p{
+				font-size: 18px;
+				line-height: 1.5em;
+				font-weight: 100;
+				color: white;
+				margin: 0;
+			}
 		}
 		.event-upcoming:hover .event-blurb{
+			display: inherit;
+			opacity: 1;
+		}
+
+		.event-current:hover .event-blurb{
 			display: inherit;
 			opacity: 1;
 		}

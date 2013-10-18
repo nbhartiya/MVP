@@ -22,9 +22,7 @@
         .copy.row
           .span1
           .span10.copy-content
-            %h2 We want to make you <br> <h1> more than a customer </h1> 
-            %hr
-            %h3 by connecting you more meaningfully with your fave food businesses <br> and  helping you be the first to discover new ones
+            %h2 Experience new and favorite food businesses <br> <h1> as you have never before </h1> 
             .buttons
               %a.btn.how-it-works-button{:href => "#how-it-works", "data-target" => "#how-it-works-detail", :type => "button"} How Does It Work?
               %br
@@ -34,8 +32,9 @@
                 %p Already a member? &nbsp <a href = "#sign_in" class = "sign-in-link" data-toggle = "modal"> Sign In </a>
               -if user_signed_in?
                 %a.btn.btn-warning.view-events-button{:href => "/events"} Upcoming Events
-                %p
-                  = link_to "Sign Out", destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?", :class => 'sign-out-link'
+                -#
+                  %p
+                    = link_to "Sign Out", destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?", :class => 'sign-out-link'
             -#
               .logo
                 = link_to image_tag("logo_final_white.png", :border=>0), '/events', :class => "logo"
@@ -48,70 +47,77 @@
             .logo
               =image_tag "logo_final.png"
           %ul.user-type
-            %li{'ng-click' => 'type = "foodie"', 'ng-hide' => "type == 'business'"}
+            %li{'ng-click' => 'type = "foodie"'}
               %a{:href => '#how'}
                 .foodie
                   =image_tag "Foodie-Default-Profile-Image.png"
                 %p I'm a Foodie
 
-            %li{'ng-click' => 'type="business"', 'ng-hide' => 'type == "foodie"'}
+            %li{'ng-click' => 'type="business"'}
               %a{:href => '#how-chef'}
                 .chef
                   =image_tag "Chef-Default-Profile-Image.png"
                 %p I'm a Business
-            %a{'ng-click' => 'type = ""', 'ng-show' => "type == 'foodie' || type == 'business'"} I changed my mind!
               
     .section
       .container
         .row
           .span2
           .span8.how-it-works#how{'ng-show' => 'type == "foodie"'}
+            %h1.title For Foodies
             .row.how-it-works-event-infographic
               .span4.offset1.step.browse
                 .step-description
-                  %h1 1.browse
-                  %p We bring you food-related events and experiences that are different from the typical restaurant visit. 
+                  %h1 1. browse
+                  %p We bring you food-related events and experiences that are like nothing you've experienced before.
             .row.how-it-works-event-infographic
               .span4.offset3.step.register
                 .step-description
-                  %h1 2.register
+                  %h1 2. register
                   %p See something you like? Book it! But wait - the event doesn't happen until the minimum number of tickets is sold. Help make this happen by inviting your favorite people!
             .row.how-it-works-event-infographic
               .span4.offset1.step.tilt
                 .step-description
-                  %h1 3.attend
-                  %p Woohoo, party time! All you have to do is show up and enjoy.
+                  %h1 3. attend
+                  %p Woohoo, party time! All you have to do is show up and have a blast.
             .row.how-it-works-event-infographic
               .span4.offset2.step.return
                 .step-description
-                  %h1 4.return
+                  %h1 4. return
                   %p Did you have an awesome time? Businesses depend on loyal customers like you who return and help spread the word. We make sure your support is rewarded with further involvement and unique experiences. 
             .row.how-it-works-event-infographic
               .span4.offset3.step.get-started
                 .step-description
-                  %a{:href => "#sign_up_foodie", :"data-toggle" =>"modal"} get started
+                  -if user_signed_in?
+                    %a{:href => "/events", :"data-toggle" =>"modal"} get started
+                  -else
+                    %a{:href => "#sign_up_foodie", :"data-toggle" =>"modal"} get started
           
 
           .span8.how-it-works#how-chef{'ng-show' => 'type == "business"'}
+            %h1.title For Businesses
             .row.how-it-works-event-infographic
               .span4.step.attract
                 .step-description
-                  %h1 1.attract
-                  %p It's hard to find and attract high quality, long-term customers. Even today, most small businesses do so with discounts. We help you find quality customers who are interested in building deeper relationships. Without discounts.
+                  %h1 1. attract
+                  %p It's hard to find and attract high quality, long-term customers. Even today, most small businesses do so with discounts. We help you find quality customers who are interested in building a long-term relationship with you.
             .row.how-it-works-event-infographic
               .span4.offset4.step.engage
                 .step-description
-                  %h1 2.engage
+                  %h1 2. engage
                   %p We help you engage your customers to become more loyal by helping you track, engage, and reward them in unique, thoughtful ways. 
             .row.how-it-works-event-infographic
               .span4.offset1.step.club
                 .step-description
-                  %h1 3.start a club
+                  %h1 3. start a club
                   %p Your biggest fans want a deeper relationship and what better way than as a member in your club? You get regular, predictable cash flow and they get the chance to be more than a customer for a business they really care about!
             .row.how-it-works-event-infographic
               .span4.offset3.step.get-started
                 .step-description
-                  %a{:href => "#sign_up_business", :"data-toggle" =>"modal"} get started
+                  -if user_signed_in?
+                    %a{:href => "/events", :"data-toggle" =>"modal"} get started
+                  -else
+                    %a{:href => "#sign_up_business", :"data-toggle" =>"modal"} get started
 
   = render 'layouts/footer'
   = render 'shared/signup_modals'

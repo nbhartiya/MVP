@@ -372,10 +372,47 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
       window.location.href = '/events/'+data.id
 ]
 
-Simmr.controller "EventIndexCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
-  
+Simmr.controller "EventIndexCtrl", ["$scope",  "$routeParams", "$location", "Event", "Guest", ($scope, $routeParams, $location, Event, Guest) ->
+  $scope.eventIDVar = ->
+    $scope.eventID.toString()
+    
   $scope.eventMonth = ->
     moment($scope.event.month).format("MMM")
+
+  $scope.showPayment = (wait) ->
+    $scope.guests = []
+    if $scope.num_guests > 0
+      homie=$scope.currentUser
+      currentGuy={}
+      currentGuy.first_name=homie.first_name
+      currentGuy.last_name=homie.last_name
+      currentGuy.email=homie.email
+      currentGuy.userId=homie.id
+      currentGuy.eventId=$scope.eventId
+      currentGuy.waiting=true
+      $scope.guests.push(currentGuy)
+      i = 0
+      
+      while i < $scope.num_guests - 1
+        $scope.guests.push({})
+        i++
+    if wait
+      $scope.appear = "waitlist1"
+    else
+      $scope.appear = "payment1"
+    
+    console.log $scope.num_guests
+    console.log $scope.guests
+
+  $scope.addtoWaitlist = ->
+    angular.forEach($scope.guests, (guest) =>
+      guest.eventId=$scope.eventId
+      guest.waiting=true
+      new Guest(guest).create().then (data) =>
+        console.log data, "~~~~~~~~~~~"
+    )
+    $scope.appear = "waitlist2"
+
 ]
 
 Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
