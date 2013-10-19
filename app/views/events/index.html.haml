@@ -119,11 +119,11 @@
           .span8.events-index-content
             -if current_user
               -if current_user.chef == true
-                %p Ongoing events have happened once or more times and have been successes! Check out what's trending!
+                %p Ongoing events have happened one or more times and have been successes! Check out what's trending!
               - if current_user.chef == false
-                %p Ongoing events have happened once or more times and have been successes! Put your name down for the next one -- the more names on the list, the sooner the event will happen. Don't worry, we won't charge your card until you buy a ticket.
+                %p Ongoing events have happened one or more times and have been successes! Put your name down for the next one -- the more names on the list, the sooner the event will happen.
             -else
-              %p Ongoing events have happened once or more times and have been successes! Put your name down for the next one -- the more names on the list, the sooner the event will happen. Don't worry, we won't charge your card until you buy a ticket.
+              %p Ongoing events have happened one or more times and have been successes! Put your name down for the next one -- the more names on the list, the sooner the event will happen.
     .container
       -while potential_past_events.length > 1
         -event = potential_past_events.pop
