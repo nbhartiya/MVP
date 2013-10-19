@@ -72,11 +72,11 @@ class User < ActiveRecord::Base
   end
 
   def future_events
-    self.events_attended.where("date >= ?", Date.today())
+    self.events_attended.where("date >= ? AND approved = ?", Date.today(), true)
   end
 
   def past_events
-    self.events_attended.where("date < ?", Date.today())
+    self.events_attended.where("date < ? AND approved = ?", Date.today(), true)
   end
 
   def events_followed
