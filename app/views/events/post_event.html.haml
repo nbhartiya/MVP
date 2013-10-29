@@ -169,7 +169,7 @@
                   %a{:href=>"#{@event.blog_link}",:target=>"_blank"} Blog Post
               -#%li
                 %a Event Case Study
-              %br
+            %h3
               - if @event.description != nil
                 - n = @event.description.split("\n")
                 -for i in 0..n.length-1
