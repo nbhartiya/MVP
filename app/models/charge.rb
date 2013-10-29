@@ -13,7 +13,7 @@
 #
 
 class Charge < ActiveRecord::Base
-  attr_accessible :full_name, :last4, :location_id, :stripe_token, :user_id, :amount, :stripe_charge_id, :amount_refunded, :currency, :card_type, :status
+  attr_accessible :full_name, :last4, :location_id, :stripe_token, :user_id, :amount, :stripe_charge_id, :amount_refunded, :currency, :card_type, :status, :refund_due
 
   belongs_to :user
   has_many :guests, :dependent => :destroy

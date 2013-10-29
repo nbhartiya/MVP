@@ -4,6 +4,8 @@ class MandrillMailer < Devise::Mailer
 
   helper :application
 
+  default from: 'neeharika@simmr.co'
+
   def reset_password_instructions(record, token, opts={})
     @token = token
     a=edit_user_password_url(record, :reset_password_token=> @token)

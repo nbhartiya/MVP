@@ -46,6 +46,7 @@ class User < ActiveRecord::Base
   has_many :follows, :dependent => :destroy
   has_many :guests
   has_many :comments
+  has_many :referral_codes
   
   after_create :confirmation_email
   #before_create :chef_me
@@ -71,11 +72,11 @@ class User < ActiveRecord::Base
   end
 
   def future_events
-    self.events_attended.where("date >= ?", Date.today())
+    self.events_attended.where("date >= ? AND approved = ?", Date.today(), true)
   end
 
   def past_events
-    self.events_attended.where("date < ?", Date.today())
+    self.events_attended.where("date < ? AND approved = ?", Date.today(), true)
   end
 
   def events_followed

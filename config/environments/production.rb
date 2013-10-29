@@ -22,6 +22,14 @@ MVP::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  if ENV['STAGING'] == 'YES'
+    config.action_mailer.default_url_options = { :host => 'mst-staging.herokuapp.com' }
+  else
+    config.action_mailer.default_url_options = { :host => 'simmr.co' }
+  end
+
+
+
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
 
