@@ -132,10 +132,11 @@
                 %td
                   %a.addthisevent{:href => "", :title => "Add to Calendar"}
                     +
-                    %span._start
-                      =DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec).strftime('%m-%d-%Y %H:%M:%S')
-                    %span._end
-                      =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+@event.length.minutes).strftime('%m-%d-%Y %H:%M:%S')
+                    -if @event.date.present?
+                      %span._start
+                        =DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec).strftime('%m-%d-%Y %H:%M:%S')
+                      %span._end
+                        =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+@event.length.minutes).strftime('%m-%d-%Y %H:%M:%S')
                     %span._zonecode 6
                     %span._summary="Simmr Event: #{@event.title}"
                     %span._description=@event.blurb
