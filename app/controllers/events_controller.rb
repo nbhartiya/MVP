@@ -36,8 +36,12 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
 
-    if @event.upcoming == false && @event.happened?
-      redirect_to "/events/#{@event.id}/post_event"
+    if @event.upcoming == false
+      if @event.date.present? && @event.time.present?
+        if @event.happened?
+          redirect_to "/events/#{@event.id}/post_event"
+        end
+      end
     else
       respond_to do |format|
         format.html # show.html.erb
