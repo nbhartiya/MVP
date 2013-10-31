@@ -175,17 +175,26 @@
                         %td Price
                       -for event in @profile.user.events_followed
                         %tr 
-                          %td 
-                            %a{:href => event_path(event)} 
+                          -if event.upcoming?
+                            %td
                               =event.title
-                          %td
-                            =event.host.profile.biz_name
-                          %td
-                            =event.date.strftime("%b %e")
-                          %td 
-                            ="#{event.seats_left} seats left"
-                          %td
-                            ="$#{"%g" % event.cost}"
+                            %td
+                              TBD...
+                            %td
+                            %td
+                            %td
+                          -else
+                            %td 
+                              %a{:href => event_path(event)} 
+                                =event.title
+                            %td
+                              =event.host.profile.biz_name
+                            %td
+                              =event.date.strftime("%b %e")
+                            %td 
+                              ="#{event.seats_left} seats left"
+                            %td
+                              ="$#{"%g" % event.cost}"
                   -else
                     No events followed.
 
