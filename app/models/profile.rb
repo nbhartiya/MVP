@@ -33,11 +33,11 @@ class Profile < ActiveRecord::Base
   end
 
   def past_host_events
-  	self.host_events.where("date < ?", Date.today)
+  	self.host_events.where("date < ? AND approved = ?", Date.today, true)
   end
 
   def future_host_events
-  	self.host_events.where("date >= ?", Date.today)
+  	self.host_events.where("date >= ? AND approved = ?", Date.today, true)
   end
 
   def foodie_host_followers
