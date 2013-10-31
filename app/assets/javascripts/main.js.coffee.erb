@@ -248,11 +248,12 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
 
   $scope.data = {}
   $scope.cardErrorMessages={}
+  $scope.cardErrorMessages2=""
   $scope.submitCard = (card) ->
     card.name=$scope.buyer.name
     Stripe.createToken card, (status, response) ->
       if status is 200
-        console.log response
+        #console.log response
         $scope.data.last4 = response.card.last4
         $scope.data.token = response.id
         $scope.data.guests = $scope.guests
@@ -262,7 +263,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
         $scope.data.discount_stuff=$scope.discount_stuff
 
         new Charge($scope.data).create().then (data) =>
-          console.log data, "~~~~~~~~~~"
+          #console.log data, "~~~~~~~~~~"
           if data.status == "Success"
             $scope.code=data.code
             $scope.appear = "payment3"
@@ -272,7 +273,9 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
             $scope.card.expMonth = $scope.card.exp_month
 
       else
-        console.log response
+        $scope.cardErrorMessages2 = response.error.message
+        $scope.$apply()
+        #console.log($scope.cardErrorMessages2)
 ]
 
 Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
