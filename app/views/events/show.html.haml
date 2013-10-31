@@ -43,7 +43,6 @@
 
             .event-summary-logistics-container
               .event-summary-logistics
-
                 %h3
                   {{eventDate()}}, from {{eventTime()}} to {{eventEndTime()}}
                 %h3 
@@ -304,7 +303,7 @@
             -if @event.referer_discount.present?
               -if @event.referer_discount >0.0
                 %a#promo-code Did someone refer you? Put in their referral code!
-                %input.promo-code{:placeholder => "Referral Code", 'ng-model'=>'referrer_code'}
+                %input.promo-code{:placeholder => "Referral Code (Optional)", 'ng-model'=>'referrer_code'}
                 %button.btn.promo-code{'ng-click'=>'checkReferralCode(referrer_code)'} Submit
                 .help-block-white.promo-code{'ng-show' => 'discount_stuff.applied'} Applied!
                 .help-block-white.promo-code{'ng-show' => 'discount_stuff.applied!=nil && discount_stuff.note!="success"'} {{discount_stuff.details}}
