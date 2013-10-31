@@ -93,7 +93,9 @@ class Api::ChargesController < ApplicationController
         if params[:charge][:discount_stuff][:applied]
           @ref_code=ReferralCode.find(params[:charge][:discount_stuff][:referral_code][:id])
           @ticket.applied_code_id = @ref_code.id
-          @ticket.discount = @ref_code.referee_discount*100
+          if @ref_code.referee_discount.present?
+            @ticket.discount = @ref_code.referee_discount*100
+          end
           @ticket.discount_applied = true
           @ticket.save!
           #@ref_code.redeemed_num = @ref_code.redeemed_num + 1
