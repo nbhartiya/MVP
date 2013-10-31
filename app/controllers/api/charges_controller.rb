@@ -11,8 +11,8 @@ class Api::ChargesController < ApplicationController
     if referral_code
       if referral_code.is_valid
         if referral_code.event_id==event_id.to_i
-          referral_code.redeemed_num=referral_code.redeemed_num+1
-          referral_code.save!
+          #referral_code.redeemed_num=referral_code.redeemed_num+1
+          #referral_code.save!
           details="Discount applied!"
           note="success"
           applied=true
@@ -98,8 +98,8 @@ class Api::ChargesController < ApplicationController
           end
           @ticket.discount_applied = true
           @ticket.save!
-          #@ref_code.redeemed_num = @ref_code.redeemed_num + 1
-          #@ref_code.save!
+          @ref_code.redeemed_num = @ref_code.redeemed_num + 1
+          @ref_code.save!
           @old_ticket = @ref_code.ticket_generated_from
           @old_ticket.discount = @old_ticket.discount + @ref_code.referer_discount*100
           @old_ticket.discount_applied = false
