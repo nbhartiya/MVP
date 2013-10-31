@@ -43,7 +43,6 @@
 
             .event-summary-logistics-container
               .event-summary-logistics
-
                 %h3
                   {{eventDate()}}, from {{eventTime()}} to {{eventEndTime()}}
                 %h3 
@@ -86,7 +85,7 @@
             - if @event.seats_left > 0
               .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Book It
             -else
-              .btn.btn-warning.join-waitlist-button{'ng-click' => 'waitlist=true', 'ng-hide' => 'waitlist', "data-toggle" => "tooltip", :title => "Add your name at the top of the invite list for the next #{@event.host.profile.biz_name} event. Your credit card will not be charged until you purchase a ticket for the next event. If a spot opens up at this one, we'll also let you know!", "data-placement" => "top"} Sold Out! Sign Up for the Next #{@event.host.profile.biz_name} Event
+              .btn.btn-warning.join-waitlist-button{'ng-click' => 'waitlist=true', 'ng-hide' => 'waitlist', "data-toggle" => "tooltip", :title => "Add your name at the top of the invite list for the next #{@event.host.profile.biz_name} event. If a spot opens up at this one, we'll also let you know!", "data-placement" => "top"} Sold Out! Sign Up for the Next #{@event.host.profile.biz_name} Event
             -if user_signed_in?
               -if current_user.attending?(@event.id)
                 %a.btn.btn-warning.grab-seats-button{:href => "/events/#{@event.id}/post_event"} Leave Feedback!
@@ -134,10 +133,11 @@
                 %td
                   %a.addthisevent{:href => "", :title => "Add to Calendar"}
                     +
-                    %span._start
-                      =DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec).strftime('%m-%d-%Y %H:%M:%S')
-                    %span._end
-                      =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+@event.length.minutes).strftime('%m-%d-%Y %H:%M:%S')
+                    -if @event.date.present?
+                      %span._start
+                        =DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec).strftime('%m-%d-%Y %H:%M:%S')
+                      %span._end
+                        =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+@event.length.minutes).strftime('%m-%d-%Y %H:%M:%S')
                     %span._zonecode 6
                     %span._summary="Simmr Event: #{@event.title}"
                     %span._description=@event.blurb
@@ -228,7 +228,7 @@
                 .fb-comments{"data-colorscheme" => "dark", "data-href" => "#{request.url}", "data-num-posts" => "5", "data-width" => "500"}
           .event-host-story{'ng-show' => 'appear=="story"'}
             %button.close{"ng-click" => "appear=''", :type => "button"} close
-            %h1 #{@event.host.profile.biz_name}'s Story
+            %h1 #{@event.host.profile.biz_name} Story
             %h3
               -if @event.host.profile.story != nil
                 - n = @event.host.profile.story.split("\n")
@@ -304,13 +304,14 @@
               %input.guest-email{'ng-disabled' => "guest.userId>0",'ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :required => "required", :name => "guest_email", 'ng-class' => "{error: guest_registration.guest_email.$invalid}"}
               .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.email'} Please enter a valid email
               .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.required || guest_registration.guest_first.$error.required || guest_registration.guest_last.$error.required'} All fields are required
-            -#
-              %a#promo-code{'ng-click' => 'promo = true', 'ng-show' => '!promo', 'ng-hide' => 'promo'} Have a referral code?
-              %input.promo-code{:placeholder => "Referral Code", 'ng-show' => 'promo', 'ng-model'=>'referrer_code'}
-              %button.btn.promo-code{'ng-show' => 'promo', 'ng-hide' => '!promo', 'ng-click'=>'checkReferralCode(referrer_code)'} Apply to Ticket Price
-              .help-block-white.promo-code{'ng-show' => 'promo && discount_stuff.applied'} Applied!
-              .help-block-white.promo-code{'ng-show' => 'promo && discount_stuff.applied!=nil && discount_stuff.note!="success"'} {{discount_stuff.details}}
-              .help-block-white.promo-code{'ng-show' => 'promo && discount_stuff.applied==nil'} Want in on this? Get $5.00 off for every friend you bring to the event! We'll even automatically split it between you and your friend so you can share the love.
+            -if @event.referer_discount.present?
+              -if @event.referer_discount >0.0
+                %a#promo-code Did someone refer you? Put in their referral code!
+                %input.promo-code{:placeholder => "Referral Code (Optional)", 'ng-model'=>'referrer_code'}
+                %button.btn.promo-code{'ng-click'=>'checkReferralCode(referrer_code)'} Submit
+                .help-block-white.promo-code{'ng-show' => 'discount_stuff.applied'} Applied!
+                .help-block-white.promo-code{'ng-show' => 'discount_stuff.applied!=nil && discount_stuff.note!="success"'} {{discount_stuff.details}}
+                .help-block-white.promo-code{'ng-show' => 'discount_stuff.applied==nil'} You can get in on this too--Once you purchase your ticket, you'll get a referral code to share with friends. If you get 5 friends to go to this event with you, we'll make your ticket free! Your referral code will be automatically applied to guests you are paying for.
             %button.btn.btn-warning.standalone-button#enter-payment-info{'ng-click' => 'gotoPayment()', 'ng-disabled' => "error=0"} Next: Enter Payment Info
           .event-guests.clearfix{'ng-show' => 'appear=="waitlist1"'}
             %h1 Who all wants to go to #{@event.title}?
@@ -329,13 +330,16 @@
             %hr
             = render 'charges/stripe'
             %h2{'ng-hide' => 'cardErrorMessages[0]=="" || cardErrorMessages[0]==nil'} {{cardErrorMessages[0]}} Try again!
+            %h2{'ng-hide' => 'cardErrorMessages2=="" || cardErrorMessages2==nil'} {{cardErrorMessages2}} Try again!
 
             %button.btn.btn-warning#ticket-purchase{'ng-click' => 'submitPayment()', 'ng-disabled'=> 'stripe.$invalid'} Purchase
             %button.btn#previous-button{'ng-click' => 'appear="payment1"'} Previous
 
           .event-purchase-confirmation.clearfix{'ng-show' => 'appear=="payment3"'}
             %h2 Thank you for your reservation! You're confirmed and will receive an email confirmation in the next day.
-            -#%h2 Your referral code is {{code}}. Share it and get $5.00 off for every friend who buys a ticket to this event! We'll even automatically split it between you and your friend--your friend will get half of it on the spot and we'll send you all the discount you earn on the day of the event.
+            -if @event.referer_discount.present?
+              -if @event.referer_discount >0.0
+                %h2 Your referral code is {{code}}. Get five people to go to this event with you and your ticket is free! Just tell them to put in this code when they register!
 
             %a.btn.btn-warning#ok-button{:href => "/events"} Check Out More Cool Events!
           

@@ -11,17 +11,11 @@ class Api::ChargesController < ApplicationController
     if referral_code
       if referral_code.is_valid
         if referral_code.event_id==event_id.to_i
-          if current_user.events_attended.count==0
-            #referral_code.redeemed_num=referral_code.redeemed_num+1
-            #referral_code.save!
-            details="Discount applied!"
-            note="success"
-            applied=true
-          else
-            details="This referral code is only valid if this is your first Simmr event!"
-            note="not first event"
-            applied=false
-          end
+          #referral_code.redeemed_num=referral_code.redeemed_num+1
+          #referral_code.save!
+          details="Discount applied!"
+          note="success"
+          applied=true
         else
           details="The referral code you applied is only valid for the #{referral_code.event.title} event"
           note="wrong event"
@@ -99,7 +93,9 @@ class Api::ChargesController < ApplicationController
         if params[:charge][:discount_stuff][:applied]
           @ref_code=ReferralCode.find(params[:charge][:discount_stuff][:referral_code][:id])
           @ticket.applied_code_id = @ref_code.id
-          @ticket.discount = @ref_code.referee_discount*100
+          if @ref_code.referee_discount.present?
+            @ticket.discount = @ref_code.referee_discount*100
+          end
           @ticket.discount_applied = true
           @ticket.save!
           @ref_code.redeemed_num = @ref_code.redeemed_num + 1
@@ -112,9 +108,13 @@ class Api::ChargesController < ApplicationController
           @old_charge.refund_due = @old_charge.refund_due + @ref_code.referer_discount*100
           @old_charge.save!
         end
-        code,new_ref_code_id=ReferralCode.generate(@ticket)
-        @ticket.giveaway_code_id=new_ref_code_id
-        @ticket.save!
+      end
+      if Event.find(params[:charge][:event_id]).referer_discount.present?
+        if Event.find(params[:charge][:event_id]).referer_discount>0.0
+          code,new_ref_code_id=ReferralCode.generate(@ticket)
+          @ticket.giveaway_code_id=new_ref_code_id
+          @ticket.save!
+        end
       end
       location_info = {
         :address1 => params[:charge][:buyer][:billing_address],

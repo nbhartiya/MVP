@@ -269,7 +269,7 @@
               .fb-comments{"data-colorscheme" => "dark", "data-href" => "http://www.simmr.co/events/#{@event.id}", "data-num-posts" => "5", "data-width" => "500"}
           .event-host-story{'ng-show' => 'appear=="story"'}
             %button.close{"ng-click" => "appear=''", :type => "button"} close
-            %h1 #{@event.host.profile.biz_name}'s Story
+            %h1 #{@event.host.profile.biz_name} Story
             %h3
               - if @event.host.profile.story != nil
                 - n = @event.host.profile.story.split("\n")

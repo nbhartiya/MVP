@@ -43,6 +43,9 @@ class Api::EventsController < ApplicationController
     event_params.delete("host")
     event_params.delete("created_at")
     event_params.delete("updated_at")
+    event_params.delete("referee_discount")
+    event_params.delete("referer_discount")
+    event_params.delete("approved")
     @event.update_attributes(event_params)
     if @event.location.present?
       location_params.delete("created_at")
