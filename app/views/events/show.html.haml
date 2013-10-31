@@ -307,7 +307,7 @@
                 %button.btn.promo-code{'ng-click'=>'checkReferralCode(referrer_code)'} Submit
                 .help-block-white.promo-code{'ng-show' => 'discount_stuff.applied'} Applied!
                 .help-block-white.promo-code{'ng-show' => 'discount_stuff.applied!=nil && discount_stuff.note!="success"'} {{discount_stuff.details}}
-                .help-block-white.promo-code{'ng-show' => 'discount_stuff.applied==nil'} You can get in on this too--Once you purchase your ticket, you'll get a referral code to share with friends. If you get 5 friends to go to this event with you, we'll make your ticket free! Guests you bring count as well.
+                .help-block-white.promo-code{'ng-show' => 'discount_stuff.applied==nil'} You can get in on this too--Once you purchase your ticket, you'll get a referral code to share with friends. If you get 5 friends to go to this event with you, we'll make your ticket free! Your referral code will be automatically applied to guests you are paying for.
             %button.btn.btn-warning.standalone-button#enter-payment-info{'ng-click' => 'gotoPayment()', 'ng-disabled' => "error=0"} Next: Enter Payment Info
           .event-guests.clearfix{'ng-show' => 'appear=="waitlist1"'}
             %h1 Who all wants to go to #{@event.title}?
