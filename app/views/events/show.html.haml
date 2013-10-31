@@ -66,21 +66,22 @@
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "details"'} Details
                   %li
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "menu"'} Menu
-                  %li
-                    %button.btn.attendees{'data-toggle' => 'pill', 'ng-click' => 'appear = "chatter"'} Attendees & Chatter
+                  -#
+                    %li
+                      %button.btn.attendees{'data-toggle' => 'pill', 'ng-click' => 'appear = "chatter"'} Attendees & Chatter
                   %li
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "story"'} Story
                   %li
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "followers"'} Followers
-
-            %p 
-              =@event.seats_left
-              -if @event.seats_left == 1
-                seat left!
-              -else
-                seats left!
-            .progress.progress-warning
-              .bar{:style => "width: #{@event.percent_full}%"}
+            -#
+              %p 
+                =@event.seats_left
+                -if @event.seats_left == 1
+                  seat left!
+                -else
+                  seats left!
+              .progress.progress-warning
+                .bar{:style => "width: #{@event.percent_full}%"}
             - if @event.seats_left > 0
               .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Book It
             -else
@@ -189,40 +190,41 @@
               %iframe.menu{:src => "#{@event.menu_pdf}", :width => '510px', :height => '420px'}
             -else
               %h3 Coming Soon!
-          .event-attendees-and-chatter{'ng-show' => 'appear=="chatter"'}
-            %button.close{"ng-click" => "appear=''", :type => "button"} close
-            %h1 Attendees
-            .attendees
-              -if @event.guests_count > 0
-                %table.following-table
-                  -for guest in @event.guests_going
-                    %tr 
-                      %td
-                        -if guest.user.present?
-                          -if guest.user.profile.avatar.present?
-                            =link_to image_tag(guest.user.profile.avatar.image), "/profiles/#{guest.user.profile.id}"
+          -#
+            .event-attendees-and-chatter{'ng-show' => 'appear=="chatter"'}
+              %button.close{"ng-click" => "appear=''", :type => "button"} close
+              %h1 Attendees
+              .attendees
+                -if @event.guests_count > 0
+                  %table.following-table
+                    -for guest in @event.guests_going
+                      %tr 
+                        %td
+                          -if guest.user.present?
+                            -if guest.user.profile.avatar.present?
+                              =link_to image_tag(guest.user.profile.avatar.image), "/profiles/#{guest.user.profile.id}"
+                            -else
+                              =image_tag("Foodie-Default-Profile-Image.png")
                           -else
                             =image_tag("Foodie-Default-Profile-Image.png")
-                        -else
-                          =image_tag("Foodie-Default-Profile-Image.png")
-                      %td
-                        -if guest.user.present?
-                          %a{:href=>"/profiles/#{guest.user.profile.id}"}
-                            ="#{guest.first_name} #{guest.last_name}"
-                        -else
-                          %h3
-                            ="#{guest.first_name} #{guest.last_name}"
-                      -#%td Number of Followers
-                      %td
-                        -if guest.user.present?
-                          -if user_signed_in?
-                            %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{guest.user.profile.id},#{user_signed_in?})", 'ng-init' => "following = '#{is_user_there_and_following('Profile', guest.user.profile.id)}'", 'ng-class' => '{true: "orange", false: "white"}[following]'}
+                        %td
+                          -if guest.user.present?
+                            %a{:href=>"/profiles/#{guest.user.profile.id}"}
+                              ="#{guest.first_name} #{guest.last_name}"
                           -else
-                            %a.sb.heart.circle.no-border.no-shadow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
-              -else
-                %h3 There are currently no attendees. Be the first to grab a spot!
-            .row.comments
-              .fb-comments{"data-colorscheme" => "dark", "data-href" => "#{request.url}", "data-num-posts" => "5", "data-width" => "500"}
+                            %h3
+                              ="#{guest.first_name} #{guest.last_name}"
+                        -#%td Number of Followers
+                        %td
+                          -if guest.user.present?
+                            -if user_signed_in?
+                              %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{guest.user.profile.id},#{user_signed_in?})", 'ng-init' => "following = '#{is_user_there_and_following('Profile', guest.user.profile.id)}'", 'ng-class' => '{true: "orange", false: "white"}[following]'}
+                            -else
+                              %a.sb.heart.circle.no-border.no-shadow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
+                -else
+                  %h3 There are currently no attendees. Be the first to grab a spot!
+              .row.comments
+                .fb-comments{"data-colorscheme" => "dark", "data-href" => "#{request.url}", "data-num-posts" => "5", "data-width" => "500"}
           .event-host-story{'ng-show' => 'appear=="story"'}
             %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 #{@event.host.profile.biz_name}'s Story

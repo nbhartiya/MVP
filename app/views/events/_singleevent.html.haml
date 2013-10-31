@@ -80,7 +80,7 @@
                 ="Hosted by #{event.host.profile.biz_name}"
             %td.event-date-price.span2
               %h2 #{event.date.strftime("%b %e")}, #{event.time.strftime("%l:%M %p")}
-              %h2 #{event.seats_left} seats left at $#{"%.0f" % event.cost} / seat
+              %h2 $#{"%.0f" % event.cost} / seat
 
   -else !event.happened?
     .event-current
@@ -100,5 +100,5 @@
                 ="Hosted by #{event.host.profile.biz_name}"
             %td.event-date-price.span2
               %h2 #{event.date.strftime("%b %e")}, #{event.time.strftime("%l:%M %p")}
-              %h2 #{event.seats_left} seats left at $#{"%.0f" % event.cost} / seat
+              %h2 $#{"%.0f" % event.cost} / seat
 
