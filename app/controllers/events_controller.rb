@@ -35,17 +35,31 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
-
-    if @event.upcoming == false
-      if @event.date.present? && @event.time.present?
-        if @event.happened?
-          redirect_to "/events/#{@event.id}/post_event"
+    if @event.approved == false
+      if user_signed_in?
+        if @event.host.id==current_user.id
+          respond_to do |format|
+            format.html
+            format.json { render json: @event }
+          end
+        else
+          render :file => 'public/noaccess.html'
         end
+      else
+        render :file => 'public/noaccess.html'
       end
     else
-      respond_to do |format|
-        format.html # show.html.erb
-        format.json { render json: @event }
+      if @event.upcoming == false
+        if @event.date.present? && @event.time.present?
+          if @event.happened?
+            redirect_to "/events/#{@event.id}/post_event"
+          else
+            respond_to do |format|
+              format.html # show.html.erb
+              format.json { render json: @event }
+            end
+          end
+        end
       end
     end
   end
