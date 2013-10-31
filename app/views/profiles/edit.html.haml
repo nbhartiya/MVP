@@ -85,7 +85,8 @@
                         %td When
                         %td Where
                         -#%td Friends
-                        %td Status
+                        -#
+                          %td Status
                         %td Price
                       -for event in @profile.user.future_events
                         %tr.current-user-rank
@@ -125,7 +126,6 @@
                             =event.date.strftime("%b %e")
                           %td
                             %a{:href=>"/events/#{event.id}/post_event"}
-                              thoughts?
                           -#%td
                   -else
                     %h3 No past events.
@@ -136,7 +136,7 @@
                         %td Name
                         %td Host
                         %td When
-                        %td Status
+                        -#%td Status
                         -#%td Friends Going
                         %td Price
                       -for event in @profile.user.events_followed
