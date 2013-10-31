@@ -69,11 +69,11 @@
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "details"'} Details
                   %li
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "menu"'} Menu
-                  %li
+                  -#%li
                     %button.btn.attendees{'data-toggle' => 'pill', 'ng-click' => 'appear = "chatter"'} Attendees & Chatter
                   %li
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "story"'} Story
-                  %li
+                  -#%li
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "followers"'} Followers
             .btn.btn-warning.join-waitlist-button{'ng-click' => 'waitlist=true', 'ng-hide' => 'waitlist', "data-toggle" => "tooltip", :title => "Add your name at the top of the invite list for the next #{@event.host.profile.biz_name} event.", "data-placement" => "top"} Sign Up for the Next #{@event.host.profile.biz_name} Event
 

@@ -65,21 +65,23 @@
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "details"'} Details
                   %li
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "menu"'} Menu
-                  %li
-                    %button.btn.attendees{'data-toggle' => 'pill', 'ng-click' => 'appear = "chatter"'} Attendees & Chatter
+                  -#
+                    %li
+                      %button.btn.attendees{'data-toggle' => 'pill', 'ng-click' => 'appear = "chatter"'} Attendees & Chatter
                   %li
                     %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "story"'} Story
-                  %li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "followers"'} Followers
-
-            %p 
-              =@event.seats_left
-              -if @event.seats_left == 1
-                seat left!
-              -else
-                seats left!
-            .progress.progress-warning
-              .bar{:style => "width: #{@event.percent_full}%"}
+                  -#
+                    %li
+                      %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "followers"'} Followers
+            -#
+              %p 
+                =@event.seats_left
+                -if @event.seats_left == 1
+                  seat left!
+                -else
+                  seats left!
+              .progress.progress-warning
+                .bar{:style => "width: #{@event.percent_full}%"}
             - if @event.seats_left > 0
               .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Book It
             -else
@@ -189,40 +191,41 @@
               %iframe.menu{:src => "#{@event.menu_pdf}", :width => '510px', :height => '420px'}
             -else
               %h3 Coming Soon!
-          .event-attendees-and-chatter{'ng-show' => 'appear=="chatter"'}
-            %button.close{"ng-click" => "appear=''", :type => "button"} close
-            %h1 Attendees
-            .attendees
-              -if @event.guests_count > 0
-                %table.following-table
-                  -for guest in @event.guests_going
-                    %tr 
-                      %td
-                        -if guest.user.present?
-                          -if guest.user.profile.avatar.present?
-                            =link_to image_tag(guest.user.profile.avatar.image), "/profiles/#{guest.user.profile.id}"
+          -#
+            .event-attendees-and-chatter{'ng-show' => 'appear=="chatter"'}
+              %button.close{"ng-click" => "appear=''", :type => "button"} close
+              %h1 Attendees
+              .attendees
+                -if @event.guests_count > 0
+                  %table.following-table
+                    -for guest in @event.guests_going
+                      %tr 
+                        %td
+                          -if guest.user.present?
+                            -if guest.user.profile.avatar.present?
+                              =link_to image_tag(guest.user.profile.avatar.image), "/profiles/#{guest.user.profile.id}"
+                            -else
+                              =image_tag("Foodie-Default-Profile-Image.png")
                           -else
                             =image_tag("Foodie-Default-Profile-Image.png")
-                        -else
-                          =image_tag("Foodie-Default-Profile-Image.png")
-                      %td
-                        -if guest.user.present?
-                          %a{:href=>"/profiles/#{guest.user.profile.id}"}
-                            ="#{guest.first_name} #{guest.last_name}"
-                        -else
-                          %h3
-                            ="#{guest.first_name} #{guest.last_name}"
-                      -#%td Number of Followers
-                      %td
-                        -if guest.user.present?
-                          -if user_signed_in?
-                            %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{guest.user.profile.id},#{user_signed_in?})", 'ng-init' => "following = '#{is_user_there_and_following('Profile', guest.user.profile.id)}'", 'ng-class' => '{true: "orange", false: "white"}[following]'}
+                        %td
+                          -if guest.user.present?
+                            %a{:href=>"/profiles/#{guest.user.profile.id}"}
+                              ="#{guest.first_name} #{guest.last_name}"
                           -else
-                            %a.sb.heart.circle.no-border.no-shadow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
-              -else
-                %h3 There are currently no attendees. Be the first to grab a spot!
-            .row.comments
-              .fb-comments{"data-colorscheme" => "dark", "data-href" => "#{request.url}", "data-num-posts" => "5", "data-width" => "500"}
+                            %h3
+                              ="#{guest.first_name} #{guest.last_name}"
+                        -#%td Number of Followers
+                        %td
+                          -if guest.user.present?
+                            -if user_signed_in?
+                              %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{guest.user.profile.id},#{user_signed_in?})", 'ng-init' => "following = '#{is_user_there_and_following('Profile', guest.user.profile.id)}'", 'ng-class' => '{true: "orange", false: "white"}[following]'}
+                            -else
+                              %a.sb.heart.circle.no-border.no-shadow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
+                -else
+                  %h3 There are currently no attendees. Be the first to grab a spot!
+              .row.comments
+                .fb-comments{"data-colorscheme" => "dark", "data-href" => "#{request.url}", "data-num-posts" => "5", "data-width" => "500"}
           .event-host-story{'ng-show' => 'appear=="story"'}
             %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 #{@event.host.profile.biz_name} Story
@@ -234,60 +237,61 @@
               -if current_user
                 -if (current_user.id == @event.host_id) && @event.host.profile.story == nil
                   ="Hey #{@event.host.profile.biz_name}, looks like you didn't add a 'story' in your profile. Be sure to add a story by clicking on 'Dashboard' above!"
-          .host-followers{'ng-show' => 'appear == "followers"'}
-            %button.close{"ng-click" => "appear=''", :type => "button"} close
-            %h1 Followers
-            %ul.nav.nav-tabs
-              %li.active
-                %a{"data-toggle" => "tab", :href => "#foodie-following"} Foodies
-              %li
-                %a{"data-toggle" => "tab", :href => "#business-following"} Businesses
-            #myTabContent.tab-content
-              #foodie-following.tab-pane.fade.active.in
-                -if @event.follows.count > 0
-                  %table.following-table
-                    -for follow in @event.follows
-                      -if follow.user.chef == false
-                        %tr 
-                          %td
-                            -if follow.user.profile.avatar.present?
-                              =link_to image_tag(follow.user.profile.avatar.image), "#"
-                            -else
-                              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
-                          %td
-                            %a{:href=>"/profiles/#{follow.user.profile.id}"}
-                              ="#{follow.user.first_name} #{follow.user.last_name}"
-                          -#%td Number of Followers..may want to add later
-                          %td
-                            -if user_signed_in?
-                              %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})", 'ng-init' => "following = '#{is_user_there_and_following('Profile', follow.user.profile.id)}'", 'ng-class' => '{true: "orange", false: "white"}[following]'}
-                            -else
-                              %a.sb.heart.circle.no-border.no-shadow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
+          -#
+            .host-followers{'ng-show' => 'appear == "followers"'}
+              %button.close{"ng-click" => "appear=''", :type => "button"} close
+              %h1 Followers
+              %ul.nav.nav-tabs
+                %li.active
+                  %a{"data-toggle" => "tab", :href => "#foodie-following"} Foodies
+                %li
+                  %a{"data-toggle" => "tab", :href => "#business-following"} Businesses
+              #myTabContent.tab-content
+                #foodie-following.tab-pane.fade.active.in
+                  -if @event.follows.count > 0
+                    %table.following-table
+                      -for follow in @event.follows
+                        -if follow.user.chef == false
+                          %tr 
+                            %td
+                              -if follow.user.profile.avatar.present?
+                                =link_to image_tag(follow.user.profile.avatar.image), "#"
+                              -else
+                                =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                            %td
+                              %a{:href=>"/profiles/#{follow.user.profile.id}"}
+                                ="#{follow.user.first_name} #{follow.user.last_name}"
+                            -#%td Number of Followers..may want to add later
+                            %td
+                              -if user_signed_in?
+                                %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})", 'ng-init' => "following = '#{is_user_there_and_following('Profile', follow.user.profile.id)}'", 'ng-class' => '{true: "orange", false: "white"}[following]'}
+                              -else
+                                %a.sb.heart.circle.no-border.no-shadow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
 
-                -else
-                  %h3 No current followers. Click the heart to stay updated about this event!
-              #business-following.tab-pane.fade
-                -if @event.follows.count > 0
-                  %table.following-table
-                    -for follow in @event.follows
-                      -if follow.user.chef == true
-                        %tr 
-                          %td
-                            -if follow.user.profile.avatar.present?
-                              =image_tag(follow.user.profile.avatar.image)
-                            -else
-                              =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
-                          %td
-                            %a{:href=>"/profiles/#{follow.user.profile.id}"}
-                              ="#{follow.user.profile.biz_name}"
-                          -#%td Number of Followers..may want to add later
-                          %td
-                            -if user_signed_in?
-                              %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})", 'ng-init' => "following = '#{is_user_there_and_following('Profile', follow.user.profile.id)}'", 'ng-class' => '{true: "orange", false: "white"}[following]'}
-                            -else
-                              %a.sb.heart.circle.no-border.no-shadow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
-                -else
-                  %h3 No current followers. Click the heart to stay updated about this event!
+                  -else
+                    %h3 No current followers. Click the heart to stay updated about this event!
+                #business-following.tab-pane.fade
+                  -if @event.follows.count > 0
+                    %table.following-table
+                      -for follow in @event.follows
+                        -if follow.user.chef == true
+                          %tr 
+                            %td
+                              -if follow.user.profile.avatar.present?
+                                =image_tag(follow.user.profile.avatar.image)
+                              -else
+                                =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                            %td
+                              %a{:href=>"/profiles/#{follow.user.profile.id}"}
+                                ="#{follow.user.profile.biz_name}"
+                            -#%td Number of Followers..may want to add later
+                            %td
+                              -if user_signed_in?
+                                %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})", 'ng-init' => "following = '#{is_user_there_and_following('Profile', follow.user.profile.id)}'", 'ng-class' => '{true: "orange", false: "white"}[following]'}
+                              -else
+                                %a.sb.heart.circle.no-border.no-shadow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
+                  -else
+                    %h3 No current followers. Click the heart to stay updated about this event!
 
           .event-guests.clearfix{'ng-show' => 'appear=="payment1"'}
             %h1 Total: ${{total_val}}

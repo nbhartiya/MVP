@@ -85,7 +85,8 @@
                         %td When
                         %td Where
                         -#%td Friends
-                        %td Status
+                        -#
+                          %td Status
                         %td Price
                       -for event in @profile.user.future_events
                         %tr.current-user-rank
@@ -99,8 +100,8 @@
                           %td
                             ="#{event.location.address1}, #{event.location.neighborhood}"
                           -#%td
-                          %td 
-                            ="#{event.seats_left} seats left"
+                            %td 
+                              ="#{event.seats_left} seats left"
                           %td 
                             ="$#{"%g" % event.cost}"
                   -else
@@ -125,7 +126,6 @@
                             =event.date.strftime("%b %e")
                           %td
                             %a{:href=>"/events/#{event.id}/post_event"}
-                              thoughts?
                           -#%td
                   -else
                     %h3 No past events.
@@ -136,7 +136,8 @@
                         %td Name
                         %td Host
                         %td When
-                        %td Status
+                        -#%td Status
+                        -#%td Friends Going
                         %td Price
                       -for event in @profile.user.events_followed
                         %tr 
@@ -147,7 +148,6 @@
                               TBD...
                             %td
                             %td
-                            %td
                           -else
                             %td 
                               %a{:href => event_path(event)} 
@@ -156,7 +156,7 @@
                               =event.host.profile.biz_name
                             %td
                               =event.date.strftime("%b %e")
-                            %td 
+                            -#%td 
                               ="#{event.seats_left} seats left"
                             %td
                               ="$#{"%g" % event.cost}"
