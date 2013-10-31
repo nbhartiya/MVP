@@ -37,7 +37,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     if @event.approved == false
       if user_signed_in?
-        if @event.host.id==current_user.id
+        if @event.host.id==current_user.id || current_user.id==1 || current_user.id==13
           respond_to do |format|
             format.html
             format.json { render json: @event }
