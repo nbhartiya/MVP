@@ -2,7 +2,7 @@
 
 .events-index{'ng-controller' => 'EventIndexCtrl'}
   -all_events = @events
-  -upcoming_events = @events.where(:upcoming=>true).dup
+  -upcoming_events = @events.where(:upcoming=>true)
   -non_upcoming_events=@events.where(:upcoming=>false)
   .events
     .container
