@@ -1,6 +1,6 @@
 // colors 
 
-$main_orange: rgb(255, 178, 35);
+$main_orange: #EB4D18;
 
 a.sb.yelp {
 	background-image: url(/assets/white_yelp2.png);
@@ -820,7 +820,7 @@ a.sb.yelp.black{
 			}
 			.grab-seats-button, .join-waitlist-button{
 				width: 100%;
-				padding: 7px 0;
+				padding: 7px;
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box; 
