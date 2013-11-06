@@ -1,5 +1,17 @@
-window.WAH ||= {}
-WAH.controllers ||= {}
+window.ANALYTICS ||= {}
+ANALYTICS.controllers ||= {}
+
+analytics.identify "019mr8mf4r",
+  name: "Achilles"
+  email: "achilles@segment.io"
+  subscriptionPlan: "Premium"
+  friendCount: 29
+
+ANALYTICS.trackShit = (desc, price, data) ->
+  analytics.track(desc,
+    price: price
+    data: data
+  )
 
 Simmr.factory "Follow", ["railsResourceFactory", (railsResourceFactory) ->
   railsResourceFactory
@@ -267,6 +279,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
           if data.status == "Success"
             $scope.code=data.code
             $scope.appear = "payment3"
+            ANALYTICS.trackShit('successful_purchase',$scope.data.amount,data)
           if data.status == "Failure"
             $scope.cardErrorMessages=data.messages
             $scope.card.expYear = $scope.card.exp_year

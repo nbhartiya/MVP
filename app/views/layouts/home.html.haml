@@ -2,33 +2,21 @@
 %html{'ng-app' => 'Simmr'}
   %head
     %title simmr
-    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %link{:href => "http://thescenicroute0.files.wordpress.com/2013/03/favicon2.png", :rel => "icon", :type => "image/png"}/
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "https://js.stripe.com/v1/"
     = javascript_tag "Stripe.publishableKey = '#{STRIPE_PUBLISHABLE_KEY}';"
     = filepicker_js_include_tag
+    = javascript_include_tag "application"
     = csrf_meta_tags
-    = render 'layouts/google_analytics'
     %link{:href => "http://fonts.googleapis.com/css?family=Merriweather+Sans|Noto+Sans|Open+Sans|Satisfy", :rel => "stylesheet", :type => "text/css"}
   %body
     .main
       = yield
-      #fb-root
-      :javascript
-        (function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=141737092659629";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-
-    = javascript_include_tag "application"
-
--#
-  -if alert
-    .alert
-      %p.alert= alert
-  -elsif notice
-    .alert
-      %p.notice= notice
+   
+-if alert
+  .alert
+    %p.alert= alert
+-elsif notice
+  .alert
+    %p.notice= notice
