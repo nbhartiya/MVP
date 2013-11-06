@@ -367,7 +367,7 @@
                 %h3{'ng-hide' => 'profile.website=="" || profile.website==nil'}
                   %a{:href=>'{{profile.website}}'}
                     {{profile.website}}
-                %ul.nav.profile-button-group-chef
+                %ul.nav.profile-button-group-chef-edit
                   %li
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "news"'} News
                   %li
@@ -379,7 +379,7 @@
                   %li
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "following"'} Following
           .span1.edit-button
-            %button.btn.btn-inverse{'ng-click' => 'appear="edit"'} Edit
+            %button.btn.btn-inverse{'ng-click' => 'appear="edit"', 'ng-hide' => 'appear == "edit"'} Edit
           .span6
             .user-news{'ng-show' => 'appear == "news"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close

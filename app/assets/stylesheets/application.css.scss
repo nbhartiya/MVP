@@ -88,7 +88,7 @@ a:active{
 }
 
 .btn-warning{
-	background: $main_orange;
+	background: $main_orange !important;
 }
 
 .btn-warning:hover{
@@ -395,6 +395,12 @@ input.error-true  {
 		}
 		#fb-like iframe{
 			width: 85px !important;
+		}
+		#fb-share-button iframe{
+			width: 85px !important;
+		}
+		#fb-share-button{
+			margin-top: -3px;
 		}
 		#twitter-share iframe{
 			width: 60px !important;
