@@ -47,18 +47,27 @@
                   {{eventDate()}}, from {{eventTime()}} to {{eventEndTime()}}
                 %h3 
                   =@event.location.neighborhood
-                %a{:href => "{{mapUrl()}}",:target=>"_blank"} 
+                %a.event-location{:href => "{{mapUrl()}}",:target=>"_blank"} 
                   ="#{@event.location.address1}, #{@event.location.city}, #{@event.location.state} #{@event.location.zipcode}"
                 %table.accommodations
                   %tr
                     -if @event.vegetarian
                       %td
                         Vegetarian-friendly
+                    -else
+                      %td#default-text
+                        Vegetarian-friendly
                     - if @event.vegan
                       %td
                         Vegan-friendly
+                    -else
+                      %td#default-text
+                        Vegan-friendly
                     - if @event.gluten_free
                       %td
+                        Gluten Free-friendly
+                    -else
+                      %td#default-text
                         Gluten Free-friendly
                 %ul.nav.event-button-group
                   %li
