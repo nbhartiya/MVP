@@ -153,7 +153,12 @@ $main_orange: #EB4D18;
 				width: 32%;
 			}
 		}
-		.profile-button-group, .profile-button-group-chef, .profile-button-group-chef-edit{
+		.profile-button-group-edit{
+			li{
+				width: 24%;
+			}
+		}
+		.profile-button-group, .profile-button-group-chef, .profile-button-group-chef-edit, .profile-button-group-edit{
 			margin: 20px auto 10px auto;
 			display: table;
 			width: 100%;

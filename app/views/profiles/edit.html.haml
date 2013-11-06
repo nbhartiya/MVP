@@ -54,7 +54,7 @@
                   {{profile.location.neighborhood}}
                 %h3#default-text{'ng-show'=>'profile.location.city=="" || profile.location.city==nil || profile.location.state=="" || profile.location.state==nil || profile.location.zipcode=="" || profile.location.zipcode==nil'} Your City, State and Zipcode       
                 %h3{'ng-hide' => 'profile.location.zipcode=="" || profile.location.zipcode==nil'} {{profile.location.city + ','}} {{profile.location.state}} {{profile.location.zipcode}}
-                %ul.nav.profile-button-group
+                %ul.nav.profile-button-group-edit
                   %li
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "events"'} Events
                   %li
@@ -64,7 +64,7 @@
                   %li
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "following"'} Following
           .span1.edit-button
-            %button.btn.btn-inverse{'ng-click' => 'appear="edit"'} Edit
+            %button.btn.btn-inverse{'ng-click' => 'appear="edit"', 'ng-hide' => 'appear == "edit"'} Edit
           .span6
             .user-events{'ng-show' => 'appear == "events"'}
               %h1 Events
