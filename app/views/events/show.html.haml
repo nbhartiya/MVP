@@ -82,8 +82,12 @@
                   seats left!
               .progress.progress-warning
                 .bar{:style => "width: #{@event.percent_full}%"}
-            - if @event.seats_left > 0
+            - if @event.seats_left > 5
               .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Book It
+            - elsif @event.seats_left>1
+              .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Only #{@event.seats_left} seats left! Hurry and Book It
+            - elsif @event.seats_left==1
+              .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Only #{@event.seats_left} seat left! Hurry and Book It
             -else
               .btn.btn-warning.join-waitlist-button{'ng-click' => 'waitlist=true', 'ng-hide' => 'waitlist', "data-toggle" => "tooltip", :title => "Add your name at the top of the invite list for the next #{@event.host.profile.biz_name} event. If a spot opens up at this one, we'll also let you know!", "data-placement" => "top"} Sold Out! Sign Up for the Next #{@event.host.profile.biz_name} Event
             -if user_signed_in?

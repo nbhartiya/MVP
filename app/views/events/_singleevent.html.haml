@@ -100,5 +100,12 @@
                 ="Hosted by #{event.host.profile.biz_name}"
             %td.event-date-price.span2
               %h2 #{event.date.strftime("%b %e")}, #{event.time.strftime("%l:%M %p")}
-              %h2 $#{"%.0f" % event.cost} / seat
+              - if event.seats_left>5
+                %h2 $#{"%.0f" % event.cost} / seat
+              - elsif event.seats_left > 1
+                %h2 Only #{event.seats_left} seats left at $#{"%.0f" % event.cost} / seat!
+              - elsif event.seats_left == 1
+                %h2 Only #{event.seats_left} seat left at $#{"%.0f" % event.cost} / seat!
+              - else
+                %h2 Sold out!
 

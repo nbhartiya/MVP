@@ -8,7 +8,8 @@
     .container
       .row.section-header
         .span12.events-index-header
-          %h1 Events in San Francisco
+          %h1 It helps to know the guy behind the counter. 
+          %h2 Get to know your local bar and restaurant owners through unforgettable experiences
     .section.events-section
       .container
         .row.events-row-content
@@ -71,6 +72,42 @@
               =render "events/singleevent", :event => event
             .span6
 
+    .container
+      .row.section-header
+        .span12.events-index-section-title#new
+          %h1 New Events
+    .section.events-section
+      .container
+        .row.events-row-content
+          .span2
+          .span8.events-index-content
+            -if current_user
+              -if current_user.chef == true
+                %p New events are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified as soon as ticket sales begin! 
+                -# what would you make this language, Neeharika?
+              - if current_user.chef == false
+                %p New events are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified as soon as ticket sales begin! 
+            -else
+              %p New events are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified as soon as ticket sales begin! 
+    .container
+      -while upcoming_events.length > 1
+        -event = upcoming_events.pop
+        -if event.approved? && event.upcoming?
+          .row.events-row
+            .span6.single-event
+              =render "events/singleevent", :event => event
+            -event = upcoming_events.pop
+            -if event.approved? && event.upcoming?
+              .span6.single-event
+                =render "events/singleevent", :event => event
+      -if upcoming_events.length == 1
+        -event = upcoming_events.pop
+        -if event.approved? && event.upcoming?
+          .row.events-row
+            .span6.single-event
+              =render "events/singleevent", :event => event
+            .span6
+
     -potential_past_events = non_upcoming_events.dup
     .container
       .row.section-header
@@ -107,41 +144,6 @@
               =render "events/singleevent", :event => event
             .span6
 
-    .container
-      .row.section-header
-        .span12.events-index-section-title#new
-          %h1 New Events
-    .section.events-section
-      .container
-        .row.events-row-content
-          .span2
-          .span8.events-index-content
-            -if current_user
-              -if current_user.chef == true
-                %p New events are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified as soon as ticket sales begin! 
-                -# what would you make this language, Neeharika?
-              - if current_user.chef == false
-                %p New events are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified as soon as ticket sales begin! 
-            -else
-              %p New events are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified as soon as ticket sales begin! 
-    .container
-      -while upcoming_events.length > 1
-        -event = upcoming_events.pop
-        -if event.approved? && event.upcoming?
-          .row.events-row
-            .span6.single-event
-              =render "events/singleevent", :event => event
-            -event = upcoming_events.pop
-            -if event.approved? && event.upcoming?
-              .span6.single-event
-                =render "events/singleevent", :event => event
-      -if upcoming_events.length == 1
-        -event = upcoming_events.pop
-        -if event.approved? && event.upcoming?
-          .row.events-row
-            .span6.single-event
-              =render "events/singleevent", :event => event
-            .span6
             
     
     -if current_user
