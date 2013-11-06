@@ -32,6 +32,7 @@ gem 'cancan'
 gem "koala", "~> 1.7.0rc1"
 gem 'yelpster'
 gem 'mandrill-api'
+gem 'analytics-ruby', '<1.0'
 
 # not necessary yet...will change to this when everything working...
 # gem 'linkedin'

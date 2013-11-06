@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   #protect_from_forgery
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :track_stuff
   helper_method :completed_user?
 
   def after_sign_out_path_for(resource)
@@ -29,6 +29,18 @@ class ApplicationController < ActionController::Base
       else
         "/edit_my_profile"
       end
+    end
+  end
+
+  def track_stuff
+    if user_signed_in?
+      Analytics.identify(
+        user_id: current_user.id,
+        traits: { email: current_user.email, first_name: current_user.first_name, last_name: current_user.last_name, chef: current_user.chef }
+        )
+    else
+      Analytics.identify(
+        user_id: 'anonymous_user')
     end
   end
   
