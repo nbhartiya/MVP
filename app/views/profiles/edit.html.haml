@@ -145,15 +145,9 @@
                             %td
                               =event.title
                             %td
-                              =event.host.profile.biz_name
+                              TBD...
                             %td
-                              =event.date.strftime("%b %e")
-                            -#
-                              %td 
-                                ="#{event.seats_left} seats left"
-                            -#%td
                             %td
-                              ="$#{"%g" % event.cost}"
                           -else
                             %td 
                               %a{:href => event_path(event)} 
@@ -162,7 +156,7 @@
                               =event.host.profile.biz_name
                             %td
                               =event.date.strftime("%b %e")
-                            %td 
+                            -#%td 
                               ="#{event.seats_left} seats left"
                             %td
                               ="$#{"%g" % event.cost}"

@@ -182,20 +182,8 @@
                           -if event.upcoming?
                             %td
                               =event.title
-<<<<<<< HEAD
-                          %td
-                            =event.host.profile.biz_name
-                          %td
-                            =event.date.strftime("%b %e")
-                          -#
-                            %td 
-                              ="#{event.seats_left} seats left"
-                          %td
-                            ="$#{"%g" % event.cost}"
-=======
                             %td
                               TBD...
-                            %td
                             %td
                             %td
                           -else
@@ -206,11 +194,10 @@
                               =event.host.profile.biz_name
                             %td
                               =event.date.strftime("%b %e")
-                            %td 
+                            -#%td 
                               ="#{event.seats_left} seats left"
                             %td
                               ="$#{"%g" % event.cost}"
->>>>>>> 1ac3a8b932d84c44de36046690c7505dfb4879c4
                   -else
                     No events followed.
 
