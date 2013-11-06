@@ -1,17 +1,20 @@
 window.ANALYTICS ||= {}
 ANALYTICS.controllers ||= {}
 
+
 analytics.identify "019mr8mf4r",
   name: "Achilles"
   email: "achilles@segment.io"
   subscriptionPlan: "Premium"
   friendCount: 29
 
-ANALYTICS.trackShit = (desc, price, data) ->
-  analytics.track(desc,
-    price: price
-    data: data
-  )
+ANALYTICS.trackShit = ->
+  try
+    key = "testing NENE1"
+    mixpanel.track(key, {})
+  catch error
+    console.log error
+
 
 Simmr.factory "Follow", ["railsResourceFactory", (railsResourceFactory) ->
   railsResourceFactory
