@@ -23,7 +23,7 @@
                 %a.sb.heart.circle.no-border.no-shadow{'ng-click' => "follow('Event',#{event.id},#{user_signed_in?})", "data-toggle" => "tooltip", :title => "Click to stay updated on when this event becomes live!", "data-placement" => "left", 'ng-class' => '{true: "orange", false: "white"}[following]'}
             -else
               %td.span1
-                %a.sb.heart.circle.no-border.no-shadow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "left"}
+                %a.sb.heart.circle.no-border.no-shadow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Sign in or sign up to stay updated on this and other events!", "data-placement" => "left"}
   -elsif event.happened?
     .event-current
       .row
