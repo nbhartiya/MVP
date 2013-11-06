@@ -387,14 +387,17 @@ input.error-true  {
 		li.social{
 			padding: 0 5px;
 		}
+		#fb-like iframe{
+			width: 85px !important;
+		}
 		#twitter-share iframe{
-			width: 65px !important;
+			width: 60px !important;
 		}
      	#twitter-follow iframe{
-     		width: 125px !important;
+     		width: 120px !important;
      	}
      	#yelp-logo{
-     		margin-top: 0px;
+     		margin-top: -4px;
      	}
 	}
 	a:link, a:visited{
