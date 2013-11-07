@@ -8,13 +8,16 @@ analytics.identify "019mr8mf4r",
   subscriptionPlan: "Premium"
   friendCount: 29
 
-ANALYTICS.trackShit = ->
+ANALYTICS.track = (action) ->
   try
     key = "testing NENE1"
-    mixpanel.track(key, {})
+    if window.current_user?
+      user = window.current_user.id
+    else
+      user = "unregistered"
+    mixpanel.track(action, {user: user})
   catch error
     console.log error
-
 
 Simmr.factory "Follow", ["railsResourceFactory", (railsResourceFactory) ->
   railsResourceFactory
@@ -130,6 +133,7 @@ Simmr.controller "HomeIndexCtrl", ["$scope",  "$routeParams", "$location", ($sco
 ]
 
 Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$location", "Charge", "Event", "Guest", ($scope, $http, $routeParams, $location, Charge, Event, Guest) ->
+  ANALYTICS.track("visited Event Register")
   Simmr.scopes ||= {}  
   Simmr.scopes.event = $scope
 
@@ -282,7 +286,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
           if data.status == "Success"
             $scope.code=data.code
             $scope.appear = "payment3"
-            ANALYTICS.trackShit('successful_purchase',$scope.data.amount,data)
+            ANALYTICS.track("payed for #{$scope.eventId}")
           if data.status == "Failure"
             $scope.cardErrorMessages=data.messages
             $scope.card.expYear = $scope.card.exp_year

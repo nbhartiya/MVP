@@ -1,0 +1,5 @@
+<script>
+    <% if user_signed_in? %>
+      window.current_user = <%= current_user.to_json(:only => [:id]).html_safe %>;
+    <% end %>
+</script>
