@@ -242,6 +242,7 @@ $main_orange: #EB4D18;
 				}
 				a:hover{
 					color: rgb(130, 130, 130);
+					text-decoration: underline;
 				}
 			}
 		}
@@ -266,6 +267,9 @@ $main_orange: #EB4D18;
 			}
 		}
 		.user-events, .user-campaigns, .user-following, .user-followers{
+			a{
+				color: $main_orange;
+			}
 			.nav{
 				li{
 					font-size: 16px;
