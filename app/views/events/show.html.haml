@@ -353,6 +353,45 @@
             -if @event.referer_discount.present?
               -if @event.referer_discount >0.0
                 %h2 Your referral code is {{code}}. Get five people to go to this event with you and your ticket is free! Just tell them to put in this code when they register!
+            %table.event-sharing{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@event.follows.count}; following = '#{is_user_there_and_following('Event', @event.id)}'"}
+              %tr.icons
+                %td
+                  -if user_signed_in?
+                    %a.sb.heart.circle.no-border.no-shadow{'ng-click' => "addFollower('Event',#{@event.id},#{user_signed_in?},follows)", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date on latest event details!", "data-placement" => "right",'ng-class' => '{true: "red", false: "white"}[following]'}
+                  -else
+                    %a.sb.heart.circle.no-border.no-shadow.follow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
+                %td
+                  %a.sb.facebook.circle.no-border.no-shadow{:href => "#"}
+                %td
+                  %a.addthisevent{:href => "", :title => "Add to Calendar"}
+                    +
+                    -if @event.date.present?
+                      %span._start
+                        =DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec).strftime('%m-%d-%Y %H:%M:%S')
+                      %span._end
+                        =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+@event.length.minutes).strftime('%m-%d-%Y %H:%M:%S')
+                    %span._zonecode 6
+                    %span._summary="Simmr Event: #{@event.title}"
+                    %span._description=@event.blurb
+                    %span._location
+                      ="#{@event.location.address1}, #{@event.location.neighborhood}, #{@event.location.city}, #{@event.location.zipcode}"
+                    %span._organizer Simmr
+                    %span._organizer_email
+                      -#Add email to link here
+                      hello@simmr.co
+                    -#not sure what fb event this is
+                    -#%span._facebook_event http://www.facebook.com/events/160427380695693
+                    %span._all_day_event false
+                    %span._date_format MM/DD/YYYY
+              %tr.host-stats
+                %td
+                  %a.followers {{follows}}
+                %td{:rowspan => "2"} share 
+                %td to
+              %tr.host-stat-labels
+                %td
+                  %a.followers followers
+                %td calendar
 
             %a.btn.btn-warning#ok-button{:href => "/events"} Check Out More Cool Events!
           

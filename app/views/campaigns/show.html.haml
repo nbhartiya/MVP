@@ -42,7 +42,12 @@
               .campaign-summary-logistics
                 %h3
                   Created by #{@campaign.campaign_starter.first_name} #{@campaign.campaign_starter.last_name}
-                %ul.nav.campaign-button-group
+                %h3
+                  - if @campaign.why_join != nil
+                    - n = @campaign.why_join.split("\n")
+                    -for i in 0..n.length-1
+                      = simple_format n[i]
+                -#%ul.nav.campaign-button-group
                   %li
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "why_join"'} Why Join
                   %li

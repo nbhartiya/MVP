@@ -1015,6 +1015,74 @@ a.sb.yelp.black{
 		.event-purchase, .event-purchase-confirmation, .event-create-confirmation, .event-guests, .event-details, .event-menu, .event-attendees-and-chatter, .event-host-story, .host-followers, .event-create-form, .event-edit-form{
 			background: rgba(0,0,0,0.8);
 			padding: 30px;
+			.event-sharing{
+				margin-top: 10px;
+				color: white;
+				width: 100%;
+				margin-left: auto;
+				margin-right: auto;
+				tr.icons{
+					line-height: 50px;
+					td{
+						line-height: 50px;
+						a{
+							cursor: pointer;
+						}
+					}
+				}
+				.host-stat-labels, .host-stats{
+					a, a:hover	{
+						color: white;
+						font-size: 14px;
+					}
+				}
+				td{
+					text-align: center;
+					width: 25%;
+					font-weight: 100;
+					line-height: 15px;
+					.btn{
+						width: 32px;
+						height: 32px;
+						border-radius: 50%;
+						font-size: 12px;
+						padding: 0;
+						text-align: center;
+						line-height: 32px;
+						font-weight: 400;
+					}
+				}
+			}
+			.addthisevent-drop{
+				vertical-align: middle;
+				width: 32px;
+				height: 32px;
+				border-radius: 50%;
+				font-size: 32px;
+				padding: 0;
+				text-align: center;
+				line-height: 32px;
+				font-weight: 900;
+				background: #ececec;
+				color: black;
+				border: none;
+				margin: 0 auto;
+				font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; 
+			}
+			#atedrop1-drop{
+				font-weight: 500;
+				font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; 
+			}
+			.addthisevent_dropdown span{
+				color: black;
+			}
+			p{
+			    text-align: left;
+			    color: white;
+			    margin-top: 0px;
+			    margin-bottom: 0px;
+			    font-size: 12px;
+			}
 			.attendees, .comments, .followers{
 				margin-left: 0;
 				img{
@@ -1147,6 +1215,9 @@ a.sb.yelp.black{
 			}
 			#submit, #enter-payment-info, #ok-button{
 				margin: 0;
+			}
+			#ok-button{
+				margin-top: 30px;
 			}
 			#submit{
 				margin-top: 10px;

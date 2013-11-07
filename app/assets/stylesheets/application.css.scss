@@ -95,6 +95,10 @@ a:active{
 	background: darken($main_orange, 5%);
 }
 
+.progress-warning .bar{
+	background: $main_orange !important;
+}
+
 body.modal-open {
     overflow: hidden;
 }
