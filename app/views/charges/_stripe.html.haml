@@ -18,7 +18,7 @@
       %option{:value => ""} Y
 
   #security_code
-    %p.cvc-explanation{:rel => 'popover', :"data-trigger" => 'hover', :"data-placement" => 'bottom'} What is?
+    %p.cvc-explanation{:rel => 'popover', :"data-trigger" => 'hover', :"data-placement" => 'bottom'} What's this?
     %input{'ng-model' => "card.cvc", :placeholder => "CVC", :type => "text", :required => "required", :name => "card_cvc", 'ng-pattern' => '/^[0-9]{3,4}$/', :maxlength => "4", 'ng-class' => "{error: stripe.card_cvc.$invalid}"}
 
 
