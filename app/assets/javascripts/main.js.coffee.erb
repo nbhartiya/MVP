@@ -202,9 +202,9 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
     if $scope.num_guests > 0
       homie=$scope.currentUser
       currentGuy={}
-      currentGuy.first_name=homie.first_name
-      currentGuy.last_name=homie.last_name
-      currentGuy.email=homie.email
+      currentGuy.first_name=''
+      currentGuy.last_name=''
+      currentGuy.email=''
       currentGuy.userId=homie.id
       currentGuy.eventId=$scope.eventId
       currentGuy.waiting=wait
