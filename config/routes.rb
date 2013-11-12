@@ -4,8 +4,6 @@ MVP::Application.routes.draw do
 
   get "follow/new"
 
-  
-
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
@@ -69,6 +67,7 @@ MVP::Application.routes.draw do
   
   get "survey" => "survey_questions#survey"
   match "/turtletower" => redirect("https://www.surveymonkey.com/s/LT7SDWX"), :as => :turtletower
+  match "/ejis" => redirect("https://www.surveymonkey.com/s/JFCRCPX"), :as => :eji
   #get "incomplete_survey" => "survey_questions#survey"
   
   # I have no idea what changed that caused me to have to add this line...????
