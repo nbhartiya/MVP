@@ -5,20 +5,26 @@
   .home 
     .attention-getter
       #home-carousel.carousel.slide.hidden-phone
-        -all_events=Event.where("approved = ?", true)
-        -i=0
         .carousel-inner
-          -for event in all_events
-            -if i==0
-              .active.item
-                =render 'home/sampleevent', :event => event
-            -else
-              .item
-                =render 'home/sampleevent', :event => event
-            -i=i+1
+          .active.item
+            =image_tag "Onigilly-1.jpg"
+          .item
+            =image_tag "Tava-1.jpg"
+        -#
+          -all_events=Event.where("approved = ?", true)
+          -i=0
+          .carousel-inner
+            -for event in all_events
+              -if i==0
+                .active.item
+                  =render 'home/sampleevent', :event => event
+              -else
+                .item
+                  =render 'home/sampleevent', :event => event
+              -i=i+1
       %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#home-carousel"} ‹
       %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#home-carousel"} ›
-      .container
+      -#.container
         .copy.row
           .span1
           .span10.copy-content
@@ -41,6 +47,169 @@
                 = link_to image_tag("logo_final_white.png", :border=>0), '/events', :class => "logo"
             .span1
     .container
+      .row.section-header#hero-title
+        .span12
+          %h1 150% awesome
+      .row
+        .offset4.span4#home-buttons
+          %a.btn.btn-warning{:href => "/home/howitworks"} How It Works
+          %a.btn.btn-warning{:href => "/home/philosophy"} Our Philosophy
+    .events-index#top{'ng-controller' => 'EventIndexCtrl'}
+      -all_events=Event.where(:approved => true)
+      -upcoming_events = all_events.where(:upcoming=>true)
+      -non_upcoming_events= all_events.where(:upcoming=>false)
+      .events
+        .container
+          .row.section-header
+            .span12.events-index-header
+              %h1 Events in San Francisco
+        .section.events-section
+          .container
+            .row.events-row-content
+              .span2
+              .span8.events-index-content
+                -if current_user
+                  -if current_user.chef == true
+                    %p Look around and get some ideas!
+                    - if all_events.length == 0
+                      %p No events! How 'bout starting one?
+                  - if current_user.chef == false
+                    %p Pick an event to attend!
+                    -if all_events.length == 0
+                      %p No events! Sign up to stay up to date on future ones!
+                -else
+                  %p Pick an event to attend!
+                  -if all_events.length == 0
+                    %p No events! Sign up to stay up to date on future ones!
+                .events-index-navigation
+                  %ul
+                    %li
+                      %a{:href => '#live'} Live Events
+                    %li
+                      %a{:href => '#new'} New Events
+                    %li
+                      %a{:href => '#ongoing'} Ongoing Events
+        .container
+          .row.section-header
+            .span12.events-index-section-title#live
+              %h1 Live Events
+        .section.events-section
+          .container
+            .row.events-row-content
+              .span2
+              .span8.events-index-content
+                -if current_user
+                  -if current_user.chef == true
+                    %p Live events are currently selling tickets! Look around and see what's happenin'.
+                  - if current_user.chef == false
+                    %p Live events are currently selling tickets! Buy yours today before they sell out.
+                -else
+                  %p Live events are currently selling tickets! Buy yours today before they sell out.
+        .container
+          -potential_live_events=non_upcoming_events.dup
+          -while potential_live_events.length > 1
+            -event = potential_live_events.pop
+            -if !event.happened?
+              .row.events-row
+                .span6.single-event
+                  =render "events/singleevent", :event => event
+                -event = potential_live_events.pop
+                -if !event.happened?
+                  .span6.single-event
+                    =render "events/singleevent", :event => event
+          -if potential_live_events.length == 1
+            -event = potential_live_events.pop
+            -if !event.happened?
+              .row.events-row
+                .span6.single-event
+                  =render "events/singleevent", :event => event
+                .span6
+
+        .container
+          .row.section-header
+            .span12.events-index-section-title#new
+              %h1 New Events
+        .section.events-section
+          .container
+            .row.events-row-content
+              .span2
+              .span8.events-index-content
+                -if current_user
+                  -if current_user.chef == true
+                    %p New events are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified as soon as ticket sales begin! 
+                    -# what would you make this language, Neeharika?
+                  - if current_user.chef == false
+                    %p New events are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified as soon as ticket sales begin! 
+                -else
+                  %p New events are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified as soon as ticket sales begin! 
+        .container
+          -while upcoming_events.length > 1
+            -event = upcoming_events.pop
+            -if event.approved? && event.upcoming?
+              .row.events-row
+                .span6.single-event
+                  =render "events/singleevent", :event => event
+                -event = upcoming_events.pop
+                -if event.approved? && event.upcoming?
+                  .span6.single-event
+                    =render "events/singleevent", :event => event
+          -if upcoming_events.length == 1
+            -event = upcoming_events.pop
+            -if event.approved? && event.upcoming?
+              .row.events-row
+                .span6.single-event
+                  =render "events/singleevent", :event => event
+                .span6
+
+        -potential_past_events = non_upcoming_events.dup
+        .container
+          .row.section-header
+            .span12.events-index-section-title#ongoing
+              %h1 Ongoing Events
+        .section.events-section
+          .container
+            .row.events-row-content
+              .span2
+              .span8.events-index-content
+                -if current_user
+                  -if current_user.chef == true
+                    %p Ongoing events have happened one or more times and have been successes! Check out what's trending!
+                  - if current_user.chef == false
+                    %p Ongoing events have happened one or more times and have been successes! Put your name down for the next one -- the more names on the list, the sooner the event will happen.
+                -else
+                  %p Ongoing events have happened one or more times and have been successes! Put your name down for the next one -- the more names on the list, the sooner the event will happen.
+        .container
+          -while potential_past_events.length > 1
+            -event = potential_past_events.pop
+            -if event.happened?
+              .row.events-row
+                .span6.single-event
+                  =render "events/singleevent", :event => event
+                -event = potential_past_events.pop
+                -if event.happened?
+                  .span6.single-event
+                    =render "events/singleevent", :event => event
+          -if potential_past_events.length == 1
+            -event = potential_past_events.pop
+            -if event.happened?
+              .row.events-row
+                .span6.single-event
+                  =render "events/singleevent", :event => event
+                .span6
+
+                
+        
+        -if current_user
+          .section.events-section
+            .container
+              .row.events-row-content
+                .span12.events-index-content
+                  -if current_user.chef == true
+                    %p Get a sense? <a href = "/events/new">Set up</a> your event today!
+                  -else
+                    %p Don’t see your favorite business? <a href = "/campaigns/new">Suggest a business</a> or <a href = "/campaigns">vote up a suggested business</a> to get them to host events on Simmr!
+      %a.back-to-top{:href => '#top'}Back to Top
+    -#.container
       .row.section-header
         .span12#how-it-works
           %h1 How It Works

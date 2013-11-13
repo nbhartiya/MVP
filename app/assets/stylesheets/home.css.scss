@@ -98,16 +98,39 @@ ul.parsley-error-list{
 }
 
 // hero unit styling 
-.attention-getter{
-	height: 700px;
+
+#hero-title{
+	margin-top: -20px;
+	margin-bottom: 0;
+	h1{
+		font-size: 80px;
+	}
+}
+
+#home-buttons{
+	.btn{
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;    
+		box-sizing: border-box;
+		padding: 10px;
+		width: 49%;
+	}
+	a{
+		font-size: 18px;
+		font-weight: 100;
+	}
+}
+
+.attention-getter, .philosophy-all{
+	height: 510px;
 	z-index: 0;
 	position: relative;
-	#home-carousel{
+	#home-carousel, #philosophy-carousel{
 		position: absolute;
 		width: 100%;
 	    z-index: -1;
 		.carousel-inner{
-			height: 700px;
+			height: 510px;
 			width: auto;
 			position: relative;
 			z-index: 1;
@@ -307,6 +330,15 @@ ul.parsley-error-list{
 			-webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box;
+		}
+	}
+}
+
+.philosophy-all{
+	height: 700px;
+	#philosophy-carousel{
+		.carousel-inner{
+			height: 700px;
 		}
 	}
 }
