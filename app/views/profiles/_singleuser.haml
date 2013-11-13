@@ -18,4 +18,4 @@
         -if user_signed_in?
           %a.sb.heart.circle.no-border.no-shadow{'ng-click' => "follow('Profile',#{profile.id},#{user_signed_in?})", "data-toggle" => "tooltip", :title => "Click to follow this business!", "data-placement" => "left", 'ng-class' => '{true: "red", false: "black"}[following]'}
         -else
-          %a.sb.heart.circle.no-border.no-shadow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "left"}
+          %a.sb.heart.circle.no-border.no-shadow.black{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "left"}
