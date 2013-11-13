@@ -50,11 +50,11 @@
       .row.section-header#hero-title
         .span12
           %h1 150% awesome
-      .row
+      .row#top
         .offset4.span4#home-buttons
           %a.btn.btn-warning{:href => "/home/howitworks"} How It Works
           %a.btn.btn-warning{:href => "/home/philosophy"} Our Philosophy
-    .events-index#top{'ng-controller' => 'EventIndexCtrl'}
+    .events-index{'ng-controller' => 'EventIndexCtrl'}
       -all_events=Event.where(:approved => true)
       -upcoming_events = all_events.where(:upcoming=>true)
       -non_upcoming_events= all_events.where(:upcoming=>false)
@@ -199,15 +199,18 @@
 
                 
         
-        -if current_user
-          .section.events-section
-            .container
-              .row.events-row-content
-                .span12.events-index-content
+        
+        .section.events-section
+          .container
+            .row.events-row-content
+              .span12.events-index-content
+                -if current_user
                   -if current_user.chef == true
                     %p Get a sense? <a href = "/events/new">Set up</a> your event today!
                   -else
                     %p Don’t see your favorite business? <a href = "/campaigns/new">Suggest a business</a> or <a href = "/campaigns">vote up a suggested business</a> to get them to host events on Simmr!
+                -else
+                  %p Don’t see your favorite business? <a href = "/campaigns/new">Suggest a business</a> or <a href = "/campaigns">vote up a suggested business</a> to get them to host events on Simmr!
       %a.back-to-top{:href => '#top'}Back to Top
     -#.container
       .row.section-header
