@@ -16,7 +16,7 @@ $main_orange: #EB4D18;
 
 .user-info{
 	position: absolute;
-	margin: 0;
+	margin: 0 !important;
 	color: black;
 	background: transparent;
 	bottom: 0px;
@@ -513,7 +513,7 @@ $main_orange: #EB4D18;
 }
 
 .edit-button, .edit-button-event{
-	margin-left: 0;
+	margin-left: 0 !important;
 	width: auto;
 	.btn{
 		margin: 10px;

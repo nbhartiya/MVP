@@ -207,7 +207,7 @@ a.sb.yelp.black{
 
 			#ribbon .container {
 				position: relative;
-				width: 100px;
+				width: 100px !important;
 				height: 110px;
 				overflow: hidden;
 				margin: 0 auto;
@@ -361,7 +361,7 @@ a.sb.yelp.black{
 		}
 		.event-info{
 			position: absolute;
-			margin: 0;
+			margin: 0 !important;
 			color: white;
 			background: transparent;
 			bottom: 0px;
@@ -580,7 +580,7 @@ a.sb.yelp.black{
 
 		#ribbon .container {
 			position: relative;
-			width: 100px;
+			width: 100px !important;
 			height: 110px;
 			overflow: hidden;
 			margin: 0 auto;
