@@ -49,8 +49,8 @@
 
             .profile-summary-logistics-container
               .profile-summary-logistics
-                %h3#default-text{'ng-show'=>'profile.location.neighborhood=="" || profile.location.neighborhood==nil'} Your Neighborhood
-                %h3
+                -#%h3#default-text{'ng-show'=>'profile.location.neighborhood=="" || profile.location.neighborhood==nil'} Your Neighborhood
+                -#%h3
                   {{profile.location.neighborhood}}
                 %h3#default-text{'ng-show'=>'profile.location.city=="" || profile.location.city==nil || profile.location.state=="" || profile.location.state==nil || profile.location.zipcode=="" || profile.location.zipcode==nil'} Your City, State and Zipcode       
                 %h3{'ng-hide' => 'profile.location.zipcode=="" || profile.location.zipcode==nil'} {{profile.location.city + ','}} {{profile.location.state}} {{profile.location.zipcode}}
@@ -437,7 +437,7 @@
 
               %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet", :maxlength => "140", :name => "profile_blurb", 'ng-class' => "{error: profile_edit.profile_blurb.$invalid}"}
 
-              %select#neighborhoods{'ng-model'=>'profile.location.neighborhood', :name => "profile_neighborhood", 'ng-class' => "{error: profile_edit.profile_neighborhood.$invalid}"}
+              -#%select#neighborhoods{'ng-model'=>'profile.location.neighborhood', :name => "profile_neighborhood", 'ng-class' => "{error: profile_edit.profile_neighborhood.$invalid}"}
 
               %input#profile-city{'ng-model'=>'profile.location.city', :type=>"text", :placeholder =>"Your City", :name => "profile_city", 'ng-class' => "{error: profile_edit.profile_city.$invalid}"}
 
