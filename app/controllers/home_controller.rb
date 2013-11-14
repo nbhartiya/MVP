@@ -21,4 +21,7 @@ class HomeController < ApplicationController
   def unsubscribe
   end
 
+  def privacy
+  end
+
 end

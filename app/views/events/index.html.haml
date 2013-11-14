@@ -1,8 +1,8 @@
 =content_for :title, "simmr | events"
 
-.events-index{'ng-controller' => 'EventIndexCtrl'}
+.events-index#top{'ng-controller' => 'EventIndexCtrl'}
   -all_events = @events
-  -upcoming_events = @events.where(:upcoming=>true).dup
+  -upcoming_events = @events.where(:upcoming=>true)
   -non_upcoming_events=@events.where(:upcoming=>false)
   .events
     .container
@@ -71,6 +71,42 @@
               =render "events/singleevent", :event => event
             .span6
 
+    .container
+      .row.section-header
+        .span12.events-index-section-title#new
+          %h1 New Events
+    .section.events-section
+      .container
+        .row.events-row-content
+          .span2
+          .span8.events-index-content
+            -if current_user
+              -if current_user.chef == true
+                %p New events are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified as soon as ticket sales begin! 
+                -# what would you make this language, Neeharika?
+              - if current_user.chef == false
+                %p New events are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified as soon as ticket sales begin! 
+            -else
+              %p New events are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified as soon as ticket sales begin! 
+    .container
+      -while upcoming_events.length > 1
+        -event = upcoming_events.pop
+        -if event.approved? && event.upcoming?
+          .row.events-row
+            .span6.single-event
+              =render "events/singleevent", :event => event
+            -event = upcoming_events.pop
+            -if event.approved? && event.upcoming?
+              .span6.single-event
+                =render "events/singleevent", :event => event
+      -if upcoming_events.length == 1
+        -event = upcoming_events.pop
+        -if event.approved? && event.upcoming?
+          .row.events-row
+            .span6.single-event
+              =render "events/singleevent", :event => event
+            .span6
+
     -potential_past_events = non_upcoming_events.dup
     .container
       .row.section-header
@@ -107,49 +143,18 @@
               =render "events/singleevent", :event => event
             .span6
 
-    .container
-      .row.section-header
-        .span12.events-index-section-title#new
-          %h1 New Events
+            
+    
     .section.events-section
       .container
         .row.events-row-content
-          .span2
-          .span8.events-index-content
+          .span12.events-index-content
             -if current_user
               -if current_user.chef == true
-                %p New events are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified as soon as ticket sales begin! 
-                -# what would you make this language, Neeharika?
-              - if current_user.chef == false
-                %p New events are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified as soon as ticket sales begin! 
-            -else
-              %p New events are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified as soon as ticket sales begin! 
-    .container
-      -while upcoming_events.length > 1
-        -event = upcoming_events.pop
-        -if event.approved? && event.upcoming?
-          .row.events-row
-            .span6.single-event
-              =render "events/singleevent", :event => event
-            -event = upcoming_events.pop
-            -if event.approved? && event.upcoming?
-              .span6.single-event
-                =render "events/singleevent", :event => event
-      -if upcoming_events.length == 1
-        -event = upcoming_events.pop
-        -if event.approved? && event.upcoming?
-          .row.events-row
-            .span6.single-event
-              =render "events/singleevent", :event => event
-            .span6
-            
-    
-    -if current_user
-      .section.events-section
-        .container
-          .row.events-row-content
-            .span12.events-index-content
-              -if current_user.chef == true
-                %p Get a sense? Set up your <a href = "/events/new">event</a> today!
+                %p Get a sense? <a href = "/events/new">Set up</a> your event today!
               -else
                 %p Don’t see your favorite business? <a href = "/campaigns/new">Suggest a business</a> or <a href = "/campaigns">vote up a suggested business</a> to get them to host events on Simmr!
+            -else
+              %p Don’t see your favorite business? <a href = "/campaigns/new">Suggest a business</a> or <a href = "/campaigns">vote up a suggested business</a> to get them to host events on Simmr!
+                
+  %a.back-to-top{:href => '#top'}Back to Top

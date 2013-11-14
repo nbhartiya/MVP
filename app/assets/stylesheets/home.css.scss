@@ -1,6 +1,6 @@
 // colors 
 
-$main_orange: rgb(255, 178, 35);
+$main_orange: #EB4D18;
 $trans_black: rgba(0,0,0,0.9);
 
 // error message styling
@@ -98,16 +98,39 @@ ul.parsley-error-list{
 }
 
 // hero unit styling 
-.attention-getter{
-	height: 700px;
+
+#hero-title{
+	margin-top: -20px;
+	margin-bottom: 0;
+	h1{
+		font-size: 80px;
+	}
+}
+
+#home-buttons{
+	.btn{
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;    
+		box-sizing: border-box;
+		padding: 10px;
+		width: 49%;
+	}
+	a{
+		font-size: 18px;
+		font-weight: 100;
+	}
+}
+
+.attention-getter, .philosophy-all{
+	height: 510px;
 	z-index: 0;
 	position: relative;
-	#home-carousel{
+	#home-carousel, #philosophy-carousel{
 		position: absolute;
 		width: 100%;
 	    z-index: -1;
 		.carousel-inner{
-			height: 700px;
+			height: 510px;
 			width: auto;
 			position: relative;
 			z-index: 1;
@@ -210,11 +233,11 @@ ul.parsley-error-list{
 
 			}
 			h2{
-				font-size: 35px;
-				line-height: 1em;
+				font-size: 24px;
+				line-height: 1.2em;
 				font-weight: 100;
 				color: white;
-				margin: 0;
+				margin: 10px 0 0 0;
 				text-align: center;
   				text-shadow: 0.1em 0.1em 0.2em black;
 			}
@@ -307,6 +330,15 @@ ul.parsley-error-list{
 			-webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box;
+		}
+	}
+}
+
+.philosophy-all{
+	height: 700px;
+	#philosophy-carousel{
+		.carousel-inner{
+			height: 700px;
 		}
 	}
 }
@@ -415,70 +447,70 @@ ul.parsley-error-list{
 	}
 	.step.browse{
 		height: 240px;
-		width: 240px;
+		width: 240px !important;
 		border-width: 12px;
 		.step-description{
-			width: 220px;
-			padding-top: 20px;
+			width: 200px;
+			padding: 20px !important;
 		}
 	}
 	.step.register{
 		margin-top: -30px;
 		height: 300px;
-		width: 300px;
+		width: 300px !important;
 		border-width: 26px;
 		.step-description{
-			width: 280px;
-			padding-top: 45px;
+			width: 210px !important;
+			padding: 45px;
 		}
 	}
 	.step.tilt{
 		margin-top: -20px;
 		height: 200px;
-		width: 200px;
+		width: 200px !important;
 		border-width: 18px;
 		.step-description{
-			width: 180px;
-			padding-top: 5px;
+			width: 160px !important;
+			padding: 20px;
 		}
 	}
 	.step.return{
 		margin-top: -15px;
 		height: 280px;
-		width: 280px;
+		width: 280px !important;
 		border-width: 15px;
 		.step-description{
-			width: 260px;
-			padding-top: 20px;
+			width: 230px !important;
+			padding: 20px;
 		}
 	}
 	.step.attract{
 		height: 300px;
-		width: 300px;
+		width: 300px !important;
 		border-width: 18px;
 		.step-description{
-			width: 280px;
-			padding-top: 45px;
+			width: 275px !important;
+			padding-top: 35px;
 		}
 	}
 	.step.engage{
 		margin-top: -40px;
-		height: 220px;
-		width: 220px;
+		height: 240px;
+		width: 240px !important;
 		border-width: 25px;
 		.step-description{
-			width: 190px;
-			padding-top: 5px;
+			width: 195px !important;
+			padding: 20px;
 		}
 	}
 	.step.club{
 		margin-top: -15px;
-		height: 280px;
-		width: 280px;
+		height: 300px;
+		width: 300px !important;
 		border-width: 12px;
 		.step-description{
-			width: 255px;
-			padding-top: 30px;
+			width: 235px !important;
+			padding: 30px;
 		}
 	}
 	.step.get-started{
@@ -486,11 +518,11 @@ ul.parsley-error-list{
 		margin-bottom: 30px;
 		margin-left: 300px;
 		height: 150px;
-		width: 150px;
+		width: 150px !important;
 		border-width: 20px;
 		border-color: $main_orange;
 		.step-description{
-			width: 130px;
+			width: 130px !important;
 			text-align: center;
 			font-size: 28px;
 			line-height: 1.5em;

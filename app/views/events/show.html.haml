@@ -47,18 +47,27 @@
                   {{eventDate()}}, from {{eventTime()}} to {{eventEndTime()}}
                 %h3 
                   =@event.location.neighborhood
-                %a{:href => "{{mapUrl()}}",:target=>"_blank"} 
+                %a.event-location{:href => "{{mapUrl()}}",:target=>"_blank"} 
                   ="#{@event.location.address1}, #{@event.location.city}, #{@event.location.state} #{@event.location.zipcode}"
                 %table.accommodations
                   %tr
                     -if @event.vegetarian
                       %td
                         Vegetarian-friendly
+                    -else
+                      %td#default-text
+                        Vegetarian-friendly
                     - if @event.vegan
                       %td
                         Vegan-friendly
+                    -else
+                      %td#default-text
+                        Vegan-friendly
                     - if @event.gluten_free
                       %td
+                        Gluten Free-friendly
+                    -else
+                      %td#default-text
                         Gluten Free-friendly
                 %ul.nav.event-button-group
                   %li
@@ -82,8 +91,12 @@
                   seats left!
               .progress.progress-warning
                 .bar{:style => "width: #{@event.percent_full}%"}
-            - if @event.seats_left > 0
+            - if @event.seats_left > 5
               .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Book It
+            - elsif @event.seats_left>1
+              .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Only #{@event.seats_left} seats left! Hurry and Book It
+            - elsif @event.seats_left==1
+              .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Only #{@event.seats_left} seat left! Hurry and Book It
             -else
               .btn.btn-warning.join-waitlist-button{'ng-click' => 'waitlist=true', 'ng-hide' => 'waitlist', "data-toggle" => "tooltip", :title => "Add your name at the top of the invite list for the next #{@event.host.profile.biz_name} event. If a spot opens up at this one, we'll also let you know!", "data-placement" => "top"} Sold Out! Sign Up for the Next #{@event.host.profile.biz_name} Event
             -if user_signed_in?
@@ -122,7 +135,7 @@
               %tr.icons
                 %td
                   -if user_signed_in?
-                    %a.sb.heart.circle.no-border.no-shadow{'ng-click' => "addFollower('Event',#{@event.id},#{user_signed_in?},follows)", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date on latest event details!", "data-placement" => "right",'ng-class' => '{true: "orange", false: "white"}[following]'}
+                    %a.sb.heart.circle.no-border.no-shadow{'ng-click' => "addFollower('Event',#{@event.id},#{user_signed_in?},follows)", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date on latest event details!", "data-placement" => "right",'ng-class' => '{true: "red", false: "white"}[following]'}
                   -else
                     %a.sb.heart.circle.no-border.no-shadow.follow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                 -if @event.host.profile.yelp_id.present?
@@ -219,7 +232,7 @@
                         %td
                           -if guest.user.present?
                             -if user_signed_in?
-                              %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{guest.user.profile.id},#{user_signed_in?})", 'ng-init' => "following = '#{is_user_there_and_following('Profile', guest.user.profile.id)}'", 'ng-class' => '{true: "orange", false: "white"}[following]'}
+                              %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{guest.user.profile.id},#{user_signed_in?})", 'ng-init' => "following = '#{is_user_there_and_following('Profile', guest.user.profile.id)}'", 'ng-class' => '{true: "red", false: "white"}[following]'}
                             -else
                               %a.sb.heart.circle.no-border.no-shadow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                 -else
@@ -264,7 +277,7 @@
                             -#%td Number of Followers..may want to add later
                             %td
                               -if user_signed_in?
-                                %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})", 'ng-init' => "following = '#{is_user_there_and_following('Profile', follow.user.profile.id)}'", 'ng-class' => '{true: "orange", false: "white"}[following]'}
+                                %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})", 'ng-init' => "following = '#{is_user_there_and_following('Profile', follow.user.profile.id)}'", 'ng-class' => '{true: "red", false: "white"}[following]'}
                               -else
                                 %a.sb.heart.circle.no-border.no-shadow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
 
@@ -287,7 +300,7 @@
                             -#%td Number of Followers..may want to add later
                             %td
                               -if user_signed_in?
-                                %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})", 'ng-init' => "following = '#{is_user_there_and_following('Profile', follow.user.profile.id)}'", 'ng-class' => '{true: "orange", false: "white"}[following]'}
+                                %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})", 'ng-init' => "following = '#{is_user_there_and_following('Profile', follow.user.profile.id)}'", 'ng-class' => '{true: "red", false: "white"}[following]'}
                               -else
                                 %a.sb.heart.circle.no-border.no-shadow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                   -else
@@ -340,6 +353,45 @@
             -if @event.referer_discount.present?
               -if @event.referer_discount >0.0
                 %h2 Your referral code is {{code}}. Get five people to go to this event with you and your ticket is free! Just tell them to put in this code when they register!
+            %table.event-sharing{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@event.follows.count}; following = '#{is_user_there_and_following('Event', @event.id)}'"}
+              %tr.icons
+                %td
+                  -if user_signed_in?
+                    %a.sb.heart.circle.no-border.no-shadow{'ng-click' => "addFollower('Event',#{@event.id},#{user_signed_in?},follows)", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date on latest event details!", "data-placement" => "right",'ng-class' => '{true: "red", false: "white"}[following]'}
+                  -else
+                    %a.sb.heart.circle.no-border.no-shadow.follow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
+                %td
+                  %a.sb.facebook.circle.no-border.no-shadow{:href => "#"}
+                %td
+                  %a.addthisevent{:href => "", :title => "Add to Calendar"}
+                    +
+                    -if @event.date.present?
+                      %span._start
+                        =DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec).strftime('%m-%d-%Y %H:%M:%S')
+                      %span._end
+                        =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+@event.length.minutes).strftime('%m-%d-%Y %H:%M:%S')
+                    %span._zonecode 6
+                    %span._summary="Simmr Event: #{@event.title}"
+                    %span._description=@event.blurb
+                    %span._location
+                      ="#{@event.location.address1}, #{@event.location.neighborhood}, #{@event.location.city}, #{@event.location.zipcode}"
+                    %span._organizer Simmr
+                    %span._organizer_email
+                      -#Add email to link here
+                      hello@simmr.co
+                    -#not sure what fb event this is
+                    -#%span._facebook_event http://www.facebook.com/events/160427380695693
+                    %span._all_day_event false
+                    %span._date_format MM/DD/YYYY
+              %tr.host-stats
+                %td
+                  %a.followers {{follows}}
+                %td{:rowspan => "2"} share 
+                %td to
+              %tr.host-stat-labels
+                %td
+                  %a.followers followers
+                %td calendar
 
             %a.btn.btn-warning#ok-button{:href => "/events"} Check Out More Cool Events!
           

@@ -1,6 +1,6 @@
 // colors 
 
-$main_orange: rgb(255, 178, 35);
+$main_orange: #EB4D18;
 
 // user card styling
 
@@ -16,7 +16,7 @@ $main_orange: rgb(255, 178, 35);
 
 .user-info{
 	position: absolute;
-	margin: 0;
+	margin: 0 !important;
 	color: black;
 	background: transparent;
 	bottom: 0px;
@@ -143,12 +143,22 @@ $main_orange: rgb(255, 178, 35);
 				width: 24%;
 			}
 		}
+		.profile-button-group-chef-edit{
+			li{
+				width: 19%;
+			}
+		}
 		.profile-button-group{
 			li{
 				width: 32%;
 			}
 		}
-		.profile-button-group, .profile-button-group-chef{
+		.profile-button-group-edit{
+			li{
+				width: 24%;
+			}
+		}
+		.profile-button-group, .profile-button-group-chef, .profile-button-group-chef-edit, .profile-button-group-edit{
 			margin: 20px auto 10px auto;
 			display: table;
 			width: 100%;
@@ -232,6 +242,7 @@ $main_orange: rgb(255, 178, 35);
 				}
 				a:hover{
 					color: rgb(130, 130, 130);
+					text-decoration: underline;
 				}
 			}
 		}
@@ -256,6 +267,9 @@ $main_orange: rgb(255, 178, 35);
 			}
 		}
 		.user-events, .user-campaigns, .user-following, .user-followers{
+			a{
+				color: $main_orange;
+			}
 			.nav{
 				li{
 					font-size: 16px;
@@ -499,7 +513,7 @@ $main_orange: rgb(255, 178, 35);
 }
 
 .edit-button, .edit-button-event{
-	margin-left: 0;
+	margin-left: 0 !important;
 	width: auto;
 	.btn{
 		margin: 10px;

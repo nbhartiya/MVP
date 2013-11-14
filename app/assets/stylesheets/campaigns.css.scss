@@ -1,6 +1,6 @@
 // colors 
 
-$main_orange: rgb(255, 178, 35);
+$main_orange: #EB4D18;
 
 // campaigns index styling
 .campaigns-index{
@@ -35,7 +35,7 @@ $main_orange: rgb(255, 178, 35);
 			margin: 0;
 		}
 		.single-campaign{
-		    margin: -30px 7px 50px 7px;
+		    margin: -30px 0 50px 0;
 			height: 310px;
 			z-index: 500;
 			opacity: 1;
@@ -243,7 +243,7 @@ $main_orange: rgb(255, 178, 35);
 
 		#ribbon .container {
 			position: relative;
-			width: 100px;
+			width: 100px !important;
 			height: 110px;
 			overflow: hidden;
 			margin: 0 auto;

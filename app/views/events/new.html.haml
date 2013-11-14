@@ -130,18 +130,23 @@
                   {{event.location.neighborhood}}
                 %table.accommodations
                   %tr
+                    %td#default-text{'ng-show'=>'event.vegetarian==false || event.vegetarian==nil'}
+                      Vegetarian-friendly
                     %td{'ng-hide'=>'event.vegetarian==false || event.vegetarian==nil'}
                       Vegetarian-friendly
                     %td{'ng-hide'=>'event.vegan==false || event.vegan==nil'}
                       Vegan-friendly
+                    %td#default-text{'ng-show'=>'event.vegan==false || event.vegan==nil'}
+                      Vegan-friendly
                     %td{'ng-hide'=>'event.glutenFree==false || event.glutenFree==nil'}
+                      Gluten Free-friendly  
+                    %td#default-text{'ng-show'=>'event.glutenFree==false || event.glutenFree==nil'}
                       Gluten Free-friendly            
 
             %p#default-text{'ng-show'=>'event.people_limit=="" || event.people_limit==nil'}
-              0 seats until the event tilts!
+              This event can accommodate 0 people.
             %p{'ng-hide'=>'event.people_limit=="" || event.people_limit==nil'}
-              {{event.people_limit}}
-              seats until the event tilts!
-            .progress.progress-warning
+              This event can accommodate {{event.people_limit}} people.
+            -#.progress.progress-warning
               .bar{:style => "width: 0%"}
 

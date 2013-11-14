@@ -3,11 +3,13 @@
     .span5.footer-content
       %ul
         %li
-          %a{:href => "/home/philosophy"} Our Philosophy
+          %a{:href => "/home/philosophy"} Philosophy
         %li
           %a{:href => "/home/teamandjobs"} Team & Jobs
         %li
           %a{:href => "/home/tos"} Terms
+        %li
+          %a{:href => "/home/privacy"} Privacy
         %li
           %a{:href => "mailto:hello@simmr.co"} Email Us!
         %li
@@ -15,9 +17,11 @@
     .span7.footer-content
       %ul.pull-right
         %li
-          made (lovingly) in San Francisco, CA
+          made with &#x2665 in SF, CA
         %li.social
           .fb-like{"data-href" => "http://www.facebook.com/simmrco", "data-layout" => "button_count", "data-show-faces" => "true", "data-width" => "100"}
+        %li.social#fb-share-button
+          .fb-share-button{"data-href" => "http://www.facebook.com/simmrco", "data-type" => "icon_link", "data-width" => "100"}
         %li.social#twitter-share
           %a.twitter-share-button{"data-text" => "be the first to find out about unique food events!", "data-url" => "http://www.simmr.co", "data-via" => "simmrco", "data-count" => "none", :href => "https://twitter.com/share"} Tweet
           :javascript

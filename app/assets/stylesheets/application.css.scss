@@ -17,15 +17,119 @@
  */
 
  @import "bootstrap";
- @import "bootstrap-responsive";
+ //@import "bootstrap-responsive";
 
 // colors 
 
 $trans_black: rgba(54,54,54,0.9);
 $dark_gray: rgb(54, 54, 54);
 $trans_black_more: rgba(54, 54, 54, 0.7);
-$main_orange: rgb(255, 178, 35);
+$main_orange: #EB4D18;
 
+.container{
+  max-width: none !important;
+  width: 1200px !important;
+}
+
+.row{
+	margin-left: -25px !important;
+}
+
+[class*="span"]{
+	margin-left: 25px !important;
+}
+
+.span1{
+	width: 75px !important;
+}
+
+.span2{
+	width: 175px !important;
+}
+
+.span3{
+	width: 275px !important;
+}
+
+.span4{
+	width: 375px !important;
+}
+
+.span5{
+	width: 475px !important;
+}
+
+.span6{
+	width: 575px !important;
+}
+
+.span7{
+	width: 675px !important;
+}
+
+.span8{
+	width: 775px !important;
+}
+
+.span9{
+	width: 875px !important;
+}
+
+.span10{
+	width: 975px !important;
+}
+
+.span11{
+	width: 1075px !important;
+}
+
+.span12{
+	width: 1175px !important;
+}
+
+.offset1{
+	margin-left: 125px !important;
+}
+
+.offset2{
+	margin-left: 225px !important;
+}
+
+.offset3{
+	margin-left: 325px !important;
+}
+
+.offset4{
+	margin-left: 425px !important;
+}
+
+.offset5{
+	margin-left: 525px !important;
+}
+
+.offset6{
+	margin-left: 625px !important;
+}
+
+.offset7{
+	margin-left: 725px !important;
+}
+
+.offset8{
+	margin-left: 825px !important;
+}
+
+.offset9{
+	margin-left: 925px !important;
+}
+
+.offset10{
+	margin-left: 1025px !important;
+}
+
+.offset11{
+	margin-left: 1125px !important;
+}
 
 html body {
 	font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;        
@@ -88,11 +192,15 @@ a:active{
 }
 
 .btn-warning{
-	background: $main_orange;
+	background: $main_orange !important;
 }
 
 .btn-warning:hover{
 	background: darken($main_orange, 5%);
+}
+
+.progress-warning .bar{
+	background: $main_orange !important;
 }
 
 body.modal-open {
@@ -129,6 +237,12 @@ body.modal-open {
 		margin-left: 0;
 		h1{
 			font-size: 30px;
+			color: black;
+			line-height: 1.5em;
+			font-weight: 100;
+		}
+		h2{
+			font-size: 24px;
 			color: black;
 			line-height: 1.5em;
 			font-weight: 100;
@@ -222,7 +336,7 @@ input.error-true  {
 .nav-container{
 	border-bottom: 1px solid rgb(150, 150, 150);
 	display: block;
-	width: 1170px;
+	width: 1200px;
 	margin: 10px auto 20px auto;
 	font-size: 12px;
 	a{
@@ -354,7 +468,7 @@ input.error-true  {
 .nav-container-footer{
 	border-top: 1px solid rgb(150, 150, 150);
 	display: block;
-	width: 1170px;
+	width: 1200px;
 	margin: 20px auto 10px auto;
 	font-size: 12px;
 }
@@ -387,14 +501,23 @@ input.error-true  {
 		li.social{
 			padding: 0 5px;
 		}
+		#fb-like iframe{
+			width: 85px !important;
+		}
+		#fb-share-button iframe{
+			width: 85px !important;
+		}
+		#fb-share-button{
+			margin-top: -3px;
+		}
 		#twitter-share iframe{
-			width: 65px !important;
+			width: 60px !important;
 		}
      	#twitter-follow iframe{
-     		width: 125px !important;
+     		width: 120px !important;
      	}
      	#yelp-logo{
-     		margin-top: 0px;
+     		margin-top: -4px;
      	}
 	}
 	a:link, a:visited{

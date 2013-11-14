@@ -1,6 +1,6 @@
 // colors 
 
-$main_orange: rgb(255, 178, 35);
+$main_orange: #EB4D18;
 
 a.sb.yelp {
 	background-image: url(/assets/white_yelp2.png);
@@ -86,6 +86,16 @@ a.sb.yelp.black{
 	margin-top: -8.5px;
 }
 .events-index{
+	a.back-to-top{
+		position: fixed;
+		bottom: 20px;
+		right: 50px;
+		color: $main_orange;
+		background: rgba(255, 255, 255, 0.9);
+		z-index: 5000;
+		padding: 5px;
+		font-weight: 900;
+	}
 	.events-index-navigation{
 		ul{
 		list-style: none;
@@ -154,7 +164,7 @@ a.sb.yelp.black{
 			margin: 10px 0;
 		}
 		.events-row{
-			margin: 0;
+			margin: 30px 0 -35px 0;
 		}
 		.single-event{
 			margin: -30px 7px 50px 7px;
@@ -197,7 +207,7 @@ a.sb.yelp.black{
 
 			#ribbon .container {
 				position: relative;
-				width: 100px;
+				width: 100px !important;
 				height: 110px;
 				overflow: hidden;
 				margin: 0 auto;
@@ -351,7 +361,7 @@ a.sb.yelp.black{
 		}
 		.event-info{
 			position: absolute;
-			margin: 0;
+			margin: 0 !important;
 			color: white;
 			background: transparent;
 			bottom: 0px;
@@ -378,7 +388,7 @@ a.sb.yelp.black{
 			}
 		}
 		.events-section{
-			margin: 0 0 60px 0;
+			margin: 0 0 20px 0;
 		}
 	}
 }
@@ -570,7 +580,7 @@ a.sb.yelp.black{
 
 		#ribbon .container {
 			position: relative;
-			width: 100px;
+			width: 100px !important;
 			height: 110px;
 			overflow: hidden;
 			margin: 0 auto;
@@ -648,6 +658,12 @@ a.sb.yelp.black{
 			-ms-transform: rotate(30deg);
 			-o-transform: rotate(30deg);
 			transform: rotate(30deg);
+		}
+		.preview-box{
+			table.accommodations td:nth-child(2){
+			padding-left: 0;
+			border-left: none;
+			}
 		}
 		.event-summary {
 		    background: rgba(0, 0, 0,.8);
@@ -728,11 +744,15 @@ a.sb.yelp.black{
 				}
 			}
 			a, a:visited, a:active{
-			font-size: 12px;
+			font-size: 16px;
 			font-weight: 100;
 			color: white;
 			margin: 0;
 			text-decoration: none;
+			}
+
+			a.event-location{
+				font-size: 12px;
 			}
 
 			a.host{
@@ -810,7 +830,7 @@ a.sb.yelp.black{
 			}
 			.grab-seats-button, .join-waitlist-button{
 				width: 100%;
-				padding: 7px 0;
+				padding: 7px;
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box; 
@@ -891,7 +911,7 @@ a.sb.yelp.black{
 				color: black;
 			}
 			p{
-			    text-align: right;
+			    text-align: left;
 			    color: white;
 			    margin-top: 0px;
 			    margin-bottom: 0px;
@@ -995,6 +1015,74 @@ a.sb.yelp.black{
 		.event-purchase, .event-purchase-confirmation, .event-create-confirmation, .event-guests, .event-details, .event-menu, .event-attendees-and-chatter, .event-host-story, .host-followers, .event-create-form, .event-edit-form{
 			background: rgba(0,0,0,0.8);
 			padding: 30px;
+			.event-sharing{
+				margin-top: 10px;
+				color: white;
+				width: 100%;
+				margin-left: auto;
+				margin-right: auto;
+				tr.icons{
+					line-height: 50px;
+					td{
+						line-height: 50px;
+						a{
+							cursor: pointer;
+						}
+					}
+				}
+				.host-stat-labels, .host-stats{
+					a, a:hover	{
+						color: white;
+						font-size: 14px;
+					}
+				}
+				td{
+					text-align: center;
+					width: 25%;
+					font-weight: 100;
+					line-height: 15px;
+					.btn{
+						width: 32px;
+						height: 32px;
+						border-radius: 50%;
+						font-size: 12px;
+						padding: 0;
+						text-align: center;
+						line-height: 32px;
+						font-weight: 400;
+					}
+				}
+			}
+			.addthisevent-drop{
+				vertical-align: middle;
+				width: 32px;
+				height: 32px;
+				border-radius: 50%;
+				font-size: 32px;
+				padding: 0;
+				text-align: center;
+				line-height: 32px;
+				font-weight: 900;
+				background: #ececec;
+				color: black;
+				border: none;
+				margin: 0 auto;
+				font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; 
+			}
+			#atedrop1-drop{
+				font-weight: 500;
+				font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; 
+			}
+			.addthisevent_dropdown span{
+				color: black;
+			}
+			p{
+			    text-align: left;
+			    color: white;
+			    margin-top: 0px;
+			    margin-bottom: 0px;
+			    font-size: 12px;
+			}
 			.attendees, .comments, .followers{
 				margin-left: 0;
 				img{
@@ -1127,6 +1215,9 @@ a.sb.yelp.black{
 			}
 			#submit, #enter-payment-info, #ok-button{
 				margin: 0;
+			}
+			#ok-button{
+				margin-top: 30px;
 			}
 			#submit{
 				margin-top: 10px;

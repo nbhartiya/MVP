@@ -3,8 +3,8 @@
 = render 'layouts/primary_header'
 
 .home{'ng-controller'=>'HomeIndexCtrl'}
-  .attention-getter
-    #home-carousel.carousel.slide.hidden-phone
+  .philosophy-all
+    #philosophy-carousel.carousel.slide.hidden-phone
       .carousel-inner
         .item.active
           =image_tag "TavaProfile2.jpg"
@@ -14,17 +14,17 @@
     .container
       .row
         .span6.philosophy
-          %h3 we're all about connecting you with the small businesses that feed you
+          %h3 we aim to connect you to your favorite cafes, bars, and restaurants
  
-          %p Running a restaurant, bar, or cafe isn't easy. The small business owners that create awesome food and experiences for us are passionate, hard-working, and <em> often anonymous</em>.
-          %p We at Simmr want to shine a light on them. We want to help you build a relationship with the places where you eat - to become more than a customer and be a part of the "family" of the small businesses that you love.
-          %p We do this by helping businesses put on exciting experiences. We make sure these experiences are <em> small </em> enough that you get to interact personally with the people behind the business and <em> unique </em> enough that it doesn't feel like a normal visit. We believe that upon forming a real relationship with these people, you are much more likely to revisit and help spread the word -- both things that business owners really depend on to thrive. 
-          %p In exchange, we work with business owners to make sure your support is rewarded with further involvement, personal touches, and unique experiences.
+          %p Running a restaurant, bar, or cafe isn't easy. The small business owners that create exceptional food and unforgettable experiences for us are passionate, hard-working, and <em> often anonymous</em>.
+          %p At Simmr, we want to help you build a relationship with the places where you eat - to become more than a customer and be a part of the "family" of the small businesses that you love.
+          %p We do this by helping businesses create exciting experiences just for you. We make sure these experiences are <em> small </em> enough that you get to personally interact with the people behind the business and <em> unique </em> enough that it doesn't feel like a normal visit. We believe that upon forming a real relationship with these people, you are much more likely to revisit and help spread the word -- both things that business owners depend on to thrive. 
+          %p In exchange, we work with business owners to make sure your support is rewarded with further involvement, personal touches, insiders' tips, and more great experiences.
           %p 
-            %a.foodiesignup{:href => "#sign_up_foodie", :"data-toggle" =>"modal"}  Start being more than a customer at the businesses you love.
+            %a.foodiesignup{:href => "#sign_up_foodie", :"data-toggle" =>"modal"}  Check out experiences at the businesses you love.
 
           %p
-            %a.bizsignup{:href => "#sign_up_business", :"data-toggle" =>"modal"} Or, if you're a business owner, start getting in touch with the people who care.
+            %a.bizsignup{:href => "#sign_up_business", :"data-toggle" =>"modal"} Or, if you're a business owner, start getting to know your biggest fans.
         
   = render 'layouts/footer'
   = render 'shared/signup_modals'
