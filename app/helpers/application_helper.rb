@@ -15,7 +15,7 @@ module ApplicationHelper
 	end
 	def is_user_there_and_following(followabletype, followableid)
 		if user_signed_in?
-	    	@current_user.follows_this?(followabletype, followableid)
+	    	current_user.follows_this?(followabletype, followableid)
 	    else
 	       false
 	    end	
