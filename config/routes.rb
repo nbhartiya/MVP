@@ -69,6 +69,8 @@ MVP::Application.routes.draw do
   get "survey" => "survey_questions#survey"
   match "/turtletower" => redirect("https://www.surveymonkey.com/s/LT7SDWX"), :as => :turtletower
   match "/ejis" => redirect("https://www.surveymonkey.com/s/JFCRCPX"), :as => :eji
+  match "/antologia" => "events/14"
+  match "/capos" => "events/20"
   #get "incomplete_survey" => "survey_questions#survey"
   
   # I have no idea what changed that caused me to have to add this line...????
