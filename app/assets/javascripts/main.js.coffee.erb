@@ -151,8 +151,8 @@ Simmr.controller "HomeIndexCtrl", ["$scope",  "$routeParams", "$location", ($sco
 ]
 
 Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$location", "Charge", "Event", "Guest", ($scope, $http, $routeParams, $location, Charge, Event, Guest) ->
-  ANALYTICS.track("visited event page: #{$scope.eventId}")
-  ANALYTICS.page("Event Page")
+  ANALYTICS.track("Visited event page: "+$scope.eventId)
+  ANALYTICS.page("Event")
   Simmr.scopes ||= {}  
   Simmr.scopes.event = $scope
 

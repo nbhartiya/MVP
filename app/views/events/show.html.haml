@@ -71,14 +71,14 @@
                         Gluten Free-friendly
                 %ul.nav.event-button-group
                   %li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "details"'} Details
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'ANALYTICS.track("Clicked Event Details");appear = "details"'} Details
                   %li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "menu"'} Menu
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'ANALYTICS.track("Clicked Event Menu");appear = "menu"'} Menu
                   -#
                     %li
                       %button.btn.attendees{'data-toggle' => 'pill', 'ng-click' => 'appear = "chatter"'} Attendees & Chatter
                   %li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "story"'} Story
+                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'ANALYTICS.track("Clicked Host Story");appear = "story"'} Story
                   -#
                     %li
                       %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "followers"'} Followers
@@ -140,11 +140,11 @@
                     %a.sb.heart.circle.no-border.no-shadow.follow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                 -if @event.host.profile.yelp_id.present?
                   %td
-                    %a.sb.yelp.circle.no-border.no-shadow{:href=>"#{get_yelp_link(@event.host.profile)}",:target=>"_blank"} 
+                    %a.sb.yelp.circle.no-border.no-shadow{:href=>"#{get_yelp_link(@event.host.profile)}",:target=>"_blank",'ng-click'=>'ANALYTICS.track("Clicked Yelp Link")'} 
                 %td
-                  %a.sb.facebook.circle.no-border.no-shadow{:href => "#"}
+                  %a.sb.facebook.circle.no-border.no-shadow{:href => "#", 'ng-click'=>'ANALYTICS.track("Clicked Facebook Share")'}
                 %td
-                  %a.addthisevent{:href => "", :title => "Add to Calendar"}
+                  %a.addthisevent{:href => "", :title => "Add to Calendar", 'ng-click' => 'ANALYTICS.track("Clicked Add to Calendar")'}
                     +
                     -if @event.date.present?
                       %span._start
@@ -177,7 +177,7 @@
                   %a.followers followers
                 -if @event.host.profile.yelp_id.present?  
                   %td 
-                    %a{:href=>"#{get_yelp_link(@event.host.profile)}",:target=>"_blank"} #{get_review_count(@event.host.profile)} reviews
+                    %a{:href=>"#{get_yelp_link(@event.host.profile)}",:target=>"_blank",'ng-click'=>'ANALYTICS.track("Clicked Yelp Link")'} #{get_review_count(@event.host.profile)} reviews
                 %td calendar
         -if current_user
           -if current_user.id == @event.host_id
@@ -361,9 +361,9 @@
                   -else
                     %a.sb.heart.circle.no-border.no-shadow.follow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                 %td
-                  %a.sb.facebook.circle.no-border.no-shadow{:href => "#"}
+                  %a.sb.facebook.circle.no-border.no-shadow{:href => "#", 'ng-click'=>'ANALYTICS.track("Clicked Facebook Share")'}
                 %td
-                  %a.addthisevent{:href => "", :title => "Add to Calendar"}
+                  %a.addthisevent{:href => "", :title => "Add to Calendar", 'ng-click' => 'ANALYTICS.track("Clicked Add to Calendar")'}
                     +
                     -if @event.date.present?
                       %span._start
