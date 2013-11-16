@@ -1,5 +1,37 @@
-window.WAH ||= {}
-WAH.controllers ||= {}
+window.ANALYTICS ||= {}
+ANALYTICS.controllers ||= {}
+
+
+ANALYTICS.identify = (user) ->
+  analytics.identify user.id,
+    name: user.first_name+" "+user.last_name
+    email: user.email
+    events_attended: user.events_attended
+    created_at: user.created_at
+    chef: user.chef
+    phone: user.phone
+    last_signed_in: user.last_signed_in_at
+
+ANALYTICS.track = (action) ->
+  if window.current_user?
+    analytics.track action,
+      user: window.current_user.id
+  else
+    analytics.track action
+
+ANALYTICS.page = (page) ->
+  analytics.page page
+
+#ANALYTICS.track = (action) ->
+#  try
+#    key = "testing NENE1"
+#    if window.current_user?
+#      user = window.current_user.id
+#    else
+#      user = "unregistered"
+#    mixpanel.track(action, {user: user})
+#  catch error
+#    console.log error
 
 Simmr.factory "Follow", ["railsResourceFactory", (railsResourceFactory) ->
   railsResourceFactory
@@ -102,11 +134,15 @@ Simmr.controller "HeaderCtrl", ["$scope",  "$routeParams", ($scope, $routeParams
   $scope.keypressCallback = ($event) ->
     $scope.search($scope.searchQuery)
     $event.preventDefault()
+  if window.current_user?
+    ANALYTICS.identify(window.current_user)
 ]
 
 Simmr.controller "HomeIndexCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
   Simmr.scopes ||= {}  
   Simmr.scopes.home = $scope
+  if window.current_user?
+    ANALYTICS.identify(window.current_user)
   $scope.appear = ''
   if location.search == '?foodie=true'
     $(".foodiesignup").click()
@@ -115,14 +151,18 @@ Simmr.controller "HomeIndexCtrl", ["$scope",  "$routeParams", "$location", ($sco
 ]
 
 Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$location", "Charge", "Event", "Guest", ($scope, $http, $routeParams, $location, Charge, Event, Guest) ->
+  ANALYTICS.track("visited event page: #{$scope.eventId}")
+  ANALYTICS.page("Event Page")
   Simmr.scopes ||= {}  
   Simmr.scopes.event = $scope
 
   if location.search == '?grabSeats'
     $scope.showSeats = true
+    ANALYTICS.page("Grab Seats")
 
   if location.search == '?waitList'
     $scope.waitlist = true
+    ANALYTICS.page("Join Waitlist")
 
   $scope.guests = []
   $scope.event = []
@@ -197,6 +237,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
         $scope.total()
 
   $scope.showPayment = (wait) ->
+    ANALYTICS.page("Insert Guest Information")
     $scope.guests = []
     $scope.guest_no_pages = 0
     if $scope.num_guests > 0
@@ -220,6 +261,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
       $scope.appear = "payment1"
 
   $scope.addtoWaitlist = ->
+    ANALYTICS.page("Insert Waitlist Information")
     angular.forEach($scope.guests, (guest) =>
       guest.eventId=$scope.eventId
       guest.waiting=true
@@ -229,6 +271,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
     $scope.appear = "waitlist2"
 
   $scope.gotoPayment = ->
+    ANALYTICS.track("Clicked Go To Payment for Event: #{$scope.eventId}")
     error = 0
     angular.forEach($scope.guests, (guest) =>
       if typeof guest.first_name is 'undefined' || typeof guest.email is 'undefined' || guest.last_name is 'undefined'
@@ -237,7 +280,8 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
     if error == 0
       $scope.appear = "payment2"
 
-  $scope.submitPayment = ->    
+  $scope.submitPayment = ->
+    ANALYTICS.track("Clicked Submit Payment for Event: #{$scope.eventId}")    
     $scope.submitCard($scope.card)
 
   $scope.card =
@@ -267,6 +311,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
           if data.status == "Success"
             $scope.code=data.code
             $scope.appear = "payment3"
+            ANALYTICS.track("payed for #{$scope.eventId}")
           if data.status == "Failure"
             $scope.cardErrorMessages=data.messages
             $scope.card.expYear = $scope.card.exp_year
