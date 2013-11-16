@@ -202,6 +202,9 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
     '2023',
     '2024' ]
 
+  $scope.trackThis = (note) ->
+    ANALYTICS.track(note)
+
   $scope.eventDate = ->
     moment($scope.event.date).format("dddd, MMMM D")
 
@@ -271,7 +274,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
     $scope.appear = "waitlist2"
 
   $scope.gotoPayment = ->
-    ANALYTICS.track("Clicked Go To Payment for Event: #{$scope.eventId}")
+    $scope.trackThis("Clicked Go To Payment for Event: "+$scope.eventId)
     error = 0
     angular.forEach($scope.guests, (guest) =>
       if typeof guest.first_name is 'undefined' || typeof guest.email is 'undefined' || guest.last_name is 'undefined'
@@ -281,7 +284,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
       $scope.appear = "payment2"
 
   $scope.submitPayment = ->
-    ANALYTICS.track("Clicked Submit Payment for Event: #{$scope.eventId}")    
+    $scope.trackThis("Clicked Submit Payment for Event: "+$scope.eventId)    
     $scope.submitCard($scope.card)
 
   $scope.card =
@@ -311,7 +314,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
           if data.status == "Success"
             $scope.code=data.code
             $scope.appear = "payment3"
-            ANALYTICS.track("payed for #{$scope.eventId}")
+            $scope.trackThis("Paid for "+ $scope.eventId)
           if data.status == "Failure"
             $scope.cardErrorMessages=data.messages
             $scope.card.expYear = $scope.card.exp_year
