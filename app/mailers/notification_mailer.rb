@@ -41,8 +41,10 @@ class NotificationMailer < ActionMailer::Base
     end
     if user.first_name.present? && user.last_name.present?
       mail(:to=>"neeharika.b@gmail.com", :subject=>"NEW SIMMR #{@type}: #{user.first_name} #{user.last_name}")
+      mail(:to=>"email.wendylin@gmail.com", :subject=>"NEW SIMMR #{@type}: #{user.first_name} #{user.last_name}")
     else
       mail(:to=>"neeharika.b@gmail.com", :subject=>"NEW SIMMR #{@type}, id: #{user.id}, but didnt catch name")
+      mail(:to=>"email.wendylin@gmail.com", :subject=>"NEW SIMMR #{@type}, id: #{user.id}, but didnt catch name")
     end
   end
 end
