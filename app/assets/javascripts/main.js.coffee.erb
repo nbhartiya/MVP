@@ -219,7 +219,17 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
     mapUrl = "http://maps.google.com/?q=#{$scope.address1},#{$scope.city}, #{$scope.state},#{$scope.zipcode}"
 
   $scope.total = ->
-    total = $scope.num_guests * $scope.cost - $scope.referee_discount
+    if $scope.event.referer_discount
+      current_discount=$scope.event.referer_discount*($scope.num_guests-1)
+      total = $scope.num_guests * $scope.cost - $scope.referee_discount - current_discount
+      if $scope.num_guests-1==0
+        $scope.discount_note=""
+      else if $scope.num_guests-1==1
+        $scope.discount_note="Thanks for bringing a guest! We applied a referral discount of $"+current_discount+" to your purchase!"
+      else if $scope.num_guests>=2
+        $scope.discount_note="Thanks for bringing guests! We applied a referral discount of $"+current_discount+" to your purchase!"
+    else
+      total = $scope.num_guests * $scope.cost - $scope.referee_discount
     total = total.toFixed(2)
     $scope.total_val=total
 
@@ -246,9 +256,9 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
     if $scope.num_guests > 0
       homie=$scope.currentUser
       currentGuy={}
-      currentGuy.first_name=''
-      currentGuy.last_name=''
-      currentGuy.email=''
+      currentGuy.first_name=homie.first_name
+      currentGuy.last_name=homie.last_name
+      currentGuy.email=homie.email
       currentGuy.userId=homie.id
       currentGuy.eventId=$scope.eventId
       currentGuy.waiting=wait

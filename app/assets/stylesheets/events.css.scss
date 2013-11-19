@@ -917,6 +917,9 @@ a.sb.yelp.black{
 			    margin-bottom: 0px;
 			    font-size: 12px;
 			}
+			p.point-out{
+				color: #EB4D18;
+            }
 		}
 		.event-guests, .event-purchase, .event-details, .event-menu, .event-attendees-and-chatter, .event-host-story, .host-followers{
 			overflow-y: auto;
@@ -930,6 +933,9 @@ a.sb.yelp.black{
 					font-weight: 100;
 				}
 			}
+			p.point-out{
+				color: #EB4D18;
+            }
 		}
 		.event-create-form{
 			height: 490px;
