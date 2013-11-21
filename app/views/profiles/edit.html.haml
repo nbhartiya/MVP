@@ -100,12 +100,16 @@
                       %td 
                         %a{:href => event_path(event)} 
                           =event.title
-                      %td
-                        =event.host.profile.biz_name
-                      %td
-                        =event.date.strftime("%b %e")
-                      %td
-                        ="#{event.location.address1}, #{event.location.neighborhood}"
+                      -if event.host.present?
+                        %td
+                          =event.host.profile.biz_name
+                        %td
+                          =event.date.strftime("%b %e")
+                        %td
+                          ="#{event.location.address1}, #{event.location.neighborhood}"
+                      -else
+                        %td
+                          =event.title
                       -#%td
                         %td 
                           ="#{event.seats_left} seats left"
