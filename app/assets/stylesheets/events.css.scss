@@ -483,7 +483,7 @@ a.sb.yelp.black{
 	    z-index: -1;
 		.carousel-inner{
 			height: 700px;
-			width: auto;
+			min-width: 1210px;
 			position: relative;
 			z-index: 1;
 			img{
