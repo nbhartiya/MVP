@@ -69,6 +69,7 @@ MVP::Application.routes.draw do
   get "survey" => "survey_questions#survey"
   match "/turtletower" => redirect("https://www.surveymonkey.com/s/LT7SDWX"), :as => :turtletower
   match "/ejis" => redirect("https://www.surveymonkey.com/s/JFCRCPX"), :as => :eji
+  match "/antologiaV" => redirect("https://www.surveymonkey.com/s/26LZ8CY"), :as => :antologiaV
   match "/antologia" => redirect("/events/14")
   match "/capos" => redirect("/events/20")
   #get "incomplete_survey" => "survey_questions#survey"
