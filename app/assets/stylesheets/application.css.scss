@@ -35,6 +35,10 @@ $main_orange: #EB4D18;
 	margin-left: -25px !important;
 }
 
+.row:after{
+	clear: none !important;
+}
+
 [class*="span"]{
 	margin-left: 25px !important;
 }
