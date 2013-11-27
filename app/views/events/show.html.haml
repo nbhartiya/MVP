@@ -159,7 +159,7 @@
                     %span._summary="Simmr Event: #{@event.title}"
                     %span._description=@event.blurb
                     %span._location
-                      ="#{@event.location.address1}, #{@event.location.neighborhood}, #{@event.location.city}, #{@event.location.zipcode}"
+                      ="#{@event.host.profile.biz_name}, #{@event.location.address1}, #{@event.location.neighborhood}, #{@event.location.city}, #{@event.location.zipcode}"
                     %span._organizer Simmr
                     %span._organizer_email
                       -#Add email to link here
@@ -379,7 +379,7 @@
                     %span._summary="Simmr Event: #{@event.title}"
                     %span._description=@event.blurb
                     %span._location
-                      ="#{@event.location.address1}, #{@event.location.neighborhood}, #{@event.location.city}, #{@event.location.zipcode}"
+                      ="#{@event.host.profile.biz_name}, #{@event.location.address1}, #{@event.location.neighborhood}, #{@event.location.city}, #{@event.location.zipcode}"
                     %span._organizer Simmr
                     %span._organizer_email
                       -#Add email to link here
