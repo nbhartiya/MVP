@@ -1,7 +1,7 @@
 =content_for :title, "simmr | how it works"
 
 = render 'layouts/primary_header'
-.home{'ng-controller'=>'HomeIndexCtrl'}
+.home{'ng-controller'=>'HomeIndexCtrl', 'ng-init' => 'type=""'}
   .container
     .row.section-header
       .span12#how-it-works
