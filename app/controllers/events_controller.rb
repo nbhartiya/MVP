@@ -13,7 +13,7 @@ class EventsController < ApplicationController
       host_ids = Profile.includes(:user).where("biz_name iLike ?", "%#{params[:q]}%").map(&:user_id)
       @events = @events.where("title ilike ? OR blurb iLike ? OR description iLike ? OR host_id in (?)", "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%", host_ids)   
     end
-    @events = @events.order("upcoming desc").order("date asc")
+    @events = @events.order("upcoming desc").order("date desc")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @events }
