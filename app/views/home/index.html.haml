@@ -32,36 +32,62 @@
               -i=i+1
       %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#home-carousel"} ‹
       %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#home-carousel"} ›
-      -#.container
-        .copy.row
-          .span1
-          .span10.copy-content
-            %h1 It helps to know the guy behind the counter.
-            %h2 Get to know your local bar and restaurant owners through unforgettable experiences
-            .buttons
-              %a.btn.how-it-works-button{:href => "#how-it-works", "data-target" => "#how-it-works-detail", :type => "button"} How Does It Work?
-              %br
-              -if user_signed_in? == false
-                %a.btn.btn-warning.foodiesignup{:href => "#sign_up_foodie", :"data-toggle" =>"modal"} Sign Up as a Foodie
-                %a.btn.btn-warning.bizsignup{:href => "#sign_up_business", :"data-toggle" =>"modal"} Sign Up as a Business
-                %p Already a member? &nbsp <a href = "#sign_in" class = "sign-in-link" data-toggle = "modal"> Sign In </a>
-              -if user_signed_in?
-                %a.btn.btn-warning.view-events-button{:href => "/events"} Upcoming Events
-                -#
-                  %p
-                    = link_to "Sign Out", destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?", :class => 'sign-out-link'
-            -#
-              .logo
-                = link_to image_tag("logo_final_white.png", :border=>0), '/events', :class => "logo"
-            .span1
     .container
       .row.section-header#hero-title
         .span12
           %h1 150% Uniquely Simmr
       .row#top
         .offset4.span4#home-buttons
-          %a.btn.btn-warning{:href => "/home/howitworks"} How It Works
-          %a.btn.btn-warning{:href => "/home/philosophy"} Our Philosophy
+          %a.btn.btn-warning{'ng-click' => "appear='how'"} How It Works
+          -#%a.btn.btn-warning{:href => "/home/philosophy"} Our Philosophy
+    .container{'ng-show' => "appear == 'how'"}
+      .row.section-header
+        .span12#how-it-works
+          %h1 How It Works
+          %ul.user-type
+            %li{'ng-click' => 'type = "foodie"'}
+              %a{:href => '#how'}
+                .foodie
+                  =image_tag "Foodie-Default-Profile-Image.png"
+                %p I'm a Foodie
+
+            %li{'ng-click' => 'type="business"'}
+              %a{:href => '#how-chef'}
+                .chef
+                  =image_tag "Chef-Default-Profile-Image.png"
+                %p I'm a Business
+              
+      .container
+        .row
+          .span12.how-it-works#how{'ng-show' => 'type == "foodie"'}
+            %h1.title For Foodies
+            %h2.title What are Simmr events like?
+            .row
+              .span12
+                =image_tag "How-It-Works.jpg", :class => "how-it-works-event-infographic"
+            .row.how-it-works-event-infographic
+              .span4.offset5.step.get-started
+                .step-description
+                  -if user_signed_in?
+                    %a{:href => "/events", :"data-toggle" =>"modal"} get started
+                  -else
+                    %a{:href => "#sign_up_foodie", :"data-toggle" =>"modal"} get started
+
+          .span12.how-it-works#how-chef{'ng-show' => 'type == "business"'}
+            %h1.title For Businesses
+            %h2.title What are Simmr events like?
+            .row
+              .span12
+                =image_tag "How-It-Works-Biz.jpg", :class => "how-it-works-event-infographic"
+            .row.how-it-works-event-infographic
+              .span4.offset5.step.get-started
+                .step-description
+                  -if user_signed_in?
+                    %a{:href => "/events", :"data-toggle" =>"modal"} get started
+                  -else
+                    %a{:href => "#sign_up_foodie", :"data-toggle" =>"modal"} get started
+
+
     .events-index{'ng-controller' => 'EventIndexCtrl'}
       -all_events=Event.where(:approved => true)
       -upcoming_events = all_events.where(:upcoming=>true)
@@ -205,9 +231,6 @@
                   =render "events/singleevent", :event => event
                 .span6
 
-                
-        
-        
         .section.events-section
           .container
             .row.events-row-content
@@ -220,85 +243,6 @@
                 -else
                   %p Don’t see your favorite business? <a href = "/campaigns/new">Suggest a business</a> or <a href = "/campaigns">vote up a suggested business</a> to get them to host events on Simmr!
       %a.back-to-top{:href => '#top'}Back to Top
-    -#.container
-      .row.section-header
-        .span12#how-it-works
-          %h1 How It Works
-          -#
-            .logo
-              =image_tag "logo_final.png"
-          %ul.user-type
-            %li{'ng-click' => 'type = "foodie"'}
-              %a{:href => '#how'}
-                .foodie
-                  =image_tag "Foodie-Default-Profile-Image.png"
-                %p I'm a Foodie
-
-            %li{'ng-click' => 'type="business"'}
-              %a{:href => '#how-chef'}
-                .chef
-                  =image_tag "Chef-Default-Profile-Image.png"
-                %p I'm a Business
-              
-    -#.section
-      .container
-        .row
-          .span2
-          .span8.how-it-works#how{'ng-show' => 'type == "foodie"'}
-            %h1.title For Foodies
-            .row.how-it-works-event-infographic
-              .span4.offset1.step.browse
-                .step-description
-                  %h1 1. browse
-                  %p We bring you food-related events and experiences that are like nothing you've experienced before.
-            .row.how-it-works-event-infographic
-              .span4.offset3.step.register
-                .step-description
-                  %h1 2. register
-                  %p See something you like? Book it! But wait - the event doesn't happen until the minimum number of tickets is sold. Help make this happen by inviting your favorite people!
-            .row.how-it-works-event-infographic
-              .span4.offset1.step.tilt
-                .step-description
-                  %h1 3. enjoy
-                  %p Woohoo, party time! All you have to do is show up and have a blast.
-            .row.how-it-works-event-infographic
-              .span4.offset2.step.return
-                .step-description
-                  %h1 4. return
-                  %p Did you have an awesome time? Businesses depend on loyal customers like you who return and help spread the word. We make sure your support is rewarded with further involvement and unique experiences. 
-            .row.how-it-works-event-infographic
-              .span4.offset3.step.get-started
-                .step-description
-                  -if user_signed_in?
-                    %a{:href => "/events", :"data-toggle" =>"modal"} get started
-                  -else
-                    %a{:href => "#sign_up_foodie", :"data-toggle" =>"modal"} get started
-          
-
-          .span8.how-it-works#how-chef{'ng-show' => 'type == "business"'}
-            %h1.title For Businesses
-            .row.how-it-works-event-infographic
-              .span4.step.attract
-                .step-description
-                  %h1 1. attract
-                  %p It's hard to find and attract high quality, long-term customers. Even today, most small businesses do so with discounts. We help you find quality customers who are interested in building a long-term relationship with you.
-            .row.how-it-works-event-infographic
-              .span4.offset4.step.engage
-                .step-description
-                  %h1 2. engage
-                  %p We help you engage your customers to become more loyal by helping you track, communicate with, and reward them in unique, thoughtful ways. 
-            .row.how-it-works-event-infographic
-              .span4.offset1.step.club
-                .step-description
-                  %h1 3. start a club
-                  %p Your biggest fans want a deeper relationship and what better way than as a member in your club? You get regular, predictable cash flow and they get the chance to be "VIP" at a business they love! Don't worry, we help make managing this a breeze.
-            .row.how-it-works-event-infographic
-              .span4.offset3.step.get-started
-                .step-description
-                  -if user_signed_in?
-                    %a{:href => "/events", :"data-toggle" =>"modal"} get started
-                  -else
-                    %a{:href => "#sign_up_business", :"data-toggle" =>"modal"} get started
 
   = render 'layouts/footer'
   = render 'shared/signup_modals'

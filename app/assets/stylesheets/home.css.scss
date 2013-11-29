@@ -113,7 +113,7 @@ ul.parsley-error-list{
 		-moz-box-sizing: border-box;    
 		box-sizing: border-box;
 		padding: 10px;
-		width: 49%;
+		width: 100%;
 	}
 	a{
 		font-size: 18px;
@@ -420,6 +420,12 @@ ul.parsley-error-list{
 		font-weight: 100;
 		text-align: center;
 		font-size: 45px;
+		margin-bottom: 50px;
+	}
+	h2.title{
+		font-weight: 100;
+		text-align: center;
+		font-size: 36px;
 		margin-bottom: 50px;
 	}
 }
