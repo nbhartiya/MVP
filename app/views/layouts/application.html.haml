@@ -5,7 +5,6 @@
     %title
       =yield(:title)
     = stylesheet_link_tag    "application", :media => "all"
-    = filepicker_js_include_tag
     = csrf_meta_tags
     = render 'layouts/google_analytics'
     %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans", :rel => "stylesheet", :type => "text/css"}
@@ -49,9 +48,11 @@
           facebook  : {show:true, text:"Facebook Event"},
           callback  : ""
       }); 
-    = javascript_include_tag "application"
-    = javascript_include_tag "https://js.stripe.com/v2/"
-    = javascript_tag "Stripe.publishableKey = '#{STRIPE_PUBLISHABLE_KEY}';"
+    = javascript_include_tag "application", :defer => "defer"
+    = javascript_include_tag "https://js.stripe.com/v2/", :defer => "defer"
+    = javascript_tag "Stripe.publishableKey = '#{STRIPE_PUBLISHABLE_KEY}';", :defer => "defer"
+    = filepicker_js_include_tag, :defer => "defer"
+
 
    
 -# can add a closer alert x thingie later or tweak it later...

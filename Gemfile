@@ -29,7 +29,7 @@ gem 'json'
 gem 'taps'
 gem 'pg'
 gem 'cancan'
-gem "koala", "~> 1.7.0rc1"
+gem "koala", "~> 1.8.0rc1"
 gem 'yelpster'
 gem 'mandrill-api'
 
@@ -68,6 +68,7 @@ group :assets do
   gem "angularjs-rails-resource"
   gem 'angular-ui-rails'
   gem 'angular-ui-bootstrap-rails'
+  gem 'heroku_rails_deflate'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby

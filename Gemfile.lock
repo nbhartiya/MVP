@@ -98,6 +98,8 @@ GEM
       haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
     hashie (2.0.5)
+    heroku_rails_deflate (0.2.1)
+      rack (~> 1.4.5)
     hike (1.2.3)
     hirb (0.7.1)
     httpauth (0.2.0)
@@ -110,7 +112,7 @@ GEM
     json (1.8.0)
     jwt (0.1.8)
       multi_json (>= 1.5)
-    koala (1.7.0rc1)
+    koala (1.8.0rc1)
       addressable
       faraday
       multi_json
@@ -295,10 +297,11 @@ DEPENDENCIES
   figaro (= 0.6.3)
   filepicker-rails
   haml-rails
+  heroku_rails_deflate
   hirb
   jquery-rails
   json
-  koala (~> 1.7.0rc1)
+  koala (~> 1.8.0rc1)
   launchy
   mandrill-api
   mocha
