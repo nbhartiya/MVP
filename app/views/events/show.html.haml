@@ -47,8 +47,12 @@
 
             .event-summary-logistics-container
               .event-summary-logistics
-                %h3
-                  {{eventDate()}}, from {{eventTime()}} to {{eventEndTime()}}
+                -if @event.tilt==true
+                  %h3
+                    This event will happen on the first Tuesday after #{@event.people_min} people register!
+                -else
+                  %h3
+                    {{eventDate()}}, from {{eventTime()}} to {{eventEndTime()}}
                 %h3 
                   =@event.location.neighborhood
                 %a.event-location{:href => "{{mapUrl()}}",:target=>"_blank"} 
