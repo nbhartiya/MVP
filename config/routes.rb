@@ -72,6 +72,7 @@ MVP::Application.routes.draw do
   match "/antologiaV" => redirect("https://www.surveymonkey.com/s/26LZ8CY"), :as => :antologiaV
   match "/antologia" => redirect("/events/14")
   match "/capos" => redirect("/events/20")
+  match "/radioafrica" => redirect("/events/24")
   #get "incomplete_survey" => "survey_questions#survey"
   
   # I have no idea what changed that caused me to have to add this line...????
