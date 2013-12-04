@@ -100,7 +100,7 @@
                 ="Hosted by #{event.host.profile.biz_name}"
             %td.event-date-price.span2
               -if event.tilt==true
-                %h2 #{event.tilt_note}
+                %h2 First #{event.tilt_note} once #{event.people_min} register!
               -else
                 %h2 #{event.date.strftime("%a %b %e")}, #{event.time.strftime("%l:%M %p")}
               - if event.seats_left>5
