@@ -99,7 +99,10 @@
               %h2 
                 ="Hosted by #{event.host.profile.biz_name}"
             %td.event-date-price.span2
-              %h2 #{event.date.strftime("%a %b %e")}, #{event.time.strftime("%l:%M %p")}
+              -if event.tilt==true
+                %h2 #{event.tilt_note}
+              -else
+                %h2 #{event.date.strftime("%a %b %e")}, #{event.time.strftime("%l:%M %p")}
               - if event.seats_left>5
                 %h2 $#{"%.0f" % event.cost} / seat
               - elsif event.seats_left > 1
