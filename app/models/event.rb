@@ -40,7 +40,7 @@ class Event < ActiveRecord::Base
   has_many :referral_codes
 
   attr_accessible :other_info, :length, :cost, :date, :description, :menu_pdf, :menu_text, :people_limit, :title
-  attr_accessible :host_id, :images_attributes, :time, :neighborhood, :blurb, :vegan, :vegetarian, :gluten_free, :blog_link, :upcoming
+  attr_accessible :host_id, :images_attributes, :time, :neighborhood, :blurb, :vegan, :vegetarian, :gluten_free, :blog_link, :upcoming, :tilt, :tilt_note, :people_min
 
   accepts_nested_attributes_for :images, :reject_if => lambda { |a| a[:image].blank? }, :allow_destroy => true
 

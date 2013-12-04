@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131017003300) do
+ActiveRecord::Schema.define(:version => 20131204211158) do
 
   create_table "accreditations", :force => true do |t|
     t.string   "individual_income"
@@ -98,6 +98,9 @@ ActiveRecord::Schema.define(:version => 20131017003300) do
     t.boolean  "upcoming",         :default => false
     t.float    "referee_discount"
     t.float    "referer_discount"
+    t.boolean  "tilt"
+    t.string   "tilt_note"
+    t.integer  "people_min"
   end
 
   create_table "follows", :force => true do |t|
@@ -272,6 +275,7 @@ ActiveRecord::Schema.define(:version => 20131017003300) do
     t.boolean  "chef"
     t.text     "points"
     t.string   "phone"
+    t.float    "credit"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

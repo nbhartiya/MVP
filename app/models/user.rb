@@ -158,7 +158,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :approved, :first_name, :last_name, :chef, :work_zip, :points, :phone
+  attr_accessible :approved, :first_name, :last_name, :chef, :work_zip, :points, :phone, :credit
   
   def apply_omniauth(omni, user_type)
     if omni['provider'] == 'facebook'
