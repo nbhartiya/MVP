@@ -49,7 +49,7 @@
               .event-summary-logistics
                 -if @event.tilt==true
                   %h3
-                    First tuesday after #{@event.people_min} people register!
+                    First tuesday once #{@event.people_min} guests register!
                 -else
                   %h3
                     {{eventDate()}}, from {{eventTime()}} to {{eventEndTime()}}
