@@ -581,8 +581,10 @@
                   %tr.heading
                     %td Name
                     %td When
-                    %td Status
-                    %td Total
+                    -if current_user.present?
+                      -if current_user.profile.id==@profile.id || current_user.id==1
+                        %td Status
+                        %td Total
                     %td Follows
                     %td 
                     -#%td Shares  
@@ -593,10 +595,12 @@
                           =event.title
                       %td 
                         =event.date.strftime("%b %e")
-                      %td 
-                        ="#{event.guests_count} of #{event.people_limit} filled @ $#{"%g" % (event.cost)}"
-                      %td 
-                        ="$#{"%g" % (event.guests_count*event.cost)}"
+                      -if current_user.present?
+                        -if current_user.profile.id==@profile.id || current_user.id==1
+                          %td 
+                            ="#{event.guests_count} of #{event.people_limit} filled @ $#{"%g" % (event.cost)}"
+                          %td 
+                            ="$#{"%g" % (event.guests_count*event.cost)}"
                       %td 
                         =event.follows.count
                       %td.link
