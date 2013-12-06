@@ -1,13 +1,13 @@
 =content_for :title, "simmr | #{@event.title}"
 
-%meta{content: "141737092659629", property: "fb:app_id"}/
-%meta{content: "image/jpeg", property: "og:type"}/
-%meta{content: "http://simmr.co/#{@event.id}", property: "og:url"}/
-%meta{content: "#{@event.covers.first.image}", property: "og:image"}/
-%meta{content: "#{@event.blurb}", property: "og:description"}/
-%meta{content: "400", property: "og:image:width"}/
-%meta{content: "300", property: "og:image:height"}/
-%meta{content: "Simmr", property: "og:site_name"}/
+%meta{:content => "141737092659629", :property => "fb:app_id"}
+%meta{content: "website", property: "og:type"}
+%meta{:content => "http://simmr.co/#{@event.id}", :property => "og:url"}
+%meta{:content => "#{@event.covers.first.image}", :property => "og:image"}
+%meta{:content => "#{@event.blurb}", :property => "og:description"}
+%meta{:content => "400", :property => "og:image:width"}
+%meta{:content => "300", :property => "og:image:height"}git
+%meta{:content => "Simmr", :property=> "og:site_name"}
 
 .events{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='';event.menuPdf='#{@event.menu_pdf}';cost='#{@event.cost}';event.referer_discount='#{@event.referer_discount}'"}
   .event-profile
