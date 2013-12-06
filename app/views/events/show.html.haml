@@ -2,7 +2,7 @@
 
 - content_for :head do
   %meta{content: "#{@event.blurb}", property: "og:description"}
-  %meta{content: "#{@event.covers.first.image}", property: "og:image"}
+  %meta{content: %img "#{@event.covers.first.image}", property: "og:image"}
   %meta{content: "300", property: "og:image:width"}
   %meta{content: "300", property: "og:image:height"}
   %meta{content: "simmr | #{event.host.profile.biz_name}'s {@event.title}", property: "og:title"}
