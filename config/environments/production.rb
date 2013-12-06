@@ -28,7 +28,7 @@ MVP::Application.configure do
     config.action_mailer.default_url_options = { :host => 'simmr.co' }
   end
 
-  RAILS_ENV=production rake assets:precompile
+  #RAILS_ENV=production rake assets:precompile
 
 
 
