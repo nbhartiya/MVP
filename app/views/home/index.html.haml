@@ -39,7 +39,7 @@
       .row#top
         .offset4.span4#home-buttons
           %a.btn.btn-warning{'ng-click' => "appear='how'"} How It Works
-          -#%a.btn.btn-warning{:href => "/home/philosophy"} Our Philosophy
+          %a.btn.btn-warning{:href => "/home/philosophy"} Our Philosophy
     .container{'ng-show' => "appear == 'how'"}
       .row.section-header
         .span12#how-it-works
