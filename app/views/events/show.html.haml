@@ -1,421 +1,423 @@
-=content_for :title, "simmr | #{@event.title}"
+%head
+  %meta{:content => "141737092659629", :property => "fb:app_id"}
+  %meta{content: "website", property: "og:type"}
+  %meta{:content => "http://simmr.co/#{@event.id}", :property => "og:url"}
+  %meta{:content => "#{@event.covers.first.image}", :property => "og:image"}
+  %meta{:content => "#{@event.blurb}", :property => "og:description"}
+  %meta{:content => "400", :property => "og:image:width"}
+  %meta{:content => "300", :property => "og:image:height"}
+  %meta{:content => "Simmr", :property=> "og:site_name"}
+%body
+  =content_for :title, "simmr | #{@event.title}"
 
-%meta{:content => "141737092659629", :property => "fb:app_id"}
-%meta{content: "website", property: "og:type"}
-%meta{:content => "http://simmr.co/#{@event.id}", :property => "og:url"}
-%meta{:content => "#{@event.covers.first.image}", :property => "og:image"}
-%meta{:content => "#{@event.blurb}", :property => "og:description"}
-%meta{:content => "400", :property => "og:image:width"}
-%meta{:content => "300", :property => "og:image:height"}git
-%meta{:content => "Simmr", :property=> "og:site_name"}
 
-.events{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='';event.menuPdf='#{@event.menu_pdf}';cost='#{@event.cost}';event.referer_discount='#{@event.referer_discount}'"}
-  .event-profile
-    #event-carousel.carousel.slide.hidden-phone 
-      .carousel-inner
-        -if @event.covers.present?
-          -@event.covers.each_with_index do |i, index|
-            -if index == 0
-              .item.active
-                = image_tag i.image
-            -else
-              .item
-                = image_tag i.image
-        -else
-          .item.active
-            =image_tag "Food 26.jpg"
-    -if @event.covers.count > 1
-      %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#event-carousel"} ‹
-      %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#event-carousel"} ›   
-    .container
-      .event-registration.row
-        .span5
-          .event-summary
-            #ribbon
-              .container
-                .base
-                  %h3
-                    =number_to_currency(@event.cost, :unit => "$", :precision => 0)
-                .left_corner
-                .right_corner
-            .event-summary-top
-              %h1
-                =@event.title
-              -if @event.host.profile.biz_name != nil
-                %h2.host Hosted by 
-                %a.host{:href => "/profiles/#{@event.host.profile.id}"}
-                  =' ' + @event.host.profile.biz_name
-                  -#TODO: use titleize
-                  -#TODO: FIX
-            %h3 
-              =@event.blurb
-            %p.point-out
-              -if @event.referer_discount.present?
-                -if @event.referer_discount>0.0
-                  Special Offer: Get #{number_to_currency(@event.referer_discount)} off for every guest you bring or refer!
+  .events{'ng-controller' => 'EventRegisterCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';eventId='#{@event.id}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='';event.menuPdf='#{@event.menu_pdf}';cost='#{@event.cost}';event.referer_discount='#{@event.referer_discount}'"}
+    .event-profile
+      #event-carousel.carousel.slide.hidden-phone 
+        .carousel-inner
+          -if @event.covers.present?
+            -@event.covers.each_with_index do |i, index|
+              -if index == 0
+                .item.active
+                  = image_tag i.image
+              -else
+                .item
+                  = image_tag i.image
+          -else
+            .item.active
+              =image_tag "Food 26.jpg"
+      -if @event.covers.count > 1
+        %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#event-carousel"} ‹
+        %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#event-carousel"} ›   
+      .container
+        .event-registration.row
+          .span5
+            .event-summary
+              #ribbon
+                .container
+                  .base
+                    %h3
+                      =number_to_currency(@event.cost, :unit => "$", :precision => 0)
+                  .left_corner
+                  .right_corner
+              .event-summary-top
+                %h1
+                  =@event.title
+                -if @event.host.profile.biz_name != nil
+                  %h2.host Hosted by 
+                  %a.host{:href => "/profiles/#{@event.host.profile.id}"}
+                    =' ' + @event.host.profile.biz_name
+                    -#TODO: use titleize
+                    -#TODO: FIX
+              %h3 
+                =@event.blurb
+              %p.point-out
+                -if @event.referer_discount.present?
+                  -if @event.referer_discount>0.0
+                    Special Offer: Get #{number_to_currency(@event.referer_discount)} off for every guest you bring or refer!
 
-            .event-summary-logistics-container
-              .event-summary-logistics
-                -if @event.tilt==true
-                  %h3
-                    First tuesday once #{@event.people_min} guests register!
-                -else
-                  %h3
-                    {{eventDate()}}, from {{eventTime()}} to {{eventEndTime()}}
-                %h3 
-                  =@event.location.neighborhood
-                %a.event-location{:href => "{{mapUrl()}}",:target=>"_blank"} 
-                  ="#{@event.location.address1}, #{@event.location.city}, #{@event.location.state} #{@event.location.zipcode}"
-                %table.accommodations
-                  %tr
-                    -if @event.vegetarian
-                      %td
-                        Vegetarian-friendly
-                    -else
-                      %td#default-text
-                        Vegetarian-friendly
-                    - if @event.vegan
-                      %td
-                        Vegan-friendly
-                    -else
-                      %td#default-text
-                        Vegan-friendly
-                    - if @event.gluten_free
-                      %td
-                        Gluten Free-friendly
-                    -else
-                      %td#default-text
-                        Gluten Free-friendly
-                %ul.nav.event-button-group
-                  %li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'trackThis("Clicked Event Details");appear = "details"'} Details
-                  %li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'trackThis("Clicked Event Menu");appear = "menu"'} Menu
-                  -#
-                    %li
-                      %button.btn.attendees{'data-toggle' => 'pill', 'ng-click' => 'appear = "chatter"'} Attendees & Chatter
-                  %li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'trackThis("Clicked Host Story");appear = "story"'} Story
-                  -#
-                    %li
-                      %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "followers"'} Followers
-            -#
-              %p 
-                =@event.seats_left
-                -if @event.seats_left == 1
-                  seat left!
-                -else
-                  seats left!
-              .progress.progress-warning
-                .bar{:style => "width: #{@event.percent_full}%"}
-            - if @event.seats_left > 5
-              .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Book It
-            - elsif @event.seats_left>1
-              .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Only #{@event.seats_left} seats left! Hurry and Book It
-            - elsif @event.seats_left==1
-              .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Only #{@event.seats_left} seat left! Hurry and Book It
-            -else
-              .btn.btn-warning.join-waitlist-button{'ng-click' => 'waitlist=true', 'ng-hide' => 'waitlist', "data-toggle" => "tooltip", :title => "Add your name at the top of the invite list for the next #{@event.host.profile.biz_name} event. If a spot opens up at this one, we'll also let you know!", "data-placement" => "top"} Sold Out! Sign Up for the Next #{@event.host.profile.biz_name} Event
-            -if user_signed_in?
-              -if current_user.attending?(@event.id)
-                %a.btn.btn-warning.grab-seats-button{:href => "/events/#{@event.id}/post_event"} Leave Feedback!
-            -#=render 'shared/signup_modals', :modal_class => '.eventshowsignup'
-            .seats{'ng-show'=> 'showSeats'}
-              -if user_signed_in? == false
-                %a.btn.btn-warning.standalone-button.foodiesignup{:"data-toggle" => "modal", :href=>"#sign_up_foodie"} Sign Up
-                %a.btn.btn-warning.standalone-button.foodiesignup{:"data-toggle" =>"modal", :href=>"#sign_in"} Sign In
-              -if user_signed_in?
-                %select.number-of-seats{'ng-model' => 'num_guests'}
-                  %option{:value => ''} Number of Seats
-                  %option{:value => 1} 1 seat
-                  -([3,@event.seats_left].min).times do |s|
-                    %option{:value => s+2} #{s+2} seats
-                .btn.btn-warning.event-go-button{'ng-click' => 'showPayment(false);total()', 'ng-disabled' => "num_guests==nil || num_guests == 0"} Go
-
-            .seats{'ng-show'=> 'waitlist'}
-              -if user_signed_in? == false
-                -#fix where this redirects to!
-                %a.btn.btn-warning.standalone-button.foodiesignup{:"data-toggle" => "modal", :href=>"#sign_up_foodie"} Sign Up
-                %a.btn.btn-warning.standalone-button.foodiesignup{:"data-toggle" =>"modal", :href=>"#sign_in"} Sign In
-              -if user_signed_in?
-                %select.number-of-seats{'ng-model' => 'num_guests'}
-                  %option{:value => ''} Number of Seats
-                  %option{:value => 1} 1 seat
-                  %option{:value => 2} 2 seats
-                  %option{:value => 3} 3 seats
-                  %option{:value => 4} 4 seats
-                  -# (@event.seats_left).times do |s|
-                    %option{:value => s+2} #{s+2} seats
-                .btn.btn-warning.event-go-button{'ng-click' => 'showPayment(true)', 'ng-disabled' => "num_guests==nil || num_guests == 0"} Go
-            
-            %table.event-sharing{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@event.follows.count}; following = '#{is_user_there_and_following('Event', @event.id)}'"}
-              %tr.icons
-                %td
-                  -if user_signed_in?
-                    %a.sb.heart.circle.no-border.no-shadow{'ng-click' => "addFollower('Event',#{@event.id},#{user_signed_in?},follows)", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date on latest event details!", "data-placement" => "right",'ng-class' => '{true: "red", false: "white"}[following]'}
+              .event-summary-logistics-container
+                .event-summary-logistics
+                  -if @event.tilt==true
+                    %h3
+                      First tuesday once #{@event.people_min} guests register!
                   -else
-                    %a.sb.heart.circle.no-border.no-shadow.follow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
-                -if @event.host.profile.yelp_id.present?
+                    %h3
+                      {{eventDate()}}, from {{eventTime()}} to {{eventEndTime()}}
+                  %h3 
+                    =@event.location.neighborhood
+                  %a.event-location{:href => "{{mapUrl()}}",:target=>"_blank"} 
+                    ="#{@event.location.address1}, #{@event.location.city}, #{@event.location.state} #{@event.location.zipcode}"
+                  %table.accommodations
+                    %tr
+                      -if @event.vegetarian
+                        %td
+                          Vegetarian-friendly
+                      -else
+                        %td#default-text
+                          Vegetarian-friendly
+                      - if @event.vegan
+                        %td
+                          Vegan-friendly
+                      -else
+                        %td#default-text
+                          Vegan-friendly
+                      - if @event.gluten_free
+                        %td
+                          Gluten Free-friendly
+                      -else
+                        %td#default-text
+                          Gluten Free-friendly
+                  %ul.nav.event-button-group
+                    %li
+                      %button.btn{'data-toggle' => 'pill', 'ng-click' => 'trackThis("Clicked Event Details");appear = "details"'} Details
+                    %li
+                      %button.btn{'data-toggle' => 'pill', 'ng-click' => 'trackThis("Clicked Event Menu");appear = "menu"'} Menu
+                    -#
+                      %li
+                        %button.btn.attendees{'data-toggle' => 'pill', 'ng-click' => 'appear = "chatter"'} Attendees & Chatter
+                    %li
+                      %button.btn{'data-toggle' => 'pill', 'ng-click' => 'trackThis("Clicked Host Story");appear = "story"'} Story
+                    -#
+                      %li
+                        %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "followers"'} Followers
+              -#
+                %p 
+                  =@event.seats_left
+                  -if @event.seats_left == 1
+                    seat left!
+                  -else
+                    seats left!
+                .progress.progress-warning
+                  .bar{:style => "width: #{@event.percent_full}%"}
+              - if @event.seats_left > 5
+                .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Book It
+              - elsif @event.seats_left>1
+                .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Only #{@event.seats_left} seats left! Hurry and Book It
+              - elsif @event.seats_left==1
+                .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Only #{@event.seats_left} seat left! Hurry and Book It
+              -else
+                .btn.btn-warning.join-waitlist-button{'ng-click' => 'waitlist=true', 'ng-hide' => 'waitlist', "data-toggle" => "tooltip", :title => "Add your name at the top of the invite list for the next #{@event.host.profile.biz_name} event. If a spot opens up at this one, we'll also let you know!", "data-placement" => "top"} Sold Out! Sign Up for the Next #{@event.host.profile.biz_name} Event
+              -if user_signed_in?
+                -if current_user.attending?(@event.id)
+                  %a.btn.btn-warning.grab-seats-button{:href => "/events/#{@event.id}/post_event"} Leave Feedback!
+              -#=render 'shared/signup_modals', :modal_class => '.eventshowsignup'
+              .seats{'ng-show'=> 'showSeats'}
+                -if user_signed_in? == false
+                  %a.btn.btn-warning.standalone-button.foodiesignup{:"data-toggle" => "modal", :href=>"#sign_up_foodie"} Sign Up
+                  %a.btn.btn-warning.standalone-button.foodiesignup{:"data-toggle" =>"modal", :href=>"#sign_in"} Sign In
+                -if user_signed_in?
+                  %select.number-of-seats{'ng-model' => 'num_guests'}
+                    %option{:value => ''} Number of Seats
+                    %option{:value => 1} 1 seat
+                    -([3,@event.seats_left].min).times do |s|
+                      %option{:value => s+2} #{s+2} seats
+                  .btn.btn-warning.event-go-button{'ng-click' => 'showPayment(false);total()', 'ng-disabled' => "num_guests==nil || num_guests == 0"} Go
+
+              .seats{'ng-show'=> 'waitlist'}
+                -if user_signed_in? == false
+                  -#fix where this redirects to!
+                  %a.btn.btn-warning.standalone-button.foodiesignup{:"data-toggle" => "modal", :href=>"#sign_up_foodie"} Sign Up
+                  %a.btn.btn-warning.standalone-button.foodiesignup{:"data-toggle" =>"modal", :href=>"#sign_in"} Sign In
+                -if user_signed_in?
+                  %select.number-of-seats{'ng-model' => 'num_guests'}
+                    %option{:value => ''} Number of Seats
+                    %option{:value => 1} 1 seat
+                    %option{:value => 2} 2 seats
+                    %option{:value => 3} 3 seats
+                    %option{:value => 4} 4 seats
+                    -# (@event.seats_left).times do |s|
+                      %option{:value => s+2} #{s+2} seats
+                  .btn.btn-warning.event-go-button{'ng-click' => 'showPayment(true)', 'ng-disabled' => "num_guests==nil || num_guests == 0"} Go
+              
+              %table.event-sharing{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@event.follows.count}; following = '#{is_user_there_and_following('Event', @event.id)}'"}
+                %tr.icons
                   %td
-                    %a.sb.yelp.circle.no-border.no-shadow{:href=>"#{get_yelp_link(@event.host.profile)}",:target=>"_blank",'ng-click'=>'trackThis("Clicked Yelp Link")'} 
-                %td
-                  %a.sb.facebook.circle.no-border.no-shadow{:href => "#", 'ng-click'=>'trackThis("Clicked Facebook Share")'}
-                %td
-                  %a.addthisevent{:href => "", :title => "Add to Calendar", 'ng-click' => 'trackThis("Clicked Add to Calendar")'}
-                    +
-                    -if @event.date.present?
-                      %span._start
-                        =DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec).strftime('%m-%d-%Y %H:%M:%S')
-                      %span._end
-                        =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+@event.length.minutes).strftime('%m-%d-%Y %H:%M:%S')
-                    %span._zonecode 6
-                    %span._summary="Simmr Event: #{@event.title}"
-                    %span._description=@event.blurb
-                    %span._location
-                      ="#{@event.host.profile.biz_name}, #{@event.location.address1}, #{@event.location.neighborhood}, #{@event.location.city}, #{@event.location.zipcode}"
-                    %span._organizer Simmr
-                    %span._organizer_email
-                      -#Add email to link here
-                      hello@simmr.co
-                    -#not sure what fb event this is
-                    -#%span._facebook_event http://www.facebook.com/events/160427380695693
-                    %span._all_day_event false
-                    %span._date_format MM/DD/YYYY
-              %tr.host-stats
-                %td
-                  %a.followers {{follows}}
-                -if @event.host.profile.yelp_id.present?  
+                    -if user_signed_in?
+                      %a.sb.heart.circle.no-border.no-shadow{'ng-click' => "addFollower('Event',#{@event.id},#{user_signed_in?},follows)", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date on latest event details!", "data-placement" => "right",'ng-class' => '{true: "red", false: "white"}[following]'}
+                    -else
+                      %a.sb.heart.circle.no-border.no-shadow.follow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
+                  -if @event.host.profile.yelp_id.present?
+                    %td
+                      %a.sb.yelp.circle.no-border.no-shadow{:href=>"#{get_yelp_link(@event.host.profile)}",:target=>"_blank",'ng-click'=>'trackThis("Clicked Yelp Link")'} 
                   %td
-                    %img.yelp-rating{:src => "#{get_yelp_rating_img_url(@event.host.profile)}"}
-                %td{:rowspan => "2"} share 
-                %td to
-              %tr.host-stat-labels
-                %td
-                  %a.followers followers
-                -if @event.host.profile.yelp_id.present?  
-                  %td 
-                    %a{:href=>"#{get_yelp_link(@event.host.profile)}",:target=>"_blank",'ng-click'=>'trackThis("Clicked Yelp Link")'} #{get_review_count(@event.host.profile)} reviews
-                %td calendar
-        -if current_user
-          -if current_user.id == @event.host_id
-            .span1.edit-button-event
-              %a.button.btn{:href=>"/events/#{@event.id}/edit"} Edit
+                    %a.sb.facebook.circle.no-border.no-shadow{:href => "#", 'ng-click'=>'trackThis("Clicked Facebook Share")'}
+                  %td
+                    %a.addthisevent{:href => "", :title => "Add to Calendar", 'ng-click' => 'trackThis("Clicked Add to Calendar")'}
+                      +
+                      -if @event.date.present?
+                        %span._start
+                          =DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec).strftime('%m-%d-%Y %H:%M:%S')
+                        %span._end
+                          =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+@event.length.minutes).strftime('%m-%d-%Y %H:%M:%S')
+                      %span._zonecode 6
+                      %span._summary="Simmr Event: #{@event.title}"
+                      %span._description=@event.blurb
+                      %span._location
+                        ="#{@event.host.profile.biz_name}, #{@event.location.address1}, #{@event.location.neighborhood}, #{@event.location.city}, #{@event.location.zipcode}"
+                      %span._organizer Simmr
+                      %span._organizer_email
+                        -#Add email to link here
+                        hello@simmr.co
+                      -#not sure what fb event this is
+                      -#%span._facebook_event http://www.facebook.com/events/160427380695693
+                      %span._all_day_event false
+                      %span._date_format MM/DD/YYYY
+                %tr.host-stats
+                  %td
+                    %a.followers {{follows}}
+                  -if @event.host.profile.yelp_id.present?  
+                    %td
+                      %img.yelp-rating{:src => "#{get_yelp_rating_img_url(@event.host.profile)}"}
+                  %td{:rowspan => "2"} share 
+                  %td to
+                %tr.host-stat-labels
+                  %td
+                    %a.followers followers
+                  -if @event.host.profile.yelp_id.present?  
+                    %td 
+                      %a{:href=>"#{get_yelp_link(@event.host.profile)}",:target=>"_blank",'ng-click'=>'trackThis("Clicked Yelp Link")'} #{get_review_count(@event.host.profile)} reviews
+                  %td calendar
+          -if current_user
+            -if current_user.id == @event.host_id
+              .span1.edit-button-event
+                %a.button.btn{:href=>"/events/#{@event.id}/edit"} Edit
+            -else
+              .span1
           -else
             .span1
-        -else
-          .span1
-        .span6
-          .event-details#details{'ng-show' => 'appear=="details"'}
-            %button.close{"ng-click" => "appear=''", :type => "button"} close
-            %h1 Details
-            %h3
-              - if @event.description != nil
-                - n = @event.description.split("\n")
-                -for i in 0..n.length-1
-                  = simple_format n[i]
-          .event-menu#menu{'ng-show' => 'appear=="menu"'}
-            %button.close{"ng-click" => "appear=''", :type => "button"} close
-            %h1 Menu
-            -if @event.menu_pdf.present?
-              %a.fancybox{:href => "#{@event.menu_pdf}", :"data-fancybox-type" => 'iframe'}  Expand
-              %iframe.menu{:src => "#{@event.menu_pdf}", :width => '510px', :height => '420px'}
-            -else
-              %h3 Coming Soon!
-          -#
-            .event-attendees-and-chatter{'ng-show' => 'appear=="chatter"'}
+          .span6
+            .event-details#details{'ng-show' => 'appear=="details"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
-              %h1 Attendees
-              .attendees
-                -if @event.guests_count > 0
-                  %table.following-table
-                    -for guest in @event.guests_going
-                      %tr 
-                        %td
-                          -if guest.user.present?
-                            -if guest.user.profile.avatar.present?
-                              =link_to image_tag(guest.user.profile.avatar.image), "/profiles/#{guest.user.profile.id}"
+              %h1 Details
+              %h3
+                - if @event.description != nil
+                  - n = @event.description.split("\n")
+                  -for i in 0..n.length-1
+                    = simple_format n[i]
+            .event-menu#menu{'ng-show' => 'appear=="menu"'}
+              %button.close{"ng-click" => "appear=''", :type => "button"} close
+              %h1 Menu
+              -if @event.menu_pdf.present?
+                %a.fancybox{:href => "#{@event.menu_pdf}", :"data-fancybox-type" => 'iframe'}  Expand
+                %iframe.menu{:src => "#{@event.menu_pdf}", :width => '510px', :height => '420px'}
+              -else
+                %h3 Coming Soon!
+            -#
+              .event-attendees-and-chatter{'ng-show' => 'appear=="chatter"'}
+                %button.close{"ng-click" => "appear=''", :type => "button"} close
+                %h1 Attendees
+                .attendees
+                  -if @event.guests_count > 0
+                    %table.following-table
+                      -for guest in @event.guests_going
+                        %tr 
+                          %td
+                            -if guest.user.present?
+                              -if guest.user.profile.avatar.present?
+                                =link_to image_tag(guest.user.profile.avatar.image), "/profiles/#{guest.user.profile.id}"
+                              -else
+                                =image_tag("Foodie-Default-Profile-Image.png")
                             -else
                               =image_tag("Foodie-Default-Profile-Image.png")
-                          -else
-                            =image_tag("Foodie-Default-Profile-Image.png")
-                        %td
-                          -if guest.user.present?
-                            %a{:href=>"/profiles/#{guest.user.profile.id}"}
-                              ="#{guest.first_name} #{guest.last_name}"
-                          -else
-                            %h3
-                              ="#{guest.first_name} #{guest.last_name}"
-                        -#%td Number of Followers
-                        %td
-                          -if guest.user.present?
-                            -if user_signed_in?
-                              %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{guest.user.profile.id},#{user_signed_in?})", 'ng-init' => "following = '#{is_user_there_and_following('Profile', guest.user.profile.id)}'", 'ng-class' => '{true: "red", false: "white"}[following]'}
+                          %td
+                            -if guest.user.present?
+                              %a{:href=>"/profiles/#{guest.user.profile.id}"}
+                                ="#{guest.first_name} #{guest.last_name}"
                             -else
-                              %a.sb.heart.circle.no-border.no-shadow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
-                -else
-                  %h3 There are currently no attendees. Be the first to grab a spot!
-              .row.comments
-                .fb-comments{"data-colorscheme" => "dark", "data-href" => "#{request.url}", "data-num-posts" => "5", "data-width" => "500"}
-          .event-host-story{'ng-show' => 'appear=="story"'}
-            %button.close{"ng-click" => "appear=''", :type => "button"} close
-            %h1 #{@event.host.profile.biz_name} Story
-            %h3
-              -if @event.host.profile.story != nil
-                - n = @event.host.profile.story.split("\n")
-                -for i in 0..n.length-1
-                  = simple_format n[i]
-              -if current_user
-                -if (current_user.id == @event.host_id) && @event.host.profile.story == nil
-                  ="Hey #{@event.host.profile.biz_name}, looks like you didn't add a 'story' in your profile. Be sure to add a story by clicking on 'Dashboard' above!"
-          -#
-            .host-followers{'ng-show' => 'appear == "followers"'}
+                              %h3
+                                ="#{guest.first_name} #{guest.last_name}"
+                          -#%td Number of Followers
+                          %td
+                            -if guest.user.present?
+                              -if user_signed_in?
+                                %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{guest.user.profile.id},#{user_signed_in?})", 'ng-init' => "following = '#{is_user_there_and_following('Profile', guest.user.profile.id)}'", 'ng-class' => '{true: "red", false: "white"}[following]'}
+                              -else
+                                %a.sb.heart.circle.no-border.no-shadow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
+                  -else
+                    %h3 There are currently no attendees. Be the first to grab a spot!
+                .row.comments
+                  .fb-comments{"data-colorscheme" => "dark", "data-href" => "#{request.url}", "data-num-posts" => "5", "data-width" => "500"}
+            .event-host-story{'ng-show' => 'appear=="story"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
-              %h1 Followers
-              %ul.nav.nav-tabs
-                %li.active
-                  %a{"data-toggle" => "tab", :href => "#foodie-following"} Foodies
-                %li
-                  %a{"data-toggle" => "tab", :href => "#business-following"} Businesses
-              #myTabContent.tab-content
-                #foodie-following.tab-pane.fade.active.in
-                  -if @event.follows.count > 0
-                    %table.following-table
-                      -for follow in @event.follows
-                        -if follow.user.chef == false
-                          %tr 
-                            %td
-                              -if follow.user.profile.avatar.present?
-                                =link_to image_tag(follow.user.profile.avatar.image), "#"
-                              -else
-                                =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
-                            %td
-                              %a{:href=>"/profiles/#{follow.user.profile.id}"}
-                                ="#{follow.user.first_name} #{follow.user.last_name}"
-                            -#%td Number of Followers..may want to add later
-                            %td
-                              -if user_signed_in?
-                                %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})", 'ng-init' => "following = '#{is_user_there_and_following('Profile', follow.user.profile.id)}'", 'ng-class' => '{true: "red", false: "white"}[following]'}
-                              -else
-                                %a.sb.heart.circle.no-border.no-shadow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
+              %h1 #{@event.host.profile.biz_name} Story
+              %h3
+                -if @event.host.profile.story != nil
+                  - n = @event.host.profile.story.split("\n")
+                  -for i in 0..n.length-1
+                    = simple_format n[i]
+                -if current_user
+                  -if (current_user.id == @event.host_id) && @event.host.profile.story == nil
+                    ="Hey #{@event.host.profile.biz_name}, looks like you didn't add a 'story' in your profile. Be sure to add a story by clicking on 'Dashboard' above!"
+            -#
+              .host-followers{'ng-show' => 'appear == "followers"'}
+                %button.close{"ng-click" => "appear=''", :type => "button"} close
+                %h1 Followers
+                %ul.nav.nav-tabs
+                  %li.active
+                    %a{"data-toggle" => "tab", :href => "#foodie-following"} Foodies
+                  %li
+                    %a{"data-toggle" => "tab", :href => "#business-following"} Businesses
+                #myTabContent.tab-content
+                  #foodie-following.tab-pane.fade.active.in
+                    -if @event.follows.count > 0
+                      %table.following-table
+                        -for follow in @event.follows
+                          -if follow.user.chef == false
+                            %tr 
+                              %td
+                                -if follow.user.profile.avatar.present?
+                                  =link_to image_tag(follow.user.profile.avatar.image), "#"
+                                -else
+                                  =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                              %td
+                                %a{:href=>"/profiles/#{follow.user.profile.id}"}
+                                  ="#{follow.user.first_name} #{follow.user.last_name}"
+                              -#%td Number of Followers..may want to add later
+                              %td
+                                -if user_signed_in?
+                                  %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})", 'ng-init' => "following = '#{is_user_there_and_following('Profile', follow.user.profile.id)}'", 'ng-class' => '{true: "red", false: "white"}[following]'}
+                                -else
+                                  %a.sb.heart.circle.no-border.no-shadow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
 
-                  -else
-                    %h3 No current followers. Click the heart to stay updated about this event!
-                #business-following.tab-pane.fade
-                  -if @event.follows.count > 0
-                    %table.following-table
-                      -for follow in @event.follows
-                        -if follow.user.chef == true
-                          %tr 
-                            %td
-                              -if follow.user.profile.avatar.present?
-                                =image_tag(follow.user.profile.avatar.image)
-                              -else
-                                =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
-                            %td
-                              %a{:href=>"/profiles/#{follow.user.profile.id}"}
-                                ="#{follow.user.profile.biz_name}"
-                            -#%td Number of Followers..may want to add later
-                            %td
-                              -if user_signed_in?
-                                %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})", 'ng-init' => "following = '#{is_user_there_and_following('Profile', follow.user.profile.id)}'", 'ng-class' => '{true: "red", false: "white"}[following]'}
-                              -else
-                                %a.sb.heart.circle.no-border.no-shadow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
-                  -else
-                    %h3 No current followers. Click the heart to stay updated about this event!
+                    -else
+                      %h3 No current followers. Click the heart to stay updated about this event!
+                  #business-following.tab-pane.fade
+                    -if @event.follows.count > 0
+                      %table.following-table
+                        -for follow in @event.follows
+                          -if follow.user.chef == true
+                            %tr 
+                              %td
+                                -if follow.user.profile.avatar.present?
+                                  =image_tag(follow.user.profile.avatar.image)
+                                -else
+                                  =link_to image_tag("Chef-Default-Profile-Image.png"), "#"
+                              %td
+                                %a{:href=>"/profiles/#{follow.user.profile.id}"}
+                                  ="#{follow.user.profile.biz_name}"
+                              -#%td Number of Followers..may want to add later
+                              %td
+                                -if user_signed_in?
+                                  %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl', 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})", 'ng-init' => "following = '#{is_user_there_and_following('Profile', follow.user.profile.id)}'", 'ng-class' => '{true: "red", false: "white"}[following]'}
+                                -else
+                                  %a.sb.heart.circle.no-border.no-shadow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
+                    -else
+                      %h3 No current followers. Click the heart to stay updated about this event!
 
-          .event-guests.clearfix{'ng-show' => 'appear=="payment1"'}
-            %h1 Total: ${{total_val}}
-            %p.point-out{'ng-hide' => 'discount_note=="" || discount_note==nil'} {{discount_note}}
-            %hr
-            %h2 Who all are coming?
-            %form.guests{:name => "guest_registration", 'ng-repeat' => 'guest in guests'}
-              -#Make first email say "YOUR EMAIL" not guest email, send confirmation email, have note on every event someone has registered for that they've registered and should have gotten an email.
-              %input.guest-name{'ng-disabled' => "guest.userId>0",'ng-model' => 'guest.first_name', :type=>'text', :placeholder =>"Guest First Name", :required => "required", :name => "guest_first", 'ng-class' => "{error: guest_registration.guest_first.$invalid}"}
-              %input.guest-name{'ng-disabled' => "guest.userId>0",'ng-model' => 'guest.last_name', :type=>'text', :placeholder =>"Guest Last Name", :required => "required", :name => "guest_last", 'ng-class' => "{error: guest_registration.guest_last.$invalid}"}
-              %input.guest-email{'ng-disabled' => "guest.userId>0",'ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :required => "required", :name => "guest_email", 'ng-class' => "{error: guest_registration.guest_email.$invalid}"}
-              .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.email'} Please enter a valid email
-              .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.required || guest_registration.guest_first.$error.required || guest_registration.guest_last.$error.required'} All fields are required
-            -if @event.referer_discount.present?
-              -if @event.referer_discount >0.0
-                %a#promo-code Did someone refer you? Put in their referral code!
-                %input.promo-code{:placeholder => "Referral Code (Optional)", 'ng-model'=>'referrer_code'}
-                %button.btn.promo-code{'ng-click'=>'checkReferralCode(referrer_code)'} Submit
-                .help-block-white.promo-code{'ng-show' => 'discount_stuff.applied'} Applied!
-                .help-block-white.promo-code{'ng-show' => 'discount_stuff.applied!=nil && discount_stuff.note!="success"'} {{discount_stuff.details}}
-                -#.help-block-white.promo-code{'ng-show' => 'discount_stuff.applied==nil'} You can get in on this too--Once you purchase your ticket, you'll get a referral code to share with friends. You get $10 back for every friend who uses your referral code at checkout! Your referral code is automatically applied to guests you are paying for.
-            %button.btn.btn-warning.standalone-button#enter-payment-info{'ng-click' => 'gotoPayment()', 'ng-disabled' => "error=0"} Next: Enter Payment Info
-          .event-guests.clearfix{'ng-show' => 'appear=="waitlist1"'}
-            %h1 Who all wants to go to #{@event.title}?
-            %hr
-            %form.guests{:name => "guest_registration", 'ng-repeat' => 'guest in guests'}
-              -#Make first email say "YOUR EMAIL" not guest email, send confirmation email, have note on every event someone has registered for that they've registered and should have gotten an email.
-              %input.guest-name{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.first_name', :type=>'text', :placeholder =>"Guest First Name", :required => "required", :name => "guest_first", 'ng-class' => "{error: guest_registration.guest_first.$invalid}"}
-              %input.guest-name{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.last_name', :type=>'text', :placeholder =>"Guest Last Name", :required => "required", :name => "guest_last", 'ng-class' => "{error: guest_registration.guest_last.$invalid}"}
-              %input.guest-email{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :required => "required", :name => "guest_email", 'ng-class' => "{error: guest_registration.guest_email.$invalid}"}
-              .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.email'} Please enter a valid email
-              .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.required || guest_registration.guest_first.$error.required || guest_registration.guest_last.$error.required'} All fields are required
-            %button.btn.btn-warning.standalone-button#enter-payment-info{'ng-click' => 'addtoWaitlist()', 'ng-disabled' => "error=0"} Sign Up for the Next #{@event.host.profile.biz_name} Event
+            .event-guests.clearfix{'ng-show' => 'appear=="payment1"'}
+              %h1 Total: ${{total_val}}
+              %p.point-out{'ng-hide' => 'discount_note=="" || discount_note==nil'} {{discount_note}}
+              %hr
+              %h2 Who all are coming?
+              %form.guests{:name => "guest_registration", 'ng-repeat' => 'guest in guests'}
+                -#Make first email say "YOUR EMAIL" not guest email, send confirmation email, have note on every event someone has registered for that they've registered and should have gotten an email.
+                %input.guest-name{'ng-disabled' => "guest.userId>0",'ng-model' => 'guest.first_name', :type=>'text', :placeholder =>"Guest First Name", :required => "required", :name => "guest_first", 'ng-class' => "{error: guest_registration.guest_first.$invalid}"}
+                %input.guest-name{'ng-disabled' => "guest.userId>0",'ng-model' => 'guest.last_name', :type=>'text', :placeholder =>"Guest Last Name", :required => "required", :name => "guest_last", 'ng-class' => "{error: guest_registration.guest_last.$invalid}"}
+                %input.guest-email{'ng-disabled' => "guest.userId>0",'ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :required => "required", :name => "guest_email", 'ng-class' => "{error: guest_registration.guest_email.$invalid}"}
+                .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.email'} Please enter a valid email
+                .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.required || guest_registration.guest_first.$error.required || guest_registration.guest_last.$error.required'} All fields are required
+              -if @event.referer_discount.present?
+                -if @event.referer_discount >0.0
+                  %a#promo-code Did someone refer you? Put in their referral code!
+                  %input.promo-code{:placeholder => "Referral Code (Optional)", 'ng-model'=>'referrer_code'}
+                  %button.btn.promo-code{'ng-click'=>'checkReferralCode(referrer_code)'} Submit
+                  .help-block-white.promo-code{'ng-show' => 'discount_stuff.applied'} Applied!
+                  .help-block-white.promo-code{'ng-show' => 'discount_stuff.applied!=nil && discount_stuff.note!="success"'} {{discount_stuff.details}}
+                  -#.help-block-white.promo-code{'ng-show' => 'discount_stuff.applied==nil'} You can get in on this too--Once you purchase your ticket, you'll get a referral code to share with friends. You get $10 back for every friend who uses your referral code at checkout! Your referral code is automatically applied to guests you are paying for.
+              %button.btn.btn-warning.standalone-button#enter-payment-info{'ng-click' => 'gotoPayment()', 'ng-disabled' => "error=0"} Next: Enter Payment Info
+            .event-guests.clearfix{'ng-show' => 'appear=="waitlist1"'}
+              %h1 Who all wants to go to #{@event.title}?
+              %hr
+              %form.guests{:name => "guest_registration", 'ng-repeat' => 'guest in guests'}
+                -#Make first email say "YOUR EMAIL" not guest email, send confirmation email, have note on every event someone has registered for that they've registered and should have gotten an email.
+                %input.guest-name{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.first_name', :type=>'text', :placeholder =>"Guest First Name", :required => "required", :name => "guest_first", 'ng-class' => "{error: guest_registration.guest_first.$invalid}"}
+                %input.guest-name{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.last_name', :type=>'text', :placeholder =>"Guest Last Name", :required => "required", :name => "guest_last", 'ng-class' => "{error: guest_registration.guest_last.$invalid}"}
+                %input.guest-email{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :required => "required", :name => "guest_email", 'ng-class' => "{error: guest_registration.guest_email.$invalid}"}
+                .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.email'} Please enter a valid email
+                .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.required || guest_registration.guest_first.$error.required || guest_registration.guest_last.$error.required'} All fields are required
+              %button.btn.btn-warning.standalone-button#enter-payment-info{'ng-click' => 'addtoWaitlist()', 'ng-disabled' => "error=0"} Sign Up for the Next #{@event.host.profile.biz_name} Event
 
-          .event-purchase.clearfix{'ng-show' => 'appear=="payment2"', 'ng-init'=> "currentUser=#{current_user.to_json}"}
-            %h1 Total: ${{total_val}}
-            %hr
-            = render 'charges/stripe'
-            %h2{'ng-hide' => 'cardErrorMessages[0]=="" || cardErrorMessages[0]==nil'} {{cardErrorMessages[0]}} Try again!
-            %h2{'ng-hide' => 'cardErrorMessages2=="" || cardErrorMessages2==nil'} {{cardErrorMessages2}} Try again!
+            .event-purchase.clearfix{'ng-show' => 'appear=="payment2"', 'ng-init'=> "currentUser=#{current_user.to_json}"}
+              %h1 Total: ${{total_val}}
+              %hr
+              = render 'charges/stripe'
+              %h2{'ng-hide' => 'cardErrorMessages[0]=="" || cardErrorMessages[0]==nil'} {{cardErrorMessages[0]}} Try again!
+              %h2{'ng-hide' => 'cardErrorMessages2=="" || cardErrorMessages2==nil'} {{cardErrorMessages2}} Try again!
 
-            %button.btn.btn-warning#ticket-purchase{'ng-click' => 'submitPayment()', 'ng-disabled'=> 'stripe.$invalid'} Purchase
-            %button.btn#previous-button{'ng-click' => 'appear="payment1"'} Previous
+              %button.btn.btn-warning#ticket-purchase{'ng-click' => 'submitPayment()', 'ng-disabled'=> 'stripe.$invalid'} Purchase
+              %button.btn#previous-button{'ng-click' => 'appear="payment1"'} Previous
 
-          .event-purchase-confirmation.clearfix{'ng-show' => 'appear=="payment3"'}
-            %h2 Thank you for your reservation! You're confirmed and will receive an email confirmation in the next day.
-            -if @event.referer_discount.present?
-              -if @event.referer_discount >0.0
-                %h2 Your referral code is '{{code}}'. Get $10 off for each friend who uses your referral code at checkout!
-            %table.event-sharing{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@event.follows.count}; following = '#{is_user_there_and_following('Event', @event.id)}'"}
-              %tr.icons
-                %td
-                  -if user_signed_in?
-                    %a.sb.heart.circle.no-border.no-shadow{'ng-click' => "addFollower('Event',#{@event.id},#{user_signed_in?},follows)", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date on latest event details!", "data-placement" => "right",'ng-class' => '{true: "red", false: "white"}[following]'}
-                  -else
-                    %a.sb.heart.circle.no-border.no-shadow.follow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
-                %td
-                  %a.sb.facebook.circle.no-border.no-shadow{:href => "#", 'ng-click'=>'trackThis("Clicked Facebook Share")'}
-                %td
-                  %a.addthisevent{:href => "", :title => "Add to Calendar", 'ng-click' => 'trackThis("Clicked Add to Calendar")'}
-                    +
-                    -if @event.date.present?
-                      %span._start
-                        =DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec).strftime('%m-%d-%Y %H:%M:%S')
-                      %span._end
-                        =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+@event.length.minutes).strftime('%m-%d-%Y %H:%M:%S')
-                    %span._zonecode 6
-                    %span._summary="Simmr Event: #{@event.title}"
-                    %span._description=@event.blurb
-                    %span._location
-                      ="#{@event.host.profile.biz_name}, #{@event.location.address1}, #{@event.location.neighborhood}, #{@event.location.city}, #{@event.location.zipcode}"
-                    %span._organizer Simmr
-                    %span._organizer_email
-                      -#Add email to link here
-                      hello@simmr.co
-                    -#not sure what fb event this is
-                    -#%span._facebook_event http://www.facebook.com/events/160427380695693
-                    %span._all_day_event false
-                    %span._date_format MM/DD/YYYY
-              %tr.host-stats
-                %td
-                  %a.followers {{follows}}
-                %td{:rowspan => "2"} share 
-                %td to
-              %tr.host-stat-labels
-                %td
-                  %a.followers followers
-                %td calendar
+            .event-purchase-confirmation.clearfix{'ng-show' => 'appear=="payment3"'}
+              %h2 Thank you for your reservation! You're confirmed and will receive an email confirmation in the next day.
+              -if @event.referer_discount.present?
+                -if @event.referer_discount >0.0
+                  %h2 Your referral code is '{{code}}'. Get $10 off for each friend who uses your referral code at checkout!
+              %table.event-sharing{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@event.follows.count}; following = '#{is_user_there_and_following('Event', @event.id)}'"}
+                %tr.icons
+                  %td
+                    -if user_signed_in?
+                      %a.sb.heart.circle.no-border.no-shadow{'ng-click' => "addFollower('Event',#{@event.id},#{user_signed_in?},follows)", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date on latest event details!", "data-placement" => "right",'ng-class' => '{true: "red", false: "white"}[following]'}
+                    -else
+                      %a.sb.heart.circle.no-border.no-shadow.follow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
+                  %td
+                    %a.sb.facebook.circle.no-border.no-shadow{:href => "#", 'ng-click'=>'trackThis("Clicked Facebook Share")'}
+                  %td
+                    %a.addthisevent{:href => "", :title => "Add to Calendar", 'ng-click' => 'trackThis("Clicked Add to Calendar")'}
+                      +
+                      -if @event.date.present?
+                        %span._start
+                          =DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec).strftime('%m-%d-%Y %H:%M:%S')
+                        %span._end
+                          =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+@event.length.minutes).strftime('%m-%d-%Y %H:%M:%S')
+                      %span._zonecode 6
+                      %span._summary="Simmr Event: #{@event.title}"
+                      %span._description=@event.blurb
+                      %span._location
+                        ="#{@event.host.profile.biz_name}, #{@event.location.address1}, #{@event.location.neighborhood}, #{@event.location.city}, #{@event.location.zipcode}"
+                      %span._organizer Simmr
+                      %span._organizer_email
+                        -#Add email to link here
+                        hello@simmr.co
+                      -#not sure what fb event this is
+                      -#%span._facebook_event http://www.facebook.com/events/160427380695693
+                      %span._all_day_event false
+                      %span._date_format MM/DD/YYYY
+                %tr.host-stats
+                  %td
+                    %a.followers {{follows}}
+                  %td{:rowspan => "2"} share 
+                  %td to
+                %tr.host-stat-labels
+                  %td
+                    %a.followers followers
+                  %td calendar
 
-            %a.btn.btn-warning#ok-button{:href => "/events"} Check Out More Cool Events!
-          
-          .event-purchase-confirmation.clearfix{'ng-show' => 'appear=="waitlist2"'}
-            %h2 Thanks for signing up for the next event! We'll keep you posted when enough people sign up for the event to happen. To make sure this happens, tell all your friends to also sign up!
+              %a.btn.btn-warning#ok-button{:href => "/events"} Check Out More Cool Events!
+            
+            .event-purchase-confirmation.clearfix{'ng-show' => 'appear=="waitlist2"'}
+              %h2 Thanks for signing up for the next event! We'll keep you posted when enough people sign up for the event to happen. To make sure this happens, tell all your friends to also sign up!
 
-            %h2 If we find an extra spot for this event, we'll let you know as soon as we find out!
+              %h2 If we find an extra spot for this event, we'll let you know as soon as we find out!
 
-            %a.btn.btn-warning#ok-button{:href => "/events"} Check Out More Cool Events!
+              %a.btn.btn-warning#ok-button{:href => "/events"} Check Out More Cool Events!
