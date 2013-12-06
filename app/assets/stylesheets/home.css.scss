@@ -422,6 +422,12 @@ ul.parsley-error-list{
 		font-size: 45px;
 		margin-bottom: 50px;
 	}
+	h2.title{
+		font-weight: 100;
+		text-align: center;
+		font-size: 36px;
+		margin-bottom: 50px;
+	}
 }
 
 .how-it-works-event-infographic{
@@ -539,6 +545,7 @@ ul.parsley-error-list{
 }
 
 .section{
+	position: relative;
 	margin: 0;
 	padding: 0;
 	background: rgb(240, 240, 240);

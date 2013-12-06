@@ -197,9 +197,9 @@ class User < ActiveRecord::Base
     end
   end
 
-  #def facebook
-  #  @graph = Koala::Facebook::API.new(self.authentications.find_by_provider('facebook').token)
-  #end
+  def facebook
+    @graph = Koala::Facebook::API.new(self.authentications.find_by_provider('facebook').token)
+  end
   
   def password_required?
     #false
