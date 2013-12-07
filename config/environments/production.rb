@@ -28,10 +28,6 @@ MVP::Application.configure do
     config.action_mailer.default_url_options = { :host => 'simmr.co' }
   end
 
-  RAILS_ENV=production rake assets:precompile
-
-
-
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
 
