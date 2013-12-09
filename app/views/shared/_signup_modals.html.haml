@@ -31,3 +31,16 @@
   .modal-body
     %h3 Stay up to date on the latest fun experiences!
     = render "shared/email_signup_form"
+
+#referral.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h3#myModalLabel Get Simmr Credit
+  .modal-body
+    %h3 Get $5 for every friend who joins and attends an event!
+    -if user_signed_in?
+      %a.sb.facebook.text.black.facebook-share{:href => "#", 'ng-click'=>'trackThis("Clicked Facebook Share")'} Share on Facebook
+    -else
+      %p.sign-up-text
+        <a data-dismiss = "modal" data-toggle = "modal" href = "#sign_in">Log In</a> or <a data-dismiss = "modal" data-toggle = "modal" href = "#sign_up_foodie">Sign Up</a> so We Can Give You Credit!
+  

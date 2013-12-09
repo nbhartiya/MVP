@@ -1,6 +1,5 @@
 =content_for :title, "simmr | home"
 
-= render 'layouts/primary_header'
 .wow{'ng-controller'=>'HomeIndexCtrl', 'ng-init' => "appear=''"}
   .home 
     .attention-getter
@@ -244,9 +243,6 @@
                   %p Don’t see your favorite business? <a href = "/campaigns/new">Suggest a business</a> or <a href = "/campaigns">vote up a suggested business</a> to get them to host events on Simmr!
       %a.back-to-top{:href => '#top'}Back to Top
 
-  = render 'layouts/footer'
-  = render 'shared/signup_modals'
-  = render 'shared/signin_modal'
 
 
 -# Uncomment the below to have the log in credential form rendered into this page

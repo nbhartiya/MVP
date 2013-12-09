@@ -8,7 +8,7 @@
 
     .span9.nav-right
       %ul
-        %li.pull-right.input-append
+        -#%li.pull-right.input-append
           %input#appendedInputButton{:type => 'text', :placeholder => "Search Events or Businesses", 'ng-model'=>'searchQuery', 'ui-keypress'=>"{13:'keypressCallback($event)'}"}
           %button.btn.search{'ng-click'=>'search(searchQuery)'} <i class = "icon-search"></i>
         -if user_signed_in? == false
@@ -42,6 +42,8 @@
                     %a{:href=>"/edit_my_profile?events", :tabindex => "-1"} My Events
                 %li.dropitem
                   = link_to "Sign Out", destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?", :tabindex => "-1"
+        %li.pull-right
+          %a#simmr-credit{:href=>"#referral", :"data-toggle" => "modal", :tabindex => "-1"} Earn Simmr Credit!
         %li.pull-right
           %a.campaign{:href =>"/campaigns", "data-placement"=>'right'}Suggest a Host
         %li.pull-right

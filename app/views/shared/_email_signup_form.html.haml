@@ -7,18 +7,3 @@
     %input#user_email{:required => "required", :placeholder => "email", :name => "user[email]", :size => "30", :type => "email", 'ng-model' => 'user.email', 'ng-class' => "{error: new_foodie['user[email]'].$invalid}"}
     .help-block{"ng-show" => "new_email['user[email]'].$error.email"} Please enter a valid email
     %button.usersignup.emailbutton.btn.btn-warning Sign Up
-
--#
-  %div
-    %label.radio.inline
-      %input#optionsRadios1{:name => "user[chef]", :checked => "", :type => "radio", :value => "0"}
-      Foodie
-    %label.radio.inline
-      %input#optionsRadios2{:name => "user[chef]", :type => "radio", :value => "1"}
-      Food Business
-    %br
-    %br
-  -# %div
-  -#   %button.btn{:name => "commit", :type => "submit"} Sign Up
-  -#
-    = link_to "LinkedIn", user_omniauth_authorize_path(:linkedin), :class => "sb linkedin text black"

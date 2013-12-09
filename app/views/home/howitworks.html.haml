@@ -1,6 +1,5 @@
 =content_for :title, "simmr | how it works"
 
-= render 'layouts/primary_header'
 .home{'ng-controller'=>'HomeIndexCtrl', 'ng-init' => 'type=""'}
   .container
     .row.section-header
@@ -51,7 +50,3 @@
                 %a{:href => "/events", :"data-toggle" =>"modal"} get started
               -else
                 %a{:href => "#sign_up_foodie", :"data-toggle" =>"modal"} get started
-
-= render 'layouts/footer'
-= render 'shared/signup_modals'
-= render 'shared/signin_modal'

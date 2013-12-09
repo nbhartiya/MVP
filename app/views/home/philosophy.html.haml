@@ -1,6 +1,5 @@
 =content_for :title, "simmr | our philosophy"
 
-= render 'layouts/primary_header'
 
 .home{'ng-controller'=>'HomeIndexCtrl'}
   .philosophy-all
@@ -25,7 +24,3 @@
 
           %p
             %a.bizsignup{:href => "#sign_up_business", :"data-toggle" =>"modal"} Or, if you're a business owner, start getting to know your biggest fans.
-        
-  = render 'layouts/footer'
-  = render 'shared/signup_modals'
-  = render 'shared/signin_modal'

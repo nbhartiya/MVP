@@ -464,6 +464,9 @@ input.error-true  {
 				background: $main_orange;
 				color: white;
 			}
+			#simmr-credit{
+				color: $main_orange;
+			}
 			a#sign-up-header-link{
 				color: white;
 			}
@@ -577,6 +580,11 @@ input.error-true  {
 			font-weight: 100;
 			line-height: 1.5em;
 		}
+		h4{
+			font-weight: 100;
+			line-height: 1.5em;
+			text-align: center;
+		}
 		p{
 			margin-bottom: 5px;
 			line-height: 1.5em;
@@ -623,6 +631,9 @@ input.error-true  {
 		position: relative;
 		left: 50%;
 		margin: 10px 0 0 -150px;
+	}
+	a.sb.text.facebook-share{
+		margin-bottom: 20px;
 	}
 }
 
