@@ -9,7 +9,7 @@
   .email-login-form{'ng-show'=>'appear=="foodieSignup"'}
     %input#user_chef{:name=>"user[chef]", :type=>"hidden", :value => "0"}
     %input#foodie_first_name{:required => "required", :placeholder => "first name", :autofocus => "autofocus", :name => "user[first_name]", :size => "30", :type => "text", 'ng-model' => 'user.first_name', 'ng-class' => "{error: new_foodie['user[first_name]'].$invalid}"}
-    %input#foodie_last_name{:required => "required", :placeholder => "last name", :name => "user[last_name]", :size => "30", :type => "text", 'ng-model' => 'user.last_name', 'ng-class' => "{error: new_foodie['user[last_name]'].$invalid}"}
+    %input#foodie_last_name{:required => "required", :placeholder => "last name", :name => "user[last_name]", :size => "30", :type => "text", 'ng-model' => 'user.last_name', 'ng-class' => "{error: new_foodie['user[last_name]'].$invalid}", 'ui-validate' => "'$value!=user.first_name'", 'ui-validate-watch' => '"user.first_name"'}
     %input#user_email{:required => "required", :placeholder => "email", :name => "user[email]", :size => "30", :type => "email", 'ng-model' => 'user.email', 'ng-class' => "{error: new_foodie['user[email]'].$invalid}"}
 
     %input#user_password{:required => "required", :placeholder => "password", :name => "user[password]", :size => "30", :type => "password", 'ng-pattern' => '/^[a-zA-Z0-9@&#$.\s]{8,30}$/', 'ng-model' => 'user.password', 'ng-class' => "{error: new_foodie['user[password]'].$invalid}"}
@@ -19,6 +19,7 @@
     .help-block{'ng-show' => 'new_foodie["user[password]"].$error.pattern'} Please enter password with min 8 characters
     .help-block{"ng-show" => "new_foodie['user[email]'].$error.email"} Please enter a valid email
     .help-block{'ng-show' => 'new_foodie["user[password_confirmation]"].$error.validator'} Passwords must match
+    .help-block{'ng-show' => 'new_foodie["user[last_name]"].$error.validator'} Are you sure your first and last name are the same?
     .help-block{'ng-show' => 'new_foodie["user[password_confirmation]"].$error.required || new_foodie["user[first_name]"].$error.required || new_foodie["user[last_name]"].$error.required || new_foodie["user[email]"].$error.required || new_foodie["user[password]"].$error.required'} All fields are required!
 -#
   %div
