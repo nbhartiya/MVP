@@ -23,3 +23,11 @@
       = render "shared/foodie_signup_form"
   .modal-footer{'ng-show'=>'appear=="foodieSignup"'}
     %button.usersignup.foodiebutton.btn.btn-warning Sign Up
+
+#sign_up_generic.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h3#myModalLabel Sign up for updates
+  .modal-body
+    %h3 Stay up to date on the latest fun experiences!
+    = render "shared/email_signup_form"

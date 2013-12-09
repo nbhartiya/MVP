@@ -26,6 +26,10 @@ $dark_gray: rgb(54, 54, 54);
 $trans_black_more: rgba(54, 54, 54, 0.7);
 $main_orange: #EB4D18;
 
+button.usersignup.emailbutton.btn.btn-warning{
+	margin-top: -2px;
+}
+
 .container{
   max-width: none !important;
   width: 1210px !important;

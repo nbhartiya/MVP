@@ -136,6 +136,12 @@ Simmr.controller "HeaderCtrl", ["$scope",  "$routeParams", ($scope, $routeParams
     $event.preventDefault()
   if window.current_user?
     ANALYTICS.identify(window.current_user)
+  
+  if window.current_user?
+    $('#sign_up_generic').modal('hide')
+  else
+    $('#sign_up_generic').modal('show')
+
 ]
 
 Simmr.controller "HomeIndexCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
