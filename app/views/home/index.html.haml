@@ -1,7 +1,7 @@
 =content_for :title, "simmr | home"
 
 = render 'layouts/primary_header'
-.wow{'ng-controller'=>'HomeIndexCtrl'}
+.wow{'ng-controller'=>'HomeIndexCtrl', 'ng-init'=>'appear=""'}
   .home 
     .attention-getter
       #home-carousel.carousel.slide.hidden-phone
