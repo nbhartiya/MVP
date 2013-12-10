@@ -33,13 +33,25 @@
       %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#home-carousel"} ›
     .container
       .row.section-header#hero-title
-        .span12
+        .span12#top.how-it-works
           %h1 150% Uniquely Simmr
-      .row#top
+          %h2.title Get a drink, order, eat, rinse, repeat...
+          %h1.title YAWN
+          %h2.title Dine out at a Simmr event instead! What're they like?
+          =image_tag "How-It-Works.jpg", :class => "how-it-works-event-infographic"
+          .row.how-it-works-event-infographic
+            .span4.offset5.step.get-started
+              .step-description
+                -if user_signed_in?
+                  %a{:href => "/events", :"data-toggle" =>"modal"} get started
+                -else
+                  %a{:href => "#sign_up_foodie", :"data-toggle" =>"modal"} get started
+    
+      -#.row
         .offset4.span4#home-buttons
           %a.btn.btn-warning{'ng-click' => "appear='how'"} How It Works
           %a.btn.btn-warning{:href => "/home/philosophy"} Our Philosophy
-    .container{'ng-show' => "appear == 'how'"}
+    -#.container{'ng-show' => "appear == 'how'"}
       .row.section-header
         .span12#how-it-works
           %h1 How It Works
@@ -56,7 +68,7 @@
                   =image_tag "Chef-Default-Profile-Image.png"
                 %p I'm a Business
               
-      .container
+      -#.container
         .row
           .span12.how-it-works#how{'ng-show' => 'type == "foodie"'}
             %h1.title For Foodies
