@@ -689,6 +689,9 @@ a.sb.yelp.black{
 				height: 10px;
 				border-radius: 0;
 			}
+			.progress{
+				margin: 5px 0;
+			}
 			.event-summary-top{
 				width: 310px;
 			}
@@ -918,7 +921,13 @@ a.sb.yelp.black{
 			    font-size: 12px;
 			}
 			p.point-out{
-				color: #EB4D18;
+				color: $main_orange;
+				display: inline;
+            }
+            p.point-out-white{
+            	color: white;
+            	display: inline;
+            	float: right;
             }
 		}
 		.event-guests, .event-purchase, .event-details, .event-menu, .event-attendees-and-chatter, .event-host-story, .host-followers{
@@ -934,7 +943,9 @@ a.sb.yelp.black{
 				}
 			}
 			p.point-out{
-				color: #EB4D18;
+				color: $main_orange;
+				margin-top: 5px;
+
             }
 		}
 		.event-create-form{

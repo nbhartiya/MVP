@@ -71,6 +71,15 @@ class Event < ActiveRecord::Base
     (guests_count/people_limit.to_f)*100
   end
 
+  def tilt_percent_full
+    if guests.count<=people_min
+      atleast=(3/people_min.to_f)*100
+      return [atleast, ((guests.count/people_min.to_f)*100)].max
+    else
+      return 100
+    end
+  end
+
   def guests_count
     if guests.loaded?
       guests.size
@@ -106,5 +115,9 @@ class Event < ActiveRecord::Base
     else
       true
     end
+  end
+
+  def days_left
+    (date-Date.today()).to_i
   end
 end

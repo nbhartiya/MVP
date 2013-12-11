@@ -51,15 +51,17 @@
               -if @event.referer_discount.present?
                 -if @event.referer_discount>0.0
                   Special Offer: Get #{number_to_currency(@event.referer_discount)} off for every guest you bring or refer!
+            -if @event.tilt==true
+              -if @event.people_min >= @event.guests_count
+                .progress.progress-warning
+                  .bar{:style => "width: #{@event.tilt_percent_full}%"}
+                %p.point-out This event happens when #{@event.people_min} guests register! 
+                %p.point-out-white #{@event.tilt_percent_full.round}% there | #{@event.days_left} days left 
 
             .event-summary-logistics-container
               .event-summary-logistics
-                -if @event.tilt==true
-                  %h3
-                    First tuesday once #{@event.people_min} guests register!
-                -else
-                  %h3
-                    {{eventDate()}}, from {{eventTime()}} to {{eventEndTime()}}
+                %h3
+                  {{eventDate()}}, from {{eventTime()}} to {{eventEndTime()}}
                 %h3 
                   =@event.location.neighborhood
                 %a.event-location{:href => "{{mapUrl()}}",:target=>"_blank"} 
