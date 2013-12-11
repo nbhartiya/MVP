@@ -118,6 +118,6 @@ class Event < ActiveRecord::Base
   end
 
   def days_left
-    (date-Date.today()).to_i
+    [(date-Date.today()).to_i,0].max
   end
 end
