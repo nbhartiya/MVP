@@ -313,6 +313,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
   $scope.cardErrorMessages={}
   $scope.cardErrorMessages2=""
   $scope.submitCard = (card) ->
+    Stripe.setPublishableKey('pk_live_GMpAJtBVaEM89F4af1CHfLTy')
     card.name=$scope.buyer.name
     Stripe.createToken card, (status, response) ->
       if status is 200

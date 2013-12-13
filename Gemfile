@@ -33,6 +33,7 @@ gem "koala", "~> 1.8.0rc1"
 gem 'yelpster'
 gem 'mandrill-api'
 gem 'analytics-ruby', '<1.0'
+gem 'heroku_rails_deflate', :group => :production
 
 # not necessary yet...will change to this when everything working...
 # gem 'linkedin'
@@ -69,7 +70,6 @@ group :assets do
   gem "angularjs-rails-resource"
   gem 'angular-ui-rails'
   gem 'angular-ui-bootstrap-rails'
-  gem 'heroku_rails_deflate'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby

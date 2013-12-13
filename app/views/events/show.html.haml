@@ -2,7 +2,7 @@
 
 - content_for :head do
   %meta{content: "#{@event.blurb}", property: "og:description"}
-  %meta{content: "#{@event.covers.first.image}", property: "og:image"}
+  -#%meta{content: "#{@event.covers.first.image}", property: "og:image"}
   %meta{content: "1024", property: "og:image:width"}
   %meta{content: "1024", property: "og:image:height"}
   %meta{content: "simmr | #{@event.host.profile.biz_name}'s #{@event.title}", property: "og:title"}
@@ -51,15 +51,17 @@
               -if @event.referer_discount.present?
                 -if @event.referer_discount>0.0
                   Special Offer: Get #{number_to_currency(@event.referer_discount)} off for every guest you bring or refer!
+            -if @event.tilt==true
+              -if @event.people_min >= @event.guests_count
+                .progress.progress-warning
+                  .bar{:style => "width: #{@event.tilt_percent_full}%"}
+                %p.point-out This event happens when #{@event.people_min} guests register! 
+                %p.point-out-white #{@event.tilt_percent_full.round}% there | #{@event.days_left} days left 
 
             .event-summary-logistics-container
               .event-summary-logistics
-                -if @event.tilt==true
-                  %h3
-                    First tuesday once #{@event.people_min} guests register!
-                -else
-                  %h3
-                    {{eventDate()}}, from {{eventTime()}} to {{eventEndTime()}}
+                %h3
+                  {{eventDate()}}, from {{eventTime()}} to {{eventEndTime()}}
                 %h3 
                   =@event.location.neighborhood
                 %a.event-location{:href => "{{mapUrl()}}",:target=>"_blank"} 
@@ -106,6 +108,9 @@
                   seats left!
               .progress.progress-warning
                 .bar{:style => "width: #{@event.percent_full}%"}
+            - if @event.host.profile.biz_name="Hillside Supper Club"
+              .add-on
+                %input{'ng-model' => 'event.wine_tasting',:name => "wine_tasting", :type => "checkbox", :value => "1", :id => "wine_tasting"} I'd like to add wine pairings for $24
             - if @event.seats_left > 5
               .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Book It
             - elsif @event.seats_left>1
