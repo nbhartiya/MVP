@@ -110,7 +110,7 @@
                 .bar{:style => "width: #{@event.percent_full}%"}
             - if @event.host.profile.biz_name="Hillside Supper Club"
               %p
-                %input{'ng-model' => 'event.wine_tasting',:name => "wine_tasting", :type => "checkbox", :value => "1", :id => "wine_tasting"} I'd like to add wine pairings for $24
+                %input{'ng-model' => 'event.wine_pairing',:name => "wine_pairing", :type => "checkbox", :value => "1", :id => "wine_pairing"} I'd like to add wine pairings for $24.00
             - if @event.seats_left > 5
               .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Book It
             - elsif @event.seats_left>1

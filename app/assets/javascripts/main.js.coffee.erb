@@ -228,6 +228,8 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
         $scope.discount_note="Thanks for bringing a guest! We applied a referral discount of $"+current_discount+" to your purchase!"
       else if $scope.num_guests>=2
         $scope.discount_note="Thanks for bringing guests! We applied a referral discount of $"+current_discount+" to your purchase!"
+    else if $scope.event.wine_pairing
+      total = $scope.num_guests * (+$scope.cost+ +"24") - $scope.referee_discount
     else
       total = $scope.num_guests * $scope.cost - $scope.referee_discount
     total = total.toFixed(2)
