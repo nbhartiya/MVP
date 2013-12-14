@@ -70,6 +70,7 @@ MVP::Application.routes.draw do
   match "/turtletower" => redirect("https://www.surveymonkey.com/s/LT7SDWX"), :as => :turtletower
   match "/ejis" => redirect("https://www.surveymonkey.com/s/JFCRCPX"), :as => :eji
   match "/antologiaV" => redirect("https://www.surveymonkey.com/s/26LZ8CY"), :as => :antologiaV
+  match "/beans" => redirect("https://www.surveymonkey.com/s/MXNGY6S"), :as => :beans
   match "/antologia" => redirect("/events/14")
   match "/capos" => redirect("/events/20")
   match "/radioafrica" => redirect("/events/24")
