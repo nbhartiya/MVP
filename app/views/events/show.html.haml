@@ -108,7 +108,7 @@
                   seats left!
               .progress.progress-warning
                 .bar{:style => "width: #{@event.percent_full}%"}
-            - if @event.host.profile.biz_name="Hillside Supper Club"
+            - if @event.host.profile.biz_name=="Hillside Supper Club"
               .add-on
                 %input{'ng-model' => 'event.wine_pairing',:name => "wine_pairing", :type => "checkbox", :value => "1", :id => "wine_pairing"} Add wine pairings for $24.00
             - if @event.seats_left > 5
