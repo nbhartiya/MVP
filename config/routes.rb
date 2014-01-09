@@ -75,7 +75,7 @@ MVP::Application.routes.draw do
   match "/antologia" => redirect("/events/14")
   match "/capos" => redirect("/events/20")
   match "/radioafrica" => redirect("/events/24")
-  match "/contraband" => redirect("/events/27")
+  match "/contraband" => redirect("/events/29")
   match "/onigilly" => redirect("/events/26")
   match "/HSC" => redirect("/events/28")
   #get "incomplete_survey" => "survey_questions#survey"
