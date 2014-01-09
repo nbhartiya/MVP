@@ -145,9 +145,9 @@ Simmr.controller "HomeIndexCtrl", ["$scope",  "$routeParams", "$location", ($sco
     ANALYTICS.identify(window.current_user)
   $scope.appear = ''
   if location.search == '?foodie=true'
-    $(".foodiesignup").click()
+    $("#sign_up_foodie").modal('show')
   if location.search == '?foodie=false'
-    $(".bizsignup").click()
+    $("#sign_up_business").modal('show')
 ]
 
 Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$location", "Charge", "Event", "Guest", ($scope, $http, $routeParams, $location, Charge, Event, Guest) ->
