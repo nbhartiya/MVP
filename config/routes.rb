@@ -77,7 +77,8 @@ MVP::Application.routes.draw do
   match "/radioafrica" => redirect("/events/24")
   match "/contraband" => redirect("/events/29")
   match "/onigilly" => redirect("/events/26")
-  match "/HSC" => redirect("/events/28")
+  match "/HSC" => redirect("/events/30")
+  match "/hsc" => redirect("/events/30")
   #get "incomplete_survey" => "survey_questions#survey"
   
   # I have no idea what changed that caused me to have to add this line...????
