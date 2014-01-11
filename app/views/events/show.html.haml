@@ -61,7 +61,9 @@
             .event-summary-logistics-container
               .event-summary-logistics
                 %h3
-                  {{eventDate()}}, from {{eventTime()}} to {{eventEndTime()}}
+                  {{eventDate()}}, from {{eventTime()}} 
+                  -if @event.length!=nil
+                    to {{eventEndTime()}}
                 %h3 
                   =@event.location.neighborhood
                 %a.event-location{:href => "{{mapUrl()}}",:target=>"_blank"} 
@@ -71,19 +73,19 @@
                     -if @event.vegetarian
                       %td
                         Vegetarian-friendly
-                    -else
+                    -#else
                       %td#default-text
                         Vegetarian-friendly
                     - if @event.vegan
                       %td
                         Vegan-friendly
-                    -else
+                    -#else
                       %td#default-text
                         Vegan-friendly
-                    - if @event.gluten_free
+                    -if @event.gluten_free
                       %td
                         Gluten Free-friendly
-                    -else
+                    -#else
                       %td#default-text
                         Gluten Free-friendly
                 %ul.nav.event-button-group
@@ -169,8 +171,12 @@
                     -if @event.date.present?
                       %span._start
                         =DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec).strftime('%m-%d-%Y %H:%M:%S')
-                      %span._end
-                        =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+@event.length.minutes).strftime('%m-%d-%Y %H:%M:%S')
+                      -if @event.length.present?
+                        %span._end
+                          =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+@event.length.minutes).strftime('%m-%d-%Y %H:%M:%S')
+                      -else
+                        %span._end
+                          =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+120.minutes).strftime('%m-%d-%Y %H:%M:%S')
                     %span._zonecode 6
                     %span._summary="Simmr Event: #{@event.title}"
                     %span._description=@event.blurb
@@ -389,8 +395,12 @@
                     -if @event.date.present?
                       %span._start
                         =DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec).strftime('%m-%d-%Y %H:%M:%S')
-                      %span._end
-                        =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+@event.length.minutes).strftime('%m-%d-%Y %H:%M:%S')
+                      -if @event.length.present?
+                        %span._end
+                          =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+@event.length.minutes).strftime('%m-%d-%Y %H:%M:%S')
+                      -else
+                        %span._end
+                          =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+120.minutes).strftime('%m-%d-%Y %H:%M:%S')
                     %span._zonecode 6
                     %span._summary="Simmr Event: #{@event.title}"
                     %span._description=@event.blurb
