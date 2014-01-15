@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Uncomment this when Wendy is ready and we make sure it works on heroku
-# ruby '2.0.0'
+ruby '2.0.0'
 
 gem 'rails', '3.2.11'
 gem 'haml-rails'
@@ -34,6 +34,7 @@ gem 'yelpster'
 gem 'mandrill-api'
 gem 'analytics-ruby', '<1.0'
 gem 'heroku_rails_deflate', :group => :production
+gem 'gibbon'
 
 # not necessary yet...will change to this when everything working...
 # gem 'linkedin'
