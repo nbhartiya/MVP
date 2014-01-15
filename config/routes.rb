@@ -72,6 +72,7 @@ MVP::Application.routes.draw do
   match "/antologiaV" => redirect("https://www.surveymonkey.com/s/26LZ8CY"), :as => :antologiaV
   match "/beans" => redirect("https://www.surveymonkey.com/s/MXNGY6S"), :as => :beans
   match "/riceball" => redirect("https://www.surveymonkey.com/s/3HBGRCT"), :as=> :riceball
+  match "/meatballs" => redirect("https://www.surveymonkey.com/s/QLJVVKV"), :as=> :meatballs
   match "/antologia" => redirect("/events/14")
   match "/capos" => redirect("/events/20")
   match "/radioafrica" => redirect("/events/24")
