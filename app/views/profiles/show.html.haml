@@ -510,7 +510,7 @@
                 -if @profile.location.present?
                   %h3 
                     #{@profile.location.address1} <br> #{@profile.location.city}, #{@profile.location.state} #{@profile.location.zipcode}
-                  %a.business-website{:href => "#{@profile.website}"} Business Website
+                  %a.business-website{:href => "#{@profile.website}"} Visit #{@profile.biz_name}'s Website
 
                 %ul.nav.profile-button-group-chef
                   %li

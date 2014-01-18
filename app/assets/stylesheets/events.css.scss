@@ -1374,9 +1374,12 @@ a.sb.yelp.black{
 				box-sizing: border-box;
 				width: 49.25%;
 			}
-			a, a:visited, a:hover{
+			a, a:visited{
 				color: white;
 				text-decoration: none;
+			}
+			a:hover{
+				color: rgb(200,200,200);
 			}
 			.guest-name, .guest-email{
 				-webkit-box-sizing: border-box;
@@ -1408,6 +1411,9 @@ a.sb.yelp.black{
 			.guests{
 				margin: 0;
 			}
+		}
+		.event-menu a.fancybox{
+			text-align: right;
 		}
 	}
 }

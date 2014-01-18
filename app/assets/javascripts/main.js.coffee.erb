@@ -421,7 +421,8 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
       #console.log JSON.stringify(InkBlob)
       $scope.menuPdf="#{InkBlob[0].url}"
       #console.log $scope.menuPdf
-      $('.events .menu').append("<a href =#{$scope.menuPdf}> Menu.pdf </a>")
+      $('.events .menu').empty()
+      $('.events .menu').append("<a class = 'fancybox' data-fancybox-type = 'iframe'  href =#{$scope.menuPdf}> Preview Menu </a>")
       $('a#remove').css('display', 'inline')
 
 
@@ -522,7 +523,8 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
       #console.log JSON.stringify(InkBlob)
       $scope.menuPdf="#{InkBlob[0].url}"
       #console.log $scope.menuPdf
-      $('.events .menu').append("<a href =#{$scope.menuPdf}> Menu.pdf </a>")
+      $('.events .menu').empty()
+      $('.events .menu').append("<a class = 'fancybox' data-fancybox-type = 'iframe'  href =#{$scope.menuPdf}> Preview New Menu </a>")
       $('a#remove').css('display', 'inline')
 
   $scope.removeMenu = ->

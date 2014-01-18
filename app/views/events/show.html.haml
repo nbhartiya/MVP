@@ -226,7 +226,7 @@
             %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Menu
             -if @event.menu_pdf.present?
-              %a.fancybox{:href => "#{@event.menu_pdf}", :"data-fancybox-type" => 'iframe'}  Expand
+              %a.fancybox{:href => "#{@event.menu_pdf}", :"data-fancybox-type" => 'iframe'}  Enlarge Menu
               %iframe.menu{:src => "#{@event.menu_pdf}", :width => '510px', :height => '420px'}
             -else
               %h3 Coming Soon!

@@ -126,7 +126,10 @@ $main_orange: #EB4D18;
 			margin: 40px -37px 40px -37px;
 			background: white;
 			.business-website{
-				color: $main_orange;
+				color: black;
+			}
+			.business-website:hover{
+				color: rgb(150, 150, 150);
 			}
 		}
 		.profile-summary-logistics{

@@ -78,8 +78,6 @@ $(".fancybox").fancybox({
   closeEffect : 'fade',
   nextEffect : 'fade',
   prevEffect : 'fade',
-  type: 'pdf',
-  preload : 5,
   iframe : {
         preload: false
     },

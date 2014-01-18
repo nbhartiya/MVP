@@ -47,9 +47,10 @@
 
             %button.clearfix.btn#event-menu-button{'ng-click' => 'uploadMenu()'} Update Menu
             .menu
-            -#if @event.menu_pdf.present?
-              %a#remove.edit{'ng-click' => 'removeMenu()'} delete
+              -if @event.menu_pdf.present?
+                %a.fancybox{:href => "#{@event.menu_pdf}", :"data-fancybox-type" => 'iframe'}  Preview Menu
             %a#remove{'ng-click' => 'removeMenu()'} delete
+              
             %hr
 
             #event-date-time 
