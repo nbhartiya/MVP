@@ -554,6 +554,10 @@
             -if current_user.id == @profile.user_id
               .span1.edit-button
                 %a.btn.btn-inverse{:href=>"/profiles/#{@profile.user_id}/edit"} Edit
+            -else
+              .span1
+          -else
+            .span1
           .span6
             .user-news{'ng-show' => 'appear == "news"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
