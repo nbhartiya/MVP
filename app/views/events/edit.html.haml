@@ -125,11 +125,11 @@
               -#TODO CHANGE to current.user.profile.biz_name != nil once we require everyone to fill profile
               -if current_user.profile != nil
                 %h2
-                  Hosted by:
+                  Hosted by
                   =current_user.profile.biz_name
               -else
                 %h2#default-text
-                  Hosted by: Please input business name in your profile!
+                  Hosted by Please input business name in your profile!
             %h3#default-text{'ng-show'=>'event.blurb=="" || event.blurb==nil'}
               Event Blurb
             %h3
