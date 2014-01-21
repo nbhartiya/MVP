@@ -715,7 +715,7 @@ Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$l
     new Campaign(campaign).create().then (data) =>
       #console.log data, "~~~~~~~~~~"
       $scope.campaign = 1
-      $window.location.href='/campaigns/'
+      window.location.href = '/campaigns/'
 ]
 
 Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "Campaign", ($scope, $routeParams, $location, Campaign) ->

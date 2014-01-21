@@ -357,7 +357,7 @@
                       %td
                         %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', follower.profile.id)}'", 'ng-click' => "follow('Profile',#{follower.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
               -else
-                No followers yet!
+                %h3 No followers yet!
               -#
                 %ul.nav.nav-tabs
                   %li.active
@@ -570,6 +570,8 @@
                   - n = @profile.news.split("\n")
                   -for i in 0..n.length-1
                     = simple_format n[i]
+                -else
+                  No news! Stay tuned for more.
 
             .user-story{'ng-show' => 'appear == "story"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
@@ -616,7 +618,7 @@
                       -#%td 
                         =# shared
               -else
-                No upcoming events!
+                %h3 No upcoming events! <a href = "/campaigns/new">Request one?</a>
               -#
                 %ul.nav.nav-tabs
                   %li.active
@@ -649,7 +651,8 @@
                             -#%td 
                               =# shared
                     -else
-                      ="Looks like #{@profile.biz_name} has no upcoming events."
+                      %h3
+                        ="Looks like #{@profile.biz_name} has no upcoming events."
                   #past-events.tab-pane.fade
                     -if @profile.past_host_events.count > 0
                       %table.events-table

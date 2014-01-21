@@ -453,13 +453,14 @@ input.error-true  {
 			}
 		}
 		.nav-right{
+		    margin-right: -50px;
 			a, a:visited{
 				color: rgb(150, 150, 150);
 			}
 			a:hover{
 				color: rgb(54, 54, 54);
 			}
-			margin-right: -50px;
+			
 			#sign-up-header-link{
 				background: $main_orange;
 				color: white;
