@@ -67,6 +67,7 @@
             %button.btn.btn-inverse{'ng-click' => 'appear="edit"', 'ng-hide' => 'appear == "edit"'} Edit
           .span6
             .user-events{'ng-show' => 'appear == "events"'}
+              %button.close{"ng-click" => "appear=''", :type => "button"} close
               %h1 Events
               -if @profile.user.events_attended.count + @profile.user.events_followed.count > 0
                 %table.events-table
@@ -212,6 +213,7 @@
                     -else
                       No events followed.
             .user-campaigns{'ng-show' => 'appear == "campaigns"'}
+              %button.close{"ng-click" => "appear=''", :type => "button"} close
               %h1 Campaigns
               -if @profile.user.campaigns_followed.count + @profile.user.campaigns_started.count > 0
                 %table.campaigns-table
@@ -297,6 +299,7 @@
                       No campaigns started.
             
             .user-followers{'ng-show' => 'appear == "followers"'}
+              %button.close{"ng-click" => "appear=''", :type => "button"} close
               %h1 Your Followers
               -if @profile.user.followers.count > 0
                 %table.following-table
@@ -365,6 +368,7 @@
                       No business followers.
 
             .user-following{'ng-show' => 'appear == "following"'}
+              %button.close{"ng-click" => "appear=''", :type => "button"} close
               %h1 You Are Following
               -if @profile.user.businesses_followed.count > 0
                 %table.following-table
@@ -702,6 +706,7 @@
                     -else
                       No businesses followed.
             .user-followers{'ng-show' => 'appear == "followers"'}
+              %button.close{"ng-click" => "appear=''", :type => "button"} close
               %h1 Followers
               -if @profile.user.followers.count > 0
                 %table.following-table
