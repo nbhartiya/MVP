@@ -1,4 +1,4 @@
-=content_for :title, "simmr | #{@event.host.profile.biz_name}'s #{@event.title}"
+=content_for :title, "#{@event.host.profile.biz_name}'s #{@event.title}"
 
 - content_for :head do
   %meta{content: "#{@event.blurb}", property: "og:description"}

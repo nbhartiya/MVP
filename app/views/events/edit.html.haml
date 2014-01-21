@@ -1,4 +1,4 @@
-=content_for :title, "simmr | edit event"
+=content_for :title, "Edit #{@event.title}"
 .events{'ng-controller' => 'EventEditCtrl', 'ng-init' => "getEvent(#{@event.id})"}
   .event-profile{'ng-init' => 'eventMenu = #{@event.menu_pdf}; eventImages = #{@event.eventImageUrls}'}
     -if @event.covers.present?

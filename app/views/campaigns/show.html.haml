@@ -1,4 +1,4 @@
-=content_for :title, "simmr | #{@campaign.biz_name} campaign"
+=content_for :title, "#{@campaign.biz_name}'s Campaign"
 
 .campaigns{'ng-controller' => 'CampaignJoinCtrl', 'ng-init' => "endDate='#{@campaign.expires}';successful='#{@campaign.successful}'"}
   .campaign-profile

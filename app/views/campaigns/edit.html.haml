@@ -1,4 +1,4 @@
-=content_for :title, "simmr | edit campaign"
+=content_for :title, "Edit #{@campaign.biz_name} Campaign"
 
 .campaigns{'ng-controller' => 'CampaignEditCtrl', 'ng-init' => "getCampaign(#{@campaign.id})"}
   .campaign-profile

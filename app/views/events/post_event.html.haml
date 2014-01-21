@@ -1,4 +1,4 @@
-=content_for :title, "simmr | #{@event.title} post event page"
+=content_for :title, "#{@event.host.profile.biz_name}'s #{@event.title}"
 
 .events{'ng-controller' => 'EventFeedbackCtrl', 'ng-init' => "address1='#{@event.location.address1}';city='#{@event.location.city}';state='#{@event.location.state}';zipcode='#{@event.location.zipcode}';event.date='#{@event.date}';event.length='#{@event.length}';event.time='#{@event.time}';appear='details';event.menuPdf='#{@event.menu_pdf}';eventId='#{@event.id}'"}
   .event-profile

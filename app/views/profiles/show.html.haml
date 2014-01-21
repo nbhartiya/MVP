@@ -1,4 +1,7 @@
-=content_for :title, "simmr | user profile"
+-if @profile.user.chef == false
+  =content_for :title, "#{@profile.user.first_name} #{@profile.user.last_name}'s Profile"
+-else
+  =content_for :title, "#{@profile.biz_name}'s Profile"
 
 .profiles{'ng-controller' => 'ProfileShowCtrl'}
   .user-profile
