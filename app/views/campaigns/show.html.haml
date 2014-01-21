@@ -55,7 +55,7 @@
             %p 
               {{20-follows}} more supporters needed to get this host onto Simmr
               .progress.progress-warning.clearfix
-                .bar{:style => "width: 80%"}
+                .bar{:style => "width: {{follows/20*100}}%"}
             -if user_signed_in? == false
               .btn.btn-warning.standalone-button{:"data-toggle" => "modal", :href=>"#sign_up_foodie"} Sign Up
               .btn.btn-warning.standalone-button{:"data-toggle" =>"modal", :href=>"#sign_in"} Sign In
