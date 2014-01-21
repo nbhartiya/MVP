@@ -40,21 +40,20 @@
             
             .campaign-summary-logistics-container
               .campaign-summary-logistics
-                %h3
-                  Created by #{@campaign.campaign_starter.first_name} #{@campaign.campaign_starter.last_name}
-                %h3
-                  - if @campaign.why_join != nil
-                    - n = @campaign.why_join.split("\n")
-                    -for i in 0..n.length-1
-                      = simple_format n[i]
-                -#%ul.nav.campaign-button-group
-                  %li
-                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "why_join"'} Why Join
-                  %li
+                %table
+                  %tr
+                    %td
+                      %h3
+                        Created by #{@campaign.campaign_starter.first_name} #{@campaign.campaign_starter.last_name}
+                    %td
+                      %ul.nav.campaign-button-group
+                        %li
+                          %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "why_join"'} Why Join
+                  -#%li
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "followers"'} Supporters
           .following{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@campaign.follows.count};endDate='#{@campaign.expires}';successful='#{@campaign.successful}'; following = '#{is_user_there_and_following('Campaign', @campaign.id)}'"}
             %p 
-              #{@campaign.follows_needed} more supporters needed to get this host onto Simmr
+              {{20-follows}} more supporters needed to get this host onto Simmr
               .progress.progress-warning.clearfix
                 .bar{:style => "width: 80%"}
             -if user_signed_in? == false
@@ -99,39 +98,39 @@
                 - n = @campaign.why_join.split("\n")
                 -for i in 0..n.length-1
                   = simple_format n[i]
-          .host-followers{'ng-show' => 'appear == "followers"'}
+          -#.host-followers{'ng-show' => 'appear == "followers"'}
             %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Supporters
-            %ul.nav.nav-tabs
+            -#%ul.nav.nav-tabs
               %li.active
                 %a{"data-toggle" => "tab", :href => "#foodie-following"} Foodies
               %li
                 %a{"data-toggle" => "tab", :href => "#business-following"} Businesses
-            #myTabContent.tab-content
+            -##myTabContent.tab-content
               #foodie-following.tab-pane.fade.active.in
-                -if @campaign.follows.count > 0
-                  %table.following-table
-                    -for follow in @campaign.follows
-                      -if follow.user.chef == false
-                        %tr 
-                          %td
-                            -if follow.user.profile.avatar.present?
-                              =link_to image_tag(follow.user.profile.avatar.image), "#"
-                            -else
-                              =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
-                          %td
-                            %a{:href=>"/profiles/#{follow.user.profile.id}"}
-                              ="#{follow.user.first_name} #{follow.user.last_name}"
-                          -#%td Number of Followers..may want to add later
-                          %td
-                            -if user_signed_in?
-                              %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', follow.user.profile.id)}'", 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
-                            -else
-                              %a.sb.heart.circle.no-border.no-shadow.black{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
+            -if @campaign.follows.count > 0
+              %table.following-table
+                -for follow in @campaign.follows
+                  -#-if follow.user.chef == false
+                  %tr 
+                    %td
+                      -if follow.user.profile.avatar.present?
+                        =link_to image_tag(follow.user.profile.avatar.image), "#"
+                      -else
+                        =link_to image_tag("Foodie-Default-Profile-Image.png"), "#"
+                    %td
+                      %a{:href=>"/profiles/#{follow.user.profile.id}"}
+                        ="#{follow.user.first_name} #{follow.user.last_name}"
+                    -#%td Number of Followers..may want to add later
+                    %td
+                      -if user_signed_in?
+                        %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', follow.user.profile.id)}'", 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
+                      -else
+                        %a.sb.heart.circle.no-border.no-shadow.black{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
 
-                -else
-                  %h3 No current supporters - click on the heart to get this host on Simmr!
-              #business-following.tab-pane.fade
+            -else
+              %h3 No current supporters - click on the heart to get this host on Simmr!
+              -##business-following.tab-pane.fade
                 -if @campaign.follows.count > 0
                   %table.following-table
                     -for follow in @campaign.follows
