@@ -84,7 +84,7 @@
         -if user_signed_in?
           -if current_user.id == @campaign.campaign_starter_id
             .span1.edit-button
-              %button.btn.btn-inverse{'ng-click' => 'appear="edit"'} Edit
+              %a.button.btn.btn-inverse{:href=>"/campaigns/#{@campaign.id}/edit"} Edit
           -else
             .span1
         -else
