@@ -195,6 +195,8 @@
                 - n = @event.description.split("\n")
                 -for i in 0..n.length-1
                   = simple_format n[i]
+              - else
+                No details available.
             -#if user_signed_in?
               -if current_user.attending?(@event.id)
                 %br
@@ -293,9 +295,13 @@
                 - n = @event.host.profile.story.split("\n")
                 -for i in 0..n.length-1
                   = simple_format n[i]
-              -if current_user
+              -elsif current_user
                 -if (current_user.id == @event.host_id) && @event.host.profile.story == nil
                   ="Hey #{@event.host.profile.biz_name}, looks like you didn't add a 'story' in your profile. Be sure to add a story by clicking on 'Dashboard' above!"
+                -else
+                  Coming soon!
+              -else
+                Coming soon!
           -#
             .host-followers{'ng-show' => 'appear == "followers"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close

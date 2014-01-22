@@ -133,7 +133,7 @@
                 %select.number-of-seats{'ng-model' => 'num_guests'}
                   %option{:value => ''} Number of Seats
                   %option{:value => 1} 1 seat
-                  -([3,@event.seats_left].min).times do |s|
+                  -(@event.seats_left-1).times do |s|
                     %option{:value => s+2} #{s+2} seats
                 .btn.btn-warning.event-go-button{'ng-click' => 'showPayment(false);total()', 'ng-disabled' => "num_guests==nil || num_guests == 0"} Go
 
@@ -146,10 +146,7 @@
                 %select.number-of-seats{'ng-model' => 'num_guests'}
                   %option{:value => ''} Number of Seats
                   %option{:value => 1} 1 seat
-                  %option{:value => 2} 2 seats
-                  %option{:value => 3} 3 seats
-                  %option{:value => 4} 4 seats
-                  -# (@event.seats_left).times do |s|
+                  -(@event.seats_left-1).times do |s|
                     %option{:value => s+2} #{s+2} seats
                 .btn.btn-warning.event-go-button{'ng-click' => 'showPayment(true)', 'ng-disabled' => "num_guests==nil || num_guests == 0"} Go
             
@@ -222,6 +219,8 @@
                 - n = @event.description.split("\n")
                 -for i in 0..n.length-1
                   = simple_format n[i]
+              - else
+                Coming soon!
           .event-menu#menu{'ng-show' => 'appear=="menu"'}
             %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Menu
@@ -273,9 +272,14 @@
                 - n = @event.host.profile.story.split("\n")
                 -for i in 0..n.length-1
                   = simple_format n[i]
-              -if current_user
+              -elsif current_user
                 -if (current_user.id == @event.host_id) && @event.host.profile.story == nil
                   ="Hey #{@event.host.profile.biz_name}, looks like you didn't add a 'story' in your profile. Be sure to add a story by clicking on 'Dashboard' above!"
+                -else 
+                  Coming soon!
+              -else
+                Coming soon!
+
           -#
             .host-followers{'ng-show' => 'appear == "followers"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
