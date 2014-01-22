@@ -362,6 +362,39 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
     datetime = moment($scope.event.time,  "YYYY-MM-DD H:mm:ss")
     datetime.add('minutes', $scope.event.length).format('h:mm A')
 
+  $scope.uploadMoreImages = ->
+    filepicker.pickAndStore
+      mimetypes: ["image/*", "text/plain"]
+      services: ["COMPUTER", "FACEBOOK", "GMAIL", "INSTAGRAM"]
+      multiple: true
+    ,
+      location: "S3"
+      access: "public"
+    , (InkBlobs) ->
+      console.log JSON.stringify(InkBlobs)
+      $('.default').remove()
+      $('.carousel-inner').empty()
+      $scope.eventImageUrls=window.eventImageUrls
+      console.log $scope.eventImageUrls
+
+      i=0
+      while i<Object.keys(InkBlobs).length
+        $scope.image="#{InkBlobs[i].url}"
+        $scope.eventImageUrls.push($scope.image)
+        window.eventImageUrls = $scope.eventImageUrls
+        i++
+      j=0
+      while j<$scope.eventImageUrls.length   
+        if j == 0
+          $('.events .carousel-inner').append("<div class = 'item active'><img src = #{$scope.eventImageUrls[j]}></div>")
+        else 
+          $('.events .carousel-inner').append("<div class = 'item'><img src = #{$scope.eventImageUrls[j]}></div>")
+        j++
+      $('#remove-image').css('display', 'inherit')
+      if $scope.eventImageUrls.length>1
+        $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> › </a>")
+
+
   $scope.uploadImages = ->
     filepicker.pickAndStore
       mimetypes: ["image/*", "text/plain"]
@@ -382,6 +415,7 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
         $scope.image="#{InkBlobs[i].url}"
         #console.log $scope.image
         $scope.eventImageUrls.push($scope.image)
+        window.eventImageUrls = $scope.eventImageUrls
         if i == 0
           #console.log($scope.eventImageUrls[i])
           $('.events .carousel-inner').append("<div class = 'item active'><img src = #{$scope.eventImageUrls[i]}></div>")
@@ -675,7 +709,39 @@ Simmr.controller "CampaignIndexCtrl", ["$scope", "$window", "$routeParams", "$lo
 Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$location", "Campaign", ($scope, $window, $routeParams, $location, Campaign) ->
 
   $scope.campaignImageUrls = []
-  
+
+  $scope.uploadMoreImages = ->
+    filepicker.pickAndStore
+      mimetypes: ["image/*", "text/plain"]
+      services: ["COMPUTER", "FACEBOOK", "GMAIL", "INSTAGRAM"]
+      multiple: true
+    ,
+      location: "S3"
+      access: "public"
+    , (InkBlobs) ->
+      console.log JSON.stringify(InkBlobs)
+      $('.default').remove()
+      $('.carousel-inner').empty()
+      $scope.campaignImageUrls=window.campaignImageUrls
+      console.log $scope.campaignImageUrls
+
+      i=0
+      while i<Object.keys(InkBlobs).length
+        $scope.image="#{InkBlobs[i].url}"
+        $scope.campaignImageUrls.push($scope.image)
+        window.campaignImageUrls = $scope.campaignImageUrls
+        i++
+      j=0
+      while j<$scope.campaignImageUrls.length   
+        if j == 0
+          $('.campaigns .carousel-inner').append("<div class = 'item active'><img src = #{$scope.campaignImageUrls[j]}></div>")
+        else 
+          $('.campaigns .carousel-inner').append("<div class = 'item'><img src = #{$scope.campaignImageUrls[j]}></div>")
+        j++
+      $('#remove-image').css('display', 'inherit')
+      if $scope.campaignImageUrls.length>1
+        $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#campaign-carousel'> › </a>")
+
 
   $scope.uploadImages = ->
     filepicker.pickAndStore
@@ -697,6 +763,7 @@ Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$l
         $scope.image="#{InkBlobs[i].url}"
         #console.log $scope.image
         $scope.campaignImageUrls.push($scope.image)
+        window.campaignImageUrls = $scope.campaignImageUrls
         if i == 0
           $('.campaigns .carousel-inner').append("<div class = 'item active'><img src = #{$scope.campaignImageUrls[i]}></div>")
         else 
