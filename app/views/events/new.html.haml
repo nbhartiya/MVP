@@ -29,12 +29,14 @@
               .help-block-white{'ng-show' => 'event_create.event_cost.$error.pattern'} Please enter a valid event cost
               .help-block-white{'ng-show' => 'event_create.event_limit.$error.pattern'} Please enter a valid number of seats
 
-            %button.clearfix.btn#event-images-button{'ng-click'=> 'uploadImages()'} Upload Images
+            %button.btn#event-images-button{'ng-click'=> 'uploadImages()'} Upload Images
+            %button.btn#event-upload-more-images.hidden{'ng-click'=> 'uploadMoreImages()'} Upload More Images
+            %button.btn#event-clear-and-upload-images.hidden{'ng-click'=> 'uploadImages()'} Clear All Images and Re-Upload
             %button.clearfix.btn#event-menu-button{'ng-click' => 'uploadMenu()'} Upload Menu
             .menu 
             %a#remove{'ng-click' => 'removeMenu()'} delete
 
-            %textarea#event-menu{:rows => "3", 'ng-model' => 'event.menu', :type=>"text", :placeholder =>"If you don't have a PDF menu, feel free to input the text here", :name => "event_menu"}
+            %textarea#event-menu{:rows => "3", 'ng-model' => 'event.menuText', :type=>"text", :placeholder =>"If you don't have a PDF menu, feel free to input the text here", :name => "event_menu"}
 
             %hr
 

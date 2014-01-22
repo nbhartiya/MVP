@@ -35,8 +35,14 @@
 
             .help-block{'ng-show' => "campaign_create.campaign_description.$error.required || campaign_create.campaign_name.$error.required"} Both fields are required!
             
-            .clearfix
+            -if @campaign.covers.present?
+              %button.btn#campaign-upload-more-images{'ng-click'=> 'uploadMoreImages()'} Upload More Images
+              %button.btn#campaign-clear-and-upload-images{'ng-click'=> 'uploadImages()'} Clear All Images and Re-Upload
+            -else
               %button.btn#campaign-upload-images{'ng-click'=> 'uploadImages()'} Upload Images
+              %button.btn#campaign-upload-more-images.hidden{'ng-click'=> 'uploadMoreImages()'} Upload More Images
+              %button.btn#campaign-clear-and-upload-images.hidden{'ng-click'=> 'uploadImages()'} Clear All Images and Re-Upload
+            
             
             %button.btn.btn-warning.standalone-button#submit{'ng-click' => 'editCampaign(campaign)', 'ng-disabled'=> 'campaign_edit.$invalid'} Save Changes
 
