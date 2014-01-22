@@ -260,7 +260,6 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
   $scope.showPayment = (wait) ->
     ANALYTICS.page("Insert Guest Information")
     $scope.guests = []
-    $scope.guest_no_pages = 0
     if $scope.num_guests > 0
       homie=$scope.currentUser
       currentGuy={}
@@ -280,6 +279,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
       $scope.appear = "waitlist1"
     else
       $scope.appear = "payment1"
+
 
   $scope.addtoWaitlist = ->
     ANALYTICS.page("Insert Waitlist Information")

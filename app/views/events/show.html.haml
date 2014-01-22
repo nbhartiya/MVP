@@ -340,7 +340,7 @@
             %h1 Total: ${{total_val}}
             %p.point-out{'ng-hide' => 'discount_note=="" || discount_note==nil'} {{discount_note}}
             %hr
-            %h2 Who all are coming?
+            %h2 Please check and fill out the information below!
             %form.guests{:name => "guest_registration", 'ng-repeat' => 'guest in guests'}
               -#Make first email say "YOUR EMAIL" not guest email, send confirmation email, have note on every event someone has registered for that they've registered and should have gotten an email.
               %input.guest-name{'ng-disabled' => "guest.userId>0",'ng-model' => 'guest.first_name', :type=>'text', :placeholder =>"Guest First Name", :required => "required", :name => "guest_first", 'ng-class' => "{error: guest_registration.guest_first.$invalid}"}
