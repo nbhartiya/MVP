@@ -436,7 +436,7 @@
                     -else
                       No foodies followed.
 
-            %form.user-summary-edit.clearfix{'ng-show' => "appear=='edit'", :name => 'profile_edit'}
+            %form.user-summary-edit.clearfix{'ng-show' => "appear=='edit'", :name => 'profile_edit', 'ng-init' => 'saved=false'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
               
               -#%input#profile-name{'ng-model'=>'profile.name', :type=>"text", :placeholder =>"Your Name", :required => "required", :name => "profile_name", 'ng-class' => "{error: profile_edit.profile_name.$invalid}"}
@@ -460,8 +460,9 @@
 
               .clearfix
                 %button.btn#profile-images-button{'ng-click'=> 'uploadAvatarImage()'} Change Profile Picture
-              %button.btn.btn-warning#submit{'ng-disabled' => 'profile_edit.$invalid', 'ng-click' => "editProfile(profile);saved = true"} Save Changes
-              .help-block{'ng-show' => "saved"} Saved! (feel free to continue to make edits and save again)
+              %button.btn.btn-warning#submit{'ng-disabled' => 'profile_edit.$invalid', 'ng-click' => "editProfile(profile);saved = true", 'ng-hide' => 'saved==true'} Save Changes
+              %button.btn.btn-warning.subdued#submit{'ng-click' => "saved = false", 'ng-hide' => 'saved==false'} Saved! Click to Edit Again
+
 
       -else
         .row.user-overview
@@ -773,7 +774,7 @@
                     -else
                       No business followers.
 
-            %form.user-summary-edit.clearfix{:name => "profile_edit", 'ng-show' => "appear=='edit'", :id => "profile_edit"}
+            %form.user-summary-edit.clearfix{:name => "profile_edit", 'ng-show' => "appear=='edit'", :id => "profile_edit", 'ng-init'=>"saved=false"}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
 
               %input#email{'ng-model'=>'profile.user.email', :name => "profile_email", 'ng-class' => "{error: profile_edit.profile_email.$invalid}", :type => "email", :required => 'required', :placeholder => "email"}
@@ -808,7 +809,7 @@
               .clearfix
                 %button.btn#profile-images-button{'ng-click'=> 'uploadAvatarImage()'} Add Logo
                 %button.btn#cover-images-button{'ng-click'=> 'uploadProfileImages()'} Upload Cover Photos
-              %button.btn.btn-warning#submit{'ng-disabled' => 'profile_edit.$invalid', 'ng-click' => 'editProfile(profile);saved=true'} Save Changes
-              .help-block{'ng-show' => "saved"} Saved! (feel free to continue to make edits and save again and be sure to add news and a story (buttons are on the left)!)
+              %button.btn.btn-warning#submit{'ng-disabled' => 'profile_edit.$invalid', 'ng-click' => "editProfile(profile);saved = true", 'ng-hide' => 'saved==true'} Save Changes
+              %button.btn.btn-warning.subdued#submit{'ng-click' => "saved = false", 'ng-hide' => 'saved==false'} Saved! Click to Edit Again
 
                 

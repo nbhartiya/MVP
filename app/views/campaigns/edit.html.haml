@@ -38,7 +38,7 @@
             .clearfix
               %button.btn#campaign-upload-images{'ng-click'=> 'uploadImages()'} Upload Images
             
-            %button.btn.btn-warning.standalone-button#submit{'ng-click' => 'editCampaign(campaign)', 'ng-disabled'=> 'campaign_edit.$invalid'} Update
+            %button.btn.btn-warning.standalone-button#submit{'ng-click' => 'editCampaign(campaign)', 'ng-disabled'=> 'campaign_edit.$invalid'} Save Changes
 
           .campaign-create-confirmation.clearfix{'ng-show'=>"campaign==1"}
             %h2 Thanks! You'll get an email when your campaign is re-approved and public.

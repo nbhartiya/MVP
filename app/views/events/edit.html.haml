@@ -102,7 +102,7 @@
 
             .help-block-white{'ng-show' => 'event_edit.event_title.$error.required || event_edit.event_blurb.$error.required || event_edit.event_date.$error.required || event_edit.event_time.$error.required || event_edit.event_duration.$error.required || event_edit.event_neighborhood.$error.required || event_edit.event_address.$error.required || event_edit.event_city.$error.required || event_edit.event_state.$error.required || event_edit.event_zip.$error.required || event_edit.event_cost.$error.required || event_edit.event_limit.$error.required || event_edit.event_details.$error.required'} All fields are required
 
-            %button.btn.btn-warning.standalone-button#submit{'ng-disabled' => 'event_edit.$invalid', 'ng-click' => 'editEvent(event)'} Update
+            %button.btn.btn-warning.standalone-button#submit{'ng-disabled' => 'event_edit.$invalid', 'ng-click' => "editEvent(event)"} Save Changes
             -# should redirect to updated event page
 
         .span5
