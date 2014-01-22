@@ -56,13 +56,13 @@
                 %h3{'ng-hide' => 'profile.location.zipcode=="" || profile.location.zipcode==nil'} {{profile.location.city + ','}} {{profile.location.state}} {{profile.location.zipcode}}
                 %ul.nav.profile-button-group-edit
                   %li
-                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "events"'} Events
+                    %button.btn.btn-inverse{'ng-click' => 'appear = "events"', 'ng-class' => '{"events": "btn-warning"}[appear]'} Events
                   %li
-                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "campaigns"'} Campaigns
+                    %button.btn.btn-inverse{'ng-click' => 'appear = "campaigns"', 'ng-class' => '{"campaigns": "btn-warning"}[appear]'} Campaigns
                   %li
-                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "followers"'} Followers
+                    %button.btn.btn-inverse{'ng-click' => 'appear = "followers"', 'ng-class' => '{"followers": "btn-warning"}[appear]'} Followers
                   %li
-                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "following"'} Following
+                    %button.btn.btn-inverse{'ng-click' => 'appear = "following"', 'ng-class' => '{"following": "btn-warning"}[appear]'} Following
           .span1.edit-button
             %button.btn.btn-inverse{'ng-click' => 'appear="edit"', 'ng-hide' => 'appear == "edit"'} Edit
           .span6
@@ -320,7 +320,7 @@
                       %td
                         %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', follower.profile.id)}'", 'ng-click' => "follow('Profile',#{follower.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
               -else
-                No followers yet!
+                %h3 No one following yet -- people follow those who follow them! <a href = "/hosts">Find some people to follow!</a>
               -#
                 %ul.nav.nav-tabs
                   %li.active
@@ -389,7 +389,7 @@
                       %td
                         %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', user.profile.id)}'", 'ng-click' => "follow('Profile',#{user.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
               -else
-                No users followed. <a href = "/hosts">Find some to follow!</a>
+                %h3 No users followed. <a href = "/hosts">Find some to follow!</a>
               -#
                 %ul.nav.nav-tabs
                   %li.active
@@ -498,15 +498,15 @@
                     {{profile.website}}
                 %ul.nav.profile-button-group-chef-edit
                   %li
-                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "news"'} News
+                    %button.btn.btn-inverse{'ng-click' => 'appear = "news"', 'ng-class' => '{"news": "btn-warning"}[appear]'} News
                   %li
-                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "story"'} Story
+                    %button.btn.btn-inverse{'ng-click' => 'appear = "story"', 'ng-class' => '{"story": "btn-warning"}[appear]'} Story
                   %li
-                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "events"'} Events
+                    %button.btn.btn-inverse{'ng-click' => 'appear = "events"', 'ng-class' => '{"events": "btn-warning"}[appear]'} Events
                   %li
-                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "followers"'} Followers
+                    %button.btn.btn-inverse{'ng-click' => 'appear = "followers"', 'ng-class' => '{"followers": "btn-warning"}[appear]'} Followers
                   %li
-                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "following"'} Following
+                    %button.btn.btn-inverse{'ng-click' => 'appear = "following"', 'ng-class' => '{"following": "btn-warning"}[appear]'} Following
           .span1.edit-button
             %button.btn.btn-inverse{'ng-click' => 'appear="edit"', 'ng-hide' => 'appear == "edit"'} Edit
           .span6
@@ -570,7 +570,7 @@
                       -#%td 
                         =# shared
               -else
-                Looks like you have no upcoming events. Create one!
+                %h3 Looks like you have no upcoming events. Create one!
               .user-events-button
                 %a.button.btn.btn-warning.edit{:href=>"/events/new"} Create an Event 
               -#
@@ -635,8 +635,7 @@
                               ="$#{"%g" % (event.guests_count*event.cost)}"
                             -#%td event feedback stats(?)
                     -else
-                      %p
-                      Looks like you have no past events.
+                      %h3 Looks like you have no past events.
             .user-following{'ng-show' => 'appear == "following"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
               %h1 You Are Following
@@ -659,7 +658,7 @@
                       %td
                         %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', user.profile.id)}'", 'ng-click' => "follow('Profile',#{user.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
               -else
-                No users followed. <a href = "/hosts">Find some to follow!</a>
+                %h3 No one following yet -- people follow those who follow them! <a href = "/hosts">Find some people to follow!</a>
               -#
                 %ul.nav.nav-tabs
                   %li.active
@@ -727,7 +726,7 @@
                       %td
                         %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', follower.profile.id)}'", 'ng-click' => "follow('Profile',#{follower.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
               -else
-                No users followed. <a href = "/hosts">Find some to follow!</a>
+                %h3 No users followed. <a href = "/hosts">Find some to follow!</a>
               -#
                 %ul.nav.nav-tabs
                   %li.active

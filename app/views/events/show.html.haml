@@ -90,17 +90,17 @@
                         Gluten Free-friendly
                 %ul.nav.event-button-group
                   %li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'trackThis("Clicked Event Details");appear = "details"'} Details
+                    %button.btn{'ng-click' => 'trackThis("Clicked Event Details");appear = "details"','ng-class' => '{"details": "btn-warning"}[appear]'} Details
                   %li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'trackThis("Clicked Event Menu");appear = "menu"'} Menu
+                    %button.btn{'ng-click' => 'trackThis("Clicked Event Menu");appear = "menu"', 'ng-class' => '{"menu": "btn-warning"}[appear]'} Menu
                   -#
                     %li
-                      %button.btn.attendees{'data-toggle' => 'pill', 'ng-click' => 'appear = "chatter"'} Attendees & Chatter
+                      %button.btn.attendees{'ng-click' => 'appear = "chatter"', 'ng-class' => '{"chatter": "btn-warning"}[appear]'} Attendees & Chatter
                   %li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'trackThis("Clicked Host Story");appear = "story"'} Story
+                    %button.btn{'ng-click' => 'trackThis("Clicked Host Story");appear = "story"', 'ng-class' => '{"story": "btn-warning"}[appear]'} Story
                   -#
                     %li
-                      %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "followers"'} Followers
+                      %button.btn{'ng-click' => 'appear = "followers"', 'ng-class' => '{"followers": "btn-warning"}[appear]'} Followers
             -#
               %p 
                 =@event.seats_left

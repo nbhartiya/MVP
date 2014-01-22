@@ -86,15 +86,15 @@
                         Gluten Free-friendly
                 %ul.nav.event-button-group
                   %li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "details"'} Details
+                    %button.btn{'ng-click' => 'appear = "details"', 'ng-class' => '{"details": "btn-warning"}[appear]'} Details
                   %li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "menu"'} Menu
+                    %button.btn{'ng-click' => 'appear = "menu"', 'ng-class' => '{"menu": "btn-warning"}[appear]'} Menu
                   -#%li
-                    %button.btn.attendees{'data-toggle' => 'pill', 'ng-click' => 'appear = "chatter"'} Attendees & Chatter
+                    %button.btn.attendees{'ng-click' => 'appear = "chatter"', 'ng-class' => '{"chatter": "btn-warning"}[appear]'} Attendees & Chatter
                   %li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "story"'} Story
+                    %button.btn{'ng-click' => 'appear = "story"', 'ng-class' => '{"story": "btn-warning"}[appear]'} Story
                   -#%li
-                    %button.btn{'data-toggle' => 'pill', 'ng-click' => 'appear = "followers"'} Followers
+                    %button.btn{'ng-click' => 'appear = "followers"', 'ng-class' => '{"followers": "btn-warning"}[appear]'} Followers
             .btn.btn-warning.join-waitlist-button{'ng-click' => 'waitlist=true', 'ng-hide' => 'waitlist', "data-toggle" => "tooltip", :title => "Add your name at the top of the invite list for the next #{@event.host.profile.biz_name} event.", "data-placement" => "top"} Sign Up for the Next #{@event.host.profile.biz_name} Event
 
             .seats{'ng-show'=> 'waitlist'}

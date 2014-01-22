@@ -1,6 +1,6 @@
 =content_for :title, "#{@campaign.biz_name}'s Campaign"
 
-.campaigns{'ng-controller' => 'CampaignJoinCtrl', 'ng-init' => "endDate='#{@campaign.expires}';successful='#{@campaign.successful}'"}
+.campaigns{'ng-controller' => 'CampaignJoinCtrl', 'ng-init' => "endDate='#{@campaign.expires}';successful='#{@campaign.successful}'; appear=''"}
   .campaign-profile
     #campaign-carousel.carousel.slide.hidden-phone       
       .carousel-inner
@@ -49,7 +49,7 @@
                       %td
                         %ul.nav.campaign-button-group
                           %li
-                            %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "why_join"'} Why Join
+                            %button.btn.btn-inverse{'ng-click' => 'appear = "why_join"', 'ng-class' => '{"why_join": "btn-warning"}[appear]'} Why Join
                   -#%li
                     %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "followers"'} Supporters
           .following{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@campaign.follows.count};endDate='#{@campaign.expires}';successful='#{@campaign.successful}'; following = '#{is_user_there_and_following('Campaign', @campaign.id)}'"}
