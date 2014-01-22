@@ -699,8 +699,8 @@ Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$l
 
   $scope.removeImages = ->
     currentImage = $(".active img").attr('src')
-    $('.item').remove(":contains('#{currentImage}')")
-    $('.carousel-inner div:first-child').append('.active')
+    $('.item.active').remove()
+    $('.item:first-child').addClass('active')
     i = 0
     while i < $scope.campaignImageUrls.length
       if currentImage == $scope.campaignImageUrls[i]
@@ -708,6 +708,9 @@ Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$l
       i++
     if $scope.campaignImageUrls.length <= 1
       $('.carousel-control').remove()
+    if $scope.campaignImageUrls.length == 0
+        $('#remove-image').css('display', 'none')
+        $('.campaigns .carousel-inner').append("<p>This is a default cover photo. <br> We'll replace with one of your host! <br> You can also upload your own.</p><div class = 'item active default'><img alt='Food 9' src='/assets/Food 9.jpg'></div>")
 
   $scope.createCampaign = (campaign) ->
     if $scope.campaignImageUrls?
