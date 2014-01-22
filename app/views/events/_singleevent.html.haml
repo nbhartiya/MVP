@@ -78,7 +78,7 @@
               %h2 
                 ="Hosted by #{event.host.profile.biz_name}"
             %td.event-date-price.span2
-              %h2 #{event.date.strftime("%a %b %e")}, #{event.time.strftime("%l:%M %p")}
+              %h2 Ongoing
               %h2 $#{"%.0f" % event.cost} / seat
 
   -else !event.happened?

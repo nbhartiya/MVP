@@ -696,6 +696,7 @@ Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$l
       $('#remove-image').css('display', 'inherit')
       if Object.keys(InkBlobs).length>1
         $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#campaign-carousel'> › </a>")
+    $scope.firstUpload = true
 
   $scope.removeImages = ->
     currentImage = $(".active img").attr('src')

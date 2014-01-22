@@ -33,6 +33,9 @@
             %button.clearfix.btn#event-menu-button{'ng-click' => 'uploadMenu()'} Upload Menu
             .menu 
             %a#remove{'ng-click' => 'removeMenu()'} delete
+
+            %textarea#event-menu{:rows => "3", 'ng-model' => 'event.menu', :type=>"text", :placeholder =>"If you don't have a PDF menu, feel free to input the text here", :name => "event_menu"}
+
             %hr
 
             #event-date-time 

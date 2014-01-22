@@ -50,6 +50,8 @@
               -if @event.menu_pdf.present?
                 %a.fancybox{:href => "#{@event.menu_pdf}", :"data-fancybox-type" => 'iframe'}  Preview Menu
             %a#remove{'ng-click' => 'removeMenu()'} delete
+
+            %textarea#event-menu{:rows => "3", 'ng-model' => 'event.menuText', :type=>"text", :placeholder =>"If you don't have a PDF menu, feel free to input the text here", :name => "event_menu"}
               
             %hr
 

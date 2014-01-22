@@ -12,7 +12,7 @@
     .container
       .campaign-registration.row
         .span5
-          %form.campaign-create-form.clearfix{:name => "campaign_create", 'ng-hide' => "campaign==1"}
+          %form.campaign-create-form.clearfix{:name => "campaign_create", 'ng-hide' => "campaign==1", 'ng-init' => 'firstUpload=false'}
             %input{'ng-model' => 'campaign.biz_name', :type=>"text", :placeholder =>"Business Name - who is the host you are suggesting?", :name => "campaign_name", :required => "required", 'ng-class' => "{error: campaign_create.campaign_name.$invalid}"}
             %textarea.campaign-blurb{:rows => "2", 'ng-model' => 'campaign.blurb', :type=>"text", :placeholder =>"Business Description - you get the length of a tweet to describe this host - what is its tagline?", :required => "required", :name => "campaign_description", :maxlength => "140", 'ng-class' => "{error: campaign_create.campaign_description.$invalid}"}
             %textarea.campaign-why{:rows => "3", 'ng-model' => 'campaign.why_join', :type=>"text", :placeholder =>"Optional: Why should others support getting this host on Simmr?", :name => "campaign_why_join", 'ng-class' => "{error: campaign_create.campaign_why_join.$invalid}"}
@@ -21,6 +21,9 @@
             
             .clearfix
               %button.btn#campaign-upload-images{'ng-click'=> 'uploadImages()'} Upload Images
+              %button.btn#campaign-upload-images.hidden{'ng-click'=> 'uploadMoreImages()'} Upload More
+              %button.btn#campaign-upload-images.hidden{'ng-click'=> 'uploadImages()'} Clear All and Re-Upload
+
             
             %button.btn.btn-warning.standalone-button#submit{'ng-click' => 'createCampaign(campaign)', 'ng-disabled'=> 'campaign_create.$invalid'} Create
 

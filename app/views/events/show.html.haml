@@ -224,11 +224,16 @@
           .event-menu#menu{'ng-show' => 'appear=="menu"'}
             %button.close{"ng-click" => "appear=''", :type => "button"} close
             %h1 Menu
-            -if @event.menu_pdf.present?
-              %a.fancybox{:href => "#{@event.menu_pdf}", :"data-fancybox-type" => 'iframe'}  Enlarge Menu
-              %iframe.menu{:src => "#{@event.menu_pdf}", :width => '510px', :height => '420px'}
-            -else
-              %h3 Coming Soon!
+            %h3
+              -if @event.menu_pdf.present?
+                %a.fancybox{:href => "#{@event.menu_pdf}", :"data-fancybox-type" => 'iframe'}  Enlarge Menu
+                %iframe.menu{:src => "#{@event.menu_pdf}", :width => '510px', :height => '420px'}
+              -elsif @event.menu_text.present? && @event.menu_text != nil
+                - n = @event.menu_text.split("\n")
+                -for i in 0..n.length-1
+                  = simple_format n[i]
+              -else
+                Coming Soon!
           -#
             .event-attendees-and-chatter{'ng-show' => 'appear=="chatter"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
