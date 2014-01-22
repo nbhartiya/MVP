@@ -567,6 +567,11 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
       $('#remove-image').css('display', 'inherit')
       if Object.keys(InkBlobs).length>1
         $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> › </a>")
+      if Object.keys(InkBlobs).length>=1
+        $('#event-images-button').addClass("hidden")
+        $('#event-upload-more-images, #event-clear-and-upload-images').removeClass("hidden")
+        $('#event-upload-more-images, #event-clear-and-upload-images').addClass("show-inline")
+
 
   $scope.removeImages = ->
     currentImage = $(".active img").attr('src')

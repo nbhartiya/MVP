@@ -54,7 +54,7 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
   $scope.profileimageUrls = []
   $scope.avatar = []
 
-  $scope.uploadProfileImages = ->
+  $scope.uploadImages = ->
     filepicker.pickAndStore
       mimetypes: ["image/*", "text/plain"]
       services: ["COMPUTER", "FACEBOOK", "GMAIL", "INSTAGRAM"]
@@ -82,6 +82,11 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
       $('#remove-image').css('display', 'inherit')
       if Object.keys(InkBlobs).length>1
         $('.user-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#profile-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#profile-carousel'> › </a>")
+      if Object.keys(InkBlobs).length>=1
+        $('#cover-images-button').addClass("hidden")
+        $('#profile-upload-more-images, #profile-clear-and-upload-images').removeClass("hidden")
+        $('#profile-upload-more-images, #profile-clear-and-upload-images').addClass("show-inline")
+
   
   $scope.uploadAvatarImage = ->
     filepicker.pickAndStore
@@ -99,8 +104,11 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
       $scope.avatar.push($scope.image)
       $('td.profile-photo').empty()
       $('td.profile-photo').append("<img src = '#{$scope.avatar}'></div>")
+      $('#profile-logo-button').addClass("hidden")
+      $('#change-profile-logo-button').removeClass("hidden")
+      $('#change-profile-logo-button').addClass("show-inline")
 
-  $scope.removeProfileImages = ->
+  $scope.removeImages = ->
     currentImage = $(".active img").attr('src')
     $('.item.active').remove()
     $('.item:first-child').addClass('active')

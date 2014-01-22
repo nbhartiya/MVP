@@ -3,8 +3,8 @@
 .profiles{'ng-controller' => 'ProfileEditCtrl', 'ng-init' => "getProfile(#{@profile.id})"}
   .user-profile
     -if @profile.covers.present? && @profile.user.chef == true
-      #remove-image.btn.edit{"ng-click" => "removeProfileImages()"} remove image
-    #remove-image.btn{"ng-click" => "removeProfileImages()"} remove image
+      #remove-image.btn.edit{"ng-click" => "removeImages()"} remove image
+    #remove-image.btn{"ng-click" => "removeImages()"} remove image
     #profile-carousel.carousel.slide.hidden-phone
       .carousel-inner
         -if @profile.user.chef == true
@@ -63,8 +63,8 @@
                     %button.btn.btn-inverse{'ng-click' => 'appear = "followers"', 'ng-class' => '{"followers": "btn-warning"}[appear]'} Followers
                   %li
                     %button.btn.btn-inverse{'ng-click' => 'appear = "following"', 'ng-class' => '{"following": "btn-warning"}[appear]'} Following
-          .span1.edit-button
-            %button.btn.btn-inverse{'ng-click' => 'appear="edit"', 'ng-hide' => 'appear == "edit"'} Edit
+          .span1.edit-button{'ng-hide' => 'appear == "edit"'}
+            %button.btn.btn-inverse{'ng-click' => 'appear="edit"'} Edit
           .span6
             .user-events{'ng-show' => 'appear == "events"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
@@ -459,7 +459,11 @@
               .help-block{'ng-show' => 'profile_edit.profile_email.$error.required'} All fields are required
 
               .clearfix
-                %button.btn#profile-images-button{'ng-click'=> 'uploadAvatarImage()'} Change Profile Picture
+                -if @profile.avatar.present?
+                  %button.btn#profile-logo-button{'ng-click'=> 'uploadAvatarImage()'} Change Profile Picture
+                -else 
+                  %button.btn#profile-logo-button{'ng-click'=> 'uploadAvatarImage()'} Upload Profile Picture
+                  %button.btn#change-profile-logo-button.hidden{'ng-click'=> 'uploadAvatarImage()'} Change Profile Picture
               %button.btn.btn-warning#submit{'ng-disabled' => 'profile_edit.$invalid', 'ng-click' => "editProfile(profile);saved = true", 'ng-hide' => 'saved==true'} Save Changes
               %button.btn.btn-warning.subdued#submit{'ng-click' => "saved = false", 'ng-hide' => 'saved==false'} Saved! Click to Edit Again
 
@@ -508,8 +512,8 @@
                     %button.btn.btn-inverse{'ng-click' => 'appear = "followers"', 'ng-class' => '{"followers": "btn-warning"}[appear]'} Followers
                   %li
                     %button.btn.btn-inverse{'ng-click' => 'appear = "following"', 'ng-class' => '{"following": "btn-warning"}[appear]'} Following
-          .span1.edit-button
-            %button.btn.btn-inverse{'ng-click' => 'appear="edit"', 'ng-hide' => 'appear == "edit"'} Edit
+          .span1.edit-button{'ng-hide' => 'appear == "edit"'}
+            %button.btn.btn-inverse{'ng-click' => 'appear="edit"'} Edit
           .span6
             .user-news{'ng-show' => 'appear == "news"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
@@ -807,8 +811,21 @@
               .help-block{'ng-show' => 'profile_edit.profile_bizName.$error.required || profile_edit.profile_blurb.$error.required || profile_edit.profile_address.$error.required || profile_edit.profile_city.$error.required || profile_edit.profile_state.$error.required || profile_edit.profile_zip.$error.required || profile_edit.profile_neighborhood.$error.required || profile_edit.profile_email.$error.required'} All fields are required
 
               .clearfix
-                %button.btn#profile-images-button{'ng-click'=> 'uploadAvatarImage()'} Add Logo
-                %button.btn#cover-images-button{'ng-click'=> 'uploadProfileImages()'} Upload Cover Photos
+                -if @profile.avatar.present?
+                  %button.btn#profile-logo-button{'ng-click'=> 'uploadAvatarImage()'} Change Logo
+                -else 
+                  %button.btn#profile-logo-button{'ng-click'=> 'uploadAvatarImage()'} Upload Logo
+                  %button.btn#change-profile-logo-button.hidden{'ng-click'=> 'uploadAvatarImage()'} Change Logo
+      
+
+                -if @profile.covers.present?
+                  %button.btn#profile-upload-more-images{'ng-click'=> 'uploadMoreImages()'} Upload More Images
+                  %button.btn#profile-clear-and-upload-images{'ng-click'=> 'uploadImages()'} Clear All Images and Re-Upload
+                -else
+                  %button.btn#cover-images-button{'ng-click'=> 'uploadImages()'} Upload Images
+                  %button.btn#profile-upload-more-images.hidden{'ng-click'=> 'uploadMoreImages()'} Upload More Images
+                  %button.btn#profile-clear-and-upload-images.hidden{'ng-click'=> 'uploadImages()'} Clear All Images and Re-Upload
+
               %button.btn.btn-warning#submit{'ng-disabled' => 'profile_edit.$invalid', 'ng-click' => "editProfile(profile);saved = true", 'ng-hide' => 'saved==true'} Save Changes
               %button.btn.btn-warning.subdued#submit{'ng-click' => "saved = false", 'ng-hide' => 'saved==false'} Saved! Click to Edit Again
 
