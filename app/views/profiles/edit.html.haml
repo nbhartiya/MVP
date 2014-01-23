@@ -3,7 +3,7 @@
 .profiles{'ng-controller' => 'ProfileEditCtrl', 'ng-init' => "getProfile(#{@profile.id})"}
   .user-profile
     -if @profile.covers.present? && @profile.user.chef == true
-      #remove-image.btn.edit{"ng-click" => "removeImages()"} remove image
+      -##remove-image.btn.edit{"ng-click" => "removeImages()"} remove image
     #remove-image.btn{"ng-click" => "removeImages()"} remove image
     #profile-carousel.carousel.slide.hidden-phone
       .carousel-inner
@@ -819,8 +819,9 @@
       
 
                 -if @profile.covers.present?
-                  %button.btn#profile-upload-more-images{'ng-click'=> 'uploadMoreImages()'} Upload More Images
                   %button.btn#profile-clear-and-upload-images{'ng-click'=> 'uploadImages()'} Clear All Images and Re-Upload
+                  %button.btn#profile-upload-more-images.disabled{'ng-click'=> 'uploadMoreImages()'} Upload More Images
+                  
                 -else
                   %button.btn#cover-images-button{'ng-click'=> 'uploadImages()'} Upload Images
                   %button.btn#profile-upload-more-images.hidden{'ng-click'=> 'uploadMoreImages()'} Upload More Images

@@ -30,8 +30,9 @@
               .help-block-white{'ng-show' => 'event_create.event_limit.$error.pattern'} Please enter a valid number of seats
 
             %button.btn#event-images-button{'ng-click'=> 'uploadImages()'} Upload Images
-            %button.btn#event-upload-more-images.hidden{'ng-click'=> 'uploadMoreImages()'} Upload More Images
             %button.btn#event-clear-and-upload-images.hidden{'ng-click'=> 'uploadImages()'} Clear All Images and Re-Upload
+            %button.btn#event-upload-more-images.hidden{'ng-click'=> 'uploadMoreImages()'} Upload More Images
+            
             %button.clearfix.btn#event-menu-button{'ng-click' => 'uploadMenu()'} Upload Menu
             .menu 
             %a#remove{'ng-click' => 'removeMenu()'} delete

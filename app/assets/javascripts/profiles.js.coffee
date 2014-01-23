@@ -74,6 +74,7 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
         $scope.image="#{InkBlobs[i].url}"
         console.log $scope.image
         $scope.profileImageUrls.push($scope.image)
+        window.profileImageUrls = $scope.profileImageUrls
         if i == 0
           $('.profiles .carousel-inner').append("<div class = 'item active'><img src = #{$scope.profileImageUrls[i]}></div>")
         else 
@@ -86,6 +87,7 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
         $('#cover-images-button').addClass("hidden")
         $('#profile-upload-more-images, #profile-clear-and-upload-images').removeClass("hidden")
         $('#profile-upload-more-images, #profile-clear-and-upload-images').addClass("show-inline")
+        $('#profile-upload-more-images').removeClass("disabled")
 
   
   $scope.uploadAvatarImage = ->

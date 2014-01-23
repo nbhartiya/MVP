@@ -2,7 +2,7 @@
 .events{'ng-controller' => 'EventEditCtrl', 'ng-init' => "getEvent(#{@event.id})"}
   .event-profile{'ng-init' => 'eventMenu = #{@event.menu_pdf}; eventImages = #{@event.eventImageUrls}'}
     -if @event.covers.present?
-      #remove-image.btn.edit{"ng-click" => "removeImages()"} remove image
+      -##remove-image.btn.edit{"ng-click" => "removeImages()"} remove image
     #remove-image.btn{"ng-click" => "removeImages()"} remove image
     #event-carousel.carousel.slide.hidden-phone       
       .carousel-inner
@@ -43,13 +43,14 @@
               .help-block-white{'ng-show' => 'event_edit.event_cost.$error.pattern'} Please enter a valid event cost
               .help-block-white{'ng-show' => 'event_edit.event_limit.$error.pattern'} Please enter a valid number of seats
 
-            -if @event.covers.present?
+            -#-if @event.covers.present?
               %button.btn#event-upload-more-images{'ng-click'=> 'uploadMoreImages()'} Upload More Images
               %button.btn#event-clear-and-upload-images{'ng-click'=> 'uploadImages()'} Clear All Images and Re-Upload
-            -else
-              %button.btn#event-images-button{'ng-click'=> 'uploadImages()'} Upload Images
-              %button.btn#event-upload-more-images.hidden{'ng-click'=> 'uploadMoreImages()'} Upload More Images
-              %button.btn#event-clear-and-upload-images.hidden{'ng-click'=> 'uploadImages()'} Clear All Images and Re-Upload
+            
+            
+            %button.btn#event-clear-and-upload-images{'ng-click'=> 'uploadImages()'} Clear All Images and Re-Upload
+            %button.btn#event-upload-more-images.disabled{'ng-click'=> 'uploadMoreImages()'} Upload More Images
+           
 
             %button.clearfix.btn#event-menu-button{'ng-click' => 'uploadMenu()'} Update Menu
             .menu

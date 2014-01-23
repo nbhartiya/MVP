@@ -569,6 +569,39 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
     $('.menu').empty()
     $('a#remove').css('display', 'none')
 
+  $scope.uploadMoreImages = ->
+    filepicker.pickAndStore
+      mimetypes: ["image/*", "text/plain"]
+      services: ["COMPUTER", "FACEBOOK", "GMAIL", "INSTAGRAM"]
+      multiple: true
+    ,
+      location: "S3"
+      access: "public"
+    , (InkBlobs) ->
+      console.log JSON.stringify(InkBlobs)
+      $('.default').remove()
+      $('.carousel-inner').empty()
+      $scope.eventImageUrls=window.eventImageUrls
+      console.log $scope.eventImageUrls
+
+      i=0
+      while i<Object.keys(InkBlobs).length
+        $scope.image="#{InkBlobs[i].url}"
+        $scope.eventImageUrls.push($scope.image)
+        window.eventImageUrls = $scope.eventImageUrls
+        i++
+      j=0
+      while j<$scope.eventImageUrls.length   
+        if j == 0
+          $('.events .carousel-inner').append("<div class = 'item active'><img src = #{$scope.eventImageUrls[j]}></div>")
+        else 
+          $('.events .carousel-inner').append("<div class = 'item'><img src = #{$scope.eventImageUrls[j]}></div>")
+        j++
+      $('#remove-image').css('display', 'inherit')
+      if $scope.eventImageUrls.length>1
+        $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> › </a>")
+
+
   $scope.uploadImages = ->
     #need to check if existing images are there to decide whether or not need an active class
     #console.log $scope.eventImages
@@ -591,6 +624,7 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
         $scope.image="#{InkBlobs[i].url}"
         #console.log $scope.image
         $scope.eventImageUrls.push($scope.image)
+        window.eventImageUrls = $scope.eventImageUrls
         if i == 0
           #console.log($scope.eventImageUrls[i])
           $('.events .carousel-inner').append("<div class = 'item active'><img src = #{$scope.eventImageUrls[i]}></div>")
@@ -602,9 +636,7 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
       if Object.keys(InkBlobs).length>1
         $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> › </a>")
       if Object.keys(InkBlobs).length>=1
-        $('#event-images-button').addClass("hidden")
-        $('#event-upload-more-images, #event-clear-and-upload-images').removeClass("hidden")
-        $('#event-upload-more-images, #event-clear-and-upload-images').addClass("show-inline")
+        $('#event-upload-more-images').removeClass("disabled")
 
 
   $scope.removeImages = ->
@@ -742,7 +774,6 @@ Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$l
       if $scope.campaignImageUrls.length>1
         $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#campaign-carousel'> › </a>")
 
-
   $scope.uploadImages = ->
     filepicker.pickAndStore
       mimetypes: ["image/*", "text/plain"]
@@ -814,6 +845,39 @@ Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "C
       window.location.href = '/campaigns/'+data.id
 
   $scope.campaignImageUrls = []
+  
+  $scope.uploadMoreImages = ->
+    filepicker.pickAndStore
+      mimetypes: ["image/*", "text/plain"]
+      services: ["COMPUTER", "FACEBOOK", "GMAIL", "INSTAGRAM"]
+      multiple: true
+    ,
+      location: "S3"
+      access: "public"
+    , (InkBlobs) ->
+      console.log JSON.stringify(InkBlobs)
+      $('.default').remove()
+      $('.carousel-inner').empty()
+      $scope.campaignImageUrls=window.campaignImageUrls
+      console.log $scope.campaignImageUrls
+
+      i=0
+      while i<Object.keys(InkBlobs).length
+        $scope.image="#{InkBlobs[i].url}"
+        $scope.campaignImageUrls.push($scope.image)
+        window.campaignImageUrls = $scope.campaignImageUrls
+        i++
+      j=0
+      while j<$scope.campaignImageUrls.length   
+        if j == 0
+          $('.campaigns .carousel-inner').append("<div class = 'item active'><img src = #{$scope.campaignImageUrls[j]}></div>")
+        else 
+          $('.campaigns .carousel-inner').append("<div class = 'item'><img src = #{$scope.campaignImageUrls[j]}></div>")
+        j++
+      $('#remove-image').css('display', 'inherit')
+      if $scope.campaignImageUrls.length>1
+        $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#campaign-carousel'> › </a>")
+
 
   $scope.uploadImages = ->
     filepicker.pickAndStore
@@ -835,6 +899,7 @@ Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "C
         $scope.image="#{InkBlobs[i].url}"
         #console.log $scope.image
         $scope.campaignImageUrls.push($scope.image)
+        window.campaignImageUrls = $scope.campaignImageUrls
         if i == 0
           $('.campaigns .carousel-inner').append("<div class = 'item active'><img src = #{$scope.campaignImageUrls[i]}></div>")
         else 
@@ -844,9 +909,7 @@ Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "C
       if Object.keys(InkBlobs).length>1
         $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#campaign-carousel'> › </a>")
       if Object.keys(InkBlobs).length>=1
-        $('#campaign-upload-images').addClass("hidden")
-        $('#campaign-upload-more-images, #campaign-clear-and-upload-images').removeClass("hidden")
-        $('#campaign-upload-more-images, #campaign-clear-and-upload-images').addClass("show-inline")
+        $('#campaign-upload-more-images').removeClass("disabled")
 
   $scope.removeImages = ->
     currentImage = $(".active img").attr('src')
