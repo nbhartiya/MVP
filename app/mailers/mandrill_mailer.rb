@@ -188,27 +188,27 @@ class MandrillMailer < Devise::Mailer
     puts sending
   end
 
-  def self.event_purchase_email(user, event)
+  def self.event_purchase_email(user, charge, event, guest_count, location)
     @user = user
-    @event = event
     m = Mandrill::API.new(ENV["MANDRILL_KEY"])
       message = {
-        :subject=> "#{user.first_name}, you're going to #{event.title} with #{event.host}!",
+        :subject=> "Simmr Purchase Confirmation--#{event.host.profile.biz_name}",
         :from_name=> "Simmr Concierge",
         :from_email => "neeharika@simmr.co",
-        :text=>"#{user.first_name}, you're going to #{event.title} with #{event.host}!
-        We're glad you can make it. Now all you have to do is show up and give your name at the door.
-        Eating is best in the company of good friends, so spread the word and bring friends!
-        Your event details: www.simmr.co/events/#{event.id}
-        Get excited!
+        :text=>"#{user.first_name}, you just reigstered for #{event.title} with #{event.host.profile.biz_name}!
+        Just wanted to let you know that your payment went through for #{'$%6.2f' % (charge.amount/100.00)}, and you're all set for #{guest_count} spot(s).
+        Take a moment to check your event details and add the event to your calendar by using the calendar widget on the event page.
+        As a reminder, the event takes place at #{event.time.strftime('%l:%M %p')} on #{event.date.strftime('%A, %B %e, %Y')} and will be located at #{location.address1} in #{location.neighborhood}.
+        Eating is best in the company of good friends, so be sure to invite your friends to join you before tickets sell out!
+        Get excited,
         Neeharika and Wendy
         http://www.simmr.co
-        P.S. As always, please don't hesitate to reach out to us directly by replying to this email.",
+        P.S. As always, feel free to reach out with any questions by replying to this email.",
         # below are global merge vars. the name is the *|MERGE|* tag
         #{}"global_merge_vars"=>[],
         :to=>[
           {
-            :email=> "linwendy08@gmail.com",
+            :email=> @user.email,
             :name=> @user.first_name
           }
       ],
@@ -218,11 +218,11 @@ class MandrillMailer < Devise::Mailer
     template_content = [
       {
         :name => "title",
-        :content => "#{user.first_name}, you're going to #{event.title} with #{event.host}!"
+        :content => "#{user.first_name}, you just reigstered for #{event.title} with #{event.host}!"
       },
       {
         :name => "std_preheader_content",
-        :content => "<p>#{user.first_name}, you're going to #{event.title} with #{event.host}!</p>"
+        :content => "<p>#{user.first_name}, you just reigstered for #{event.title} with #{event.host.profile.biz_name}!</p>"
       },
       {
         :name => "image",
@@ -230,9 +230,13 @@ class MandrillMailer < Devise::Mailer
       },
       {
         :name => "content",
-        :content => "<h1>#{user.first_name}, you're going to #{event.title} with #{event.host}!</h1><p> We're glad you can make it. Now all you have to do is show up and give your name at the door. 
-        <br><p>Eating is best in the company of good friends, so spread the word and bring friends!<br><a href = 'http://www.simmr.co/events/#{event.id}>Your Event Details</a><br><br>Get excited! <br>Neeharika and Wendy<br><a href = 'http://www.simmr.co'>simmr</a>
-        <br><br>P.S. As always, please don't hesitate to reach out to us directly by replying to this email.</p>"
+        :content => "<h1>#{user.first_name}, you just reigstered for #{event.title} with #{event.host.profile.biz_name}!</h1><p> Just wanted to let you know that your payment went through for #{'$%6.2f' % (charge.amount/100.00)}, and you're all set for #{guest_count} spot(s).
+        <br><p>Take a moment to check your event details and add the event to your calendar by using the calendar widget on the <a href= 'http://www.simmr.co/events/#{event.id}'>event page</a>.
+        <br><br>As a reminder, the event takes place at <b>#{event.time.strftime('%l:%M %p')}</b> on <b>#{event.date.strftime('%A, %B %e, %Y')}</b> and will be located at <b>#{location.address1} in #{location.neighborhood}</b>.
+        <br><br>Eating is best in the company of good friends, so spread the word and bring friends!
+        <br><br>Get excited, <br>Neeharika and Wendy
+        <br><a href = 'http://www.simmr.co'>simmr</a>
+        <br><br>P.S. As always, feel free to reach out with any questions by replying to this email.</p>"
       },
       {
         :name => "social",
@@ -240,7 +244,7 @@ class MandrillMailer < Devise::Mailer
       },
       { 
         :name => "footer-content",
-        :content => "You're receiving this because you just bought a ticket to this event!"
+        :content => "You're receiving this because you just bought a ticket to a Simmr experience!"
       },
       {
         :name => "utility",
