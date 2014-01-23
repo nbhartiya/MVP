@@ -54,6 +54,39 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
   $scope.profileimageUrls = []
   $scope.avatar = []
 
+  $scope.uploadMoreImages = ->
+    filepicker.pickAndStore
+      mimetypes: ["image/*", "text/plain"]
+      services: ["COMPUTER", "FACEBOOK", "GMAIL", "INSTAGRAM"]
+      multiple: true
+    ,
+      location: "S3"
+      access: "public"
+    , (InkBlobs) ->
+      console.log JSON.stringify(InkBlobs)
+      $('.default').remove()
+      $('.carousel-inner').empty()
+      $scope.profileImageUrls=window.profileImageUrls
+      console.log $scope.profileImageUrls
+
+      i=0
+      while i<Object.keys(InkBlobs).length
+        $scope.image="#{InkBlobs[i].url}"
+        $scope.profileImageUrls.push($scope.image)
+        window.profileImageUrls = $scope.profileImageUrls
+        i++
+      j=0
+      while j<$scope.profileImageUrls.length   
+        if j == 0
+          $('.profiles .carousel-inner').append("<div class = 'item active'><img src = #{$scope.profileImageUrls[j]}></div>")
+        else 
+          $('.profiles .carousel-inner').append("<div class = 'item'><img src = #{$scope.profileImageUrls[j]}></div>")
+        j++
+      $('#remove-image').css('display', 'inherit')
+      if $scope.profileImageUrls.length>1
+        $('.user-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#profile-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#profile-carousel'> › </a>")
+
+
   $scope.uploadImages = ->
     filepicker.pickAndStore
       mimetypes: ["image/*", "text/plain"]
