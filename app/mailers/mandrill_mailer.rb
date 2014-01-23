@@ -156,6 +156,37 @@ class MandrillMailer < Devise::Mailer
     sending = m.messages.send_template template_name, template_content, message 
   end
 
+  def self.notify_us_of_user(user)
+    @user = user
+    if !@user.chef.nil?
+      if @user.chef==true
+        @type="CHEF"
+      else
+        @type="FOODIE"
+      end
+    else
+      @type="USER (cant tell chef or foodie)"
+    end
+    m = Mandrill::API.new(ENV["MANDRILL_KEY"])
+      message = {
+        :subject=> "NEW SIMMR #{@type}: #{user.first_name} #{user.last_name}",
+        :text=>"SIMMR HAS A NEW #{@type}: #{user.first_name} #{user.last_name} email them? #{user.email} user_id? #{user.id}",
+        :to=>[
+          {
+            :email=> "neeharika.b@gmail.com",
+            :name=> "Neeharika"
+          },
+          {
+            :email=> "email.wendylin@gmail.com",
+            :name=> "Wendy"
+          }
+        ],
+      :html=>"<html>SIMMR HAS A NEW #{@type}: <br> #{user.first_name} #{user.last_name}<br>email them?<br>#{user.email}<br> user_id? <br> #{user.id}</html>",
+      :from_email=>"neeharika@simmr.co"
+      }
+    sending = m.messages.send message
+    puts sending
+  end
 
   def self.event_purchase_email(user, event)
     @user = user
