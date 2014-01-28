@@ -141,3 +141,5 @@ $('#yelp-explanation').tooltip();
 $('.quoter').tooltip();
 
 $('.recipe').tooltip();
+
+$('.follow-expired-campaign').tooltip();

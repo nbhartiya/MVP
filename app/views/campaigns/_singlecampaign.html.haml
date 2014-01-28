@@ -30,7 +30,4 @@
           %h1 #{campaign.biz_name}
           %h2 #{campaign.follows_needed} more supporters to tilt | #{campaign.status}
         %td.span1{'ng-controller' => 'HeartCtrl', 'ng-init' => "following = '#{is_user_there_and_following('Campaign', campaign.id)}'"}
-          -if user_signed_in?
-            %a.sb.heart.circle.no-border.no-shadow{'ng-click' => "follow('Campaign',#{campaign.id},#{user_signed_in?})", "data-toggle" => "tooltip", :title => "Click to join and stay updated on this campaign!", "data-placement" => "left", 'ng-class' => '{true: "red", false: "black"}[following]'}
-          -else
-            %a.sb.heart.circle.no-border.no-shadow.black{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "left"}
+          %a.sb.heart.circle.no-border.no-shadow.black.follow-expired-campaign{:"data-toggle" => "tooltip", :title => "This campaign has expired! Start another?", "data-placement" => "top"}

@@ -30,6 +30,18 @@ button.usersignup.emailbutton.btn.btn-warning{
 	margin-top: -2px;
 }
 
+.btn:focus{
+	outline:none !important;
+}
+
+a:focus{
+	outline: none !important;
+}
+
+button:focus{
+	outline: none !important;
+}
+
 .container{
   max-width: none !important;
   width: 1210px !important;
