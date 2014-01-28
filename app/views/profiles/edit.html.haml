@@ -370,6 +370,7 @@
             .user-following{'ng-show' => 'appear == "following"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
               %h1 You Are Following
+              %br
               -if @profile.user.businesses_followed.count > 0
                 %table.following-table
                   -for user in @profile.user.users_followed
@@ -558,18 +559,18 @@
                     -#%td Shares  
                   -for event in @profile.host_events
                     %tr
-                      %td 
+                      %td.event-title 
                         %a{:href => event_path(event)} 
                           =event.title
-                      %td 
+                      %td.event-date
                         =event.date.strftime("%b %e")
-                      %td 
+                      %td.event-status
                         ="#{event.guests_count} of #{event.people_limit} filled @ $#{"%g" % (event.cost)}"
-                      %td 
+                      %td.event-total
                         ="$#{"%g" % (event.guests_count*event.cost)}"
-                      %td 
+                      %td.event-follows
                         =event.follows.count
-                      %td.link
+                      %td.edit
                         %a{:href => edit_event_path(event)}
                           Edit
                       -#%td 
@@ -644,6 +645,7 @@
             .user-following{'ng-show' => 'appear == "following"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
               %h1 You Are Following
+              %br
               -if @profile.user.users_followed.count > 0
                 %table.following-table
                   -for user in @profile.user.users_followed

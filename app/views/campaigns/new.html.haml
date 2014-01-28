@@ -13,8 +13,8 @@
       .campaign-registration.row
         .span5
           %form.campaign-create-form.clearfix{:name => "campaign_create", 'ng-hide' => "campaign==1", 'ng-init' => 'firstUpload=false'}
-            %input{'ng-model' => 'campaign.biz_name', :type=>"text", :placeholder =>"Business Name - who is the host you are suggesting?", :name => "campaign_name", :required => "required", 'ng-class' => "{error: campaign_create.campaign_name.$invalid}"}
-            %textarea.campaign-blurb{:rows => "2", 'ng-model' => 'campaign.blurb', :type=>"text", :placeholder =>"Business Description - you get the length of a tweet to describe this host - what is its tagline?", :required => "required", :name => "campaign_description", :maxlength => "140", 'ng-class' => "{error: campaign_create.campaign_description.$invalid}"}
+            %input{'ng-model' => 'campaign.biz_name', :type=>"text", :placeholder =>"Host Name - who is the host you are suggesting?", :name => "campaign_name", :required => "required", 'ng-class' => "{error: campaign_create.campaign_name.$invalid}"}
+            %textarea.campaign-blurb{:rows => "2", 'ng-model' => 'campaign.blurb', :type=>"text", :placeholder =>"Host Description - think of something catchy to get people to join your campaign!", :required => "required", :name => "campaign_description", :maxlength => "140", 'ng-class' => "{error: campaign_create.campaign_description.$invalid}"}
             %textarea.campaign-why{:rows => "3", 'ng-model' => 'campaign.why_join', :type=>"text", :placeholder =>"Optional: Why should others support getting this host on Simmr?", :name => "campaign_why_join", 'ng-class' => "{error: campaign_create.campaign_why_join.$invalid}"}
 
             .help-block{'ng-show' => "campaign_create.campaign_description.$error.required || campaign_create.campaign_name.$error.required"} Both fields are required!
@@ -31,7 +31,7 @@
             %h2 Thanks! You'll get an email when your campaign is approved and public.
         .span5
           .campaign-summary.prev
-            %a.campaign-days#ribbon.preview{:href => "#", "data-toggle" => "tooltip", :title => "All campaigns last a total of 30 days, so get people to join quickly!", "data-placement" => "right"}
+            %a.campaign-days#ribbon.preview{:href => "#", "data-toggle" => "tooltip", :title => "All campaigns last a total of 30 days, so get people to join quickly!", "data-placement" => "top"}
               .container
                 .base
                   %h3 30 days left
@@ -40,17 +40,17 @@
             .preview-label this is a preview
             .campaign-summary-top
               %h1#default-text{'ng-show'=>'campaign.biz_name=="" || campaign.biz_name==nil'}
-                Business Name
+                Host Name
               %h1
                 {{campaign.biz_name}}
               %h2#default-text{'ng-show'=>'campaign.blurb=="" || campaign.blurb==nil'}
-                Business Description
+                Host Description
               %h2 
                 {{campaign.blurb}}
             .campaign-summary-logistics-container
               .campaign-summary-logistics
                 %h3 Created by #{current_user.first_name} #{current_user.last_name}
-            %a.campaign-tilt{:href => "#", "data-toggle" => "tooltip", :title => "All campaigns need 20 people to join to succeed!", "data-placement" => "right"} #{@campaign.follows_needed} more supporters needed to get this host on Simmr
+            %a.campaign-tilt{:href => "#", "data-toggle" => "tooltip", :title => "All campaigns need 20 people to join to succeed!", "data-placement" => "top"} #{@campaign.follows_needed} more supporters needed to get this host on Simmr
             .progress.signed-in.progress-warning
               .bar{:style => "width: 0%"}
             

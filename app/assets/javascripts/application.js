@@ -143,3 +143,5 @@ $('.quoter').tooltip();
 $('.recipe').tooltip();
 
 $('.follow-expired-campaign').tooltip();
+
+$('.follow').tooltip();

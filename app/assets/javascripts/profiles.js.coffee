@@ -6,10 +6,10 @@ angular.module('Simmr').factory "Profile", ["railsResourceFactory", (railsResour
 
 $(".campaign-card-lead-name").tooltip()
 
-$("#profile-images-button").mouseenter ->
+$("#profile-logo-button, #change-profile-logo-button").mouseenter ->
   $("td.profile-photo").addClass('highlight')
 
-$("#profile-images-button").mouseleave ->
+$("#profile-logo-button, #change-profile-logo-button").mouseleave ->
   $("td.profile-photo").removeClass('highlight')
 
 $(".user-card-name").tooltip()

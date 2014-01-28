@@ -6,7 +6,7 @@
     #event-carousel.carousel.slide.hidden-phone           
       .carousel-inner
         .active.item.default
-          %p{'ng-click'=> 'uploadImages()'} This is a default cover photo. <br> Replace by uploading images! <br> For multiple images, put all images<br> in one folder and select<br> multiple files
+          %p{'ng-click'=> 'uploadImages()'} This is a default cover photo. <br> Replace by uploading images!
           =image_tag "Food 26.jpg"
     .container
       .event-registration.row
@@ -15,7 +15,7 @@
             
             %input#event-title{'ng-model' => 'event.title', :type=>"text", :placeholder =>"Event Title", :name => "event_title", :required => "required", 'ng-class' => "{error: event_create.event_title.$invalid}", :maxlength => "60"}
             
-            %textarea#event-blurb{:rows => "2", 'ng-model' => 'event.blurb', :type=>"text", :placeholder =>"Event Blurb - you get the length of a tweet. Make it sexy ;)", :name => "event_blurb", :maxlength => "140", :required => "required", 'ng-class' => "{error: event_create.event_blurb.$invalid}"}
+            %textarea#event-blurb{:rows => "2", 'ng-model' => 'event.blurb', :type=>"text", :placeholder =>"Event Blurb - think of something catchy to get people to want to go!", :name => "event_blurb", :maxlength => "140", :required => "required", 'ng-class' => "{error: event_create.event_blurb.$invalid}"}
 
             %textarea#event-blurb{:rows => "3", 'ng-model' => 'event.description', :type=>"text", :placeholder =>"Event Details - a longer description of your event", :name => "event_details", :required => "required", 'ng-class' => "{error: event_create.event_details.$invalid}"}
 
