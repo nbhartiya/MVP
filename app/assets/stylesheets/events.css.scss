@@ -769,6 +769,9 @@ a.sb.yelp.black{
 			a.event-location{
 				font-size: 12px;
 			}
+			a.event-location:hover{
+				color: darken(white, 20%);
+			}
 
 			a.host{
 				font-size: 20px;
@@ -778,7 +781,7 @@ a.sb.yelp.black{
 				margin: 0;
 			}
 			a:hover{
-				color: rgb(200, 200, 200);
+				color: darken(white, 20%);
 			}
 			.host{
 				display: inline;
@@ -1394,7 +1397,7 @@ a.sb.yelp.black{
 				text-decoration: none;
 			}
 			a:hover{
-				color: rgb(200,200,200);
+				color: darken(white, 20%);
 			}
 			.guest-name, .guest-email{
 				-webkit-box-sizing: border-box;
@@ -1405,7 +1408,7 @@ a.sb.yelp.black{
 				cursor: pointer;
 			}
 			a#promo-code:hover{
-				color: rgb(200, 200, 200);
+				color: darken(white, 20%);
 			}
 			input.promo-code{
 				-webkit-box-sizing: border-box;
@@ -1507,7 +1510,7 @@ a.sb.yelp.black{
 			margin: 0;
 		}
 		a:hover{
-			color: rgb(200, 200, 200);
+			color: darken(white, 20%);
 		}
 		.host{
 			display: inline;
@@ -1678,7 +1681,7 @@ a.sb.yelp.black{
 			text-decoration: none;
 		}
 		a:hover{
-			color: rgb(200, 200, 200);
+			color: darken(white, 20%);
 		}
 		table.quotes{
 			tr{

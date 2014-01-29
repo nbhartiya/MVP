@@ -16,12 +16,12 @@ $main_orange: #EB4D18;
 			margin: 10px 0;
 		}
 		.campaign-index-header, .campaign-index-content{
-			a:hover{
-				color: $main_orange;
-				text-decoration: none;
-			}
 			a:visited{
 				color: $main_orange;
+			}
+			a:hover{
+				color: lighten($main_orange, 20%);
+				text-decoration: none;
 			}
 		}
 		.campaign-index-content{

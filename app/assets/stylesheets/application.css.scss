@@ -170,6 +170,10 @@ body{
 	::-webkit-scrollbar-thumb:horizontal{width:50px;background-color:rgb(180, 180, 180);-webkit-border-radius:8px;}
 }
 
+a.sb{
+	cursor: pointer;
+}
+
 .fancybox-title iframe {
     min-height: 30px;
     vertical-align: middle;

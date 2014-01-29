@@ -222,7 +222,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
     datetime.add('minutes', $scope.event.length).format('h:mm A')
 
   $scope.mapUrl = ->
-    mapUrl = "http://maps.google.com/?q=#{$scope.address1},#{$scope.city}, #{$scope.state},#{$scope.zipcode}"
+    mapUrl = "http://www.google.com/maps/preview/place/#{$scope.address1},#{$scope.city}, #{$scope.state},#{$scope.zipcode}"
 
   $scope.total = ->
     if $scope.event.referer_discount

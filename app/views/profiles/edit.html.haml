@@ -52,8 +52,8 @@
                 -#%h3#default-text{'ng-show'=>'profile.location.neighborhood=="" || profile.location.neighborhood==nil'} Your Neighborhood
                 -#%h3
                   {{profile.location.neighborhood}}
-                %h3#default-text{'ng-show'=>'profile.location.city=="" || profile.location.city==nil || profile.location.state=="" || profile.location.state==nil || profile.location.zipcode=="" || profile.location.zipcode==nil'} Your City, State and Zipcode       
-                %h3{'ng-hide' => 'profile.location.zipcode=="" || profile.location.zipcode==nil'} {{profile.location.city + ','}} {{profile.location.state}} {{profile.location.zipcode}}
+                %h3#default-text{'ng-show'=>'profile.location.city=="" || profile.location.city==nil || profile.location.state=="" || profile.location.state==nil || profile.location.zipcode=="" || profile.location.zipcode==nil'} Incomplete address
+                %h3{'ng-hide' => 'profile.location.city=="" || profile.location.city==nil || profile.location.state=="" || profile.location.state==nil || profile.location.zipcode=="" || profile.location.zipcode==nil'} {{profile.location.city + ','}} {{profile.location.state}} {{profile.location.zipcode}}
                 %ul.nav.profile-button-group-edit
                   %li
                     %button.btn.btn-inverse{'ng-click' => 'appear = "events"', 'ng-class' => '{"events": "btn-warning"}[appear]'} Events
@@ -444,7 +444,7 @@
 
               %input#email{'ng-model'=>'profile.user.email', :name => "profile_email", 'ng-class' => "{error: profile_edit.profile_email.$invalid}", :type => "email", :required => 'required', :placeholder => "complete sign up process by providing your email"}
 
-              %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet", :maxlength => "140", :name => "profile_blurb", 'ng-class' => "{error: profile_edit.profile_blurb.$invalid}"}
+              %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"Short description about you", :maxlength => "140", :name => "profile_blurb", 'ng-class' => "{error: profile_edit.profile_blurb.$invalid}"}
 
               -#%select#neighborhoods{'ng-model'=>'profile.location.neighborhood', :name => "profile_neighborhood", 'ng-class' => "{error: profile_edit.profile_neighborhood.$invalid}"}
 
@@ -457,7 +457,7 @@
               .help-block{'ng-show' => 'profile_edit.profile_zip.$error.pattern'} Please enter a valid zip code
               .help-block{'ng-show' => 'profile_edit.profile_email.$error.email'} Please enter a valid email
 
-              .help-block{'ng-show' => 'profile_edit.profile_email.$error.required'} All fields are required
+              .help-block{'ng-show' => 'profile_edit.profile_email.$error.required'} Please complete sign up by entering your email
 
               .clearfix
                 -if @profile.avatar.present?
@@ -787,7 +787,7 @@
 
               %input#profile-name{'ng-model'=>'profile.bizName', :type=>"text", :placeholder =>"Your Business's Name", :required => "required", :name => "profile_bizName", 'ng-class' => "{error: profile_edit.profile_bizName.$invalid}"}
 
-              %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"You, in the length of a tweet (you can add more under 'Our Story')", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: profile_edit.profile_blurb.$invalid}"}
+              %textarea#profile-blurb{:rows => "2", 'ng-model'=>'profile.blurb', :type=>"text", :placeholder =>"Short description about your business (you can add more under 'Our Story')", :maxlength => "140", :name => "profile_blurb", :required => "required", 'ng-class' => "{error: profile_edit.profile_blurb.$invalid}"}
 
               %select#neighborhoods{'ng-model'=>'profile.location.neighborhood', :name => "profile_neighborhood", :required => "required", 'ng-class' => "{error: profile_edit.profile_neighborhood.$invalid}"}
 

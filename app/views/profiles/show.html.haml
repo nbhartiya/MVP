@@ -62,16 +62,16 @@
                   %li
                     %button.btn.btn-inverse{'ng-click' => 'appear = "following"', 'ng-class' => '{"following": "btn-warning"}[appear]'} Following
                 
-            %table.user-social-stats
+            %table.user-social-stats{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@profile.follows.count}; following = '#{is_user_there_and_following('Profile', @profile.id)}'"}
               %tr.icons
                 -#%td
                   %a.sb.yelp.circle.no-border.no-shadow.black{:href=>"#"}
-                %td{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@profile.follows.count}; following = '#{is_user_there_and_following('Profile', @profile.id)}'"}
+                %td
                   -if user_signed_in?
                     %a.sb.heart.circle.no-border.no-shadow.follow{'ng-click' => "addFollower('Profile',#{@profile.id},#{user_signed_in?},follows)", :"data-toggle" => "tooltip", :title => "Click to follow this person!", :"data-placement" => "right", 'ng-class' => '{true: "red", false: "black"}[following]'}
                   -else
                     %a.sb.heart.circle.no-border.no-shadow.black.follow{:href => "#sign_up_foodie", :"data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", :"data-placement" => "right"}
-                %td{'ng-click' => 'appear = "following"'}
+                %td
                   %a.sb.heart.circle.no-border.no-shadow.gray
               %tr.user-stats
                 -#%td 190
@@ -500,7 +500,7 @@
                       No foodie followers.
 
       -else
-        .row.user-overview{'ng-init' => "appear='events'"}
+        .row.user-overview{'ng-init' => "appear='events';address1='#{@profile.location.address1}';city='#{@profile.location.city}';state='#{@profile.location.state}';zipcode='#{@profile.location.zipcode}';"}
           .span5.user-profile-overview
             %table
               %tr
@@ -518,8 +518,8 @@
             .profile-summary-logistics-container
               .profile-summary-logistics
                 -if @profile.location.present?
-                  %h3 
-                    #{@profile.location.address1} <br> #{@profile.location.city}, #{@profile.location.state} #{@profile.location.zipcode}
+                  %a.business-location{:href => "{{mapUrl()}}", :target=>'_blank'} #{@profile.location.address1}, #{@profile.location.city}, #{@profile.location.state} #{@profile.location.zipcode}
+                  %br
                   %a.business-website{:href => "#{@profile.website}"} Visit #{@profile.biz_name}'s Website
 
                 %ul.nav.profile-button-group-chef
@@ -609,7 +609,7 @@
                       %td 
                         %a{:href => event_path(event)} 
                           =event.title
-                      %td 
+                      %td.event-date
                         =event.date.strftime("%b %e")
                       -if current_user.present?
                         -if current_user.profile.id==@profile.id || current_user.id==1
@@ -617,11 +617,8 @@
                             ="#{event.guests_count} of #{event.people_limit} filled @ $#{"%g" % (event.cost)}"
                           %td 
                             ="$#{"%g" % (event.guests_count*event.cost)}"
-                      %td 
+                      %td.event-follows
                         =event.follows.count
-                      %td.link
-                        %a{:href => edit_event_path(event)}
-                          Edit
                       -#%td 
                         =# shared
               -else

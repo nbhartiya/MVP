@@ -2,6 +2,14 @@
 
 $main_orange: #EB4D18;
 
+.sb.heart.gray{
+	cursor: default !important;
+}
+
+.sb.heart.gray:hover{
+	background-color: #989797;
+}
+
 // user card styling
 
 .single-following{
@@ -125,11 +133,11 @@ $main_orange: #EB4D18;
 			padding: 5px 0;
 			margin: 40px -37px 40px -37px;
 			background: white;
-			.business-website{
+			.business-website, .business-location{
 				color: black;
 			}
-			.business-website:hover{
-				color: rgb(150, 150, 150);
+			.business-website:hover, .business-location:hover{
+				color: lighten(black, 50%);
 			}
 		}
 		.profile-summary-logistics{

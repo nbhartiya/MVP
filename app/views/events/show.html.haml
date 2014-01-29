@@ -393,7 +393,7 @@
               %tr.icons
                 %td
                   -if user_signed_in?
-                    %a.sb.heart.circle.no-border.no-shadow.follow{'ng-click' => "addFollower('Event',#{@event.id},#{user_signed_in?},follows)", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date on latest event details!", "data-placement" => "right",'ng-class' => '{true: "red", false: "white"}[following]'}
+                    %a.sb.heart.circle.no-border.no-shadow.follow{'ng-click' => "addFollower('Event',#{@event.id},#{user_signed_in?},follows)", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date on the latest event details!", "data-placement" => "right",'ng-class' => '{true: "red", false: "white"}[following]'}
                   -else
                     %a.sb.heart.circle.no-border.no-shadow.follow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                 %td

@@ -169,9 +169,8 @@ angular.module('Simmr').controller "ProfileShowCtrl", ["$scope",  "$routeParams"
   #    $scope.profile = result
   #    alert("got profile")
   
-  #doesnt work
-  #$scope.mapUrl = ->
-  #  mapUrl = "http://maps.google.com/?q=#{$scope.profile.location.address1},#{$scope.profile.location.city}, #{$scope.profile.location.state},#{$scope.profile.location.zipcode}"
+  $scope.mapUrl = ->
+    mapUrl = "http://www.google.com/maps/preview/place/#{$scope.address1},#{$scope.city}, #{$scope.state},#{$scope.zipcode}"
 ]
 
 angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$location", "Profile", ($scope, $routeParams, $location, Profile) ->
