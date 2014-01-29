@@ -43,21 +43,29 @@ class SignupsController < ApplicationController
   # POST /signups
   # POST /signups.json
   def create
+    binding.pry
+    session[:return_to] ||= request.referer
     @signup = Signup.new(params[:signup])
     if Signup.where(:email => @signup.email).length != 0
-      respond_to do |format|
-        format.html { redirect_to "/thanks", notice: 'You like us bro. If you wanna signup again ask us to delete your record first!'}
-      end
+      redirect_to session.delete(:return_to), notice: "You already signed up!"
+      #respond_to do |format|
+      #  format.html { redirect_to "/thanks", notice: 'You like us bro. If you wanna signup again ask us to delete your record first!'}
+      #end
+    #else
+      #respond_to do |format|
+        #if 
     else
-      respond_to do |format|
-        if @signup.save
-          format.html { redirect_to "/done" }
-          format.json { render json: @signup, status: :created, location: @signup }
-        else
-          format.html { render action: "new", notice: 'Something went wrong! Make sure your email address is valid! :)' }
-          format.json { render json: @signup.errors, status: :unprocessable_entity }
-        end
-      end    
+      @signup.save
+      redirect_to session.delete(:return_to)
+
+
+          #format.html { redirect_to "/done" }
+          #format.json { render json: @signup, status: :created, location: @signup }
+        #else
+          #format.html { render action: "new", notice: 'Something went wrong! Make sure your email address is valid! :)' }
+          #format.json { render json: @signup.errors, status: :unprocessable_entity }
+        #end
+      #end    
 
     end
 
