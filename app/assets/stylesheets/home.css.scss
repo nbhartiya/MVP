@@ -183,6 +183,10 @@ ul.parsley-error-list{
 			}
 		}
 	}
+	#philosophy-carousel .carousel-inner img{
+		height: auto;
+		width: 100%;
+	}
 	.carousel-control{
 		font-size: 40px;
 		color: white;
@@ -568,8 +572,12 @@ ul.parsley-error-list{
 		font-size: 16px;
 		line-height: 1.5em;
 	}
-	a, a:visited, a:active, a:hover{
+	a, a:visited, a:active{
 		color: $main_orange;
+	}
+	a:hover{
+		color: lighten($main_orange, 20%);
+		text-decoration: none;
 	}
 }
 
