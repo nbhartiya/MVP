@@ -58,8 +58,10 @@
    
 -# can add a closer alert x thingie later or tweak it later...
 -if alert
-  .alert
-    %p.alert= alert
+  .alert.alert-dismissable
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", type: "button"} ×
+    %p= alert
 -elsif notice
-  .alert
-    %p.notice= notice
+  .alert.alert-dismissable
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", type: "button"} ×
+    %p= notice
