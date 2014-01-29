@@ -87,7 +87,7 @@
           -if current_user
             -if current_user.id == @profile.user_id
               .span1.edit-button
-                %a.btn.btn-inverse{:href=>"/profiles/#{@profile.user_id}/edit"} Edit
+                %a.btn.btn-inverse{:href=>"/edit_my_profile"} Edit
             -else
               .span1
           -else
@@ -176,7 +176,7 @@
                     -if @profile.user.future_events.count > 0
                       %table.events-table
                         %tr.heading
-                          %td Name
+                          %td Event
                           %td Host
                           %td When
                           -#
@@ -202,7 +202,7 @@
                     -if @profile.user.past_events.count > 0
                       %table.events-table
                         %tr.heading
-                          %td Name
+                          %td Event
                           %td Host
                           %td When
                           %td Price
@@ -223,7 +223,7 @@
                     -if @profile.user.events_followed.count > 0
                       %table.events-table
                         %tr.heading 
-                          %td Name
+                          %td Event
                           %td Host
                           %td When
                           -#
@@ -260,32 +260,34 @@
                 %table.campaigns-table
                   %tr.heading
                     %td Business
+                    %td People Needed
                     %td Status
-                    %td Days Left
                   -for campaign in @profile.user.campaigns_followed
                     %tr
                       %td 
                         %a{:href => campaign_path(campaign)} 
                           =campaign.biz_name
-                      %td
-                        =campaign.status
                       -if !campaign.expired?
                         %td
-                          =campaign.days_left
+                          =campaign.follows_needed
                       -else
                         %td
+                      %td
+                        =campaign.status
+                      
                   -for campaign in @profile.user.campaigns_started
                     %tr
                       %td 
                         %a{:href => campaign_path(campaign)} 
                           =campaign.biz_name
-                      %td
-                        =campaign.status
                       -if !campaign.expired?
                         %td
-                          =campaign.days_left
+                          =campaign.follows_needed
                       -else
                         %td
+                      %td
+                        =campaign.status
+                      
               -else
                 No campaigns yet!
               -#
@@ -378,7 +380,7 @@
                     -if @profile.user.events_followed.count > 0
                       %table.events-table
                         %tr.heading 
-                          %td Name
+                          %td Event
                           %td Host
                           %td When
                           -#
@@ -520,7 +522,7 @@
                 -if @profile.location.present?
                   %a.business-location{:href => "{{mapUrl()}}", :target=>'_blank'} #{@profile.location.address1}, #{@profile.location.city}, #{@profile.location.state} #{@profile.location.zipcode}
                   %br
-                  %a.business-website{:href => "#{@profile.website}"} Visit #{@profile.biz_name}'s Website
+                  %a.business-website{:href => "#{@profile.website}", :target=>'_blank'} Visit #{@profile.biz_name}'s Website
 
                 %ul.nav.profile-button-group-chef
                   %li
@@ -563,7 +565,7 @@
           -if current_user
             -if current_user.id == @profile.user_id
               .span1.edit-button
-                %a.btn.btn-inverse{:href=>"/profiles/#{@profile.user_id}/edit"} Edit
+                %a.btn.btn-inverse{:href=>"/edit_my_profile"} Edit
             -else
               .span1
           -else
@@ -595,13 +597,13 @@
               -if @profile.host_events.count > 0
                 %table.events-table
                   %tr.heading
-                    %td Name
+                    %td Event
                     %td When
+                    %td Price
                     -if current_user.present?
                       -if current_user.profile.id==@profile.id || current_user.id==1
                         %td Status
                         %td Total
-                    %td Follows
                     %td 
                     -#%td Shares  
                   -for event in @profile.host_events
@@ -611,14 +613,15 @@
                           =event.title
                       %td.event-date
                         =event.date.strftime("%b %e")
+                      %td.event-follows
+                        =number_to_currency(event.cost, :unit => "$", :precision => 0)
                       -if current_user.present?
                         -if current_user.profile.id==@profile.id || current_user.id==1
                           %td 
-                            ="#{event.guests_count} of #{event.people_limit} filled @ $#{"%g" % (event.cost)}"
+                            ="#{event.guests_count} of #{event.people_limit} filled"
                           %td 
                             ="$#{"%g" % (event.guests_count*event.cost)}"
-                      %td.event-follows
-                        =event.follows.count
+                      
                       -#%td 
                         =# shared
               -else
@@ -634,7 +637,7 @@
                     -if @profile.future_host_events.count > 0
                       %table.events-table
                         %tr.heading
-                          %td Name
+                          %td Event
                           %td When
                           -#
                             %td Status
@@ -661,7 +664,7 @@
                     -if @profile.past_host_events.count > 0
                       %table.events-table
                         %tr.heading
-                          %td Name
+                          %td Event
                           %td When
                           %td Price
                           -#%td Shares  

@@ -92,7 +92,7 @@ a.sb.yelp.black{
 		right: 50px;
 		color: $main_orange;
 		background: rgba(255, 255, 255, 0.9);
-		z-index: 5000;
+		z-index: 5;
 		padding: 5px;
 		font-weight: 900;
 	}
@@ -111,12 +111,8 @@ a.sb.yelp.black{
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box;
 			a{
-			color: rgb(54, 54, 54);
 			padding: 5px;
 			margin: 5px;
-			}
-			a:hover{
-				text-decoration: underline !important;
 			}
 		}
 		li:last-child{
@@ -134,21 +130,15 @@ a.sb.yelp.black{
 		.events-index-section-title{
 			margin: -20px 0 0 0;
 		}
-		.events-index-content{
+		.events-index-content, .events-index-header{
 			margin: 10px 0;
 			a, a:visited{
 				color: $main_orange;
+				text-decoration: none;
 			}
 			a:hover{
 				text-decoration: none;
-			}
-		}
-		.events-index-header, .events-index-content{
-			a:hover{
-				color: $main_orange;
-			}
-			a:visited{
-				color: $main_orange;
+				color: lighten($main_orange, 20%);
 			}
 		}
 		.events-index-bottom-content{
@@ -1358,7 +1348,7 @@ a.sb.yelp.black{
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
 				.input-prepend{
-					width: 49.25%;
+					width: 34%;
 					margin: 0;
 					-webkit-box-sizing: border-box;
 					-moz-box-sizing: border-box;    
@@ -1368,16 +1358,16 @@ a.sb.yelp.black{
 					color: rgb(54, 54, 54);
 				}
 				#ticket-cost{
-					width: 86%;
+					width: 81%;
 					-webkit-box-sizing: border-box;
 					-moz-box-sizing: border-box;    
 					box-sizing: border-box;
 				}
-				#people-limit{
+				#people-limit, #people-min{
 					-webkit-box-sizing: border-box;
 					-moz-box-sizing: border-box;    
 					box-sizing: border-box;
-					width: 49.25%;
+					width: 32%;
 				}
 			}
 			#event-images-button, #event-menu-button{

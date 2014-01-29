@@ -125,8 +125,7 @@ $main_orange: #EB4D18;
 			margin: 0;
 			img{
 				height: auto;
-				width: 180px;
-				min-width: 100px;
+				width: 150px;
 			}
 		}
 		.profile-summary-logistics-container{
@@ -365,8 +364,12 @@ $main_orange: #EB4D18;
 				}
 			}
 		}
-	    a, a:visited, a:hover{
+	    a, a:visited{
 	    	color: black;
+	    	text-decoration: none;
+	    }
+	    a:hover{
+	    	color: lighten(black, 50%);
 	    	text-decoration: none;
 	    }
 		h1{

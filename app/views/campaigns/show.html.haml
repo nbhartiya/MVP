@@ -66,9 +66,9 @@
               %tr
                 %td
                   -if user_signed_in?
-                    %a.sb.heart.circle.no-border.no-shadow{'ng-click' => "addFollower('Campaign',#{@campaign.id},#{user_signed_in?},follows)", "data-toggle" => "tooltip", :title => "Click to support", "data-placement" => "right",'ng-class' => '{true: "red", false: "black"}[following]'}
+                    %a.sb.heart.circle.no-border.no-shadow.follow{'ng-click' => "addFollower('Campaign',#{@campaign.id},#{user_signed_in?},follows)", "data-toggle" => "tooltip", :title => "Click to support", "data-placement" => "right",'ng-class' => '{true: "red", false: "black"}[following]'}
                   -else
-                    %a.sb.heart.circle.no-border.no-shadow.black{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to support!", "data-placement" => "right"}
+                    %a.sb.heart.circle.no-border.no-shadow.black.follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to support!", "data-placement" => "right"}
                 -#%td
                   %a.sb.yelp.circle.no-border.no-shadow.black
                 %td
@@ -125,9 +125,9 @@
                     -#%td Number of Followers..may want to add later
                     %td
                       -if user_signed_in?
-                        %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', follow.user.profile.id)}'", 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
+                        %a.sb.heart.circle.no-border.no-shadow.follow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', follow.user.profile.id)}'", 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
                       -else
-                        %a.sb.heart.circle.no-border.no-shadow.black{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
+                        %a.sb.heart.circle.no-border.no-shadow.black.follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
 
             -else
               %h3 No current supporters - click on the heart to get this host on Simmr!
@@ -148,9 +148,9 @@
                           -#%td Number of Followers..may want to add later
                           %td
                             -if user_signed_in?
-                              %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', follow.user.profile.id)}'", 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
+                              %a.sb.heart.circle.no-border.no-shadow.follow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', follow.user.profile.id)}'", 'ng-click' => "follow('Profile',#{follow.user.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
                             -else
-                              %a.sb.heart.circle.no-border.no-shadow.black{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
+                              %a.sb.heart.circle.no-border.no-shadow.black.follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                 -else
                   %h3 No current supporters - click on the heart to get this host on Simmr!
 

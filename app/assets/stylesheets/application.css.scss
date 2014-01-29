@@ -612,6 +612,14 @@ input.error-true  {
 			font-size: 14px;
 			font-weight: 100;
 		}
+		a, a:active, a:visited{
+			color: $main_orange;
+			text-decoration: none;
+		}
+		a:hover{
+			color: lighten($main_orange,20%);
+			text-decoration: none;
+		}
 	}
 	label{
 		line-height: 32px;
@@ -652,6 +660,7 @@ input.error-true  {
 		position: relative;
 		left: 50%;
 		margin: 10px 0 0 -150px;
+		color: white;
 	}
 	a.sb.text.facebook-share{
 		margin-bottom: 20px;

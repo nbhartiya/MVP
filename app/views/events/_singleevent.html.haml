@@ -20,10 +20,10 @@
               %h1  #{event.title} 
             -if user_signed_in?
               %td.span1{'ng-controller' => 'HeartCtrl', 'ng-init' => "following = '#{is_user_there_and_following('Event', event.id)}'"}          
-                %a.sb.heart.circle.no-border.no-shadow{'ng-click' => "follow('Event',#{event.id},#{user_signed_in?})", "data-toggle" => "tooltip", :title => "Click to stay updated on when this event becomes live!", "data-placement" => "left", 'ng-class' => '{true: "red", false: "white"}[following]'}
+                %a.sb.heart.circle.no-border.no-shadow.follow{'ng-click' => "follow('Event',#{event.id},#{user_signed_in?})", "data-toggle" => "tooltip", :title => "Click to stay updated on when this event becomes live!", "data-placement" => "top", 'ng-class' => '{true: "red", false: "white"}[following]'}
             -else
               %td.span1
-                %a.sb.heart.circle.no-border.no-shadow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Sign in or sign up to stay updated on this and other events!", "data-placement" => "left"}
+                %a.sb.heart.circle.no-border.no-shadow.follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Sign in or sign up to stay updated on this and other events!", "data-placement" => "top"}
   -elsif event.happened?
     .event-current
       .row

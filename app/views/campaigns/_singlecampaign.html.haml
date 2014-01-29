@@ -13,9 +13,9 @@
           %h2 {{20-follows}} more supporters to tilt | #{campaign.status}
         %td.span1
           -if user_signed_in?
-            %a.sb.heart.circle.no-border.no-shadow{'ng-click' => "addFollower('Campaign',#{campaign.id},#{user_signed_in?}, follows)", "data-toggle" => "tooltip", :title => "Click to join and stay updated on this campaign!", "data-placement" => "left", 'ng-class' => '{true: "red", false: "black"}[following]'}
+            %a.sb.heart.circle.no-border.no-shadow.follow{'ng-click' => "addFollower('Campaign',#{campaign.id},#{user_signed_in?}, follows)", "data-toggle" => "tooltip", :title => "Click to join and stay updated on this campaign!", "data-placement" => "top", 'ng-class' => '{true: "red", false: "black"}[following]'}
           -else
-            %a.sb.heart.circle.no-border.no-shadow.black{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "left"}
+            %a.sb.heart.circle.no-border.no-shadow.black.follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "top"}
 -else
   .row.subdued{'ng-init' => "endDate='#{campaign.expires}';successful='#{campaign.successful}'"}
     .span6.campaign-image

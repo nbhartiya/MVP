@@ -5,11 +5,11 @@
   .modal-body
     %h3 Expand your client base through memorable events.
     %p Leverage your existing fanbase and allow new customers to easily find you on Facebook / Twitter.
-    %p By signing up, you are agreeing to our<a href = "/home/tos"> Terms of Service </a>
+    %p By signing up, you are agreeing to our <a href = "/home/tos">Terms of Service </a>
     %p
       = render "shared/business_signup_form"
-  .modal-footer
-    %button.usersignup.bizbutton.btn.btn-warning{'ng-show'=>'appear=="bizSignup"'} Sign Up
+  .modal-footer{'ng-show'=>'appear=="bizSignup"'} 
+    %button.usersignup.bizbutton.btn.btn-warning Sign Up
 
 #sign_up_foodie.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-header
@@ -27,7 +27,7 @@
 #sign_up_generic.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-header
     %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-    %h3#myModalLabel Sign up for updates
+    %h3#myModalLabel Sign Up for Updates
   .modal-body
     %h3 Stay up to date on the latest insider experiences!
     = render "shared/email_signup_form"
