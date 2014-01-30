@@ -51,15 +51,19 @@
               -if @event.referer_discount.present?
                 -if @event.referer_discount>0.0
                   Special Offer: Get #{number_to_currency(@event.referer_discount)} off for every guest you bring or refer!
+            -if @event.tilt==true
+              -if @event.people_min >= @event.guests_count
+                .progress.progress-warning
+                  .bar{:style => "width: #{@event.tilt_percent_full}%"}
+                %p.point-out This event happens when #{@event.people_min} guests register! 
+                %p.point-out-white #{@event.tilt_percent_full.round}% there | #{@event.days_left} days left 
 
             .event-summary-logistics-container
               .event-summary-logistics
-                -if @event.tilt==true
-                  %h3
-                    First tuesday once #{@event.people_min} guests register!
-                -else
-                  %h3
-                    {{eventDate()}}, from {{eventTime()}} to {{eventEndTime()}}
+                %h3
+                  {{eventDate()}}, from {{eventTime()}} 
+                  -if @event.length!=nil
+                    to {{eventEndTime()}}
                 %h3 
                   =@event.location.neighborhood
                 %a.event-location{:href => "{{mapUrl()}}",:target=>"_blank"} 
@@ -69,19 +73,19 @@
                     -if @event.vegetarian
                       %td
                         Vegetarian-friendly
-                    -else
+                    -#else
                       %td#default-text
                         Vegetarian-friendly
                     - if @event.vegan
                       %td
                         Vegan-friendly
-                    -else
+                    -#else
                       %td#default-text
                         Vegan-friendly
-                    - if @event.gluten_free
+                    -if @event.gluten_free
                       %td
                         Gluten Free-friendly
-                    -else
+                    -#else
                       %td#default-text
                         Gluten Free-friendly
                 %ul.nav.event-button-group
@@ -106,6 +110,9 @@
                   seats left!
               .progress.progress-warning
                 .bar{:style => "width: #{@event.percent_full}%"}
+            - if @event.host.profile.biz_name=="Hillside Supper Club"
+              .add-on
+                %input{'ng-model' => 'event.wine_pairing',:name => "wine_pairing", :type => "checkbox", :value => "1", :id => "wine_pairing"} Add wine pairings for $32.00
             - if @event.seats_left > 5
               .btn.btn-warning.grab-seats-button{'ng-click' => 'showSeats = true', 'ng-hide' => 'showSeats'} Book It
             - elsif @event.seats_left>1
@@ -164,8 +171,12 @@
                     -if @event.date.present?
                       %span._start
                         =DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec).strftime('%m-%d-%Y %H:%M:%S')
-                      %span._end
-                        =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+@event.length.minutes).strftime('%m-%d-%Y %H:%M:%S')
+                      -if @event.length.present?
+                        %span._end
+                          =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+@event.length.minutes).strftime('%m-%d-%Y %H:%M:%S')
+                      -else
+                        %span._end
+                          =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+120.minutes).strftime('%m-%d-%Y %H:%M:%S')
                     %span._zonecode 6
                     %span._summary="Simmr Event: #{@event.title}"
                     %span._description=@event.blurb
@@ -384,8 +395,12 @@
                     -if @event.date.present?
                       %span._start
                         =DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec).strftime('%m-%d-%Y %H:%M:%S')
-                      %span._end
-                        =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+@event.length.minutes).strftime('%m-%d-%Y %H:%M:%S')
+                      -if @event.length.present?
+                        %span._end
+                          =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+@event.length.minutes).strftime('%m-%d-%Y %H:%M:%S')
+                      -else
+                        %span._end
+                          =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+120.minutes).strftime('%m-%d-%Y %H:%M:%S')
                     %span._zonecode 6
                     %span._summary="Simmr Event: #{@event.title}"
                     %span._description=@event.blurb

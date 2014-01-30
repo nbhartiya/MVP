@@ -70,11 +70,17 @@ MVP::Application.routes.draw do
   match "/turtletower" => redirect("https://www.surveymonkey.com/s/LT7SDWX"), :as => :turtletower
   match "/ejis" => redirect("https://www.surveymonkey.com/s/JFCRCPX"), :as => :eji
   match "/antologiaV" => redirect("https://www.surveymonkey.com/s/26LZ8CY"), :as => :antologiaV
+  match "/beans" => redirect("https://www.surveymonkey.com/s/MXNGY6S"), :as => :beans
+  match "/riceball" => redirect("https://www.surveymonkey.com/s/3HBGRCT"), :as=> :riceball
+  match "/meatballs" => redirect("https://www.surveymonkey.com/s/QLJVVKV"), :as=> :meatballs
+  match "/rak" => redirect("https://www.surveymonkey.com/s/GJZFJ2S"), :as => :rak
   match "/antologia" => redirect("/events/14")
   match "/capos" => redirect("/events/20")
   match "/radioafrica" => redirect("/events/24")
-  match "/contraband" => redirect("/events/27")
+  match "/contraband" => redirect("/events/29")
   match "/onigilly" => redirect("/events/26")
+  match "/HSC" => redirect("/events/30")
+  match "/hsc" => redirect("/events/30")
   #get "incomplete_survey" => "survey_questions#survey"
   
   # I have no idea what changed that caused me to have to add this line...????
