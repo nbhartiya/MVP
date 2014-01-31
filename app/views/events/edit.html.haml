@@ -27,11 +27,11 @@
         .span5.event-create
           %form.event-create-form.clearfix{'ng-init'=> "event.host_id=#{current_user.id}", :name => "event_edit"}
 
-            %input#event-title{'ng-model' => 'event.title', :type=>"text", :placeholder =>"Event Title", :name => "event_title", :required => "required", 'ng-class' => "{error: event_edit.event_title.$invalid}", :maxlength => "60"}
+            %input#event-title{'ng-model' => 'event.title', :type=>"text", :placeholder =>"Experience Name", :name => "event_title", :required => "required", 'ng-class' => "{error: event_edit.event_title.$invalid}", :maxlength => "60"}
 
-            %textarea#event-blurb{:rows => "2", 'ng-model' => 'event.blurb', :type=>"text", :placeholder =>"Event Blurb - think of something catchy to get people to want to go!", :name => "event_blurb", :maxlength => "140", :required => "required", 'ng-class' => "{error: event_edit.event_blurb.$invalid}"}
+            %textarea#event-blurb{:rows => "2", 'ng-model' => 'event.blurb', :type=>"text", :placeholder =>"Experience Blurb - think of something catchy to get people to want to go!", :name => "event_blurb", :maxlength => "140", :required => "required", 'ng-class' => "{error: event_edit.event_blurb.$invalid}"}
 
-            %textarea#event-blurb{:rows => "3", 'ng-model' => 'event.description', :type=>"text", :placeholder =>"Event Details - a longer description of your event", :name => "event_details", :required => "required", 'ng-class' => "{error: event_edit.event_details.$invalid}"}
+            %textarea#event-blurb{:rows => "3", 'ng-model' => 'event.description', :type=>"text", :placeholder =>"Experience Details - a longer description of your experience", :name => "event_details", :required => "required", 'ng-class' => "{error: event_edit.event_details.$invalid}"}
 
             #event-ticket-details
               .input-prepend
@@ -40,7 +40,7 @@
 
               %input#people-limit{'ng-model' => 'event.peopleLimit',:type=>"text", :name => "event_limit", 'ng-pattern' => '/^[0-9]+$/', :required => "required", 'ng-class' => "{error: event_edit.event_limit.$invalid}", :placeholder => "Number of Seats"}
               
-              .help-block-white{'ng-show' => 'event_edit.event_cost.$error.pattern'} Please enter a valid event cost
+              .help-block-white{'ng-show' => 'event_edit.event_cost.$error.pattern'} Please enter a valid experience cost
               .help-block-white{'ng-show' => 'event_edit.event_limit.$error.pattern'} Please enter a valid number of seats
 
             -#-if @event.covers.present?
@@ -58,7 +58,7 @@
                 %a.fancybox{:href => "#{@event.menu_pdf}", :"data-fancybox-type" => 'iframe'}  Preview Menu
             %a#remove{'ng-click' => 'removeMenu()'} delete
 
-            %textarea#event-menu{:rows => "3", 'ng-model' => 'event.menuText', :type=>"text", :placeholder =>"If you don't have a PDF menu, feel free to input the text here", :name => "event_menu"}
+            %textarea#event-menu{:rows => "3", 'ng-model' => 'event.menuText', :type=>"text", :placeholder =>"If you don't have a PDF menu, please input the text here", :name => "event_menu"}
               
             %hr
 
@@ -128,7 +128,7 @@
             .preview-label{'ng-click' => 'removeImages()'} this is a preview
             .event-summary-top
               %h1#default-text{'ng-show'=>'event.title=="" || event.title==nil'}
-                Event Title
+                Experience Name
               %h1 
                 {{event.title}}
               -#TODO CHANGE to current.user.profile.biz_name != nil once we require everyone to fill profile
@@ -140,7 +140,7 @@
                 %h2#default-text
                   Hosted by Please input business name in your profile!
             %h3#default-text{'ng-show'=>'event.blurb=="" || event.blurb==nil'}
-              Event Blurb
+              Experience Blurb
             %h3
               {{event.blurb}}
             
@@ -172,8 +172,8 @@
                       Gluten Free-friendly            
 
             %p#default-text{'ng-show'=>'event.peopleLimit=="" || event.peopleLimit==nil'}
-              This event can accommodate 0 people.
+              This experience can accommodate 0 people.
             %p{'ng-hide'=>'event.peopleLimit=="" || event.peopleLimit==nil'}
-              This event can accommodate {{event.peopleLimit}} people.
+              This experience can accommodate {{event.peopleLimit}} people.
             -#.progress.progress-warning
               .bar{:style => "width: 0%"}

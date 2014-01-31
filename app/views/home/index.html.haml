@@ -41,14 +41,14 @@
         .copy.row
           .span4.copy-content
             %h1 Insider access to handpicked restaurants and bars
-            %h2 Cooking classes, kitchen tours, special tastings -- just for you
+            %h2 Cooking classes, kitchen tours, special tastings &#8212 just for you
             .buttons
               -if user_signed_in? == false
                 %a.btn.btn-warning.foodiesignup{:href => "#sign_up_foodie", :"data-toggle" =>"modal"} Request an Invite
                 
                 %p Already a member? &nbsp <a href = "#sign_in" class = "sign-in-link" data-toggle = "modal"> Sign In </a>
               -if user_signed_in?
-                %a.btn.btn-warning.view-events-button{:href => "/events"} browse events
+                %a.btn.btn-warning.view-events-button{:href => "/events"} browse experiences
                 %p
                   = link_to "Sign Out", destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?", :class => 'sign-out-link'
             
@@ -59,7 +59,7 @@
           .span12#top.how-it-works
             .row
               .how-it-works
-                %h2 What're Simmr events like?
+                %h2 What're Simmr experiences like?
             .step
               %h2 intimate
               .step-description
@@ -74,7 +74,7 @@
                 %p 'nuff said
           .span4.offset4#home-buttons
             -if user_signed_in?
-              %a.btn.btn-warning{:href => "/events"} browse events
+              %a.btn.btn-warning{:href => "/events"} browse experiences
             -else
               %a.btn.btn-warning{:href => "#sign_up_foodie", :"data-toggle" =>"modal"} request an invite
 
@@ -91,7 +91,7 @@
             .step
               %h2 just the start
               .step-description
-                %p of much longer, deeper relationships with your customers. Simmr events both attract AND convert guests into loyal customers, with whom we want to help you keep in touch!
+                %p of much longer, deeper relationships with your customers. Simmr experiences both attract AND convert guests into loyal customers, with whom we want to help you keep in touch!
           .span4.offset4#home-buttons
             -if user_signed_in?
               %a.btn.btn-warning{:href => "/events"} get started
@@ -111,7 +111,7 @@
         .container
           .row.section-header
             .span12.home-index-header
-              %h1 Food Events in San Francisco
+              %h1 Food Experiences in San Francisco
         .section.events-section
           .container
             .row.events-row-content
@@ -224,9 +224,9 @@
                   -if current_user.chef == true
                     %p Recurring experiences have happened one or more times and have been really popular! Check out what's trending!
                   - if current_user.chef == false
-                    %p Recurring experiences have happened one or more times and have been really popular! Put your name down for the next one -- the more names on the list, the sooner the event will happen.
+                    %p Recurring experiences have happened one or more times and have been really popular! Put your name down for the next one -- the more names on the list, the sooner you can enjoy the experience.
                 -else
-                  %p Recurring experiences have happened one or more times and have been really popular! Put your name down for the next one -- the more names on the list, the sooner the event will happen.
+                  %p Recurring experiences have happened one or more times and have been really popular! Put your name down for the next one -- the more names on the list, the sooner you can enjoy the experience.
         .container
           -while potential_past_events.length > 1
             -event = potential_past_events.pop
@@ -252,11 +252,11 @@
               .span12.events-index-content
                 -if current_user
                   -if current_user.chef == true
-                    %p Get a sense? <a href = "/events/new">Set up</a> your event today!
+                    %p Get a sense? <a href = "/events/new">Get your experience on Simmr</a> today!
                   -else
-                    %p Don’t see your favorite business? <a href = "/campaigns/new">Suggest a host</a> or <a href = "/campaigns">vote up a suggested host</a> to get them to put up experiences on Simmr!
+                    %p Don’t see your favorite business or a cool experience you want to see happen? <a href = "/campaigns/new">Suggest an experience</a> or <a href = "/campaigns">vote up a suggested experience</a> to make it happen on Simmr!
                 -else
-                  %p Don’t see your favorite business? <a href = "/campaigns/new">Suggest a host</a> or <a href = "/campaigns">vote up a suggested host</a> to get them to put up experiences on Simmr!
+                  %p Don’t see your favorite business or a cool experience you want to see happen? <a href = "/campaigns/new">Suggest an experience</a> or <a href = "/campaigns">vote up a suggested experience</a> to make it happen on Simmr!
      
       %a.back-to-top{:href => '#top'}Back to Top
 

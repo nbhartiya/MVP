@@ -53,9 +53,9 @@
                   -#%li
                     %button.btn.btn-inverse{'ng-click' => 'appear = "badges"', 'ng-class' => '{"badges": "btn-warning"}[appear]'} Badges
                   %li
-                    %button.btn.btn-inverse{'ng-click' => 'appear = "events"', 'ng-class' => '{"events": "btn-warning"}[appear]'} Events
+                    %button.btn.btn-inverse{'ng-click' => 'appear = "events"', 'ng-class' => '{"events": "btn-warning"}[appear]'} Experiences
                   %li
-                    %button.btn.btn-inverse{'ng-click' => 'appear = "campaigns"', 'ng-class' => '{"campaigns": "btn-warning"}[appear]'} Campaigns
+                    %button.btn.btn-inverse{'ng-click' => 'appear = "campaigns"', 'ng-class' => '{"campaigns": "btn-warning"}[appear]'} Suggestions
                   -#
                     %li
                       %button.btn.btn-inverse{'ng-click' => 'appear = "followers"', 'ng-class' => '{"followers": "btn-warning"}[appear]'} Followers
@@ -68,7 +68,7 @@
                   %a.sb.yelp.circle.no-border.no-shadow.black{:href=>"#"}
                 %td
                   -if user_signed_in?
-                    %a.sb.heart.circle.no-border.no-shadow.follow{'ng-click' => "addFollower('Profile',#{@profile.id},#{user_signed_in?},follows)", :"data-toggle" => "tooltip", :title => "Click to follow this person!", :"data-placement" => "right", 'ng-class' => '{true: "red", false: "black"}[following]'}
+                    %a.sb.heart.circle.no-border.no-shadow.follow{'ng-click' => "addFollower('Profile',#{@profile.id},#{user_signed_in?},follows)", :"data-toggle" => "tooltip", :title => "Click to follow this member!", :"data-placement" => "right", 'ng-class' => '{true: "red", false: "black"}[following]'}
                   -else
                     %a.sb.heart.circle.no-border.no-shadow.black.follow{:href => "#sign_up_foodie", :"data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", :"data-placement" => "right"}
                 %td
@@ -117,11 +117,11 @@
 
             .user-events{'ng-show' => 'appear == "events"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
-              %h1 Events
+              %h1 Experiences
               -if @profile.user.events_attended.count + @profile.user.events_followed.count > 0
                 %table.events-table
                   %tr.heading
-                    %td Event
+                    %td Name
                     %td Host
                     %td When
                     -#%td Where
@@ -162,7 +162,7 @@
                         %td 
                           ="$#{"%g" % event.cost}"
               -else
-                %h3 No events yet!
+                %h3 No experiences yet!
               -#
                 %ul.nav.nav-tabs
                   %li.active
@@ -176,7 +176,7 @@
                     -if @profile.user.future_events.count > 0
                       %table.events-table
                         %tr.heading
-                          %td Event
+                          %td Name
                           %td Host
                           %td When
                           -#
@@ -197,12 +197,12 @@
                             %td
                               ="$#{"%g" % event.cost}"
                     -else
-                      %h3 No upcoming events.
+                      %h3 No upcoming experiences.
                   #past-events.tab-pane.fade
                     -if @profile.user.past_events.count > 0
                       %table.events-table
                         %tr.heading
-                          %td Event
+                          %td Name
                           %td Host
                           %td When
                           %td Price
@@ -218,12 +218,12 @@
                             %td
                               ="$#{"%g" % event.cost}"
                     -else
-                      %h3 No past events.
+                      %h3 No past experiences.
                   #followed-events.tab-pane.fade
                     -if @profile.user.events_followed.count > 0
                       %table.events-table
                         %tr.heading 
-                          %td Event
+                          %td Name
                           %td Host
                           %td When
                           -#
@@ -251,15 +251,15 @@
                               %td
                                 ="$#{"%g" % event.cost}"
                     -else
-                      No events followed.
+                      No experiences followed.
 
             .user-campaigns{'ng-show' => 'appear == "campaigns"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
-              %h1 Campaigns
+              %h1 Suggested Experiences
               -if @profile.user.campaigns_followed.count + @profile.user.campaigns_started.count > 0
                 %table.campaigns-table
                   %tr.heading
-                    %td Business
+                    %td Name
                     %td People Needed
                     %td Status
                   -for campaign in @profile.user.campaigns_followed
@@ -289,7 +289,7 @@
                         =campaign.status
                       
               -else
-                No campaigns yet!
+                No suggestions yet!
               -#
                 %ul.nav.nav-tabs
                   %li.active
@@ -301,7 +301,7 @@
                     -if @profile.user.campaigns_followed.count > 0
                       %table.campaigns-table
                         %tr.heading
-                          %td Business
+                          %td Name
                           %td Status
                           %td Days Left
                         -for campaign in @profile.user.campaigns_followed
@@ -317,12 +317,12 @@
                             -else
                               %td
                     -else
-                      No campaigns supported.
+                      No suggestions supported.
                   #started-campaigns.tab-pane.fade
                     -if @profile.user.campaigns_started
                       %table.campaigns-table
                         %tr.heading
-                          %td Business
+                          %td Name
                           %td Status
                           %td Days Left
                         -for campaign in @profile.user.campaigns_started
@@ -338,7 +338,7 @@
                             -else
                               %td
                     -else
-                      No campaigns started.
+                      No suggestions made.
 
             .user-following{'ng-show' => 'appear == "following"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
@@ -370,17 +370,17 @@
               -#
                 %ul.nav.nav-tabs
                   %li.active
-                    %a{"data-toggle" => "tab", :href => "#events-following"} Events
+                    %a{"data-toggle" => "tab", :href => "#events-following"} Experiences
                   %li
-                    %a{"data-toggle" => "tab", :href => "#business-following"} Businesses
+                    %a{"data-toggle" => "tab", :href => "#business-following"} Hosts
                   %li
-                    %a{"data-toggle" => "tab", :href => "#foodie-following"} Foodies
+                    %a{"data-toggle" => "tab", :href => "#foodie-following"} Members
                 #myTabContent.tab-content
                   #events-following.tab-pane.fade.active.in
                     -if @profile.user.events_followed.count > 0
                       %table.events-table
                         %tr.heading 
-                          %td Event
+                          %td Name
                           %td Host
                           %td When
                           -#
@@ -401,7 +401,7 @@
                             %td
                               ="$#{"%g" % event.cost}"
                     -else
-                      No events followed.
+                      No expeirences followed.
                   #business-following.tab-pane.fade
                     -if @profile.user.businesses_followed.count > 0
                       %table.following-table
@@ -423,7 +423,7 @@
                               -else
                                 %a.sb.heart.circle.no-border.no-shadow.black.follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                     -else
-                      No businesses followed.
+                      No hosts followed.
                   #foodie-following.tab-pane.fade
                     -if @profile.user.foodies_followed.count > 0
                       %table.following-table
@@ -445,7 +445,7 @@
                               -else
                                 %a.sb.heart.circle.no-border.no-shadow.black.follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                     -else
-                      No foodies followed.
+                      No members followed.
             -#
               .user-followers{'ng-show' => 'appear == "followers"'}
                 %button.close{"ng-click" => "appear=''", :type => "button"} close
@@ -530,7 +530,7 @@
                   %li
                     %button.btn.btn-inverse{'ng-click' => 'appear = "story"', 'ng-class' => '{"story": "btn-warning"}[appear]'} Story
                   %li
-                    %button.btn.btn-inverse{'ng-click' => 'appear = "events"', 'ng-class' => '{"events": "btn-warning"}[appear]'} Events
+                    %button.btn.btn-inverse{'ng-click' => 'appear = "events"', 'ng-class' => '{"events": "btn-warning"}[appear]'} Experiences
                   -#
                     %li
                       %button.btn.btn-inverse{'ng-click' => 'appear = "followers"', 'ng-class' => '{"followers": "btn-warning"}[appear]'} Followers
@@ -593,11 +593,11 @@
 
             .user-events{'ng-show' => 'appear == "events"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
-              %h1 Events
+              %h1 Experiences
               -if @profile.host_events.count > 0
                 %table.events-table
                   %tr.heading
-                    %td Event
+                    %td Name
                     %td When
                     %td Price
                     -if current_user.present?
@@ -625,7 +625,7 @@
                       -#%td 
                         =# shared
               -else
-                %h3 No upcoming events! <a href = "/campaigns/new">Request one?</a>
+                %h3 No upcoming experiences! <a href = "/campaigns/new">Request one?</a>
               -#
                 %ul.nav.nav-tabs
                   %li.active
@@ -637,7 +637,7 @@
                     -if @profile.future_host_events.count > 0
                       %table.events-table
                         %tr.heading
-                          %td Event
+                          %td Name
                           %td When
                           -#
                             %td Status
@@ -659,12 +659,12 @@
                               =# shared
                     -else
                       %h3
-                        ="Looks like #{@profile.biz_name} has no upcoming events."
+                        ="Looks like #{@profile.biz_name} has no upcoming experiences."
                   #past-events.tab-pane.fade
                     -if @profile.past_host_events.count > 0
                       %table.events-table
                         %tr.heading
-                          %td Event
+                          %td Name
                           %td When
                           %td Price
                           -#%td Shares  
@@ -680,7 +680,7 @@
                             -#%td 
                               =# shared
                     -else
-                      ="Looks like #{@profile.biz_name} has no past events."
+                      ="Looks like #{@profile.biz_name} has no past experiences."
             -#
               .user-followers{'ng-show' => 'appear == "followers"'}
                 %button.close{"ng-click" => "appear=''", :type => "button"} close
@@ -761,7 +761,7 @@
                         -else
                           %a.sb.heart.circle.no-border.no-shadow.black.follow{:href => "#sign_up_foodie", :"data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", :"data-placement" => "right"}
               -else
-                No users followed!
+                No members or hosts followed!
               -#
                 %ul.nav.nav-tabs
                   %li.active
@@ -790,7 +790,7 @@
                               -else
                                 %a.sb.heart.circle.no-border.no-shadow.black.follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                     -else
-                      No businesses followed.
+                      No hosts followed.
                   #foodie-following.tab-pane.fade
                     -if @profile.user.foodies_followed.count > 0
                       %table.following-table
@@ -812,4 +812,4 @@
                               -else
                                 %a.sb.heart.circle.no-border.no-shadow.black.follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                     -else
-                      No foodies followed.
+                      No members followed.

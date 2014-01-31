@@ -20,10 +20,10 @@
               %h1  #{event.title} 
             -if user_signed_in?
               %td.span1{'ng-controller' => 'HeartCtrl', 'ng-init' => "following = '#{is_user_there_and_following('Event', event.id)}'"}          
-                %a.sb.heart.circle.no-border.no-shadow.follow{'ng-click' => "follow('Event',#{event.id},#{user_signed_in?})", "data-toggle" => "tooltip", :title => "Click to stay updated on when this event becomes live!", "data-placement" => "top", 'ng-class' => '{true: "red", false: "white"}[following]'}
+                %a.sb.heart.circle.no-border.no-shadow.follow{'ng-click' => "follow('Event',#{event.id},#{user_signed_in?})", "data-toggle" => "tooltip", :title => "Click to get an early alert on when this experience begins selling tickets!", "data-placement" => "top", 'ng-class' => '{true: "red", false: "white"}[following]'}
             -else
               %td.span1
-                %a.sb.heart.circle.no-border.no-shadow.follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Sign in or sign up to stay updated on this and other events!", "data-placement" => "top"}
+                %a.sb.heart.circle.no-border.no-shadow.follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Sign in or sign up to get early alerts on this and other experiences!", "data-placement" => "top"}
   -elsif event.happened?
     .event-current
       .row
@@ -36,11 +36,11 @@
           %table
             %tr
               %td
-                %p Wanna see this event happen again?
+                %p Wanna see this experience happen again?
                 -#
                   -#%p #{event.post_event_comments.first} -- for post event sound bytes
-                  %p{'ng-hide' => 'currentEventID == #{event.id} && appear == "waitlist2" || appear == "waitlist1" || waitlist'} Wanna see this event happen again?
-                  .btn.btn-warning.join-waitlist-button{'ng-click' => 'waitlist=true', 'ng-hide' => 'waitlist', "data-toggle" => "tooltip", :title => "Add your name at the top of the invite list for the next #{event.host.profile.biz_name} event.", "data-placement" => "top"} Sign Up for the Next #{event.host.profile.biz_name} Event
+                  %p{'ng-hide' => 'currentEventID == #{event.id} && appear == "waitlist2" || appear == "waitlist1" || waitlist'} Wanna see this experience happen again?
+                  .btn.btn-warning.join-waitlist-button{'ng-click' => 'waitlist=true', 'ng-hide' => 'waitlist', "data-toggle" => "tooltip", :title => "Add your name at the top of the invite list for the next #{event.host.profile.biz_name} experience.", "data-placement" => "top"} Sign Up for the Next #{event.host.profile.biz_name} Event
                   %div{'ng-click' => 'waitlist=true', 'ng-hide' => 'waitlist'} or
                   .seats{'ng-show'=> 'waitlist', 'ng-hide' => '{{eventIDVar()}} == "waitlist1" || {{eventIDVar()}} == "waitlist2"'}
                     -if user_signed_in? == false
@@ -50,14 +50,10 @@
                       %select.number-of-seats{'ng-model' => 'num_guests'}
                         %option{:value => ''} Number of Seats
                         %option{:value => 1} 1 seat
-                        %option{:value => 2} 2 seats
-                        %option{:value => 3} 3 seats
-                        %option{:value => 4} 4 seats
-                        -# (@event.seats_left).times do |s|
-                          %option{:value => s+2} #{s+2} seats
+                        %option{:value => s+2} #{s+2} seats
                     .btn.btn-warning.event-card-go-button{'ng-click' => 'showPayment(true)', 'ng-disabled' => "num_guests==nil || num_guests == 0",'ng-init'=>"currentUser=#{current_user.to_json}"} Go
                   .event-card-guests.clearfix{'ng-show' => '{{eventIDVar()}}=="waitlist1"'}
-                    %h1 Who all wants to go to this event?
+                    %h1 Who all wants to go to this experience?
                     %hr
                     %form.guests{:name => "guest_registration", 'ng-repeat' => 'guest in guests'}
                       -#Make first email say "YOUR EMAIL" not guest email, send confirmation email, have note on every event someone has registered for that they've registered and should have gotten an email.
@@ -66,9 +62,9 @@
                       %input.guest-email{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :required => "required", :name => "guest_email", 'ng-class' => "{error: guest_registration.guest_email.$invalid}"}
                       .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.email'} Please enter a valid email
                       .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.required || guest_registration.guest_first.$error.required || guest_registration.guest_last.$error.required'} All fields are required
-                    %button.btn.btn-warning.standalone-button#enter-payment-info{'ng-click' => 'addtoWaitlist()', 'ng-disabled' => "error=0"} Sign Up for the Next #{event.host.profile.biz_name} Event
+                    %button.btn.btn-warning.standalone-button#enter-payment-info{'ng-click' => 'addtoWaitlist()', 'ng-disabled' => "error=0"} Sign Up for the Next #{event.host.profile.biz_name} Experience
                   .event-card-purchase-confirmation.clearfix{'ng-show' => '{{eventIDVar()}}=="waitlist2"'}
-                    %h1 Thanks for signing up for the next event! We'll keep you posted when enough people sign up for the event to happen. To make sure this happens, tell all your friends to also sign up!
+                    %h1 Thanks for signing up for the next experience! We'll keep you posted when enough members sign up for the experience to happen. To make sure this happens, tell all your friends to also sign up!
                 %a.btn.btn-warning.sign-up-early-button{:href => event_path(event)} Check Out What You Missed & Sign Up Early for the Next One!
       %a.row.event-info{:href => event_path(event)}
         %table

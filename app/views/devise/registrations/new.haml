@@ -1,4 +1,4 @@
-=content_for :title, "simmr | sign up"
+=content_for :title, "Sign Up"
 
 .container{'ng-controller' => 'UserRegisterCtrl', 'ng-init' => "user=#{resource.to_json}"}
   .row.devisecontainer
@@ -30,9 +30,9 @@
 
         %div
           %input{:name => "user[chef]", :checked => "", :type => "radio", :value => "0"}
-          Foodie
+          Member
           %br
           %input{:name => "user[chef]", :type => "radio", :value => "1"}
-          Food Business
+          Host
         %button.usersignup.btn.btn-warning{'ng-disabled' => 'new_registration.$invalid', :type => "submit"} Sign Up
       = render "devise/shared/links"

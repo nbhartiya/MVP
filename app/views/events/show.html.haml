@@ -55,7 +55,7 @@
               -if @event.people_min >= @event.guests_count
                 .progress.progress-warning
                   .bar{:style => "width: #{@event.tilt_percent_full}%"}
-                %p.point-out This event happens when #{@event.people_min} guests register! 
+                %p.point-out This experience happens when #{@event.people_min} members register! 
                 %p.point-out-white #{@event.tilt_percent_full.round}% there | #{@event.days_left} days left 
 
             .event-summary-logistics-container
@@ -154,7 +154,7 @@
               %tr.icons
                 %td
                   -if user_signed_in?
-                    %a.sb.heart.circle.no-border.no-shadow.follow{'ng-click' => "addFollower('Event',#{@event.id},#{user_signed_in?},follows)", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date on latest event details!", "data-placement" => "right",'ng-class' => '{true: "red", false: "white"}[following]'}
+                    %a.sb.heart.circle.no-border.no-shadow.follow{'ng-click' => "addFollower('Event',#{@event.id},#{user_signed_in?},follows)", "data-toggle" => "tooltip", :title => "Click to follow and get early notifications about this experience!", "data-placement" => "right",'ng-class' => '{true: "red", false: "white"}[following]'}
                   -else
                     %a.sb.heart.circle.no-border.no-shadow.follow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                 -if @event.host.profile.yelp_id.present?
@@ -175,7 +175,7 @@
                         %span._end
                           =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+120.minutes).strftime('%m-%d-%Y %H:%M:%S')
                     %span._zonecode 6
-                    %span._summary="Simmr Event: #{@event.title}"
+                    %span._summary="Simmr Experience: #{@event.title}"
                     %span._description=@event.blurb
                     %span._location
                       ="#{@event.host.profile.biz_name}, #{@event.location.address1}, #{@event.location.neighborhood}, #{@event.location.city}, #{@event.location.zipcode}"
@@ -372,7 +372,7 @@
               %input.guest-email{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :required => "required", :name => "guest_email", 'ng-class' => "{error: guest_waitlist.guest_email.$invalid}"}
               .help-block-white{'ng-show' => 'guest_waitlist.guest_email.$error.email'} Please enter a valid email
               .help-block-white{'ng-show' => 'guest_waitlist.guest_email.$error.required || guest_registration.guest_first.$error.required || guest_registration.guest_last.$error.required'} All fields are required
-            %button.btn.btn-warning#enter-payment-info{'ng-click' => 'addtoWaitlist()', 'ng-disabled' => 'guest_waitlist.$invalid'} Sign Up for the Next #{@event.host.profile.biz_name} Event
+            %button.btn.btn-warning#enter-payment-info{'ng-click' => 'addtoWaitlist()', 'ng-disabled' => 'guest_waitlist.$invalid'} Sign Up for the Next #{@event.host.profile.biz_name} Experience
 
           .event-purchase.clearfix{'ng-show' => 'appear=="payment2"', 'ng-init'=> "currentUser=#{current_user.to_json}"}
             %h1 Total: ${{total_val}}
@@ -385,7 +385,7 @@
             %button.btn#previous-button{'ng-click' => 'appear="payment1"'} Previous
 
           .event-purchase-confirmation.clearfix{'ng-show' => 'appear=="payment3"'}
-            %h2 Thank you for your reservation! You're confirmed and will receive an email confirmation.
+            %h2 Thank you for your reservation! You will receive an email confirmation.
             -if @event.referer_discount.present?
               -if @event.referer_discount >0.0
                 %h2 Your referral code is '{{code}}'. Get $10 off for each friend who uses your referral code at checkout!
@@ -393,7 +393,7 @@
               %tr.icons
                 %td
                   -if user_signed_in?
-                    %a.sb.heart.circle.no-border.no-shadow.follow{'ng-click' => "addFollower('Event',#{@event.id},#{user_signed_in?},follows)", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date on the latest event details!", "data-placement" => "right",'ng-class' => '{true: "red", false: "white"}[following]'}
+                    %a.sb.heart.circle.no-border.no-shadow.follow{'ng-click' => "addFollower('Event',#{@event.id},#{user_signed_in?},follows)", "data-toggle" => "tooltip", :title => "Click to follow and get early notifications on this experience!", "data-placement" => "right",'ng-class' => '{true: "red", false: "white"}[following]'}
                   -else
                     %a.sb.heart.circle.no-border.no-shadow.follow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                 %td
@@ -433,11 +433,11 @@
                   %a.followers followers
                 %td calendar
 
-            %a.btn.btn-warning#ok-button{:href => "/events"} Check Out More Cool Events!
+            %a.btn.btn-warning#ok-button{:href => "/events"} Check Out More Cool Experiences!
           
           .event-purchase-confirmation.clearfix{'ng-show' => 'appear=="waitlist2"'}
-            %h2 Thanks for signing up for the next event! We'll keep you posted when enough people sign up for the event to happen. To make sure this happens, tell all your friends to also sign up!
+            %h2 Thanks for signing up for the next experience! We'll keep you posted when enough people sign up for the experience to happen. To make sure this happens, tell all your friends to also sign up!
 
-            %h2 If we find an extra spot for this event, we'll let you know as soon as we find out!
+            %h2 If we find an extra spot for this experience, we'll let you know as soon as we find out!
 
-            %a.btn.btn-warning#ok-button{:href => "/events"} Check Out More Cool Events!
+            %a.btn.btn-warning#ok-button{:href => "/events"} Check Out More Cool Experiences!

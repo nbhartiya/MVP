@@ -9,7 +9,7 @@
     .span9.nav-right
       %ul
         -#%li.pull-right.input-append
-          %input#appendedInputButton{:type => 'text', :placeholder => "Search Events or Businesses", 'ng-model'=>'searchQuery', 'ui-keypress'=>"{13:'keypressCallback($event)'}"}
+          %input#appendedInputButton{:type => 'text', :placeholder => "Search Experiences or Hosts", 'ng-model'=>'searchQuery', 'ui-keypress'=>"{13:'keypressCallback($event)'}"}
           %button.btn.search{'ng-click'=>'search(searchQuery)'} <i class = "icon-search"></i>
         -if user_signed_in? == false
           %li#sign-up-header-link.foodiesignup.pull-right{:href => "#sign_up_foodie", :"data-toggle" => "modal", :tabindex => "-1"}
@@ -29,7 +29,7 @@
                     %a{:href => "/edit_my_profile", :tabindex => "-1"} Dashboard
                 -if current_user.chef?
                   %li.dropitem
-                    %a{:href=>"/edit_my_profile?events", :tabindex => "-1"} My Events
+                    %a{:href=>"/edit_my_profile?events", :tabindex => "-1"} My Experiences
                 %li.dropitem
                   = link_to "Sign Out", destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?", :tabindex => "-1"
         %li.pull-right
@@ -40,11 +40,11 @@
           %a.host{:href=>"/hosts","data-placement"=>'right'}Hosts
         -if user_signed_in? && current_user.chef?
           %li.pull-right
-            =link_to "Create an Event", new_event_path
+            =link_to "Create an Experience", new_event_path
         %li.pull-right#browse-events
-          %a{:href =>"/events"}Events
+          %a{:href =>"/events"}Experiences
         %li.pull-right
-          %a{:href => "/home/howitworks"} What're Simmr Events Like?
+          %a{:href => "/home/howitworks"} What're Simmr Experiences Like?
           
   = render 'shared/signup_modals'
   = render 'shared/signin_modal'

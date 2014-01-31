@@ -95,7 +95,7 @@
                     %button.btn{'ng-click' => 'appear = "story"', 'ng-class' => '{"story": "btn-warning"}[appear]'} Story
                   -#%li
                     %button.btn{'ng-click' => 'appear = "followers"', 'ng-class' => '{"followers": "btn-warning"}[appear]'} Followers
-            .btn.btn-warning.join-waitlist-button{'ng-click' => 'waitlist=true', 'ng-hide' => 'waitlist', "data-toggle" => "tooltip", :title => "Add your name at the top of the invite list for the next #{@event.host.profile.biz_name} event.", "data-placement" => "top"} Sign Up for the Next #{@event.host.profile.biz_name} Event
+            .btn.btn-warning.join-waitlist-button{'ng-click' => 'waitlist=true', 'ng-hide' => 'waitlist', "data-toggle" => "tooltip", :title => "Add your name at the top of the invite list for the next #{@event.host.profile.biz_name} experience.", "data-placement" => "top"} Sign Up for the Next #{@event.host.profile.biz_name} Experience
 
             .seats{'ng-show'=> 'waitlist'}
               -if user_signed_in? == false
@@ -115,7 +115,7 @@
                 %tr.icons
                   %td
                     -if user_signed_in?
-                      %a.sb.heart.circle.no-border.no-shadow.follow{'ng-click' => "addFollower('Event',#{@event.id},#{user_signed_in?},follows)", "data-toggle" => "tooltip", :title => "Click to follow and stay up to date on latest event details!", "data-placement" => "right",'ng-class' => '{true: "red", false: "white"}[following]'}
+                      %a.sb.heart.circle.no-border.no-shadow.follow{'ng-click' => "addFollower('Event',#{@event.id},#{user_signed_in?},follows)", "data-toggle" => "tooltip", :title => "Click to follow and get early notification on the latest experience details!", "data-placement" => "right",'ng-class' => '{true: "red", false: "white"}[following]'}
                     -else
                       %a.sb.heart.circle.no-border.no-shadow.follow.foodiesignup{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                   -if @event.host.profile.yelp_id.present?
@@ -156,9 +156,9 @@
               %input.guest-email{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :required => "required", :name => "guest_email", 'ng-class' => "{error: guest_registration.guest_email.$invalid}"}
               .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.email'} Please enter a valid email
               .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.required || guest_registration.guest_first.$error.required || guest_registration.guest_last.$error.required'} All fields are required
-            %button.btn.btn-warning.standalone-button#enter-payment-info{'ng-click' => 'addtoWaitlist()', 'ng-disabled' => "error=0"} Sign Up for the Next #{@event.host.profile.biz_name} Event
+            %button.btn.btn-warning.standalone-button#enter-payment-info{'ng-click' => 'addtoWaitlist()', 'ng-disabled' => "error=0"} Sign Up for the Next #{@event.host.profile.biz_name} Experience
           .event-purchase-confirmation.clearfix{'ng-show' => 'appear=="waitlist2"'}
-            %h2 Thanks for signing up for the next event! We'll keep you posted when enough people sign up for the event to happen. To make sure this happens, tell all your friends to also sign up!
+            %h2 Thanks for signing up for the next experience! We'll keep you posted when enough people sign up for the experience to happen. To make sure this happens, tell all your friends to also sign up!
             %table.event-sharing{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@event.follows.count}; following = '#{is_user_there_and_following('Event', @event.id)}'"}
               %tr.icons
                 %td
@@ -181,7 +181,7 @@
                         %span._end
                           =(DateTime.new(@event.date.year,@event.date.month,@event.date.day,@event.time.hour,@event.time.min,@event.time.sec)+120.minutes).strftime('%m-%d-%Y %H:%M:%S')
                     %span._zonecode 6
-                    %span._summary="Simmr Event: #{@event.title}"
+                    %span._summary="Simmr Experience: #{@event.title}"
                     %span._description=@event.blurb
                     %span._location
                       ="#{@event.host.profile.biz_name}, #{@event.location.address1}, #{@event.location.neighborhood}, #{@event.location.city}, #{@event.location.zipcode}"
@@ -202,16 +202,16 @@
                 %td
                   %a.followers followers
                 %td calendar
-            %a.btn.btn-warning#ok-button{:href => "/events"} Check Out More Cool Events!
+            %a.btn.btn-warning#ok-button{:href => "/events"} Check Out More Cool Experiences!
           .event-recap#details{'ng-show' => 'appear=="details"'}
             %button.close{"ng-click" => "appear=''", :type => "button"} close
-            %h1 Event Details
+            %h1 Experience Details
             -#%ul
               -if @event.post_event_images.present?
                 %li
                   -@event.post_event_images.each_with_index do |i, index|
                     -if index == 0
-                      %a.fancybox.gallery{:href => i.image, :rel => "group", :title => i.title} Event Photo Gallery
+                      %a.fancybox.gallery{:href => i.image, :rel => "group", :title => i.title} Experience Photo Gallery
                     -else
                       %a.fancybox.gallery{:href => i.image, :rel => "group", :title => i.title}
               -if @event.post_event_media.present?
@@ -221,14 +221,14 @@
                       -if current_user.attending?(@event.id)
                         %a.fancybox{:href => media.image, :"data-fancybox-type" => 'iframe'} #{media.title}
                       -else
-                        %a.recipe{"data-toggle" => "tooltip", :title => "only people who attended the event can see this!", "data-placement" => "right"} #{media.title}
+                        %a.recipe{"data-toggle" => "tooltip", :title => "only people who were part of the experience can see this!", "data-placement" => "right"} #{media.title}
                     - else
-                      %a.recipe{"data-toggle" => "tooltip", :title => "only people who attended the event can see this! if you attended the event, log in to see!", "data-placement" => "right"} #{media.title}
+                      %a.recipe{"data-toggle" => "tooltip", :title => "only people who were part of the experience can see this! if you attended the experience, log in to see!", "data-placement" => "right"} #{media.title}
               -if @event.blog_link.present?
                 %li
                   %a{:href=>"#{@event.blog_link}",:target=>"_blank"} Blog Post
               -#%li
-                %a Event Case Study
+                %a Experience Case Study
               %br
             %h3
               - if @event.description != nil
@@ -396,7 +396,7 @@
                               -else
                                 %a.sb.heart.circle.no-border.no-shadow.foodiesignup.follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                   -else
-                    %h3 No current followers. Click the heart to stay updated about this event!
+                    %h3 No current followers. Click the heart to get early notifications about this experience!
             
           %form.event-survey.clearfix{'ng-show' => 'appear=="survey"', :name => "feedback_survey"}
             %button.close{"ng-click" => "appear=''", :type => "button"} close
@@ -494,19 +494,19 @@
             %table.feedback-actions.clearfix
               %tr
                 %td.point-action-cell
-                  %a.point-action{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"} Tell a Friend About Simmr (you'll get more points when they sign up and attend an event!)
+                  %a.point-action{:href=>"#", :onclick => "window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;"} Tell a Friend About Simmr (you'll get more points when they sign up and attend an experience!)
                 %td.points
                   +
                   =link_to image_tag('Ten_Point.png'), ""
               %tr
                 %td.point-action-cell
-                  %a.point-action{:href => '/events'} Attend Another Event
+                  %a.point-action{:href => '/events'} Attend Another Experience
                 %td.points
                   +
                   =link_to image_tag('Ten_Point.png'), "/events"
               %tr
                 %td.point-action-cell
-                  %a.point-action{:href => '/campaigns/new'} Don't see your favorite business? Suggest a business to get them on Simmr! 
+                  %a.point-action{:href => '/campaigns/new'} Don’t see your favorite business or a cool experience you want to see happen? <a href = "/campaigns/new">Suggest an experience</a> or <a href = "/campaigns">vote up a suggested experience</a> to make it happen on Simmr!
                 %td.points
                   +
                   =link_to image_tag('Ten_Point.png'), "/campaigns/new"

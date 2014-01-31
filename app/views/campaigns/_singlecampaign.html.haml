@@ -30,4 +30,4 @@
           %h1 #{campaign.biz_name}
           %h2 #{campaign.follows_needed} more supporters to tilt | #{campaign.status}
         %td.span1{'ng-controller' => 'HeartCtrl', 'ng-init' => "following = '#{is_user_there_and_following('Campaign', campaign.id)}'"}
-          %a.sb.heart.circle.no-border.no-shadow.black.follow-expired-campaign{:"data-toggle" => "tooltip", :title => "This campaign has expired! Start another?", "data-placement" => "top"}
+          %a.sb.heart.circle.no-border.no-shadow.black.follow-expired-campaign{:"data-toggle" => "tooltip", :title => "This suggested experience has expired! Start another?", "data-placement" => "top"}

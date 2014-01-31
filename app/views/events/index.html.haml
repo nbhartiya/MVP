@@ -1,6 +1,5 @@
-=content_for :title, "Events"
+=content_for :title, "Experiences"
 
-%meta{:content => "Life is too short to not make every day amazing. We curate unique experiences at the restaurants and bars you love, so you can experience them as no customer has ever before.", :name => "description"}
 
 .events-index#top{'ng-controller' => 'EventIndexCtrl'}
   -all_events = @events
@@ -10,7 +9,7 @@
     .container
       .row.section-header
         .span12.events-index-header
-          %h1 Food Events in San Francisco
+          %h1 Food Experiences in San Francisco
     .section.events-section
       .container
         .row.events-row-content
@@ -123,9 +122,9 @@
               -if current_user.chef == true
                 %p Recurring experiences have happened one or more times and have been really popular! Check out what's trending!
               - if current_user.chef == false
-                %p Recurring experiences have happened one or more times and have been really popular! Put your name down for the next one -- the more names on the list, the sooner the event will happen.
+                %p Recurring experiences have happened one or more times and have been really popular! Put your name down for the next one -- the more names on the list, the sooner you can enjoy the experience.
             -else
-              %p Recurring experiences have happened one or more times and have been really popular! Put your name down for the next one -- the more names on the list, the sooner the event will happen.
+              %p Recurring experiences have happened one or more times and have been really popular! Put your name down for the next one -- the more names on the list, the sooner you can enjoy the experience.
     .container
       -while potential_past_events.length > 1
         -event = potential_past_events.pop
@@ -153,10 +152,10 @@
           .span12.events-index-content
             -if current_user
               -if current_user.chef == true
-                %p Get a sense? <a href = "/events/new">Set up</a> your event today!
+                %p Get a sense? <a href = "/events/new">Set up</a> your experience today!
               -else
-                %p Don’t see your favorite business? <a href = "/campaigns/new">Suggest a host</a> or <a href = "/campaigns">vote up a suggested host</a> to get them to put up experiences on Simmr!
+                %p Don’t see your favorite business or a cool experience you want to see happen? <a href = "/campaigns/new">Suggest an experience</a> or <a href = "/campaigns">vote up a suggested experience</a> to make it happen on Simmr!
             -else
-              %p Don’t see your favorite business? <a href = "/campaigns/new">Suggest a host</a> or <a href = "/campaigns">vote up a suggested host</a> to get them to put up experiences on Simmr!
+              %p Don’t see your favorite business or a cool experience you want to see happen? <a href = "/campaigns/new">Suggest an experience</a> or <a href = "/campaigns">vote up a suggested experience</a> to make it happen on Simmr!
                 
   %a.back-to-top{:href => '#top'}Back to Top
