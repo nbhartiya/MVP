@@ -233,7 +233,7 @@ ul.parsley-error-list{
 				margin: 0 auto;
 			}
 			h1{
-				font-size: 48px;
+				font-size: 42px;
 				line-height: 1em;
 				font-weight: 100;
 				color: white;
@@ -271,12 +271,21 @@ ul.parsley-error-list{
 			    font-size: 12px;
 			    text-shadow: 0.1em 0.1em 0.2em black;
 			}
-			a.sign-in-link, a.sign-out-link{
-				color: $main_orange;
+			a.sign-out-link{
+				color: darken(white, 30%);
 				text-shadow: 0.1em 0.1em 0.2em black;
 			}
-			a.sign-in-link:hover, a.sign-out-link:hover{
-				color: darken($main_orange, 10%);
+			a.sign-in-link{
+				color: white;
+				text-shadow: 0.1em 0.1em 0.2em black;
+			}
+			a.sign-out-link:hover{
+				color: darken(white, 40%);
+				text-decoration: none;
+				text-shadow: 0.1em 0.1em 0.2em black;
+			}
+			a.sign-in-link:hover{
+				color: darken(white, 10%);
 				text-decoration: none;
 				text-shadow: 0.1em 0.1em 0.2em black;
 			}

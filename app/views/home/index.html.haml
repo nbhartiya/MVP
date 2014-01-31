@@ -40,11 +40,11 @@
       .container
         .copy.row
           .span4.copy-content
-            %h1 Insider access to handpicked restaurants and bars
+            %h1 Insider access to<br>top restaurants<br>and bars
             %h2 Cooking classes, kitchen tours, special tastings &#8212 just for you
             .buttons
               -if user_signed_in? == false
-                %a.btn.btn-warning.foodiesignup{:href => "#sign_up_foodie", :"data-toggle" =>"modal"} Request an Invite
+                %a.btn.btn-warning.foodiesignup{:href => "#sign_up_foodie", :"data-toggle" =>"modal"} Sign Up
                 
                 %p Already a member? &nbsp <a href = "#sign_in" class = "sign-in-link" data-toggle = "modal"> Sign In </a>
               -if user_signed_in?
@@ -76,7 +76,7 @@
             -if user_signed_in?
               %a.btn.btn-warning{:href => "/events"} browse experiences
             -else
-              %a.btn.btn-warning{:href => "#sign_up_foodie", :"data-toggle" =>"modal"} request an invite
+              %a.btn.btn-warning{:href => "#sign_up_foodie", :"data-toggle" =>"modal"} sign up
 
         .row.section-header#hero-title{'ng-show' => "appear=='host'"}
           .span12#top.how-it-works
@@ -137,7 +137,7 @@
                     %li
                       %a{:href => '#new'} Preview Upcoming
                     %li
-                      %a{:href => '#ongoing'} Popular, Recurring
+                      %a{:href => '#ongoing'} Popular and Recurring
         .container
           .row.section-header
             .span12.events-index-section-title-top#live
@@ -214,7 +214,7 @@
         .container
           .row.section-header
             .span12.events-index-section-title#ongoing
-              %h1 Popular, Recurring Experiences
+              %h1 Popular and Recurring Experiences
         .section.events-section
           .container
             .row.events-row-content
