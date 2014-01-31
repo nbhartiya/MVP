@@ -44,7 +44,16 @@
         %li.pull-right#browse-events
           %a{:href =>"/events"}Experiences
         %li.pull-right
-          %a{:href => "/home/howitworks"} What're Simmr Experiences Like?
+          -#%a{:href => "/home/howitworks"} What're Simmr Experiences Like?
+          %a.fancybox.gallery{:href => '/assets/Contraband-2.jpg', :rel => "group", :title => ''} What're Simmr Experiences Like?
+          %a.fancybox.gallery.hidden{:href => '/assets/Grindz.jpg', :rel => "group", :title => ''}
+          %a.fancybox.gallery.hidden{:href => '/assets/Onigilly.jpg', :rel => "group", :title => ''}
+          %a.fancybox.gallery.hidden{:href => '/assets/Tava.jpg', :rel => "group", :title => ''}
+          %a.fancybox.gallery.hidden{:href => '/assets/Contraband-3.jpg', :rel => "group", :title => ''}
+          %a.fancybox.gallery.hidden{:href => '/assets/Turtle-Tower.jpg', :rel => "group", :title => ''}
+          %a.fancybox.gallery.hidden{:href => '/assets/Capos-2.jpg', :rel => "group", :title => ''}
+          %a.fancybox.gallery.hidden{:href => '/assets/Azalina.jpg', :rel => "group", :title => ''}
+          %a.fancybox.gallery.hidden{:href => '/assets/Contraband.jpg', :rel => "group", :title => ''}
           
   = render 'shared/signup_modals'
   = render 'shared/signin_modal'

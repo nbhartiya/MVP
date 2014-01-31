@@ -85,16 +85,16 @@ $(".fancybox").fancybox({
     title : {
       type: 'inside'
     }
-  },
+  /*},
   beforeShow: function () {
     if (this.title) {
         this.title += '<br />';
-        this.title += '<a href="https://twitter.com/share" class="twitter-share-button" data-via="simmrco" data-count="none">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?"http":"https";if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document, "script", "twitter-wjs");</script>';
+        this.title += '<a href="https://twitter.com/share" id="twitter-share-button" data-via="simmrco" data-count="none">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?"http":"https";if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document, "script", "twitter-wjs");</script>';
         this.title += '<iframe src="//www.facebook.com/plugins/like.php?href=' + document.URL + '&amp;layout=button_count&amp;show_faces=true&amp;width=500&amp;action=like&amp;font&amp;colorscheme=light&amp;height=23" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:110px; height:23px;" allowTransparency="true"></iframe>';
     }
   },
   afterShow: function() {
-    twttr.widgets.load();
+    twttr.widgets.load();*/
   }
 });
 
@@ -105,7 +105,7 @@ $(document).ready(function() {
         nextEffect : 'fade',
         prevEffect : 'fade',
         type: "image",
-        autoplay: true,
+        autoplay: false,
         preload : 5,
         iframe : {
               preload: false
@@ -114,18 +114,18 @@ $(document).ready(function() {
           title : {
             type: 'inside'
           }
-        },
+        /*},
         beforeShow: function () {
           if (this.title) {
               this.title += '<br />';
               this.title += '<a href="https://twitter.com/share" class="twitter-share-button" data-via="simmrco" data-count="none">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?"http":"https";if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document, "script", "twitter-wjs");</script>';
-              this.title += '<iframe src="//www.facebook.com/plugins/like.php?href=' + document.URL + '&amp;layout=button_count&amp;show_faces=true&amp;width=500&amp;action=like&amp;font&amp;colorscheme=light&amp;height=23" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:110px; height:23px;" allowTransparency="true"></iframe>';
+              this.title += '<iframe src="//www.facebook.com/plugins/like.php?href=' + document.URL + ';width=110&amp;layout=standard&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=80&amp;appId=279105668896629" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:110px; height:80px;" allowTransparency="true"></iframe>';
           }
         },
         afterShow: function() {
-          twttr.widgets.load();
+          twttr.widgets.load();*/
         }
-    }).trigger("click");
+    })
 }); // ready
 
 // bootstrap tooltips 
