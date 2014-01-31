@@ -12,21 +12,11 @@
           %input#appendedInputButton{:type => 'text', :placeholder => "Search Events or Businesses", 'ng-model'=>'searchQuery', 'ui-keypress'=>"{13:'keypressCallback($event)'}"}
           %button.btn.search{'ng-click'=>'search(searchQuery)'} <i class = "icon-search"></i>
         -if user_signed_in? == false
-          %li.pull-right#sign-up-header-link
-            %ul.user-nav-control.pull-right
-              %li.dropdown
-                %a#sign-up-header-link{:href => "#", "data-toggle" => "dropdown"}
-                  Sign Up  
-                %ul.dropdown-menu{"aria-labeledby" => "dLabel", :role => "menu"}
-                  %li.dropitem.foodiesignup
-                    = link_to "Foodie", "#sign_up_foodie", :"data-toggle" => "modal", :tabindex => "-1" 
-                  %li.dropitem.bizsignup
-                    = link_to "Business", "#sign_up_business", :"data-toggle" => "modal", :tabindex => "-1" 
-          -#
-            %li.pull-right#sign-up-header-link
-              = link_to "Sign Up as Business", "#sign_up_business", :"data-toggle" => "modal"
+          %li#sign-up-header-link.foodiesignup.pull-right{:href => "#sign_up_foodie", :"data-toggle" => "modal", :tabindex => "-1"}
+            Request an Invite  
           %li.pull-right
             = link_to "Log In", "#sign_in", :"data-toggle" =>"modal"
+          
         -if user_signed_in?
           %ul.user-nav-control.pull-right
             %li.dropdown
@@ -45,7 +35,7 @@
         %li.pull-right
           %a#simmr-credit{:href=>"#referral", :"data-toggle" => "modal", :tabindex => "-1"} Earn Simmr Credit!
         %li.pull-right
-          %a.campaign{:href =>"/campaigns", "data-placement"=>'right'}Suggest a Host
+          %a.campaign{:href =>"/campaigns", "data-placement"=>'right'}Suggest an Experience
         %li.pull-right
           %a.host{:href=>"/hosts","data-placement"=>'right'}Hosts
         -if user_signed_in? && current_user.chef?

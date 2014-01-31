@@ -496,10 +496,15 @@ input.error-true  {
 			a:hover{
 				color: rgb(54, 54, 54);
 			}
+			a:active, a:focus, #sign-up-header-link:focus{
+				outline: none;
+			}
 			
 			#sign-up-header-link{
 				background: $main_orange;
 				color: white;
+				padding: 0 5px;
+				cursor: pointer;
 			}
 			#simmr-credit{
 				color: $main_orange;
@@ -537,7 +542,7 @@ input.error-true  {
 			color: rgb(150, 150, 150);
 			float: left;
 			font-size: 12px;
-			padding: 0 15px;			
+			padding: 0 7px;			
 		}
 		a.blog, a.blog:visited, a.blog:hover{
 			color: $main_orange;

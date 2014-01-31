@@ -6,17 +6,23 @@
       #home-carousel.carousel.slide.hidden-phone
         .carousel-inner
           .active.item
-            =image_tag "Onigilly-1.jpg"
+            =image_tag "Contraband-2.jpg" #people
           .item
-            =image_tag "Tava-1.jpg"
+            =image_tag "Grindz.jpg" #food
           .item
-            =image_tag "TT-1.jpg"
+            =image_tag "Onigilly.jpg" #menu
           .item
-            =image_tag "Eji-1.jpg"
+            =image_tag "Tava.jpg" #people
           .item
-            =image_tag "Antologia-1.jpg"
+            =image_tag "Contraband-3.jpg" # bar closed
           .item
-            =image_tag "Capos-1.jpg"
+            =image_tag "Turtle-Tower.jpg" # food
+          .item
+            =image_tag "Capos-2.jpg" # old people
+          .item
+            =image_tag "Azalina.jpg" # food
+          .item
+            =image_tag "Contraband.jpg" #flip? people
         -#
           -all_events=Event.where("approved = ?", true)
           -i=0
