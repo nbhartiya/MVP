@@ -9,24 +9,14 @@
     .span9.nav-right
       %ul
         -#%li.pull-right.input-append
-          %input#appendedInputButton{:type => 'text', :placeholder => "Search Events or Businesses", 'ng-model'=>'searchQuery', 'ui-keypress'=>"{13:'keypressCallback($event)'}"}
+          %input#appendedInputButton{:type => 'text', :placeholder => "Search Experiences or Hosts", 'ng-model'=>'searchQuery', 'ui-keypress'=>"{13:'keypressCallback($event)'}"}
           %button.btn.search{'ng-click'=>'search(searchQuery)'} <i class = "icon-search"></i>
         -if user_signed_in? == false
-          %li.pull-right#sign-up-header-link
-            %ul.user-nav-control.pull-right
-              %li.dropdown
-                %a#sign-up-header-link{:href => "#", "data-toggle" => "dropdown"}
-                  Sign Up  
-                %ul.dropdown-menu{"aria-labeledby" => "dLabel", :role => "menu"}
-                  %li.dropitem.foodiesignup
-                    = link_to "Foodie", "#sign_up_foodie", :"data-toggle" => "modal", :tabindex => "-1" 
-                  %li.dropitem.bizsignup
-                    = link_to "Business", "#sign_up_business", :"data-toggle" => "modal", :tabindex => "-1" 
-          -#
-            %li.pull-right#sign-up-header-link
-              = link_to "Sign Up as Business", "#sign_up_business", :"data-toggle" => "modal"
+          %li#sign-up-header-link.foodiesignup.pull-right{:href => "#sign_up_foodie", :"data-toggle" => "modal", :tabindex => "-1"}
+            Request an Invite  
           %li.pull-right
             = link_to "Log In", "#sign_in", :"data-toggle" =>"modal"
+          
         -if user_signed_in?
           %ul.user-nav-control.pull-right
             %li.dropdown
@@ -39,22 +29,31 @@
                     %a{:href => "/edit_my_profile", :tabindex => "-1"} Dashboard
                 -if current_user.chef?
                   %li.dropitem
-                    %a{:href=>"/edit_my_profile?events", :tabindex => "-1"} My Events
+                    %a{:href=>"/edit_my_profile?events", :tabindex => "-1"} My Experiences
                 %li.dropitem
                   = link_to "Sign Out", destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?", :tabindex => "-1"
         %li.pull-right
           %a#simmr-credit{:href=>"#referral", :"data-toggle" => "modal", :tabindex => "-1"} Earn Simmr Credit!
         %li.pull-right
-          %a.campaign{:href =>"/campaigns", "data-placement"=>'right'}Suggest a Host
+          %a.campaign{:href =>"/campaigns", "data-placement"=>'right'}Suggest an Experience
         %li.pull-right
           %a.host{:href=>"/hosts","data-placement"=>'right'}Hosts
         -if user_signed_in? && current_user.chef?
           %li.pull-right
-            =link_to "Create an Event", new_event_path
+            =link_to "Create an Experience", new_event_path
         %li.pull-right#browse-events
-          %a{:href =>"/events"}Events
+          %a{:href =>"/events"}Experiences
         %li.pull-right
-          %a{:href => "/home/howitworks"} How It Works
+          -#%a{:href => "/home/howitworks"} What're Simmr Experiences Like?
+          %a.fancybox.gallery{:href => '/assets/Contraband-2.jpg', :rel => "group", :title => ''} What're Simmr Experiences Like?
+          %a.fancybox.gallery.hidden{:href => '/assets/Grindz.jpg', :rel => "group", :title => ''}
+          %a.fancybox.gallery.hidden{:href => '/assets/Onigilly.jpg', :rel => "group", :title => ''}
+          %a.fancybox.gallery.hidden{:href => '/assets/Tava.jpg', :rel => "group", :title => ''}
+          %a.fancybox.gallery.hidden{:href => '/assets/Contraband-3.jpg', :rel => "group", :title => ''}
+          %a.fancybox.gallery.hidden{:href => '/assets/Turtle-Tower.jpg', :rel => "group", :title => ''}
+          %a.fancybox.gallery.hidden{:href => '/assets/Capos-2.jpg', :rel => "group", :title => ''}
+          %a.fancybox.gallery.hidden{:href => '/assets/Azalina.jpg', :rel => "group", :title => ''}
+          %a.fancybox.gallery.hidden{:href => '/assets/Contraband.jpg', :rel => "group", :title => ''}
           
   = render 'shared/signup_modals'
   = render 'shared/signin_modal'

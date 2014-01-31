@@ -7,7 +7,7 @@ a.sb.yelp {
 }
 
 .yelp-rating{
-	width: 45%;
+	width: 60px;
 	margin: 2px 5px;
 }
 
@@ -92,31 +92,26 @@ a.sb.yelp.black{
 		right: 50px;
 		color: $main_orange;
 		background: rgba(255, 255, 255, 0.9);
-		z-index: 5000;
+		z-index: 5;
 		padding: 5px;
 		font-weight: 900;
 	}
 	.events-index-navigation{
 		ul{
 		list-style: none;
-		width: 400px;
 		margin: 0 auto;
 		font-size: 18px;
 		}
 		li{
 			float: left;
-			margin: 0 0.5%;
+			margin: 0;
 			border-right: 1px solid rgb(54, 54, 54);
 			-webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box;
 			a{
-			color: rgb(54, 54, 54);
 			padding: 5px;
 			margin: 5px;
-			}
-			a:hover{
-				text-decoration: underline !important;
 			}
 		}
 		li:last-child{
@@ -134,21 +129,18 @@ a.sb.yelp.black{
 		.events-index-section-title{
 			margin: -20px 0 0 0;
 		}
-		.events-index-content{
+		.events-index-section-title-top{
+			margin: 10px 0 0 0;
+		}
+		.events-index-content, .events-index-header{
 			margin: 10px 0;
 			a, a:visited{
 				color: $main_orange;
+				text-decoration: none;
 			}
 			a:hover{
 				text-decoration: none;
-			}
-		}
-		.events-index-header, .events-index-content{
-			a:hover{
-				color: $main_orange;
-			}
-			a:visited{
-				color: $main_orange;
+				color: lighten($main_orange, 20%);
 			}
 		}
 		.events-index-bottom-content{
@@ -678,9 +670,9 @@ a.sb.yelp.black{
 				background: black;
 			}
 			.add-on{
-				color:white;
+				color: white;
 				margin-bottom: 10px;
-				font-size: 15px;
+				font-size: 12px;
 				font-weight: 100;
 				input{
 					margin-bottom: 7px;
@@ -769,6 +761,9 @@ a.sb.yelp.black{
 			a.event-location{
 				font-size: 12px;
 			}
+			a.event-location:hover{
+				color: darken(white, 20%);
+			}
 
 			a.host{
 				font-size: 20px;
@@ -778,7 +773,7 @@ a.sb.yelp.black{
 				margin: 0;
 			}
 			a:hover{
-				color: rgb(200, 200, 200);
+				color: darken(white, 20%);
 			}
 			.host{
 				display: inline;
@@ -961,7 +956,7 @@ a.sb.yelp.black{
             }
 		}
 		.event-create-form{
-			height: 490px;
+			height: 432px;
 			overflow-y: auto;
 			#event-accommodations{
 				p{
@@ -1148,6 +1143,9 @@ a.sb.yelp.black{
 				color: white;
 				font-weight: 100;
 			}
+			h3.warning{
+				color: $main_orange;
+			}
 			hr{
 				margin: 10px 0;
 				border-bottom: none;
@@ -1248,17 +1246,23 @@ a.sb.yelp.black{
 			#ok-button{
 				margin-top: 30px;
 			}
+			a#ok-button:hover{
+				color: white;
+			}
 			#submit{
 				margin-top: 10px;
 			}
 			.btn{
 				margin: 5px 0 5px 0;
 			}
-			#event-blurb{
+			#event-blurb, #event-menu{
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
 				width: 100%;
+			}
+			#event-menu{
+				margin-top: 5px;
 			}
 			#event-date-time{
 				color: white;
@@ -1346,7 +1350,7 @@ a.sb.yelp.black{
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
 				.input-prepend{
-					width: 49.25%;
+					width: 34%;
 					margin: 0;
 					-webkit-box-sizing: border-box;
 					-moz-box-sizing: border-box;    
@@ -1356,27 +1360,36 @@ a.sb.yelp.black{
 					color: rgb(54, 54, 54);
 				}
 				#ticket-cost{
-					width: 86%;
+					width: 81%;
 					-webkit-box-sizing: border-box;
 					-moz-box-sizing: border-box;    
 					box-sizing: border-box;
 				}
-				#people-limit{
+				#people-limit, #people-min{
 					-webkit-box-sizing: border-box;
 					-moz-box-sizing: border-box;    
 					box-sizing: border-box;
-					width: 49.25%;
+					width: 32%;
 				}
 			}
 			#event-images-button, #event-menu-button{
 				-webkit-box-sizing: border-box;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
-				width: 49.25%;
+				width: 100%;
 			}
-			a, a:visited, a:hover{
+			#event-clear-and-upload-images{
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				width: 59.8%;
+			}
+			a, a:visited{
 				color: white;
 				text-decoration: none;
+			}
+			a:hover{
+				color: darken(white, 20%);
 			}
 			.guest-name, .guest-email{
 				-webkit-box-sizing: border-box;
@@ -1387,7 +1400,7 @@ a.sb.yelp.black{
 				cursor: pointer;
 			}
 			a#promo-code:hover{
-				color: rgb(200, 200, 200);
+				color: darken(white, 20%);
 			}
 			input.promo-code{
 				-webkit-box-sizing: border-box;
@@ -1408,6 +1421,9 @@ a.sb.yelp.black{
 			.guests{
 				margin: 0;
 			}
+		}
+		.event-menu a.fancybox{
+			text-align: right;
 		}
 	}
 }
@@ -1486,7 +1502,7 @@ a.sb.yelp.black{
 			margin: 0;
 		}
 		a:hover{
-			color: rgb(200, 200, 200);
+			color: darken(white, 20%);
 		}
 		.host{
 			display: inline;
@@ -1632,7 +1648,7 @@ a.sb.yelp.black{
 	.event-survey, .event-yelp, .point-ranking, .more-points, .event-recap{
 		background: rgba(0,0,0,0.8);
 		padding: 30px;
-		height: 550px;
+		height: 490px;
 		overflow: auto;
 		h1{
 			font-size: 30px;
@@ -1657,7 +1673,7 @@ a.sb.yelp.black{
 			text-decoration: none;
 		}
 		a:hover{
-			color: rgb(200, 200, 200);
+			color: darken(white, 20%);
 		}
 		table.quotes{
 			tr{

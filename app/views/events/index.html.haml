@@ -1,6 +1,5 @@
-=content_for :title, "simmr | events"
+=content_for :title, "Experiences"
 
-%meta{:content => "Life is too short to not make every day amazing. We curate unique experiences at the restaurants and bars you love, so you can experience them as no customer has ever before.", :name => "description"}
 
 .events-index#top{'ng-controller' => 'EventIndexCtrl'}
   -all_events = @events
@@ -10,7 +9,7 @@
     .container
       .row.section-header
         .span12.events-index-header
-          %h1 Events in San Francisco
+          %h1 Food Experiences in San Francisco
     .section.events-section
       .container
         .row.events-row-content
@@ -20,27 +19,27 @@
               -if current_user.chef == true
                 %p Look around and get some ideas!
                 - if all_events.length == 0
-                  %p No events! How 'bout starting one?
+                  %p No experiences! How 'bout setting one up?
               - if current_user.chef == false
-                %p Pick an event to attend!
+                %p Pick an experience to go to!
                 -if all_events.length == 0
-                  %p No events! Sign up to stay up to date on future ones!
+                  %p No experiences! Sign up to stay up to date on future ones!
             -else
-              %p Pick an event to attend!
+              %p Pick an experience to go to!
               -if all_events.length == 0
-                %p No events! Sign up to stay up to date on future ones!
+                %p No experiences! Sign up to stay up to date on future ones!
             .events-index-navigation
               %ul
                 %li
-                  %a{:href => '#live'} Live Events
+                  %a{:href => '#live'} Current Experiences
                 %li
-                  %a{:href => '#new'} New Events
+                  %a{:href => '#new'} Preview Upcoming Experiences
                 %li
-                  %a{:href => '#ongoing'} Ongoing Events
+                  %a{:href => '#ongoing'} Popular, Recurring Experiences
     .container
       .row.section-header
         .span12.events-index-section-title#live
-          %h1 Live Events
+          %h1 Current Experiences
     .section.events-section
       .container
         .row.events-row-content
@@ -48,11 +47,11 @@
           .span8.events-index-content
             -if current_user
               -if current_user.chef == true
-                %p Live events are currently selling tickets! Look around and see what's happenin'.
+                %p Current experiences are selling tickets now! Look around and see what's happenin'.
               - if current_user.chef == false
-                %p Live events are currently selling tickets! Buy yours today before they sell out.
+                %p Current experiences are selling tickets now! Buy yours today before they sell out.
             -else
-              %p Live events are currently selling tickets! Buy yours today before they sell out.
+              %p Current experiences are selling tickets now! Buy yours today before they sell out.
     .container
       -potential_live_events=non_upcoming_events.dup
       -while potential_live_events.length > 1
@@ -76,7 +75,7 @@
     .container
       .row.section-header
         .span12.events-index-section-title#new
-          %h1 New Events
+          %h1 Preview Upcoming Experiences
     .section.events-section
       .container
         .row.events-row-content
@@ -84,12 +83,12 @@
           .span8.events-index-content
             -if current_user
               -if current_user.chef == true
-                %p New events are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified as soon as ticket sales begin! 
+                %p Upcoming experiences are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified earlier than everybody else when ticket sales begin! 
                 -# what would you make this language, Neeharika?
               - if current_user.chef == false
-                %p New events are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified as soon as ticket sales begin! 
+                %p Upcoming experiences are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified earlier than everybody else when ticket sales begin! 
             -else
-              %p New events are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified as soon as ticket sales begin! 
+              %p Upcoming experiences are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified earlier than everybody else when ticket sales begin! 
     .container
       -while upcoming_events.length > 1
         -event = upcoming_events.pop
@@ -113,7 +112,7 @@
     .container
       .row.section-header
         .span12.events-index-section-title#ongoing
-          %h1 Ongoing Events
+          %h1 Popular, Recurring Experiences
     .section.events-section
       .container
         .row.events-row-content
@@ -121,11 +120,11 @@
           .span8.events-index-content
             -if current_user
               -if current_user.chef == true
-                %p Ongoing events have happened one or more times and have been successes! Check out what's trending!
+                %p Recurring experiences have happened one or more times and have been really popular! Check out what's trending!
               - if current_user.chef == false
-                %p Ongoing events have happened one or more times and have been successes! Put your name down for the next one -- the more names on the list, the sooner the event will happen.
+                %p Recurring experiences have happened one or more times and have been really popular! Put your name down for the next one -- the more names on the list, the sooner you can enjoy the experience.
             -else
-              %p Ongoing events have happened one or more times and have been successes! Put your name down for the next one -- the more names on the list, the sooner the event will happen.
+              %p Recurring experiences have happened one or more times and have been really popular! Put your name down for the next one -- the more names on the list, the sooner you can enjoy the experience.
     .container
       -while potential_past_events.length > 1
         -event = potential_past_events.pop
@@ -153,10 +152,10 @@
           .span12.events-index-content
             -if current_user
               -if current_user.chef == true
-                %p Get a sense? <a href = "/events/new">Set up</a> your event today!
+                %p Get a sense? <a href = "/events/new">Set up</a> your experience today!
               -else
-                %p Don’t see your favorite business? <a href = "/campaigns/new">Suggest a business</a> or <a href = "/campaigns">vote up a suggested business</a> to get them to host events on Simmr!
+                %p Don’t see your favorite business or a cool experience you want to see happen? <a href = "/campaigns/new">Suggest an experience</a> or <a href = "/campaigns">vote up a suggested experience</a> to make it happen on Simmr!
             -else
-              %p Don’t see your favorite business? <a href = "/campaigns/new">Suggest a business</a> or <a href = "/campaigns">vote up a suggested business</a> to get them to host events on Simmr!
+              %p Don’t see your favorite business or a cool experience you want to see happen? <a href = "/campaigns/new">Suggest an experience</a> or <a href = "/campaigns">vote up a suggested experience</a> to make it happen on Simmr!
                 
   %a.back-to-top{:href => '#top'}Back to Top

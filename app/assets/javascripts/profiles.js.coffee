@@ -6,10 +6,10 @@ angular.module('Simmr').factory "Profile", ["railsResourceFactory", (railsResour
 
 $(".campaign-card-lead-name").tooltip()
 
-$("#profile-images-button").mouseenter ->
+$("#profile-logo-button, #change-profile-logo-button").mouseenter ->
   $("td.profile-photo").addClass('highlight')
 
-$("#profile-images-button").mouseleave ->
+$("#profile-logo-button, #change-profile-logo-button").mouseleave ->
   $("td.profile-photo").removeClass('highlight')
 
 $(".user-card-name").tooltip()
@@ -54,7 +54,40 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
   $scope.profileimageUrls = []
   $scope.avatar = []
 
-  $scope.uploadProfileImages = ->
+  $scope.uploadMoreImages = ->
+    filepicker.pickAndStore
+      mimetypes: ["image/*", "text/plain"]
+      services: ["COMPUTER", "FACEBOOK", "GMAIL", "INSTAGRAM"]
+      multiple: true
+    ,
+      location: "S3"
+      access: "public"
+    , (InkBlobs) ->
+      console.log JSON.stringify(InkBlobs)
+      $('.default').remove()
+      $('.carousel-inner').empty()
+      $scope.profileImageUrls=window.profileImageUrls
+      console.log $scope.profileImageUrls
+
+      i=0
+      while i<Object.keys(InkBlobs).length
+        $scope.image="#{InkBlobs[i].url}"
+        $scope.profileImageUrls.push($scope.image)
+        window.profileImageUrls = $scope.profileImageUrls
+        i++
+      j=0
+      while j<$scope.profileImageUrls.length   
+        if j == 0
+          $('.profiles .carousel-inner').append("<div class = 'item active'><img src = #{$scope.profileImageUrls[j]}></div>")
+        else 
+          $('.profiles .carousel-inner').append("<div class = 'item'><img src = #{$scope.profileImageUrls[j]}></div>")
+        j++
+      $('#remove-image').css('display', 'inherit')
+      if $scope.profileImageUrls.length>1
+        $('.user-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#profile-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#profile-carousel'> › </a>")
+
+
+  $scope.uploadImages = ->
     filepicker.pickAndStore
       mimetypes: ["image/*", "text/plain"]
       services: ["COMPUTER", "FACEBOOK", "GMAIL", "INSTAGRAM"]
@@ -74,6 +107,7 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
         $scope.image="#{InkBlobs[i].url}"
         console.log $scope.image
         $scope.profileImageUrls.push($scope.image)
+        window.profileImageUrls = $scope.profileImageUrls
         if i == 0
           $('.profiles .carousel-inner').append("<div class = 'item active'><img src = #{$scope.profileImageUrls[i]}></div>")
         else 
@@ -82,6 +116,12 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
       $('#remove-image').css('display', 'inherit')
       if Object.keys(InkBlobs).length>1
         $('.user-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#profile-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#profile-carousel'> › </a>")
+      if Object.keys(InkBlobs).length>=1
+        $('#cover-images-button').addClass("hidden")
+        $('#profile-upload-more-images, #profile-clear-and-upload-images').removeClass("hidden")
+        $('#profile-upload-more-images, #profile-clear-and-upload-images').addClass("show-inline")
+        $('#profile-upload-more-images').removeClass("disabled")
+
   
   $scope.uploadAvatarImage = ->
     filepicker.pickAndStore
@@ -99,8 +139,11 @@ angular.module('Simmr').controller "ProfileEditCtrl", ["$scope",  "$routeParams"
       $scope.avatar.push($scope.image)
       $('td.profile-photo').empty()
       $('td.profile-photo').append("<img src = '#{$scope.avatar}'></div>")
+      $('#profile-logo-button').addClass("hidden")
+      $('#change-profile-logo-button').removeClass("hidden")
+      $('#change-profile-logo-button').addClass("show-inline")
 
-  $scope.removeProfileImages = ->
+  $scope.removeImages = ->
     currentImage = $(".active img").attr('src')
     $('.item.active').remove()
     $('.item:first-child').addClass('active')
@@ -126,9 +169,8 @@ angular.module('Simmr').controller "ProfileShowCtrl", ["$scope",  "$routeParams"
   #    $scope.profile = result
   #    alert("got profile")
   
-  #doesnt work
-  #$scope.mapUrl = ->
-  #  mapUrl = "http://maps.google.com/?q=#{$scope.profile.location.address1},#{$scope.profile.location.city}, #{$scope.profile.location.state},#{$scope.profile.location.zipcode}"
+  $scope.mapUrl = ->
+    mapUrl = "http://www.google.com/maps/preview/place/#{$scope.address1},#{$scope.city}, #{$scope.state},#{$scope.zipcode}"
 ]
 
 angular.module('Simmr').controller "SurveyCtrl", ["$scope",  "$routeParams", "$location", "Profile", ($scope, $routeParams, $location, Profile) ->

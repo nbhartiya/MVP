@@ -5,9 +5,6 @@
     %title
       =yield(:title)
     = render 'layouts/preload_data'
-    = render 'layouts/google_analytics'
-    = render 'layouts/segment_io'
-    = render 'layouts/mixpanel'
     = csrf_meta_tags
     = stylesheet_link_tag    "application", :media => "all"
     %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans", :rel => "stylesheet", :type => "text/css"}
@@ -17,6 +14,7 @@
     %meta{content: "Simmr", property: "og:site_name"}
     - if content_for?(:head)
       = yield(:head)
+    
 
   %body.ng-cloak{"data-spy"=>"scroll", "data-target" => ".scroll-menu"}
     = render 'layouts/primary_header'
@@ -49,15 +47,22 @@
     = javascript_include_tag "application", :defer => "defer"
     = javascript_include_tag "https://js.stripe.com/v2/", :defer => "defer"
     = javascript_tag "Stripe.publishableKey = '#{STRIPE_PUBLISHABLE_KEY}';", :defer => "defer"
+    = javascript_tag "//maps.google.com/maps/api/js?v=3.13&amp;sensor=false&amp;libraries=geometry" 
+    = javascript_tag '//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js'
     :javascript
       (function(a){if(window.filepicker){return}var b=a.createElement("script");b.type="text/javascript";b.async=!0;b.src=("https:"===a.location.protocol?"https:":"http:")+"//api.filepicker.io/v1/filepicker.js";var c=a.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c);var d={};d._queue=[];var e="pick,pickMultiple,pickAndStore,read,write,writeUrl,export,convert,store,storeUrl,remove,stat,setKey,constructWidget,makeDropPane".split(",");var f=function(a,b){return function(){b.push([a,arguments])}};for(var g=0;g<e.length;g++){d[e[g]]=f(e[g],d._queue)}window.filepicker=d})(document);
+    = render 'layouts/google_analytics'
+    = render 'layouts/segment_io'
+    = render 'layouts/mixpanel'
 
 
    
 -# can add a closer alert x thingie later or tweak it later...
-  -if alert
-    .alert
-      %p.alert= alert
-  -elsif notice
-    .alert
-      %p.notice= notice
+-if alert
+  .alert.alert-dismissable
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", type: "button"} ×
+    %p= alert
+-elsif notice
+  .alert.alert-dismissable
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", type: "button"} ×
+    %p= notice

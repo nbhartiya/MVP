@@ -1,4 +1,7 @@
-=content_for :title, "simmr | user profile"
+-if @profile.user.chef == false
+  =content_for :title, "#{@profile.user.first_name} #{@profile.user.last_name}'s Profile"
+-else
+  =content_for :title, "#{@profile.biz_name}'s Profile"
 
 .profiles{'ng-controller' => 'ProfileShowCtrl'}
   .user-profile
@@ -13,6 +16,9 @@
               -else
                 .item
                   =image_tag i.image
+          -else
+            .active.item
+              =image_tag "Food 6.jpg"
         -else
           .active.item
             =image_tag "Food 6.jpg"
@@ -45,16 +51,16 @@
               .profile-summary-logistics
                 %ul.nav.profile-button-group
                   -#%li
-                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "badges"'} Badges
-                  %li.active
-                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "events"'} Events
+                    %button.btn.btn-inverse{'ng-click' => 'appear = "badges"', 'ng-class' => '{"badges": "btn-warning"}[appear]'} Badges
                   %li
-                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "campaigns"'} Campaigns
+                    %button.btn.btn-inverse{'ng-click' => 'appear = "events"', 'ng-class' => '{"events": "btn-warning"}[appear]'} Experiences
+                  %li
+                    %button.btn.btn-inverse{'ng-click' => 'appear = "campaigns"', 'ng-class' => '{"campaigns": "btn-warning"}[appear]'} Suggestions
                   -#
                     %li
-                      %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "followers"'} Followers
+                      %button.btn.btn-inverse{'ng-click' => 'appear = "followers"', 'ng-class' => '{"followers": "btn-warning"}[appear]'} Followers
                   %li
-                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "following"'} Following
+                    %button.btn.btn-inverse{'ng-click' => 'appear = "following"', 'ng-class' => '{"following": "btn-warning"}[appear]'} Following
                 
             %table.user-social-stats{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@profile.follows.count}; following = '#{is_user_there_and_following('Profile', @profile.id)}'"}
               %tr.icons
@@ -62,10 +68,10 @@
                   %a.sb.yelp.circle.no-border.no-shadow.black{:href=>"#"}
                 %td
                   -if user_signed_in?
-                    %a.sb.heart.circle.no-border.no-shadow{'ng-click' => "addFollower('Profile',#{@profile.id},#{user_signed_in?},follows)", "data-toggle" => "tooltip", :title => "Click to follow this person!", "data-placement" => "right", 'ng-class' => '{true: "red", false: "black"}[following]'}
+                    %a.sb.heart.circle.no-border.no-shadow.follow{'ng-click' => "addFollower('Profile',#{@profile.id},#{user_signed_in?},follows)", :"data-toggle" => "tooltip", :title => "Click to follow this member!", :"data-placement" => "right", 'ng-class' => '{true: "red", false: "black"}[following]'}
                   -else
-                    %a.sb.heart.circle.no-border.no-shadow.black{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
-                %td{'ng-click' => 'appear = "following"'}
+                    %a.sb.heart.circle.no-border.no-shadow.black.follow{:href => "#sign_up_foodie", :"data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", :"data-placement" => "right"}
+                %td
                   %a.sb.heart.circle.no-border.no-shadow.gray
               %tr.user-stats
                 -#%td 190
@@ -81,7 +87,7 @@
           -if current_user
             -if current_user.id == @profile.user_id
               .span1.edit-button
-                %a.btn.btn-inverse{:href=>"/profiles/#{@profile.user_id}/edit"} Edit
+                %a.btn.btn-inverse{:href=>"/edit_my_profile"} Edit
             -else
               .span1
           -else
@@ -111,11 +117,11 @@
 
             .user-events{'ng-show' => 'appear == "events"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
-              %h1 Events
+              %h1 Experiences
               -if @profile.user.events_attended.count + @profile.user.events_followed.count > 0
                 %table.events-table
                   %tr.heading
-                    %td Event
+                    %td Name
                     %td Host
                     %td When
                     -#%td Where
@@ -156,7 +162,7 @@
                         %td 
                           ="$#{"%g" % event.cost}"
               -else
-                %h3 No events yet!
+                %h3 No experiences yet!
               -#
                 %ul.nav.nav-tabs
                   %li.active
@@ -191,7 +197,7 @@
                             %td
                               ="$#{"%g" % event.cost}"
                     -else
-                      %h3 No upcoming events.
+                      %h3 No upcoming experiences.
                   #past-events.tab-pane.fade
                     -if @profile.user.past_events.count > 0
                       %table.events-table
@@ -212,7 +218,7 @@
                             %td
                               ="$#{"%g" % event.cost}"
                     -else
-                      %h3 No past events.
+                      %h3 No past experiences.
                   #followed-events.tab-pane.fade
                     -if @profile.user.events_followed.count > 0
                       %table.events-table
@@ -245,43 +251,45 @@
                               %td
                                 ="$#{"%g" % event.cost}"
                     -else
-                      No events followed.
+                      No experiences followed.
 
             .user-campaigns{'ng-show' => 'appear == "campaigns"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
-              %h1 Campaigns
+              %h1 Suggested Experiences
               -if @profile.user.campaigns_followed.count + @profile.user.campaigns_started.count > 0
                 %table.campaigns-table
                   %tr.heading
-                    %td Business
+                    %td Name
+                    %td People Needed
                     %td Status
-                    %td Days Left
                   -for campaign in @profile.user.campaigns_followed
                     %tr
                       %td 
                         %a{:href => campaign_path(campaign)} 
                           =campaign.biz_name
-                      %td
-                        =campaign.status
                       -if !campaign.expired?
                         %td
-                          =campaign.days_left
+                          =campaign.follows_needed
                       -else
                         %td
+                      %td
+                        =campaign.status
+                      
                   -for campaign in @profile.user.campaigns_started
                     %tr
                       %td 
                         %a{:href => campaign_path(campaign)} 
                           =campaign.biz_name
-                      %td
-                        =campaign.status
                       -if !campaign.expired?
                         %td
-                          =campaign.days_left
+                          =campaign.follows_needed
                       -else
                         %td
+                      %td
+                        =campaign.status
+                      
               -else
-                No campaigns yet!
+                No suggestions yet!
               -#
                 %ul.nav.nav-tabs
                   %li.active
@@ -293,7 +301,7 @@
                     -if @profile.user.campaigns_followed.count > 0
                       %table.campaigns-table
                         %tr.heading
-                          %td Business
+                          %td Name
                           %td Status
                           %td Days Left
                         -for campaign in @profile.user.campaigns_followed
@@ -309,12 +317,12 @@
                             -else
                               %td
                     -else
-                      No campaigns supported.
+                      No suggestions supported.
                   #started-campaigns.tab-pane.fade
                     -if @profile.user.campaigns_started
                       %table.campaigns-table
                         %tr.heading
-                          %td Business
+                          %td Name
                           %td Status
                           %td Days Left
                         -for campaign in @profile.user.campaigns_started
@@ -330,11 +338,12 @@
                             -else
                               %td
                     -else
-                      No campaigns started.
+                      No suggestions made.
 
             .user-following{'ng-show' => 'appear == "following"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
               %h1 Following
+              %br
               -if @profile.user.followers.count > 0
                 %table.following-table
                   -for follower in @profile.user.followers
@@ -351,18 +360,21 @@
                           ="#{follower.first_name} #{follower.last_name}"
                       -#%td
                         =follower.profile.follows.count
-                      %td
-                        %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', follower.profile.id)}'", 'ng-click' => "follow('Profile',#{follower.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
+                      %td{'ng-click' => 'appear = "following"'}
+                        -if user_signed_in?
+                          %a.sb.heart.circle.no-border.no-shadow.follow{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@profile.follows.count}; following = '#{is_user_there_and_following('Profile', follower.profile.id)}'", 'ng-click' => "follow('Profile',#{follower.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]', :"data-toggle" => "tooltip", :title => "Click to follow this person!", :"data-placement" => "right"}
+                        -else
+                          %a.sb.heart.circle.no-border.no-shadow.black.follow{:href => "#sign_up_foodie", :"data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", :"data-placement" => "right"}
               -else
-                No followers yet!
+                %h3 No followers yet!
               -#
                 %ul.nav.nav-tabs
                   %li.active
-                    %a{"data-toggle" => "tab", :href => "#events-following"} Events
+                    %a{"data-toggle" => "tab", :href => "#events-following"} Experiences
                   %li
-                    %a{"data-toggle" => "tab", :href => "#business-following"} Businesses
+                    %a{"data-toggle" => "tab", :href => "#business-following"} Hosts
                   %li
-                    %a{"data-toggle" => "tab", :href => "#foodie-following"} Foodies
+                    %a{"data-toggle" => "tab", :href => "#foodie-following"} Members
                 #myTabContent.tab-content
                   #events-following.tab-pane.fade.active.in
                     -if @profile.user.events_followed.count > 0
@@ -389,7 +401,7 @@
                             %td
                               ="$#{"%g" % event.cost}"
                     -else
-                      No events followed.
+                      No expeirences followed.
                   #business-following.tab-pane.fade
                     -if @profile.user.businesses_followed.count > 0
                       %table.following-table
@@ -407,11 +419,11 @@
                               =business.profile.follows.count
                             %td
                               -if user_signed_in?
-                                %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', business.profile.id)}'", 'ng-click' => "follow('Profile',#{business.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
+                                %a.sb.heart.circle.no-border.no-shadow.follow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', business.profile.id)}'", 'ng-click' => "follow('Profile',#{business.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
                               -else
-                                %a.sb.heart.circle.no-border.no-shadow.black{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
+                                %a.sb.heart.circle.no-border.no-shadow.black.follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                     -else
-                      No businesses followed.
+                      No hosts followed.
                   #foodie-following.tab-pane.fade
                     -if @profile.user.foodies_followed.count > 0
                       %table.following-table
@@ -429,11 +441,11 @@
                               =foodie.profile.follows.count
                             %td
                               -if user_signed_in?
-                                %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', foodie.profile.id)}'", 'ng-click' => "follow('Profile',#{foodie.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
+                                %a.sb.heart.circle.no-border.no-shadow.follow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', foodie.profile.id)}'", 'ng-click' => "follow('Profile',#{foodie.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
                               -else
-                                %a.sb.heart.circle.no-border.no-shadow.black{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
+                                %a.sb.heart.circle.no-border.no-shadow.black.follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                     -else
-                      No foodies followed.
+                      No members followed.
             -#
               .user-followers{'ng-show' => 'appear == "followers"'}
                 %button.close{"ng-click" => "appear=''", :type => "button"} close
@@ -461,9 +473,9 @@
                               =business.profile.follows.count
                             %td
                               -if user_signed_in?
-                                %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', business.profile.id)}'", 'ng-click' => "follow('Profile',#{business.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
+                                %a.sb.heart.circle.no-border.no-shadow.follow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', business.profile.id)}'", 'ng-click' => "follow('Profile',#{business.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
                               -else
-                                %a.sb.heart.circle.no-border.no-shadow.black{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
+                                %a.sb.heart.circle.no-border.no-shadow.black.follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                     -else
                       No business followers.
                   #foodie-followers.tab-pane.fade
@@ -483,14 +495,14 @@
                               =foodie.profile.follows.count
                             %td
                               -if user_signed_in?
-                                %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', foodie.profile.id)}'", 'ng-click' => "follow('Profile',#{foodie.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
+                                %a.sb.heart.circle.no-border.no-shadow.follow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', foodie.profile.id)}'", 'ng-click' => "follow('Profile',#{foodie.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
                               -else
-                                %a.sb.heart.circle.no-border.no-shadow.black{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
+                                %a.sb.heart.circle.no-border.no-shadow.black.follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                     -else
                       No foodie followers.
 
       -else
-        .row.user-overview{'ng-init' => "appear='events'"}
+        .row.user-overview{'ng-init' => "appear='events';address1='#{@profile.location.address1}';city='#{@profile.location.city}';state='#{@profile.location.state}';zipcode='#{@profile.location.zipcode}';"}
           .span5.user-profile-overview
             %table
               %tr
@@ -508,30 +520,30 @@
             .profile-summary-logistics-container
               .profile-summary-logistics
                 -if @profile.location.present?
-                  %h3 
-                    #{@profile.location.address1} <br> #{@profile.location.city}, #{@profile.location.state} #{@profile.location.zipcode}
-                  %a.business-website{:href => "#{@profile.website}"} Business Website
+                  %a.business-location{:href => "{{mapUrl()}}", :target=>'_blank'} #{@profile.location.address1}, #{@profile.location.city}, #{@profile.location.state} #{@profile.location.zipcode}
+                  %br
+                  %a.business-website{:href => "#{@profile.website}", :target=>'_blank'} Visit #{@profile.biz_name}'s Website
 
                 %ul.nav.profile-button-group-chef
                   %li
-                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "news"'} News
+                    %button.btn.btn-inverse{'ng-click' => 'appear = "news"', 'ng-class' => '{"news": "btn-warning"}[appear]'} News
                   %li
-                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "story"'} Story
-                  %li.active
-                    %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "events"'} Events
+                    %button.btn.btn-inverse{'ng-click' => 'appear = "story"', 'ng-class' => '{"story": "btn-warning"}[appear]'} Story
+                  %li
+                    %button.btn.btn-inverse{'ng-click' => 'appear = "events"', 'ng-class' => '{"events": "btn-warning"}[appear]'} Experiences
                   -#
                     %li
-                      %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "followers"'} Followers
-                  -if @profile.follows.count > 0
+                      %button.btn.btn-inverse{'ng-click' => 'appear = "followers"', 'ng-class' => '{"followers": "btn-warning"}[appear]'} Followers
+                  -#
                     %li
-                      %button.btn.btn-inverse{'data-toggle' => 'pill', 'ng-click' => 'appear = "following"'} Following
+                      %button.btn.btn-inverse{'ng-click' => 'appear = "following"', 'ng-class' => '{"following": "btn-warning"}[appear]'} Following
             %table.user-social-stats{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@profile.follows.count}; following = '#{is_user_there_and_following('Profile', @profile.id)}'"}
               %tr.icons
                 %td
                   -if user_signed_in?
-                    %a.sb.heart.circle.no-border.no-shadow{'ng-click' => "addFollower('Profile',#{@profile.id},#{user_signed_in?},follows)", "data-toggle" => "tooltip", :title => "Click to follow this business!", "data-placement" => "right", 'ng-class' => '{true: "red", false: "black"}[following]'}
+                    %a.sb.heart.circle.no-border.no-shadow.follow{'ng-click' => "addFollower('Profile',#{@profile.id},#{user_signed_in?},follows)", "data-toggle" => "tooltip", :title => "Click to follow this business!", "data-placement" => "right", 'ng-class' => '{true: "red", false: "black"}[following]'}
                   -else
-                    %a.sb.heart.circle.no-border.no-shadow.black{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
+                    %a.sb.heart.circle.no-border.no-shadow.black.follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                 -if @profile.yelp_id.present?  
                   %td
                     %a.sb.yelp.circle.no-border.no-shadow.black{:href=>"#{get_yelp_link(@profile)}",:target=>"_blank"} 
@@ -553,7 +565,11 @@
           -if current_user
             -if current_user.id == @profile.user_id
               .span1.edit-button
-                %a.btn.btn-inverse{:href=>"/profiles/#{@profile.user_id}/edit"} Edit
+                %a.btn.btn-inverse{:href=>"/edit_my_profile"} Edit
+            -else
+              .span1
+          -else
+            .span1
           .span6
             .user-news{'ng-show' => 'appear == "news"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
@@ -563,6 +579,8 @@
                   - n = @profile.news.split("\n")
                   -for i in 0..n.length-1
                     = simple_format n[i]
+                -else
+                  No news! Stay tuned for more.
 
             .user-story{'ng-show' => 'appear == "story"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
@@ -575,17 +593,17 @@
 
             .user-events{'ng-show' => 'appear == "events"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
-              %h1 Events
+              %h1 Experiences
               -if @profile.host_events.count > 0
                 %table.events-table
                   %tr.heading
                     %td Name
                     %td When
+                    %td Price
                     -if current_user.present?
                       -if current_user.profile.id==@profile.id || current_user.id==1
                         %td Status
                         %td Total
-                    %td Follows
                     %td 
                     -#%td Shares  
                   -for event in @profile.host_events
@@ -593,23 +611,21 @@
                       %td 
                         %a{:href => event_path(event)} 
                           =event.title
-                      %td 
+                      %td.event-date
                         =event.date.strftime("%b %e")
+                      %td.event-follows
+                        =number_to_currency(event.cost, :unit => "$", :precision => 0)
                       -if current_user.present?
                         -if current_user.profile.id==@profile.id || current_user.id==1
                           %td 
-                            ="#{event.guests_count} of #{event.people_limit} filled @ $#{"%g" % (event.cost)}"
+                            ="#{event.guests_count} of #{event.people_limit} filled"
                           %td 
                             ="$#{"%g" % (event.guests_count*event.cost)}"
-                      %td 
-                        =event.follows.count
-                      %td.link
-                        %a{:href => edit_event_path(event)}
-                          Edit
+                      
                       -#%td 
                         =# shared
               -else
-                No upcoming events!
+                %h3 No upcoming experiences! <a href = "/campaigns/new">Request one?</a>
               -#
                 %ul.nav.nav-tabs
                   %li.active
@@ -642,7 +658,8 @@
                             -#%td 
                               =# shared
                     -else
-                      ="Looks like #{@profile.biz_name} has no upcoming events."
+                      %h3
+                        ="Looks like #{@profile.biz_name} has no upcoming experiences."
                   #past-events.tab-pane.fade
                     -if @profile.past_host_events.count > 0
                       %table.events-table
@@ -663,7 +680,7 @@
                             -#%td 
                               =# shared
                     -else
-                      ="Looks like #{@profile.biz_name} has no past events."
+                      ="Looks like #{@profile.biz_name} has no past experiences."
             -#
               .user-followers{'ng-show' => 'appear == "followers"'}
                 %button.close{"ng-click" => "appear=''", :type => "button"} close
@@ -691,9 +708,9 @@
                               =foodie.profile.follows.count
                             %td
                               -if user_signed_in?
-                                %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', foodie.profile.id)}'", 'ng-click' => "follow('Profile',#{foodie.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
+                                %a.sb.heart.circle.no-border.no-shadow.follow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', foodie.profile.id)}'", 'ng-click' => "follow('Profile',#{foodie.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
                               -else
-                                %a.sb.heart.circle.no-border.no-shadow.black{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
+                                %a.sb.heart.circle.no-border.no-shadow.black.follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                     -else
                       No foodie followers.
                   #business-followers.tab-pane.fade
@@ -713,9 +730,9 @@
                               =business.profile.follows.count
                             %td
                               -if user_signed_in?
-                                %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', business.profile.id)}'", 'ng-click' => "follow('Profile',#{business.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
+                                %a.sb.heart.circle.no-border.no-shadow.follow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', business.profile.id)}'", 'ng-click' => "follow('Profile',#{business.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
                               -else
-                                %a.sb.heart.circle.no-border.no-shadow.black{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
+                                %a.sb.heart.circle.no-border.no-shadow.black.follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                     -else
                       No business followers.
 
@@ -737,11 +754,14 @@
                         %a{:href=>"/profiles/#{user.profile.id}"}
                           ="#{user.first_name} #{user.last_name}"
                       -#%td
-                        =user.profile.follows.count
+                        =user.profile.follows.count                        
                       %td
-                        %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', user.profile.id)}'", 'ng-click' => "follow('Profile',#{user.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
+                        -if user_signed_in?
+                          %a.sb.heart.circle.no-border.no-shadow.follow{'ng-controller' => 'HeartCtrl', 'ng-init' => "follows=#{@profile.follows.count}; following = '#{is_user_there_and_following('Profile', user.profile.id)}'", 'ng-click' => "follow('Profile',#{user.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]', :"data-toggle" => "tooltip", :title => "Click to follow this person!", :"data-placement" => "right"}
+                        -else
+                          %a.sb.heart.circle.no-border.no-shadow.black.follow{:href => "#sign_up_foodie", :"data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", :"data-placement" => "right"}
               -else
-                No users followed!
+                No members or hosts followed!
               -#
                 %ul.nav.nav-tabs
                   %li.active
@@ -766,11 +786,11 @@
                               =business.profile.follows.count
                             %td
                               -if user_signed_in?
-                                %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', business.profile.id)}'", 'ng-click' => "follow('Profile',#{business.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
+                                %a.sb.heart.circle.no-border.no-shadow.follow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', business.profile.id)}'", 'ng-click' => "follow('Profile',#{business.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
                               -else
-                                %a.sb.heart.circle.no-border.no-shadow.black{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
+                                %a.sb.heart.circle.no-border.no-shadow.black.follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                     -else
-                      No businesses followed.
+                      No hosts followed.
                   #foodie-following.tab-pane.fade
                     -if @profile.user.foodies_followed.count > 0
                       %table.following-table
@@ -788,8 +808,8 @@
                               =foodie.profile.follows.count
                             %td
                               -if user_signed_in?
-                                %a.sb.heart.circle.no-border.no-shadow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', foodie.profile.id)}'", 'ng-click' => "follow('Profile',#{foodie.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
+                                %a.sb.heart.circle.no-border.no-shadow.follow{'ng-controller'=>'HeartCtrl','ng-init' => "following = '#{is_user_there_and_following('Profile', foodie.profile.id)}'", 'ng-click' => "follow('Profile',#{foodie.profile.id},#{user_signed_in?})", 'ng-class' => '{true: "red", false: "black"}[following]'}
                               -else
-                                %a.sb.heart.circle.no-border.no-shadow.black{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
+                                %a.sb.heart.circle.no-border.no-shadow.black.follow{:href => "#sign_up_foodie", "data-toggle" => "tooltip", :"data-toggle" =>"modal", :title => "Please sign in or sign up in order to follow!", "data-placement" => "right"}
                     -else
-                      No foodies followed.
+                      No members followed.

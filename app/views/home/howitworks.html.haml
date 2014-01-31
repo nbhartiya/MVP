@@ -1,10 +1,10 @@
-=content_for :title, "simmr | how it works"
+=content_for :title, "What're Simmr Events Like?"
 
 .home{'ng-controller'=>'HomeIndexCtrl', 'ng-init' => 'type=""'}
   .container
     .row.section-header
       .span12#how-it-works
-        %h1 How It Works
+        %h1 What're Simmr Events Like?
         -#
           .logo
             =image_tag "logo_final.png"
@@ -13,19 +13,18 @@
             %a{:href => '#how'}
               .foodie
                 =image_tag "Foodie-Default-Profile-Image.png"
-              %p I'm a Foodie
+              %p For Members
 
           %li{'ng-click' => 'type="business"'}
             %a{:href => '#how-chef'}
               .chef
                 =image_tag "Chef-Default-Profile-Image.png"
-              %p I'm a Business
+              %p For Hosts
             
   .container
     .row
       .span12.how-it-works#how{'ng-show' => 'type == "foodie"'}
-        %h1.title For Foodies
-        %h2.title What are Simmr events like?
+        %h1.title For Members
         .row
           .span12
             =image_tag "How-It-Works.jpg", :class => "how-it-works-event-infographic"
@@ -38,7 +37,7 @@
                 %a{:href => "#sign_up_foodie", :"data-toggle" =>"modal"} get started
 
       .span12.how-it-works#how-chef{'ng-show' => 'type == "business"'}
-        %h1.title For Businesses
+        %h1.title For Hosts
         %h2.title What are Simmr events like?
         .row
           .span12

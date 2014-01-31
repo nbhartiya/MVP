@@ -3,6 +3,194 @@
 <head>
   <title>Ruh-Roh</title>
   <style type="text/css">
+    .nav-container{
+      border-bottom: 1px solid rgb(150, 150, 150);
+      display: block;
+      width: 1210px;
+      margin: 10px auto 20px auto;
+      font-size: 12px;
+    }
+    .nav-container a{
+      color: rgb(150, 150, 150);
+    }
+    .nav-container .nav{ 
+      margin-bottom: 0;
+    }
+    .nav-container .nav .logo-and-location{
+      float: left;
+    }
+    .nav-container .nav .logo-and-location .logo{
+      margin-top: -5px;
+      margin-bottom: 5px;
+      width: 35%; 
+    }
+    .nav-container .nav .logo-and-location .logo, .nav-container .nav .logo-and-location .logo ul{
+      float: left;
+    }
+    .nav-container .nav .logo-and-location a.city{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      float: left;
+    }
+    .nav-container .nav .logo-and-location a.city:visited{
+      color: rgb(150, 150, 150);
+    }
+    .nav-container .nav .logo-and-location a:hover{
+      color: rgb(54, 54, 54);
+      background: none;
+    }
+    .nav-container .nav .logo-and-location a:hover, .nav-container .nav .logo-and-location a:visited, .nav-container .nav .logo-and-location a:active, .nav-container .nav .logo-and-location a:focus{
+      text-decoration: none;
+      outline: none;
+    }
+    .nav-container .nav ul{
+      list-style: none;
+      margin: 40px 0 0 10px;
+    }
+    .nav-container .nav ul .user-nav-control{
+      list-style: none;
+      margin: 0;
+    }
+    .nav-container .nav ul .user-nav-control li.dropdown a{
+      margin: 0 10px;
+      padding: 0;
+      color: rgb(150, 150, 150);
+    }
+    .nav-container .nav ul .user-nav-control li.dropdown a:hover{
+      color: rgb(54, 54, 54);
+      background: none;
+    }
+    .nav-container .nav ul .user-nav-control li.dropdown a:hover, .nav-container .nav ul .user-nav-control li.dropdown a:visited, .nav-container .nav ul .user-nav-control li.dropdown a:active, .nav-container .nav ul .user-nav-control li.dropdown a:focus{
+      text-decoration: none;
+      outline: none;
+    }
+    .nav-container .nav ul .user-nav-control li.dropdown .dropdown-menu{
+      margin: 5px 0 0 0;
+      min-width: 120px;
+    }
+    .nav-container .nav ul .user-nav-control li.dropdown .dropdown-menu .dropitem{
+      font-size: 12px;
+    }
+    .nav-container .nav ul .user-nav-control li.dropdown .dropdown-menu .dropitem a:link, .nav-container .nav ul .user-nav-control li.dropdown .dropdown-menu .dropitem a:visited{
+      padding: 2px;
+    }
+    .nav-container .nav ul .user-nav-control li.dropdown .dropdown-menu .dropitem a:hover, .nav-container .nav ul .user-nav-control li.dropdown .dropdown-menu .dropitem a:active, .nav-container .nav ul .user-nav-control li.dropdown .dropdown-menu .dropitem a:focus{
+      color: rgb(54, 54, 54);
+      background: none;
+    }
+    .nav-container .nav ul li a:link, .nav-container .nav ul li a:visited{
+      padding: 5px;
+      margin: 0 5px;
+    }
+    .nav-container .nav ul li a:hover, .nav-container .nav ul li a:active{
+      color: rgb(54, 54, 54);
+      background: none;
+      text-decoration: none;
+    }
+    .nav-container .nav ul li a:focus{
+      outline: none;
+    }
+    .nav-container .nav ul.input-append{
+      margin-right: 0;
+      margin-bottom: 5px;
+      display: inline-block;
+      margin-top: -7px;
+      margin-left: 10px;
+    }
+    .nav-container .nav ul.input-append input{
+      font-size: 12px;
+      width: 170px;
+    }
+    .nav-container .nav ul.input-append input:focus{
+      border: 1px solid #EB4D18;
+      box-shadow: none;
+    }
+    .nav-container .nav .nav-right a, .nav-container .nav .nav-right a:visited{
+      color: rgb(150, 150, 150);
+    }
+    .nav-container .nav .nav-right a:hover{
+      color: rgb(54, 54, 54);
+    }
+    .nav-container .nav .nav-right{
+      margin-right: -50px;
+    }
+    .nav-container .nav .nav-right #sign-up-header-link{
+      background: #EB4D18;
+      color: white;
+    }
+    .nav-container .nav .nav-right #simmr-credit{
+      color: #EB4D18;
+    }
+    .nav-container .nav .nav-right a#sign-up-header-link{
+      color: white;
+    }
+
+    // footer styling
+
+    .nav-container-footer{
+      border-top: 1px solid rgb(150, 150, 150);
+      display: block;
+      width: 1210px;
+      margin: 20px auto 10px auto;
+      font-size: 12px;
+    }
+
+    #twitter-share-button{
+          width: 65px !important;
+        }
+
+    .footer .footer-content{
+      padding: 5px 0 0 0;
+    }
+    .footer ul{
+      list-style: none;
+      margin: 0;
+    }
+
+    .footer ul li{
+      color: rgb(150, 150, 150);
+      float: left;
+      font-size: 12px;
+      padding: 0 15px;      
+    }
+
+    .footer ul a.blog, .footer ul a.blog:visited, .footer ul a.blog:hover{
+      color: #EB4D18;
+      font-weight: 700;
+    }
+    .footer ul a.blog:hover{
+      text-decoration: underline;
+    }
+    .footer ul li.social{
+      padding: 0 5px;
+    }
+    .footer ul #fb-like iframe{
+      width: 85px !important;
+    }
+    .footer ul #fb-share-button iframe{
+      width: 85px !important;
+    }
+    .footer ul #fb-share-button{
+      margin-top: -3px;
+    }
+    .footer ul #twitter-share iframe{
+      width: 60px !important;
+    }
+    .footer ul #twitter-follow iframe{
+      width: 120px !important;
+    }
+    .footer ul #yelp-logo{
+      margin-top: -4px;
+    }
+    .footer a:link, .footer a:visited{
+      color: rgb(150, 150, 150);
+      font-size: 12px;
+      text-decoration: none;
+    }
+    .footer a:hover, .footer a:active{
+      color: rgb(130, 130, 130);
+    }
     body{
       text-align: center;
       font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; 
@@ -14,23 +202,23 @@
       margin-top: 50px; 
       font-weight: 100;
     }
-    img{
+    img.pickle{
       margin-top: 20px;
       margin-bottom: 20px;
       width: 50%;
     }
-    p{
+    p.no-access{
       font-size: 30px;
       font-weight: 100;
-      margin-bottom: 0;
+      margin: 0 0 10px;
     }
-    a, a:hover, a:visited{
-      color: rgb(255, 178, 35);
+    a.no-access, a.no-access:hover, a.no-access:visited{
+      color: #EB4D18;
       text-decoration: none;
       font-weight: 100;
       padding: 0 10px;
     }
-    a.email{
+    a.no-access.email{
       display: block;
       margin: 25px 0;
       font-size: 30px;
@@ -44,14 +232,13 @@
   <div class="container">
     <div class = 'row'>
       <div class = 'span10 offset1'>
-        <h1>Ruh-roh ... this event is not yet ready to be seen!</h1>
-        <p>Follow upcoming events to get early notification!</p>
-        <img src = '/assets/Pickle.png'>
-        <p>Get me out of here!</p>
-        <a href = "/home">Home</a>
-        <a href = "/events">Events</a>
+        <h1>Ruh-roh ... it looks like we're in a pickle.</h1>
+        <img class = "pickle" src = '/assets/Pickle.png'>
+        <p class = "no-access">Get me out of here!</p>
+        <a class = "no-access" href = "/home/index">Home</a>
+        <a class = "no-access" href = "/events">Events</a>
         <br>
-        <a class = 'email' href="mailto:hello@simmr.co?Subject=AGH!!&body=I was trying to (FILL ME!) but I ended up in a pickle o_O" target="_top">Talk to us.</a>
+        <a class = 'email no-access' href="mailto:hello@simmr.co?Subject=AGH!!&body=I was trying to (FILL ME!) but I ended up in a pickle o_O" target="_top">Tell us about it</a>
       </div>
     </div>
   </div>

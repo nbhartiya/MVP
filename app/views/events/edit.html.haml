@@ -1,8 +1,8 @@
-=content_for :title, "simmr | edit event"
+=content_for :title, "Edit #{@event.title}"
 .events{'ng-controller' => 'EventEditCtrl', 'ng-init' => "getEvent(#{@event.id})"}
   .event-profile{'ng-init' => 'eventMenu = #{@event.menu_pdf}; eventImages = #{@event.eventImageUrls}'}
     -if @event.covers.present?
-      #remove-image.btn.edit{"ng-click" => "removeImages()"} remove image
+      -##remove-image.btn.edit{"ng-click" => "removeImages()"} remove image
     #remove-image.btn{"ng-click" => "removeImages()"} remove image
     #event-carousel.carousel.slide.hidden-phone       
       .carousel-inner
@@ -27,11 +27,11 @@
         .span5.event-create
           %form.event-create-form.clearfix{'ng-init'=> "event.host_id=#{current_user.id}", :name => "event_edit"}
 
-            %input#event-title{'ng-model' => 'event.title', :type=>"text", :placeholder =>"Event Title", :name => "event_title", :required => "required", 'ng-class' => "{error: event_edit.event_title.$invalid}", :maxlength => "60"}
+            %input#event-title{'ng-model' => 'event.title', :type=>"text", :placeholder =>"Experience Name", :name => "event_title", :required => "required", 'ng-class' => "{error: event_edit.event_title.$invalid}", :maxlength => "60"}
 
-            %textarea#event-blurb{:rows => "2", 'ng-model' => 'event.blurb', :type=>"text", :placeholder =>"Event Blurb - you get the length of a tweet. Make it sexy ;)", :name => "event_blurb", :maxlength => "140", :required => "required", 'ng-class' => "{error: event_edit.event_blurb.$invalid}"}
+            %textarea#event-blurb{:rows => "2", 'ng-model' => 'event.blurb', :type=>"text", :placeholder =>"Experience Blurb - think of something catchy to get people to want to go!", :name => "event_blurb", :maxlength => "140", :required => "required", 'ng-class' => "{error: event_edit.event_blurb.$invalid}"}
 
-            %textarea#event-blurb{:rows => "3", 'ng-model' => 'event.description', :type=>"text", :placeholder =>"Event Details - a longer description of your event", :name => "event_details", :required => "required", 'ng-class' => "{error: event_edit.event_details.$invalid}"}
+            %textarea#event-blurb{:rows => "3", 'ng-model' => 'event.description', :type=>"text", :placeholder =>"Experience Details - a longer description of your experience", :name => "event_details", :required => "required", 'ng-class' => "{error: event_edit.event_details.$invalid}"}
 
             #event-ticket-details
               .input-prepend
@@ -40,16 +40,26 @@
 
               %input#people-limit{'ng-model' => 'event.peopleLimit',:type=>"text", :name => "event_limit", 'ng-pattern' => '/^[0-9]+$/', :required => "required", 'ng-class' => "{error: event_edit.event_limit.$invalid}", :placeholder => "Number of Seats"}
               
-              .help-block-white{'ng-show' => 'event_edit.event_cost.$error.pattern'} Please enter a valid event cost
+              .help-block-white{'ng-show' => 'event_edit.event_cost.$error.pattern'} Please enter a valid experience cost
               .help-block-white{'ng-show' => 'event_edit.event_limit.$error.pattern'} Please enter a valid number of seats
 
-            %button.clearfix.btn#event-images-button{'ng-click'=> 'uploadImages()'} Update Images
+            -#-if @event.covers.present?
+              %button.btn#event-upload-more-images{'ng-click'=> 'uploadMoreImages()'} Upload More Images
+              %button.btn#event-clear-and-upload-images{'ng-click'=> 'uploadImages()'} Clear All Images and Re-Upload
+            
+            
+            %button.btn#event-clear-and-upload-images{'ng-click'=> 'uploadImages()'} Clear All Images and Re-Upload
+            %button.btn#event-upload-more-images.disabled{'ng-click'=> 'uploadMoreImages()'} Upload More Images
+           
 
             %button.clearfix.btn#event-menu-button{'ng-click' => 'uploadMenu()'} Update Menu
             .menu
-            -#if @event.menu_pdf.present?
-              %a#remove.edit{'ng-click' => 'removeMenu()'} delete
+              -if @event.menu_pdf.present?
+                %a.fancybox{:href => "#{@event.menu_pdf}", :"data-fancybox-type" => 'iframe'}  Preview Menu
             %a#remove{'ng-click' => 'removeMenu()'} delete
+
+            %textarea#event-menu{:rows => "3", 'ng-model' => 'event.menuText', :type=>"text", :placeholder =>"If you don't have a PDF menu, please input the text here", :name => "event_menu"}
+              
             %hr
 
             #event-date-time 
@@ -101,7 +111,7 @@
 
             .help-block-white{'ng-show' => 'event_edit.event_title.$error.required || event_edit.event_blurb.$error.required || event_edit.event_date.$error.required || event_edit.event_time.$error.required || event_edit.event_duration.$error.required || event_edit.event_neighborhood.$error.required || event_edit.event_address.$error.required || event_edit.event_city.$error.required || event_edit.event_state.$error.required || event_edit.event_zip.$error.required || event_edit.event_cost.$error.required || event_edit.event_limit.$error.required || event_edit.event_details.$error.required'} All fields are required
 
-            %button.btn.btn-warning.standalone-button#submit{'ng-disabled' => 'event_edit.$invalid', 'ng-click' => 'editEvent(event)'} Update
+            %button.btn.btn-warning.standalone-button#submit{'ng-disabled' => 'event_edit.$invalid', 'ng-click' => "editEvent(event)"} Save Changes
             -# should redirect to updated event page
 
         .span5
@@ -118,19 +128,19 @@
             .preview-label{'ng-click' => 'removeImages()'} this is a preview
             .event-summary-top
               %h1#default-text{'ng-show'=>'event.title=="" || event.title==nil'}
-                Event Title
+                Experience Name
               %h1 
                 {{event.title}}
               -#TODO CHANGE to current.user.profile.biz_name != nil once we require everyone to fill profile
               -if current_user.profile != nil
                 %h2
-                  Hosted by:
+                  Hosted by
                   =current_user.profile.biz_name
               -else
                 %h2#default-text
-                  Hosted by: Please input business name in your profile!
+                  Hosted by Please input business name in your profile!
             %h3#default-text{'ng-show'=>'event.blurb=="" || event.blurb==nil'}
-              Event Blurb
+              Experience Blurb
             %h3
               {{event.blurb}}
             
@@ -162,8 +172,8 @@
                       Gluten Free-friendly            
 
             %p#default-text{'ng-show'=>'event.peopleLimit=="" || event.peopleLimit==nil'}
-              This event can accommodate 0 people.
+              This experience can accommodate 0 people.
             %p{'ng-hide'=>'event.peopleLimit=="" || event.peopleLimit==nil'}
-              This event can accommodate {{event.peopleLimit}} people.
+              This experience can accommodate {{event.peopleLimit}} people.
             -#.progress.progress-warning
               .bar{:style => "width: 0%"}

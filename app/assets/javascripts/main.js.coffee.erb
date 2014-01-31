@@ -223,7 +223,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
     datetime.add('minutes', $scope.event.length).format('h:mm A')
 
   $scope.mapUrl = ->
-    mapUrl = "http://maps.google.com/?q=#{$scope.address1},#{$scope.city}, #{$scope.state},#{$scope.zipcode}"
+    mapUrl = "http://www.google.com/maps/preview/place/#{$scope.address1},#{$scope.city}, #{$scope.state},#{$scope.zipcode}"
 
   $scope.total = ->
     if $scope.event.referer_discount
@@ -261,7 +261,6 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
   $scope.showPayment = (wait) ->
     ANALYTICS.page("Insert Guest Information")
     $scope.guests = []
-    $scope.guest_no_pages = 0
     if $scope.num_guests > 0
       homie=$scope.currentUser
       currentGuy={}
@@ -281,6 +280,7 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
       $scope.appear = "waitlist1"
     else
       $scope.appear = "payment1"
+
 
   $scope.addtoWaitlist = ->
     ANALYTICS.page("Insert Waitlist Information")
@@ -363,6 +363,39 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
     datetime = moment($scope.event.time,  "YYYY-MM-DD H:mm:ss")
     datetime.add('minutes', $scope.event.length).format('h:mm A')
 
+  $scope.uploadMoreImages = ->
+    filepicker.pickAndStore
+      mimetypes: ["image/*", "text/plain"]
+      services: ["COMPUTER", "FACEBOOK", "GMAIL", "INSTAGRAM"]
+      multiple: true
+    ,
+      location: "S3"
+      access: "public"
+    , (InkBlobs) ->
+      console.log JSON.stringify(InkBlobs)
+      $('.default').remove()
+      $('.carousel-inner').empty()
+      $scope.eventImageUrls=window.eventImageUrls
+      console.log $scope.eventImageUrls
+
+      i=0
+      while i<Object.keys(InkBlobs).length
+        $scope.image="#{InkBlobs[i].url}"
+        $scope.eventImageUrls.push($scope.image)
+        window.eventImageUrls = $scope.eventImageUrls
+        i++
+      j=0
+      while j<$scope.eventImageUrls.length   
+        if j == 0
+          $('.events .carousel-inner').append("<div class = 'item active'><img src = #{$scope.eventImageUrls[j]}></div>")
+        else 
+          $('.events .carousel-inner').append("<div class = 'item'><img src = #{$scope.eventImageUrls[j]}></div>")
+        j++
+      $('#remove-image').css('display', 'inherit')
+      if $scope.eventImageUrls.length>1
+        $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> › </a>")
+
+
   $scope.uploadImages = ->
     filepicker.pickAndStore
       mimetypes: ["image/*", "text/plain"]
@@ -383,6 +416,7 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
         $scope.image="#{InkBlobs[i].url}"
         #console.log $scope.image
         $scope.eventImageUrls.push($scope.image)
+        window.eventImageUrls = $scope.eventImageUrls
         if i == 0
           #console.log($scope.eventImageUrls[i])
           $('.events .carousel-inner').append("<div class = 'item active'><img src = #{$scope.eventImageUrls[i]}></div>")
@@ -393,7 +427,10 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
       $('#remove-image').css('display', 'inherit')
       if Object.keys(InkBlobs).length>1
         $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> › </a>")
-
+      if Object.keys(InkBlobs).length>=1
+        $('#event-images-button').addClass("hidden")
+        $('#event-upload-more-images, #event-clear-and-upload-images').removeClass("hidden")
+        $('#event-upload-more-images, #event-clear-and-upload-images').addClass("show-inline")
 
   $scope.removeImages = ->
     currentImage = $(".active img").attr('src')
@@ -422,7 +459,8 @@ Simmr.controller "EventCreateCtrl", ["$scope",  "$routeParams", "$location", "Ev
       #console.log JSON.stringify(InkBlob)
       $scope.menuPdf="#{InkBlob[0].url}"
       #console.log $scope.menuPdf
-      $('.events .menu').append("<a href =#{$scope.menuPdf}> Menu.pdf </a>")
+      $('.events .menu').empty()
+      $('.events .menu').append("<a class = 'fancybox' data-fancybox-type = 'iframe'  href =#{$scope.menuPdf}> Preview Menu </a>")
       $('a#remove').css('display', 'inline')
 
 
@@ -523,13 +561,47 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
       #console.log JSON.stringify(InkBlob)
       $scope.menuPdf="#{InkBlob[0].url}"
       #console.log $scope.menuPdf
-      $('.events .menu').append("<a href =#{$scope.menuPdf}> Menu.pdf </a>")
+      $('.events .menu').empty()
+      $('.events .menu').append("<a class = 'fancybox' data-fancybox-type = 'iframe'  href =#{$scope.menuPdf}> Preview New Menu </a>")
       $('a#remove').css('display', 'inline')
 
   $scope.removeMenu = ->
     $scope.menuPdf = []
     $('.menu').empty()
     $('a#remove').css('display', 'none')
+
+  $scope.uploadMoreImages = ->
+    filepicker.pickAndStore
+      mimetypes: ["image/*", "text/plain"]
+      services: ["COMPUTER", "FACEBOOK", "GMAIL", "INSTAGRAM"]
+      multiple: true
+    ,
+      location: "S3"
+      access: "public"
+    , (InkBlobs) ->
+      console.log JSON.stringify(InkBlobs)
+      $('.default').remove()
+      $('.carousel-inner').empty()
+      $scope.eventImageUrls=window.eventImageUrls
+      console.log $scope.eventImageUrls
+
+      i=0
+      while i<Object.keys(InkBlobs).length
+        $scope.image="#{InkBlobs[i].url}"
+        $scope.eventImageUrls.push($scope.image)
+        window.eventImageUrls = $scope.eventImageUrls
+        i++
+      j=0
+      while j<$scope.eventImageUrls.length   
+        if j == 0
+          $('.events .carousel-inner').append("<div class = 'item active'><img src = #{$scope.eventImageUrls[j]}></div>")
+        else 
+          $('.events .carousel-inner').append("<div class = 'item'><img src = #{$scope.eventImageUrls[j]}></div>")
+        j++
+      $('#remove-image').css('display', 'inherit')
+      if $scope.eventImageUrls.length>1
+        $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> › </a>")
+
 
   $scope.uploadImages = ->
     #need to check if existing images are there to decide whether or not need an active class
@@ -553,6 +625,7 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
         $scope.image="#{InkBlobs[i].url}"
         #console.log $scope.image
         $scope.eventImageUrls.push($scope.image)
+        window.eventImageUrls = $scope.eventImageUrls
         if i == 0
           #console.log($scope.eventImageUrls[i])
           $('.events .carousel-inner').append("<div class = 'item active'><img src = #{$scope.eventImageUrls[i]}></div>")
@@ -563,6 +636,9 @@ Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Even
       $('#remove-image').css('display', 'inherit')
       if Object.keys(InkBlobs).length>1
         $('.event-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#event-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#event-carousel'> › </a>")
+      if Object.keys(InkBlobs).length>=1
+        $('#event-upload-more-images').removeClass("disabled")
+
 
   $scope.removeImages = ->
     currentImage = $(".active img").attr('src')
@@ -667,6 +743,38 @@ Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$l
 
   $scope.campaignImageUrls = []
 
+  $scope.uploadMoreImages = ->
+    filepicker.pickAndStore
+      mimetypes: ["image/*", "text/plain"]
+      services: ["COMPUTER", "FACEBOOK", "GMAIL", "INSTAGRAM"]
+      multiple: true
+    ,
+      location: "S3"
+      access: "public"
+    , (InkBlobs) ->
+      console.log JSON.stringify(InkBlobs)
+      $('.default').remove()
+      $('.carousel-inner').empty()
+      $scope.campaignImageUrls=window.campaignImageUrls
+      console.log $scope.campaignImageUrls
+
+      i=0
+      while i<Object.keys(InkBlobs).length
+        $scope.image="#{InkBlobs[i].url}"
+        $scope.campaignImageUrls.push($scope.image)
+        window.campaignImageUrls = $scope.campaignImageUrls
+        i++
+      j=0
+      while j<$scope.campaignImageUrls.length   
+        if j == 0
+          $('.campaigns .carousel-inner').append("<div class = 'item active'><img src = #{$scope.campaignImageUrls[j]}></div>")
+        else 
+          $('.campaigns .carousel-inner').append("<div class = 'item'><img src = #{$scope.campaignImageUrls[j]}></div>")
+        j++
+      $('#remove-image').css('display', 'inherit')
+      if $scope.campaignImageUrls.length>1
+        $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#campaign-carousel'> › </a>")
+
   $scope.uploadImages = ->
     filepicker.pickAndStore
       mimetypes: ["image/*", "text/plain"]
@@ -687,6 +795,7 @@ Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$l
         $scope.image="#{InkBlobs[i].url}"
         #console.log $scope.image
         $scope.campaignImageUrls.push($scope.image)
+        window.campaignImageUrls = $scope.campaignImageUrls
         if i == 0
           $('.campaigns .carousel-inner').append("<div class = 'item active'><img src = #{$scope.campaignImageUrls[i]}></div>")
         else 
@@ -695,11 +804,15 @@ Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$l
       $('#remove-image').css('display', 'inherit')
       if Object.keys(InkBlobs).length>1
         $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#campaign-carousel'> › </a>")
+      if Object.keys(InkBlobs).length>=1
+        $('#campaign-upload-images').addClass("hidden")
+        $('#campaign-upload-more-images, #campaign-clear-and-upload-images').removeClass("hidden")
+        $('#campaign-upload-more-images, #campaign-clear-and-upload-images').addClass("show-inline")
 
   $scope.removeImages = ->
     currentImage = $(".active img").attr('src')
-    $('.item').remove(":contains('#{currentImage}')")
-    $('.carousel-inner div:first-child').append('.active')
+    $('.item.active').remove()
+    $('.item:first-child').addClass('active')
     i = 0
     while i < $scope.campaignImageUrls.length
       if currentImage == $scope.campaignImageUrls[i]
@@ -707,6 +820,9 @@ Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$l
       i++
     if $scope.campaignImageUrls.length <= 1
       $('.carousel-control').remove()
+    if $scope.campaignImageUrls.length == 0
+        $('#remove-image').css('display', 'none')
+        $('.campaigns .carousel-inner').append("<p>This is a default cover photo. <br> We'll replace with one of your host! <br> You can also upload your own.</p><div class = 'item active default'><img alt='Food 9' src='/assets/Food 9.jpg'></div>")
 
   $scope.createCampaign = (campaign) ->
     if $scope.campaignImageUrls?
@@ -714,7 +830,7 @@ Simmr.controller "CampaignCreateCtrl", ["$scope", "$window", "$routeParams", "$l
     new Campaign(campaign).create().then (data) =>
       #console.log data, "~~~~~~~~~~"
       $scope.campaign = 1
-      $window.location.href='/campaigns/'
+      window.location.href = '/campaigns/'
 ]
 
 Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "Campaign", ($scope, $routeParams, $location, Campaign) ->
@@ -730,6 +846,39 @@ Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "C
       window.location.href = '/campaigns/'+data.id
 
   $scope.campaignImageUrls = []
+  
+  $scope.uploadMoreImages = ->
+    filepicker.pickAndStore
+      mimetypes: ["image/*", "text/plain"]
+      services: ["COMPUTER", "FACEBOOK", "GMAIL", "INSTAGRAM"]
+      multiple: true
+    ,
+      location: "S3"
+      access: "public"
+    , (InkBlobs) ->
+      console.log JSON.stringify(InkBlobs)
+      $('.default').remove()
+      $('.carousel-inner').empty()
+      $scope.campaignImageUrls=window.campaignImageUrls
+      console.log $scope.campaignImageUrls
+
+      i=0
+      while i<Object.keys(InkBlobs).length
+        $scope.image="#{InkBlobs[i].url}"
+        $scope.campaignImageUrls.push($scope.image)
+        window.campaignImageUrls = $scope.campaignImageUrls
+        i++
+      j=0
+      while j<$scope.campaignImageUrls.length   
+        if j == 0
+          $('.campaigns .carousel-inner').append("<div class = 'item active'><img src = #{$scope.campaignImageUrls[j]}></div>")
+        else 
+          $('.campaigns .carousel-inner').append("<div class = 'item'><img src = #{$scope.campaignImageUrls[j]}></div>")
+        j++
+      $('#remove-image').css('display', 'inherit')
+      if $scope.campaignImageUrls.length>1
+        $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#campaign-carousel'> › </a>")
+
 
   $scope.uploadImages = ->
     filepicker.pickAndStore
@@ -751,6 +900,7 @@ Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "C
         $scope.image="#{InkBlobs[i].url}"
         #console.log $scope.image
         $scope.campaignImageUrls.push($scope.image)
+        window.campaignImageUrls = $scope.campaignImageUrls
         if i == 0
           $('.campaigns .carousel-inner').append("<div class = 'item active'><img src = #{$scope.campaignImageUrls[i]}></div>")
         else 
@@ -759,12 +909,13 @@ Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "C
       $('#remove-image').css('display', 'inherit')
       if Object.keys(InkBlobs).length>1
         $('.campaign-profile').append("<a class = 'carousel-control left hidden-phone' data-slide = 'prev' href = '#campaign-carousel'> ‹ </a><a class = 'carousel-control right hidden-phone' data-slide = 'next' href = '#campaign-carousel'> › </a>")
-
+      if Object.keys(InkBlobs).length>=1
+        $('#campaign-upload-more-images').removeClass("disabled")
 
   $scope.removeImages = ->
     currentImage = $(".active img").attr('src')
-    $('.item').remove(":contains('#{currentImage}')")
-    $('.carousel-inner div:first-child').append('.active')
+    $('.item.active').remove()
+    $('.item:first-child').addClass('active')
     i = 0
     while i < $scope.campaignImageUrls.length
       if currentImage == $scope.campaignImageUrls[i]
@@ -772,5 +923,9 @@ Simmr.controller "CampaignEditCtrl", ["$scope",  "$routeParams", "$location", "C
       i++
     if $scope.campaignImageUrls.length <= 1
       $('.carousel-control').remove()
+    if $scope.campaignImageUrls.length == 0
+        $('#remove-image').css('display', 'none')
+        $('.campaigns .carousel-inner').append("<p>This is a default cover photo. <br> We'll replace with one of your host! <br> You can also upload your own.</p><div class = 'item active default'><img alt='Food 9' src='/assets/Food 9.jpg'></div>")
+
 ]
 

@@ -16,11 +16,12 @@ $main_orange: #EB4D18;
 			margin: 10px 0;
 		}
 		.campaign-index-header, .campaign-index-content{
-			a:hover{
-				color: $main_orange;
-			}
 			a:visited{
 				color: $main_orange;
+			}
+			a:hover{
+				color: lighten($main_orange, 20%);
+				text-decoration: none;
 			}
 		}
 		.campaign-index-content{
@@ -70,6 +71,7 @@ $main_orange: #EB4D18;
 				width: 100%;
 				height: 80px;
 				overflow: hidden;
+				margin-top: -20px;
 				td{
 					padding: 10px;
 				}
@@ -365,6 +367,12 @@ $main_orange: #EB4D18;
 				//background: rgb(80, 80, 80);
 				padding: 10px 30px;
 				margin: 0px;
+				table{
+					width: 100%;
+				}
+				td{
+					width: 50%;
+				}
 			}
 			.campaign-button-group{
 				margin: 20px auto 10px auto;
@@ -373,7 +381,7 @@ $main_orange: #EB4D18;
 				li{
 					float: left;
 					display: table-cell;
-					width: 24%;
+					width: 100%;
 					margin: 0 0.5%;
 					-webkit-box-sizing: border-box;
 					-moz-box-sizing: border-box;    
@@ -568,7 +576,7 @@ $main_orange: #EB4D18;
 				margin-bottom: 20px;
 			}
 			h3{
-				font-size: 14px;
+				font-size: 16px;
 				line-height: 1.5em;
 				color: black;
 				font-weight: 100;
@@ -603,6 +611,12 @@ $main_orange: #EB4D18;
 
 			#campaign-upload-images{
 				margin: 5px 0;
+			}
+			#campaign-clear-and-upload-images{
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				width: 60.7%;
 			}
 
 			a, a:visited, a:hover{

@@ -204,8 +204,6 @@ body.staticpages {
 // begin wendy and neeharika image styling
 
 .wendyandnee{
-	width: 1000px;
-	padding-top: 120px;
 	margin: 0 auto;
 }
 
@@ -216,16 +214,20 @@ body.staticpages {
 		font-size: 36px;
 		font-weight: 100;
 		line-height: 1.5em;
+		text-align: center;
 	}
 	h2{
 		font-size: 28px;
 		font-weight: 100;
 		line-height: 1.5em;
+		text-align: center;
 	}
 	h3{
 		font-size: 24px;
 		font-weight: 100;
 		line-height: 1.5em;
+		text-align: center;
+		margin: 20px 0 0 0;
 	}
 	h4{
 		font-size: 20px;
@@ -237,10 +239,66 @@ body.staticpages {
 		font-weight: 100;
 		line-height: 1.5em;
 	}
-	a, a:visited, a:hover{
+	a, a:visited{
 		color: $main_orange;
+	}
+	a:hover{
+		color: lighten($main_orange, 20%);
+		text-decoration: none;
 	}
 	.point-one{
 		transform: rotate(30deg);
+	}
+	.company-culture{
+		margin: 0 auto;
+		width: 99%;
+		h1{
+			text-align: center;
+			font-size: 30px;
+			line-height: 1.2em;
+			font-weight: 100;
+			color: black;
+			margin: 0;
+		}
+		.step:hover{
+			border-color: $main_orange;
+		}
+		.step{
+			height: 240px;
+			width: 240px;
+			margin-top: 20px;
+			margin-left: 25px;
+			border-radius: 50%;
+			border: 15px rgb(54, 54, 54) solid;
+			display: inline-block;
+			#have-fun{
+				margin-top: 65px;
+			}
+			#stay-humble{
+				margin-top: 60px;
+			}
+			#difference{
+				margin-top: 45px;
+			}
+			h2{
+				font-size: 30px;
+				font-weight: 100;
+				text-align: center;
+				padding-top: 15px;
+			}
+			.step-description{
+				width: 200px;
+				height: 200px;
+				padding: 5px 20px 20px 20px;
+				overflow: hidden;
+				p{
+					font-size: 14px;
+					line-height: 1.5em;
+					font-weight: 100;
+					text-align: center;
+					vertical-align: middle;
+				}
+			}
+		}
 	}
 }

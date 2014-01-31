@@ -4,6 +4,8 @@
       %ul
         %li
           %a{:href => "/home/philosophy"} Philosophy
+        %li.bizsignup
+          = link_to "Become a Host", "#sign_up_business", :"data-toggle" => "modal"
         %li
           %a{:href => "/home/teamandjobs"} Team & Jobs
         %li
@@ -23,7 +25,7 @@
         %li.social#fb-share-button
           .fb-share-button{"data-href" => "http://www.facebook.com/simmrco", "data-type" => "icon_link", "data-width" => "100"}
         %li.social#twitter-share
-          %a.twitter-share-button{"data-text" => "be the first to find out about unique food events!", "data-url" => "http://www.simmr.co", "data-via" => "simmrco", "data-count" => "none", :href => "https://twitter.com/share"} Tweet
+          %a.twitter-share-button{"data-text" => "I get insider access to handpicked restaurants and bars-cooking classes, kitchen tours, special tastings", "data-url" => "http://www.simmr.co", "data-via" => "simmrco", "data-count" => "none", :href => "https://twitter.com/share"} Tweet
           :javascript
             !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
         %li.social#twitter-follow

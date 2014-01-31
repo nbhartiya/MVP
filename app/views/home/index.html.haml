@@ -1,22 +1,28 @@
-=content_for :title, "simmr | home"
+=content_for :title, "Home"
 
-.wow{'ng-controller'=>'HomeIndexCtrl', 'ng-init' => "appear=''"}
+.wow{'ng-controller'=>'HomeIndexCtrl', 'ng-init' => "appear='member'"}
   .home 
     .attention-getter
       #home-carousel.carousel.slide.hidden-phone
         .carousel-inner
           .active.item
-            =image_tag "Onigilly-1.jpg"
+            =image_tag "Contraband-2.jpg" #people
           .item
-            =image_tag "Tava-1.jpg"
+            =image_tag "Grindz.jpg" #food
           .item
-            =image_tag "TT-1.jpg"
+            =image_tag "Onigilly.jpg" #menu
           .item
-            =image_tag "Eji-1.jpg"
+            =image_tag "Tava.jpg" #people
           .item
-            =image_tag "Antologia-1.jpg"
+            =image_tag "Contraband-3.jpg" # bar closed
           .item
-            =image_tag "Capos-1.jpg"
+            =image_tag "Turtle-Tower.jpg" # food
+          .item
+            =image_tag "Capos-2.jpg" # old people
+          .item
+            =image_tag "Azalina.jpg" # food
+          .item
+            =image_tag "Contraband.jpg" #flip? people
         -#
           -all_events=Event.where("approved = ?", true)
           -i=0
@@ -31,73 +37,71 @@
               -i=i+1
       %a.carousel-control.left.hidden-phone{"data-slide" => "prev", :href => "#home-carousel"} ‹
       %a.carousel-control.right.hidden-phone{"data-slide" => "next", :href => "#home-carousel"} ›
-    .container
-      .row.section-header#hero-title
-        .span12#top.how-it-works
-          %h1 150% Uniquely Simmr
-          %h2.title Get a drink, order, eat, rinse, repeat...
-          %h1.title YAWN
-          %h2.title Dine out at a Simmr event instead! What're they like?
-          =image_tag "How-It-Works.jpg", :class => "how-it-works-event-infographic"
-          .row.how-it-works-event-infographic
-            .span4.offset5.step.get-started
+      .container
+        .copy.row
+          .span4.copy-content
+            %h1 Insider access to handpicked restaurants and bars
+            %h2 Cooking classes, kitchen tours, special tastings &#8212 just for you
+            .buttons
+              -if user_signed_in? == false
+                %a.btn.btn-warning.foodiesignup{:href => "#sign_up_foodie", :"data-toggle" =>"modal"} Request an Invite
+                
+                %p Already a member? &nbsp <a href = "#sign_in" class = "sign-in-link" data-toggle = "modal"> Sign In </a>
+              -if user_signed_in?
+                %a.btn.btn-warning.view-events-button{:href => "/events"} browse experiences
+                %p
+                  = link_to "Sign Out", destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?", :class => 'sign-out-link'
+            
+
+    -#.section.how-it-works-section
+      .container
+        .row.section-header#hero-title{'ng-show' => "appear=='member'"}
+          .span12#top.how-it-works
+            .row
+              .how-it-works
+                %h2 What're Simmr experiences like?
+            .step
+              %h2 intimate
               .step-description
-                -if user_signed_in?
-                  %a{:href => "/events", :"data-toggle" =>"modal"} get started
-                -else
-                  %a{:href => "#sign_up_foodie", :"data-toggle" =>"modal"} get started
-    
+                %p Discover new businesses and get to know your favorites in groups of no more than 30
+            .step
+              %h2 hands-on
+              .step-description
+                %p Our experiences aren't like watching the Food Network...it's like being on the show
+            .step
+              %h2 delicious
+              .step-description
+                %p 'nuff said
+          .span4.offset4#home-buttons
+            -if user_signed_in?
+              %a.btn.btn-warning{:href => "/events"} browse experiences
+            -else
+              %a.btn.btn-warning{:href => "#sign_up_foodie", :"data-toggle" =>"modal"} request an invite
+
+        .row.section-header#hero-title{'ng-show' => "appear=='host'"}
+          .span12#top.how-it-works
+            .step
+              %h2 easy
+              .step-description
+                %p We take care of everything else so you can focus on doing what you do best -- delivering a great experience
+            .step
+              %h2 profitable
+              .step-description
+                %p We will work with you to make sure this is a sustainable way to build up your customer base
+            .step
+              %h2 just the start
+              .step-description
+                %p of much longer, deeper relationships with your customers. Simmr experiences both attract AND convert guests into loyal customers, with whom we want to help you keep in touch!
+          .span4.offset4#home-buttons
+            -if user_signed_in?
+              %a.btn.btn-warning{:href => "/events"} get started
+            -else
+              %a.btn.btn-warning{:href => "#sign_up_foodie", :"data-toggle" =>"modal"} get started
+      
       -#.row
         .offset4.span4#home-buttons
           %a.btn.btn-warning{'ng-click' => "appear='how'"} How It Works
           %a.btn.btn-warning{:href => "/home/philosophy"} Our Philosophy
-    -#.container{'ng-show' => "appear == 'how'"}
-      .row.section-header
-        .span12#how-it-works
-          %h1 How It Works
-          %ul.user-type
-            %li{'ng-click' => 'type = "foodie"'}
-              %a{:href => '#how'}
-                .foodie
-                  =image_tag "Foodie-Default-Profile-Image.png"
-                %p I'm a Foodie
-
-            %li{'ng-click' => 'type="business"'}
-              %a{:href => '#how-chef'}
-                .chef
-                  =image_tag "Chef-Default-Profile-Image.png"
-                %p I'm a Business
-              
-      -#.container
-        .row
-          .span12.how-it-works#how{'ng-show' => 'type == "foodie"'}
-            %h1.title For Foodies
-            %h2.title What are Simmr events like?
-            .row
-              .span12
-                =image_tag "How-It-Works.jpg", :class => "how-it-works-event-infographic"
-            .row.how-it-works-event-infographic
-              .span4.offset5.step.get-started
-                .step-description
-                  -if user_signed_in?
-                    %a{:href => "/events", :"data-toggle" =>"modal"} get started
-                  -else
-                    %a{:href => "#sign_up_foodie", :"data-toggle" =>"modal"} get started
-
-          .span12.how-it-works#how-chef{'ng-show' => 'type == "business"'}
-            %h1.title For Businesses
-            %h2.title What are Simmr events like?
-            .row
-              .span12
-                =image_tag "How-It-Works-Biz.jpg", :class => "how-it-works-event-infographic"
-            .row.how-it-works-event-infographic
-              .span4.offset5.step.get-started
-                .step-description
-                  -if user_signed_in?
-                    %a{:href => "/events", :"data-toggle" =>"modal"} get started
-                  -else
-                    %a{:href => "#sign_up_business", :"data-toggle" =>"modal"} get started
-
 
     .events-index{'ng-controller' => 'EventIndexCtrl'}
       -all_events=Event.where(:approved => true)
@@ -106,8 +110,8 @@
       .events
         .container
           .row.section-header
-            .span12.events-index-header
-              %h1 Events in San Francisco
+            .span12.home-index-header
+              %h1 Food Experiences in San Francisco
         .section.events-section
           .container
             .row.events-row-content
@@ -117,27 +121,27 @@
                   -if current_user.chef == true
                     %p Look around and get some ideas!
                     - if all_events.length == 0
-                      %p No events! How 'bout starting one?
+                      %p No experiences! How 'bout setting one up?
                   - if current_user.chef == false
-                    %p Pick an event to attend!
+                    %p Pick an experience to go to!
                     -if all_events.length == 0
-                      %p No events! Sign up to stay up to date on future ones!
+                      %p No experiences! Sign up to stay up to date on future ones!
                 -else
-                  %p Pick an event to attend!
+                  %p Pick an experience to go to!
                   -if all_events.length == 0
-                    %p No events! Sign up to stay up to date on future ones!
+                    %p No experiences! Sign up to stay up to date on future ones!
                 .events-index-navigation
                   %ul
                     %li
-                      %a{:href => '#live'} Live Events
+                      %a{:href => '#live'} Current Experiences
                     %li
-                      %a{:href => '#new'} New Events
+                      %a{:href => '#new'} Preview Upcoming Experiences
                     %li
-                      %a{:href => '#ongoing'} Ongoing Events
+                      %a{:href => '#ongoing'} Popular, Recurring Experiences
         .container
           .row.section-header
-            .span12.events-index-section-title#live
-              %h1 Live Events
+            .span12.events-index-section-title-top#live
+              %h1 Current Experiences
         .section.events-section
           .container
             .row.events-row-content
@@ -145,11 +149,11 @@
               .span8.events-index-content
                 -if current_user
                   -if current_user.chef == true
-                    %p Live events are currently selling tickets! Look around and see what's happenin'.
+                    %p Current experiences are selling tickets now! Look around and see what's happenin'.
                   - if current_user.chef == false
-                    %p Live events are currently selling tickets! Buy yours today before they sell out.
+                    %p Current experiences are selling tickets now! Buy yours today before they sell out.
                 -else
-                  %p Live events are currently selling tickets! Buy yours today before they sell out.
+                  %p Current experiences are selling tickets now! Buy yours today before they sell out.
         .container
           -potential_live_events=non_upcoming_events.dup
           -while potential_live_events.length > 1
@@ -173,7 +177,7 @@
         .container
           .row.section-header
             .span12.events-index-section-title#new
-              %h1 New Events
+              %h1 Preview Upcoming Experiences
         .section.events-section
           .container
             .row.events-row-content
@@ -181,12 +185,12 @@
               .span8.events-index-content
                 -if current_user
                   -if current_user.chef == true
-                    %p New events are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified as soon as ticket sales begin! 
+                    %p Upcoming experiences are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified earlier than everybody else when ticket sales begin! 
                     -# what would you make this language, Neeharika?
                   - if current_user.chef == false
-                    %p New events are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified as soon as ticket sales begin! 
+                    %p Upcoming experiences are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified earlier than everybody else when ticket sales begin! 
                 -else
-                  %p New events are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified as soon as ticket sales begin! 
+                  %p Upcoming experiences are scheduled but not yet open for ticket sales. Follow (click on the heart) to get notified earlier than everybody else when ticket sales begin! 
         .container
           -while upcoming_events.length > 1
             -event = upcoming_events.pop
@@ -210,7 +214,7 @@
         .container
           .row.section-header
             .span12.events-index-section-title#ongoing
-              %h1 Ongoing Events
+              %h1 Popular, Recurring Experiences
         .section.events-section
           .container
             .row.events-row-content
@@ -218,11 +222,11 @@
               .span8.events-index-content
                 -if current_user
                   -if current_user.chef == true
-                    %p Ongoing events have happened one or more times and have been successes! Check out what's trending!
+                    %p Recurring experiences have happened one or more times and have been really popular! Check out what's trending!
                   - if current_user.chef == false
-                    %p Ongoing events have happened one or more times and have been successes! Put your name down for the next one -- the more names on the list, the sooner the event will happen.
+                    %p Recurring experiences have happened one or more times and have been really popular! Put your name down for the next one -- the more names on the list, the sooner you can enjoy the experience.
                 -else
-                  %p Ongoing events have happened one or more times and have been successes! Put your name down for the next one -- the more names on the list, the sooner the event will happen.
+                  %p Recurring experiences have happened one or more times and have been really popular! Put your name down for the next one -- the more names on the list, the sooner you can enjoy the experience.
         .container
           -while potential_past_events.length > 1
             -event = potential_past_events.pop
@@ -248,11 +252,12 @@
               .span12.events-index-content
                 -if current_user
                   -if current_user.chef == true
-                    %p Get a sense? <a href = "/events/new">Set up</a> your event today!
+                    %p Get a sense? <a href = "/events/new">Get your experience on Simmr</a> today!
                   -else
-                    %p Don’t see your favorite business? <a href = "/campaigns/new">Suggest a business</a> or <a href = "/campaigns">vote up a suggested business</a> to get them to host events on Simmr!
+                    %p Don’t see your favorite business or a cool experience you want to see happen? <a href = "/campaigns/new">Suggest an experience</a> or <a href = "/campaigns">vote up a suggested experience</a> to make it happen on Simmr!
                 -else
-                  %p Don’t see your favorite business? <a href = "/campaigns/new">Suggest a business</a> or <a href = "/campaigns">vote up a suggested business</a> to get them to host events on Simmr!
+                  %p Don’t see your favorite business or a cool experience you want to see happen? <a href = "/campaigns/new">Suggest an experience</a> or <a href = "/campaigns">vote up a suggested experience</a> to make it happen on Simmr!
+     
       %a.back-to-top{:href => '#top'}Back to Top
 
 

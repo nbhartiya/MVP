@@ -30,6 +30,18 @@ button.usersignup.emailbutton.btn.btn-warning{
 	margin-top: -2px;
 }
 
+.btn:focus{
+	outline:none !important;
+}
+
+a:focus{
+	outline: none !important;
+}
+
+button:focus{
+	outline: none !important;
+}
+
 .container{
   max-width: none !important;
   width: 1210px !important;
@@ -158,6 +170,10 @@ body{
 	::-webkit-scrollbar-thumb:horizontal{width:50px;background-color:rgb(180, 180, 180);-webkit-border-radius:8px;}
 }
 
+a.sb{
+	cursor: pointer;
+}
+
 .fancybox-title iframe {
     min-height: 30px;
     vertical-align: middle;
@@ -223,6 +239,10 @@ body.modal-open {
 	display: inherit;
 }
 
+.show-inline{
+	display: inline;
+}
+
 #default-text{
 	color: gray !important;
 }
@@ -281,6 +301,22 @@ body.modal-open {
 	}
 }
 
+// alerts
+.alert{
+	color: white;
+	font-weight: 100;
+	text-shadow: none;
+	border: none;
+	position: absolute;
+	top: 120px;
+	width: 1210px;
+	background: rgba(0, 0, 0, 0.7);
+	.close{
+		color: white;
+		text-shadow: none;
+		opacity: 0.8;
+	}
+}
 
 // general purpose classes
 
@@ -453,16 +489,22 @@ input.error-true  {
 			}
 		}
 		.nav-right{
+		    margin-right: -50px;
 			a, a:visited{
 				color: rgb(150, 150, 150);
 			}
 			a:hover{
 				color: rgb(54, 54, 54);
 			}
-			margin-right: -50px;
+			a:active, a:focus, #sign-up-header-link:focus{
+				outline: none;
+			}
+			
 			#sign-up-header-link{
 				background: $main_orange;
 				color: white;
+				padding: 0 5px;
+				cursor: pointer;
 			}
 			#simmr-credit{
 				color: $main_orange;
@@ -485,7 +527,7 @@ input.error-true  {
 }
 
 
-#twitter-share-button{
+#twitter-share-button, .twitter-share-button{
 			width: 65px !important;
 		}
 
@@ -500,7 +542,7 @@ input.error-true  {
 			color: rgb(150, 150, 150);
 			float: left;
 			font-size: 12px;
-			padding: 0 15px;			
+			padding: 0 7px;			
 		}
 		a.blog, a.blog:visited, a.blog:hover{
 			color: $main_orange;
@@ -591,6 +633,14 @@ input.error-true  {
 			font-size: 14px;
 			font-weight: 100;
 		}
+		a, a:active, a:visited{
+			color: $main_orange;
+			text-decoration: none;
+		}
+		a:hover{
+			color: lighten($main_orange,20%);
+			text-decoration: none;
+		}
 	}
 	label{
 		line-height: 32px;
@@ -631,6 +681,7 @@ input.error-true  {
 		position: relative;
 		left: 50%;
 		margin: 10px 0 0 -150px;
+		color: white;
 	}
 	a.sb.text.facebook-share{
 		margin-bottom: 20px;
