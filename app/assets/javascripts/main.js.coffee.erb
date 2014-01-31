@@ -141,9 +141,9 @@ Simmr.controller "HeaderCtrl", ["$scope", "$routeParams","storage", ($scope, $ro
     $('#sign_up_generic').modal('hide')
   else
     $('#sign_up_generic').modal('show')
-    #storage.set("submitted",true)
-  $scope.signupSubmitted = () ->
     storage.set("submitted",true)
+  #$scope.signupSubmitted = () ->
+  #  storage.set("submitted",true)
 ]
 
 Simmr.controller "HomeIndexCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
