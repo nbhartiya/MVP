@@ -26,6 +26,8 @@
 //- require angular-bootstrap
 //- require angular-ui-bootstrap-tpls
 //= require angular-slider.js
+//= require angular-cookies.js
+//= require angularLocalStorage.js
 //= require jquery.cookie
 //= require_tree .
 
