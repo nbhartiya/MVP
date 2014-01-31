@@ -43,7 +43,6 @@ class SignupsController < ApplicationController
   # POST /signups
   # POST /signups.json
   def create
-    binding.pry
     session[:return_to] ||= request.referer
     @signup = Signup.new(params[:signup])
     if Signup.where(:email => @signup.email).length != 0

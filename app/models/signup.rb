@@ -10,14 +10,19 @@
 #
 
 class Signup < ActiveRecord::Base
-  before_create :signup_email
+  after_create :signup_email, :notify_us
   
   def signup_email
-    if self.chef?
-      NotificationMailer.waitlist_chef_email(self).deliver
-    else
-      NotificationMailer.waitlist_email(self).deliver
-    end
+    MandrillMailer.signup_generic_email(self)
+    #if self.chef?
+    #  NotificationMailer.waitlist_chef_email(self).deliver
+    #else
+    #  NotificationMailer.waitlist_email(self).deliver
+    #end
+  end
+
+  def notify_us
+    MandrillMailer.notify_us_of_signup(self)
   end
   
   attr_accessible :email, :chef

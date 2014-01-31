@@ -188,6 +188,88 @@ class MandrillMailer < Devise::Mailer
     puts sending
   end
 
+  def self.signup_generic_email(signup)
+    @signup = signup
+    m = Mandrill::API.new(ENV["MANDRILL_KEY"])
+      message = {
+        :subject=> "Welcome to Simmr, #{signup.email}!",
+        :from_name=> "Simmr Concierge",
+        :from_email => "neeharika@simmr.co",
+        :text=>"Psst, #{signup.email}, you're in!
+        Life is too short to not make every day amazing. We curate unique experiences at the restaurants and bars you love, so you can experience them as no customer has ever before.
+        Come right this way: http://www.simmr.co/events
+        Nomnom,
+        Neeharika and Wendy
+        http://www.simmr.co
+        P.S. As always, please don't hesitate to reach out to us directly by replying to this email.",
+        # below are global merge vars. the name is the *|MERGE|* tag
+        #{}"global_merge_vars"=>[],
+        :to=>[
+          {
+            :email=> @signup.email,
+          }
+      ],
+      :from_email=>"neeharika@simmr.co"
+      }
+    template_name = "welcome-email"
+    template_content = [
+      {
+        :name => "title",
+        :content => "Psst, you're in! Welcome to Simmr"
+      },
+      {
+        :name => "std_preheader_content",
+        :content => "<p>Welcome to Simmr, #{signup.email}!</p>"
+      },
+      {
+        :name => "image",
+        :content => "<img src = 'http://www.simmr.co/assets/launch_page_mock_done.jpg' style = 'max-width:550px;' id = 'headerImage campaign-icon'>"
+      },
+      {
+        :name => "content",
+        :content => "<h1>Psst, #{signup.email}, you're in!</h1><p>Life is too short to not make every day amazing. We curate unique experiences at the restaurants and bars you love, so you can experience them as no customer has ever before.
+        <br><p>Come right <a href = 'http://www.simmr.co/events' target = '_blank'>this way</a>.<br><br>Nomnom, <br>Neeharika and Wendy<br><a href = 'http://www.simmr.co'>simmr</a>
+        <br><br>P.S. As always, please don't hesitate to reach out to us directly by replying to this email.</p>"
+      },
+      {
+        :name => "social",
+        :content => "<a href='http://www.facebook.com/simmrco'>like on Facebook </a> | <a href='https://twitter.com/simmrco'>follow on Twitter</a> | <a href = 'http://simmrco.wordpress.com'>check out our blog</a>"
+      },
+      {
+        :name => "footer-content",
+        :content => "You're receiving this because you just signed up!"
+        },
+      {
+        :name => "utility",
+        :content => ""#"<a href='*|UNSUB:http://www.simmr.co/home/unsubscribe|*'>unsubscribe from this list</a>"
+      }
+      ]
+    sending = m.messages.send_template template_name, template_content, message 
+  end
+
+  def self.notify_us_of_signup(signup)
+    @signup = signup
+    m = Mandrill::API.new(ENV["MANDRILL_KEY"])
+      message = {
+        :subject=> "NEW SIMMR SIGNUP: #{signup.email}",
+        :text=>"SIMMR HAS A NEW SIGNUP: #{signup.email}",
+        :to=>[
+          {
+            :email=> "neeharika.b@gmail.com",
+            :name=> "Neeharika"
+          },
+          {
+            :email=> "email.wendylin@gmail.com",
+            :name=> "Wendy"
+          }
+        ],
+      :html=>"<html>SIMMR HAS A NEW SIGNUP: <br> #{signup.id} <br> #{signup.email}</html>",
+      :from_email=>"neeharika@simmr.co"
+      }
+    sending = m.messages.send message
+    puts sending
+  end
+
   def self.event_purchase_email(user, charge, event, guest_count, location)
     @user = user
     m = Mandrill::API.new(ENV["MANDRILL_KEY"])
