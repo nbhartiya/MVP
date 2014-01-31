@@ -99,13 +99,12 @@ a.sb.yelp.black{
 	.events-index-navigation{
 		ul{
 		list-style: none;
-		width: 400px;
 		margin: 0 auto;
 		font-size: 18px;
 		}
 		li{
 			float: left;
-			margin: 0 0.5%;
+			margin: 0;
 			border-right: 1px solid rgb(54, 54, 54);
 			-webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;    
@@ -129,6 +128,9 @@ a.sb.yelp.black{
 		}
 		.events-index-section-title{
 			margin: -20px 0 0 0;
+		}
+		.events-index-section-title-top{
+			margin: 10px 0 0 0;
 		}
 		.events-index-content, .events-index-header{
 			margin: 10px 0;
