@@ -21,6 +21,10 @@ angular.module('Simmr').controller "UserRegisterCtrl", ["$scope",  "$routeParams
 
 ]
 
+facebookConversionPixel = (fb_pixel, fb_value) ->
+  image = new Image(1, 1)
+  image.src = "https://www.facebook.com/offsite_event.php?id=" + fb_pixel + "&amp;value=" + fb_value + "&amp;currency=USD"
+
 $(document).on "click", ".foodiesignup", ->
   #setting session cookie because of oAuth redirect
   $.cookie 'chef', false, { path: '/' }
@@ -65,4 +69,6 @@ $(document).on "click", ".usersignup.bizbutton", ->
   $("#new_user_biz").submit()
 
 $(document).on "click", ".usersignup.foodiebutton", ->
+  facebookConversionPixel(6013741359832,0.01)
   $("#new_user_foodie").submit()
+  
