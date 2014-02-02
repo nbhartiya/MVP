@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-# Uncomment this when Wendy is ready and we make sure it works on heroku
 ruby '2.0.0'
 
 gem 'rails', '3.2.11'
