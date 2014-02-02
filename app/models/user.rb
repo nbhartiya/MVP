@@ -69,9 +69,9 @@ class User < ActiveRecord::Base
   def do_mailchimp
     if true #Rails.env.production?
       if !self.chef
-        #gb = Gibbon::API.new
+        gb = Gibbon::API.new
         begin
-          Gibbon::API.lists.subscribe({:id => '8c1b490cc0', :email => {:email => self.email}, :merge_vars => {:FNAME => self.first_name, :LNAME => self.last_name}, :double_optin => false})
+          gb.lists.subscribe({:id => '8c1b490cc0', :email => {:email => self.email}, :merge_vars => {:FNAME => self.first_name, :LNAME => self.last_name}, :double_optin => false})
         rescue Gibbon::MailChimpError => e
           puts e
         end
