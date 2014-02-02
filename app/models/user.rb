@@ -74,6 +74,8 @@ class User < ActiveRecord::Base
           Gibbon::API.lists.subscribe({:id => '8c1b490cc0', :email => {:email => self.email}, :merge_vars => {:FNAME => self.first_name, :LNAME => self.last_name}, :double_optin => false})
         rescue Gibbon::MailChimpError => e
           puts e
+        rescue StandardError => e
+          puts e
         end
       end
     end
