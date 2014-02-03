@@ -308,7 +308,7 @@ class MandrillMailer < Devise::Mailer
       },
       {
         :name => "image",
-        :content => "<img src = '#{event.covers.first.image}' style = 'max-width:550px;' id = 'headerImage campaign-icon'>"
+        :content => "<img src = 'http://www.simmr.co/assets/launch_page_mock_done.jpg' style = 'max-width:550px;' id = 'headerImage campaign-icon'>"
       },
       {
         :name => "content",
