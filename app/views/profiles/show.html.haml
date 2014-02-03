@@ -289,7 +289,7 @@
                         =campaign.status
                       
               -else
-                No suggestions yet!
+                %h3 No suggestions yet!
               -#
                 %ul.nav.nav-tabs
                   %li.active
@@ -317,7 +317,7 @@
                             -else
                               %td
                     -else
-                      No suggestions supported.
+                      %h3 No suggestions supported.
                   #started-campaigns.tab-pane.fade
                     -if @profile.user.campaigns_started
                       %table.campaigns-table
@@ -338,12 +338,11 @@
                             -else
                               %td
                     -else
-                      No suggestions made.
+                      %h3 No suggestions made.
 
             .user-following{'ng-show' => 'appear == "following"'}
               %button.close{"ng-click" => "appear=''", :type => "button"} close
               %h1 Following
-              %br
               -if @profile.user.followers.count > 0
                 %table.following-table
                   -for follower in @profile.user.followers
