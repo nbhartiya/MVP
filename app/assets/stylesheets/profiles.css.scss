@@ -194,6 +194,9 @@ $main_orange: #EB4D18;
 				-moz-box-sizing: border-box;    
 				box-sizing: border-box;
 			}
+			.btn.experiences{
+				font-size: 12px;
+			}
 			.active .btn{
 				background: $main_orange;
 				color: white;
