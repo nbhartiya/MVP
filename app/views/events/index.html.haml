@@ -1,6 +1,5 @@
 =content_for :title, "Experiences"
 
-
 .events-index#top{'ng-controller' => 'EventIndexCtrl'}
   -all_events = @events
   -upcoming_events = @events.where(:upcoming=>true)
