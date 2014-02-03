@@ -26,7 +26,7 @@ class Guest < ActiveRecord::Base
   after_create :do_mailchimp_guest
 
   def do_mailchimp_guest
-    if true #Rails.env.production?
+    if Rails.env.production?
   	  if self.user_id==nil
   	    #gb = Gibbon::API.new
         begin
