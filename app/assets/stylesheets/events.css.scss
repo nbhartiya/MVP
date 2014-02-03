@@ -936,6 +936,7 @@ a.sb.yelp.black{
             	color: white;
             	display: inline;
             	float: right;
+            	margin-bottom: 5px;
             }
 		}
 		.event-guests, .event-purchase, .event-details, .event-menu, .event-attendees-and-chatter, .event-host-story, .host-followers{
@@ -1446,6 +1447,7 @@ a.sb.yelp.black{
 			padding: 5px 0;
 			margin: 15px -37px 25px -37px;
 			background: black;
+			clear: both;
 		}
 		.event-summary-logistics{
 			//border-top: 1px dashed rgb(100, 100, 100);

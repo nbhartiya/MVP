@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
   def confirmation_email
     unless self.email.empty?
       if Rails.env.production?
-        NotificationMailer.notify_us_of_user_signup(self).deliver
+        MandrillMailer.notify_us_of_user(self)
       end
       if self.chef?
         MandrillMailer.signup_chef_email(self)
@@ -67,12 +67,14 @@ class User < ActiveRecord::Base
   end
 
   def do_mailchimp
-    if !self.chef
-      gb = Gibbon::API.new
-      begin
-        gb.lists.subscribe({:id => '8c1b490cc0', :email => {:email => self.email}, :merge_vars => {:FNAME => self.first_name, :LNAME => self.last_name}, :double_optin => false})
-      rescue Gibbon::MailChimpError => e
-        puts e
+    if true #Rails.env.production?
+      if !self.chef
+        gb = Gibbon::API.new
+        begin
+          gb.lists.subscribe({:id => '8c1b490cc0', :email => {:email => self.email}, :merge_vars => {:FNAME => self.first_name, :LNAME => self.last_name}, :double_optin => false})
+        rescue Gibbon::MailChimpError => e
+          puts e
+        end
       end
     end
   end

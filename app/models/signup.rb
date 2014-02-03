@@ -10,16 +10,8 @@
 #
 
 class Signup < ActiveRecord::Base
-  before_create :signup_email
-  
-  def signup_email
-    if self.chef?
-      NotificationMailer.waitlist_chef_email(self).deliver
-    else
-      NotificationMailer.waitlist_email(self).deliver
-    end
-  end
-  
+  after_create :signup_email, :notify_us, :do_mailchimp
+
   attr_accessible :email, :chef
   
   # Makeshift email validation for now
@@ -27,4 +19,28 @@ class Signup < ActiveRecord::Base
     :length => {:minimum => 3, :maximum => 254},
     :uniqueness => {:message => "You've signed up with us already!"},
     :format => /@/
+  
+  def signup_email
+    MandrillMailer.signup_generic_email(self)
+    #if self.chef?
+    #  NotificationMailer.waitlist_chef_email(self).deliver
+    #else
+    #  NotificationMailer.waitlist_email(self).deliver
+    #end
+  end
+
+  def notify_us
+    MandrillMailer.notify_us_of_signup(self)
+  end
+
+  def do_mailchimp
+    if true #Rails.env.production?
+      gb = Gibbon::API.new
+      begin
+        gb.lists.subscribe({:id => '57af32d210', :email => {:email => self.email}, :double_optin => false})
+      rescue Gibbon::MailChimpError => e
+        puts e
+      end
+    end
+  end
 end

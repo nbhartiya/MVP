@@ -26,13 +26,15 @@ class Guest < ActiveRecord::Base
   after_create :do_mailchimp_guest
 
   def do_mailchimp_guest
-  	if self.user_id==nil
-  	  gb = Gibbon::API.new
-      begin
-        gb.lists.subscribe({:id => '8c1b490cc0', :email => {:email => self.email}, :merge_vars => {:FNAME => self.first_name, :LNAME => self.last_name, :GUEST => 'Guest'}, :double_optin => false})
-      rescue Gibbon::MailChimpError => e
-        #email us
-        puts e
+    if true #Rails.env.production?
+  	  if self.user_id==nil
+  	    gb = Gibbon::API.new
+        begin
+          gb.lists.subscribe({:id => '8c1b490cc0', :email => {:email => self.email}, :merge_vars => {:FNAME => self.first_name, :LNAME => self.last_name, :GUEST => 'Guest'}, :double_optin => false})
+        rescue Gibbon::MailChimpError => e
+          #email us
+          puts e
+        end
       end
     end
   end

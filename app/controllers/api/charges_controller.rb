@@ -48,6 +48,7 @@ class Api::ChargesController < ApplicationController
       :card => @charge.stripe_token, # obtained with Stripe.js
       :description => "Ticket Purchase for Event: #{params[:charge][:event_id]}"
     }
+    @event=Event.find(params[:charge][:event_id])
     begin
       new_charge = Stripe::Charge.create(charge_info)
     rescue Stripe::CardError => e
@@ -109,8 +110,8 @@ class Api::ChargesController < ApplicationController
           @old_charge.save!
         end
       end
-      if Event.find(params[:charge][:event_id]).referer_discount.present?
-        if Event.find(params[:charge][:event_id]).referer_discount>0.0
+      if @event.referer_discount.present?
+        if @event.referer_discount>0.0
           code,new_ref_code_id=ReferralCode.generate(@ticket)
           @ticket.giveaway_code_id=new_ref_code_id
           @ticket.save!
@@ -136,8 +137,12 @@ class Api::ChargesController < ApplicationController
         @guest.ticket_id = @ticket.id
       	@guest.save!
       end
+      begin
+        MandrillMailer.event_purchase_email(current_user, @charge, @event, @ticket.guests.count, @event.location)
+      rescue
+        #add an email to us to tell us that the confirmation email didnt get sent?
+      end
       render json:{status:'Success', code:code}.to_json
-
     end
   end
 end

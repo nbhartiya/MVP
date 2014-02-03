@@ -128,7 +128,7 @@ Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($sc
 
 ]
 
-Simmr.controller "HeaderCtrl", ["$scope",  "$routeParams", ($scope, $routeParams) ->
+Simmr.controller "HeaderCtrl", ["$scope", "$routeParams","storage", ($scope, $routeParams, storage) ->
   $scope.search = (searchQuery) ->
     window.location= "/events?q=#{searchQuery}"
   $scope.keypressCallback = ($event) ->
@@ -136,12 +136,13 @@ Simmr.controller "HeaderCtrl", ["$scope",  "$routeParams", ($scope, $routeParams
     $event.preventDefault()
   if window.current_user?
     ANALYTICS.identify(window.current_user)
-  
-  if window.current_user?
+  if window.current_user? || storage.get("submitted")
     $('#sign_up_generic').modal('hide')
   else
     $('#sign_up_generic').modal('show')
-
+    storage.set("submitted",true)
+  $scope.signupSubmitted = () ->
+    storage.set("submitted",true)
 ]
 
 Simmr.controller "HomeIndexCtrl", ["$scope",  "$routeParams", "$location", ($scope, $routeParams, $location) ->
