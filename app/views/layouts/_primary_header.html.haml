@@ -35,7 +35,7 @@
                     %a{:href=>"/edit_my_profile?events", :tabindex => "-1"} My Experiences
                 %li.dropitem
                   = link_to "Sign Out", destroy_user_session_path, :method => :delete, :confirm => "Are you sure you want to sign out?", :tabindex => "-1"
-        %li.pull-right
+        -#%li.pull-right
           %a#simmr-credit{:href=>"#referral", :"data-toggle" => "modal", :tabindex => "-1"} Earn Simmr Credit!
         %li.pull-right
           %a.campaign{:href =>"/campaigns", "data-placement"=>'right'}Suggest an Experience

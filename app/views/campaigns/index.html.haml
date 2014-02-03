@@ -25,6 +25,13 @@
                   %h2 enjoy
                   .step-description
                     %p Once you have 20 upvotes, we will contact the host and bring them on to Simmr!
+        .row
+          .span4.offset4#campaign-buttons
+            -if user_signed_in?
+              %a.btn.btn-warning{:href => "/campaigns/new"} suggest an experience
+            -else
+              %a.btn.btn-warning{:href => "#sign_up_foodie", :"data-toggle" =>"modal"} suggest an experience
+      
     .container
       -all_campaigns = @campaigns
       -while all_campaigns.length > 1
