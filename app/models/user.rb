@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
   end
 
   def do_mailchimp
-    if true #Rails.env.production?
+    if Rails.env.production?
       if !self.chef
         #gb = Gibbon::API.new
         begin

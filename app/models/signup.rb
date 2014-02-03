@@ -34,7 +34,7 @@ class Signup < ActiveRecord::Base
   end
 
   def do_mailchimp
-    if true #Rails.env.production?
+    if Rails.env.production?
       #gb = Gibbon::API.new
       begin
         Gibbon::API.lists.subscribe({:id => '57af32d210', :email => {:email => self.email}, :double_optin => false})
