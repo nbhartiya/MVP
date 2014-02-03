@@ -277,7 +277,7 @@ class MandrillMailer < Devise::Mailer
         :subject=> "Simmr Purchase Confirmation--#{event.host.profile.biz_name}",
         :from_name=> "Simmr Concierge",
         :from_email => "neeharika@simmr.co",
-        :text=>"#{user.first_name}, you just reigstered for #{event.title} with #{event.host.profile.biz_name}!
+        :text=>"#{user.first_name}, you just registered for #{event.title} with #{event.host.profile.biz_name}!
         Just wanted to let you know that your payment went through for #{'$%6.2f' % (charge.amount/100.00)}, and you're all set for #{guest_count} spot(s).
         Take a moment to check your event details and add the event to your calendar by using the calendar widget on the event page.
         As a reminder, the event takes place at #{event.time.strftime('%l:%M %p')} on #{event.date.strftime('%A, %B %e, %Y')} and will be located at #{location.address1} in #{location.neighborhood}.
@@ -300,11 +300,11 @@ class MandrillMailer < Devise::Mailer
     template_content = [
       {
         :name => "title",
-        :content => "#{user.first_name}, you just reigstered for #{event.title} with #{event.host}!"
+        :content => "#{user.first_name}, you just registered for #{event.title} with #{event.host}!"
       },
       {
         :name => "std_preheader_content",
-        :content => "<p>#{user.first_name}, you just reigstered for #{event.title} with #{event.host.profile.biz_name}!</p>"
+        :content => "<p>#{user.first_name}, you just registered for #{event.title} with #{event.host.profile.biz_name}!</p>"
       },
       {
         :name => "image",
@@ -312,7 +312,7 @@ class MandrillMailer < Devise::Mailer
       },
       {
         :name => "content",
-        :content => "<h1>#{user.first_name}, you just reigstered for #{event.title} with #{event.host.profile.biz_name}!</h1><p> Just wanted to let you know that your payment went through for #{'$%6.2f' % (charge.amount/100.00)}, and you're all set for #{guest_count} spot(s).
+        :content => "<h1>#{user.first_name}, you just registered for #{event.title} with #{event.host.profile.biz_name}!</h1><p> Just wanted to let you know that your payment went through for #{'$%6.2f' % (charge.amount/100.00)}, and you're all set for #{guest_count} spot(s).
         <br><p>Take a moment to check your event details and add the event to your calendar by using the calendar widget on the <a href= 'http://www.simmr.co/events/#{event.id}'>event page</a>.
         <br><br>As a reminder, the event takes place at <b>#{event.time.strftime('%l:%M %p')}</b> on <b>#{event.date.strftime('%A, %B %e, %Y')}</b> and will be located at <b>#{location.address1} in #{location.neighborhood}</b>.
         <br><br>Eating is best in the company of good friends, so spread the word and bring friends!
