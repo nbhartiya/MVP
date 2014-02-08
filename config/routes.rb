@@ -69,7 +69,7 @@ MVP::Application.routes.draw do
   get "survey" => "survey_questions#survey"
   match "/turtletower" => redirect("https://www.surveymonkey.com/s/LT7SDWX"), :as => :turtletower
   match "/ejis" => redirect("https://www.surveymonkey.com/s/JFCRCPX"), :as => :eji
-  match "/antologiaV" => redirect("https://www.surveymonkey.com/s/26LZ8CY"), :as => :antologiaV
+  match "/wine" => redirect("https://www.surveymonkey.com/s/M28VBR3"), :as => :wine
   match "/beans" => redirect("https://www.surveymonkey.com/s/MXNGY6S"), :as => :beans
   match "/riceball" => redirect("https://www.surveymonkey.com/s/3HBGRCT"), :as=> :riceball
   match "/meatballs" => redirect("https://www.surveymonkey.com/s/QLJVVKV"), :as=> :meatballs
