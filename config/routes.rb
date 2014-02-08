@@ -1,14 +1,15 @@
 MVP::Application.routes.draw do
 
-  get "follow/index"
-
-  get "follow/new"
-
-
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => "home#index"
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
+  get "follow/index"
+
+  get "follow/new"
 
   match "home" => "signups#new"
   match "/meow" => "home#meow"
@@ -59,6 +60,7 @@ MVP::Application.routes.draw do
   end
 
   devise_for :users, controllers: {omniauth_callbacks: "authentications"} do
+  ActiveAdmin.routes(self)
     resource :image
   end
 
