@@ -353,8 +353,8 @@
               %input.guest-email{'ng-disabled' => "guest.userId>0",'ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :required => "required", :name => "guest_email", 'ng-class' => "{error: guest_registration.guest_email.$invalid}"}
               .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.email'} Please enter a valid email
               .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.required || guest_registration.guest_first.$error.required || guest_registration.guest_last.$error.required'} All fields are required
-            -if @event.referer_discount.present?
-              -if @event.referer_discount >0.0
+            -if @event.referee_discount.present?
+              -if @event.referee_discount > 0.0
                 %a#promo-code Did someone refer you? Put in their referral code!
                 %input.promo-code{:placeholder => "Referral Code (Optional)", 'ng-model'=>'referrer_code'}
                 %button.btn.promo-code{'ng-click'=>'checkReferralCode(referrer_code)'} Submit
