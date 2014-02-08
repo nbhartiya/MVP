@@ -215,7 +215,16 @@ class User < ActiveRecord::Base
   end
 
   def facebook
-    @graph = Koala::Facebook::API.new(self.authentications.find_by_provider('facebook').token)
+    return @graph if @graph.present?
+    begin
+      @graph = Koala::Facebook::API.new(self.authentications.find_by_provider('facebook').token)
+    rescue StandardError => e #make more narrow
+      #do logic to fix your graph
+    end
+  end
+
+  def facebook_expired?
+    self.authentications.find_by_provider('facebook')
   end
   
   def password_required?
