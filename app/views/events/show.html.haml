@@ -355,8 +355,8 @@
               .help-block-white{'ng-show' => 'guest_registration.guest_email.$error.required || guest_registration.guest_first.$error.required || guest_registration.guest_last.$error.required'} All fields are required
             -if @event.referee_discount.present?
               -if @event.referee_discount > 0.0
-                %a#promo-code Did someone refer you? Put in their referral code!
-                %input.promo-code{:placeholder => "Referral Code (Optional)", 'ng-model'=>'referrer_code'}
+                %a#promo-code Did you have a promotional code? Put it in here!
+                %input.promo-code{:placeholder => "Promotional Code (Optional)", 'ng-model'=>'referrer_code'}
                 %button.btn.promo-code{'ng-click'=>'checkReferralCode(referrer_code)'} Submit
                 .help-block-white.promo-code{'ng-show' => 'discount_stuff.applied'} Applied!
                 .help-block-white.promo-code{'ng-show' => 'discount_stuff.applied!=nil && discount_stuff.note!="success"'} {{discount_stuff.details}}
