@@ -24,4 +24,7 @@ class HomeController < ApplicationController
   def privacy
   end
 
+  def raffle
+  end
+
 end

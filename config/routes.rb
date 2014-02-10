@@ -24,6 +24,7 @@ MVP::Application.routes.draw do
   get "home/philosophy"
   get "home/unsubscribe"
   get "home/privacy"
+  get "home/raffle"
   #get "home/blog"
 
   resources :images
