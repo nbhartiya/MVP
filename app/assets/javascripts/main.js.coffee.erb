@@ -530,7 +530,7 @@ Simmr.controller "EventIndexCtrl", ["$scope",  "$routeParams", "$location", "Eve
       guest.eventId=$scope.eventId
       guest.waiting=true
       new Guest(guest).create().then (data) =>
-        console.log data, "~~~~~~~~~~~"
+        console.log "~~~~~~~~~~~"
     )
     $scope.appear = "waitlist2"
 
@@ -538,7 +538,7 @@ Simmr.controller "EventIndexCtrl", ["$scope",  "$routeParams", "$location", "Eve
     angular.forEach($scope.guests, (guest) =>
       guest.eventId=$scope.eventId
       new Guest(guest).create().then (data) =>
-        console.log data, "~~~~~~~~~~~"
+        console.log "~~~~~~~~~~~"
     )
     $scope.appear = "payment3"
 ]
