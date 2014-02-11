@@ -335,5 +335,4 @@ class MandrillMailer < Devise::Mailer
       ]
     sending = m.messages.send_template template_name, template_content, message 
   end
-
 end
