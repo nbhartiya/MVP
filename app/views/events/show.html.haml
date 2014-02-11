@@ -133,9 +133,13 @@
                 %select.number-of-seats{'ng-model' => 'num_guests'}
                   %option{:value => ''} Number of Seats
                   %option{:value => 1} 1 seat
-                  -(@event.seats_left-1).times do |s|
-                    %option{:value => s+2} #{s+2} seats
-                .btn.btn-warning.event-go-button{'ng-click' => 'showPayment(false);total()', 'ng-disabled' => "num_guests==nil || num_guests == 0"} Go
+                  -if @event.cost>0.0
+                    -(@event.seats_left-1).times do |s|
+                      %option{:value => s+2} #{s+2} seats
+                -if @event.cost>0.0
+                  .btn.btn-warning.event-go-button{'ng-click' => 'showPayment(false);total()', 'ng-disabled' => "num_guests==nil || num_guests == 0"} Go
+                -else
+                  .btn.btn-warning.event-go-button{'ng-click' => 'showPayment(true);total()', 'ng-disabled' => "num_guests==nil || num_guests == 0"} Go
 
             .seats{'ng-show'=> 'waitlist'}
               -if user_signed_in? == false
@@ -372,7 +376,10 @@
               %input.guest-email{'ng-disabled' => 'guest.id > 0','ng-model' => 'guest.email',:type=>'email', :placeholder =>"Guest Email", :required => "required", :name => "guest_email", 'ng-class' => "{error: guest_waitlist.guest_email.$invalid}"}
               .help-block-white{'ng-show' => 'guest_waitlist.guest_email.$error.email'} Please enter a valid email
               .help-block-white{'ng-show' => 'guest_waitlist.guest_email.$error.required || guest_registration.guest_first.$error.required || guest_registration.guest_last.$error.required'} All fields are required
-            %button.btn.btn-warning#enter-payment-info{'ng-click' => 'addtoWaitlist()', 'ng-disabled' => 'guest_waitlist.$invalid'} Sign Up for the Next #{@event.host.profile.biz_name} Experience
+            -if @event.cost>0.0
+              %button.btn.btn-warning#enter-payment-info{'ng-click' => 'addtoWaitlist()', 'ng-disabled' => 'guest_waitlist.$invalid'} Sign Up for the Next #{@event.host.profile.biz_name} Experience
+            -else
+              %button.btn.btn-warning#enter-payment-info{'ng-click' => 'addtoGuestlist()', 'ng-disabled' => 'guest_waitlist.$invalid'} Sign Up!
 
           .event-purchase.clearfix{'ng-show' => 'appear=="payment2"', 'ng-init'=> "currentUser=#{current_user.to_json}"}
             %h1 Total: ${{total_val}}
@@ -385,7 +392,10 @@
             %button.btn#previous-button{'ng-click' => 'appear="payment1"'} Previous
 
           .event-purchase-confirmation.clearfix{'ng-show' => 'appear=="payment3"'}
-            %h2 Thank you for your reservation! You will receive an email confirmation.
+            -if @event.cost>0.0
+              %h2 Thank you for your reservation! You will receive an email confirmation.
+            -else
+              %h2 Thank you for your reservation, you're all set! Be sure to add this Simmr experience to your calendar and arrive on time!
             -if @event.referer_discount.present?
               -if @event.referer_discount >0.0
                 %h2 Your referral code is '{{code}}'. Get $10 off for each friend who uses your referral code at checkout!

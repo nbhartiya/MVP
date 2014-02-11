@@ -295,6 +295,14 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
     )
     $scope.appear = "waitlist2"
 
+  $scope.addtoGuestlist = ->
+    angular.forEach($scope.guests, (guest) =>
+      guest.eventId=$scope.eventId
+      new Guest(guest).create().then (data) =>
+        console.log data, "~~~~~~~~~~~"
+    )
+    $scope.appear = "payment3"
+
   $scope.gotoPayment = ->
     $scope.trackThis("Clicked Go To Payment for Event: "+$scope.eventId)
     error = 0
@@ -526,6 +534,13 @@ Simmr.controller "EventIndexCtrl", ["$scope",  "$routeParams", "$location", "Eve
     )
     $scope.appear = "waitlist2"
 
+  $scope.addtoGuestlist = ->
+    angular.forEach($scope.guests, (guest) =>
+      guest.eventId=$scope.eventId
+      new Guest(guest).create().then (data) =>
+        console.log data, "~~~~~~~~~~~"
+    )
+    $scope.appear = "payment3"
 ]
 
 Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->
