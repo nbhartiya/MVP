@@ -25,6 +25,7 @@ class HomeController < ApplicationController
   end
 
   def raffle
+    redirect_to "home/index"
   end
 
 end
