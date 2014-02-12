@@ -3,6 +3,13 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!, :track_stuff
   helper_method :completed_user?
 
+  def authenticate_admin_user!
+    if current_user.id==1 || current_user.id==103
+    else
+      raise SecurityError
+    end
+  end
+
   def after_sign_out_path_for(resource)
     home_index_path
   end
