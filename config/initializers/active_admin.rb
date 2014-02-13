@@ -34,7 +34,7 @@ ActiveAdmin.setup do |config|
   #   config.default_namespace = false
   #
   # Default:
-  #config.default_namespace = :activeadmin
+  # config.default_namespace = :admin
   #
   # You can customize the settings for each namespace by using
   # a namespace block. For example, to change the site title
@@ -95,6 +95,7 @@ ActiveAdmin.setup do |config|
   # config.root_to = 'dashboard#index'
 
   # == Admin Comments
+  config.comments_registration_name = 'AdminComment'
   #
   # Admin comments allow you to add comments to any model for admin use.
   # Admin comments are enabled by default.

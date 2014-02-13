@@ -34,7 +34,7 @@ gem 'mandrill-api'
 gem 'analytics-ruby', '<1.0'
 gem 'heroku_rails_deflate', :group => :production
 gem 'gibbon'
-gem 'activeadmin'
+gem 'activeadmin', '0.6.3'
 
 # not necessary yet...will change to this when everything working...
 # gem 'linkedin'
