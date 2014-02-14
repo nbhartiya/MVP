@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :completed_user?
 
   def authenticate_admin_user!
-    if current_user.id==1 || current_user.id==103
+    if current_user.id==1 || current_user.id==13
     else
       raise SecurityError
     end
