@@ -37,10 +37,14 @@ class Signup < ActiveRecord::Base
     if Rails.env.production?
       #gb = Gibbon::API.new
       begin
-        Gibbon::API.lists.subscribe({:id => '57af32d210', :email => {:email => self.email}, :double_optin => false})
+        r=Gibbon::API.lists.batch_subscribe(:id => '8c1b490cc0', :batch => [{:email => {:email => self.email}, :merge_vars => {:USER => 'false'}}],:double_optin => false, :update_existing => true)
+        puts "MAILCHIMP"
+        puts r
       rescue Gibbon::MailChimpError => e
+        puts "ERROR1"
         puts e
       rescue StandardError => e
+        puts "ERROR2"
         puts e
       end
     end

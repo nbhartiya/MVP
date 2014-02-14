@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
       if !self.chef
         #gb = Gibbon::API.new
         begin
-          r=Gibbon::API.lists.subscribe({:id => '8c1b490cc0', :email => {:email => self.email}, :merge_vars => {:FNAME => self.first_name, :LNAME => self.last_name}, :double_optin => false})
+          r=Gibbon::API.lists.batch_subscribe(:id => '8c1b490cc0', :batch=> [{:email => {:email => self.email}, :merge_vars => {:FNAME => self.first_name, :LNAME => self.last_name}}], :double_optin => false, :update_existing => true)
           puts "MAILCHIMP STATUS"
           puts r
         rescue Gibbon::MailChimpError => e

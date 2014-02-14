@@ -128,7 +128,7 @@ Simmr.controller "HeartCtrl", ["$scope","$http",  "$routeParams", "Follow", ($sc
 
 ]
 
-Simmr.controller "HeaderCtrl", ["$scope", "$routeParams","storage", ($scope, $routeParams, storage) ->
+Simmr.controller "HeaderCtrl", ["$scope", "$routeParams","storage", "$location",($scope, $routeParams, storage,$location) ->
   $scope.search = (searchQuery) ->
     window.location= "/events?q=#{searchQuery}"
   $scope.keypressCallback = ($event) ->
@@ -136,11 +136,14 @@ Simmr.controller "HeaderCtrl", ["$scope", "$routeParams","storage", ($scope, $ro
     $event.preventDefault()
   if window.current_user?
     ANALYTICS.identify(window.current_user)
-  if window.current_user? || storage.get("submitted")
+  if location.href.search('raffle')>=0
     $('#sign_up_generic').modal('hide')
   else
-    $('#sign_up_generic').modal('show')
-    storage.set("submitted",true)
+    if window.current_user? || storage.get("submitted")
+      $('#sign_up_generic').modal('hide')
+    else
+      $('#sign_up_generic').modal('show')
+      storage.set("submitted",true)
   $scope.signupSubmitted = () ->
     storage.set("submitted",true)
 ]
@@ -291,6 +294,14 @@ Simmr.controller "EventRegisterCtrl", ["$scope",  "$http", "$routeParams", "$loc
         #console.log data, "~~~~~~~~~~~"
     )
     $scope.appear = "waitlist2"
+
+  $scope.addtoGuestlist = ->
+    angular.forEach($scope.guests, (guest) =>
+      guest.eventId=$scope.eventId
+      new Guest(guest).create().then (data) =>
+        console.log data, "~~~~~~~~~~~"
+    )
+    $scope.appear = "payment3"
 
   $scope.gotoPayment = ->
     $scope.trackThis("Clicked Go To Payment for Event: "+$scope.eventId)
@@ -519,10 +530,17 @@ Simmr.controller "EventIndexCtrl", ["$scope",  "$routeParams", "$location", "Eve
       guest.eventId=$scope.eventId
       guest.waiting=true
       new Guest(guest).create().then (data) =>
-        console.log data, "~~~~~~~~~~~"
+        console.log "~~~~~~~~~~~"
     )
     $scope.appear = "waitlist2"
 
+  $scope.addtoGuestlist = ->
+    angular.forEach($scope.guests, (guest) =>
+      guest.eventId=$scope.eventId
+      new Guest(guest).create().then (data) =>
+        console.log "~~~~~~~~~~~"
+    )
+    $scope.appear = "payment3"
 ]
 
 Simmr.controller "EventEditCtrl", ["$scope",  "$routeParams", "$location", "Event", ($scope, $routeParams, $location, Event) ->

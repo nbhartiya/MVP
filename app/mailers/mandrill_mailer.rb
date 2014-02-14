@@ -177,7 +177,7 @@ class MandrillMailer < Devise::Mailer
             :name=> "Neeharika"
           },
           {
-            :email=> "email.wendylin@gmail.com",
+            :email=> "linwendy08@gmail.com",
             :name=> "Wendy"
           }
         ],
@@ -259,7 +259,7 @@ class MandrillMailer < Devise::Mailer
             :name=> "Neeharika"
           },
           {
-            :email=> "email.wendylin@gmail.com",
+            :email=> "linwendy08@gmail.com",
             :name=> "Wendy"
           }
         ],

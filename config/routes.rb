@@ -1,14 +1,15 @@
 MVP::Application.routes.draw do
 
-  get "follow/index"
-
-  get "follow/new"
-
-
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => "home#index"
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
+  get "follow/index"
+
+  get "follow/new"
 
   match "home" => "signups#new"
   match "/meow" => "home#meow"
@@ -24,6 +25,7 @@ MVP::Application.routes.draw do
   get "home/philosophy"
   get "home/unsubscribe"
   get "home/privacy"
+  get "home/raffle"
   #get "home/blog"
 
   resources :images
@@ -58,6 +60,7 @@ MVP::Application.routes.draw do
   end
 
   devise_for :users, controllers: {omniauth_callbacks: "authentications"} do
+  ActiveAdmin.routes(self)
     resource :image
   end
 
@@ -69,8 +72,8 @@ MVP::Application.routes.draw do
   get "survey" => "survey_questions#survey"
   match "/turtletower" => redirect("https://www.surveymonkey.com/s/LT7SDWX"), :as => :turtletower
   match "/ejis" => redirect("https://www.surveymonkey.com/s/JFCRCPX"), :as => :eji
-  match "/antologiaV" => redirect("https://www.surveymonkey.com/s/26LZ8CY"), :as => :antologiaV
-  match "/beans" => redirect("https://www.surveymonkey.com/s/MXNGY6S"), :as => :beans
+  match "/wine" => redirect("https://www.surveymonkey.com/s/M28VBR3"), :as => :wine
+  match "/beans" => redirect("https://www.surveymonkey.com/s/M22C8BQ"), :as => :beans
   match "/riceball" => redirect("https://www.surveymonkey.com/s/3HBGRCT"), :as=> :riceball
   match "/meatballs" => redirect("https://www.surveymonkey.com/s/QLJVVKV"), :as=> :meatballs
   match "/rak" => redirect("https://www.surveymonkey.com/s/GJZFJ2S"), :as => :rak
