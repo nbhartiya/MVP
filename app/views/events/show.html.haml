@@ -364,7 +364,10 @@
                 .help-block-white.promo-code{'ng-show' => 'discount_stuff.applied'} Applied!
                 .help-block-white.promo-code{'ng-show' => 'discount_stuff.applied!=nil && discount_stuff.note!="success"'} {{discount_stuff.details}}
                 -#.help-block-white.promo-code{'ng-show' => 'discount_stuff.applied==nil'} You can get in on this too--Once you purchase your ticket, you'll get a referral code to share with friends. You get $10 back for every friend who uses your referral code at checkout! Your referral code is automatically applied to guests you are paying for.
-            %button.btn.btn-warning#enter-payment-info{'ng-click' => 'gotoPayment()', 'ng-disabled' => 'guest_registration.$invalid'} Next: Enter Payment Info
+            -if @event.cost == 0
+              adsa
+            -else
+              %button.btn.btn-warning#enter-payment-info{'ng-click' => 'gotoPayment()', 'ng-disabled' => 'guest_registration.$invalid'} Next: Enter Payment Info
           .event-guests.clearfix{'ng-show' => 'appear=="waitlist1"'}
             %h1 Please check and fill out the information below!
             %hr
