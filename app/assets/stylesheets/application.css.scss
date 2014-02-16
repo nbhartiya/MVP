@@ -1,23 +1,5 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require_self
- *= require_tree .
- *= require fancybox
- *= require fancybox-buttons
- *= require fancybox-thumbs
- *= require css-social-buttons2/social-buttons
- */
-
- @import "bootstrap";
- //@import "bootstrap-responsive";
+//@import "bootstrap-responsive";
+@import "bootstrap";
 
 // colors 
 
@@ -172,10 +154,6 @@ body{
 
 a.sb{
 	cursor: pointer;
-}
-
-a, a:visited, a:hover{
-	text-decoration: none;
 }
 
 .fancybox-title iframe {
@@ -722,3 +700,18 @@ input.error-true  {
 	margin-right: auto;
 	border: 0;
 }
+
+
+@import "campaigns";
+@import "devise";
+@import "email";
+@import "events";
+@import "home";
+@import "notification_mailer";
+@import "profiles";
+@import "signups";
+@import "staticpages";
+@import "fancybox";
+@import "fancybox-buttons";
+@import "fancybox-thumbs";
+@import "css-social-buttons2/social-buttons";
