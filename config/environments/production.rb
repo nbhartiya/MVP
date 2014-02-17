@@ -22,11 +22,7 @@ MVP::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
-  if ENV['STAGING'] == 'YES'
-    config.action_mailer.default_url_options = { :host => 'mst-staging.herokuapp.com' }
-  else
-    config.action_mailer.default_url_options = { :host => 'simmr.co' }
-  end
+  config.action_mailer.default_url_options = { :host => 'simmr.co' }
 
   #RAILS_ENV=production rake assets:precompile
 
